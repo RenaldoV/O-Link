@@ -1,24 +1,15 @@
 {
-  
-"name": "o-link",
-"version":
- "1.0.0",
-"main": "server.js",
-
-"repository": "https://github.com/RenaldoV/O-Link",
-"dependencies": {
-    
-"express" : "~4.5.1",
-	
-"mongoose" : "~3.8.0",
-	
-"body-parser" : "~1.4.2",
-	
-"method-override" : "~2.0.2",
-    
-"bson": ""
-  }
-,
-"license": "OML"
+  "name": "o-link",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/RenaldoV/O-Link",
+  "dependencies": {
+    "body-parser": "~1.4.2",
+    "bson": "",
+    "express": "~4.5.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0",
+    "node-mysql": "^0.4.2"
+  },
+  "license": "OML"
 }
-
