@@ -75,11 +75,14 @@ function remove(table, where, cb){
 
 module.exports = {
 
-	insertStudent: function(data, cb){
+	insert: function(data, table, cb){
 
-		insert(data, 'students',function(result){
+		insert(data, table,function(result){
 			return cb(result);
 		});
+	},
+	update: function(data, table, where, cb){
+
 	},
 	selectAll: function(table,cb)
 	{
@@ -91,8 +94,10 @@ module.exports = {
 
 		select('*',table,{email : email}, function(result){
 			if(result[0] != null)
+			if (result[0].passwordHash != password)//password will be replaced with hash
+				return cb(false);
 			return cb(true);
-			else return cb(false);
+				return cb(false);
 		});
 	},
 	getUser: function(email, table, cb){
@@ -101,7 +106,17 @@ module.exports = {
 				return cb(result[0]);
 			else return cb(false);
 		});
+	},
+	getApplicationLog: function(userID, cb){
+
+	},
+	getJobsByCategory: function(category, cb){
+
+	},
+	getStudentProfile: function(userID,cb){
+		//inner join
 	}
+
 
 
 
