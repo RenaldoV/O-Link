@@ -17,9 +17,6 @@ function htmlDateToSQL(date){
 
 module.exports = function(app) {
 
-	// server routes ===========================================================
-	// handle things like api calls
-	// authentication routes
 
 	// frontend routes =========================================================
 	// route to handle all angular requests
@@ -28,9 +25,61 @@ module.exports = function(app) {
 
 	});
 
-	app.post('/jobPoster', function(req,res){
-		 console.log('here');
-		res.send("shap");
+
+	// server routes ===========================================================
+	// db routes
+	// authentication routes
+
+	app.post('/jobPoster', function(req,res) {
+		var job = {};
+		for(var key in req.body) {
+
+			console.log(key);
+			job = JSON.parse(key);
+
+		}
+
+		job.postDate = getDate();
+		job.startingDate = htmlDateToSQL(job.startingDate);
+		job.employeeID = 1234; //for nowtest
+
+		db.insert(job,'jobs',function(result){
+				res.send(result);
+		});
+	});
+
+	app.post('/addStudent', function(req,res) {
+		var student = {};
+		for(var key in req.body) {
+
+			console.log(key);
+			student = JSON.parse(key);
+
+		}
+
+		student.signupDate = getDate();
+		student.dob = htmlDateToSQL(student.dob);
+		student.lastSeen = getDate();
+		db.insert(student,'students',function(result){
+			res.send(result);
+		});
+	});
+
+	app.post('/addEmployer', function(req,res) {
+		var employer = {};
+		for(var key in req.body) {
+
+			console.log(key);
+			employer = JSON.parse(key);
+
+		}
+
+		employer.signupDate = getDate();
+
+		employer.lastSeen = getDate();
+		db.insert(employer,'employers',function(result){
+			res.send(result);
+		});
 	});
 
 };

@@ -23,7 +23,7 @@ app.controller('postJob',function($scope, $http){
           $http({
             method  : 'POST',
             url     : '/jobPoster',
-            body   : $scope.job, //forms user object
+            data   : $scope.job, //forms user object
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
         })
             .then(function(data) {
@@ -33,3 +33,4 @@ app.controller('postJob',function($scope, $http){
             });
     };
 });
+
