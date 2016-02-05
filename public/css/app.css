@@ -5194,3 +5194,8 @@ a.text-#000000:hover {
     background-color: #7266ba;
   }
 }
+.category{
+  width : 200px;
+  float: left;
+
+}

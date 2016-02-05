@@ -30,6 +30,12 @@ module.exports = function(app) {
 	// db routes
 	// authentication routes
 
+	app.post('/jobFeeder', function(req,res){
+
+		db.selectAll('jobs', function(rows){
+			res.send(rows);
+		});
+	});
 	app.post('/jobPoster', function(req,res) {
 		var job = {};
 		for(var key in req.body) {

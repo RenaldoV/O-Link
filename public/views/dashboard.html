@@ -48,18 +48,21 @@
         </div>
         <div class="col-md-7">
           <div class="panel wrapper">
-            <label class="i-switch bg-warning pull-right" ng-init="showSpline=true">
-              <input type="checkbox" ng-model="showSpline">
-              <i></i>
-            </label>
-            <h4 class="font-thin m-t-none m-b text-muted">Latest Posts</h4>
+            
+            <h4 class="font-thin m-t-none m-b text-muted">Latest Job Posts</h4>
             <div ng-controller="jobFeed">
-              <ul class="list-group">
-                <li class="list-group-item"
-                    ng-repeat="stuff in pile()">
-                  {{stuff}}
-                </li>
-                <ul>
+              <table class="table">
+                <thead><th>Category</th><th>Title</th><th>Pay</th><th>Location</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="job in jobs">
+                  <td>{{job.category}}</td>
+                  <td>{{job.title}}</td>
+                  <td>{{job.payrate + "/" + job.payPer}}</td>
+                  <td>{{job.location}}</td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -70,44 +73,47 @@
       <div class="panel hbox hbox-auto-xs no-border">
         <div class="col wrapper">
           <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-          <h4 class="font-thin m-t-none m-b-none text-primary-lt">Managed Services</h4>
-          <span class="m-b block text-sm text-muted">Service report of this year (updated 1 hour ago)</span>
-          <div ui-jq="plot" ui-options="
-            [
-              { data: {{d4}}, lines: { show: true, lineWidth: 1, fill:true, fillColor: { colors: [{opacity: 0.2}, {opacity: 0.8}] } } }
-            ], 
-            {
-              colors: ['{{app.color.light}}'],
-              series: { shadowSize: 3 },
-              xaxis:{ show:false },
-              yaxis:{ font: { color: '#a1a7ac' } },
-              grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#dce5ec' },
-              tooltip: true,
-              tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 10, y: -25 } }
-            }
-          " style="height:240px" >
+          <h4 class="font-thin m-t-none m-b-none text-primary-lt">Browse Jobs</h4>
+          <span class="m-b block text-sm text-muted">Categories</span>
+          <div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Coach</span>
+                </a>
+              </div>
+              <div >
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Tutor</span>
+                </a>
+              </div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Delivery Person</span>
+                </a>
+              </div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Sales Rep</span>
+                </a>
+              </div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Model</span>
+                </a>
+              </div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Waiter(res)</span>
+                </a>
+              </div>
+              <div>
+                <a href class="block panel padder-v item card">
+                  <span class="text-success font-thin h4 block" >Other</span>
+                </a>
+              </div>
+
+
           </div>
-        </div>
-        <div class="col wrapper-lg w-lg bg-light dk r-r">
-          <h4 class="font-thin m-t-none m-b">Reports</h4>
-          <div class="">
-            <div class="">
-              <span class="pull-right text-primary">60%</span>
-              <span>Consulting</span>
-            </div>
-            <progressbar value="60" class="progress-xs m-t-sm bg-white" animate="true" type="primary"></progressbar>
-            <div class="">
-              <span class="pull-right text-info">35%</span>
-              <span>Online tutorials</span>
-            </div>
-            <progressbar value="35" class="progress-xs m-t-sm bg-white" animate="true" type="info"></progressbar>
-            <div class="">
-              <span class="pull-right text-warning">25%</span>
-              <span>EDU management</span>
-            </div>
-            <progressbar value="25" class="progress-xs m-t-sm bg-white" animate="true" type="warning"></progressbar>
-          </div>
-          <p class="text-muted">Dales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
         </div>
       </div>
       <!-- / service -->

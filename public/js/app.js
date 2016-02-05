@@ -1,16 +1,17 @@
 var app = angular.module('o-link', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl','NerdService', 'GeekCtrl', 'GeekService']);
 
 
-app.controller('jobFeed', function($scope){
+app.controller('jobFeed', function($scope,$http){
 
-    $scope.pile = function () {
-        return [
-            'yo',
-            'Grunt',
-            'Bower'
-        ];
-    }
-    console.log("dash");
+    $http({
+        method  : 'POST',
+        url     : '/jobFeeder'
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+            }
+        });
 });
 
 app.controller('postJob',function($scope, $http){
