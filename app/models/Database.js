@@ -78,12 +78,16 @@ module.exports = {
 	insert: function(data, table, cb){
 
 		insert(data, table,function(result){
-			return cb(result);
+			return cb("success");
 		});
 	},
-	update: function(data, table, where, cb){
+	update: function(data, table, where, cb) {
 
-	},
+		update(sata, table, where, function (res) {
+			return cb(res);
+		});
+	}
+	,
 	selectAll: function(table,cb)
 	{
 		select("*",table,'1=1',function(res){
@@ -107,17 +111,8 @@ module.exports = {
 			else return cb(false);
 		});
 	},
-	getApplicationLog: function(userID, cb){
-
-	},
 	getJobsByCategory: function(category, cb){
-
-	},
-	getStudentProfile: function(userID,cb){
-		//inner join
+		select('*', 'jobs', {category:category})
 	}
-
-
-
 
 };

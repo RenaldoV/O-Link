@@ -1,0 +1,62 @@
+<div ng-controller="postJob">
+<form name="form" class="form-validation" ng-submit="submitForm()">
+    <div class="text-danger wrapper text-center">
+
+    </div>
+
+    <div id="postJobForm" class="list-group list-group-sm" >
+            <br><br><br>
+            <div class="list-group-item">
+                <input type="text" class="form-control no-border" placeholder="Job Title" ng-model="job.title" required>
+            </div>
+            <br><br><br>
+            <div class="list-group-item">
+                <textarea rows=7 class="form-control no-border" placeholder="Description" ng-model="job.bodyText" required></textarea>
+            </div>
+            <br><br><br>
+            <div class="list-group-item">
+                <input type="text" class="form-control no-border" placeholder="Location" ng-model="job.location" required>
+            </div>
+            <br><br><br>
+            <label>Pay</label>
+            <div class="list-group-item">
+                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.payrate" required>
+            </div>
+            <div class="list-group-item">
+                <input list="payPer" placeholder="Pay per" class="form-control no-border" ng-model="job.payPer">
+                <datalist id="payPer">
+                    <option value="Hour">
+                    <option value="Day">
+                    <option value="Job">
+                </datalist>
+            </div>
+            <br><br><br>
+            <div class="list-group-item">
+                <input type="date" class="controls form-control no-border" placeholder="Starting Date" ng-model="job.startingDate" required>
+            </div>
+            <br><br>
+            <div class="list-group-item">
+                <input type="text" placeholder="duration" class="form-control no-border" ng-model="job.duration" required>
+            </div>
+            <br><br><br>
+            <div class="list-group-item">
+                <input list="category" placeholder="Category" class="form-control no-border" ng-model="job.category" required>
+                <datalist id="category">
+                    <option value="Coach">
+                    <option value="Delivery Person">
+                    <option value="Tutor">
+                    <option value="Sales Rep">
+                    <option value="Model">
+                    <option value="Waiter(res)">
+                    <option value="Other">
+                </datalist>
+            </div>
+            <br><br><br>
+            <div class="list-group-item">
+                <input  type="number" class="controls form-control no-border" width="50px" placeholder="Spots Available" ng-model="job.spotsAvailable" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary btn-block" >Post Job</button>
+    </div>
+    <div><p>{{message}}</p></div>
+    </form>
+</div>

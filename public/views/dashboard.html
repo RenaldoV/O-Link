@@ -2,15 +2,15 @@
   <!-- main -->
   <div class="col">
     <!-- / main header -->
-    <div class="wrapper-md" ng-controller="FlotChartDemoCtrl">
+    <div class="wrapper-md">
       <!-- stats -->
       <div class="row">
         <div class="col-md-5">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item card">
-                <div class="h1 text-info font-thin h1">521</div>
-                <span class="text-muted text-xs">New items</span>
+                <div class="h1 text-info font-thin h1" id="newJobs">521</div>
+                <span class="text-muted text-xs">New jobs</span>
                 <div class="top text-right w-full">
                   <i class="fa fa-caret-down text-warning m-r-sm"></i>
                 </div>
@@ -18,8 +18,8 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v item card">
-                <span class="text-success font-thin h1 block">930</span>
-                <span class="text-muted text-xs">Uploads</span>
+                <span class="text-success font-thin h1 block" id="newStudents">930</span>
+                <span class="text-muted text-xs">New Students</span>
                 <span class="bottom text-right w-full">
                   <i class="fa fa-cloud-upload text-success m-r-sm"></i>
                 </span>
@@ -27,8 +27,8 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v item card">
-                <span class="text-primary font-thin h1 block">432</span>
-                <span class="text-muted text-xs">Comments</span>
+                <span class="text-primary font-thin h1 block" id="totalEmployers">432</span>
+                <span class="text-muted text-xs">Employers</span>
                 <span class="top text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
                 </span>
@@ -36,24 +36,14 @@
             </div>
             <div class="col-xs-6">
               <div class="panel padder-v item card">
-                <div class="font-thin h1">129</div>
-                <span class="text-muted text-xs">Feeds</span>
+                <div class="font-thin h1" id="totalStudents">129</div>
+                <span class="text-muted text-xs">Students</span>
                 <div class="bottom text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
                 </div>
               </div>
             </div>
-            <div class="col-xs-12 m-b-md">
-              <div class="r blue-600 item hbox no-border md-whiteframe-z0">
-                <div class="col w-xs v-middle hidden-md">
-                  <div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>
-                </div>
-                <div class="col blue padder-v r-r">
-                  <div class="font-thin h1"><span>$12,670</span></div>
-                  <span class="text-xs">Revenue, 60% of the goal</span>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
         <div class="col-md-7">
@@ -62,22 +52,14 @@
               <input type="checkbox" ng-model="showSpline">
               <i></i>
             </label>
-            <h4 class="font-thin m-t-none m-b text-muted">Latest Campaign</h4>
-            <div ui-jq="plot" ui-refresh="showSpline" ui-options="
-              [
-                { data: {{d0_1}}, label: 'Unique Visits', points: { show: true } }, 
-                { data: {{d0_2}}, label: 'Page Views', bars: { show: true, barWidth: 0.6, fillColor: { colors: [{ opacity: 0.2 }, { opacity: 0.4}] } } }
-              ],
-              {
-                colors: [ '{{app.color.success}}','{{app.color.info}}' ],
-                series: { shadowSize: 2 },
-                xaxis:{ font: { color: '#ccc' } },
-                yaxis:{ font: { color: '#ccc' } },
-                grid: { hoverable: true, clickable: true, borderWidth: 0, color: '#ccc' },
-                tooltip: true,
-                tooltipOpts: { content: '%s of %x.1 is %y.4',  defaultTheme: false, shifts: { x: 0, y: 20 } }
-              }
-            " style="height:252px" >
+            <h4 class="font-thin m-t-none m-b text-muted">Latest Posts</h4>
+            <div ng-controller="jobFeed">
+              <ul class="list-group">
+                <li class="list-group-item"
+                    ng-repeat="stuff in pile()">
+                  {{stuff}}
+                </li>
+                <ul>
             </div>
           </div>
         </div>

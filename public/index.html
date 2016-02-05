@@ -28,7 +28,7 @@
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
 </head>
-<body ng-app="sampleApp" ng-controller="NerdController">
+<body ng-app="o-link" ng-controller="NerdController">
 <div class="container">
 	
 	<!-- HEADER -->
@@ -39,9 +39,8 @@
 	<div class="app-content">
 		<div ui-butterbar></div>
 		<a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
-		<div class="app-content-body fade-in-up" ng-view></div>
-	</div>
-
+			</div>
+	<div ng-view></div>
 </div>
 </body>
 </html>

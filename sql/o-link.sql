@@ -117,7 +117,7 @@ payPer varchar(5) not null,
 startingDate dateTime not null,
 duration varchar(40) not null,
 postDate dateTime not null,
-jobType varchar(12),
+category varchar(12),
 spotsAvailable int not null 
 );
 
