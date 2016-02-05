@@ -28,11 +28,9 @@ module.exports = function(app) {
 
 	});
 
-	app.post('/postJob', function(req,res){
-		for(var key in req.body) {
-
-			console.log(key);
-		}
-			});
+	app.post('/jobPoster', function(req,res){
+		 console.log('here');
+		res.send("shap");
+	});
 
 };

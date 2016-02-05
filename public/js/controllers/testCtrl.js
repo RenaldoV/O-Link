@@ -3,6 +3,6 @@
  */
 angular.module('testCtrl', []).controller('TestController', function($scope) {
 
-    $scope.tagline = 'Suck Muh Dick';
+
 
 });

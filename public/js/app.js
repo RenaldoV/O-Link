@@ -22,13 +22,13 @@ app.controller('postJob',function($scope, $http){
 
           $http({
             method  : 'POST',
-            url     : '/postJob',
+            url     : '/jobPoster',
             body   : $scope.job, //forms user object
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
         })
-            .success(function(data) {
+            .then(function(data) {
                 {
-                    $scope.message = data;
+                   $scope.message = data;
                 }
             });
     };
