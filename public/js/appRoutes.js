@@ -4,18 +4,15 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		// home page
 		.when('/', {
-			templateUrl: 'views/dashboard.html',
-			controller: 'MainController'
+			templateUrl: 'views/dashboard.html'
 		})
 
-		.when('/nerds', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
+		.when('/signIn', {
+			templateUrl: 'views/page_signin.html'
 		})
 
-		.when('/geeks', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'
+		.when('/signUp', {
+			templateUrl: 'views/page_signup.html'
 		})
 		.when('/postJob', {
 			templateUrl: 'views/postJob.html'
