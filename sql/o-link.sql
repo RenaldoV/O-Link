@@ -43,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `employers` (
   `alternateContactNo` varchar(10) NOT NULL,
   `signUpDate` datetime NOT NULL,
   `passwordHash` varchar(150) NOT NULL,
+  profilePicture varchar (140),
   lastSeen dateTime,
   PRIMARY KEY (`employerID`),
   UNIQUE KEY `ID` (`ID`)
@@ -73,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `students` (
   `GPA` decimal(3,2) NOT NULL,
   `passwordHash` varchar(150) NOT NULL,
   `signupDate` datetime NOT NULL,
+  profilePicture varchar (140),
   lastSeen dateTime,
   PRIMARY KEY (`studentID`),
   UNIQUE KEY `email` (`email`,`ID`)
@@ -120,6 +122,13 @@ postDate dateTime not null,
 category varchar(12),
 spotsAvailable int not null 
 );
+
+CREATE TABLE IF NOT EXISTS photos(
+photoID int not null auto_increment primary key,
+studentID int not null,
+imagePath varchar (140)
+);
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
