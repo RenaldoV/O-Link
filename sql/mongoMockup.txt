@@ -1,0 +1,98 @@
+mongoDB
+
+Students
+
+studentID
+name	: {	name
+		surname
+		}
+dob
+studentNo
+email
+contactNo
+ID
+gender
+location
+gender
+fieldOfStudy
+qualificationName
+currentYear
+gradYear
+postGraduate
+GPA
+paswordHash
+signUpDate
+profilePicture
+lastSeen
+experience : {
+		role
+		bodyText
+		duration
+		contactPerson: {
+				name
+				contactNo
+				}[]
+		
+		}[]
+matricResults: {
+		subject
+		mark
+		}[]
+
+photoAlbum: {
+		path
+		}[]
+applications[]
+notifications[]
+
+
+
+Employers
+
+employerID
+company: {
+		name
+		businessCategory
+		companyRegistrationNumber
+		location
+	}
+name
+surname
+ID
+position
+email
+contactNo
+alternate: {
+		name
+		surname
+		contactNo
+		}[]
+paswordHash
+signUpDate
+profilePicture
+jobs[]
+lastSeen
+notifications[]
+
+
+Jobs
+
+jobID
+status
+post : {
+	title
+	body
+	location
+	payRate
+	payPer
+	date []
+	category
+	spotsAvailable
+	}
+
+Applications
+
+jobID
+status
+
+
