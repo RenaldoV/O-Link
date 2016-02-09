@@ -1,8 +1,10 @@
+console.log("Hi");
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
-mongoose.connect('mongodb://seanTest:Databse1@ds060968.mongolab.com:60968/olink');
-
-
 var db = mongoose.connection;
+mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {console.log(e);});
+
+
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
 	console.log("Connection to database was successful.");
@@ -36,7 +38,7 @@ function getCollection(colName, callback)
 }
  function insertDocument(colName, doc, callback)
 {
-	var schema = idSchema;
+	var schema;
 	switch(colName){
 		case "jobs": schema = jobSchema;
 			break;
@@ -50,41 +52,11 @@ function getCollection(colName, callback)
 		if(err){console.log("Save failed");}
 		else console.log("Saved!");
 	});
-	callback(0);
+	callback("Noice");
 }
 
-//change
-function updateDocument(colName, id, updateInfo )
-{
-	idSchema.set('collection', colName);
-	col = mongoose.model(colName, idSchema);
-
-
-	col.findOne({id:id}, function(err,user)
-	{
-		if(err){return next(err)}
-		user.projectID.push(projID);
-		user.save(function(err){
-			if(err) return next(err);
-		});
-	});
-
-}
-
-
-//change to mongoDB
-function remove(table, where, cb){
-	db.query('DELETE from ' + table + ' WHERE ?' ,where, function(err, result) {
-		if(!err){
-
-			return cb(result);
-
-		}
-		else throw err;
-	});
-
-}
-
+//remove
+//update
 
 module.exports = {
 

@@ -52,14 +52,14 @@
             <h4 class="font-thin m-t-none m-b text-muted">Latest Job Posts</h4>
             <div ng-controller="jobFeed">
               <table class="table">
-                <thead><th>Category</th><th>Title</th><th>Pay</th><th>Location</th>
+                <thead><th>Category</th><th>Role</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="job in jobs">
-                  <td>{{job.category}}</td>
-                  <td>{{job.title}}</td>
-                  <td>R{{job.payrate + "/" + job.payPer}}</td>
-                  <td>{{job.location}}</td>
+                  <td>{{job.post.category}}</td>
+                  <td>{{job.post.role}}</td>
+                  <td>R{{job.post.payRate + "/" + job.post.payPer}}</td>
+                  <td>{{job.post.location}}</td>
                 </tr>
                 </tbody>
               </table>
