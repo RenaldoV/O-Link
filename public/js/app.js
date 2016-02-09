@@ -14,32 +14,28 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
-app.controller('signinform', function($scope,$http){
 
-    $http({
-        method  : 'POST',
-        url     : '/signin'
-    })
-        .then(function(res) {
-            {
-                $scope.signin = res.data;
-            }
-        });
-});
+
 
 app.controller('signup', function($scope,$http){
 
-    $http({
-        method  : 'POST',
-        url     : '/signup'
-    })
-        .then(function(res) {
-            {
-                $scope.signup = res.data;
-            }
-        });
+	$scope.user = {};
+	
+	$scope.submitForm = function() {
+		
+		$http({
+			method  : 'POST',
+			url     : '/signup',
+			data 	: $scope.user,
+			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		})
+			.then(function(res) {
+				{
+					$scope.signUp = res.data;
+				}
+			});
+	}
 });
-
 
 app.controller('postJob',function($scope, $http){
 
