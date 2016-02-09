@@ -27,9 +27,9 @@ app.controller('postJob',function($scope, $http){
             data   : $scope.job, //forms user object
             headers : {'Content-Type': 'application/x-www-form-urlencoded'}
         })
-            .then(function(data) {
+            .then(function(response) {
                 {
-                   $scope.message = data;
+                   $scope.message = response.data;
                 }
             });
     };

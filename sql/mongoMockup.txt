@@ -2,7 +2,7 @@ mongoDB
 
 Students
 
-studentID
+
 name	: {	name
 		surname
 		}
@@ -10,7 +10,7 @@ dob
 studentNo
 email
 contactNo
-ID
+IDnumber
 gender
 location
 gender
@@ -49,7 +49,7 @@ notifications[]
 
 Employers
 
-employerID
+
 company: {
 		name
 		businessCategory
@@ -58,7 +58,7 @@ company: {
 	}
 name
 surname
-ID
+IDnumber
 position
 email
 contactNo
@@ -77,22 +77,34 @@ notifications[]
 
 Jobs
 
-jobID
 status
 post : {
-	title
-	body
+	role
+	description
 	location
 	payRate
 	payPer
-	date []
 	category
 	spotsAvailable
+	postDate
+dates[]
+places
+hours{
+	begin
+	end
 	}
+tips
+gender
+min Criteria []
+
+	}
+
+
 
 Applications
 
 jobID
+message
 status
 
 

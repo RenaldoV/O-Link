@@ -1,65 +1,78 @@
-var mysql      =    require('mysql');
+var mongoose = require('mongoose'), Schema = mongoose.Schema;
+mongoose.connect('mongodb://seanTest:Databse1@ds060968.mongolab.com:60968/olink');
 
-var db = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'root',
-	database : 'o_link'
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+	console.log("Connection to database was successful.");
+
 });
-db.connect();
+
+var jobSchema = new Schema({id : String}, {strict:false});
+var idSchema = new Schema({id : Number}, {strict:false});
 
 
-/* USAGE
- var db = require('./app/models/Database.js');
+var col;
+function getCollection(colName, callback)
+{
 
- db.dbOperation(params, (cb)function(res){
+	var schema;
+	switch(colName){
+		case "jobs": schema = jobSchema;
+			break;
+		default: schema = idSchema;
+	}
+	schema.set('collection', colName);
+	col = mongoose.model(colName, schema);
+	var data;
 
- res is select return or okay packets
+	col.find({},{'_id': 0},function (err, docs) {
 
- });
-
- */
-
-function select(query, table, where, cb){
-
-	db.query("SELECT " + query + " from " + table + " WHERE ?", where, function(err, rows, fields){
-		if(!err){
-
-			return cb(rows);
-		}
-		else throw err;
-	});
-
-
-
-}
-function insert(json, table, cb){
-
-
-	db.query('INSERT INTO ' + table + ' SET ?', json, function(err, result) {
-		if(!err){
-
-			return cb(result);
-
-		}
-		else throw err;
-	});
-
-
-
-}
-function update(json, table, where, cb){
-	db.query('UPDATE ' + table + ' SET ? WHERE ?' ,[json,where], function(err, result) {
-		if(!err){
-
-			return cb(result);
-
-		}
-		else throw err;
+		data = docs;
+		callback(data);
 	});
 
 }
+ function insertDocument(colName, doc, callback)
+{
+	var schema = idSchema;
+	switch(colName){
+		case "jobs": schema = jobSchema;
+			break;
+		default: schema = idSchema;
+	}
+	schema.set('collection', colName);
+	col = mongoose.model(colName, schema);
+	var insert = new col(doc);
 
+	insert.save(function (err) {
+		if(err){console.log("Save failed");}
+		else console.log("Saved!");
+	});
+	callback(0);
+}
+
+//change
+function updateDocument(colName, id, updateInfo )
+{
+	idSchema.set('collection', colName);
+	col = mongoose.model(colName, idSchema);
+
+
+	col.findOne({id:id}, function(err,user)
+	{
+		if(err){return next(err)}
+		user.projectID.push(projID);
+		user.save(function(err){
+			if(err) return next(err);
+		});
+	});
+
+}
+
+
+//change to mongoDB
 function remove(table, where, cb){
 	db.query('DELETE from ' + table + ' WHERE ?' ,where, function(err, result) {
 		if(!err){
@@ -77,42 +90,30 @@ module.exports = {
 
 	insert: function(data, table, cb){
 
-		insert(data, table,function(result){
-			return cb("success");
+		insertDocument(table, data,function(result){
+			return cb(result);
 		});
 	},
 	update: function(data, table, where, cb) {
 
-		update(sata, table, where, function (res) {
-			return cb(res);
-		});
+		//
 	}
 	,
-	selectAll: function(table,cb)
+	selectAll: function(collection,cb)
 	{
-		select("*",table,'1=1',function(res){
+		getCollection(collection,function(res){
 			return cb(res)
 		});
 	},
 	checkLogin: function(email, password, table ,cb){
 
-		select('*',table,{email : email}, function(result){
-			if(result[0] != null)
-			if (result[0].passwordHash != password)//password will be replaced with hash
-				return cb(false);
-			return cb(true);
-				return cb(false);
-		});
+		//
 	},
 	getUser: function(email, table, cb){
-		select('*',table,{email : email}, function(result){
-			if(result[0] != null)
-				return cb(result[0]);
-			else return cb(false);
-		});
+		//
 	},
 	getJobsByCategory: function(category, cb){
-		select('*', 'jobs', {category:category})
+		//
 	}
 
 };
