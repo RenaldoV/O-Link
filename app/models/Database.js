@@ -11,7 +11,7 @@ db.once('open', function (callback) {
 
 });
 
-var jobSchema = new Schema({id : String}, {strict:false});
+var jobSchema = new Schema({post:{postDate: {default: Date.now}}}, {strict:false});
 var idSchema = new Schema({id : Number}, {strict:false});
 
 

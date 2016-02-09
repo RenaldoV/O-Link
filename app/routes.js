@@ -12,9 +12,7 @@ function getDate(){
 	return datetime;
 }
 
-function htmlDateToSQL(date){
-	return date.substr(0,10);
-}
+
 
 module.exports = function(app) {
 
@@ -51,8 +49,7 @@ module.exports = function(app) {
 
 		}
 
-		job.postDate = getDate();
-		job.startingDate = htmlDateToSQL(job.startingDate);
+
 		job.employeeID = 1234; //for nowtest
 
 		db.insert(job,'jobs',function(result){
@@ -70,7 +67,7 @@ module.exports = function(app) {
 		}
 
 		student.signupDate = getDate();
-		student.dob = htmlDateToSQL(student.dob);
+
 		student.lastSeen = getDate();
 		db.insert(student,'students',function(result){
 			res.send(result);

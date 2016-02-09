@@ -87,15 +87,15 @@ post : {
 	category
 	spotsAvailable
 	postDate
-dates[]
-places
-hours{
-	begin
-	end
-	}
-tips
-gender
-min Criteria []
+	dates[]
+	places
+	hours{
+		begin
+		end
+		}
+	tips
+	gender
+	min Criteria []
 
 	}
 
