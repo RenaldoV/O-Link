@@ -1,5 +1,5 @@
 var db = require("./models/Database.js");
-
+var errorHandler = require('./errors.js');
 
 function getDate(){
 	var currentdate = new Date();
@@ -36,6 +36,7 @@ module.exports = function(app) {
 	app.post('/jobFeeder', function(req,res){
 
 		db.selectAll("jobs", function(rows){
+
 			res.send(rows);
 		});
 	});
@@ -107,6 +108,14 @@ module.exports = function(app) {
 			}
 			else res.send(false);
 		});
+	});
+
+	app.post('/studentFeeder', function(req,res) {
+
+		db.selectAll("students", function(rows){
+			res.send(rows);
+		});
+
 	});
 
 };
