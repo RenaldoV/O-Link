@@ -37,6 +37,26 @@ app.controller('signup', function($scope,$http){
 	}
 });
 
+app.controller('signin', function($scope,$http){
+
+    $scope.user = {};
+
+    $scope.submitForm = function() {
+
+        $http({
+            method  : 'POST',
+            url     : '/signin',
+            data 	: $scope.user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(res) {
+                {
+                    $scope.signIn = res.data;
+                }
+            });
+    }
+});
+
 app.controller('postJob',function($scope, $http){
 
     $scope.job = {};

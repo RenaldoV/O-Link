@@ -91,4 +91,22 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/signin', function(req,res) {
+		var user = {};
+		for(var key in req.body) {
+
+			console.log(key);
+			user = JSON.parse(key);
+
+		}
+
+		db.checkLogin(user.email,user.password,function(result){
+
+			if(result.valid == true){
+				res.send(true);
+			}
+			else res.send(false);
+		});
+	});
+
 };
