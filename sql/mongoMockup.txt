@@ -24,16 +24,6 @@ paswordHash
 signUpDate
 profilePicture
 lastSeen
-experience : {
-		role
-		bodyText
-		duration
-		contactPerson: {
-				name
-				contactNo
-				}[]
-		
-		}[]
 matricResults: {
 		subject
 		mark
@@ -44,6 +34,11 @@ photoAlbum: {
 		}[]
 applications[]
 notifications[]
+jobHistory: {
+		jobID
+		rating
+		comment
+		}
 
 
 
@@ -75,9 +70,16 @@ lastSeen
 notifications[]
 
 
+
 Jobs
 
 status
+•Yellow - Pending
+• Green - Provisionally accepted
+• Blue - Confirmed
+• Red - Declined 
+
+
 post : {
 	role
 	description
@@ -98,7 +100,7 @@ post : {
 	min Criteria []
 
 	}
-
+employerID
 
 
 Applications
