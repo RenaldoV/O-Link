@@ -1,6 +1,7 @@
 
 var mongoose = require('mongoose'), Schema = mongoose.Schema;
 var passwordHash = require('password-hash');
+
 /*usage
 
 var hashedValue = passwordHash.generate(String);
@@ -63,6 +64,28 @@ function getCollection(colName, callback)
 	});
 
 }
+
+function getCollectionBy(colName, query, callback)
+{
+
+	var schema;
+	switch(colName){
+		case "jobs": schema = jobSchema;
+			break;
+		default: schema = idSchema;
+	}
+	schema.set('collection', colName);
+	col = mongoose.model(colName, schema);
+	var data;
+
+	col.find(query,{'_id': 0},function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
+
  function insertDocument(colName, doc, callback)
 {
 	var schema;
@@ -94,6 +117,22 @@ function checkEmail(email,cb){
 	return('invalid');
 }
 
+function update(colName, params, setData, cb){
+	var schema;
+	switch(colName){
+		case "jobs": schema = jobSchema;
+			break;
+		default: schema = idSchema;
+	}
+	schema.set('collection', colName);
+	mod = mongoose.model('mod', schema);
+	mod.update(params, {$set: setData}, function(res){
+		return cb(res);
+	});
+}
+
+
+
 //remove
 //update
 
@@ -105,15 +144,19 @@ module.exports = {
 			return cb(result);
 		});
 	},
-	update: function(data, table, where, cb) {
+	update: function(query, table, setData, cb) {
 
-		//
-	}
-	,
-	selectAll: function(collection,cb)
-	{
-		getCollection(collection,function(res){
-			return cb(res)
+		update(table, query, setData, function (err, res) {
+
+				return res;
+
+		});
+	},
+	selectAll: function(collection,cb) {
+		getCollection(collection, function ( res) {
+
+					return cb(res);
+
 		});
 	},
 	checkLogin: function(email, password, cb){
@@ -126,17 +169,16 @@ module.exports = {
 			var q = {email : email };
 			getOne(tab, q, function(res){
 			if(passwordHash.verify(password, res.toObject().passwordHash))
-			return cb({valid : true, table: tab});
+			return cb({valid : true, table: tab, user : res.toObject()});
 				else cb({valid: false});
 		});
 		});
 	},
 
-	getUser: function(email, table, cb){
-		//
-	},
-	getJobsByCategory: function(category, cb){
-		//
+	getBy: function(table, params, cb){
+		getCollectionBy(table, params, function(res){
+			return cb(res);
+		});
 	}
 
 };
