@@ -99,10 +99,10 @@ function getCollectionBy(colName, query, callback)
 	var insert = new col(doc);
 
 	insert.save(function (err) {
-		if(err){console.log("Save failed");}
+		if(err){console.log("Save failed"); return callback(false);}
 		else console.log("Saved!");
 	});
-	callback("Noice");
+	return callback(true);
 }
 function checkEmail(email,cb){
 
@@ -160,7 +160,7 @@ module.exports = {
 
 		checkEmail(email, function(res1){
 			var tab = res1;
-			if(tab == 'invalid')
+			if(!res1)
 			return cb({valid: false});
 
 			var q = {"contact.email" : email };
@@ -182,8 +182,7 @@ module.exports = {
 
 		checkEmail(user.contact.email, function(res){
 			if(res == true) {
-				console.log("email in use");
-				return cb("email in use");
+				return cb("email");
 			}
 				else
 				{
@@ -193,6 +192,12 @@ module.exports = {
 					});
 				}
 		});
+	},
+	getUser: function(email,cb){
+		getOne('users', {"contact.email":email}, function(res){
+			return cb(res);
+		});
 	}
+
 
 };

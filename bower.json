@@ -5,6 +5,7 @@
     "bootstrap": "latest",
     "angular": "latest",
     "angular-route": "latest",
-    "angular-upload": "^1.0.12"
+    "angular-upload": "^1.0.12",
+    "sweetalert": "^1.1.3"
   }
 }
