@@ -1,4 +1,4 @@
-var app = angular.module('o-link', ['ngRoute', 'appRoutes', 'MainCtrl', 'NerdCtrl','NerdService', 'GeekCtrl', 'GeekService']);
+var app = angular.module('o-link', ['ngRoute', 'appRoutes', 'lr.upload',']);
 
 
 app.controller('jobFeed', function($scope,$http){
