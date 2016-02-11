@@ -106,15 +106,12 @@ function getCollectionBy(colName, query, callback)
 }
 function checkEmail(email,cb){
 
-	getOne('employees', {email:email}, function(res){
+	getOne('users', {"contact.email":email}, function(res){
+
 		if(res)
-		return cb('employees');
+		return cb(true);
 	});
-	getOne('students', {email:email}, function(res){
-		if(res)
-			return cb('students');
-	});
-	return('invalid');
+	return(false);
 }
 
 function update(colName, params, setData, cb){
@@ -166,8 +163,8 @@ module.exports = {
 			if(tab == 'invalid')
 			return cb({valid: false});
 
-			var q = {email : email };
-			getOne(tab, q, function(res){
+			var q = {"contact.email" : email };
+			getOne('users', q, function(res){
 			if(passwordHash.verify(password, res.toObject().passwordHash))
 			return cb({valid : true, table: tab, user : res.toObject()});
 				else cb({valid: false});
@@ -178,6 +175,23 @@ module.exports = {
 	getBy: function(table, params, cb){
 		getCollectionBy(table, params, function(res){
 			return cb(res);
+		});
+	},
+
+	addUser: function(user, cb){
+
+		checkEmail(user.contact.email, function(res){
+			if(res == true) {
+				console.log("email in use");
+				return cb("email in use");
+			}
+				else
+				{
+					user.passwordHash = passwordHash.generate(user.passwordHash);
+					insertDocument('users', user, function(ress){
+						return cb(ress);
+					});
+				}
 		});
 	}
 

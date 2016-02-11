@@ -58,39 +58,6 @@ module.exports = function(app) {
 		});
 	});
 
-	app.post('/addStudent', function(req,res) {
-		var student = {};
-		for(var key in req.body) {
-
-			console.log(key);
-			student = JSON.parse(key);
-
-		}
-
-		student.signupDate = getDate();
-
-		student.lastSeen = getDate();
-		db.insert(student,'students',function(result){
-			res.send(result);
-		});
-	});
-
-	app.post('/addEmployer', function(req,res) {
-		var employer = {};
-		for(var key in req.body) {
-
-			console.log(key);
-			employer = JSON.parse(key);
-
-		}
-
-		employer.signupDate = getDate();
-
-		employer.lastSeen = getDate();
-		db.insert(employer,'employers',function(result){
-			res.send(result);
-		});
-	});
 
 	app.post('/signin', function(req,res) {
 		var user = {};
@@ -108,6 +75,22 @@ module.exports = function(app) {
 			}
 			else res.send(false);
 		});
+	});
+
+	app.post('/signup', function(req,res) {
+		var user = {};
+		for(var key in req.body) {
+
+
+			user = JSON.parse(key);
+
+		}
+
+		console.log(user);
+		db.addUser(user,function(result){
+			res.send(result);
+		});
+
 	});
 
 	app.post('/studentFeeder', function(req,res) {

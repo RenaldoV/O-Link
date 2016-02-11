@@ -1,30 +1,31 @@
 ﻿
+
+
+<div ng-controller="signup">
 	<div class="wrapper text-center">
-	  <strong>Sign up to get started</strong><br/><br />
+		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
 		<div class="list-group list-group-sm">
 			<label class="radio-inline">
-				<input type="radio" name="Employerradio" id="Employerradio">Employer
+				<input type="radio" name="type" id="Employerradio" ng-model="user.type" value="employer">Employer
 			</label>
 			<label class="radio-inline">
-				<input type="radio" name="Studentradio" id="Studentradio">Student
+				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" checked>Student
 			</label>
 		</div><br />
 	</div>
 
-<div ng-controller="signup">
-<form name="signUpForm" class="form-validation" ng-submit="submitForm()">
     <div class="text-danger wrapper text-center">
 
     </div>
-			<div id="employerSUForm" class="list-group list-group-sm" hidden>
+	<form id="employerSUForm" class="list-group list-group-sm form-validation" name="employerForm" ng-submit="submitForm()" hidden>
 				<fieldset class="form-group">
 					<label>Company Info</label>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.companyName" required>
+						<input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" required>
 					</div>
 					<div class="list-group-item">
-						<input list="BC" name="browser" class="form-control no-border" placeholder="Choose business category or type own" ng-model="user.businessCat" required>
+						<input list="BC" name="cat" class="form-control no-border" placeholder="Choose business category or type own" ng-model="user.company.businessCategory" required>
 					</div>
 					<datalist id="BC">
 						<option value="IT">
@@ -34,53 +35,53 @@
 						<option value="Education">
 					</datalist>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Company registration number" ng-model="user.companyReg" required>
+						<input type="text" class="form-control no-border" placeholder="Company registration number" ng-model="user.company.regNo" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.companyReg" required>
+						<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" required>
 					</div>
 					<div class="list-group-item">
 						<!--Link google location API en gebruik location auto complete-->
-						<input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.companyLoc" required>
+						<input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.company.location" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
 					<label>Contact Info</label>
 					<div class="list-group-item">
-						<input placeholder="Name" class="form-control no-border" ng-model="user.name" required>
+						<input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Surname" class="form-control no-border" ng-model="user.surname" required>
+						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="ID number" class="form-control no-border" ng-model="user.empId" required>
+						<input placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Position within company" class="form-control no-border" ng-model="user.empPos" required>
+						<input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" required>
 					</div>
 					<div class="list-group-item">
-						<input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
+						<input type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.empContact" required>
+						<input type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required>
+						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.passwordHash" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Confirm password" class="form-control no-border" ng-model="user.repassword" required>
+						<input type="password" placeholder="Confirm password" class="form-control no-border" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
 					<label>Alternate contact info</label>
 					<div class="list-group-item">
-						<input placeholder="Alternate contact name" class="form-control no-border" ng-model="user.altName" required>
+						<input placeholder="Alternate contact name" class="form-control no-border" ng-model="user.alternate.name" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Alternate contact surname" class="form-control no-border" ng-model="user.altSurname" required>
+						<input placeholder="Alternate contact surname" class="form-control no-border" ng-model="user.alternate.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Alternate contact number" class="form-control no-border" ng-model="user.altContact" required>
+						<input placeholder="Alternate contact number" class="form-control no-border" ng-model="user.alternate.contactNo" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
@@ -94,71 +95,79 @@
 						</datalist>
 					</div>
 				</fieldset>
-			</div>
-			<div id="studentSUForm" class="list-group list-group-sm" hidden>
+		<button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+</form>
+<form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="submitForm()" hidden>
 				<fieldset class="form-group">
 					<label>Student Info</label>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Name" ng-model="user.studentName" required>
+						<input type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" required>
 					</div>
 					<div class="list-group-item">
-						<input class="form-control no-border" placeholder="Surname" ng-model="user.studentSurname" required>
+						<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.studentEmail" required>
+						<input type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.contact.email" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.studentContactNo" required>
+						<input type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="ID number" ng-model="user.studentID" required>
+						<input type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" required>
 					</div>
 					<div class="list-group-item">
 						<input type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" required>
 					</div>
 					<div class="list-group-item">
-						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.studentDOB" required>
+						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.dob" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.studentGender" required>
+						<input type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required>
+						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.passwordHash" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Confirm password" class="form-control no-border" ng-model="user.repassword" required>
+						<input type="password" placeholder="Confirm password" class="form-control no-border" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
 					<label>Qualification Info</label>
 					<div class="list-group-item">
-						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualificationName" required>
+						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualificationDescr" required>
+						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Qualification status (Completed/3rd Year etc.)" class="form-control no-border" ng-model="user.qualificationStatus" required>
+						<input placeholder="Qualification status (Completed/3rd Year etc.)" class="form-control no-border" ng-model="user.qualification.status" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualificationCat" required>
+						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.gradYear" required>
+						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear" required>
+					</div>
+					<div class="list-group-item">
+						<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA" required>
 					</div>
 				</fieldset>
-			</div>
+
+
 			<div class="checkbox m-b-md m-t-none">
 				<label class="i-checks">
 					<input type="checkbox" ng-model="agree" required><i></i> Agree the <a href="#">terms and policy</a>
 				</label>
 			</div>
-			<button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="signup()" ng-disabled='form.$invalid'>Sign up</button>
+
+
+			<button type="submit" class="btn btn-lg btn-primary btn-block" >Sign up</button>
+			</form>
 			<div class="line line-dashed"></div>
 			<p class="text-center"><small>Already have an account?</small></p>
-			<a ui-sref="access.signin" class="btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
+			<a class="btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
     <div><p>{{message}}</p></div>
-    </form>
+
 </div>
   
 
@@ -167,7 +176,8 @@
 
     <!--Script for changing between relevant forms-->
 <script>
-	$(function () {
+		$(function () {
+
 		$("#Employerradio").click(function () {
 			$("#Studentradio").prop("checked", false);
 			$("#employerSUForm").show();

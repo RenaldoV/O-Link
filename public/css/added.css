@@ -1,3 +1,5 @@
+@import "../libs/angular-upload/src/directives/btnUpload.less";
+
 .jobBox{
     border: 2px solid beige;
     border-radius: 20px;

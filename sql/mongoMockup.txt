@@ -8,17 +8,24 @@ name	: {	name
 		}
 dob
 studentNo
-email
-contactNo
+contact:{
+		email
+		contactNo
+	}
 IDnumber
 gender
 location
 gender
 fieldOfStudy
-qualificationName
-currentYear
-gradYear
-postGraduate
+qualification: {
+		name
+		description
+		status
+		category
+		gradYear
+		GPA
+		}
+
 GPA
 paswordHash
 signUpDate
@@ -32,7 +39,6 @@ matricResults: {
 photoAlbum: {
 		path
 		}[]
-applications[]
 notifications[]
 jobHistory: {
 		jobID
@@ -48,15 +54,18 @@ Employers
 company: {
 		name
 		businessCategory
-		companyRegistrationNumber
+		description
+		regNo
 		location
 	}
-name
-surname
-IDnumber
-position
-email
-contactNo
+contact: {
+		name
+		surname
+		IDnumber
+		position
+		email
+		contactNo
+	}
 alternate: {
 		name
 		surname
@@ -65,8 +74,8 @@ alternate: {
 paswordHash
 signUpDate
 profilePicture
-jobs[]
 lastSeen
+suggested
 notifications[]
 
 
