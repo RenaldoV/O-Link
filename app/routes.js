@@ -103,14 +103,8 @@ module.exports = function(app) {
 	});
 
 	app.post('/loadUser', function(req,res) {
-		var email = {};
-		for(var key in req.body) {
+		var email = req.body;
 
-
-			email = JSON.parse(key);
-
-		}
-		console.log(email);
 		db.getUser(email.email, function(rows){
 			res.send(rows);
 		});

@@ -13,33 +13,8 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
+app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
-app.service('User',function($cookies){
-    var user = null;
-    return {
-
-        exists: function(){
-          if($cookies.get("user"))
-          return true;
-            else return false;
-        },
-        get: function () {
-            return $cookies.get("user");
-        },
-        set: function (u) {
-            $cookies.put("user", u);;
-        },
-        destroy: function(){
-            $cookies.remove("user");
-        }
-    }
-
-});
-app.controller('signin', function($scope,$http, $location,User, $cookies){
-
-
-    if(User.exists())
-    $location.url('/dashboard');
 
     $scope.user = {};
 
@@ -56,21 +31,17 @@ app.controller('signin', function($scope,$http, $location,User, $cookies){
 
                     if(res.data) {
                         swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
-                        $http({
-                            method  : 'POST',
-                            url     : '/loadUser',
-                            data 	: $scope.user,
-                            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                        }).then(function(result){
 
-                            User.set(result.data);
-                             console.log(User.get());
-                             $location.url('/dashboard');
+                        authService.login($scope.user).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $location.url("/dashboard");
 
 
+                        }, function () {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                         });
-
-
 
                     }
                     else sweetAlert("Incorrect login details", "Please try again.", "error");
@@ -79,15 +50,15 @@ app.controller('signin', function($scope,$http, $location,User, $cookies){
     }
 });
 
-app.controller('signup', function($scope,$http,$location, User){
+app.controller('signup', function($scope,$http,$location, authService){
 
-    if(User.exists())
+    if(authService.isAuthenticated());
         $location.url('/dashboard');
 
 	$scope.user = {};
 
 	$scope.submitForm = function() {
-        console.log("yolo");
+
 		var user = $scope.user;
 		$http({
 			method  : 'POST',
@@ -103,8 +74,8 @@ app.controller('signup', function($scope,$http,$location, User){
                     }
                     else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
-                        User.set(user);
-                        console.log(User.get());
+                        //login
+
                         $location.url('/dashboard');
                         }
                     }
@@ -133,11 +104,11 @@ app.controller('postJob',function($scope, $http){
     };
 });
 
-app.controller('navControl',function($scope, User){
+app.controller('navControl',function($scope,authService){
 
 
-
-    if(User.get()) {
+console.log(authService.isAuthenticated());
+    if(authService.isAuthenticated()) {
         //var user = User.get();
 
         //if(user.type == "student"){
@@ -163,7 +134,7 @@ app.controller('navControl',function($scope, User){
 });
 
 
-app.controller('studentNav',function($scope,$location, User, $timeout){
+app.controller('studentNav',function($scope,$location, User, session, authService){
 
 $scope.logOut = function() {
     swal({
@@ -174,9 +145,10 @@ $scope.logOut = function() {
             confirmButtonText: "Yes, log out!", closeOnConfirm: false
         },
         function () {
-            User.destroy();
+            session.destroy();
             swal("You have been logged out.", "success");
             timeout(400);
+            authService.$broadcast(AUTH_EVENTS.logoutSuccess);
             $location.url("/signIn");
         });
 }

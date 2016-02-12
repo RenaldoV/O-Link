@@ -26,6 +26,7 @@
 
 	<script src="js/appRoutes.js"></script>
 	<script src="js/app.js"></script>
+	<script src="js/services/authService.js"></script>
 	<script src='./libs/angular-upload/angular-upload.min.js'></script>
 
 </head>
@@ -35,7 +36,7 @@ $('.segmented-button label').click(function(evt){
 });
 </script>
 <body ng-app="o-link" >
-<div class="container">
+<div class="container" ng-controller="ApplicationController">
 	
 	<!-- HEADER -->
 
