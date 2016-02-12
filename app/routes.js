@@ -86,9 +86,10 @@ module.exports = function(app) {
 
 		}
 
-		console.log(user);
+
 		db.addUser(user,function(result){
 			res.send(result);
+			//console.log(user);
 		});
 
 	});

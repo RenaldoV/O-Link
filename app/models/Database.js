@@ -100,9 +100,12 @@ function getCollectionBy(colName, query, callback)
 
 	insert.save(function (err) {
 		if(err){console.log("Save failed"); return callback(false);}
-		else console.log("Saved!");
+		else {
+			console.log("Saved!");
+			return callback(true);
+		}
 	});
-	return callback(true);
+
 }
 function checkEmail(email,cb){
 
@@ -110,8 +113,9 @@ function checkEmail(email,cb){
 
 		if(res)
 		return cb(true);
+		else return cb(false);
 	});
-	return(false);
+
 }
 
 function update(colName, params, setData, cb){
@@ -183,15 +187,20 @@ module.exports = {
 		checkEmail(user.contact.email, function(res){
 			if(res == true) {
 				return cb("email");
+
 			}
-				else
-				{
-					user.passwordHash = passwordHash.generate(user.passwordHash);
-					insertDocument('users', user, function(ress){
-						return cb(ress);
-					});
-				}
+		else{
+				user.passwordHash = passwordHash.generate(user.passwordHash);
+				insertDocument('users', user, function(ress){
+
+					return cb(ress);
+				});
+			}
 		});
+
+
+
+
 	},
 	getUser: function(email,cb){
 		getOne('users', {"contact.email":email}, function(res){

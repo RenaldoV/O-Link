@@ -1,5 +1,4 @@
-var app = angular.module('o-link', ['lr.upload','ngRoute', 'appRoutes']);
-
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes']);
 
 app.controller('jobFeed', function($scope,$http){
 
@@ -15,25 +14,28 @@ app.controller('jobFeed', function($scope,$http){
 });
 
 
-app.factory('User',function($http, $q, $rootScope){
+app.service('User',function($cookies){
     var user = null;
     return {
 
         exists: function(){
-          if(user == null)
-          return false;
-            else return true;
+          if($cookies.get("user"))
+          return true;
+            else return false;
         },
         get: function () {
-            return user;
+            return $cookies.get("user");
         },
         set: function (u) {
-            user = u;
+            $cookies.put("user", u);;
+        },
+        destroy: function(){
+            $cookies.remove("user");
         }
     }
 
 });
-app.controller('signin', function($scope,$http, $location,User){
+app.controller('signin', function($scope,$http, $location,User, $cookies){
 
 
     if(User.exists())
@@ -60,8 +62,12 @@ app.controller('signin', function($scope,$http, $location,User){
                             data 	: $scope.user,
                             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
                         }).then(function(result){
+
                             User.set(result.data);
-                            $location.url('/dashboard');
+                             console.log(User.get());
+                             $location.url('/dashboard');
+
+
                         });
 
 
@@ -79,26 +85,29 @@ app.controller('signup', function($scope,$http,$location, User){
         $location.url('/dashboard');
 
 	$scope.user = {};
-	
+
 	$scope.submitForm = function() {
-		
+        console.log("yolo");
+		var user = $scope.user;
 		$http({
 			method  : 'POST',
 			url     : '/signup',
-			data 	: $scope.user,
+			data 	: user,
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 			.then(function(res) {
 				{
-					if(res == "email"){
+                    console.log(res);
+					if(res.data == "email"){
                         swal("User exists", "The email you have entered already has an account associated with it.", "error");
                     }
-                    else if(res == true){
+                    else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
-                        User.set($scope.user);
+                        User.set(user);
+                        console.log(User.get());
                         $location.url('/dashboard');
+                        }
                     }
-				}
 			});
 	}
 });
@@ -124,47 +133,53 @@ app.controller('postJob',function($scope, $http){
     };
 });
 
-app.controller('navControl',function($scope, $http,$location,User){
+app.controller('navControl',function($scope, User){
 
 
 
-    if(User.exists()) {
+    if(User.get()) {
+        //var user = User.get();
 
-        $scope.getNav= function(){
+        //if(user.type == "student"){
+
+        $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
         }
+        }
+        //else{
+          //  $scope.getNav= function() {
+            //    return "../views/blocks/employeeNav.html";
+            //}
+        //}
 
 
-    }
-   else if($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp")  {
+
+    //}
+   /*else if($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp")  {
         swal({   title: "Log in first",   type: "error",   timer: 2000,   showConfirmButton: false });
         $location.url("/signIn")
-    }
+    }*/
 
 });
 
 
+app.controller('studentNav',function($scope,$location, User, $timeout){
 
-function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", params[key]);
-
-            form.appendChild(hiddenField);
-        }
-    }
-
-    document.body.appendChild(form);
-    form.submit();
+$scope.logOut = function() {
+    swal({
+            title: "Are you sure?", text: "The browser won't remember you next time you log in.",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, log out!", closeOnConfirm: false
+        },
+        function () {
+            User.destroy();
+            swal("You have been logged out.", "success");
+            timeout(400);
+            $location.url("/signIn");
+        });
 }
+
+
+});
