@@ -12,7 +12,7 @@ app.constant('USER_TYPES', {
     employer: 'employer'
 })
 
-app.factory('authService', function($http,session){
+app.factory('authService', function($http,session, $cookies){
     var authService ={};
 
     authService.login = function (credentials) {
@@ -20,7 +20,10 @@ app.factory('authService', function($http,session){
             .post('/loadUser', credentials)
             .then(function (res) {
                 session.create(res.data);
+                res.data.passwordHash = null;
+                $cookies.put("user", res.data);
                 return res.data;
+
             });
     };
 

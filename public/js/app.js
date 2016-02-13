@@ -1,5 +1,13 @@
 var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes']);
 
+app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
+
+    if ($cookies.get("user")){
+        session.create($cookies.get("user"));
+        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+    }
+});
+
 app.controller('jobFeed', function($scope,$http){
 
     $http({
@@ -15,7 +23,8 @@ app.controller('jobFeed', function($scope,$http){
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
-
+    if(authService.isAuthenticated())
+        $location.url("/dashboard");
     $scope.user = {};
 
     $scope.submitForm = function() {
@@ -50,10 +59,10 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
     }
 });
 
-app.controller('signup', function($scope,$http,$location, authService){
+app.controller('signup', function($scope, $rootScope,$http,$window, authService, AUTH_EVENTS){
 
-    if(authService.isAuthenticated());
-        $location.url('/dashboard');
+    if(authService.isAuthenticated())
+        $window.location.href= '/dashboard';
 
 	$scope.user = {};
 
@@ -75,8 +84,9 @@ app.controller('signup', function($scope,$http,$location, authService){
                     else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
                         //login
-
-                        $location.url('/dashboard');
+                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                        $scope.setCurrentUser(user);
+                        $window.location.href = '/dashboard';
                         }
                     }
 			});
@@ -85,6 +95,8 @@ app.controller('signup', function($scope,$http,$location, authService){
 
 app.controller('postJob',function($scope, $http){
 
+    if(!authService.isAuthenticated())
+        $window.location.href= '/';
     $scope.job = {};
 
     $scope.submitForm = function() {
@@ -104,19 +116,20 @@ app.controller('postJob',function($scope, $http){
     };
 });
 
-app.controller('navControl',function($scope,authService){
+app.controller('navControl',function($scope, authService){
 
-
-console.log(authService.isAuthenticated());
-    if(authService.isAuthenticated()) {
-        //var user = User.get();
-
-        //if(user.type == "student"){
-
+    if(authService.isAuthenticated()){
         $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
         }
+    }
+
+$scope.$on('auth-login-success',function(){
+        $scope.getNav= function() {
+            return "../views/blocks/studentNav.html";
         }
+    } );
+
         //else{
           //  $scope.getNav= function() {
             //    return "../views/blocks/employeeNav.html";
@@ -134,7 +147,7 @@ console.log(authService.isAuthenticated());
 });
 
 
-app.controller('studentNav',function($scope,$location, User, session, authService){
+app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS){
 
 $scope.logOut = function() {
     swal({
@@ -146,10 +159,11 @@ $scope.logOut = function() {
         },
         function () {
             session.destroy();
+
+            $cookies.remove("user");
+            $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+            $window.location.href="/";
             swal("You have been logged out.", "success");
-            timeout(400);
-            authService.$broadcast(AUTH_EVENTS.logoutSuccess);
-            $location.url("/signIn");
         });
 }
 
