@@ -10,7 +10,7 @@ app.constant('AUTH_EVENTS', {
 app.constant('USER_TYPES', {
     student: 'student  ',
     employer: 'employer'
-})
+});
 
 app.factory('authService', function($http,session, $cookies){
     var authService ={};
@@ -21,7 +21,7 @@ app.factory('authService', function($http,session, $cookies){
             .then(function (res) {
                 session.create(res.data);
                 res.data.passwordHash = null;
-                $cookies.put("user", res.data);
+                $cookies.put("user", JSON.stringify(res.data));
                 return res.data;
 
             });

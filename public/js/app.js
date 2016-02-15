@@ -3,7 +3,7 @@ var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appR
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
 
     if ($cookies.get("user")){
-        session.create($cookies.get("user"));
+        session.create(JSON.parse($cookies.get("user")));
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
     }
 });
@@ -93,7 +93,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	}
 });
 
-app.controller('postJob',function($scope, $http){
+app.controller('postJob',function($scope, $http, $window){
 
     if(!authService.isAuthenticated())
         $window.location.href= '/';
@@ -116,18 +116,35 @@ app.controller('postJob',function($scope, $http){
     };
 });
 
-app.controller('navControl',function($scope, authService){
+app.controller('navControl',function($scope, authService, session){
+
 
     if(authService.isAuthenticated()){
+        var user = session.user;
+        if(user.type == "student")
+        {
         $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
+        }}
+        else if(user.type == "employer"){
+            $scope.getNav= function() {
+                return "../views/blocks/employerNav.html";
+            }
         }
     }
 
 $scope.$on('auth-login-success',function(){
+    var user = session.user;
+    if(user.type == "student")
+    {
         $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
+        }}
+    else if(user.type == "employer"){
+        $scope.getNav= function() {
+            return "../views/blocks/employerNav.html";
         }
+    }
     } );
 
         //else{
@@ -149,6 +166,8 @@ $scope.$on('auth-login-success',function(){
 
 app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS){
 
+    $scope.user = session.user;
+
 $scope.logOut = function() {
     swal({
             title: "Are you sure?", text: "The browser won't remember you next time you log in.",
@@ -169,3 +188,63 @@ $scope.logOut = function() {
 
 
 });
+
+app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS){
+
+    $scope.user = session.user;
+console.log($scope.user);
+    $scope.logOut = function() {
+        swal({
+                title: "Are you sure?", text: "The browser won't remember you next time you log in.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, log out!", closeOnConfirm: false
+            },
+            function () {
+                session.destroy();
+
+                $cookies.remove("user");
+                $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                $window.location.href="/";
+                swal("You have been logged out.", "success");
+            });
+    }
+
+
+});
+
+
+app.controller('dashControl',function($scope, authService, session){
+
+
+    if(authService.isAuthenticated()){
+        var user = session.user;
+        if(user.type == "student")
+        {
+            $scope.getDash= function() {
+                return "../views/blocks/studentDash.html";
+            }}
+        else if(user.type == "employer"){
+            $scope.getDash= function() {
+                return "../views/blocks/employerDash.html";
+            }
+        }
+    }
+
+    $scope.$on('auth-login-success',function(){
+        var user = session.user;
+        if(user.type == "student")
+        {
+            $scope.getDash= function() {
+                return "../views/blocks/studentDash.html";
+            }}
+        else if(user.type == "employer"){
+            $scope.getDash= function() {
+                return "../views/blocks/employerDash.html";
+            }
+        }
+    } );
+
+
+    });

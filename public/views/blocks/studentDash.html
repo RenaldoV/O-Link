@@ -1,0 +1,120 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm">
+  <!-- main -->
+  <div class="col">
+    <!-- / main header -->
+    <div class="wrapper-md">
+      <!-- stats -->
+      <div class="row">
+        <div class="col-md-5">
+          <div class="row row-sm text-center">
+            <div class="col-xs-6">
+              <div class="panel padder-v item card">
+                <div class="h1 text-info font-thin h1" id="newJobs">521</div>
+                <span class="text-muted text-xs">New jobs</span>
+                <div class="top text-right w-full">
+                  <i class="fa fa-caret-down text-warning m-r-sm"></i>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v item card">
+                <span class="text-success font-thin h1 block" id="newStudents">930</span>
+                <span class="text-muted text-xs">New Students</span>
+                <span class="bottom text-right w-full">
+                  <i class="fa fa-cloud-upload text-success m-r-sm"></i>
+                </span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <a href class="block panel padder-v item card">
+                <span class="text-primary font-thin h1 block" id="totalEmployers">432</span>
+                <span class="text-muted text-xs">Employers</span>
+                <span class="top text-left">
+                  <i class="fa fa-caret-up text-warning m-l-sm"></i>
+                </span>
+              </a>
+            </div>
+            <div class="col-xs-6">
+              <div class="panel padder-v item card">
+                <div class="font-thin h1" id="totalStudents">129</div>
+                <span class="text-muted text-xs">Students</span>
+                <div class="bottom text-left">
+                  <i class="fa fa-caret-up text-warning m-l-sm"></i>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="panel wrapper">
+
+            <h4 class="font-thin m-t-none m-b text-muted">Latest Job Posts</h4>
+            <div ng-controller="jobFeed">
+              <table class="table">
+                <thead><th>Category</th><th>Role</th><th>Pay</th><th>Location</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="job in jobs">
+                  <td>{{job.post.category}}</td>
+                  <td>{{job.post.role}}</td>
+                  <td>R{{job.post.payRate + "/" + job.post.payPer}}</td>
+                  <td>{{job.post.location}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / stats -->
+
+      <!-- service -->
+      <div class="panel hbox hbox-auto-xs no-border">
+        <div class="col wrapper">
+          <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
+          <h4 class="font-thin m-t-none m-b-none text-primary-lt">Browse Jobs</h4>
+          <span class="m-b block text-sm text-muted">Categories</span>
+          <div>
+              <div>
+
+                  <div class="btn-group-lg" data-toggle="buttons">
+                  <label class="btn btn-primary-outline">
+                  <input type="checkbox" name="Coach" >Coach</label>
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Tutor" >Tutor</label>
+
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Delivery Person" >Delivery Person</label>
+
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Sales Rep" >Sales Rep</label>
+
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Model" >Model</label>
+
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Waiter(res)" >Waiter(res)</label>
+
+
+                      <label class="btn btn-primary-outline">
+                        <input type="checkbox" name="Other" >Other</label>
+
+                  </div>
+
+                <div id="browseJobs">
+                <button type="button" class="btn btn-primary" >Browse Jobs</button>
+                </div>
+
+       </div>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>
+  </div>
