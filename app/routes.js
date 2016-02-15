@@ -21,6 +21,7 @@ module.exports = function(app) {
 	// route to handle all angular requests
 
 
+
 	app.get('*', function(req, res) {
 
 		res.sendfile('./public/index.html');
@@ -86,9 +87,10 @@ module.exports = function(app) {
 
 		}
 
-		console.log(user);
+
 		db.addUser(user,function(result){
 			res.send(result);
+			//console.log(user);
 		});
 
 	});
@@ -102,14 +104,8 @@ module.exports = function(app) {
 	});
 
 	app.post('/loadUser', function(req,res) {
-		var email = {};
-		for(var key in req.body) {
+		var email = req.body;
 
-
-			email = JSON.parse(key);
-
-		}
-		console.log(email);
 		db.getUser(email.email, function(rows){
 			res.send(rows);
 		});

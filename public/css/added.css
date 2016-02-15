@@ -124,3 +124,23 @@
     -o-box-shadow: none;
     box-shadow: none;
 }
+
+#browseJobs{
+    text-align: right;
+    margin-top: 40px;
+    margin-right: 40px;
+    margin-bottom: 15px;
+}
+.center
+{
+    text-align: center;
+}
+
+.btn-xlarge {
+    padding: 18px 28px;
+    font-size: 22px; //change this to your desired size
+line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}

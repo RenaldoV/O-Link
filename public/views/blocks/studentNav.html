@@ -1,12 +1,12 @@
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right" ng-controller="studentNav">
     <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.name.name }} <span class="caret"></span></a>
         <ul class="dropdown-menu">
             <li><a href="#">User Profile </a></li>
             <li><a href="#">Application Status</a></li>
             <li><a href="#">Job History</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Log Out</a></li>
+            <li><a href="#" ng-click="logOut()">Log Out</a></li>
         </ul>
     </li>
 </ul>
