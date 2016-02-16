@@ -187,8 +187,9 @@
 
 
 
-    <!--Script for changing between relevant forms-->
+    
 <script>
+		<!--Script for changing between relevant forms-->
 		$(function () {
 			$("#Employerradio").click(function () {
 				$("#Studentradio").prop("checked", false);
@@ -201,7 +202,10 @@
 				$("#employerSUForm").hide();
 			});
 		});
+		<!--Script for changing between relevant forms-->
 		
+		
+		<!--Employer form validation-->
 		$(function () {
 			$("input[name=RegNo]").on("invalid", function () {
 				this.setCustomValidity("Please enter a valid SA registration number.");
@@ -279,6 +283,11 @@
 		.mouseout(function() {
 			$(".pwd1").get(0).type='password';
 		});
+		<!--Employer form validation-->
+		
+		
+		<!--Student form validation-->
+
 </script>
 
 
