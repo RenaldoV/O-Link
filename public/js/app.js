@@ -84,9 +84,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
                     else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
                         //login
-                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                        $scope.setCurrentUser(user);
-                        $window.location.href = '/dashboard';
+                        authService.login(user.contact).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $window.location.href= '/dashboard';
+
+
+                        });
                         }
                     }
 			});
