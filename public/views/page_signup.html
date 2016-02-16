@@ -261,23 +261,23 @@
 		});
 		
 		$(".reveal").mousedown(function() {
-			$(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
+			$(".pwd").get(0).type='text';
 		})
 		.mouseup(function() {
-			$(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+			$(".pwd").get(0).type='password';
 		})
 		.mouseout(function() {
-			$(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
+			$(".pwd").get(0).type='password';
 		});
 
 		$(".reveal1").mousedown(function() {
-			$(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'text'));
+			$(".pwd1").get(0).type='text';
 		})
 		.mouseup(function() {
-			$(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'password'));
+			$(".pwd1").get(0).type='password';
 		})
 		.mouseout(function() {
-			$(".pwd1").replaceWith($('.pwd1').clone().attr('type', 'password'));
+			$(".pwd1").get(0).type='password';
 		});
 </script>
 
