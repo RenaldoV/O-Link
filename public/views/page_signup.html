@@ -199,7 +199,8 @@
 
     
 <script>
-		<!--Script for changing between relevant forms-->
+
+		//Script for changing between relevant forms
 		$(function () {
 			$("#Employerradio").click(function () {
 				$("#Studentradio").prop("checked", false);
@@ -212,10 +213,9 @@
 				$("#employerSUForm").hide();
 			});
 		});
-		<!--Script for changing between relevant forms-->
+		//Script for changing between relevant forms
 		
-		
-		<!--Employer form validation-->
+		//Employer form validation
 		$(function () {
 			$("input[name=RegNo]").on("invalid", function () {
 				this.setCustomValidity("Please enter a valid SA registration number.");
@@ -293,10 +293,10 @@
 		.mouseout(function() {
 			$(".pwd1").get(0).type='password';
 		});
-		<!--Employer form validation-->
+		//Employer form validation
 		
 		
-		<!--Student form validation-->
+		//Student form validation
 		$(function () {
 			$("input[name=stuEmail]").on("invalid", function () {
 				this.setCustomValidity("Please enter a valid UCT email address.");
@@ -367,7 +367,7 @@
 			});
 
 		});
-		<!--Student form validation-->
+		//Student form validation
 
 </script>
 
