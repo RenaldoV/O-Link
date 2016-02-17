@@ -1,7 +1,4 @@
-﻿
-
-
-<div ng-controller="signup">
+﻿<div ng-controller="signup">
 	<div class="wrapper text-center">
 		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
@@ -136,7 +133,7 @@
 						<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{10,10}" required>
+						<input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{8,8}" required>
 					</div>
 					<div class="list-group-item">
 						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.dob" required>
