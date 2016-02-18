@@ -82,37 +82,41 @@ notifications[]
 
 Jobs
 
-status
-•Yellow - Pending
-• Green - Provisionally accepted
-• Blue - Confirmed
-• Red - Declined 
+
 
 
 post : {
 	role
 	description
 	location
-	payRate
-	payPer
+	timePeriod
+	pay
 	category
 	spotsAvailable
 	postDate
 	dates[]
-	places
+	requirements:{
+			name
+			symbol
+			}
 	hours{
 		begin
 		end
 		}
 	tips
 	gender
-	min Criteria []
 
 	}
 employerID
 
 
 Applications
+
+status
+•Yellow - Pending
+• Green - Provisionally accepted
+• Blue - Confirmed
+• Red - Declined 
 
 jobID
 message

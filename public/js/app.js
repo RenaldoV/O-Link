@@ -98,12 +98,13 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	}
 });
 
-app.controller('postJob',function($scope, $http, $window){
+app.controller('postJob',function($scope, $http, $window, authService, session){
 
-    if(!authService.isAuthenticated())
-        $window.location.href= '/';
+   /* if(!authService.isAuthenticated())
+        $window.location.href= '/'; */
     $scope.job = {};
-
+    $scope.job.post = {};
+    $scope.job.post.requirements = [];
     $scope.submitForm = function() {
         
 
