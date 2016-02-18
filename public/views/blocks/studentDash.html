@@ -70,7 +70,7 @@
       <!-- / stats -->
 
       <!-- service -->
-      <div class="panel hbox hbox-auto-xs no-border">
+      <div class="panel hbox hbox-auto-xs no-border" ng-controller="goBrowse">
         <div class="col wrapper">
           <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
           <h4 class="font-thin m-t-none m-b-none text-primary-lt">Browse Jobs</h4>
@@ -83,39 +83,28 @@
           </datalist>
           <div>
               <div>
-
+                  <form id="browseForm" ng-submit="submit()" >
                   <div class="btn-group-lg" data-toggle="buttons">
-                  <label class="btn btn-primary-outline">
-                  <input type="checkbox" name="Coach" >Coach</label>
 
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Tutor" >Tutor</label>
-
-
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Delivery Person" >Delivery Person</label>
-
-
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Sales Rep" >Sales Rep</label>
+                    <label class="btn btn-primary-outline" ng-repeat="category in categories">
+                      <input
+                              type="checkbox"
+                              name="selectedCategories[]"
+                              value="{{category}}"
+                              ng-checked="$parent.selection.indexOf(category) > -1"
+                              ng-click="$parent.toggleSelection(category)"
+                      > {{category}}
+                    </label>
 
 
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Model" >Model</label>
 
-
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Waiter(res)" >Waiter(res)</label>
-
-
-                      <label class="btn btn-primary-outline">
-                        <input type="checkbox" name="Other" >Other</label>
 
                   </div>
 
                 <div id="browseJobs">
-                <button type="button" class="btn btn-primary" >Browse Jobs</button>
+                <button type="submit" class="btn btn-primary" >Browse Jobs</button>
                 </div>
+                  </form>
 
        </div>
       </div>

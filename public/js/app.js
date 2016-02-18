@@ -292,3 +292,31 @@ app.controller('dashControl',function($scope, authService, session){
 
 
     });
+
+app.controller('goBrowse',function($scope, authService, session){
+
+
+
+    $scope.categories = ["Coach", "Tutor", "Delivery Person", "Sales Rep", "Model", "Waiter(res)", "Other"];
+    $scope.selection = ["Coach"];
+    function Ctrl($scope) {
+    $scope.toggleSelection = function toggleSelection(category) {
+        var idx = $scope.selection.indexOf(category);
+        console.log(category);
+        // is currently selected
+        if (idx > -1) {
+            $scope.selection.splice(idx, 1);
+        }
+
+        // is newly selected
+        else {
+            $scope.selection.push(category);
+        }
+    };
+
+    $scope.submit = function () {
+        console.log(JSON.stringify($scope.selection));
+    }
+}
+
+});
