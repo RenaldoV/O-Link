@@ -100,11 +100,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 
 app.controller('postJob',function($scope, $http, $window, authService, session){
 
-   /* if(!authService.isAuthenticated())
-        $window.location.href= '/'; */
+   if(!authService.isAuthenticated())
+        $window.location.href= '/';
+    if(session.user.type != 'employer')
+        $window.location.href= '/';
     $scope.job = {};
     $scope.job.post = {};
     $scope.job.post.requirements = [];
+    $scope.job.employeeEmail = session.user.contact.email;
     $scope.submitForm = function() {
         
 
