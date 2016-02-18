@@ -98,15 +98,50 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	}
 });
 
-app.controller('postJob',function($scope, $http, $window, authService, session){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile){
 
    if(!authService.isAuthenticated())
         $window.location.href= '/';
     if(session.user.type != 'employer')
         $window.location.href= '/';
+
+
+    var times = $("#times").html();
+
+    //add end date if short term/long term
+    $("#endDateDiv").hide();
+
+    $("#period").change(function(e){
+
+        if(this.value == "Once Off")
+        {
+            $("#endDateDiv").hide();
+            $("#times").html(times);
+
+        }
+        else {
+            $("#endDateDiv").show();
+            $("#times").html('');
+        }
+    });
+
+    var reqCount = 0;
+    //add requirement
+    $('#addReq').click(function(e){
+
+       var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default">x</button></div>').insertBefore(this);
+        reqCount++;
+        $compile(input)($scope);
+        $('.removeReq').click(function(e){
+
+            $(this).parent.remove();
+        });
+    });
+
     $scope.job = {};
     $scope.job.post = {};
-    $scope.job.post.requirements = [];
+    $scope.job.post.requirements = {};
     $scope.job.employeeEmail = session.user.contact.email;
     $scope.submitForm = function() {
         

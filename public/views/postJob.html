@@ -102,38 +102,7 @@
 
 <script>
 
-    var times = $("#times").html();
-
-        //add end date if short term/long term
-        $("#endDateDiv").hide();
-
-        $("#period").change(function(e){
-
-            if(this.value == "Once Off")
-            {
-                $("#endDateDiv").hide();
-                $("#times").html(times);
-
-            }
-            else {
-                $("#endDateDiv").show();
-                $("#times").html('');
-            }
-        });
-
-        var reqCount = 0;
-        //add requirement
-        $('#addReq').click(function(e){
-
-            $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
-                    '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default">x</button></div>').insertBefore(this);
-            reqCount++;
-
-            $('.removeReq').click(function(e){
-
-                $(this).parent.remove();
-            });
-        });
+ 
 
 
 

@@ -52,7 +52,7 @@ module.exports = function(app) {
 		}
 
 
-		job.employeeID = 1234; //for nowtest
+		
 
 		db.insert(job,'jobs',function(result){
 				res.send(result);
