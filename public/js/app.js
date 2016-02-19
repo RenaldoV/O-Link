@@ -98,7 +98,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	}
 });
 
-app.controller('postJob',function($scope, $http, $window, authService, session, $compile){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location){
 
    if(!authService.isAuthenticated())
         $window.location.href= '/';
@@ -130,8 +130,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $('#addReq').click(function(e){
 
        var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default">x</button></div>').insertBefore(this);
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default" ng-click="close()">x</button></div>').insertBefore(this);
         reqCount++;
+
         $compile(input)($scope);
         $('.removeReq').click(function(e){
 
@@ -142,7 +143,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.job = {};
     $scope.job.post = {};
     $scope.job.post.requirements = {};
-    $scope.job.employeeEmail = session.user.contact.email;
+    $scope.job.employerID = session.user._id;
     $scope.submitForm = function() {
         
 
@@ -154,7 +155,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         })
             .then(function(response) {
                 {
-                   $scope.message = response.data;
+                    swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                    $location.url("/dashboard");
                 }
             });
     };
@@ -370,4 +372,48 @@ app.controller('jobCtrl', function($scope, $location,$http){
                 $scope.job = res.data;
             }
         });
+});
+
+app.controller('profileControl',function($scope, authService, session, $location, $http, cacheUser) {
+
+
+    function getUser(){
+        var temp = $location.url();
+        temp = temp.replace("/user?id=", '');
+        var credentials = {id: temp};
+        $http
+            .post('/loadUserById', credentials)
+            .then(function (res) {
+
+                res.data.passwordHash = null;
+                var user = res.data;
+                cacheUser.create(res.data);
+                if (user.type == "student") {
+                    $scope.getProfile = function () {
+                        return "../views/blocks/studentProfile.html";
+                    }
+                }
+                else if (user.type == "employer") {
+                    $scope.getProfile = function () {
+                        return "../views/blocks/employerProfile.html";
+                    }
+                }
+            });
+    }
+    if (authService.isAuthenticated()) {
+        getUser();
+
+    }
+
+    $scope.$on('auth-login-success', function () {
+        getUser();
+
+    });
+});
+
+app.controller('empProfileControl', function ($scope,cacheUser) {
+
+$scope.user = cacheUser.user;
+    console.log($scope.user);
+
 });

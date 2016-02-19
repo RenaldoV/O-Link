@@ -36,7 +36,7 @@ function getOne(colName, query , callback)
 	col = mongoose.model(colName, schema);
 	var data;
 
-	col.findOne(query,{'_id': 0},function (err, docs) {
+	col.findOne(query,function (err, docs) {
 
 		data = docs;
 		callback(data);

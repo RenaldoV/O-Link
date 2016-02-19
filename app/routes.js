@@ -134,4 +134,13 @@ module.exports = function(app) {
 
 	});
 
+	app.post('/loadUserById', function(req,res) {
+		var id= req.body;
+
+		db.getById('users',id.id, function(rows){
+			res.send(rows);
+		});
+
+	});
+
 };
