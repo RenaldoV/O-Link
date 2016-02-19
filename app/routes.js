@@ -124,4 +124,14 @@ module.exports = function(app) {
 
 	});
 
+	app.post('/getJob', function(req,res) {
+
+		var id= req.body;
+
+		db.getById('jobs',id.id, function(rows){
+			res.send(rows);
+		});
+
+	});
+
 };

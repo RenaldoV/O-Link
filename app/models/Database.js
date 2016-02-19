@@ -233,6 +233,11 @@ module.exports = {
 		getOne('users', {"contact.email":email}, function(res){
 			return cb(res);
 		});
+	},
+	getById: function(table,id,cb){
+		getOne(table, {"_id":id}, function(res){
+			return cb(res);
+		});
 	}
 
 

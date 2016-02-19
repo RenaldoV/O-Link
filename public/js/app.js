@@ -354,3 +354,20 @@ app.controller('jobBrowser',function($scope, $location, $http){
         });
 
 });
+
+app.controller('jobCtrl', function($scope, $location,$http){
+    var temp = $location.url();
+
+    temp = temp.replace("/job?id=", '');
+    id = {id: temp}
+    $http({
+        method  : 'POST',
+        url     : '/getJob',
+        data : id
+    })
+        .then(function(res) {
+            {
+                $scope.job = res.data;
+            }
+        });
+});
