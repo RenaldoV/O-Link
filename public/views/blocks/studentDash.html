@@ -86,14 +86,14 @@
                   <form id="browseForm" ng-submit="submit()" >
                   <div class="btn-group-lg" data-toggle="buttons">
 
-                    <label class="btn btn-primary-outline" ng-repeat="category in categories">
+                    <label class="btn btn-primary-outline" ng-repeat="category in categories" ng-click="toggleSelection(category)">
                       <input
                               type="checkbox"
                               name="selectedCategories[]"
                               value="{{category}}"
-                              ng-checked="$parent.selection.indexOf(category) > -1"
-                              ng-click="$parent.toggleSelection(category)"
-                      > {{category}}
+                              ng-checked="selection.indexOf(category) > -1"
+
+                      /> {{category}}
                     </label>
 
 

@@ -293,16 +293,16 @@ app.controller('dashControl',function($scope, authService, session){
 
     });
 
-app.controller('goBrowse',function($scope, authService, session){
+app.controller('goBrowse',function($scope, $location){
 
 
 
     $scope.categories = ["Coach", "Tutor", "Delivery Person", "Sales Rep", "Model", "Waiter(res)", "Other"];
-    $scope.selection = ["Coach"];
-    function Ctrl($scope) {
-    $scope.toggleSelection = function toggleSelection(category) {
-        var idx = $scope.selection.indexOf(category);
+    $scope.selection = [];
+    $scope.toggleSelection = function(category) {
         console.log(category);
+        var idx = $scope.selection.indexOf(category);
+
         // is currently selected
         if (idx > -1) {
             $scope.selection.splice(idx, 1);
@@ -315,8 +315,42 @@ app.controller('goBrowse',function($scope, authService, session){
     };
 
     $scope.submit = function () {
-        console.log(JSON.stringify($scope.selection));
+
+        var temp = JSON.stringify($scope.selection)
+
+        console.log(temp);
+        temp = temp.replace(/,/g, '%');
+        temp = temp.replace(/"/g, '');
+        temp = temp.replace(/ /g, '_');
+        temp = temp.slice(1, -1);
+
+        console.log(temp);
+       $location.path('/browseJobs').search('categories', temp);
+
     }
-}
+
+});
+
+app.controller('jobBrowser',function($scope, $location, $http){
+
+
+    var temp = $location.url();
+
+    temp = temp.replace("/browseJobs?categories=", '');
+    temp = temp.replace(/_/g, ' ');
+    var arr = temp.split("%25");
+    console.log(arr);
+
+    //get the jobs
+    $http({
+        method  : 'POST',
+        url     : '/jobBrowse',
+        data : arr
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+            }
+        });
 
 });

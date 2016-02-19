@@ -42,6 +42,18 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/jobBrowse', function(req,res){
+
+
+		var temp = req.body;
+
+
+
+		db.getByArr("jobs", 'post.category', temp, function(rows){
+
+			res.send(rows);
+		});
+	});
 	app.post('/jobPoster', function(req,res) {
 		var job = {};
 		for(var key in req.body) {

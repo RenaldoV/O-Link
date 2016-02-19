@@ -19,7 +19,7 @@ db.once('open', function (callback) {
 
 });
 
-var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}}}, {strict:false});
+var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({id : Number}, {strict:false});
 
 
@@ -78,7 +78,29 @@ function getCollectionBy(colName, query, callback)
 	col = mongoose.model(colName, schema);
 	var data;
 
-	col.find(query,{'_id': 0},function (err, docs) {
+	col.find(query,function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
+
+function getCollectionByArr(colName, field, arr, callback)
+{
+
+	var schema;
+	switch(colName){
+		case "jobs": schema = jobSchema;
+			break;
+		default: schema = idSchema;
+	}
+	schema.set('collection', colName);
+	col = mongoose.model(colName, schema);
+	var data;
+
+
+	col.find().where(field).in(arr).exec(function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -178,6 +200,11 @@ module.exports = {
 
 	getBy: function(table, params, cb){
 		getCollectionBy(table, params, function(res){
+			return cb(res);
+		});
+	},
+	getByArr: function(table, field, arr, cb){
+		getCollectionByArr(table, field, arr, function(res){
 			return cb(res);
 		});
 	},
