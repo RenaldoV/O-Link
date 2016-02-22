@@ -21,6 +21,41 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
+app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
+		$scope.submitForm = function() {
+
+        $http({
+            method  : 'POST',
+            url     : '/forgot',
+            data 	: $scope.user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(res) {
+                {
+					console.log(res.data);
+                    if(res.data) {
+              /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+
+							authService.login($scope.user).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $location.url("/dashboard");
+
+
+                        }, function () {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                        }); */
+						
+						sweetAlert("success", 'An email has been sent to ' + res.data.contact.email + ' with a reset link');
+                    }
+                    else sweetAlert("error", 'No account with that email address exists.');
+                }
+            });
+    }
+	
+});
+
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
     if(authService.isAuthenticated())
