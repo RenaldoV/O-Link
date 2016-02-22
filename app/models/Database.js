@@ -182,6 +182,20 @@ module.exports = {
 
 		});
 	},
+	checkMail: function (email, cb) {
+
+		checkEmail(email.email, function(res) {
+			var tab = res;
+			if(!res) 
+				return cb({valid: false});
+			
+			var q = {"contact.email" : email.email };
+			getOne('users', q, function(res){	
+				return cb({valid : true, table: tab, user : res.toObject()});
+			});
+		});
+	}
+	,
 	checkLogin: function(email, password, cb){
 
 		checkEmail(email, function(res1){
