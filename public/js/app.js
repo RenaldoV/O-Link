@@ -136,7 +136,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $compile(input)($scope);
         $('.removeReq').click(function(e){
 
-            $(this).parent.remove();
+            $(this).parent().remove();
         });
     });
 
