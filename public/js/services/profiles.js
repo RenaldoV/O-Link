@@ -46,3 +46,19 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 
 
 });
+
+app.controller('studentProfileControl', function ($scope,cacheUser) {
+
+
+    console.log("yey");
+    console.log(cacheUser.user);
+    $scope.user = cacheUser.user;
+
+
+});
+app.controller('myProfile', function($scope, session){
+
+    $scope.user = session.user;
+});
+
+
