@@ -42,6 +42,18 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/jobBrowse', function(req,res){
+
+
+		var temp = req.body;
+
+
+
+		db.getByArr("jobs", 'post.category', temp, function(rows){
+
+			res.send(rows);
+		});
+	});
 	app.post('/jobPoster', function(req,res) {
 		var job = {};
 		for(var key in req.body) {
@@ -52,7 +64,7 @@ module.exports = function(app) {
 		}
 
 
-		job.employeeID = 1234; //for nowtest
+
 
 		db.insert(job,'jobs',function(result){
 				res.send(result);
@@ -105,8 +117,27 @@ module.exports = function(app) {
 
 	app.post('/loadUser', function(req,res) {
 		var email = req.body;
-
+		console.log(email)
 		db.getUser(email.email, function(rows){
+			res.send(rows);
+		});
+
+	});
+
+	app.post('/getJob', function(req,res) {
+
+		var id= req.body;
+
+		db.getById('jobs',id.id, function(rows){
+			res.send(rows);
+		});
+
+	});
+
+	app.post('/loadUserById', function(req,res) {
+		var id= req.body;
+
+		db.getById('users',id.id, function(rows){
 			res.send(rows);
 		});
 

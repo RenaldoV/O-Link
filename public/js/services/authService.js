@@ -53,3 +53,11 @@ app.controller('ApplicationController', function ($scope,authService) {
     };
 });
 
+app.service('cacheUser', function () {
+    this.create = function (user) {
+        this.user = user;
+    };
+    this.destroy = function () {
+        this.user  = null;
+    };
+});

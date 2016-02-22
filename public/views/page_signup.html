@@ -1,7 +1,4 @@
-﻿
-
-
-<div ng-controller="signup">
+﻿<div ng-controller="signup">
 	<div class="wrapper text-center">
 		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
@@ -18,7 +15,8 @@
     <div class="text-danger wrapper text-center">
 
     </div>
-	<form id="employerSUForm" class="list-group list-group-sm form-validation" name="employerForm" ng-submit="submitForm()" hidden>
+	<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()" hidden>
+		<div class="list-group list-group-sm">
 				<fieldset class="form-group">
 					<label>Company Info</label>
 					<div class="list-group-item">
@@ -28,17 +26,18 @@
 						<input list="BC" name="cat" class="form-control no-border" placeholder="Choose business category or type own" ng-model="user.company.businessCategory" required>
 					</div>
 					<datalist id="BC">
-						<option value="IT">
-						<option value="Recruitment">
-						<option value="Law">
-						<option value="Design">
-						<option value="Education">
+						<option value="Coach">
+						<option value="Delivery	Person">
+						<option value="Tutor">
+						<option value="Sales rep">
+						<option value="Model">
+						<option value="Waiter(res)">
 					</datalist>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Company registration number" ng-model="user.company.regNo" required>
+						<input name="RegNo" type="text" class="form-control no-border" placeholder="Company reg number YYYY/NNNNNN/NN" ng-model="user.company.regNo" pattern="((19|20)[\d]{2}/[\d]{6}/[\d]{2})">
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" required>
+						<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" required>
 					</div>
 					<div class="list-group-item">
 						<!--Link google location API en gebruik location auto complete-->
@@ -54,22 +53,34 @@
 						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber" required>
+						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber" 
+						pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
 						<input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" required>
 					</div>
 					<div class="list-group-item">
-						<input type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" required>
+						<input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" required>
+						<input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.passwordHash" required>
+						<div class="input-group">
+						<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
+							<input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+						</div>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Confirm password" class="form-control no-border" required>
+						<div class="input-group">
+							<input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
@@ -81,7 +92,7 @@
 						<input placeholder="Alternate contact surname" class="form-control no-border" ng-model="user.alternate.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Alternate contact number" class="form-control no-border" ng-model="user.alternate.contactNo" required>
+						<input name="empAdContact" placeholder="Alternate contact number" class="form-control no-border" ng-model="user.alternate.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
@@ -95,7 +106,13 @@
 						</datalist>
 					</div>
 				</fieldset>
-		<button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+				<div class="checkbox m-b-md m-t-none">
+				<label class="i-checks">
+					<input type="checkbox" ng-model="agree" required><i></i> Agree the <a href="#">terms and policy</a>
+				</label>
+			</div>
+			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+		</div>
 </form>
 <form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="submitForm()" hidden>
 				<fieldset class="form-group">
@@ -107,28 +124,39 @@
 						<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.contact.email" required>
+						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@uct.ac.za" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" required>
+						<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" required>
+						<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" required>
+						<input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{8,8}" required>
 					</div>
 					<div class="list-group-item">
 						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.dob" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" required>
+						<input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Password" class="form-control no-border" ng-model="user.passwordHash" required>
+						<div class="input-group">
+						<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
+							<input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+						</div>
 					</div>
 					<div class="list-group-item">
-						<input type="password" placeholder="Confirm password" class="form-control no-border" required>
+						<div class="input-group">
+							<input name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
@@ -138,9 +166,6 @@
 					</div>
 					<div class="list-group-item">
 						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description" required>
-					</div>
-					<div class="list-group-item">
-						<input placeholder="Qualification status (Completed/3rd Year etc.)" class="form-control no-border" ng-model="user.qualification.status" required>
 					</div>
 					<div class="list-group-item">
 						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category" required>
@@ -174,21 +199,178 @@
 
 
 
-    <!--Script for changing between relevant forms-->
+    
 <script>
-		$(function () {
 
-		$("#Employerradio").click(function () {
-			$("#Studentradio").prop("checked", false);
-			$("#employerSUForm").show();
-			$("#studentSUForm").hide();
+		//Script for changing between relevant forms
+		$(function () {
+			$("#Employerradio").click(function () {
+				$("#Studentradio").prop("checked", false);
+				$("#employerSUForm").show();
+				$("#studentSUForm").hide();
+			});
+			$("#Studentradio").click(function () {
+				$("#Employerradio").prop("checked", false);
+				$("#studentSUForm").show();
+				$("#employerSUForm").hide();
+			});
 		});
-		$("#Studentradio").click(function () {
-			$("#Employerradio").prop("checked", false);
-			$("#studentSUForm").show();
-			$("#employerSUForm").hide();
+		//Script for changing between relevant forms
+		
+		//Employer form validation
+		$(function () {
+			$("input[name=RegNo]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA registration number.");
+			});
+			$("input[name=RegNo]").on("change", function () {
+				this.setCustomValidity("");
+			});			
 		});
-	});
+		$(function () {
+			$("input[name=empID]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA ID number.");			
+			});
+			$("input[name=empID]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		$(function () {
+			$("input[name=empEmail]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid email address.");			
+			});
+			$("input[name=empEmail]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		$(function () {
+			$("input[name=empContact]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA contact number.");			
+			});
+			$("input[name=empContact]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		$(function () {
+			$("input[name=empPassw]").on("invalid", function () {
+				this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");	
+			});
+			$("input[name=empPassw]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		$(function () {
+			$("input[name=empRePassw]").on("blur", function () {
+				if($("input[name=empPassw]").val() != $(this).val())
+					this.setCustomValidity("Passwords do not match.");	
+			});
+			$("input[name=empRePassw]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		$(function () {
+			$("input[name=empAdContact]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA contact number.");	
+			});
+			$("input[name=empAdContact]").on("change", function () {
+				this.setCustomValidity("");
+			});
+		});
+		
+		$(".reveal").mousedown(function() {
+			$(".pwd").get(0).type='text';
+		})
+		.mouseup(function() {
+			$(".pwd").get(0).type='password';
+		})
+		.mouseout(function() {
+			$(".pwd").get(0).type='password';
+		});
+
+		$(".reveal1").mousedown(function() {
+			$(".pwd1").get(0).type='text';
+		})
+		.mouseup(function() {
+			$(".pwd1").get(0).type='password';
+		})
+		.mouseout(function() {
+			$(".pwd1").get(0).type='password';
+		});
+		//Employer form validation
+		
+		
+		//Student form validation
+		$(function () {
+			$("input[name=stuEmail]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid UCT email address.");
+			});
+			$("input[name=stuEmail]").on("change", function () {
+				this.setCustomValidity("");
+			});	
+			
+			$("input[name=stuContact]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA contact number.");			
+			});
+			$("input[name=stuContact]").on("change", function () {
+				this.setCustomValidity("");
+			});
+			
+			$("input[name=stuID]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid SA ID number.");			
+			});
+			$("input[name=stuID]").on("change", function () {
+				this.setCustomValidity("");
+			});
+			$("input[name=stuNo]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid UCT student number.");			
+			});
+			$("input[name=stuNo]").on("change", function () {
+				this.setCustomValidity("");
+			});
+			$("input[name=stuGender]").on("invalid", function () {
+				this.setCustomValidity("Please enter a valid gender, M/F.");			
+			});
+			$("input[name=stuGender]").on("change", function () {
+				this.setCustomValidity("");
+			});
+			
+			$("input[name=stuPassw]").on("invalid", function () {
+				this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");	
+			});
+			$("input[name=stuPassw]").on("change", function () {
+				this.setCustomValidity("");
+			});
+
+			$("input[name=stuRePassw]").on("blur", function () {
+				if($("input[name=stuPassw]").val() != $(this).val())
+					this.setCustomValidity("Passwords do not match.");	
+			});
+			$("input[name=stuRePassw]").on("change", function () {
+				this.setCustomValidity("");
+			});
+			
+			$(".reveal2").mousedown(function() {
+				$(".pwd").get(0).type='text';
+			})
+			.mouseup(function() {
+				$(".pwd2").get(0).type='password';
+			})
+			.mouseout(function() {
+				$(".pwd2").get(0).type='password';
+			});
+
+			$(".reveal3").mousedown(function() {
+				$(".pwd3").get(0).type='text';
+			})
+			.mouseup(function() {
+				$(".pwd3").get(0).type='password';
+			})
+			.mouseout(function() {
+				$(".pwd3").get(0).type='password';
+			});
+
+		});
+		//Student form validation
+
 </script>
 
 

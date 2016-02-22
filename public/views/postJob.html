@@ -20,33 +20,39 @@
             <br><br><br>
             <label>Pay</label>
             <div class="list-group-item">
-                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.payRate" required>
+                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" required>
             </div>
-            <div class="list-group-item">
-                <input list="payPer" placeholder="Pay per" class="form-control no-border" ng-model="job.post.payPer">
-                <datalist id="payPer">
-                    <option value="Hour">
-                    <option value="Day">
-                    <option value="Job">
-                </datalist>
-                <br>
-                Tips <input type="checkbox" name="tips" ng-model="job.post.tips">
-            </div>
+
+        <div class="list-group-item">
+            <select id="period" placeholder="Time Period" class="form-control no-border" ng-model="job.post.timePeriod" >
+                <option value="Once Off">Once Off</option>
+                <option value="Short Term">Short Term</option>
+                <option value="Long Term">Long Term</option>
+            </select>
+            <br>
+            Tips <input type="checkbox" name="tips" ng-model="job.post.tips">
+        </div>
+
             <br><br><br>
             <div class="list-group-item">
-                <input type="date" class="controls form-control no-border" placeholder="Starting Date" ng-model="job.post.dates" required>
+                Start date: <input type="date" class="controls form-control no-border" placeholder="Starting Date" ng-model="job.post.startingDate" required>
             </div>
-            <br><br>
+
+        <div id="endDateDiv" class="list-group-item" hidden="hidden">
+            End date:<input id = "endDate" type="date" class="controls form-control no-border" placeholder="End Date" ng-model="job.post.endDate" >
+        </div>
+        <br><br>
         <div class="list-group-item">
             <input list="gender" placeholder="Gender" class="form-control no-border" ng-model="job.post.gender" required>
             <datalist id="gender">
-                <option value="Male">
-                <option value="Female">
+                <option value="M">
+                <option value="F">
+                <option value="Any">
             </datalist>
         </div>
         <br><br>
-            <div class="list-group-item">
-                Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required>
+            <div class="list-group-item" id="times">
+                Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required >
                 Leaving time: <input type="time" placeholder="endTime" class="form-control no-border" ng-model="job.post.hours.end" required>
             </div>
             <br><br><br>
@@ -63,6 +69,29 @@
                 </datalist>
             </div>
             <br><br><br>
+        <div class="list-group-item">
+            Requirements:<br>
+            <button type="button" id="addReq" class="btn btn-default">+</button>
+
+            <datalist id="requirements">
+                <option value="Maths">
+                <option value="AP Maths">
+                <option value="English">
+                <option value="Science">
+                <option value="Afrikaans">
+                <option value="Zulu">
+                <option value="IT">
+            </datalist>
+            <datalist id="symbols">
+                <option value="A">
+                <option value="B">
+                <option value="C">
+                <option value="D">
+                <option value="F">
+            </datalist>
+            <button type="button" class="removeReq" class="btn btn-default" hidden="hidden">x</button>
+        </div>
+        <br><br><br>
             <div class="list-group-item">
                 <input  type="number" class="controls form-control no-border" width="50px" placeholder="Spots Available" ng-model="job.post.spotsAvailable" required>
             </div>
@@ -71,3 +100,13 @@
     <div><p>{{message}}</p></div>
     </form>
 </div>
+
+<script>
+
+ 
+
+
+
+
+
+</script>

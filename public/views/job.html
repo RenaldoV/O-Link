@@ -1,0 +1,8 @@
+<div ng-controller="jobCtrl" ng-controller="applicationCtrl">
+    <h2>{{job.post.role}}</h2>
+
+    <a href="/profile?user={{job.employerID}}">View employer profile</a>
+    <div class="center">
+        <button class="btn btn-primary btn-xlarge" ng-click="apply()">Apply</button>
+    </div>
+</div>

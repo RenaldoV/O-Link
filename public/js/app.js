@@ -84,21 +84,66 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
                     else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
                         //login
-                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                        $scope.setCurrentUser(user);
-                        $window.location.href = '/dashboard';
+                        authService.login(user.contact).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $window.location.href= '/dashboard';
+
+
+                        });
                         }
                     }
 			});
 	}
 });
 
-app.controller('postJob',function($scope, $http, $window){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location){
 
-    if(!authService.isAuthenticated())
+   if(!authService.isAuthenticated())
         $window.location.href= '/';
-    $scope.job = {};
+    if(session.user.type != 'employer')
+        $window.location.href= '/';
 
+
+    var times = $("#times").html();
+
+    //add end date if short term/long term
+    $("#endDateDiv").hide();
+
+    $("#period").change(function(e){
+
+        if(this.value == "Once Off")
+        {
+            $("#endDateDiv").hide();
+            $("#times").html(times);
+
+        }
+        else {
+            $("#endDateDiv").show();
+            $("#times").html('');
+        }
+    });
+
+    var reqCount = 0;
+    //add requirement
+    $('#addReq').click(function(e){
+
+       var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default" ng-click="close()">x</button></div>').insertBefore(this);
+        reqCount++;
+
+        $compile(input)($scope);
+        $('.removeReq').click(function(e){
+
+            $(this).parent().remove();
+        });
+    });
+
+    $scope.job = {};
+    $scope.job.post = {};
+    $scope.job.post.requirements = {};
+    $scope.job.employerID = session.user._id;
     $scope.submitForm = function() {
         
 
@@ -110,7 +155,8 @@ app.controller('postJob',function($scope, $http, $window){
         })
             .then(function(response) {
                 {
-                   $scope.message = response.data;
+                    swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                    $location.url("/dashboard");
                 }
             });
     };
@@ -248,3 +294,83 @@ app.controller('dashControl',function($scope, authService, session){
 
 
     });
+
+app.controller('goBrowse',function($scope, $location){
+
+
+
+    $scope.categories = ["Coach", "Tutor", "Delivery Person", "Sales Rep", "Model", "Waiter(res)", "Other"];
+    $scope.selection = [];
+    $scope.toggleSelection = function(category) {
+        console.log(category);
+        var idx = $scope.selection.indexOf(category);
+
+        // is currently selected
+        if (idx > -1) {
+            $scope.selection.splice(idx, 1);
+        }
+
+        // is newly selected
+        else {
+            $scope.selection.push(category);
+        }
+    };
+
+    $scope.submit = function () {
+
+        var temp = JSON.stringify($scope.selection)
+
+        console.log(temp);
+        temp = temp.replace(/,/g, '%');
+        temp = temp.replace(/"/g, '');
+        temp = temp.replace(/ /g, '_');
+        temp = temp.slice(1, -1);
+
+        console.log(temp);
+       $location.path('/browseJobs').search('categories', temp);
+
+    }
+
+});
+
+app.controller('jobBrowser',function($scope, $location, $http){
+
+
+    var temp = $location.url();
+
+    temp = temp.replace("/browseJobs?categories=", '');
+    temp = temp.replace(/_/g, ' ');
+    var arr = temp.split("%25");
+    console.log(arr);
+
+    //get the jobs
+    $http({
+        method  : 'POST',
+        url     : '/jobBrowse',
+        data : arr
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+            }
+        });
+
+});
+
+app.controller('jobCtrl', function($scope, $location,$http){
+    var temp = $location.url();
+
+    temp = temp.replace("/job?id=", '');
+    id = {id: temp}
+    $http({
+        method  : 'POST',
+        url     : '/getJob',
+        data : id
+    })
+        .then(function(res) {
+            {
+                $scope.job = res.data;
+            }
+        });
+});
+
