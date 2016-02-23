@@ -1,4 +1,4 @@
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload']);
 
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
 
@@ -231,6 +231,9 @@ $scope.logOut = function() {
             swal("You have been logged out.", "success");
         });
 }
+    $scope.myProfile = function(){
+        $window.location.href="/myProfile";
+    }
 
 
 });

@@ -28,6 +28,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		.when('/profile', {
 			templateUrl: 'views/profile.html'
+		})
+		.when('/myProfile', {
+			templateUrl: 'views/profile.html'
 		});
 
 

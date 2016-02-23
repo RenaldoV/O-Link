@@ -6,7 +6,22 @@ app.controller('profileControl',function($scope, authService, session, $location
 
     function getUser(){
         var temp = $location.url();
+        if(temp == '/myProfile'){
+            var user = session.user;
+            cacheUser.create(user);
+            if (user.type == "student") {
+                $scope.getProfile = function () {
+                    return "../views/blocks/studentProfile.html";
+                }
+            }
+            else if (user.type == "employer") {
+                $scope.getProfile = function () {
+                    return "../views/blocks/employerProfile.html";
+                }
+            }
+        }
         temp = temp.replace("/user?id=", '');
+
         var credentials = {id: temp};
         $http
             .post('/loadUserById', credentials)
@@ -50,15 +65,33 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 app.controller('studentProfileControl', function ($scope,cacheUser) {
 
 
-    console.log("yey");
-    console.log(cacheUser.user);
     $scope.user = cacheUser.user;
 
 
+
+
 });
-app.controller('myProfile', function($scope, session){
+app.controller('userProfile', function($scope, session,Upload){
 
     $scope.user = session.user;
+
+    $scope.upload = function (dataUrl) {
+        Upload.upload({
+            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl)
+            }
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+            });
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    }
 });
 
 
