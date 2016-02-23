@@ -51,13 +51,33 @@ module.exports = function(app) {
 			},
 			function(token, done) {
 				
-				db.checkMail({email: user.email} , function(result){
+				db.getUser(user.email,function(User){
+					if(!User) res.send(false);
+					
+					var tempUser = JSON.stringify(User);
+					
+					tempUser.resetPasswordToken = token;
+					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
+					// FOR FUCK SAKES!!!!! 
+					console.log(tempUser); //tempUser not reflecting 2 new fields
+					db.update({"_id" : tempUser._id},"users",tempUser);
+					
+					res.send(tempUser);
+				});
+				
+/*				db.checkMail({email: user.email} , function(result){
 					if(result.valid == true){
+						user.resetPasswordToken = token;
+						user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+						var _id = user._id;
+						delete user._id;
+						db.update({"_id" : user._id},"users",user);
+						//console.log(user);
 						res.send(result.user);
 					}
 					else res.send(false);
 				});
-/* 				User.findOne({ email: req.body.email }, function(err, user) {
+ 				User.findOne({ email: req.body.email }, function(err, user) {
 					if (!user) {
 					  req.flash('error', 'No account with that email address exists.');
 					  return res.redirect('/forgot');
