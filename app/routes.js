@@ -54,13 +54,16 @@ module.exports = function(app) {
 				db.getUser(user.email,function(User){
 					if(!User) res.send(false);
 					
-					var tempUser = JSON.stringify(User);
+					var tempUser = User.toJSON();
 					
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
 					// FOR FUCK SAKES!!!!! 
 					console.log(tempUser); //tempUser not reflecting 2 new fields
-					db.update({"_id" : tempUser._id},"users",tempUser);
+					db.update({"_id" : tempUser._id},"users",tempUser,
+					function(res){
+						console.log(res);
+					});
 					
 					res.send(tempUser);
 				});

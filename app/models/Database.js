@@ -149,8 +149,9 @@ function update(colName, params, setData, cb){
 	}
 	schema.set('collection', colName);
 	mod = mongoose.model('mod', schema);
-	mod.update(params, {$set: setData}, function(res){
-		return cb(res);
+	mod.update(params, {$set: setData}, function(err){
+		if(err) throw err;
+		else return cb(true);
 	});
 }
 
@@ -171,7 +172,7 @@ module.exports = {
 
 		update(table, query, setData, function (err, res) {
 
-				return res;
+				return cb(res);
 
 		});
 	},
