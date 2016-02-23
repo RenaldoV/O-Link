@@ -5,8 +5,11 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 
 // configuration ===========================================
-	
-// db connection
+
+
+//file upload
+// Requires multiparty
+
 
 
 var port = process.env.PORT || 8080; // set our port

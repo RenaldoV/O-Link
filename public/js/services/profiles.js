@@ -71,13 +71,13 @@ app.controller('studentProfileControl', function ($scope,cacheUser) {
 
 
 });
-app.controller('userProfile', function($scope, session,Upload){
+app.controller('userProfile', function($scope, session,Upload, $timeout){
 
     $scope.user = session.user;
 
     $scope.upload = function (dataUrl) {
         Upload.upload({
-            url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+            url: '/upload',
             data: {
                 file: Upload.dataUrltoBlob(dataUrl)
             }

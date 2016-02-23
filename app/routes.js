@@ -1,5 +1,9 @@
 var db = require("./models/Database.js");
 var errorHandler = require('./errors.js');
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
+var fs = require('fs');
+// Requires controller
 
 function getDate(){
 	var currentdate = new Date();
@@ -142,5 +146,19 @@ module.exports = function(app) {
 		});
 
 	});
+	app.post('/upload', multipartyMiddleware, function(req, res){
+		var file = req.files.file;
 
+		fs.readFile(file.path, function (err, data) {
+			// ...
+			var temp = file.path;
+			temp = temp.replace("tmp\\", '\\uploads\\');
+			//console.log(data);
+			var newPath = __dirname + temp;
+			fs.writeFile(newPath, data, function (err) {
+				if(err) throw err;
+				res.redirect("back");
+			});
+		});
+	});
 };

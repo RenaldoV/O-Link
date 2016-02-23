@@ -1,4 +1,4 @@
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop']);
 
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
 
@@ -364,7 +364,7 @@ app.controller('jobCtrl', function($scope, $location,$http){
     var temp = $location.url();
 
     temp = temp.replace("/job?id=", '');
-    id = {id: temp}
+    id = {id: temp};
     $http({
         method  : 'POST',
         url     : '/getJob',
