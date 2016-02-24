@@ -62,11 +62,13 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 
 });
 
-app.controller('studentProfileControl', function ($scope,cacheUser) {
+app.controller('studentProfileControl', function ($scope,$http,cacheUser, session) {
 
+    var user = session.user;
+console.log(user);
+    $scope.user = user;
 
-    $scope.user = cacheUser.user;
-
+    $scope.iamge = user.profilePicture;
 
 
 
@@ -74,12 +76,13 @@ app.controller('studentProfileControl', function ($scope,cacheUser) {
 app.controller('userProfile', function($scope, session,Upload, $timeout, $compile){
 
     $scope.me = session.user;
-
+    var user = session.user;
     $scope.upload = function (dataUrl) {
         Upload.upload({
             url: '/upload',
             data: {
-                file: Upload.dataUrltoBlob(dataUrl)
+                file: Upload.dataUrltoBlob(dataUrl),
+                user: user._id
             }
         }).then(function (response) {
             $timeout(function () {

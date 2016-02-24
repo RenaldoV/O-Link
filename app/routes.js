@@ -148,21 +148,35 @@ module.exports = function(app) {
 	});
 	app.post('/upload', multipartyMiddleware, function(req, res){
 		var file = req.files.file;
+		var id = req.body.user;
 
-		console.log(file);
 		fs.readFile(file.path, function (err, data) {
 			// ...
 			var temp = file.path;
-			temp = temp.replace("tmp\\", '\\uploads\\');
-			//console.log(data);
-			var newPath = __dirname + temp + ".png";
-			var buffer = new Buffer(data, 'base64');
-			fs.writeFile(newPath, buffer, function (err) {
+			temp = temp.replace("tmp\\", '\\public\\uploads\\');
+			temp = temp +".png";
+			var newPath = __dirname + temp;
+			newPath = newPath.replace("app\\", '');
+			fs.writeFile(newPath, data, function (err) {
 				if(err) throw err;
 
+
+				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
+					if (err) throw err;
+					console.log(temp);
+					fs.unlink(file.path);
+					res.send(true);
+				} );
 			});
-			fs.unlink(file.path);
+
 		});
-		res.send(true);
+
+	});
+
+	app.post('/getPp', function(req, res){
+
+		var path = req.body.profilePicture;
+		res.sendfile(path);
+
 	});
 };
