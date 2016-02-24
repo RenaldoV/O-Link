@@ -1,5 +1,5 @@
 <div ng-controller="userProfile">
-    <form name="myForm">
+    <form name="myForm" id="ppUpload" hidden>
         <div>Crop Image and Upload</div>
         <button ngf-select ng-model="picFile" accept="image/*">
             Select Picture</button>
@@ -19,5 +19,25 @@
         </span>
         <span ng-show="result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-    </form>
-<h1>{{user.name.name}}</h1></div>
+    </form><button ng-click="showUpload()" class="btn btn-default">Upload Profile Picture</button>
+<h1>{{user.name.name}}</h1>
+<lable for="matricResulst">Matric Results</lable><div id="matricResults">
+    <button type="button" id="addRes" class="btn btn-default" >+</button>
+
+    <datalist id="requirements">
+        <option value="Maths">
+        <option value="AP Maths">
+        <option value="English">
+        <option value="Science">
+        <option value="Afrikaans">
+        <option value="Zulu">
+        <option value="IT">
+    </datalist>
+    <datalist id="symbols">
+        <option value="A">
+        <option value="B">
+        <option value="C">
+        <option value="D">
+        <option value="F">
+    </datalist>
+</div></div>
