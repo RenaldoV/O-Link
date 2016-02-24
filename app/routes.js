@@ -149,16 +149,20 @@ module.exports = function(app) {
 	app.post('/upload', multipartyMiddleware, function(req, res){
 		var file = req.files.file;
 
+		console.log(file);
 		fs.readFile(file.path, function (err, data) {
 			// ...
 			var temp = file.path;
 			temp = temp.replace("tmp\\", '\\uploads\\');
 			//console.log(data);
-			var newPath = __dirname + temp;
-			fs.writeFile(newPath, data, function (err) {
+			var newPath = __dirname + temp + ".png";
+			var buffer = new Buffer(data, 'base64');
+			fs.writeFile(newPath, buffer, function (err) {
 				if(err) throw err;
-				res.redirect("back");
+
 			});
+			fs.unlink(file.path);
 		});
+		res.send(true);
 	});
 };
