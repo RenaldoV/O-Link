@@ -20,7 +20,9 @@
         <span ng-show="result">Upload Successful</span>
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </form><button ng-click="showUpload()" class="btn btn-default">Upload Profile Picture</button>
-<h1>{{user.name.name}}</h1>
+<form name="userForm" ng-submit="updateUser()">
+    <input class="likeText heading" ng-model="me.name.name">
+    <input class="likeText heading" ng-model="me.name.surname">
 <lable for="matricResulst">Matric Results</lable><div id="matricResults">
     <button type="button" id="addRes" class="btn btn-default" >+</button>
 
@@ -40,4 +42,7 @@
         <option value="D">
         <option value="F">
     </datalist>
+    </div>
+<button type="submit">Submit</button>
+</form>
 </div></div>

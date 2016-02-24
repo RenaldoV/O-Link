@@ -73,7 +73,7 @@ app.controller('studentProfileControl', function ($scope,cacheUser) {
 });
 app.controller('userProfile', function($scope, session,Upload, $timeout, $compile){
 
-    $scope.user = session.user;
+    $scope.me = session.user;
 
     $scope.upload = function (dataUrl) {
         Upload.upload({
@@ -96,16 +96,26 @@ app.controller('userProfile', function($scope, session,Upload, $timeout, $compil
         $('#ppUpload').toggle();
     };
 
+    $scope.updateUser = function()
+    {
+        console.log($scope.me.name.name);
+    }
     $('#addRes').click(function(e){
         var resCount = 0;//to change to actual count if exists
         var input = $('<div class="resBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="user.results['+resCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="user.results['+resCount+'].symbol" required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="me.results['+resCount+'].symbol" required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
         resCount++;
 
         $compile(input)($scope);
         $('.removeRes').click(function(e){
 
             $(this).parent().remove();
+        });
+    });
+
+    $(function(){
+        $('.likeText').keyup(function(){
+            $(this).width( $('#inputbox').width() + 5 );
         });
     });
 });
