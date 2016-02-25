@@ -20,7 +20,7 @@ db.once('open', function (callback) {
 });
 
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
-var idSchema = new Schema({id : Number}, {strict:false});
+var idSchema = new Schema({}, {strict:false});
 
 
 function getOne(colName, query , callback)
@@ -171,7 +171,7 @@ module.exports = {
 
 		update(table, query, setData, function (err, res) {
 
-				return res;
+				return cb(res);
 
 		});
 	},

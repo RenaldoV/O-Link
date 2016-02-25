@@ -20,6 +20,21 @@ app.controller('profileControl',function($scope, authService, session, $location
                 }
             }
         }
+
+        if(temp == '/editProfile'){
+            var user = session.user;
+            cacheUser.create(user);
+            if (user.type == "student") {
+                $scope.getProfile = function () {
+                    return "../views/blocks/userProfile.html";
+                }
+            }
+            else if (user.type == "employer") {
+                $scope.getProfile = function () {
+                    return "../views/blocks/employerProfile.html";
+                }
+            }
+        }
         temp = temp.replace("/user?id=", '');
 
         var credentials = {id: temp};
@@ -71,15 +86,19 @@ console.log(user);
     $http
         .post('/getPp', user)
         .then(function (res) {
-
+            console.log(res);
+        $scope.image=res.data;
 
 
     });
+    if(user._id == session.user._id){
+        $("#editLink").show();
+    }
 
 
 
 });
-app.controller('userProfile', function($scope, session,Upload, $timeout, $compile){
+app.controller('editProfile', function($scope, session,Upload, $timeout, $compile){
 
     $scope.me = session.user;
     var user = session.user;

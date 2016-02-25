@@ -153,17 +153,17 @@ module.exports = function(app) {
 		fs.readFile(file.path, function (err, data) {
 			// ...
 			var temp = file.path;
-			temp = temp.replace("tmp\\", '\\public\\uploads\\');
+			temp = temp.replace("tmp\\", '\\uploads\\');
 			temp = temp +".png";
 			var newPath = __dirname + temp;
-			newPath = newPath.replace("app\\", '');
+
 			fs.writeFile(newPath, data, function (err) {
 				if(err) throw err;
 
 
-				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
+				db.update({_id : id}, 'users', {profilePicture: newPath}, function(err){
 					if (err) throw err;
-					console.log(temp);
+					console.log(newPath);
 					fs.unlink(file.path);
 					res.send(true);
 				} );
@@ -176,7 +176,15 @@ module.exports = function(app) {
 	app.post('/getPp', function(req, res){
 
 		var path = req.body.profilePicture;
-		res.sendfile(path);
+
+		fs.readFile(path, function(err,data){
+			if(err) throw err;
+			var buf = new Buffer(data).toString('base64');
+			res.send(buf);
+		});
+
+
+
 
 	});
 };
