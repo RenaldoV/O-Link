@@ -1,4 +1,4 @@
-<div ng-controller="userProfile">
+<div ng-controller="editProfile">
     <form name="myForm" id="ppUpload" hidden>
         <div>Crop Image and Upload</div>
         <button ngf-select ng-model="picFile" accept="image/*">
@@ -23,7 +23,8 @@
 <form name="userForm" ng-submit="updateUser()">
     <input class="likeText heading" ng-model="me.name.name">
     <input class="likeText heading" ng-model="me.name.surname">
-<lable for="matricResulst">Matric Results</lable><div id="matricResults">
+    <br>
+<lable for="matricResulst">Add Matric Results</lable><div id="matricResults">
     <button type="button" id="addRes" class="btn btn-default" >+</button>
 
     <datalist id="requirements">
