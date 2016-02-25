@@ -68,7 +68,13 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 console.log(user);
     $scope.user = user;
 
-    $scope.iamge = user.profilePicture;
+    $http
+        .post('/getPp', user)
+        .then(function (res) {
+
+
+
+    });
 
 
 
