@@ -121,7 +121,6 @@ module.exports = function(app) {
 
 	app.post('/loadUser', function(req,res) {
 		var email = req.body;
-		console.log(email)
 		db.getUser(email.email, function(rows){
 			res.send(rows);
 		});
@@ -216,7 +215,14 @@ module.exports = function(app) {
 
 		};
 		db.insert(application, 'applications', function(err,result){
-			res.send(result);
+			console.log(result);
 		});
+	});
+
+	app.post('/loadApplications', function(req,res){
+
+		var user = req.body;
+		console.log(user);
+
 	});
 };

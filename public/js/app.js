@@ -259,7 +259,9 @@ console.log($scope.user);
                 swal("You have been logged out.", "success");
             });
     }
-
+    $scope.myProfile = function(){
+        $window.location.href="/myProfile";
+    }
 
 });
 

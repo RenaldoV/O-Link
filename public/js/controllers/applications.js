@@ -22,3 +22,4 @@ app.controller('applicationCtrl', function ($scope,$http,cacheUser, session) {
 
 
 });
+

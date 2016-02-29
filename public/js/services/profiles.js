@@ -26,12 +26,12 @@ app.controller('profileControl',function($scope, authService, session, $location
             cacheUser.create(user);
             if (user.type == "student") {
                 $scope.getProfile = function () {
-                    return "../views/blocks/editProfile.html";
+                    return "../views/blocks/studentEditProfile.html";
                 }
             }
             else if (user.type == "employer") {
                 $scope.getProfile = function () {
-                    return "../views/blocks/employerProfile.html";
+                    return "../views/blocks/employerEditProfile.html";
                 }
             }
         }
@@ -98,7 +98,29 @@ console.log(user);
 
 
 });
-app.controller('editProfile', function($scope, session,Upload, $timeout, $compile, $http, $window){
+
+app.controller('employerProfileControl', function ($scope,$http,cacheUser, session) {
+
+    var user = session.user;
+    console.log(user);
+    $scope.user = user;
+    console.log(user);
+    $http
+        .post('/getPp', user)
+        .then(function (res) {
+            console.log(res);
+            $scope.image=res.data;
+
+
+        });
+    if(user._id == session.user._id){
+        $("#editLink").show();
+    }
+
+
+
+});
+app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window){
 
 
     $scope.user = session.user;
@@ -123,6 +145,7 @@ app.controller('editProfile', function($scope, session,Upload, $timeout, $compil
             $timeout(function () {
                 $scope.result = response.data;
             });
+            authService.login({email: user.email});
         }, function (response) {
             if (response.status > 0) $scope.errorMsg = response.status
                 + ': ' + response.data;
@@ -180,3 +203,55 @@ app.controller('editProfile', function($scope, session,Upload, $timeout, $compil
 });
 
 
+app.controller('employerEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService){
+
+
+    $scope.user = session.user;
+    var user = session.user;
+    if(!user.results)
+    {
+        user.results = {};
+    }
+    $scope.upload = function (dataUrl) {
+        Upload.upload({
+            url: '/upload',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl),
+                user: user._id
+            }
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+            });
+            authService.login({email: user.contact.email});
+
+
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    };
+    $scope.showUpload = function(){
+        $('#ppUpload').toggle();
+    };
+
+    $scope.updateUser = function()
+    {
+
+        $http
+            .post('/updateUser', $scope.user)
+            .then(function (res, err) {
+
+                console.log(res);
+
+            });
+
+        session.create(user);
+        $window.location.href="/myProfile";
+    };
+
+
+
+});
