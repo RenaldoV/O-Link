@@ -12,16 +12,17 @@ app.constant('USER_TYPES', {
     employer: 'employer'
 });
 
-app.factory('authService', function($http,session, $cookies){
+app.factory('authService', function($http,session){
     var authService ={};
 
     authService.login = function (credentials) {
         return $http
             .post('/loadUser', credentials)
             .then(function (res) {
+                delete res.data.passwordHash;
                 session.create(res.data);
-                res.data.passwordHash = null;
-                $cookies.put("user", JSON.stringify(res.data));
+
+
                 return res.data;
 
             });
@@ -35,9 +36,10 @@ app.factory('authService', function($http,session, $cookies){
     return authService;
 });
 
-app.service('session', function () {
+app.service('session', function ($cookies) {
     this.create = function (user) {
         this.user = user;
+        $cookies.put("user", JSON.stringify(user));
     };
     this.destroy = function () {
         this.user  = null;

@@ -26,7 +26,7 @@ app.controller('profileControl',function($scope, authService, session, $location
             cacheUser.create(user);
             if (user.type == "student") {
                 $scope.getProfile = function () {
-                    return "../views/blocks/userProfile.html";
+                    return "../views/blocks/editProfile.html";
                 }
             }
             else if (user.type == "employer") {
@@ -98,10 +98,20 @@ console.log(user);
 
 
 });
-app.controller('editProfile', function($scope, session,Upload, $timeout, $compile){
+app.controller('editProfile', function($scope, session,Upload, $timeout, $compile, $http, $window){
 
-    $scope.me = session.user;
+
+    $scope.user = session.user;
+    var tempdob = $scope.user.dob.substring(0,9);
+    //tempdob = tempdob.replace(/-/g, "/");
+    $scope.user.dob = tempdob;
+    console.log(tempdob);
+    $scope.user = session.user;
     var user = session.user;
+    if(!user.results)
+    {
+        user.results = {};
+    }
     $scope.upload = function (dataUrl) {
         Upload.upload({
             url: '/upload',
@@ -126,13 +136,32 @@ app.controller('editProfile', function($scope, session,Upload, $timeout, $compil
 
     $scope.updateUser = function()
     {
-        console.log($scope.me.name.name);
-    }
+        var temp = [{}];
+        $(".resBox").each(function(i){
+
+
+            temp[i].name =  $(this).find('.subject').val();
+            temp[i].result = $(this).find('.result').val();
+        });
+        $scope.user.results = temp;
+
+        $http
+            .post('/updateUser', $scope.user)
+            .then(function (res, err) {
+
+                console.log(res);
+
+            });
+
+        session.create(user);
+        $window.location.href="/myProfile";
+    };
+
     $('#addRes').click(function(e){
-        var resCount = 0;//to change to actual count if exists
-        var input = $('<div class="resBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="user.results['+resCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="me.results['+resCount+'].symbol" required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
-        resCount++;
+
+        var input = $('<div class="resBox"><input class="subject" list="requirements" placeholder="Requirement" class="form-control no-border" required>' +
+            '<input class="result" list="symbols" placeholder="symbol" class="form-control no-border"  required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
+
 
         $compile(input)($scope);
         $('.removeRes').click(function(e){
@@ -146,6 +175,8 @@ app.controller('editProfile', function($scope, session,Upload, $timeout, $compil
             $(this).width( $('#inputbox').width() + 5 );
         });
     });
+
+
 });
 
 

@@ -187,4 +187,36 @@ module.exports = function(app) {
 
 
 	});
+
+	app.post('/updateUser', function(req,res){
+
+		var user = req.body;
+		delete user.profilePicture;
+		db.update({_id : user._id}, 'users', user, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
+	app.post('/apply', function(req,res){
+
+		var user = req.body.user;
+		var job =  req.body.job;
+
+		console.log(user);
+		console.log(job);
+
+		var application = {
+			studentID : user._id,
+			jobID: job._id,
+			employerID: job.employerID,
+			status: 'Pending'
+
+		};
+		db.insert(application, 'applications', function(err,result){
+			res.send(result);
+		});
+	});
 };

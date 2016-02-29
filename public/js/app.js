@@ -344,7 +344,7 @@ app.controller('jobBrowser',function($scope, $location, $http){
     temp = temp.replace("/browseJobs?categories=", '');
     temp = temp.replace(/_/g, ' ');
     var arr = temp.split("%25");
-    console.log(arr);
+
 
     //get the jobs
     $http({
@@ -360,20 +360,71 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 });
 
-app.controller('jobCtrl', function($scope, $location,$http){
+app.controller('jobCtrl', function($scope, $location,$http, session){
     var temp = $location.url();
 
+    var user = session.user;
     temp = temp.replace("/job?id=", '');
     id = {id: temp};
+    var job = {};
     $http({
         method  : 'POST',
         url     : '/getJob',
         data : id
     })
         .then(function(res) {
-            {
+
                 $scope.job = res.data;
-            }
+                job = res.data;
+
+
+
         });
+
+    $scope.apply = function() {
+        var meets = [job.post.requirements.length];
+
+        $.each(job.post.requirements, function (key, value) {
+            $.each(user.results, function (i, val) {
+                if(value.name == val.name){
+                    if(val.result <= value.symbol){
+                        meets[key] = true;
+                    }
+                }
+            });
+        });
+
+        if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
+        {
+            meets.push(false);
+        }
+        var met = true;
+        $.each(meets, function(key, value){
+            if(value == false)
+            {
+                met = false;
+            }
+
+        });
+
+        if(!met){
+            sweetAlert("Requirements not met", "", "error");
+        }
+        else {
+            $http({
+                method  : 'POST',
+                url     : '/apply',
+                data : {user : user, job : job }
+            })
+                .then(function(res) {
+
+                    console.log("Yay");
+
+
+                });
+        }
+    };
+
+
 });
 

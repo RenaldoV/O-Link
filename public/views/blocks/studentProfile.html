@@ -46,7 +46,7 @@
                 <ul class="nav nav-pills nav-sm">
                     <li class="active"><a data-toggle="pill" href data-target="#info">Info</a></li>
                     <li><a data-toggle="pill" href  data-target="#qualification">Skills</a></li>
-
+                    <li><a data-toggle="pill" href data-target="#results">Matric Results</a></li>
                     <li><a data-toggle="pill" href data-target="#jobHistory">Job History</a></li>
                 </ul>
             </div>
@@ -129,6 +129,23 @@
                     </div>
                 </div>
 
+                <div class="tab-pane fade" id="results">
+                    <div class="wrapper">
+                        <div class="">
+
+                            <ul class="list-group no-bg no-borders pull-in">
+                                <li class="list-group-item" ng-repeat="res in user.results">
+                                    <div class="clear">
+                                        <div>{{res.name}}</div>
+                                        <small class="text-muted">{{res.result}}</small>
+                                    </div>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 </div>
                     <div class="panel b-a">
