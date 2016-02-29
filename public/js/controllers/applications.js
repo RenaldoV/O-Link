@@ -1,17 +1,18 @@
 /**
  * Created by Sean on 2016/02/29.
  */
-app.controller('applicationCtrl', function ($scope,$http,cacheUser, session) {
+app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
     var user = session.user;
     console.log(user);
     $scope.user = user;
 
     $http
-        .post('/getPp', user)
+        .post('/loadApplications', user)
         .then(function (res) {
-            console.log(res);
-            $scope.image=res.data;
+
+            $scope.applications = res.data;
+            console.log($scope.applications);
 
 
         });

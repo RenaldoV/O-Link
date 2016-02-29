@@ -47,6 +47,7 @@
                     <li class="active"><a data-toggle="pill" href data-target="#info">Info</a></li>
                     <li><a data-toggle="pill" href  data-target="#qualification">Skills</a></li>
                     <li><a data-toggle="pill" href data-target="#results">Matric Results</a></li>
+                    <li><a data-toggle="pill" href data-target="#applications">Applications</a></li>
                     <li><a data-toggle="pill" href data-target="#jobHistory">Job History</a></li>
                 </ul>
             </div>
@@ -147,38 +148,29 @@
                     </div>
                 </div>
 
-                </div>
-                    <div class="panel b-a">
-                        <h4 class="font-thin padder">Latest Reviews</h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <p>Wellcome <a href class="text-info">@Drew Wllon</a> and play this web application template, have fun1 </p>
-                                <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 minuts ago</small>
-                            </li>
-                            <li class="list-group-item">
-                                <p>Morbi nec <a href class="text-info">@Jonathan George</a> nunc condimentum ipsum dolor sit amet, consectetur</p>
-                                <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 1 hour ago</small>
-                            </li>
-                            <li class="list-group-item">
-                                <p><a href class="text-info">@Josh Long</a> Vestibulum ullamcorper sodales nisi nec adipiscing elit. Morbi id neque quam. Aliquam sollicitudin venenatis</p>
-                                <small class="block text-muted"><i class="fa fa-fw fa-clock-o"></i> 2 hours ago</small>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="panel b-light clearfix">
-                        <div class="panel-body">
-                            <a href class="thumb pull-left m-r">
-                                <img src="img/a0.jpg" class="img-circle">
-                            </a>
-                            <div class="clear">
-                                <a href class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
-                                <small class="block text-muted">2,415 followers / 225 tweets</small>
-                                <a href class="btn btn-xs btn-success m-t-xs">Follow</a>
-                            </div>
+                <div class="tab-pane fade" id="applications">
+                    <div class="wrapper">
+                        <div class="" ng-controller="myApplications">
+
+                            <table class="table">
+                                <thead><th>Role</th><th>Pay</th><th>Location</th><th>Status</th>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="app in applications">
+                                    <td>{{app.jobID.post.role}}</td>
+                                    <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
+                                    <td>{{app.jobID.post.location}}</td>
+                                    <td>{{app.status}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
 
+                </div>
 
+
+</div>
 </div>
     </div>

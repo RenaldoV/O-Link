@@ -46,6 +46,16 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/myJobFeeder', function(req,res){
+
+		var user = req.body;
+
+		db.getBy("jobs", {employerID: user.id}, function(rows){
+
+			res.send(rows);
+		});
+	});
+
 	app.post('/jobBrowse', function(req,res){
 
 
@@ -60,9 +70,9 @@ module.exports = function(app) {
 	});
 	app.post('/jobPoster', function(req,res) {
 		var job = {};
+
 		for(var key in req.body) {
 
-			console.log(key);
 			job = JSON.parse(key);
 
 		}
@@ -203,9 +213,12 @@ module.exports = function(app) {
 
 		var user = req.body.user;
 		var job =  req.body.job;
+		if(!job.applicants)
+		{
+			job.applicants = [];
+		}
+		job.applicants.push(user._id);
 
-		console.log(user);
-		console.log(job);
 
 		var application = {
 			studentID : user._id,
@@ -215,14 +228,20 @@ module.exports = function(app) {
 
 		};
 		db.insert(application, 'applications', function(err,result){
-			console.log(result);
+			db.update({_id: job._id}, 'jobs',job, function(result){
+				res.send(result);
+			});
+
 		});
 	});
 
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
-		console.log(user);
+		db.getStudentApplications(user._id, function(rows){
+			res.send(rows);
+		});
+
 
 	});
 };

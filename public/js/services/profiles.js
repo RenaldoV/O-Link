@@ -244,12 +244,12 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
             .post('/updateUser', $scope.user)
             .then(function (res, err) {
 
-                console.log(res);
+                session.create(user);
+                $window.location.href="/myProfile";
 
             });
 
-        session.create(user);
-        $window.location.href="/myProfile";
+
     };
 
 

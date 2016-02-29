@@ -21,6 +21,29 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
+app.controller('myJobFeed', function($scope,$http, session){
+
+    var user = session.user;
+
+    $http({
+        method  : 'POST',
+        url     : '/myJobFeeder',
+        data : {id: user._id}
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+                $.each($scope.jobs, function(key,value){
+                    if(!value.applicants)
+                    {
+                        value.applicants=[];
+                    }
+                });
+            }
+        });
+});
+
+
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
     if(authService.isAuthenticated())

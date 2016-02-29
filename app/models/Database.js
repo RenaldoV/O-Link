@@ -21,19 +21,37 @@ db.once('open', function (callback) {
 
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
+var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'}}, {strict:false});
 
+var jobModel = mongoose.model('jobs', idSchema);
+var appModel = mongoose.model('applications', applicationSchema);
+
+
+function getStudentApplications(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
+	col.find(query).populate('jobID').exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
 
 function getOne(colName, query , callback)
 {
 
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	col = mongoose.model(colName, schema);
 	var data;
 
 	col.findOne(query,function (err, docs) {
@@ -47,14 +65,17 @@ function getOne(colName, query , callback)
 function getCollection(colName, callback)
 {
 
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		case "applications": col = appModel;
+			break;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	col = mongoose.model(colName, schema);
+
 	var data;
 
 	col.find({},{'_id': 0},function (err, docs) {
@@ -68,14 +89,14 @@ function getCollection(colName, callback)
 function getCollectionBy(colName, query, callback)
 {
 
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	col = mongoose.model(colName, schema);
 	var data;
 
 	col.find(query,function (err, docs) {
@@ -89,14 +110,14 @@ function getCollectionBy(colName, query, callback)
 function getCollectionByArr(colName, field, arr, callback)
 {
 
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	col = mongoose.model(colName, schema);
 	var data;
 
 
@@ -110,18 +131,21 @@ function getCollectionByArr(colName, field, arr, callback)
 
  function insertDocument(colName, doc, callback)
 {
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		case "applications": col = appModel;
+			break;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	col = mongoose.model(colName, schema);
-	var insert = new col(doc);
 
+	var insert = new col(doc);
+	console.log(insert);
 	insert.save(function (err) {
-		if(err){console.log("Save failed"); return callback(false);}
+		if(err){console.log("Save failed"); throw err;}
 		else {
 			console.log("Saved!");
 			return callback(true);
@@ -141,15 +165,15 @@ function checkEmail(email,cb){
 }
 
 function update(colName, params, setData, cb){
-	var schema;
+	var col;
 	switch(colName){
-		case "jobs": schema = jobSchema;
+		case "jobs": col = jobModel;
 			break;
-		default: schema = idSchema;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			col = mongoose.model(colName, schema);}
 	}
-	schema.set('collection', colName);
-	mod = mongoose.model('mod', schema);
-	mod.update(params, {$set: setData}, function(res){
+	col.update(params, {$set: setData}, function(res){
 		return cb(res);
 	});
 }
@@ -238,7 +262,11 @@ module.exports = {
 		getOne(table, {"_id":id}, function(res){
 			return cb(res);
 		});
+	},
+	getStudentApplications: function(id, cb){
+		getStudentApplications({studentID: id}, function(res) {
+			return cb(res);
+		});
 	}
-
 
 };
