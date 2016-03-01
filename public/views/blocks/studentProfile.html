@@ -151,19 +151,8 @@
                 <div class="tab-pane fade" id="applications">
                     <div class="wrapper">
                         <div class="" ng-controller="studentApplications">
+                            <div ng-include="getApps()"></div>
 
-                            <table class="table">
-                                <thead><th>Role</th><th>Pay</th><th>Location</th><th>Status</th>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="app in applications">
-                                    <td>{{app.jobID.post.role}}</td>
-                                    <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
-                                    <td>{{app.jobID.post.location}}</td>
-                                    <td>{{app.status}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
                             {{message}}
                         </div>
                     </div>

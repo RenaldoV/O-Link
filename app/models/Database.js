@@ -261,6 +261,11 @@ module.exports = {
 		getEmployerApplicants({employerID: id}, function(res) {
 			return cb(res);
 		});
+	},
+	getJobApplicants: function(id, cb){
+		getEmployerApplicants({jobID: id}, function(res) {
+			return cb(res);
+		});
 	}
 
 };

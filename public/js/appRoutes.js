@@ -37,6 +37,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		.when('/applicants', {
 			templateUrl: 'views/blocks/applicants.html'
+		})
+		.when('/myJobPosts', {
+			templateUrl: 'views/blocks/employerJobPosts.html'
 		});
 
 

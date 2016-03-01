@@ -10,6 +10,9 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
     $scope.user = user;
 
     if(user == session.user) {
+        $scope.getApps = function(){
+            return "../views/blocks/studentApplication.html";
+        };
         $http
             .post('/loadApplications', user)
             .then(function (res) {
@@ -21,6 +24,9 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
             });
     }
     else if(session.user.type == 'employer'){
+        $scope.getApps = function(){
+            return "../views/blocks/employerApplication.html";
+        };
         $http
             .post('/loadApplicationsTo', session.user)
             .then(function (res) {
@@ -30,7 +36,10 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
 
                 $scope.applications = res.data;
 
+                $scope.changeStatus = function(app, oldstat) {
 
+                    changeStatus(app,oldstat, $scope, $http);
+                };
 
             });
     }
@@ -43,65 +52,95 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
 });
 
 
-app.controller('employerApplicants', function ($scope,$http,cacheUser, session) {
+app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location) {
 
     var user = session.user;
-    console.log(user);
     $scope.user = user;
 
-    $http
-        .post('/loadApplicants', user)
-        .then(function (res) {
+    var temp = $location.url();
 
-            $scope.applications = res.data;
+    if(temp == '/applicants') {
+        $http
+            .post('/loadApplicants', user)
+            .then(function (res) {
 
-            $scope.getAge = function (dob) {
-                return getAge(dob);
-            };
-            console.log($scope.applications);
+                $scope.applications = res.data;
+
+                $scope.getAge = function (dob) {
+                    return getAge(dob);
+                };
+                console.log($scope.applications);
 
 
-            $scope.changeStatus = function(app, oldstat) {
-                var check = false;
-                console.log(app);
-                swal({
-                        title: "Are you sure?",
-                        text: "This will change the status of this application from " + oldstat + " to " + app.status,
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Yes, I'm sure!",
-                        closeOnConfirm: false
-                    },
-                    function (isConfirm) {
+                $scope.changeStatus = function (app, oldstat) {
 
-                        if (isConfirm) {
-                            $http
-                                .post('/updateApplication', {_id:app._id, status: app.status})
-                                .then(function (res, err) {
+                    changeStatus(app, oldstat, $scope, $http);
+                };
 
-                                    console.log(res);
-                                    swal("Status updated.", "The user has been notified.", "success");
+            });
+    }
+    else {
+        temp = temp.replace("/applicants?jobID=", '');
+        $http
+            .post('/loadApplicantsByJobId', {_id:temp})
+            .then(function (res) {
 
-                                });
+                $scope.applications = res.data;
 
-                        }
-                        else {
-                            for(var i =0; i< $scope.applications.length; i++)
-                            {
-                                if($scope.applications[i]._id == app._id){
+                $scope.getAge = function (dob) {
+                    return getAge(dob);
+                };
+                console.log($scope.applications);
 
-                                    $scope.applications[i].status = oldstat;
-                                    $scope.$apply();
-                                    console.log($scope.applications[i]);
-                                }
-                            }
 
-                        }
-                    }
+                $scope.changeStatus = function (app, oldstat) {
 
-                );
+                    changeStatus(app, oldstat, $scope, $http);
+                };
 
-            };
-
-        });
+            });
+    }
 });
+
+
+
+
+
+function changeStatus(app,oldstat, $scope, $http) {
+    var check = false;
+    console.log(app);
+    swal({
+            title: "Are you sure?",
+            text: "This will change the status of this application from " + oldstat + " to " + app.status,
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, I'm sure!",
+            closeOnConfirm: false
+        },
+        function (isConfirm) {
+
+            if (isConfirm) {
+                $http
+                    .post('/updateApplication', {_id: app._id, status: app.status})
+                    .then(function (res, err) {
+
+                        console.log(res);
+                        swal("Status updated.", "The user has been notified.", "success");
+
+                    });
+
+            }
+            else {
+                for (var i = 0; i < $scope.applications.length; i++) {
+                    if ($scope.applications[i]._id == app._id) {
+
+                        $scope.applications[i].status = oldstat;
+                        $scope.$apply();
+                        console.log($scope.applications[i]);
+                    }
+                }
+
+            }
+        }
+    );
+}

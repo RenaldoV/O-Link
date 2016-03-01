@@ -275,4 +275,14 @@ module.exports = function(app) {
 
 
 	});
+
+	app.post('/loadApplicantsByJobId', function(req,res){
+
+		var job = req.body;
+		db.getJobApplicants(job._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
 };
