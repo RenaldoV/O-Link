@@ -17,6 +17,14 @@ app.controller('jobFeed', function($scope,$http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+
+                $scope.getPer = function(cat){
+                if(cat == "Once Off"){
+                    return cat;
+                }
+                    else return "hr"
+            }
+
             }
         });
 });
@@ -129,7 +137,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $window.location.href= '/';
 
 
-    var times = $("#times").html();
+
 
     //add end date if short term/long term
     $("#endDateDiv").hide();
@@ -139,7 +147,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(this.value == "Once Off")
         {
             $("#endDateDiv").hide();
-           var input = $(times).appendTo("#times");
+           var input = $('<div>Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
+               ' Leaving time: <input type="time" placeholder="endTime" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
             $compile(input)($scope);
 
         }

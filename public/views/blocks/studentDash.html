@@ -58,7 +58,7 @@
                 <tr ng-repeat="job in jobs">
                   <td>{{job.post.category}}</td>
                   <td>{{job.post.role}}</td>
-                  <td>R{{job.post.pay + "/" + job.post.payPer}}</td>
+                  <td>R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
                   <td>{{job.post.location}}</td>
                 </tr>
                 </tbody>

@@ -106,7 +106,7 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
 app.controller('employerProfileControl', function ($scope,$http,cacheUser, session) {
 
-    var user = session.user;
+    var user = cacheUser.user;
 
     $scope.user = user;
 
