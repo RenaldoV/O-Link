@@ -21,10 +21,26 @@ db.once('open', function (callback) {
 
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
-var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'}}, {strict:false});
+var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}}, {strict:false});
 
 var jobModel = mongoose.model('jobs', idSchema);
 var appModel = mongoose.model('applications', applicationSchema);
+var userModel = mongoose.model('users', idSchema);
+
+function getModel(colName){
+	switch(colName){
+		case "jobs": return jobModel;
+			break;
+		case "applications": return appModel;
+			break;
+		case "users": return userModel;
+			break;
+		default: {var schema = idSchema;
+			schema.set('collection', colName);
+			return mongoose.model(colName, schema);}
+	}
+}
+
 
 
 function getStudentApplications(query, callback)
@@ -41,17 +57,24 @@ function getStudentApplications(query, callback)
 
 }
 
+function getEmployerApplicants(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
+	col.find(query).populate('jobID').populate('studentID').exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
+
 function getOne(colName, query , callback)
 {
 
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 	var data;
 
 	col.findOne(query,function (err, docs) {
@@ -65,16 +88,7 @@ function getOne(colName, query , callback)
 function getCollection(colName, callback)
 {
 
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		case "applications": col = appModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 
 	var data;
 
@@ -89,14 +103,7 @@ function getCollection(colName, callback)
 function getCollectionBy(colName, query, callback)
 {
 
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 	var data;
 
 	col.find(query,function (err, docs) {
@@ -110,14 +117,7 @@ function getCollectionBy(colName, query, callback)
 function getCollectionByArr(colName, field, arr, callback)
 {
 
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 	var data;
 
 
@@ -131,16 +131,7 @@ function getCollectionByArr(colName, field, arr, callback)
 
  function insertDocument(colName, doc, callback)
 {
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		case "applications": col = appModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 
 	var insert = new col(doc);
 	console.log(insert);
@@ -165,14 +156,7 @@ function checkEmail(email,cb){
 }
 
 function update(colName, params, setData, cb){
-	var col;
-	switch(colName){
-		case "jobs": col = jobModel;
-			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			col = mongoose.model(colName, schema);}
-	}
+	var col = getModel(colName);
 	col.update(params, {$set: setData}, function(res){
 		return cb(res);
 	});
@@ -265,6 +249,16 @@ module.exports = {
 	},
 	getStudentApplications: function(id, cb){
 		getStudentApplications({studentID: id}, function(res) {
+			return cb(res);
+		});
+	},
+	getStudentApplicationsBy: function(id, cb){
+		getStudentApplications({employerID: id}, function(res) {
+			return cb(res);
+		});
+	},
+	getEmployerApplicants: function(id, cb){
+		getEmployerApplicants({employerID: id}, function(res) {
 			return cb(res);
 		});
 	}

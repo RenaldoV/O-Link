@@ -6,18 +6,22 @@ app.controller('profileControl',function($scope, authService, session, $location
 
     function getUser(){
         var temp = $location.url();
+
         if(temp == '/myProfile'){
             var user = session.user;
             cacheUser.create(user);
+            console.log(user.type);
             if (user.type == "student") {
                 $scope.getProfile = function () {
                     return "../views/blocks/studentProfile.html";
-                }
+                };
+                return;
             }
             else if (user.type == "employer") {
                 $scope.getProfile = function () {
                     return "../views/blocks/employerProfile.html";
-                }
+                };
+                return;
             }
         }
 
@@ -27,17 +31,20 @@ app.controller('profileControl',function($scope, authService, session, $location
             if (user.type == "student") {
                 $scope.getProfile = function () {
                     return "../views/blocks/studentEditProfile.html";
-                }
+                };
+                return;
             }
             else if (user.type == "employer") {
                 $scope.getProfile = function () {
                     return "../views/blocks/employerEditProfile.html";
-                }
+                };
+                return;
             }
         }
-        temp = temp.replace("/user?id=", '');
+        temp = temp.replace("/profile?user=", '');
 
         var credentials = {id: temp};
+
         $http
             .post('/loadUserById', credentials)
             .then(function (res) {
@@ -70,8 +77,6 @@ app.controller('profileControl',function($scope, authService, session, $location
 
 app.controller('empProfileControl', function ($scope,cacheUser) {
 
-    console.log("yey");
-    console.log(cacheUser.user);
     $scope.user = cacheUser.user;
 
 
@@ -79,14 +84,14 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 
 app.controller('studentProfileControl', function ($scope,$http,cacheUser, session) {
 
-    var user = session.user;
-console.log(user);
+    var user = cacheUser.user;
+
     $scope.user = user;
 
     $http
         .post('/getPp', user)
         .then(function (res) {
-            console.log(res);
+
         $scope.image=res.data;
 
 
@@ -102,13 +107,13 @@ console.log(user);
 app.controller('employerProfileControl', function ($scope,$http,cacheUser, session) {
 
     var user = session.user;
-    console.log(user);
+
     $scope.user = user;
-    console.log(user);
+
     $http
         .post('/getPp', user)
         .then(function (res) {
-            console.log(res);
+
             $scope.image=res.data;
 
 
@@ -127,7 +132,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
     var tempdob = $scope.user.dob.substring(0,9);
     //tempdob = tempdob.replace(/-/g, "/");
     $scope.user.dob = tempdob;
-    console.log(tempdob);
+
     $scope.user = session.user;
     var user = session.user;
     if(!user.results)
@@ -172,7 +177,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
             .post('/updateUser', $scope.user)
             .then(function (res, err) {
 
-                console.log(res);
+
 
             });
 

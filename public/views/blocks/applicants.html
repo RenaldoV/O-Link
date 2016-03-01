@@ -1,0 +1,20 @@
+<div><div ng-controller="employerApplicants">
+    <table class="table">
+        <thead><th>Name</th><th>Age</th><th>Gender</th><th>Job</th><th>Status</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="app in applications">
+            <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+            <td>{{getAge(app.studentID.dob);}}</td>
+            <td>{{app.studentID.gender}}</td>
+            <td>{{app.jobID.post.role}}</td>
+            <td><select id="status" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
+                <option value="Declined">Declined</option>
+                <option value="Pending">Pending</option>
+                <option value="Provisionally accepted">Provisionally accepted</option>
+            </select></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

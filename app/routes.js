@@ -235,10 +235,41 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/updateApplication', function(req,res){
+
+		var app = req.body;
+		console.log(app);
+		db.update({_id : app._id}, 'applications', app, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
 		db.getStudentApplications(user._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+	app.post('/loadApplicationsTo', function(req,res){
+
+		var user = req.body;
+		db.getStudentApplicationsBy(user._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/loadApplicants', function(req,res){
+
+		var user = req.body;
+		db.getEmployerApplicants(user._id, function(rows){
 			res.send(rows);
 		});
 

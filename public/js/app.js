@@ -1,4 +1,4 @@
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog']);
 
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
 
@@ -408,7 +408,11 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
 
     $scope.apply = function() {
         var meets = [job.post.requirements.length];
+        if($.inArray(user._id, job.applicants) != -1)
+        {
+            sweetAlert("You have already applied for this position", "Patience is a virtue", "error");
 
+        }
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
                 if(value.name == val.name){
@@ -434,6 +438,7 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
 
         if(!met){
             sweetAlert("Requirements not met", "", "error");
+
         }
         else {
             $http({
@@ -443,8 +448,9 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
             })
                 .then(function(res) {
 
-                    console.log("Yay");
 
+                    sweetAlert("Application Successful", "", "success");
+                    job.applicants.push(user._id);
 
                 });
         }
