@@ -80,6 +80,7 @@ module.exports = function(app) {
 
 
 
+
 		db.insert(job,'jobs',function(result){
 				res.send(result);
 		});

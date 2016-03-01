@@ -390,6 +390,12 @@ app.controller('jobBrowser',function($scope, $location, $http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+                $scope.getPer = function(cat){
+                    if(cat == "Once Off"){
+                        return cat;
+                    }
+                    else return "hr"
+                }
             }
         });
 
