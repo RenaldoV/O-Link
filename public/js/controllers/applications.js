@@ -18,7 +18,11 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
             .then(function (res) {
 
                 $scope.applications = res.data;
-                console.log($scope.applications);
+
+                if($scope.applications.length == 0)
+                {
+                    $scope.message = "You haven't applied for any jobs.";
+                }
 
 
             });
@@ -51,6 +55,29 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
 
 });
 
+app.controller('myApplications', function ($scope,$http,cacheUser, session) {
+
+    var user = session.user;
+    $scope.user = user;
+
+        $scope.getApps = function () {
+            return "../views/blocks/studentApplication.html";
+        };
+        $http
+            .post('/loadApplications', user)
+            .then(function (res) {
+
+                $scope.applications = res.data;
+                if($scope.applications.length == 0)
+                {
+                    $scope.message = "You haven't applied for any jobs.";
+                }
+
+
+
+            });
+
+});
 
 app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location) {
 

@@ -139,7 +139,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(this.value == "Once Off")
         {
             $("#endDateDiv").hide();
-            $("#times").html(times);
+           var input = $(times).appendTo("#times");
+            $compile(input)($scope);
 
         }
         else {
@@ -413,6 +414,7 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
             sweetAlert("You have already applied for this position", "Patience is a virtue", "error");
 
         }
+        else{
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
                 if(value.name == val.name){
@@ -453,6 +455,7 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
                     job.applicants.push(user._id);
 
                 });
+        }
         }
     };
 

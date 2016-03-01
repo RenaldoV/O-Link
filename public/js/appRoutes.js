@@ -40,7 +40,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 		.when('/myJobPosts', {
 			templateUrl: 'views/blocks/employerJobPosts.html'
-		});
+		})
+		.when('/applications', {
+		templateUrl: 'views/blocks/applications.html'
+	});
 
 
 	$locationProvider.html5Mode(true);

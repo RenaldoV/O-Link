@@ -3,11 +3,13 @@
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
-        <td>{{app.jobID.post.role}}</td>
+        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.role}}</a></td>
         <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
         <td>{{app.jobID.post.location}}</td>
         <td>{{app.status}}</td>
     </tr>
     </tbody>
+
 </table>
+    {{message}}
 </div>
