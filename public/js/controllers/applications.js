@@ -3,7 +3,7 @@
  */
 
 
-app.controller('studentApplications', function ($scope,$http,cacheUser, session) {
+app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify, $compile) {
 
     var user = cacheUser.user;
     console.log(user);
@@ -13,12 +13,24 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
         $scope.getApps = function(){
             return "../views/blocks/studentApplication.html";
         };
+        console.log('yolo');
         $http
             .post('/loadApplications', user)
             .then(function (res) {
 
                 $scope.applications = res.data;
 
+                $scope.changeStatus = function(app, oldstat) {
+
+                    changeStatus(app,oldstat, $scope, $http,notify);
+                };
+
+                $scope.isDisabled = function(status){
+                    if(status != "Provisionally accepted"){
+                        return true;
+                    }
+                    return false;
+                };
                 if($scope.applications.length == 0)
                 {
                     $scope.message = "You haven't applied for any jobs.";
@@ -42,7 +54,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
 
                 $scope.changeStatus = function(app, oldstat) {
 
-                    changeStatus(app,oldstat, $scope, $http);
+                    changeStatus(app,oldstat, $scope, $http, notify);
                 };
 
             });
@@ -58,6 +70,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session)
 app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
     var user = session.user;
+    cacheUser.user = user;
     $scope.user = user;
 
         $scope.getApps = function () {
@@ -152,6 +165,8 @@ function changeStatus(app,oldstat, $scope, $http, notify) {
                     .then(function (res, err) {
 
                         console.log(res);
+
+
                         notify.go({
                             type: 'status change',
                             jobID: app.jobID,
