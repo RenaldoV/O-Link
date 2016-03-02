@@ -29,6 +29,58 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
+
+app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
+		$scope.submitForm = function() {
+
+        $http({
+            method  : 'POST',
+            url     : '/forgot',
+            data 	: $scope.user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(res) {
+                {
+                    if(res.data) {
+              /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+
+							authService.login($scope.user).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $location.url("/dashboard");
+
+
+                        }, function () {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                        }); */
+						swal({
+							title: "success",
+							text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
+							type: "success"
+						},
+						function(){
+							location.reload();
+						});
+                    }
+                    else 
+						swal({
+							title: "error",
+							text: "No account with that email address exists. Try again.",
+							type: "error"
+						},
+						function(){
+							location.reload();
+						});	
+
+					
+                }
+            });
+    }
+	
+});
+
+
 app.controller('myJobFeed', function($scope,$http, session){
 
     var user = session.user;
@@ -50,6 +102,7 @@ app.controller('myJobFeed', function($scope,$http, session){
             }
         });
 });
+
 
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
@@ -390,6 +443,12 @@ app.controller('jobBrowser',function($scope, $location, $http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+                $scope.getPer = function(cat){
+                    if(cat == "Once Off"){
+                        return cat;
+                    }
+                    else return "hr"
+                }
             }
         });
 
