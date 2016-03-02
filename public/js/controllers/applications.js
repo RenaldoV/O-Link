@@ -79,7 +79,7 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
 });
 
-app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location) {
+app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify) {
 
     var user = session.user;
     $scope.user = user;
@@ -101,7 +101,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 $scope.changeStatus = function (app, oldstat) {
 
-                    changeStatus(app, oldstat, $scope, $http);
+                    changeStatus(app, oldstat, $scope, $http, notify);
                 };
 
             });
@@ -122,7 +122,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 $scope.changeStatus = function (app, oldstat) {
 
-                    changeStatus(app, oldstat, $scope, $http);
+                    changeStatus(app, oldstat, $scope, $http,notify);
                 };
 
             });
@@ -133,7 +133,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
-function changeStatus(app,oldstat, $scope, $http) {
+function changeStatus(app,oldstat, $scope, $http, notify) {
     var check = false;
     console.log(app);
     swal({
@@ -152,7 +152,13 @@ function changeStatus(app,oldstat, $scope, $http) {
                     .then(function (res, err) {
 
                         console.log(res);
+                        notify.go({
+                            type: 'status change',
+                            jobID: app.jobID,
+                            userID: app.studentID._id
+                        });
                         swal("Status updated.", "The user has been notified.", "success");
+
 
                     });
 

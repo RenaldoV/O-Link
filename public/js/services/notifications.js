@@ -3,24 +3,34 @@
  */
 var socket = io();
 
-app.controller('notifications', function($scope,$http, session){
+app.controller('notifications', function($scope,$http, session, $route){
 
     $scope.notifications = {};
     console.log(session.user._id);
-    $http
-        .post('/loadNotifications',{id:session.user._id})
-        .then(function (res) {
-            console.log(res.data);
-           $scope.notifications = res.data;
 
-            $scope.makeSeen = function(id){
-                $http
-                    .post('/makeSeen',{id:id})
-                    .then(function (res) {
 
-                    });
-            }
-        });
+    loadNotifications();
+
+    socket.on('notified'+ session.user._id, function(data){
+       loadNotifications();
+    });
+    function loadNotifications() {
+        return $http
+            .post('/loadNotifications', {id: session.user._id})
+            .then(function (res) {
+                console.log(res.data);
+                $scope.notifications = res.data;
+
+                $scope.makeSeen = function (id) {
+                    $http
+                        .post('/makeSeen', {id: id})
+                        .then(function (res) {
+                        loadNotifications();
+                        });
+
+                }
+            });
+    }
 
 });
 
@@ -38,6 +48,8 @@ app.service('notify', function(){
                 break;
             }
             case 'status change':{
+                notification.userID  = data.userID;
+                notification.jobID = data.jobID;
                 break;
             }
             case 'rating':{
