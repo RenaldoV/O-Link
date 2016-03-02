@@ -22,7 +22,7 @@ db.once('open', function (callback) {
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
 var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}}, {strict:false});
-var notificationSchema = new Schema({userID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},postDate: {type: Date, default: Date.now}}, {strict:false});
+var notificationSchema = new Schema({jobID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},dateTime: {type: Date, default: Date.now}}, {strict:false});
 
 var jobModel = mongoose.model('jobs', jobSchema);
 var appModel = mongoose.model('applications', applicationSchema);
@@ -39,14 +39,30 @@ function getModel(colName){
 			break;
 		case "users": return userModel;
 			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			return mongoose.model(colName, schema);}
+		case "notifications": return notificationModel;
+			break;
+		}
 	}
-}
+
 
 function addNotification(data, callback){
-	insertDocument('notifications')
+	insertDocument('notifications',data,function(res,notification){
+		return callback(res);
+	});
+}
+
+function getNotifications(query, callback)
+{
+
+	var col = notificationModel;
+	var data;
+
+	col.find(query).populate('jobID').exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
 }
 
 function getStudentApplications(query, callback)
@@ -141,11 +157,11 @@ function getCollectionByArr(colName, field, arr, callback)
 
 	var insert = new col(doc);
 	console.log(insert);
-	insert.save(function (err) {
+	insert.save(function (err, doc) {
 		if(err){console.log("Save failed"); throw err;}
 		else {
-			console.log("Saved!");
-			return callback(true);
+			console.log(doc._id);
+			return callback({id: doc._id});
 		}
 	});
 
@@ -270,6 +286,16 @@ module.exports = {
 	},
 	getJobApplicants: function(id, cb){
 		getEmployerApplicants({jobID: id}, function(res) {
+			return cb(res);
+		});
+	},
+	addNotification: function(data, cb){
+		addNotification(data, function(res){
+			return cb(res);
+		});
+	},
+	loadNotifications: function(id, cb){
+		getNotifications( {userID: id, seen: false}, function(res){
 			return cb(res);
 		});
 	}

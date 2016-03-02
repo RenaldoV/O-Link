@@ -199,3 +199,11 @@ form .progress {
 .heading{
     font-size: 25px;
 }
+
+#notifications {
+    text-align: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #fcd621;
+}

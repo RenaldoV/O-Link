@@ -9,7 +9,8 @@
             <li><a href="#" ng-click="logOut()">Log Out</a></li>
         </ul>
     </li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-    <li><a href="#">Notifications</a></li>
+
+<li ng-include="'views/blocks/notifications.html'" ng-controller="notifications">
+
+</li>
 </ul>

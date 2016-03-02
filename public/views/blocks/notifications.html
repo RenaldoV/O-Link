@@ -1,3 +1,5 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div id="notifications">{{notifications.length}}</div></a>
+<ul class="dropdown-menu"  >
+    <li ng-repeat="noti in notifications"><a ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID._id}}"<small>New application for {{noti.jobID.post.role}}</small></li>
 
-    <li><a href="#" ng-click="myProfile()">User Profile </a></li>
-    <li><a href="/applications">Application Status</a></li>
+</ul>

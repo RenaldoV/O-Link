@@ -523,11 +523,12 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
             })
                 .then(function(res) {
 
-
+                    console.log(res);
                     sweetAlert("Application Successful", "", "success");
                     notify.go({
                         type: 'application',
-                        job: job
+                        jobID: job._id,
+                        userID: job.employerID
                     });
 
                     if(typeof job.applicants == 'undefined')

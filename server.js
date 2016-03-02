@@ -44,7 +44,12 @@ var db = require("./app/models/Database.js");
 
 io.on('connection', function(socket){
     socket.on('notify', function(data){
-        console.log(data);
+        db.addNotification(data, function(res){
+
+            socket.emit('notified'+ data.userID, data, function(err){
+                if (err) throw err;
+            });
+        });
     } );
 });
 
