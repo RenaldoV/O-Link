@@ -2,6 +2,7 @@ var db = require("./models/Database.js");
 var errorHandler = require('./errors.js');
 var crypto = require('crypto');
 var async = require('async');
+var nodemailer 		= require('nodemailer');
 
 function getDate(){
 	var currentdate = new Date();
@@ -52,54 +53,27 @@ module.exports = function(app) {
 			function(token, done) {
 				
 				db.getUser(user.email,function(User){
-					if(!User) res.send(false);
+					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
 					
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
-					// FOR FUCK SAKES!!!!! 
-					console.log(tempUser); //tempUser not reflecting 2 new fields
+ 
 					db.update({"_id" : tempUser._id},"users",tempUser,
-					function(res){
-						console.log(res);
+					function(err,res){
+						done(err,token,user);
 					});
 					
 					res.send(tempUser);
 				});
-				
-/*				db.checkMail({email: user.email} , function(result){
-					if(result.valid == true){
-						user.resetPasswordToken = token;
-						user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-						var _id = user._id;
-						delete user._id;
-						db.update({"_id" : user._id},"users",user);
-						//console.log(user);
-						res.send(result.user);
-					}
-					else res.send(false);
-				});
- 				User.findOne({ email: req.body.email }, function(err, user) {
-					if (!user) {
-					  req.flash('error', 'No account with that email address exists.');
-					  return res.redirect('/forgot');
-					}
-
-					user.resetPasswordToken = token;
-					user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-					user.save(function(err) {
-					  done(err, token, user);
-					});
-				}); */
-			}
-/* 			function(token, user, done) {
+			},
+ 			function(token, user, done) {
 				var smtpTransport = nodemailer.createTransport('SMTP', {
-					service: 'SendGrid',
+					service: 'Gmail',
 					auth: {
-					  user: '!!! YOUR SENDGRID USERNAME !!!',
-					  pass: '!!! YOUR SENDGRID PASSWORD !!!'
+					  user: 'olinkmailer@gmail.com',
+					  pass: 'mailClient'
 					}
 				});
 				var mailOptions = {
@@ -112,13 +86,13 @@ module.exports = function(app) {
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
-					req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+					sweetalert('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
 					done(err, 'done');
 				});
-			} */
+			} 
 		], function(err) {
 			if (err) return next(err);
-			res.redirect('/forgot');
+			res.send(false);
 		});
 	});
 	
