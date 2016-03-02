@@ -3,6 +3,9 @@ var errorHandler = require('./errors.js');
 var crypto = require('crypto');
 var async = require('async');
 var nodemailer 		= require('nodemailer');
+var multiparty = require('connect-multiparty');
+var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
+var fs = require('fs');
 
 function getDate(){
 	var currentdate = new Date();
@@ -104,6 +107,16 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/myJobFeeder', function(req,res){
+
+		var user = req.body;
+
+		db.getBy("jobs", {employerID: user.id}, function(rows){
+
+			res.send(rows);
+		});
+	});
+
 	app.post('/jobBrowse', function(req,res){
 
 
@@ -118,12 +131,13 @@ module.exports = function(app) {
 	});
 	app.post('/jobPoster', function(req,res) {
 		var job = {};
+
 		for(var key in req.body) {
 
-			console.log(key);
 			job = JSON.parse(key);
 
 		}
+
 
 
 
@@ -179,7 +193,6 @@ module.exports = function(app) {
 
 	app.post('/loadUser', function(req,res) {
 		var email = req.body;
-		console.log(email)
 		db.getUser(email.email, function(rows){
 			res.send(rows);
 		});
@@ -204,5 +217,134 @@ module.exports = function(app) {
 		});
 
 	});
+	app.post('/upload', multipartyMiddleware, function(req, res){
+		var file = req.files.file;
+		var id = req.body.user;
 
+		fs.readFile(file.path, function (err, data) {
+			// ...
+			var temp = file.path;
+			temp = temp.replace("tmp\\", '\\uploads\\');
+			temp = temp +".png";
+			var newPath = __dirname + temp;
+
+			fs.writeFile(newPath, data, function (err) {
+				if(err) throw err;
+
+
+				db.update({_id : id}, 'users', {profilePicture: newPath}, function(err){
+					if (err) throw err;
+					console.log(newPath);
+					fs.unlink(file.path);
+					res.send(true);
+				} );
+			});
+
+		});
+
+	});
+
+	app.post('/getPp', function(req, res){
+
+		var path = req.body.profilePicture;
+
+		fs.readFile(path, function(err,data){
+			if(err) throw err;
+			var buf = new Buffer(data).toString('base64');
+			res.send(buf);
+		});
+
+
+
+
+	});
+
+	app.post('/updateUser', function(req,res){
+
+		var user = req.body;
+		delete user.profilePicture;
+		db.update({_id : user._id}, 'users', user, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
+	app.post('/apply', function(req,res){
+
+		var user = req.body.user;
+		var job =  req.body.job;
+		if(!job.applicants)
+		{
+			job.applicants = [];
+		}
+		job.applicants.push(user._id);
+
+
+		var application = {
+			studentID : user._id,
+			jobID: job._id,
+			employerID: job.employerID,
+			status: 'Pending'
+
+		};
+		db.insert(application, 'applications', function(err,result){
+			db.update({_id: job._id}, 'jobs',job, function(result){
+				res.send(result);
+			});
+
+		});
+	});
+
+	app.post('/updateApplication', function(req,res){
+
+		var app = req.body;
+		console.log(app);
+		db.update({_id : app._id}, 'applications', app, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
+	app.post('/loadApplications', function(req,res){
+
+		var user = req.body;
+		db.getStudentApplications(user._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+	app.post('/loadApplicationsTo', function(req,res){
+
+		var user = req.body;
+		db.getStudentApplicationsBy(user._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/loadApplicants', function(req,res){
+
+		var user = req.body;
+		db.getEmployerApplicants(user._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/loadApplicantsByJobId', function(req,res){
+
+		var job = req.body;
+		db.getJobApplicants(job._id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
 };

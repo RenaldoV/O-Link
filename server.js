@@ -9,8 +9,11 @@ var cookieParser 	= require('cookie-parser');
 
 
 // configuration ===========================================
-	
-// db connection
+
+
+//file upload
+// Requires multiparty
+
 
 
 var port = process.env.PORT || 8080; // set our port

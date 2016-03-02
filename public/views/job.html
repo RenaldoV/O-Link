@@ -1,7 +1,26 @@
-<div ng-controller="jobCtrl" ng-controller="applicationCtrl">
+<div ng-controller="jobCtrl">
     <h2>{{job.post.role}}</h2>
 
     <a href="/profile?user={{job.employerID}}">View employer profile</a>
+    <div class="jobContent">
+        <hr>
+        {{job.post.description}}<hr>
+        {{job.post.location}}<hr>
+        R{{job.post.pay}}<hr>
+
+    </div>
+
+    Requirements:
+    <ul class="list-group no-bg no-borders pull-in">
+        <li class="list-group-item" ng-repeat="res in job.post.requirements">
+            <div class="clear">
+                <div>{{res.name}}  {{res.symbol}}</div>
+            </div>
+        </li>
+
+
+    </ul>
+
     <div class="center">
         <button class="btn btn-primary btn-xlarge" ng-click="apply()">Apply</button>
     </div>

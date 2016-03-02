@@ -2,10 +2,10 @@
 <div class="jobBox feature" ng-repeat="job in jobs">
     <h2>{{job.post.role}}</h2>
     <p>{{job.post.description}}</p>
-    <p> {{job.location}}</p>
-    <p>R{{job.payrate + "/" + job.payPer }}</p>
-    <p>Starting Date: {{job.startingDate}}</p>
-    <p>Date Posted: {{job.postDate}}</p>
+    <p> {{job.post.location}}</p>
+    <p>R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</p>
+    <p>Starting Date: {{job.post.startingDate.substr(0,10)}}</p>
+    <p>Date Posted: {{job.post.postDate}}</p>
     <a href="/job?id={{job._id}}"></a>
 </div>
 </div>

@@ -1,0 +1,85 @@
+<div ng-controller="studentEditProfile">
+    <form name="myForm" id="ppUpload" hidden>
+        <div>Crop Image and Upload</div>
+        <button ngf-select ng-model="picFile" accept="image/*">
+            Select Picture</button>
+        <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+             class="cropArea">
+            <img-crop image="picFile  | ngfDataUrl"
+                      result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+            </img-crop>
+        </div>
+        <div>
+            <img ng-src="{{croppedDataUrl}}" />
+        </div>
+        <button ng-click="upload(croppedDataUrl)">Submit</button>
+
+        <span class="progress" ng-show="progress >= 0">
+          <div ng-bind="progress + '%'"></div>
+        </span>
+        <span ng-show="result">Upload Successful</span>
+        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+    </form><button ng-click="showUpload()" class="btn btn-default">Upload Profile Picture</button>
+
+    <form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="updateUser()">
+        <fieldset class="form-group">
+            <label>Student Info</label>
+
+            <div class="list-group-item">
+                <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+            </div>
+
+            <div class="list-group-item">
+                <input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{8,8}" required>
+            </div>
+            <div class="list-group-item">
+                <input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
+            </div>
+
+        </fieldset>
+        <fieldset class="form-group">
+            <label>Qualification Info</label>
+            <div class="list-group-item">
+                <input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" required>
+            </div>
+            <div class="list-group-item">
+                <input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description" required>
+            </div>
+            <div class="list-group-item">
+                <input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category" required>
+            </div>
+            <div class="list-group-item">
+                <input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear" required>
+            </div>
+            <div class="list-group-item">
+                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA" required>
+            </div>
+        </fieldset>
+
+
+
+
+<lable for="matricResults">Add Matric Results</lable><div id="matricResults">
+    <button type="button" id="addRes" class="btn btn-default" >+</button>
+
+    <datalist id="requirements">
+        <option value="Maths">
+        <option value="AP Maths">
+        <option value="English">
+        <option value="Science">
+        <option value="Afrikaans">
+        <option value="Zulu">
+        <option value="IT">
+    </datalist>
+    <datalist id="symbols">
+        <option value="A">
+        <option value="B">
+        <option value="C">
+        <option value="D">
+        <option value="F">
+    </datalist>
+    </div>
+        <button type="submit" class="btn btn-lg btn-primary btn-block" >Update</button>
+    </form>
+
+</div></div>

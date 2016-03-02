@@ -1,0 +1,17 @@
+<div><table class="table">
+    <thead><th>Role</th><th>Pay</th><th>Location</th><th>Status</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="app in applications">
+        <td>{{app.jobID.post.role}}</td>
+        <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
+        <td>{{app.jobID.post.location}}</td>
+        <td><select id="status" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
+            <option value="Declined">Declined</option>
+            <option value="Pending">Pending</option>
+            <option value="Provisionally accepted">Provisionally accepted</option>
+        </select></td>
+    </tr>
+    </tbody>
+</table>
+</div>

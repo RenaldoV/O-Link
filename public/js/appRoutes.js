@@ -29,9 +29,27 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/profile', {
 			templateUrl: 'views/profile.html'
 		})
+
 		.when('/forgot', {
 			templateUrl: 'views/forgot.html'
 		});
+
+		.when('/myProfile', {
+			templateUrl: 'views/profile.html'
+		})
+		.when('/editProfile', {
+			templateUrl: 'views/profile.html'
+		})
+		.when('/applicants', {
+			templateUrl: 'views/blocks/applicants.html'
+		})
+		.when('/myJobPosts', {
+			templateUrl: 'views/blocks/employerJobPosts.html'
+		})
+		.when('/applications', {
+		templateUrl: 'views/blocks/applications.html'
+	});
+
 
 
 	$locationProvider.html5Mode(true);
