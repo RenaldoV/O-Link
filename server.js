@@ -8,6 +8,7 @@ var nodemailer 		= require('nodemailer');
 var cookieParser 	= require('cookie-parser');
 
 
+
 // configuration ===========================================
 
 
@@ -32,10 +33,19 @@ app.use(express.static(__dirname + '/public')); // set the static files location
 require('./app/routes')(app); // pass our application into our routes
 
 // start app ===============================================
-app.listen(port);	
+var io = require('socket.io').listen(app.listen(port));
 console.log('Magic happens on port ' + port);
 exports = module.exports = app; 						// expose app
 
+
+//io
+
+
+io.on('connection', function(socket){
+    socket.on('notify', function(data){
+        console.log(data);
+    } );
+});
 
 var db = require("./app/models/Database.js");
 

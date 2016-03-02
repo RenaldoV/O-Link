@@ -9,7 +9,11 @@
             <li><a href="#" ng-click="logOut()">Log Out</a></li>
         </ul>
     </li>
-</ul>
-<ul class="nav navbar-nav navbar-right">
-    <li><a href="#">Notifications</a></li>
+
+<li>
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notifications <span class="caret"></span></a>
+    <ul class="dropdown-menu" ng-include="'views/blocks/notifications.html'" ng-controller="notifications">
+
+    </ul>
+    </li>
 </ul>

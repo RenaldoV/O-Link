@@ -22,10 +22,14 @@ db.once('open', function (callback) {
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
 var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}}, {strict:false});
+var notificationSchema = new Schema({userID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},postDate: {type: Date, default: Date.now}}, {strict:false});
 
-var jobModel = mongoose.model('jobs', idSchema);
+var jobModel = mongoose.model('jobs', jobSchema);
 var appModel = mongoose.model('applications', applicationSchema);
 var userModel = mongoose.model('users', idSchema);
+var notificationModel = mongoose.model('notifications', notificationSchema);
+
+
 
 function getModel(colName){
 	switch(colName){
@@ -41,7 +45,9 @@ function getModel(colName){
 	}
 }
 
-
+function addNotification(data, callback){
+	insertDocument('notifications')
+}
 
 function getStudentApplications(query, callback)
 {
