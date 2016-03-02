@@ -50,12 +50,17 @@
           <div class="panel wrapper">
 
             <h4 class="font-thin m-t-none m-b text-muted">My Job Offers</h4>
-            <div ng-controller="jobFeed">
+            <div ng-controller="myJobFeed">
               <table class="table">
                 <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
                 </thead>
                 <tbody>
+                <tr ng-repeat="job in jobs">
+                  <td>{{job.post.category}}</td>
+                  <td>{{job.post.role}}</td>
+                  <td>{{job.applicants.length}}</td>
 
+                </tr>
                 </tbody>
               </table>
             </div>

@@ -1,4 +1,4 @@
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog']);
 
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
 
@@ -17,9 +17,93 @@ app.controller('jobFeed', function($scope,$http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+
+                $scope.getPer = function(cat){
+                if(cat == "Once Off"){
+                    return cat;
+                }
+                    else return "hr"
+            }
+
             }
         });
 });
+
+
+app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
+		$scope.submitForm = function() {
+
+        $http({
+            method  : 'POST',
+            url     : '/forgot',
+            data 	: $scope.user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(res) {
+                {
+                    if(res.data) {
+              /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+
+							authService.login($scope.user).then(function (user) {
+
+                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            $scope.setCurrentUser(user);
+                            $location.url("/dashboard");
+
+
+                        }, function () {
+                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                        }); */
+						swal({
+							title: "success",
+							text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
+							type: "success"
+						},
+						function(){
+							location.reload();
+						});
+                    }
+                    else 
+						swal({
+							title: "error",
+							text: "No account with that email address exists. Try again.",
+							type: "error"
+						},
+						function(){
+							location.reload();
+						});	
+
+					
+                }
+            });
+    }
+	
+});
+
+
+app.controller('myJobFeed', function($scope,$http, session){
+
+    var user = session.user;
+
+    $http({
+        method  : 'POST',
+        url     : '/myJobFeeder',
+        data : {id: user._id}
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+                $.each($scope.jobs, function(key,value){
+                    if(!value.applicants)
+                    {
+                        value.applicants=[];
+                    }
+                });
+            }
+        });
+});
+
+
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
@@ -106,7 +190,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $window.location.href= '/';
 
 
-    var times = $("#times").html();
+
 
     //add end date if short term/long term
     $("#endDateDiv").hide();
@@ -116,7 +200,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(this.value == "Once Off")
         {
             $("#endDateDiv").hide();
-            $("#times").html(times);
+           var input = $('<div>Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
+               ' Leaving time: <input type="time" placeholder="endTime" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
+            $compile(input)($scope);
 
         }
         else {
@@ -231,6 +317,9 @@ $scope.logOut = function() {
             swal("You have been logged out.", "success");
         });
 }
+    $scope.myProfile = function(){
+        $window.location.href="/myProfile";
+    }
 
 
 });
@@ -256,7 +345,9 @@ console.log($scope.user);
                 swal("You have been logged out.", "success");
             });
     }
-
+    $scope.myProfile = function(){
+        $window.location.href="/myProfile";
+    }
 
 });
 
@@ -341,7 +432,7 @@ app.controller('jobBrowser',function($scope, $location, $http){
     temp = temp.replace("/browseJobs?categories=", '');
     temp = temp.replace(/_/g, ' ');
     var arr = temp.split("%25");
-    console.log(arr);
+
 
     //get the jobs
     $http({
@@ -352,25 +443,90 @@ app.controller('jobBrowser',function($scope, $location, $http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+                $scope.getPer = function(cat){
+                    if(cat == "Once Off"){
+                        return cat;
+                    }
+                    else return "hr"
+                }
             }
         });
 
 });
 
-app.controller('jobCtrl', function($scope, $location,$http){
+app.controller('jobCtrl', function($scope, $location,$http, session){
     var temp = $location.url();
 
+    var user = session.user;
     temp = temp.replace("/job?id=", '');
-    id = {id: temp}
+    id = {id: temp};
+    var job = {};
     $http({
         method  : 'POST',
         url     : '/getJob',
         data : id
     })
         .then(function(res) {
-            {
+
                 $scope.job = res.data;
-            }
+                job = res.data;
+
+
+
         });
+
+    $scope.apply = function() {
+        var meets = [job.post.requirements.length];
+        if($.inArray(user._id, job.applicants) != -1)
+        {
+            sweetAlert("You have already applied for this position", "Patience is a virtue", "error");
+
+        }
+        else{
+        $.each(job.post.requirements, function (key, value) {
+            $.each(user.results, function (i, val) {
+                if(value.name == val.name){
+                    if(val.result <= value.symbol){
+                        meets[key] = true;
+                    }
+                }
+            });
+        });
+
+        if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
+        {
+            meets.push(false);
+        }
+        var met = true;
+        $.each(meets, function(key, value){
+            if(value == false)
+            {
+                met = false;
+            }
+
+        });
+
+        if(!met){
+            sweetAlert("Requirements not met", "", "error");
+
+        }
+        else {
+            $http({
+                method  : 'POST',
+                url     : '/apply',
+                data : {user : user, job : job }
+            })
+                .then(function(res) {
+
+
+                    sweetAlert("Application Successful", "", "success");
+                    job.applicants.push(user._id);
+
+                });
+        }
+        }
+    };
+
+
 });
 

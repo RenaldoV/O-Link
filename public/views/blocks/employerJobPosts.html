@@ -1,0 +1,15 @@
+
+    <div ng-controller="myJobFeed">
+        <table class="table">
+            <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="job in jobs">
+                <td>{{job.post.category}}</td>
+                <td>{{job.post.role}}</td>
+                <td><a href="/applicants?jobID={{job._id}}">{{job.applicants.length}}</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
