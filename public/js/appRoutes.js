@@ -32,7 +32,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		.when('/forgot', {
 			templateUrl: 'views/forgot.html'
-		});
+		})
 
 		.when('/myProfile', {
 			templateUrl: 'views/profile.html'
