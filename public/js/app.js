@@ -32,7 +32,6 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
         })
             .then(function(res) {
                 {
-					console.log(res.data);
                     if(res.data) {
               /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
 
@@ -46,10 +45,26 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                         }, function () {
                             $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                         }); */
-						
-						sweetAlert("success", 'An email has been sent to ' + res.data.contact.email + ' with a reset link');
+						swal({
+							title: "success",
+							text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
+							type: "success"
+						},
+						function(){
+							location.reload();
+						});
                     }
-                    else sweetAlert("error", 'No account with that email address exists.');
+                    else 
+						swal({
+							title: "error",
+							text: "No account with that email address exists. Try again.",
+							type: "error"
+						},
+						function(){
+							location.reload();
+						});	
+
+					
                 }
             });
     }
