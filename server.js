@@ -40,6 +40,7 @@ exports = module.exports = app; 						// expose app
 
 //io
 
+var db = require("./app/models/Database.js");
 
 io.on('connection', function(socket){
     socket.on('notify', function(data){
@@ -47,6 +48,6 @@ io.on('connection', function(socket){
     } );
 });
 
-var db = require("./app/models/Database.js");
+
 
 

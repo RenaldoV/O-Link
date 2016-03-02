@@ -454,7 +454,7 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 });
 
-app.controller('jobCtrl', function($scope, $location,$http, session){
+app.controller('jobCtrl', function($scope, $location,$http, session, notify){
     var temp = $location.url();
 
     var user = session.user;
@@ -476,6 +476,11 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
         });
 
     $scope.apply = function() {
+
+
+
+        if(typeof job.post.requirements == 'undefined')
+            job.post.requirements = [];
         var meets = [job.post.requirements.length];
         if($.inArray(user._id, job.applicants) != -1)
         {
@@ -520,6 +525,13 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
 
 
                     sweetAlert("Application Successful", "", "success");
+                    notify.go({
+                        type: 'application',
+                        job: job
+                    });
+
+                    if(typeof job.applicants == 'undefined')
+                    job.applicants = [];
                     job.applicants.push(user._id);
 
                 });
