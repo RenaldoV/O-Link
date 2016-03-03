@@ -13,7 +13,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
         $scope.getApps = function(){
             return "../views/blocks/studentApplication.html";
         };
-        console.log('yolo');
+
         $http
             .post('/loadApplications', user)
             .then(function (res) {
@@ -22,7 +22,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 $scope.changeStatus = function(app, oldstat) {
 
-                    changeStatus(app,oldstat, $scope, $http,notify);
+                    changeStatus(app,oldstat, $scope, $http,notify,app.employerID);
                 };
 
                 $scope.isDisabled = function(status){
@@ -51,10 +51,15 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     $scope.message = "Has yet to apply to any of your job posts.";
 
                 $scope.applications = res.data;
-
+                $scope.isDisabled = function(status){
+                    if(status != "Declined"){
+                        return false;
+                    }
+                    return true;
+                };
                 $scope.changeStatus = function(app, oldstat) {
 
-                    changeStatus(app,oldstat, $scope, $http, notify);
+                    changeStatus(app,oldstat, $scope, $http, notify, app.studentID._id);
                 };
 
             });
@@ -110,11 +115,16 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     return getAge(dob);
                 };
                 console.log($scope.applications);
-
+                $scope.isDisabled = function(status){
+                    if(status != "Declined"){
+                        return false;
+                    }
+                    return true;
+                };
 
                 $scope.changeStatus = function (app, oldstat) {
 
-                    changeStatus(app, oldstat, $scope, $http, notify);
+                    changeStatus(app, oldstat, $scope, $http, notify, app.studentID._id);
                 };
 
             });
@@ -135,7 +145,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 $scope.changeStatus = function (app, oldstat) {
 
-                    changeStatus(app, oldstat, $scope, $http,notify);
+                    changeStatus(app, oldstat, $scope, $http,notify, app.studentID);
                 };
 
             });
@@ -146,7 +156,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
-function changeStatus(app,oldstat, $scope, $http, notify) {
+function changeStatus(app,oldstat, $scope, $http, notify, userID) {
     var check = false;
     console.log(app);
     swal({
@@ -169,8 +179,10 @@ function changeStatus(app,oldstat, $scope, $http, notify) {
 
                         notify.go({
                             type: 'status change',
-                            jobID: app.jobID,
-                            userID: app.studentID._id
+                            jobID: app.jobID._id,
+                            userID: userID,
+                            status: app.status,
+                            title: app.jobID.post.role
                         });
                         swal("Status updated.", "The user has been notified.", "success");
 

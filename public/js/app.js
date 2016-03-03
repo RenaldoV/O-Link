@@ -1,11 +1,15 @@
 var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog']);
 
-app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
+app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
     if ($cookies.get("user")){
         session.create(JSON.parse($cookies.get("user")));
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
     }
+
+
+
+
 });
 
 app.controller('jobFeed', function($scope,$http){
@@ -248,17 +252,29 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     };
 });
 
-app.controller('navControl',function($scope, authService, session){
+app.controller('navControl',function($scope, authService, session, $http, rate){
 
 
     if(authService.isAuthenticated()){
         var user = session.user;
+
         if(user.type == "student")
         {
         $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
         }}
         else if(user.type == "employer"){
+
+
+            $http
+                .post('/loadCompletedApplications', {id: user._id})
+                .then(function (res) {
+
+                    var notifications = res.data;
+                    $.each(notifications, function(key, value){
+                        rate.makeBox(value);
+                    });
+                });
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";
             }
@@ -352,7 +368,8 @@ console.log($scope.user);
 });
 
 
-app.controller('dashControl',function($scope, authService, session){
+app.controller('dashControl',function($scope, authService, session, ngDialog){
+
 
 
     if(authService.isAuthenticated()){
@@ -528,7 +545,9 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
                     notify.go({
                         type: 'application',
                         jobID: job._id,
-                        userID: job.employerID
+                        userID: job.employerID,
+                        status: 'Made',
+                        title: job.post.role
                     });
 
                     if(typeof job.applicants == 'undefined')

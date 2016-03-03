@@ -9,7 +9,7 @@ var booleanValue = passwordHash.verify(Pass, hashValue);
 
  */
 var db = mongoose.connection;
-mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {console.log(e);});
+mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {});
 
 
 
@@ -57,7 +57,7 @@ function getNotifications(query, callback)
 	var col = notificationModel;
 	var data;
 
-	col.find(query).populate('jobID').exec(function (err, docs) {
+	col.find(query).exec(function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -71,7 +71,7 @@ function getStudentApplications(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').exec(function (err, docs) {
+	col.find(query).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -85,9 +85,24 @@ function getEmployerApplicants(query, callback)
 	var col = appModel;
 	var data;
 
+	col.find(query).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
+
+function getCompletedApplicants(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
 	col.find(query).populate('jobID').populate('studentID').exec(function (err, docs) {
 
 		data = docs;
+
 		callback(data);
 	});
 
@@ -160,7 +175,7 @@ function getCollectionByArr(colName, field, arr, callback)
 	insert.save(function (err, doc) {
 		if(err){console.log("Save failed"); throw err;}
 		else {
-			console.log(doc._id);
+
 			return callback({id: doc._id});
 		}
 	});
@@ -281,6 +296,11 @@ module.exports = {
 	},
 	getEmployerApplicants: function(id, cb){
 		getEmployerApplicants({employerID: id}, function(res) {
+			return cb(res);
+		});
+	},
+	getCompletedApplicants: function(id, cb){
+		getCompletedApplicants({employerID: id, status:"Completed"}, function(res) {
 			return cb(res);
 		});
 	},

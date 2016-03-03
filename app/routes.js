@@ -369,4 +369,17 @@ module.exports = function(app) {
 		} );
 
 	});
+
+	app.post('/loadCompletedApplications', function(req,res){
+
+		var job = req.body;
+
+		db.getCompletedApplicants(job.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
 };
