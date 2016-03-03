@@ -252,7 +252,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     };
 });
 
-app.controller('navControl',function($scope, authService, session, $http, rate){
+app.controller('navControl',function($scope, authService, session){
 
 
     if(authService.isAuthenticated()){
@@ -266,15 +266,7 @@ app.controller('navControl',function($scope, authService, session, $http, rate){
         else if(user.type == "employer"){
 
 
-            $http
-                .post('/loadCompletedApplications', {id: user._id})
-                .then(function (res) {
 
-                    var notifications = res.data;
-                    $.each(notifications, function(key, value){
-                        rate.makeBox(value);
-                    });
-                });
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";
             }
@@ -368,7 +360,7 @@ console.log($scope.user);
 });
 
 
-app.controller('dashControl',function($scope, authService, session, ngDialog){
+app.controller('dashControl',function($scope, authService, session, rate, $http){
 
 
 
@@ -380,6 +372,15 @@ app.controller('dashControl',function($scope, authService, session, ngDialog){
                 return "../views/blocks/studentDash.html";
             }}
         else if(user.type == "employer"){
+            $http
+                .post('/loadCompletedApplications', {id: user._id})
+                .then(function (res) {
+
+                    var notifications = res.data;
+                    $.each(notifications, function(key, value){
+                        rate.makeBox(value);
+                    });
+                });
             $scope.getDash= function() {
                 return "../views/blocks/employerDash.html";
             }

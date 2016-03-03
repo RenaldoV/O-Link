@@ -31,6 +31,7 @@ app.controller('notifications', function($scope,$http, session, $route){
             .then(function (res) {
                 console.log(res.data);
                 $scope.notifications = res.data;
+                $scope.message = "<b>hi</b>";
 
 
             });

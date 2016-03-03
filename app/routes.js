@@ -382,4 +382,16 @@ module.exports = function(app) {
 
 	});
 
+	app.post('/loadJobHistory', function(req,res){
+
+		var student= req.body;
+
+		db.getJobHistory(student.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
 };

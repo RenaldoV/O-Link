@@ -97,6 +97,29 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
 });
 
+app.controller('jobHistory', function ($scope,$http,cacheUser, session) {
+
+    var user = cacheUser.user;
+    $scope.user = user;
+
+
+
+    $http
+        .post('/loadJobHistory', {id : user._id})
+        .then(function (res) {
+
+            $scope.applications = res.data;
+            if($scope.applications.length == 0)
+            {
+                $scope.message = "You haven't completed any jobs.";
+            }
+
+
+
+        });
+
+});
+
 app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify) {
 
     var user = session.user;

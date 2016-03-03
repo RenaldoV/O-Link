@@ -108,6 +108,21 @@ function getCompletedApplicants(query, callback)
 
 }
 
+function getJobHistory(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
+	col.find(query).populate('jobID').exec(function (err, docs) {
+
+		data = docs;
+		console.log(data);
+		callback(data);
+	});
+
+}
+
 function getOne(colName, query , callback)
 {
 
@@ -301,6 +316,11 @@ module.exports = {
 	},
 	getCompletedApplicants: function(id, cb){
 		getCompletedApplicants({employerID: id, status:"Completed"}, function(res) {
+			return cb(res);
+		});
+	},
+	getJobHistory: function(id, cb){
+		getJobHistory({studentID: id, status:"Completed"}, function(res) {
 			return cb(res);
 		});
 	},
