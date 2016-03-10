@@ -125,20 +125,19 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
 
 
 });
-app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window){
+app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService){
 
 
     $scope.user = session.user;
     var tempdob = $scope.user.dob.substring(0,9);
     //tempdob = tempdob.replace(/-/g, "/");
     $scope.user.dob = tempdob;
-
-    $scope.user = session.user;
     var user = session.user;
     if(!user.results)
     {
         user.results = {};
     }
+    console.log(user);
     $scope.upload = function (dataUrl) {
         Upload.upload({
             url: '/upload',
@@ -150,7 +149,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
             $timeout(function () {
                 $scope.result = response.data;
             });
-            authService.login({email: user.email});
+            authService.login({email: user.contact.email});
         }, function (response) {
             if (response.status > 0) $scope.errorMsg = response.status
                 + ': ' + response.data;
