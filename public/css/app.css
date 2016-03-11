@@ -4738,3 +4738,29 @@ a.text-#000000:hover {
   float: left;
 
 }
+
+.banner-logo
+{
+	height: 100px;
+}
+
+.navbar-default
+{
+	height: 50px;
+}
+
+.sign-in-btn{
+	background-color: #33B6CC;
+	border: none;
+	transition: background .4s ease-in
+}
+
+.sign-in-btn:hover{
+	background-color: #00b488;
+	transition: background .4s ease-in
+}
+
+.goto-signup-btn{
+	border: none;
+	transition: background .4s ease-in
+}

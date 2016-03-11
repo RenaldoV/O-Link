@@ -1,4 +1,4 @@
-﻿<div ng-controller="signup">
+﻿<div class="container w-xxl w-auto-xs s" ng-controller="signup">
 	<div class="wrapper text-center">
 		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
@@ -7,7 +7,7 @@
 				<input type="radio" name="type" id="Employerradio" ng-model="user.type" value="employer">Employer
 			</label>
 			<label class="radio-inline">
-				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" checked>Student
+				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" checked>Talent
 			</label>
 		</div><br />
 	</div>
@@ -15,7 +15,9 @@
     <div class="text-danger wrapper text-center">
 
     </div>
+
 	<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()" hidden>
+
 		<div class="list-group list-group-sm">
 				<fieldset class="form-group">
 					<label>Company Info</label>
@@ -53,7 +55,7 @@
 						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber" 
+						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
 						pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
@@ -111,7 +113,7 @@
 					<input type="checkbox" ng-model="agree" required><i></i> Agree the <a href="#">terms and policy</a>
 				</label>
 			</div>
-			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+			<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Sign up</button>
 		</div>
 </form>
 <form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="submitForm()" hidden>
@@ -124,7 +126,7 @@
 						<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@uct.ac.za" required>
+						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@[a-zA-Z0-9]\S*.ac.za" required>
 					</div>
 					<div class="list-group-item">
 						<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
@@ -133,10 +135,7 @@
 						<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{8,8}" required>
-					</div>
-					<div class="list-group-item">
-						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.dob" required>
+						<input type="text" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
 					</div>
 					<div class="list-group-item">
 						<input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
@@ -186,15 +185,15 @@
 			</div>
 
 
-			<button type="submit" class="btn btn-lg btn-primary btn-block" >Sign up</button>
+			<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign up</button>
 			</form>
 			<div class="line line-dashed"></div>
 			<p class="text-center"><small>Already have an account?</small></p>
-			<a class="btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
+			<a class="goto-signup-btn btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
     <div><p>{{message}}</p></div>
 
 </div>
-  
+
 
 
 
@@ -301,7 +300,7 @@
 		//Student form validation
 		$(function () {
 			$("input[name=stuEmail]").on("invalid", function () {
-				this.setCustomValidity("Please enter a valid UCT email address.");
+				this.setCustomValidity("Please enter a valid SA tertiary institute email address.");
 			});
 			$("input[name=stuEmail]").on("change", function () {
 				this.setCustomValidity("");
@@ -320,19 +319,12 @@
 			$("input[name=stuID]").on("change", function () {
 				this.setCustomValidity("");
 			});
-			$("input[name=stuNo]").on("invalid", function () {
-				this.setCustomValidity("Please enter a valid UCT student number.");			
-			});
-			$("input[name=stuNo]").on("change", function () {
-				this.setCustomValidity("");
-			});
 			$("input[name=stuGender]").on("invalid", function () {
 				this.setCustomValidity("Please enter a valid gender, M/F.");			
 			});
 			$("input[name=stuGender]").on("change", function () {
 				this.setCustomValidity("");
 			});
-			
 			$("input[name=stuPassw]").on("invalid", function () {
 				this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");	
 			});
@@ -370,6 +362,10 @@
 
 		});
 		//Student form validation
+
+		$('#stuDob').datepicker({
+			startView: 2
+		});
 
 </script>
 

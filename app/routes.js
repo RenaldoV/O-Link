@@ -195,6 +195,7 @@ module.exports = function(app) {
 		var email = req.body;
 		db.getUser(email.email, function(rows){
 			res.send(rows);
+			console.log(rows);
 		});
 
 	});
@@ -223,7 +224,10 @@ module.exports = function(app) {
 
 		fs.readFile(file.path, function (err, data) {
 			// ...
+
+
 			var temp = file.path;
+			console.log(temp);
 			temp = temp.replace("tmp\\", '\\uploads\\');
 			temp = temp +".png";
 			var newPath = __dirname + temp;
@@ -232,9 +236,9 @@ module.exports = function(app) {
 				if(err) throw err;
 
 
-				db.update({_id : id}, 'users', {profilePicture: newPath}, function(err){
+				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
 					if (err) throw err;
-					console.log(newPath);
+					console.log(temp);
 					fs.unlink(file.path);
 					res.send(true);
 				} );
@@ -247,11 +251,22 @@ module.exports = function(app) {
 	app.post('/getPp', function(req, res){
 
 		var path = req.body.profilePicture;
-
+		path = __dirname + path;
+		var def = __dirname + "\\uploads\\default.png";
+		console.log(path);
 		fs.readFile(path, function(err,data){
-			if(err) throw err;
-			var buf = new Buffer(data).toString('base64');
-			res.send(buf);
+			if(err) {
+				fs.readFile(def, function(err,data){
+					if(err) {
+
+					}
+					var buf = new Buffer(data).toString('base64');
+					res.send(buf);
+				});
+			}else {
+				var buf = new Buffer(data).toString('base64');
+				res.send(buf);
+			}
 		});
 
 
