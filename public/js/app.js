@@ -368,6 +368,15 @@ app.controller('dashControl',function($scope, authService, session, rate, $http)
         var user = session.user;
         if(user.type == "student")
         {
+            $http
+                .post('/loadCompletedJobs', {id: user._id})
+                .then(function (res) {
+
+                    var notifications = res.data;
+                    $.each(notifications, function(key, value){
+                        rate.makeEmployerBox(value);
+                    });
+                });
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
             }}
@@ -378,7 +387,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http)
 
                     var notifications = res.data;
                     $.each(notifications, function(key, value){
-                        rate.makeBox(value);
+                        rate.makeStudentBox(value);
                     });
                 });
             $scope.getDash= function() {

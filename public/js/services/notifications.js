@@ -3,10 +3,10 @@
  */
 var socket = io();
 
-app.controller('notifications', function($scope,$http, session, $route){
+app.controller('notifications', function($scope,$http, session, cacheUser){
 
     $scope.notifications = {};
-    console.log(session.user._id);
+    $scope.userType = session.user.type;
 
 
     loadNotifications();
@@ -17,10 +17,12 @@ app.controller('notifications', function($scope,$http, session, $route){
 
 
     $scope.makeSeen = function (id) {
+        cacheUser.user = session.user;
         $http
             .post('/makeSeen', {id: id})
             .then(function (res) {
                 loadNotifications();
+
             });
 
     };
@@ -53,15 +55,33 @@ app.service('notify', function(){
 app.service('rate', function(ngDialog, $controller, $http){
 
 
-    this.makeBox = function(data){
+    this.makeStudentBox = function(data){
         $http
             .post('/getPp', data.studentID)
             .then(function (res) {
 
                 data.image=res.data;
-                ngDialog.open({template: '../views/blocks/rate.html',
+                ngDialog.open({template: '../views/blocks/rateStudent.html',
                     controller: 'rateBox',
                     data : data,showClose: false,
+                        closeByDocument : false
+
+                    }
+                );
+
+            });
+
+    }
+
+    this.makeEmployerBox = function(data){
+        $http
+            .post('/getPp', data.employertID)
+            .then(function (res) {
+
+                data.image=res.data;
+                ngDialog.open({template: '../views/blocks/rateEmployer.html',
+                        controller: 'rateBox',
+                        data : data,showClose: false,
                         closeByDocument : false
 
                     }
@@ -75,11 +95,12 @@ app.service('rate', function(ngDialog, $controller, $http){
 app.controller('rateBox', function($scope, $http, notify){
     console.log($scope.ngDialogData);
 var app = $scope.ngDialogData;
-    $scope.confirm = function(){
+
+    $scope.confirmStudent = function(){
         console.log($scope.rating);
 
         $http
-            .post('/updateApplication', {_id: app._id, status: app.status, rating: $scope.rating})
+            .post('/updateApplication', {_id: app._id, status: app.status, studentRating: $scope.rating})
             .then(function (res, err) {
 
                 console.log(res);
@@ -92,12 +113,36 @@ var app = $scope.ngDialogData;
                     status: "rated "+$scope.rating+ " stars",
                     title: app.jobID.post.role
                 });
-                swal("User Rater.", "The user has been notified.", "success");
+                swal("User Rated.", "The user has been notified.", "success");
 
 
             });
 
-    }
+    };
+
+    $scope.confirmEmployer = function(){
+        console.log($scope.rating);
+
+        $http
+            .post('/updateApplication', {_id: app._id, status: app.status, employerRating: $scope.rating})
+            .then(function (res, err) {
+
+                console.log(res);
+
+
+                notify.go({
+                    type: 'rated',
+                    jobID: app.jobID._id,
+                    userID: app.employerID._id,
+                    status: "rated "+$scope.rating+ " stars",
+                    title: app.jobID.post.role
+                });
+                swal("User Rated.", "The user has been notified.", "success");
+
+
+            });
+
+    };
 
 
 

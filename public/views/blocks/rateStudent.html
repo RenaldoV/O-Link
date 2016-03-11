@@ -1,5 +1,5 @@
 <div class="ratebox">
-    <h2>Rate</h2>
+    <h2>Rate Student</h2>
 
         <img ng-src="data:image/png;base64,{{ngDialogData.image}}" class="img-circle rateImg">
         <h2>{{ngDialogData.studentID.name.name + " " + ngDialogData.studentID.name.surname}}</h2>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="ngdialog-buttons">
-            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-disabled="rateForm.$invalid" ng-click=" confirm(); closeThisDialog('button')")>OK</button>
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-disabled="rateForm.$invalid" ng-click=" confirmStudent(); closeThisDialog('button')")>OK</button>
         </div>
         </form>
 </div>
