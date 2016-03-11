@@ -9,7 +9,7 @@ var booleanValue = passwordHash.verify(Pass, hashValue);
 
  */
 var db = mongoose.connection;
-mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {console.log(e);});
+mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {});
 
 
 
@@ -22,10 +22,14 @@ db.once('open', function (callback) {
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
 var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}}, {strict:false});
+var notificationSchema = new Schema({jobID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},dateTime: {type: Date, default: Date.now}}, {strict:false});
 
-var jobModel = mongoose.model('jobs', idSchema);
+var jobModel = mongoose.model('jobs', jobSchema);
 var appModel = mongoose.model('applications', applicationSchema);
 var userModel = mongoose.model('users', idSchema);
+var notificationModel = mongoose.model('notifications', notificationSchema);
+
+
 
 function getModel(colName){
 	switch(colName){
@@ -35,13 +39,31 @@ function getModel(colName){
 			break;
 		case "users": return userModel;
 			break;
-		default: {var schema = idSchema;
-			schema.set('collection', colName);
-			return mongoose.model(colName, schema);}
+		case "notifications": return notificationModel;
+			break;
+		}
 	}
+
+
+function addNotification(data, callback){
+	insertDocument('notifications',data,function(res,notification){
+		return callback(res);
+	});
 }
 
+function getNotifications(query, callback)
+{
 
+	var col = notificationModel;
+	var data;
+
+	col.find(query).exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
 
 function getStudentApplications(query, callback)
 {
@@ -49,7 +71,7 @@ function getStudentApplications(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').exec(function (err, docs) {
+	col.find(query).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -63,9 +85,39 @@ function getEmployerApplicants(query, callback)
 	var col = appModel;
 	var data;
 
+	col.find(query).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+		data = docs;
+		callback(data);
+	});
+
+}
+
+function getCompletedApplicants(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
 	col.find(query).populate('jobID').populate('studentID').exec(function (err, docs) {
 
 		data = docs;
+
+		callback(data);
+	});
+
+}
+
+function getJobHistory(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
+	col.find(query).populate('jobID').exec(function (err, docs) {
+
+		data = docs;
+		console.log(data);
 		callback(data);
 	});
 
@@ -135,11 +187,11 @@ function getCollectionByArr(colName, field, arr, callback)
 
 	var insert = new col(doc);
 	console.log(insert);
-	insert.save(function (err) {
+	insert.save(function (err, doc) {
 		if(err){console.log("Save failed"); throw err;}
 		else {
-			console.log("Saved!");
-			return callback(true);
+
+			return callback({id: doc._id});
 		}
 	});
 
@@ -262,8 +314,28 @@ module.exports = {
 			return cb(res);
 		});
 	},
+	getCompletedApplicants: function(id, cb){
+		getCompletedApplicants({employerID: id, status:"Completed"}, function(res) {
+			return cb(res);
+		});
+	},
+	getJobHistory: function(id, cb){
+		getJobHistory({studentID: id, status:"Completed"}, function(res) {
+			return cb(res);
+		});
+	},
 	getJobApplicants: function(id, cb){
 		getEmployerApplicants({jobID: id}, function(res) {
+			return cb(res);
+		});
+	},
+	addNotification: function(data, cb){
+		addNotification(data, function(res){
+			return cb(res);
+		});
+	},
+	loadNotifications: function(id, cb){
+		getNotifications( {userID: id, seen: false}, function(res){
 			return cb(res);
 		});
 	}

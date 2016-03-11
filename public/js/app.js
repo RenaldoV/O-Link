@@ -1,11 +1,15 @@
 var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog']);
 
-app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS){
+app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
     if ($cookies.get("user")){
         session.create(JSON.parse($cookies.get("user")));
         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
     }
+
+
+
+
 });
 
 app.controller('jobFeed', function($scope,$http){
@@ -253,12 +257,16 @@ app.controller('navControl',function($scope, authService, session){
 
     if(authService.isAuthenticated()){
         var user = session.user;
+
         if(user.type == "student")
         {
         $scope.getNav= function() {
             return "../views/blocks/studentNav.html";
         }}
         else if(user.type == "employer"){
+
+
+
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";
             }
@@ -352,7 +360,8 @@ console.log($scope.user);
 });
 
 
-app.controller('dashControl',function($scope, authService, session){
+app.controller('dashControl',function($scope, authService, session, rate, $http){
+
 
 
     if(authService.isAuthenticated()){
@@ -363,6 +372,15 @@ app.controller('dashControl',function($scope, authService, session){
                 return "../views/blocks/studentDash.html";
             }}
         else if(user.type == "employer"){
+            $http
+                .post('/loadCompletedApplications', {id: user._id})
+                .then(function (res) {
+
+                    var notifications = res.data;
+                    $.each(notifications, function(key, value){
+                        rate.makeBox(value);
+                    });
+                });
             $scope.getDash= function() {
                 return "../views/blocks/employerDash.html";
             }
@@ -454,7 +472,7 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 });
 
-app.controller('jobCtrl', function($scope, $location,$http, session){
+app.controller('jobCtrl', function($scope, $location,$http, session, notify){
     var temp = $location.url();
 
     var user = session.user;
@@ -476,6 +494,11 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
         });
 
     $scope.apply = function() {
+
+
+
+        if(typeof job.post.requirements == 'undefined')
+            job.post.requirements = [];
         var meets = [job.post.requirements.length];
         if($.inArray(user._id, job.applicants) != -1)
         {
@@ -518,8 +541,18 @@ app.controller('jobCtrl', function($scope, $location,$http, session){
             })
                 .then(function(res) {
 
-
+                    console.log(res);
                     sweetAlert("Application Successful", "", "success");
+                    notify.go({
+                        type: 'application',
+                        jobID: job._id,
+                        userID: job.employerID,
+                        status: 'Made',
+                        title: job.post.role
+                    });
+
+                    if(typeof job.applicants == 'undefined')
+                    job.applicants = [];
                     job.applicants.push(user._id);
 
                 });

@@ -304,9 +304,9 @@ module.exports = function(app) {
 			status: 'Pending'
 
 		};
-		db.insert(application, 'applications', function(err,result){
+		db.insert(application, 'applications', function(ress){
 			db.update({_id: job._id}, 'jobs',job, function(result){
-				res.send(result);
+				res.send(ress);
 			});
 
 		});
@@ -362,4 +362,51 @@ module.exports = function(app) {
 
 
 	});
+
+	app.post('/loadNotifications', function(req,res){
+
+
+		db.loadNotifications(req.body.id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/makeSeen', function(req,res){
+
+		var app = req.body;
+		console.log(app);
+		db.update({_id : app.id}, 'notifications', {seen : true}, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
+	app.post('/loadCompletedApplications', function(req,res){
+
+		var job = req.body;
+
+		db.getCompletedApplicants(job.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/loadJobHistory', function(req,res){
+
+		var student= req.body;
+
+		db.getJobHistory(student.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
 };
