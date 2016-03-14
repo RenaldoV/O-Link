@@ -4747,6 +4747,7 @@ a.text-#000000:hover {
 .navbar-default
 {
 	height: 50px;
+    border-radius: 15px;
 }
 
 .sign-in-btn{
