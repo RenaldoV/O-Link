@@ -65,22 +65,18 @@ module.exports = function(app) {
  
 					db.update({"_id" : tempUser._id},"users",tempUser,
 					function(err,res){
-						done(err,token,user);
+						done(err,token,User);
 					});
 					
 					res.send(tempUser);
 				});
 			},
  			function(token, user, done) {
-				var smtpTransport = nodemailer.createTransport('SMTP', {
-					service: 'Gmail',
-					auth: {
-					  user: 'olinkmailer@gmail.com',
-					  pass: 'mailClient'
-					}
-				});
+
+				var tempUser = user.toJSON();
+				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
 				var mailOptions = {
-					to: user.email,
+					to: tempUser.contact.email,
 					from: 'passwordreset@demo.com',
 					subject: 'Node.js Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -89,13 +85,13 @@ module.exports = function(app) {
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
-					sweetalert('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+					//sweetalert('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
 					done(err, 'done');
 				});
 			} 
 		], function(err) {
 			if (err) return next(err);
-			res.send(false);
+
 		});
 	});
 	
@@ -177,6 +173,7 @@ module.exports = function(app) {
 
 
 		db.addUser(user,function(result){
+			if(result)
 			res.send(result);
 			//console.log(user);
 		});

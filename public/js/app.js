@@ -171,6 +171,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
                     }
                     else if(res.data == true){
                         swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
+                        swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
                         //login
                         authService.login(user.contact).then(function (user) {
 
