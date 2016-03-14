@@ -126,7 +126,10 @@
 						<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@[a-zA-Z0-9]\S*.ac.za" required>
+						<input type="text" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
+					</div>
+					<div class="list-group-item">
+						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@[a-zA-Z0-9]\S*.[a-z]\S*.za" required>
 					</div>
 					<div class="list-group-item">
 						<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
@@ -135,14 +138,15 @@
 						<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
-					</div>
-					<div class="list-group-item">
 						<input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
 					</div>
+
+				</fieldset>
+				<fieldset class="form-group">
+					<label>Password</label>
 					<div class="list-group-item">
 						<div class="input-group">
-						<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
+							<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
 							<input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
 							<span class="input-group-btn">
 								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -161,19 +165,19 @@
 				<fieldset class="form-group">
 					<label>Qualification Info</label>
 					<div class="list-group-item">
-						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" required>
+						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name">
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description" required>
+						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description">
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category" required>
+						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category">
 					</div>
 					<div class="list-group-item">
-						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear" required>
+						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear">
 					</div>
 					<div class="list-group-item">
-						<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA" required>
+						<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
 					</div>
 				</fieldset>
 
@@ -341,7 +345,7 @@
 			});
 			
 			$(".reveal2").mousedown(function() {
-				$(".pwd").get(0).type='text';
+				$(".pwd2").get(0).type='text';
 			})
 			.mouseup(function() {
 				$(".pwd2").get(0).type='password';
@@ -364,7 +368,10 @@
 		//Student form validation
 
 		$('#stuDob').datepicker({
-			startView: 2
+			changeMonth: true,
+			changeYear: true,
+			minDate: new Date(1980, 1 - 1, 1),
+			defaultDate: new Date(1990, 1 - 1, 1)
 		});
 
 </script>
