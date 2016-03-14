@@ -33,6 +33,57 @@ app.controller('jobFeed', function($scope,$http){
         });
 });
 
+app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
+    $scope.submitForm = function() {
+
+        $http({
+            method  : 'POST',
+            url     : '/reset/'+$routeParams.token,
+            data 	: $scope.user,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(res) {
+                {
+                    if(res.data != "error") {
+
+                        alert(res.data);
+
+                        /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+
+                         authService.login($scope.user).then(function (user) {
+
+                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                         $scope.setCurrentUser(user);
+                         $location.url("/dashboard");
+
+
+                         }, function () {
+                         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                         }); */
+                        swal({
+                                title: "success",
+                                text: 'Your Password has been changed successfully.',
+                                type: "success"
+                            },
+                            function(){
+                                //location.reload();
+                            });
+                    }
+                    else
+                        swal({
+                                title: "error",
+                                text: "Password reset token is invalid or has expired. Please try again.",
+                                type: "error"
+                            },
+                            function(){
+                                //location.url("/forgot");
+                            });
+
+
+                }
+            });
+    }
+});
 
 app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
 		$scope.submitForm = function() {
@@ -81,7 +132,6 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                 }
             });
     }
-	
 });
 
 

@@ -38,7 +38,60 @@ module.exports = function(app) {
 	// server routes ===========================================================
 	// db routes
 	// authentication routes
-	
+	app.post('/reset/:token', function(req, res) {
+		var pw;
+		for(var key in req.body)
+		{
+			pw = JSON.parse(key);
+		}
+		//console.log("Token: " + JSON.stringify(req.params.token));
+		//console.log("PW: " + JSON.stringify(pw));
+
+		async.waterfall([
+			function(done) {
+
+
+				db.getOneByReset({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(user) {
+					if (!user) {
+						return res.send('error');
+					}
+		 			var tempUser = user.toJSON();
+		 			tempUser.passwordHash = pw.passwordHash;
+
+		 			tempUser.resetPasswordToken = undefined;
+		 			tempUser.resetPasswordExpires = undefined;
+					db.updateUser({"_id" : tempUser._id},tempUser,
+						function(err,res1){
+							console.log(res1);
+							return res.send(res1);
+							done(err,user);
+						});
+
+					//user.save(function(err) {
+					//	req.logIn(user, function(err) {
+					//		done(err, user);
+					//	});
+					//});
+				});
+			},
+			function(user, done) {
+		 		var tempUser = user.toJSON();
+				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+				var mailOptions = {
+					to: tempUser.contact.email,
+					from: 'passwordreset@demo.com',
+					subject: 'Your password has been changed',
+					text: 'Hello,\n\n' +
+					'This is a confirmation that the password for your account ' + tempUser.contact.email + ' has just been changed.\n'
+				};
+				smtpTransport.sendMail(mailOptions, function(err) {
+		 			done(err, 'done');
+				});
+			}
+		], function(err) {
+			res.redirect('/');
+		});
+	});
 	app.post('/forgot', function(req, res, next) {
 		var user;
 		for(var key in req.body)
@@ -59,7 +112,7 @@ module.exports = function(app) {
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
-					
+					console.log(token);
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
  
@@ -85,7 +138,6 @@ module.exports = function(app) {
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
-					//sweetalert('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
 					done(err, 'done');
 				});
 			} 

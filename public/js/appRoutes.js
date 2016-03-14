@@ -29,11 +29,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/profile', {
 			templateUrl: 'views/profile.html'
 		})
-
+		.when('/reset/:token', {
+			templateUrl: 'views/reset.html'
+		})
 		.when('/forgot', {
 			templateUrl: 'views/forgot.html'
 		})
-
 		.when('/myProfile', {
 			templateUrl: 'views/profile.html'
 		})

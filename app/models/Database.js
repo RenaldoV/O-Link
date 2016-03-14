@@ -130,7 +130,6 @@ function getOne(colName, query , callback)
 	var data;
 
 	col.findOne(query,function (err, docs) {
-
 		data = docs;
 		callback(data);
 	});
@@ -220,11 +219,24 @@ function update(colName, params, setData, cb){
 //update
 
 module.exports = {
-
+	getOneByReset: function(data,cb){
+		getOne('users', data, function(res){
+			return cb(res);
+		});
+	},
 	insert: function(data, table, cb){
 
 		insertDocument(table, data,function(result){
 			return cb(result);
+		});
+	},
+	updateUser: function(query, setData, cb) {
+
+		setData.passwordHash = passwordHash.generate(setData.passwordHash);
+		update("users", query, setData, function (err, res) {
+			console.log(res);
+			return cb(err,res);
+
 		});
 	},
 	update: function(query, table, setData, cb) {
