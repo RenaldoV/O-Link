@@ -247,12 +247,10 @@ module.exports = {
 		});
 	},
 	updateUser: function(query, setData, cb) {
-
+		console.log(query);
 		setData.passwordHash = passwordHash.generate(setData.passwordHash);
 		update("users", query, setData, function (err, res) {
-			console.log(res);
-			return cb(err,res);
-
+			return cb(err,res,setData);
 		});
 	},
 	update: function(query, table, setData, cb) {

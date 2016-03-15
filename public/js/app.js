@@ -34,6 +34,11 @@ app.controller('jobFeed', function($scope,$http){
 });
 
 app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
+
+    if(authService.isAuthenticated())
+        $location.url("/dashboard");
+    $scope.user = {};
+
     $scope.submitForm = function() {
 
         $http({
@@ -46,27 +51,26 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                 {
                     if(res.data != "error") {
 
-                        alert(res.data);
+                        var tempUser = new Object();
+                        tempUser.password = $scope.user.passwordHash;
+                        tempUser.email = res.data.contact.email;
 
-                        /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
-
-                         authService.login($scope.user).then(function (user) {
-
-                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                         $scope.setCurrentUser(user);
-                         $location.url("/dashboard");
-
-
-                         }, function () {
-                         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                         }); */
                         swal({
                                 title: "success",
                                 text: 'Your Password has been changed successfully.',
                                 type: "success"
                             },
                             function(){
-                                //location.reload();
+                                authService.login(tempUser).then(function (user) {
+
+                                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                                    $scope.setCurrentUser(user);
+                                    $location.url("/dashboard");
+
+
+                                }, function () {
+                                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                                });
                             });
                     }
                     else
@@ -86,6 +90,11 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
 });
 
 app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
+
+    if(authService.isAuthenticated())
+        $location.url("/dashboard");
+    $scope.user = {};
+
 		$scope.submitForm = function() {
 
         $http({
@@ -97,18 +106,7 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
             .then(function(res) {
                 {
                     if(res.data) {
-              /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
 
-							authService.login($scope.user).then(function (user) {
-
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $scope.setCurrentUser(user);
-                            $location.url("/dashboard");
-
-
-                        }, function () {
-                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                        }); */
 						swal({
 							title: "success",
 							text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',

@@ -60,18 +60,18 @@ module.exports = function(app) {
 
 		 			tempUser.resetPasswordToken = undefined;
 		 			tempUser.resetPasswordExpires = undefined;
+
 					db.updateUser({"_id" : tempUser._id},tempUser,
-						function(err,res1){
-							console.log(res1);
-							return res.send(res1);
-							done(err,user);
+						function(err, res1, updatedUser){
+							if(!err) {
+								return res.send(updatedUser);
+								done(err, user);
+							}
+							else {
+								return res.send("error");
+							}
 						});
 
-					//user.save(function(err) {
-					//	req.logIn(user, function(err) {
-					//		done(err, user);
-					//	});
-					//});
 				});
 			},
 			function(user, done) {
@@ -89,7 +89,7 @@ module.exports = function(app) {
 				});
 			}
 		], function(err) {
-			res.redirect('/');
+			res.send('error');
 		});
 	});
 	app.post('/forgot', function(req, res, next) {
