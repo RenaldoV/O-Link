@@ -1,4 +1,4 @@
-﻿<div ng-controller="signup">
+﻿<div class="container w-xxl w-auto-xs s" ng-controller="signup">
 	<div class="wrapper text-center">
 		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
@@ -7,7 +7,7 @@
 				<input type="radio" name="type" id="Employerradio" ng-model="user.type" value="employer">Employer
 			</label>
 			<label class="radio-inline">
-				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" checked>Student
+				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" checked>Talent
 			</label>
 		</div><br />
 	</div>
@@ -15,7 +15,9 @@
     <div class="text-danger wrapper text-center">
 
     </div>
+
 	<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()" hidden>
+
 		<div class="list-group list-group-sm">
 				<fieldset class="form-group">
 					<label>Company Info</label>
@@ -53,7 +55,7 @@
 						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber" 
+						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
 						pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
@@ -111,7 +113,7 @@
 					<input type="checkbox" ng-model="agree" required><i></i> Agree the <a href="#">terms and policy</a>
 				</label>
 			</div>
-			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
+			<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Sign up</button>
 		</div>
 </form>
 <form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="submitForm()" hidden>
@@ -124,7 +126,10 @@
 						<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid UCT email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@uct.ac.za" required>
+						<input type="text" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
+					</div>
+					<div class="list-group-item">
+						<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email" pattern="[a-zA-Z0-9]\S*@[a-zA-Z0-9]\S*.[a-z]\S*.za" required>
 					</div>
 					<div class="list-group-item">
 						<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
@@ -133,17 +138,15 @@
 						<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 					</div>
 					<div class="list-group-item">
-						<input name="stuNo" type="text" class="controls form-control no-border" placeholder="Student no." ng-model="user.studentNo" pattern="[\d]{8,8}" required>
-					</div>
-					<div class="list-group-item">
-						<input type="date" class="controls form-control no-border" placeholder="Date of birth" ng-model="user.dob" required>
-					</div>
-					<div class="list-group-item">
 						<input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
 					</div>
+
+				</fieldset>
+				<fieldset class="form-group">
+					<label>Password</label>
 					<div class="list-group-item">
 						<div class="input-group">
-						<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
+							<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
 							<input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
 							<span class="input-group-btn">
 								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
@@ -162,19 +165,19 @@
 				<fieldset class="form-group">
 					<label>Qualification Info</label>
 					<div class="list-group-item">
-						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" required>
+						<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name">
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description" required>
+						<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description">
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category" required>
+						<input placeholder="Qualification Category" class="form-control no-border" ng-model="user.qualification.category">
 					</div>
 					<div class="list-group-item">
-						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear" required>
+						<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear">
 					</div>
 					<div class="list-group-item">
-						<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA" required>
+						<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
 					</div>
 				</fieldset>
 
@@ -186,15 +189,15 @@
 			</div>
 
 
-			<button type="submit" class="btn btn-lg btn-primary btn-block" >Sign up</button>
+			<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign up</button>
 			</form>
 			<div class="line line-dashed"></div>
 			<p class="text-center"><small>Already have an account?</small></p>
-			<a class="btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
+			<a class="goto-signup-btn btn btn-lg btn-default btn-block" href="signIn">Sign in</a>
     <div><p>{{message}}</p></div>
 
 </div>
-  
+
 
 
 
@@ -301,7 +304,7 @@
 		//Student form validation
 		$(function () {
 			$("input[name=stuEmail]").on("invalid", function () {
-				this.setCustomValidity("Please enter a valid UCT email address.");
+				this.setCustomValidity("Please enter a valid SA tertiary institute email address.");
 			});
 			$("input[name=stuEmail]").on("change", function () {
 				this.setCustomValidity("");
@@ -320,19 +323,12 @@
 			$("input[name=stuID]").on("change", function () {
 				this.setCustomValidity("");
 			});
-			$("input[name=stuNo]").on("invalid", function () {
-				this.setCustomValidity("Please enter a valid UCT student number.");			
-			});
-			$("input[name=stuNo]").on("change", function () {
-				this.setCustomValidity("");
-			});
 			$("input[name=stuGender]").on("invalid", function () {
 				this.setCustomValidity("Please enter a valid gender, M/F.");			
 			});
 			$("input[name=stuGender]").on("change", function () {
 				this.setCustomValidity("");
 			});
-			
 			$("input[name=stuPassw]").on("invalid", function () {
 				this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");	
 			});
@@ -349,7 +345,7 @@
 			});
 			
 			$(".reveal2").mousedown(function() {
-				$(".pwd").get(0).type='text';
+				$(".pwd2").get(0).type='text';
 			})
 			.mouseup(function() {
 				$(".pwd2").get(0).type='password';
@@ -370,6 +366,13 @@
 
 		});
 		//Student form validation
+
+		$('#stuDob').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			minDate: new Date(1980, 1 - 1, 1),
+			defaultDate: new Date(1990, 1 - 1, 1)
+		});
 
 </script>
 

@@ -38,7 +38,60 @@ module.exports = function(app) {
 	// server routes ===========================================================
 	// db routes
 	// authentication routes
-	
+	app.post('/reset/:token', function(req, res) {
+		var pw;
+		for(var key in req.body)
+		{
+			pw = JSON.parse(key);
+		}
+		//console.log("Token: " + JSON.stringify(req.params.token));
+		//console.log("PW: " + JSON.stringify(pw));
+
+		async.waterfall([
+			function(done) {
+
+
+				db.getOneByReset({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(user) {
+					if (!user) {
+						return res.send('error');
+					}
+		 			var tempUser = user.toJSON();
+		 			tempUser.passwordHash = pw.passwordHash;
+
+		 			tempUser.resetPasswordToken = undefined;
+		 			tempUser.resetPasswordExpires = undefined;
+					db.updateUser({"_id" : tempUser._id},tempUser,
+						function(err,res1){
+							console.log(res1);
+							return res.send(res1);
+							done(err,user);
+						});
+
+					//user.save(function(err) {
+					//	req.logIn(user, function(err) {
+					//		done(err, user);
+					//	});
+					//});
+				});
+			},
+			function(user, done) {
+		 		var tempUser = user.toJSON();
+				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+				var mailOptions = {
+					to: tempUser.contact.email,
+					from: 'passwordreset@demo.com',
+					subject: 'Your password has been changed',
+					text: 'Hello,\n\n' +
+					'This is a confirmation that the password for your account ' + tempUser.contact.email + ' has just been changed.\n'
+				};
+				smtpTransport.sendMail(mailOptions, function(err) {
+		 			done(err, 'done');
+				});
+			}
+		], function(err) {
+			res.redirect('/');
+		});
+	});
 	app.post('/forgot', function(req, res, next) {
 		var user;
 		for(var key in req.body)
@@ -59,28 +112,24 @@ module.exports = function(app) {
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
-					
+					console.log(token);
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
  
 					db.update({"_id" : tempUser._id},"users",tempUser,
 					function(err,res){
-						done(err,token,user);
+						done(err,token,User);
 					});
 					
 					res.send(tempUser);
 				});
 			},
  			function(token, user, done) {
-				var smtpTransport = nodemailer.createTransport('SMTP', {
-					service: 'Gmail',
-					auth: {
-					  user: 'olinkmailer@gmail.com',
-					  pass: 'mailClient'
-					}
-				});
+
+				var tempUser = user.toJSON();
+				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
 				var mailOptions = {
-					to: user.email,
+					to: tempUser.contact.email,
 					from: 'passwordreset@demo.com',
 					subject: 'Node.js Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -89,13 +138,12 @@ module.exports = function(app) {
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
-					sweetalert('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
 					done(err, 'done');
 				});
 			} 
 		], function(err) {
 			if (err) return next(err);
-			res.send(false);
+
 		});
 	});
 	
@@ -177,6 +225,7 @@ module.exports = function(app) {
 
 
 		db.addUser(user,function(result){
+			if(result)
 			res.send(result);
 			//console.log(user);
 		});
@@ -195,6 +244,7 @@ module.exports = function(app) {
 		var email = req.body;
 		db.getUser(email.email, function(rows){
 			res.send(rows);
+			console.log(rows);
 		});
 
 	});
@@ -223,7 +273,10 @@ module.exports = function(app) {
 
 		fs.readFile(file.path, function (err, data) {
 			// ...
+
+
 			var temp = file.path;
+			console.log(temp);
 			temp = temp.replace("tmp\\", '\\uploads\\');
 			temp = temp +".png";
 			var newPath = __dirname + temp;
@@ -232,9 +285,9 @@ module.exports = function(app) {
 				if(err) throw err;
 
 
-				db.update({_id : id}, 'users', {profilePicture: newPath}, function(err){
+				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
 					if (err) throw err;
-					console.log(newPath);
+					console.log(temp);
 					fs.unlink(file.path);
 					res.send(true);
 				} );
@@ -247,11 +300,22 @@ module.exports = function(app) {
 	app.post('/getPp', function(req, res){
 
 		var path = req.body.profilePicture;
-
+		path = __dirname + path;
+		var def = __dirname + "\\uploads\\default.png";
+		console.log(path);
 		fs.readFile(path, function(err,data){
-			if(err) throw err;
-			var buf = new Buffer(data).toString('base64');
-			res.send(buf);
+			if(err) {
+				fs.readFile(def, function(err,data){
+					if(err) {
+
+					}
+					var buf = new Buffer(data).toString('base64');
+					res.send(buf);
+				});
+			}else {
+				var buf = new Buffer(data).toString('base64');
+				res.send(buf);
+			}
 		});
 
 
@@ -289,9 +353,9 @@ module.exports = function(app) {
 			status: 'Pending'
 
 		};
-		db.insert(application, 'applications', function(err,result){
+		db.insert(application, 'applications', function(ress){
 			db.update({_id: job._id}, 'jobs',job, function(result){
-				res.send(result);
+				res.send(ress);
 			});
 
 		});
@@ -347,4 +411,62 @@ module.exports = function(app) {
 
 
 	});
+
+	app.post('/loadNotifications', function(req,res){
+
+
+		db.loadNotifications(req.body.id, function(rows){
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/makeSeen', function(req,res){
+
+		var app = req.body;
+		console.log(app);
+		db.update({_id : app.id}, 'notifications', {seen : true}, function(err){
+			if (err) throw err;
+
+			res.send(true);
+		} );
+
+	});
+
+	app.post('/loadCompletedApplications', function(req,res){
+
+		var emp = req.body;
+
+		db.getCompletedApplicants(emp.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
+	app.post('/loadCompletedJobs', function(req,res){
+
+		var student = req.body;
+
+		db.getCompletedApplications(student.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+	app.post('/loadJobHistory', function(req,res){
+
+		var student= req.body;
+
+		db.getJobHistory(student.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
+
 };

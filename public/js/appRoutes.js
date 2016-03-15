@@ -29,11 +29,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/profile', {
 			templateUrl: 'views/profile.html'
 		})
-
+		.when('/reset/:token', {
+			templateUrl: 'views/reset.html'
+		})
 		.when('/forgot', {
 			templateUrl: 'views/forgot.html'
 		})
-
 		.when('/myProfile', {
 			templateUrl: 'views/profile.html'
 		})
@@ -46,9 +47,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/myJobPosts', {
 			templateUrl: 'views/blocks/employerJobPosts.html'
 		})
+
 		.when('/applications', {
 		templateUrl: 'views/blocks/applications.html'
-	});
+		})
+
+			.when('/myJobHistory', {
+				templateUrl: 'views/blocks/jobHistory.html'
+			});
 
 
 
