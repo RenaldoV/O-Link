@@ -436,9 +436,9 @@ module.exports = function(app) {
 
 	app.post('/loadCompletedApplications', function(req,res){
 
-		var job = req.body;
+		var emp = req.body;
 
-		db.getCompletedApplicants(job.id, function(rows){
+		db.getCompletedApplicants(emp.id, function(rows){
 
 			res.send(rows);
 		});
@@ -446,6 +446,17 @@ module.exports = function(app) {
 
 	});
 
+	app.post('/loadCompletedJobs', function(req,res){
+
+		var student = req.body;
+
+		db.getCompletedApplications(student.id, function(rows){
+
+			res.send(rows);
+		});
+
+
+	});
 	app.post('/loadJobHistory', function(req,res){
 
 		var student= req.body;

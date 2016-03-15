@@ -21,7 +21,7 @@ db.once('open', function (callback) {
 
 var jobSchema = new Schema({post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
 var idSchema = new Schema({}, {strict:false});
-var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}}, {strict:false});
+var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}, employerID : {type: String, ref: 'users'}}, {strict:false});
 var notificationSchema = new Schema({jobID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},dateTime: {type: Date, default: Date.now}}, {strict:false});
 
 var jobModel = mongoose.model('jobs', jobSchema);
@@ -122,6 +122,22 @@ function getJobHistory(query, callback)
 	});
 
 }
+
+function getCompletedApplications(query, callback)
+{
+
+	var col = appModel;
+	var data;
+
+	col.find(query).populate('jobID').populate('employerID').exec(function (err, docs) {
+
+		data = docs;
+		console.log(data);
+		callback(data);
+	});
+
+}
+
 
 function getOne(colName, query , callback)
 {
@@ -333,6 +349,11 @@ module.exports = {
 	},
 	getJobHistory: function(id, cb){
 		getJobHistory({studentID: id, status:"Completed"}, function(res) {
+			return cb(res);
+		});
+	},
+	getCompletedApplications: function(id, cb){
+		getCompletedApplications({studentID: id, status:"Completed"}, function(res) {
 			return cb(res);
 		});
 	},
