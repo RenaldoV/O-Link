@@ -224,10 +224,33 @@ module.exports = function(app) {
 		}
 
 
-		db.addUser(user,function(result){
-			if(result)
-			res.send(result);
-			//console.log(user);
+
+
+			//add activation token and insert into db
+		crypto.randomBytes(20, function(err, buf) {
+				var token = buf.toString('hex');
+				user.activateToken = token;
+				db.addUser(user,function(result){
+					if(result)
+						res.send(result);
+					if(result != 'email' && !err){
+					var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+					var mailOptions = {
+						to: user.contact.email,
+						from: 'activationt@olink.com',
+						subject: 'Activate your new olink account',
+						text: 'You are receiving this because you (or someone else) have signed up to use olink.\n\n' +
+						'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+						'http://' + req.headers.host + '/activate?token=' + token + '\n\n' +
+						'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+					};
+					smtpTransport.sendMail(mailOptions, function(err) {
+						if(err) throw err;
+					});
+					}
+			});
+
+
 		});
 
 	});
@@ -467,6 +490,15 @@ module.exports = function(app) {
 		});
 
 
+	});
+
+	app.post('/activateUser', function(req,res){
+		var user = req.body;
+		console.log(user);
+		db.activateUser(req.body.token, function(row){
+			console.log(row);
+			res.send(row);
+		});
 	});
 
 };

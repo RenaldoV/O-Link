@@ -51,9 +51,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/applications', {
 		templateUrl: 'views/blocks/applications.html'
 		})
-
 			.when('/myJobHistory', {
 				templateUrl: 'views/blocks/jobHistory.html'
+			})
+			.when('/activate', {
+				templateUrl: 'views/activate.html'
 			});
 
 
