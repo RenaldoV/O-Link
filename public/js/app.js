@@ -57,7 +57,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
 
                         swal({
                                 title: "success",
-                                text: 'Your Password has been changed successfully.',
+                                text: 'Your password has been changed successfully.',
                                 type: "success"
                             },
                             function(){
