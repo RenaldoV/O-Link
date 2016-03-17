@@ -93,6 +93,12 @@
             <div class="list-group-item">
                 <input  type="number" class="controls form-control no-border" width="50px" placeholder="Spots Available" ng-model="job.post.spotsAvailable" required>
             </div>
+            <div class="list-group-item">
+                <input  type="number" class="controls form-control no-border" width="50px" placeholder="Threshold" ng-model="job.post.threshold" required>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" ng-model="job.post.interviewRequired" value="">Interview required</label>
+            </div>
             <button type="submit" class="btn btn-lg btn-primary btn-block" >Post Job</button>
     </div>
     <div><p>{{message}}</p></div>

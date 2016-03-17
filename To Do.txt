@@ -29,7 +29,7 @@
 19. Make an Offer functionality
 20. Decline applicant functionality
 21. Contact Applicant functionality
-22. 
+22. Link Landing page
 
 
 
