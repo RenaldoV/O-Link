@@ -1,6 +1,6 @@
 1. Styling (R)
 2. Splash screen with O-Link logo and loader before entering Dashboard (R)
-3. Link Terms and conditions(Waiting for files)
+3. Link Terms and conditions(Waiting for files) (R)
 4. Style and change signup pages (R)
 5. Check if mailer working correctly (Werk nie op Ronnie se rekenaar nie.)
 6. Notifications funstionality as follows
