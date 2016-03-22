@@ -252,6 +252,7 @@ module.exports = function(app) {
 	app.post('/getJob', function(req,res) {
 
 		var id= req.body;
+		console.log(id);
 
 		db.getById('jobs',id.id, function(rows){
 			res.send(rows);
@@ -461,7 +462,7 @@ module.exports = function(app) {
 
 		var student= req.body;
 
-		db.getJobHistory(student.id, function(rows){
+		db.getJobHistory(req.body, function(rows){
 
 			res.send(rows);
 		});

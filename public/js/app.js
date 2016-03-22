@@ -12,7 +12,7 @@ app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
 });
 
-app.controller('jobFeed', function($scope,$http){
+app.controller('jobFeed', function($scope,$http, $window){
 
     $http({
         method  : 'POST',
@@ -21,6 +21,7 @@ app.controller('jobFeed', function($scope,$http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+
 
                 $scope.getPer = function(cat){
                 if(cat == "Once Off"){
@@ -31,6 +32,9 @@ app.controller('jobFeed', function($scope,$http){
 
             }
         });
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
 });
 
 app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
@@ -155,6 +159,31 @@ app.controller('myJobFeed', function($scope,$http, session){
         });
 });
 
+app.controller('pastJobFeed', function($scope,$http, session,$window){
+
+    var user = session.user;
+
+    $scope.repost = function(id){
+        $window.location.href= '/postJob?repost='+id;
+    };
+    $http({
+        method  : 'POST',
+        url     : '/loadJobHistory',
+        data : {employerID: user._id, status:'Completed'}
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+                $.each($scope.jobs, function(key,value){
+                    if(!value.applicants)
+                    {
+                        value.applicants=[];
+                    }
+                });
+            }
+        });
+});
+
 
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
@@ -237,6 +266,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location){
 
+
+
    if(!authService.isAuthenticated())
         $window.location.href= '/';
     if(session.user.type != 'employer')
@@ -283,6 +314,29 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.job.post = {};
     $scope.job.post.requirements = {};
     $scope.job.employerID = session.user._id;
+
+    var temp = $location.url();
+
+    temp = temp.replace("/postJob?repost=", '');
+    if(temp.trim() != ''){
+
+
+        $http({
+            method  : 'POST',
+            url     : '/getJob',
+            data : {id:temp}
+        })
+            .then(function(res) {
+
+                $scope.job = res.data;
+
+
+
+
+
+            });
+    }
+
     $scope.submitForm = function() {
         
 
@@ -409,7 +463,7 @@ console.log($scope.user);
 });
 
 
-app.controller('dashControl',function($scope, authService, session, rate, $http){
+app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
 
 

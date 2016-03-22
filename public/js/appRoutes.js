@@ -54,6 +54,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 			.when('/myJobHistory', {
 				templateUrl: 'views/blocks/jobHistory.html'
+			})
+			.when('/pastJobPosts', {
+				templateUrl: 'views/blocks/postHistory.html'
 			});
 
 

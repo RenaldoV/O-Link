@@ -7,8 +7,8 @@
             <tr ng-repeat="job in jobs">
                 <td>{{job.post.category}}</td>
                 <td>{{job.post.role}}</td>
-                <td><a href="/applicants?jobID={{job._id}}">{{job.applicants.length}}</a></td>
-
+                <td>{{job.applicants.length}}</a></td>
+                <td><a class="btn btn-primary" href="/applicants?jobID={{job._id}}">Assess Applicants</a></td>
             </tr>
             </tbody>
         </table>

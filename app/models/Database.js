@@ -159,7 +159,7 @@ function getCollection(colName, callback)
 
 	var data;
 
-	col.find({},{'_id': 0},function (err, docs) {
+	col.find({},{},function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -345,8 +345,9 @@ module.exports = {
 			return cb(res);
 		});
 	},
-	getJobHistory: function(id, cb){
-		getJobHistory({studentID: id, status:"Completed"}, function(res) {
+	getJobHistory: function(query, cb){
+		console.log(query);
+		getJobHistory(query, function(res) {
 			return cb(res);
 		});
 	},
