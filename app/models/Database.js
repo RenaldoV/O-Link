@@ -99,7 +99,7 @@ function getCompletedApplicants(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').populate('studentID').exec(function (err, docs) {
+	col.find(query).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, docs) {
 
 		data = docs;
 
@@ -129,7 +129,7 @@ function getCompletedApplications(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').populate('employerID').exec(function (err, docs) {
+	col.find(query).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, docs) {
 
 		data = docs;
 		console.log(data);
