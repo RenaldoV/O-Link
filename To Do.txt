@@ -30,8 +30,7 @@
 //20. Decline applicant functionality(S)
 21. Contact Applicant functionality
 22. Link Landing page
-
-
+23. Check notifications uit, wys daar is notification maar dropdown is empty.
 
 Nuwe Functionality (Los dit tot heel laaste ons charge extra daarvoor)
 

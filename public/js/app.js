@@ -277,6 +277,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 
     //add end date if short term/long term
+    $("#times").hide();
     $("#endDateDiv").hide();
 
     $("#period").change(function(e){
@@ -284,9 +285,13 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(this.value == "Once Off")
         {
             $("#endDateDiv").hide();
-           var input = $('<div>Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
-               ' Leaving time: <input type="time" placeholder="endTime" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
+            $("#times").show();
+           var input = $('<div><input type="text" id="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
+               ' <input type="text" id="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
             $compile(input)($scope);
+
+            $('#startTime').timepicker({ 'step': 15 });
+            $('#endTime').timepicker({ 'step': 15 });
 
         }
         else {
@@ -300,7 +305,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $('#addReq').click(function(e){
 
        var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default" ng-click="close()">x</button></div>').insertBefore(this);
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq btn btn-default" ng-click="close()">Remove requirement <span class="glyphicon glyphicon-minus"></span></button></div>').insertBefore(this);
         reqCount++;
 
         $compile(input)($scope);

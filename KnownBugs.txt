@@ -2,4 +2,3 @@ Signup not redirecting or showing succesfull signup
 
 Edit user not updating after edit
 
-Rate user popup everytime redirects to dashboard

@@ -1,5 +1,5 @@
 ﻿<div class="container w-xxl w-auto-xs s" ng-controller="signup">
-	<div class="wrapper text-center">
+	<div class="type wrapper text-center">
 		<strong>Sign up to get started</strong><br/><br />
 		<strong>Sign up as:</strong>
 		<div class="list-group list-group-sm segmented-button">
@@ -19,93 +19,83 @@
 	<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()" hidden>
 
 		<div class="list-group list-group-sm">
-				<fieldset class="form-group">
-					<label>Company Info</label>
-					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" required>
-					</div>
-					<div class="list-group-item">
-						<input list="BC" name="cat" class="form-control no-border" placeholder="Choose business category or type own" ng-model="user.company.businessCategory" required>
-					</div>
-					<datalist id="BC">
-						<option value="Coach">
-						<option value="Delivery	Person">
-						<option value="Tutor">
-						<option value="Sales rep">
-						<option value="Model">
-						<option value="Waiter(res)">
-					</datalist>
-					<div class="list-group-item">
-						<input name="RegNo" type="text" class="form-control no-border" placeholder="Company reg number YYYY/NNNNNN/NN" ng-model="user.company.regNo" pattern="((19|20)[\d]{2}/[\d]{6}/[\d]{2})">
-					</div>
-					<div class="list-group-item">
-						<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" required>
-					</div>
-					<div class="list-group-item">
-						<!--Link google location API en gebruik location auto complete-->
-						<input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.company.location" required>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label>Contact Info</label>
-					<div class="list-group-item">
-						<input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
-					</div>
-					<div class="list-group-item">
-						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
-					</div>
-					<div class="list-group-item">
-						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
-						pattern="[\d]{13,13}"   required>
-					</div>
-					<div class="list-group-item">
-						<input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" required>
-					</div>
-					<div class="list-group-item">
-						<input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
-					</div>
-					<div class="list-group-item">
-						<input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
-					</div>
-					<div class="list-group-item">
-						<div class="input-group">
+			<fieldset class="form-group">
+				<label>Contact Info</label>
+				<div class="list-group-item">
+					<input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+				</div>
+				<div class="list-group-item">
+					<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+				</div>
+				<div class="list-group-item">
+					<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
+						   pattern="[\d]{13,13}"   required>
+				</div>
+				<div class="list-group-item">
+					<input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
+				</div>
+				<div class="list-group-item">
+					<input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+				</div>
+				<div class="list-group-item">
+					<div class="input-group">
 						<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
-							<input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+						<input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
 							<span class="input-group-btn">
 								<button class="btn btn-default reveal no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 							</span>
-						</div>
 					</div>
-					<div class="list-group-item">
-						<div class="input-group">
-							<input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
+				</div>
+				<div class="list-group-item">
+					<div class="input-group">
+						<input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
 							<span class="input-group-btn">
 								<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 							</span>
-						</div>
 					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<label>Alternate contact info</label>
-					<div class="list-group-item">
-						<input placeholder="Alternate contact name" class="form-control no-border" ng-model="user.alternate.name" required>
-					</div>
-					<div class="list-group-item">
-						<input placeholder="Alternate contact surname" class="form-control no-border" ng-model="user.alternate.surname" required>
-					</div>
-					<div class="list-group-item">
-						<input name="empAdContact" placeholder="Alternate contact number" class="form-control no-border" ng-model="user.alternate.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
-					</div>
-				</fieldset>
+				</div>
+			</fieldset>
+
+			<div class="type1 wrapper text-center">
+				<strong>Employer type</strong>
+				<div class="list-group list-group-sm segmented-button">
+					<label class="radio-inline">
+						<input type="radio" name="type" id="Individualradio" ng-model="user.employerType" value="Individual" checked>Individual
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="type" id="Companyradio" ng-model="user.employerType" value="Company" >Company
+					</label>
+				</div>
+			</div>
+
+			<div class="companysection form-group" hidden>
+				<label>Company Info</label>
+				<div class="list-group-item">
+					<input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
+				</div>
+				<div class="list-group-item">
+					<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
+				</div>
+				<div class="list-group-item">
+					<!--Link google location API en gebruik location auto complete-->
+					<input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.company.location" >
+				</div>
+				<div class="list-group-item">
+					<input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" >
+				</div>
+			</div>
+
+
 				<fieldset class="form-group">
 					<label>Other info</label>
 					<div class="list-group-item">
-						<input list="how" placeholder="How did you hear about us?" class="form-control no-border" ng-model="user.suggested">
-						<datalist id="how">
-							<option value="Friend">
-							<option value="Recruitment company">
-							<option value="Family">
-						</datalist>
+						<select class="form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+							<option value="" selected disabled>How did you hear about us?</option>
+							<option value="Word of mouth">Word of mouth</option>
+							<option value="Social media">Social media</option>
+							<option value="Academic institution">Academic institution</option>
+							<option value="Other">Other</option>
+						</select>
 					</div>
 				</fieldset>
 				<div class="checkbox m-b-md m-t-none">
@@ -118,7 +108,7 @@
 </form>
 <form id="studentSUForm" class="list-group list-group-sm form-validation" name="studentForm" ng-submit="submitForm()" hidden>
 				<fieldset class="form-group">
-					<label>Student Info</label>
+					<label>Talent Info</label>
 					<div class="list-group-item">
 						<input type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" required>
 					</div>
@@ -211,11 +201,26 @@
 				$("#Studentradio").prop("checked", false);
 				$("#employerSUForm").show();
 				$("#studentSUForm").hide();
+				$(".type").hide();
 			});
 			$("#Studentradio").click(function () {
 				$("#Employerradio").prop("checked", false);
 				$("#studentSUForm").show();
 				$("#employerSUForm").hide();
+				$(".type").hide();
+			});
+		});
+
+		$(function () {
+			$("#Individualradio").click(function () {
+				$("#Companyradio").prop("checked", false);
+				$(".companysection").hide();
+				$(".type1").hide();
+			});
+			$("#Companyradio").click(function () {
+				$("#Individualradio").prop("checked", false);
+				$(".companysection").show();
+				$(".type1").hide();
 			});
 		});
 		//Script for changing between relevant forms
