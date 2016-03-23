@@ -3,7 +3,8 @@
     <li ng-repeat="noti in notifications">
         <a ng-if="noti.type == 'rated' && userType =='student'" ng-click="makeSeen(noti._id)" href="/myJobHistory"><small>Completed job <b>{{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'rated' && userType =='employer'" ng-click="makeSeen(noti._id)" href=""><small>Completed job <b>{{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
-        <a ng-if="noti.type == 'status change'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>Application for<b>{{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
+        <a ng-if="noti.type == 'status change' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>Application for<b>{{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
+        <a ng-if="noti.type == 'status change' && userType =='student'" ng-click="makeSeen(noti._id)" href="applications"><small>Application for<b>{{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
     </li>
 
 </ul>
