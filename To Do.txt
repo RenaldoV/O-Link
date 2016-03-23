@@ -25,7 +25,7 @@
 16. Add Threshold and interview required to Post Job Form. (R)
 //17. Scrollable list of aplicants for specific job, clikcing on a specific applicant will redirect to Applicant CV Page with all applicant details
 	And possibly in the future a link to download applicant's  CV.
-18. Contact Applicant and Make an Offer buttons become visible when applicant has been shortlisted(Green dot next to applicant's name)
+//18. Contact Applicant and Make an Offer buttons become visible when applicant has been shortlisted(Green dot next to applicant's name)
 19. Make an Offer functionality(S)?
 //20. Decline applicant functionality(S)
 21. Contact Applicant functionality
