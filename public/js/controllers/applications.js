@@ -123,15 +123,19 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 app.controller('jobHistory', function ($scope,$http,cacheUser, session) {
 
     var user = cacheUser.user;
+    if(!user){
+        user = session.user;
+    }
     $scope.user = user;
 
 
 
     $http
-        .post('/loadJobHistory', {id : user._id})
+        .post('/loadJobHistory', {studentID : user._id})
         .then(function (res) {
 
             $scope.applications = res.data;
+            console.log($scope.applications);
             if($scope.applications.length == 0)
             {
                 $scope.message = "You haven't completed any jobs.";

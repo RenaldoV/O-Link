@@ -114,7 +114,7 @@ function getJobHistory(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').exec(function (err, docs) {
+	col.find(query).populate('jobID').where('status').equals('Completed').exec(function (err, docs) {
 
 		data = docs;
 		console.log(data);

@@ -100,7 +100,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/updateApplication', {_id: app._id, status: app.status, studentRating: $scope.rating})
+            .post('/updateApplication', {_id: app._id, status: app.status, studentRating: $scope.rating, commentToStudent: $scope.comment})
             .then(function (res, err) {
 
                 console.log(res);
@@ -111,7 +111,8 @@ var app = $scope.ngDialogData;
                     jobID: app.jobID._id,
                     userID: app.studentID._id,
                     status: "rated "+$scope.rating+ " stars",
-                    title: app.jobID.post.role
+                    title: app.jobID.post.role,
+                    comment: $scope.comment
                 });
                 swal("User Rated.", "The user has been notified.", "success");
 
@@ -124,7 +125,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/updateApplication', {_id: app._id, status: app.status, employerRating: $scope.rating})
+            .post('/updateApplication', {_id: app._id, status: app.status, employerRating: $scope.rating, commentToEmployer: $scope.comment})
             .then(function (res, err) {
 
                 console.log(res);
@@ -135,7 +136,8 @@ var app = $scope.ngDialogData;
                     jobID: app.jobID._id,
                     userID: app.employerID._id,
                     status: "rated "+$scope.rating+ " stars",
-                    title: app.jobID.post.role
+                    title: app.jobID.post.role,
+                    comment: $scope.comment
                 });
                 swal("User Rated.", "The user has been notified.", "success");
 
