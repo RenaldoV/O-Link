@@ -30,6 +30,12 @@ var userModel = mongoose.model('users', idSchema);
 var notificationModel = mongoose.model('notifications', notificationSchema);
 
 
+function activate(token, callback){
+	userModel.findOneAndUpdate({activateToken: token},{$set:{active: true},$unset: {activateToken:""}}, function(err,doc){
+		if(err) console.log(err);
+		callback(doc);
+	} );
+}
 
 function getModel(colName){
 	switch(colName){
@@ -369,6 +375,12 @@ module.exports = {
 	loadNotifications: function(id, cb){
 		getNotifications( {userID: id, seen: false}, function(res){
 			return cb(res);
+		});
+	},
+	activateUser: function(token, cb){
+
+		activate(token, function(doc){
+			cb(doc);
 		});
 	}
 

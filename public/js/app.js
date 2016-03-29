@@ -204,6 +204,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                 {
 
                     if(res.data) {
+
                         swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
 
                         authService.login($scope.user).then(function (user) {
@@ -218,7 +219,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                         });
 
                     }
-                    else sweetAlert("Incorrect login details", "Please try again.", "error");
+                    else sweetAlert("Incorrect login details, or your account hasn't been activated", "Please try again.", "error");
                 }
             });
     }
@@ -234,6 +235,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	$scope.submitForm = function() {
 
 		var user = $scope.user;
+        user.active = false;
 		$http({
 			method  : 'POST',
 			url     : '/signup',
@@ -246,18 +248,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 					if(res.data == "email"){
                         swal("User exists", "The email you have entered already has an account associated with it.", "error");
                     }
-                    else if(res.data == true){
-                        swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
-                        swal({   title: "Welcome",   type: "success",   timer: 2000,   showConfirmButton: false });
-                        //login
-                        authService.login(user.contact).then(function (user) {
-
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $scope.setCurrentUser(user);
-                            $window.location.href= '/dashboard';
-
-
-                        });
+                    else if(res.data){
+                        swal("Account created", "An activation email has been sent to you. Please follow the link enclosed to activate your new profile", "success");
+                        $window.location.href= '/';
                         }
                     }
 			});

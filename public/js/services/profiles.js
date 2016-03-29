@@ -259,3 +259,38 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
 
 
 });
+
+app.controller('activateProfileControl', function ($scope,$http,$location, authService, $rootScope, AUTH_EVENTS) {
+
+    var temp = $location.url();
+
+    temp = temp.replace("/activate?token=", '');
+    var token={};token.token = temp;
+
+    $http
+        .post('/activateUser', token)
+        .then(function (res, err) {
+
+            if(!res.data){
+                sweetAlert("Invalid token", "Please follow the link in the email you recieved", "error");
+            }
+            else {
+                swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+                var userr = res.data;
+                authService.login(userr.contact).then(function (user) {
+
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                    $scope.setCurrentUser(user);
+                    $location.url("/dashboard");
+
+
+                }, function () {
+                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                });
+            }
+
+
+        });
+
+
+});
