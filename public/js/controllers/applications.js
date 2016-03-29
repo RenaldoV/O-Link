@@ -25,12 +25,32 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     changeStatus(app,oldstat, $scope, $http,notify,app.employerID);
                 };
 
-                $scope.isDisabled = function(status){
-                    if(status != "Provisionally accepted"){
+                $scope.isDeclined = function(status){
+                    if(status == "Declined"){
                         return true;
                     }
                     return false;
                 };
+                $scope.isProv = function(status){
+                    if(status == "Provisionally accepted"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isPending = function(status){
+                    if(status == "Pending"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isConfirmed = function(status){
+                    if(status == "Confirmed"){
+                        return true;
+                    }
+                    return false;
+                };
+
+
                 if($scope.applications.length == 0)
                 {
                     $scope.message = "You haven't applied for any jobs.";
@@ -57,6 +77,9 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     }
                     return true;
                 };
+
+
+
                 $scope.changeStatus = function(app, oldstat) {
 
                     changeStatus(app,oldstat, $scope, $http, notify, app.studentID._id);
@@ -100,15 +123,19 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 app.controller('jobHistory', function ($scope,$http,cacheUser, session) {
 
     var user = cacheUser.user;
+    if(!user){
+        user = session.user;
+    }
     $scope.user = user;
 
 
 
     $http
-        .post('/loadJobHistory', {id : user._id})
+        .post('/loadJobHistory', {studentID : user._id})
         .then(function (res) {
 
             $scope.applications = res.data;
+            console.log($scope.applications);
             if($scope.applications.length == 0)
             {
                 $scope.message = "You haven't completed any jobs.";
@@ -148,6 +175,30 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.changeStatus = function (app, oldstat) {
 
                     changeStatus(app, oldstat, $scope, $http, notify, app.studentID._id);
+                };
+                $scope.isDeclined = function(status){
+                    if(status == "Declined"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isProv = function(status){
+                    if(status == "Provisionally accepted"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isPending = function(status){
+                    if(status == "Pending"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isConfirmed = function(status){
+                    if(status == "Confirmed"){
+                        return true;
+                    }
+                    return false;
                 };
 
             });

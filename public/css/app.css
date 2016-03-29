@@ -184,7 +184,12 @@ a:hover .caret-white {
 
 .form-control {
   border-color: #cfdadd;
-  border-radius: 2px;
+  border-radius: 4px;
+}
+
+.controls {
+  border-color: #cfdadd;
+  border-radius: 4px;
 }
 
 .form-control,
@@ -4741,19 +4746,25 @@ a.text-#000000:hover {
 
 .banner-logo
 {
-	height: 100px;
+	height: 150px;
 }
 
-.navbar-default
-{
-	height: 50px;
-    border-radius: 15px;
-}
 
 .sign-in-btn{
 	background-color: #33B6CC;
 	border: none;
 	transition: background .4s ease-in
+}
+
+.post-job-btn{
+  background-color: #33B6CC;
+  border: none;
+  transition: background .4s ease-in
+}
+
+.post-job-btn:hover{
+  background-color: #00b488;
+  transition: background .4s ease-in
 }
 
 .sign-in-btn:hover{
@@ -4764,4 +4775,18 @@ a.text-#000000:hover {
 .goto-signup-btn{
 	border: none;
 	transition: background .4s ease-in
+}
+
+.navbar.transparent.navbar-default {
+  border-width: 0px;
+  -webkit-box-shadow: 0px 0px;
+  box-shadow: 0px 0px;
+  background-color: rgba(0,0,0,0.0);
+  background-image: -webkit-gradient(linear, 50.00% 0.00%, 50.00% 100.00%, color-stop( 0% , rgba(0,0,0,0.00)),color-stop( 100% , rgba(0,0,0,0.00)));
+  background-image: -webkit-linear-gradient(270deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+  background-image: linear-gradient(180deg,rgba(0,0,0,0.00) 0%,rgba(0,0,0,0.00) 100%);
+}
+
+select {
+  padding: 0px;
 }

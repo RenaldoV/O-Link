@@ -12,7 +12,7 @@ app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
 });
 
-app.controller('jobFeed', function($scope,$http){
+app.controller('jobFeed', function($scope,$http, $window){
 
     $http({
         method  : 'POST',
@@ -21,6 +21,7 @@ app.controller('jobFeed', function($scope,$http){
         .then(function(res) {
             {
                 $scope.jobs = res.data;
+
 
                 $scope.getPer = function(cat){
                 if(cat == "Once Off"){
@@ -31,9 +32,17 @@ app.controller('jobFeed', function($scope,$http){
 
             }
         });
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
 });
 
 app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
+
+    if(authService.isAuthenticated())
+        $location.url("/dashboard");
+    $scope.user = {};
+
     $scope.submitForm = function() {
 
         $http({
@@ -46,27 +55,26 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                 {
                     if(res.data != "error") {
 
-                        alert(res.data);
+                        var tempUser = new Object();
+                        tempUser.password = $scope.user.passwordHash;
+                        tempUser.email = res.data.contact.email;
 
-                        /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
-
-                         authService.login($scope.user).then(function (user) {
-
-                         $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                         $scope.setCurrentUser(user);
-                         $location.url("/dashboard");
-
-
-                         }, function () {
-                         $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                         }); */
                         swal({
                                 title: "success",
-                                text: 'Your Password has been changed successfully.',
+                                text: 'Your password has been changed successfully.',
                                 type: "success"
                             },
                             function(){
-                                //location.reload();
+                                authService.login(tempUser).then(function (user) {
+
+                                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                                    $scope.setCurrentUser(user);
+                                    $location.url("/dashboard");
+
+
+                                }, function () {
+                                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                                });
                             });
                     }
                     else
@@ -86,6 +94,11 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
 });
 
 app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
+
+    if(authService.isAuthenticated())
+        $location.url("/dashboard");
+    $scope.user = {};
+
 		$scope.submitForm = function() {
 
         $http({
@@ -97,18 +110,7 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
             .then(function(res) {
                 {
                     if(res.data) {
-              /*           swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
 
-							authService.login($scope.user).then(function (user) {
-
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $scope.setCurrentUser(user);
-                            $location.url("/dashboard");
-
-
-                        }, function () {
-                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                        }); */
 						swal({
 							title: "success",
 							text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
@@ -143,6 +145,31 @@ app.controller('myJobFeed', function($scope,$http, session){
         method  : 'POST',
         url     : '/myJobFeeder',
         data : {id: user._id}
+    })
+        .then(function(res) {
+            {
+                $scope.jobs = res.data;
+                $.each($scope.jobs, function(key,value){
+                    if(!value.applicants)
+                    {
+                        value.applicants=[];
+                    }
+                });
+            }
+        });
+});
+
+app.controller('pastJobFeed', function($scope,$http, session,$window){
+
+    var user = session.user;
+
+    $scope.repost = function(id){
+        $window.location.href= '/postJob?repost='+id;
+    };
+    $http({
+        method  : 'POST',
+        url     : '/loadJobHistory',
+        data : {employerID: user._id, status:'Completed'}
     })
         .then(function(res) {
             {
@@ -232,6 +259,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location){
 
+
+
    if(!authService.isAuthenticated())
         $window.location.href= '/';
     if(session.user.type != 'employer')
@@ -241,6 +270,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 
     //add end date if short term/long term
+    $("#times").hide();
     $("#endDateDiv").hide();
 
     $("#period").change(function(e){
@@ -248,9 +278,13 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(this.value == "Once Off")
         {
             $("#endDateDiv").hide();
-           var input = $('<div>Start time: <input type="time" placeholder="beginTime" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
-               ' Leaving time: <input type="time" placeholder="endTime" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
+            $("#times").show();
+           var input = $('<div><input type="text" id="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
+               ' <input type="text" id="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
             $compile(input)($scope);
+
+            $('#startTime').timepicker({ 'step': 15 });
+            $('#endTime').timepicker({ 'step': 15 });
 
         }
         else {
@@ -264,7 +298,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $('#addReq').click(function(e){
 
        var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq" class="btn btn-default" ng-click="close()">x</button></div>').insertBefore(this);
+            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq btn btn-default" ng-click="close()">Remove requirement <span class="glyphicon glyphicon-minus"></span></button></div>').insertBefore(this);
         reqCount++;
 
         $compile(input)($scope);
@@ -278,6 +312,29 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.job.post = {};
     $scope.job.post.requirements = {};
     $scope.job.employerID = session.user._id;
+
+    var temp = $location.url();
+
+    temp = temp.replace("/postJob?repost=", '');
+    if(temp.trim() != ''){
+
+
+        $http({
+            method  : 'POST',
+            url     : '/getJob',
+            data : {id:temp}
+        })
+            .then(function(res) {
+
+                $scope.job = res.data;
+
+
+
+
+
+            });
+    }
+
     $scope.submitForm = function() {
         
 
@@ -404,7 +461,7 @@ console.log($scope.user);
 });
 
 
-app.controller('dashControl',function($scope, authService, session, rate, $http){
+app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
 
 

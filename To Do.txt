@@ -1,0 +1,41 @@
+1. Styling (R)
+2. Splash screen with O-Link logo and loader before entering Dashboard (R)
+3. Link Terms and conditions(Waiting for files) (R)
+4. Style and change signup pages (R)
+5. Check if mailer working correctly (Werk nie op Ronnie se rekenaar nie.)
+6. Notifications funstionality as follows(S)
+	- Notification everytime 
+		//- Student application status changes (Dropdown with links to apllication status tab, Send email notification)
+		//- Student or Employer gets rated (Dropdown with link to Profile page, Send Email notification)
+		- A Student applies for a job, or one of the thresholds have been met. 
+			EG. 2 Spots available & Threshold is 5 applications. (10 students will be allowed to apply)
+			if 5 applications have been submitted employer should receive notification that first threshold has been filled.
+		//- Sum notifications and show all correct notifications in dropdown.
+		//- Remove addressed notifications
+//7. Employer should be able to comment on rating of student(S)
+8. Make open job offers list, scrollable and clickable.(??)
+9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
+10. Add color coded dots next to applications or student to signify current status(S)
+11. Edit Job offer and password verification to confirm
+	- Notification to student about change and stating they have 24 hours to confirm otherwise application will be declined)
+12. Remove job offer with confirmation
+//13. Assess applicants button on job offers(S)
+14. Password Verification on edit profile details (R)
+//15. Past job offers page, clicking on past job offer redirects to post new job offer with form populated with old job offer details(S)
+16. Add Threshold and interview required to Post Job Form. (R)
+//17. Scrollable list of aplicants for specific job, clikcing on a specific applicant will redirect to Applicant CV Page with all applicant details
+	And possibly in the future a link to download applicant's  CV.
+//18. Contact Applicant and Make an Offer buttons become visible when applicant has been shortlisted(Green dot next to applicant's name)
+19. Make an Offer functionality(S)?
+//20. Decline applicant functionality(S)
+21. Contact Applicant functionality
+22. Link Landing page
+23. Check notifications uit, wys daar is notification maar dropdown is empty.
+
+Nuwe Functionality (Los dit tot heel laaste ons charge extra daarvoor)
+
+1. Google location api (Kry quote oor hoeveel dit gan kos.)
+2. Email Notifications (Options to turn off email notifications)
+3. Upload CV
+4. Save Job before posting to website for later editing and posting to website
+

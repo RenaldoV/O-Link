@@ -55,4 +55,19 @@
     .mouseout(function() {
       $(".pwd3").get(0).type='password';
     });
+
+    $("input[name=stuPassw]").on("invalid", function () {
+        this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");
+    });
+    $("input[name=stuPassw]").on("change", function () {
+        this.setCustomValidity("");
+    });
+
+    $("input[name=stuRePassw]").on("blur", function () {
+        if($("input[name=stuPassw]").val() != $(this).val())
+            this.setCustomValidity("Passwords do not match.");
+    });
+    $("input[name=stuRePassw]").on("change", function () {
+        this.setCustomValidity("");
+    });
 </script>

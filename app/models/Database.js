@@ -105,7 +105,7 @@ function getCompletedApplicants(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').populate('studentID').exec(function (err, docs) {
+	col.find(query).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, docs) {
 
 		data = docs;
 
@@ -120,7 +120,7 @@ function getJobHistory(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').exec(function (err, docs) {
+	col.find(query).populate('jobID').where('status').equals('Completed').exec(function (err, docs) {
 
 		data = docs;
 		console.log(data);
@@ -135,7 +135,7 @@ function getCompletedApplications(query, callback)
 	var col = appModel;
 	var data;
 
-	col.find(query).populate('jobID').populate('employerID').exec(function (err, docs) {
+	col.find(query).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, docs) {
 
 		data = docs;
 		console.log(data);
@@ -165,7 +165,7 @@ function getCollection(colName, callback)
 
 	var data;
 
-	col.find({},{'_id': 0},function (err, docs) {
+	col.find({},{},function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -253,12 +253,10 @@ module.exports = {
 		});
 	},
 	updateUser: function(query, setData, cb) {
-
+		console.log(query);
 		setData.passwordHash = passwordHash.generate(setData.passwordHash);
 		update("users", query, setData, function (err, res) {
-			console.log(res);
-			return cb(err,res);
-
+			return cb(err,res,setData);
 		});
 	},
 	update: function(query, table, setData, cb) {
@@ -353,8 +351,9 @@ module.exports = {
 			return cb(res);
 		});
 	},
-	getJobHistory: function(id, cb){
-		getJobHistory({studentID: id, status:"Completed"}, function(res) {
+	getJobHistory: function(query, cb){
+		console.log(query);
+		getJobHistory(query, function(res) {
 			return cb(res);
 		});
 	},

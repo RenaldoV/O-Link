@@ -55,7 +55,7 @@
                 <thead><th>Category</th><th>Role</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="job in jobs">
+                <tr  ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
                   <td>{{job.post.category}}</td>
                   <td>{{job.post.role}}</td>
                   <td>R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
