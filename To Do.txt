@@ -13,9 +13,9 @@
 		//- Sum notifications and show all correct notifications in dropdown.
 		//- Remove addressed notifications
 //7. Employer should be able to comment on rating of student(S)
-8. Make open job offers list, scrollable and clickable.(??) // Job offers block op page moet scrollable wees, en jy moet op 'n job kan click.
-9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
-10. Add color coded dots next to applications or student to signify current status(S)
+8. Make open job offers list, scrollable and clickable.(??) // Job offers block op page moet scrollable wees, en jy moet op 'n job kan click. watter page?
+//9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
+//10. Add color coded dots next to applications or student to signify current status(S)
 11. Edit Job offer and password verification to confirm
 	- Notification to student about change and stating they have 24 hours to confirm otherwise application will be declined)
 12. Remove job offer with confirmation

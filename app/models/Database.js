@@ -187,14 +187,14 @@ function getCollectionBy(colName, query, callback)
 
 }
 
-function getCollectionByArr(colName, field, arr, callback)
+function getCollectionByArr(colName, field, arr, arr2, callback)
 {
 
 	var col = getModel(colName);
 	var data;
 
 
-	col.find().where(field).in(arr).exec(function (err, docs) {
+	col.find().where(field).in(arr).where('post.timePeriod').in(arr2).exec(function (err, docs) {
 
 		data = docs;
 		callback(data);
@@ -295,8 +295,8 @@ module.exports = {
 			return cb(res);
 		});
 	},
-	getByArr: function(table, field, arr, cb){
-		getCollectionByArr(table, field, arr, function(res){
+	getByArr: function(table, field, arr, arr2, cb){
+		getCollectionByArr(table, field, arr, arr2, function(res){
 			return cb(res);
 		});
 	},

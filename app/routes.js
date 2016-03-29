@@ -172,7 +172,8 @@ module.exports = function(app) {
 
 
 
-		db.getByArr("jobs", 'post.category', temp, function(rows){
+		db.getByArr("jobs", 'post.category', temp.categories, temp.periods, function(rows){
+
 
 			res.send(rows);
 		});

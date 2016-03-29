@@ -519,9 +519,13 @@ app.controller('goBrowse',function($scope, $location){
 
 
     $scope.categories = ["Coach", "Tutor", "Delivery Person", "Sales Rep", "Model", "Waiter(res)", "Other"];
+    $scope.timePeriods = ["Once Off", "Short Term", "Long Term"];
+
     $scope.selection = [];
+    $scope.selectionP = [];
+
     $scope.toggleSelection = function(category) {
-        console.log(category);
+
         var idx = $scope.selection.indexOf(category);
 
         // is currently selected
@@ -535,18 +539,39 @@ app.controller('goBrowse',function($scope, $location){
         }
     };
 
+    $scope.toggleSelectionP = function(category) {
+
+        var idx = $scope.selectionP.indexOf(category);
+
+        // is currently selected
+        if (idx > -1) {
+            $scope.selectionP.splice(idx, 1);
+        }
+
+        // is newly selected
+        else {
+            $scope.selectionP.push(category);
+        }
+    };
+
     $scope.submit = function () {
 
-        var temp = JSON.stringify($scope.selection)
+        var temp = JSON.stringify($scope.selection);
+        var temp2 = JSON.stringify($scope.selectionP);
 
-        console.log(temp);
+
         temp = temp.replace(/,/g, '%');
         temp = temp.replace(/"/g, '');
         temp = temp.replace(/ /g, '_');
         temp = temp.slice(1, -1);
 
-        console.log(temp);
-       $location.path('/browseJobs').search('categories', temp);
+        temp2 = temp2.replace(/,/g, '%');
+        temp2 = temp2.replace(/"/g, '');
+        temp2 = temp2.replace(/ /g, '_');
+        temp2 = temp2.slice(1, -1);
+
+
+       $location.path('/browseJobs').search('categories', temp).search('timePeriods', temp2 );
 
     }
 
@@ -555,18 +580,24 @@ app.controller('goBrowse',function($scope, $location){
 app.controller('jobBrowser',function($scope, $location, $http){
 
 
+    $scope.sortBy = 0;
     var temp = $location.url();
+    var temp = temp.split("&");
+    temp[0] = temp[0].replace("/browseJobs?categories=", '');
+    temp[0] = temp[0].replace(/_/g, ' ');
+    var arr = temp[0].split("%25");
 
-    temp = temp.replace("/browseJobs?categories=", '');
-    temp = temp.replace(/_/g, ' ');
-    var arr = temp.split("%25");
-
-
+    var arr2 = [];
+    if(temp[1]){
+        temp[1] = temp[1].replace("timePeriods=", '');
+        temp[1] = temp[1].replace(/_/g, ' ');
+        arr2 = temp[1].split("%25");
+    }
     //get the jobs
     $http({
         method  : 'POST',
         url     : '/jobBrowse',
-        data : arr
+        data : {'categories': arr, 'periods' : arr2}
     })
         .then(function(res) {
             {
@@ -579,6 +610,50 @@ app.controller('jobBrowser',function($scope, $location, $http){
                 }
             }
         });
+
+    $scope.sort = function(by){
+        if(by == 0){
+           
+            $scope.jobs.sort(comparePostDate);
+        }
+        else
+        if(by == 1){
+
+            $scope.jobs.sort(comparePeriod);
+        }
+        else
+        if(by == 2){
+
+            $scope.jobs.sort(compareCategories);
+        }
+
+    };
+
+    function comparePostDate(a,b) {
+        if (a.post.postDate > b.post.postDate)
+            return -1;
+        else if (a.post.postDate < b.post.postDate)
+            return 1;
+        else
+            return 0;
+    }
+    function comparePeriod(a,b) {
+        if (a.post.timePeriod < b.post.timePeriod)
+            return -1;
+        else if (a.post.timePeriod > b.post.timePeriod)
+            return 1;
+        else
+            return 0;
+    }
+    function compareCategories(a,b) {
+        if (a.post.category < b.post.category)
+            return -1;
+        else if (a.post.category > b.post.category)
+            return 1;
+        else
+            return 0;
+    }
+
 
 });
 
