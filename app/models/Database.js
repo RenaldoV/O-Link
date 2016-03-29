@@ -306,7 +306,7 @@ module.exports = {
 				user.passwordHash = passwordHash.generate(user.passwordHash);
 				insertDocument('users', user, function(ress){
 
-					return cb(ress);
+					return cb(true);
 				});
 			}
 		});
