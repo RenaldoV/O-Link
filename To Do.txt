@@ -1,7 +1,7 @@
 1. Styling (R)
-2. Splash screen with O-Link logo and loader before entering Dashboard (R)
+//2. Splash screen with O-Link logo and loader before entering Dashboard (R)
 3. Link Terms and conditions(Waiting for files) (R)
-4. Style and change signup pages (R)
+//4. Style and change signup pages (R)
 5. Check if mailer working correctly (Werk nie op Ronnie se rekenaar nie.)
 6. Notifications funstionality as follows(S)
 	- Notification everytime 
@@ -13,7 +13,7 @@
 		//- Sum notifications and show all correct notifications in dropdown.
 		//- Remove addressed notifications
 //7. Employer should be able to comment on rating of student(S)
-8. Make open job offers list, scrollable and clickable.(??)
+8. Make open job offers list, scrollable and clickable.(??) // Job offers block op page moet scrollable wees, en jy moet op 'n job kan click.
 9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
 10. Add color coded dots next to applications or student to signify current status(S)
 11. Edit Job offer and password verification to confirm
