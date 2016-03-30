@@ -519,5 +519,18 @@ module.exports = function(app) {
 		});
 	});
 
+	app.post('/checkPassword', function(req,res){
+
+		var user = req.body;
+
+		db.checkLogin(user.email,user.password,function(result){
+			console.log(result.valid);
+			if(result.valid == true){
+				res.send(true);
+			}
+			else res.send(false);
+		});
+	});
+
 
 };

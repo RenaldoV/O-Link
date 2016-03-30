@@ -71,7 +71,7 @@ app.service('rate', function(ngDialog, $controller, $http){
 
             });
 
-    }
+    };
 
     this.makeEmployerBox = function(data){
         $http
@@ -149,3 +149,6 @@ var app = $scope.ngDialogData;
 
 
 });
+
+
+

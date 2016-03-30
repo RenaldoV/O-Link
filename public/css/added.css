@@ -288,3 +288,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     height: 240px;
     overflow-y: scroll;
 }
+
+.sweet-alert > fieldset > input{
+    -webkit-text-security: disc;
+}

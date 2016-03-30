@@ -17,11 +17,11 @@
 //9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
 //10. Add color coded dots next to applications or student to signify current status(S)
 //11.1 Edit Job offer and 
-	11.2 password verification to confirm
+	//11.2 password verification to confirm
 		- Notification to student about change and stating they have 24 hours to confirm otherwise application will be declined)
 //12. Remove job offer with confirmation
 //13. Assess applicants button on job offers(S)
-14. Password Verification on edit profile details (R)
+14. Password Verification on edit profile details (R)(Sweet alert wat jy kan copy van jobCtrl edit())
 //15. Past job offers page, clicking on past job offer redirects to post new job offer with form populated with old job offer details(S)
 16. Add Threshold and interview required to Post Job Form. (R)
 //17. Scrollable list of aplicants for specific job, clikcing on a specific applicant will redirect to Applicant CV Page with all applicant details
