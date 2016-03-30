@@ -159,7 +159,7 @@ module.exports = function(app) {
 
 		var user = req.body;
 
-		db.getBy("jobs", {employerID: user.id}, function(rows){
+		db.getBy("jobs", {employerID: user.id, status: {$ne: "inactive"}}, function(rows){
 
 			res.send(rows);
 		});
@@ -187,15 +187,24 @@ module.exports = function(app) {
 
 		}
 
-
-
-
-
 		db.insert(job,'jobs',function(result){
 				res.send(result);
 		});
 	});
 
+	app.post('/jobUpdate', function(req,res) {
+		var job = {};
+
+		for(var key in req.body) {
+
+			job = JSON.parse(key);
+
+		}
+
+		db.update({_id: job._id},'jobs', job,function(result){
+			res.send(result);
+		});
+	});
 
 	app.post('/signin', function(req,res) {
 		var user = {};
@@ -502,5 +511,13 @@ module.exports = function(app) {
 			res.send(row);
 		});
 	});
+
+	app.post('/removeJob', function(req,res){
+		var id = req.body.id;
+		db.remove('jobs',id, function (row) {
+			res.send(row);
+		});
+	});
+
 
 };

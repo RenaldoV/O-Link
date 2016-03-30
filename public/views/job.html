@@ -22,6 +22,8 @@
     </ul>
 
     <div class="center">
-        <button class="btn btn-primary btn-xlarge" ng-click="apply()">Apply</button>
+        <button ng-if="canApply" class="btn btn-primary btn-xlarge" ng-click="apply()">Apply</button>
+        <button ng-if="admin" class="btn btn-plain btn-xlarge" ng-click="edit(job._id)">Edit</button>
+        <button ng-if="admin" class="btn btn-danger btn-xlarge" ng-click="delete()">Delete</button>
     </div>
 </div>

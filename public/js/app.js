@@ -164,7 +164,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window){
     var user = session.user;
 
     $scope.repost = function(id){
-        $window.location.href= '/postJob?repost='+id;
+        $window.location.href= '/postJob?id='+id;
     };
     $http({
         method  : 'POST',
@@ -315,7 +315,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
     var temp = $location.url();
 
-    temp = temp.replace("/postJob?repost=", '');
+    temp = temp.replace("/postJob?id=", '');
     if(temp.trim() != ''){
 
 
@@ -329,14 +329,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 $scope.job = res.data;
 
 
-
-
-
             });
     }
 
-    $scope.submitForm = function() {
-        
+    $scope.post = function() {
+        $scope.job.status = 'active';
 
           $http({
             method  : 'POST',
@@ -347,6 +344,48 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             .then(function(response) {
                 {
                     swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                    $location.url("/dashboard");
+                }
+            });
+    };
+
+    $scope.repost = function() {
+
+
+        delete $scope.job._id;
+        delete $scope.job.applicants;
+        $scope.job.status = 'active';
+
+        $http({
+            method  : 'POST',
+            url     : '/jobPoster',
+            data   : $scope.job, //forms user object
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(response) {
+                {
+                    swal({   title: "Reposted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                    $location.url("/dashboard");
+                }
+            });
+    };
+    $scope.edit = function() {
+
+
+        delete $scope.job.applicants;
+        $scope.job.status = 'active';
+
+        $http({
+            method  : 'POST',
+            url     : '/jobUpdate',
+            data   : $scope.job, //forms user object
+            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+            .then(function(response) {
+                {
+                    swal({   title: "Edited",   type: "success",   timer: 2000,   showConfirmButton: false });
+
+                    //notify here
                     $location.url("/dashboard");
                 }
             });
@@ -425,7 +464,7 @@ $scope.logOut = function() {
             $window.location.href="/";
             swal("You have been logged out.", "success");
         });
-}
+};
     $scope.myProfile = function(){
         $window.location.href="/myProfile";
     }
@@ -657,13 +696,17 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 });
 
-app.controller('jobCtrl', function($scope, $location,$http, session, notify){
+app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify){
     var temp = $location.url();
 
     var user = session.user;
     temp = temp.replace("/job?id=", '');
     id = {id: temp};
     var job = {};
+
+    $scope.edit = function(id){
+        $window.location.href= '/postJob?id='+id;
+    };
     $http({
         method  : 'POST',
         url     : '/getJob',
@@ -673,10 +716,53 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
 
                 $scope.job = res.data;
                 job = res.data;
+                if($.inArray(user._id, job.applicants) != -1)
+                {
+                $scope.canApply = false;
 
+                }
+
+                if(job.employerID == user._id){
+                    $scope.canApply = false;
+                    $scope.admin = true;
+
+                }
+                console.log(job);
 
 
         });
+
+    $scope.delete = function(){
+        swal({
+                title: "Are you sure?",
+                text: "This will permanently delete this job post. Are you sure",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/removeJob', {id: job._id})
+                        .then(function (res, err) {
+
+
+                            sweetAlert("Job has beed deleted", "", "success");
+                            //notify here
+                            $window.location.href= '/';
+
+                        });
+
+                }
+                else {
+
+
+                }
+            }
+        );
+    };
 
     $scope.apply = function() {
 
@@ -685,12 +771,8 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
         if(typeof job.post.requirements == 'undefined')
             job.post.requirements = [];
         var meets = [job.post.requirements.length];
-        if($.inArray(user._id, job.applicants) != -1)
-        {
-            sweetAlert("You have already applied for this position", "Patience is a virtue", "error");
 
-        }
-        else{
+
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
                 if(value.name == val.name){
@@ -719,6 +801,10 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
 
         }
         else {
+            if(typeof job.applicants == 'undefined')
+                job.applicants = [];
+            job.applicants.push(user._id);
+
             $http({
                 method  : 'POST',
                 url     : '/apply',
@@ -736,13 +822,12 @@ app.controller('jobCtrl', function($scope, $location,$http, session, notify){
                         title: job.post.role
                     });
 
-                    if(typeof job.applicants == 'undefined')
-                    job.applicants = [];
-                    job.applicants.push(user._id);
+
+                    $window.location.href= '/';
 
                 });
         }
-        }
+
     };
 
 

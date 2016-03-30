@@ -16,8 +16,9 @@
 8. Make open job offers list, scrollable and clickable.(??) // Job offers block op page moet scrollable wees, en jy moet op 'n job kan click. watter page?
 //9. Student must be able to sort jobs by dropdown(	"Most	Recent",	"Time	Period"	and	"Categories"	Student)
 //10. Add color coded dots next to applications or student to signify current status(S)
-11. Edit Job offer and password verification to confirm
-	- Notification to student about change and stating they have 24 hours to confirm otherwise application will be declined)
+//11.1 Edit Job offer and 
+	11.2 password verification to confirm
+		- Notification to student about change and stating they have 24 hours to confirm otherwise application will be declined)
 12. Remove job offer with confirmation
 //13. Assess applicants button on job offers(S)
 14. Password Verification on edit profile details (R)
@@ -26,11 +27,16 @@
 //17. Scrollable list of aplicants for specific job, clikcing on a specific applicant will redirect to Applicant CV Page with all applicant details
 	And possibly in the future a link to download applicant's  CV.
 //18. Contact Applicant and Make an Offer buttons become visible when applicant has been shortlisted(Green dot next to applicant's name)
-19. Make an Offer functionality(S)?
+19. Make an Offer functionality(?)
 //20. Decline applicant functionality(S)
 21. Contact Applicant functionality
 22. Link Landing page
 23. Check notifications uit, wys daar is notification maar dropdown is empty.
+
+
+Check every day for completed jobs, set job.status to inactive, set applications to completed.
+Notify at "//notify here"
+
 
 Nuwe Functionality (Los dit tot heel laaste ons charge extra daarvoor)
 

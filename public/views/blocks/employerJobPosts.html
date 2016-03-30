@@ -4,11 +4,15 @@
             <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
             </thead>
             <tbody>
+
             <tr ng-repeat="job in jobs">
+
                 <td>{{job.post.category}}</td>
                 <td>{{job.post.role}}</td>
                 <td>{{job.applicants.length}}</td>
+
                 <td><a class="btn btn-primary" href="/applicants?jobID={{job._id}}">Assess Applicants</a></td>
+                <td><a class="btn btn-primary" href="/job?id={{job._id}}">View</a></td>
             </tr>
             </tbody>
         </table>

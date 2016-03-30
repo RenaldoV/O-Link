@@ -3,7 +3,7 @@
         <strong>Post a job</strong><br/>
     </div>
 
-<form name="jobForm" class="list-group list-group-sm form-validation" ng-submit="submitForm()">
+<form name="jobForm" class="list-group list-group-sm form-validation">
     <div class="text-danger wrapper text-center">
 
     </div>
@@ -108,7 +108,9 @@
             <div class="checkbox">
                 <label><input type="checkbox" ng-model="job.post.interviewRequired" value="">Interview required</label>
             </div>
-            <button type="submit" class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
+            <button ng-if="!job.status" type="button" ng-click="post()" class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
+        <button ng-if="job.status == 'inactive'" type="button" ng-click="repost()" class="post-job-btn btn btn-lg btn-primary btn-block" >RePost Job</button>
+        <button ng-if="job.status == 'active'" type="button" ng-click="edit()" class="post-job-btn btn btn-lg btn-primary btn-block" >Edit Job</button>
     </div>
     <div><p>{{message}}</p></div>
     </form>

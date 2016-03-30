@@ -3,11 +3,11 @@
         <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
         </thead>
         <tbody>
-        <tr  ng-repeat="job in jobs" ng-click="repost(job.jobID._id)">
+        <tr  ng-repeat="job in jobs" >
             <td>{{job.jobID.post.category}}</td>
             <td>{{job.jobID.post.role}}</td>
             <td>{{job.jobID.applicants.length}}</td>
-
+            <td><button ng-click="repost(job.jobID._id)">Edit and repost</button></td>
         </tr>
         </tbody>
     </table>

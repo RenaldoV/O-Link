@@ -352,7 +352,7 @@ module.exports = {
 		});
 	},
 	getJobHistory: function(query, cb){
-		console.log(query);
+
 		getJobHistory(query, function(res) {
 			return cb(res);
 		});
@@ -382,6 +382,12 @@ module.exports = {
 		activate(token, function(doc){
 			cb(doc);
 		});
-	}
+	},
+	remove: function(colName, id, cb){
+	var col = getModel(colName);
+	col.remove({_id : id}, function(res){
+		return cb(res);
+	});
+}
 
 };
