@@ -520,6 +520,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                 return false;
                             }
                             else{
+                                var applicants = $scope.job.applicants;
                                 delete $scope.job.applicants;
                                 $scope.job.status = 'active';
 
@@ -533,7 +534,16 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                         {
                                             swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
 
-                                            //notify here
+                                            sweetAlert("Job has beed deleted", "", "success");
+                                            /*for(var i = 0; i < applicants.length; i++) {
+                                                notify.go({
+                                                    type: 'jobEdited',
+                                                    jobID: job._id,
+                                                    userID: applicants[i],
+                                                    status: 'edited',
+                                                    title: job.post.role
+                                                });
+                                            }*/
                                             $location.url("/myJobPosts");
                                         }
                                     });
@@ -859,7 +869,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     temp = temp.replace("/job?id=", '');
     id = {id: temp};
     var job = {};
-
+    $scope.canApply = true;
     $scope.edit = function(id){
         $window.location.href= '/postJob?id='+id;
     };
@@ -876,14 +886,15 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 {
                 $scope.canApply = false;
 
-                }
+                }else
 
                 if(job.employerID == user._id){
                     $scope.canApply = false;
                     $scope.admin = true;
 
-                }
-                console.log(job);
+                }else $scope.canApply = true;
+
+
 
 
         });
@@ -915,8 +926,17 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 .then(function (res, err) {
 
 
+
                                     sweetAlert("Job has beed deleted", "", "success");
-                                    //notify here
+                                    for(var i = 0; i < job.applicants.length; i++) {
+                                        notify.go({
+                                            type: 'jobDeleted',
+                                            jobID: job._id,
+                                            userID: job.applicants[i],
+                                            status: 'deleted',
+                                            title: job.post.role
+                                        });
+                                    }
                                     $window.location.href = '/myJobPosts';
 
                                 });
