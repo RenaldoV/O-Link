@@ -75,27 +75,18 @@
                 <option value="Any">
             </datalist>
         </div>
-        <div class="list-group-item">
+        <div id="reqGroup" class="list-group-item">
 
-            <button type="button" id="addReq" class="btn btn-default">Add requirement <span class="glyphicon glyphicon-plus"></span></button>
+            <div id="reqInputs">
 
-            <datalist id="requirements">
-                <option value="Maths">
-                <option value="AP Maths">
-                <option value="English">
-                <option value="Science">
-                <option value="Afrikaans">
-                <option value="Zulu">
-                <option value="IT">
-            </datalist>
-            <datalist id="symbols">
-                <option value="A">
-                <option value="B">
-                <option value="C">
-                <option value="D">
-                <option value="F">
-            </datalist>
-            <button type="button" class="removeReq" class="btn btn-default" hidden="hidden">x</button>
+            </div>
+
+            <div id="reqButtonGrp" class="btn-group-vertical" role="group">
+                <button type="button" id="addReq" class="btn btn-default">Add requirement <span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+
+
+
         </div>
         <br/>
         <label>Thresholds</label>

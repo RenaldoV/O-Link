@@ -3,6 +3,7 @@ var errorHandler = require('./errors.js');
 var crypto = require('crypto');
 var async = require('async');
 var nodemailer 		= require('nodemailer');
+var smtpttransport = require('nodemailer-smtp-transport');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
 var fs = require('fs');
@@ -244,7 +245,24 @@ module.exports = function(app) {
 					if(result)
 						res.send(result);
 					if(result != 'email' && !err){
-					var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+
+						/*var smtpTransport = nodemailer.createTransport("SMTP",{
+							service: "Gmail",
+							auth: {
+								user: "gmail.user@gmail.com",
+								pass: "userpass"
+							}
+						})*/
+					//var smtpTransport = nodemailer.createTransport(smtpttransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com'));
+
+					var smtpTransport = nodemailer.createTransport(smtpttransport({
+						service: "Gmail",
+						auth: {
+							user: "olinkmailer@gmail.com",
+							pass: "olinkMailer"
+						},
+						tls: {rejectUnauthorized: false}
+					}));
 					var mailOptions = {
 						to: user.contact.email,
 						from: 'activationt@olink.com',

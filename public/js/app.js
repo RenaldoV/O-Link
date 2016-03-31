@@ -225,12 +225,75 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
     }
 });
 
-app.controller('signup', function($scope, $rootScope,$http,$window, authService, AUTH_EVENTS){
+app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, AUTH_EVENTS){
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
 
-	$scope.user = {};
+    $("#formTabs a").click(function(e) {
+        e.preventDefault();
+        $("#studentSUForm").trigger('reset');
+        $("#employerSUForm").trigger('reset');
+
+        $scope.user.dob = {};
+        $scope.user.dob = undefined;
+        $scope.user.type = {};
+        //this.tab('show');
+    });
+
+    var reqCount = 0;
+
+    var btnGrp = $("#reqButtonGrp");
+    var inputGrp = $("#reqInputs");
+
+    $('#addReq').click(function(e){
+
+        reqCount++;
+        var reqSelect = $(  '<div class="reqBox'+reqCount+'">' +
+        '<select class="form-control no-border" id="sel1" name="how" ng-model="user.results['+(reqCount-1)+'].name" required">' +
+        '<option value="" selected disabled>Choose Subject</option>' +
+        '<option value="Maths">Maths</option>' +
+        '<option value="AP Maths">AP Maths</option>' +
+        '<option value="English">English</option>' +
+        '<option value="Science">Science</option>' +
+        '<option value="Afrikaans">Afrikaans</option>' +
+        '<option value="Zulu">Zulu</option>' +
+        '<option value="IT">IT</option>' +
+        '</select>' +
+        '<select class="form-control no-border" id="sel1" name="how" ng-model="user.results['+(reqCount-1)+'].symbol" required">' +
+        '<option value="" selected disabled>Choose Symbol</option>' +
+        '<option value="A">A (80-100%)</option>' +
+        '<option value="B">B (70-79%)</option>' +
+        '<option value="C">C (60-69%)</option>' +
+        '<option value="D">D (50-59%)</option>' +
+        '<option value="F">F (40-49%)</option>' +
+        '</select>' +
+        '</div>').appendTo(inputGrp);
+
+
+
+        if(reqCount <= 1)
+        {
+            var remBtn = $('<button type="button" class="removeReq btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-minus"></span> Remove</button></div>').prependTo(btnGrp);
+        }
+
+        $compile(reqSelect)($scope);
+        $compile(btnGrp)($scope);
+
+    });
+
+    $(document).on("click", ".removeReq", function(){
+        if(reqCount == 1)
+            $(this).remove();
+
+        $("#reqInputs .reqBox"+reqCount+"").remove();
+
+        reqCount--;
+        $scope.user.results[reqCount] = {};
+    });
+
+    $scope.user = {};
+    $scope.user.results = {};
 
 	$scope.submitForm = function() {
 
@@ -241,8 +304,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
         }
         else
             user.type = "student";
-
-        alert(user.type);
 
         user.active = false;
 		$http({
@@ -304,18 +365,58 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
     var reqCount = 0;
     //add requirement
+
+    var btnGrp = $("#reqButtonGrp");
+    var inputGrp = $("#reqInputs");
+
+
+
     $('#addReq').click(function(e){
 
-       var input = $('<div class="reqBox"><input list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].name" required>' +
-            '<input list="symbols" placeholder="symbol" class="form-control no-border" ng-model="job.post.requirements['+reqCount+'].symbol" required> <button type="button" class="removeReq btn btn-default" ng-click="close()">Remove requirement <span class="glyphicon glyphicon-minus"></span></button></div>').insertBefore(this);
         reqCount++;
+        var reqSelect = $(  '<div class="reqBox'+reqCount+'">' +
+                                '<select class="form-control no-border" id="sel1" name="how" ng-model="job.post.requirements['+(reqCount-1)+'].name" required">' +
+                                    '<option value="" selected disabled>Choose Requirement</option>' +
+                                    '<option value="Maths">Maths</option>' +
+                                    '<option value="AP Maths">AP Maths</option>' +
+                                    '<option value="English">English</option>' +
+                                    '<option value="Science">Science</option>' +
+                                    '<option value="Afrikaans">Afrikaans</option>' +
+                                    '<option value="Zulu">Zulu</option>' +
+                                    '<option value="IT">IT</option>' +
+                                '</select>' +
+                                '<select class="form-control no-border" id="sel1" name="how" ng-model="job.post.requirements['+(reqCount-1)+'].symbol" required">' +
+                                    '<option value="" selected disabled>Choose Symbol</option>' +
+                                    '<option value="A">A (80-100%)</option>' +
+                                    '<option value="B">B (70-79%)</option>' +
+                                    '<option value="C">C (60-69%)</option>' +
+                                    '<option value="D">D (50-59%)</option>' +
+                                    '<option value="F">F (40-49%)</option>' +
+                                '</select>' +
+                            '</div>').appendTo(inputGrp);
 
-        $compile(input)($scope);
-        $('.removeReq').click(function(e){
 
-            $(this).parent().remove();
-        });
+
+        if(reqCount <= 1)
+        {
+            var remBtn = $('<button type="button" class="removeReq btn btn-default" ng-click="close()">Remove<span class="glyphicon glyphicon-minus"></span></button></div>').prependTo(btnGrp);
+        }
+
+        $compile(reqSelect)($scope);
+        $compile(btnGrp)($scope);
+
     });
+
+    $(document).on("click", ".removeReq", function(){
+        if(reqCount == 1)
+            $(this).remove();
+
+        $("#reqInputs .reqBox"+reqCount+"").remove();
+
+        reqCount--;
+        $scope.job.post.requirements[reqCount] = {};
+    });
+
 
     $scope.job = {};
     $scope.job.post = {};

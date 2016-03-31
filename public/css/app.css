@@ -4801,3 +4801,26 @@ select {
 .nav-tabs, .nav-pills {
   text-align:center;
 }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+h4{
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+strong {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
+}
+
+.btn.btn-default {
+  font-family: 'Source Sans Pro', sans-serif;
+}

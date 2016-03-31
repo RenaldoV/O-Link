@@ -48,7 +48,7 @@
 							<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 						</div>
 						<div class="list-group-item">
-							<select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender">
+							<select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
 								<option value="" selected disabled>Gender</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
@@ -98,8 +98,20 @@
 						<div class="list-group-item">
 							<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
 						</div>
+						<div id="reqGroup" class="list-group-item">
+
+							<div id="reqInputs">
+
+							</div>
+
+							<div id="reqButtonGrp" class="btn-group-vertical" role="group">
+								<button type="button" id="addReq" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Matric Result</button>
+							</div>
+
+						</div>
 					</fieldset>
 				</div>
+
 
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
@@ -396,10 +408,7 @@
 			defaultDate: new Date(1990, 1 - 1, 1)
 		});
 
-	$("#formTabs a").click(function(e) {
-		e.preventDefault();
-		//this.tab('show');
-	});
+
 
 </script>
 
