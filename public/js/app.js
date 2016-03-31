@@ -360,6 +360,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
         if(this.value == "Once Off")
         {
+            $("#datesLabel").text("Date and Time");
+            $("#amount").attr("placeholder","Amount per day");
             $("#endDateDiv").hide();
             $("#times").show();
            var input = $('<div><input type="text" id="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
@@ -371,7 +373,10 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
         }
         else {
+            $("#datesLabel").text("Dates");
+            $("#amount").attr("placeholder","Amount per hour");
             $("#endDateDiv").show();
+            $("#times").hide();
             $("#times").html('');
         }
     });

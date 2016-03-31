@@ -8,63 +8,86 @@
 
     </div>
 
-    <div id="postJobForm" class="list-group list-group-sm" >
-            <br>
-            <label>Job Details</label>
+    <h4 class="form-section-label">Job Details</h4>
+    <div class="list-group list-group-sm form-group">
+        <fieldset class="form-group">
             <div class="list-group-item">
                 <input type="text" class="form-control no-border" placeholder="Job Role" ng-model="job.post.role" required>
             </div>
-
             <div class="list-group-item">
-                <textarea rows=7 class="form-control no-border" placeholder="Description" ng-model="job.post.description" required></textarea>
+                <textarea rows=7 class="form-control no-border" placeholder="Description" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
             </div>
-
             <div class="list-group-item">
                 <input type="text" class="form-control no-border" placeholder="Location" ng-model="job.post.location" required>
             </div>
             <div class="list-group-item">
-                <input list="category" placeholder="Category" class="form-control no-border" ng-model="job.post.category" required>
-                <datalist id="category">
-                    <option value="Coach">
-                    <option value="Delivery Person">
-                    <option value="Tutor">
-                    <option value="Sales Rep">
-                    <option value="Model">
-                    <option value="Waiter(res)">
-                    <option value="Other">
-                </datalist>
+                <select class="form-control no-border" ng-model="job.post.category" required>
+                    <option value="" selected disabled>Select Category</option>
+                    <option value="Coach">Coach</option>
+                    <option value="Delivery Person">Delivery Person</option>
+                    <option value="Tutor">Tutor</option>
+                    <option value="Promoter">Promoter</option>
+                    <option value="Model">Model</option>
+                    <option value="Waiter(res)">Waiter(res)</option>
+                    <option value="Host(ess)">Host(ess)</option>
+                    <option value="Barman">Barman</option>
+                    <option value="Aupair">Aupair</option>
+                    <option value="Model">Retail Worker</option>
+                    <option value="Photographer / Videographer">Photographer / Videographer</option>
+                    <option value="Programmer / Developer">Programmer / Developer</option>
+                    <option value="Engineer">Engineer</option>
+                    <option value="Assistant">Assistant</option>
+                    <option value="Aupair">Cook / Chef</option>
+                    <option value="Other">Other</option>
+                </select>
             </div>
-            <br>
-            <label>Pay<span id="payPer"></span></label>
             <div class="list-group-item">
-                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" required>
+                <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
             </div>
+            <div class="list-group-item">
+                <input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+            </div>
+            <div class="list-group-item">
+                <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
+                    <option value="" selected disabled>Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+        </fieldset>
+    </div>
 
+    <h4 class="form-section-label">Pay</h4>
+    <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <select id="period" placeholder="Time Period" class="form-control no-border" ng-model="job.post.timePeriod" >
+            <select id="period" class="form-control no-border" ng-model="job.post.timePeriod" required>
+                <option value="" selected disabled>Time Period</option>
                 <option value="Once Off">Once Off</option>
                 <option value="Short Term">Short Term</option>
                 <option value="Long Term">Long Term</option>
             </select>
             <br>
-            Tips <input type="checkbox" name="tips" ng-model="job.post.tips">
+            <span>Tips</span> <input type="checkbox" name="tips" ng-model="job.post.tips">
         </div>
+        <div class="list-group-item">
+            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" required>
+        </div>
+    </div>
 
-            <br/>
-                <label>Dates</label>
-            <div class="list-group-item">
-                <input id="startDate" type="text" class="controls form-control no-border" placeholder="Starting Date" ng-model="job.post.startingDate" required>
-            </div>
-
+    <h4 id="datesLabel" class="form-section-label">Dates</h4>
+    <div class="list-group list-group-sm form-group">
+        <div class="list-group-item">
+            <input id="startDate" type="text" class="controls form-control no-border" placeholder="Starting Date" ng-model="job.post.startingDate" required>
+        </div>
         <div id="endDateDiv" class="list-group-item" hidden="hidden">
             <input id="endDate" type="text" class="controls form-control no-border" placeholder="End Date" ng-model="job.post.endDate" >
         </div>
         <div class="list-group-item" id="times" hidden>
+
         </div>
+    </div>
 
-
-        <br/>
-
+    <div id="postJobForm" class="list-group list-group-sm" >
 
         <label>Requirements</label>
         <div class="list-group-item">

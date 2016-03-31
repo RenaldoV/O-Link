@@ -4824,3 +4824,5 @@ strong {
 .btn.btn-default {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+select:invalid { color: darkgrey; }
