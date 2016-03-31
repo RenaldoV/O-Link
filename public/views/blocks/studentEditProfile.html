@@ -60,8 +60,12 @@
 
 
 <lable for="matricResults">Add Matric Results</lable><div id="matricResults">
-    <button type="button" id="addRes" class="btn btn-default" >+</button>
+        <div ng-repeat="res in user.results">
+        <div class="resBox"><input class="subject" list="requirements" placeholder="Requirement" class="form-control no-border" ng-model="res.name" value="res.name" required>
+            <input class="result" list="symbols" placeholder="symbol" class="form-control no-border" ng-model="res.result" value="res.result"  required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>
 
+    </div>
+        <button type="button" id="addRes" class="btn btn-default" >+</button>
     <datalist id="requirements">
         <option value="Maths">
         <option value="AP Maths">

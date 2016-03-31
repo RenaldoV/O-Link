@@ -163,29 +163,75 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
 
     $scope.updateUser = function()
     {
-        var temp = [{}];
-        $(".resBox").each(function(i){
 
 
-            temp[i].name =  $(this).find('.subject').val();
-            temp[i].result = $(this).find('.result').val();
-        });
-        $scope.user.results = temp;
+        swal({
+                title: "Are you sure?",
+                type: "input",
+                text: "This update your profile. Please type your password to confirm",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function(inputValue) {
 
-        $http
-            .post('/updateUser', $scope.user)
-            .then(function (res, err) {
+                $http
+                    .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                    .then(function (res, err) {
+                        console.log(res.data);
+                        if (!res.data) {
+                            console.log("awww");
+                            swal.showInputError("Incorrect Password!");
+                            return false;
+                        }
+                        else{
 
 
+                            var temp = [];
 
+
+                            $(".resBox").each(function(i){
+
+                                var temp1 = {};
+                                temp1.name =  $(this).find('.subject').val();
+                                temp1.result = $(this).find('.result').val();
+                                temp.push(temp1);
+                            });
+                            $scope.user.results = temp;
+                            $http
+                                .post('/updateUser', $scope.user)
+                                .then(function (res, err) {
+
+                                    session.create(user);
+                                    swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+                                    $window.location.href="/myProfile";
+
+                                });
+
+                        }
+
+                    });
             });
 
-        session.create(user);
-        $window.location.href="/myProfile";
+
+
+
+
     };
+    $(document).on("click", ".removeRes", function() {
+
+        $(this).parent().remove();
+
+    });
+
+
+
+
 
     $('#addRes').click(function(e){
 
+        console.log("yeah");
         var input = $('<div class="resBox"><input class="subject" list="requirements" placeholder="Requirement" class="form-control no-border" required>' +
             '<input class="result" list="symbols" placeholder="symbol" class="form-control no-border"  required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
 
@@ -196,6 +242,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
             $(this).parent().remove();
         });
     });
+
 
     $(function(){
         $('.likeText').keyup(function(){
@@ -244,14 +291,47 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
     $scope.updateUser = function()
     {
 
-        $http
-            .post('/updateUser', $scope.user)
-            .then(function (res, err) {
 
-                session.create(user);
-                $window.location.href="/myProfile";
+        swal({
+                title: "Are you sure?",
+                type: "input",
+                text: "This update your profile. Please type your password to confirm",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function(inputValue) {
 
+                $http
+                    .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                    .then(function (res, err) {
+                        console.log(res.data);
+                        if (!res.data) {
+                            console.log("awww");
+                            swal.showInputError("Incorrect Password!");
+                            return false;
+                        }
+                        else{
+
+                            $http
+                                .post('/updateUser', $scope.user)
+                                .then(function (res, err) {
+
+                                    session.create(user);
+                                    swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+                                    $window.location.href="/myProfile";
+
+                                });
+
+                        }
+
+                    });
             });
+
+
+
+
 
 
     };
