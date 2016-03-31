@@ -113,7 +113,6 @@ module.exports = function(app) {
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
-					console.log(token);
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
  
@@ -128,11 +127,18 @@ module.exports = function(app) {
  			function(token, user, done) {
 
 				var tempUser = user.toJSON();
-				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+				var smtpTransport = nodemailer.createTransport(smtpttransport({
+					service: "Gmail",
+					auth: {
+						user: "olinkmailer@gmail.com",
+						pass: "olinkMailer"
+					},
+					tls: {rejectUnauthorized: false}
+				}));
 				var mailOptions = {
 					to: tempUser.contact.email,
 					from: 'passwordreset@demo.com',
-					subject: 'Node.js Password Reset',
+					subject: 'O-Link Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 					  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
 					  'http://' + req.headers.host + '/reset/' + token + '\n\n' +

@@ -316,11 +316,24 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 				{
                     console.log(res);
 					if(res.data == "email"){
-                        swal("User exists", "The email you have entered already has an account associated with it.", "error");
+                        swal({
+                                title: "User exists",
+                                text: 'The email you have entered already has an account associated with it.',
+                                type: "error"
+                            },
+                            function(){
+                                location.reload();
+                            });
                     }
                     else if(res.data){
-                        swal("Account created", "An activation email has been sent to you. Please follow the link enclosed to activate your new profile", "success");
-                        $window.location.href= '/';
+                        swal({
+                                title: "Account created",
+                                text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
+                                type: "success"
+                            },
+                            function(){
+                                location.href= '/';
+                            });
                         }
                     }
 			});
