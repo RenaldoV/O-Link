@@ -368,8 +368,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                ' <input type="text" id="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
             $compile(input)($scope);
 
-            $('#startTime').timepicker({ 'step': 15 });
-            $('#endTime').timepicker({ 'step': 15 });
+           // $('#startTime').timepicker({ 'step': 15 });
+            //$('#endTime').timepicker({ 'step': 15 });
+            //$('#endTime').timepicker({ 'step': 15 });
 
         }
         else {
@@ -460,91 +461,91 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             });
     }
 
-    $scope.post = function() {
-        $scope.job.status = 'active';
+    $scope.submitForm = function(){
 
-          $http({
-            method  : 'POST',
-            url     : '/jobPoster',
-            data   : $scope.job, //forms user object
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-            .then(function(response) {
-                {
-                    swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
-                    $location.url("/dashboard");
-                }
-            });
+        if(!$scope.job.status){
+            $scope.job.status = 'active';
+
+            $http({
+                method  : 'POST',
+                url     : '/jobPoster',
+                data   : $scope.job, //forms user object
+                headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .then(function(response) {
+                    {
+                        swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                        $location.url("/dashboard");
+                    }
+                });
+        }
+        else if($scope.job.status == 'inactive'){
+
+            delete $scope.job._id;
+            delete $scope.job.applicants;
+            $scope.job.status = 'active';
+
+            $http({
+                method  : 'POST',
+                url     : '/jobPoster',
+                data   : $scope.job, //forms user object
+                headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .then(function(response) {
+                    {
+                        swal({   title: "Reposted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                        $location.url("/myJobPosts");
+                    }
+                });
+        }
+        else if($scope.job.status == 'active'){
+            swal({
+                    title: "Are you sure?",
+                    type: "input",
+                    text: "This update your post and notify all applicants. Please type your password to confirm",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, I'm sure!",
+                    closeOnConfirm: false
+                },
+                function(inputValue) {
+
+                    $http
+                        .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                        .then(function (res, err) {
+                            console.log(res.data);
+                            if (!res.data) {
+                                console.log("awww");
+                                swal.showInputError("Incorrect Password!");
+                                return false;
+                            }
+                            else{
+                                delete $scope.job.applicants;
+                                $scope.job.status = 'active';
+
+                                $http({
+                                    method: 'POST',
+                                    url: '/jobUpdate',
+                                    data: $scope.job, //forms user object
+                                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                                })
+                                    .then(function (response) {
+                                        {
+                                            swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+
+                                            //notify here
+                                            $location.url("/myJobPosts");
+                                        }
+                                    });
+
+                            }
+
+                        });
+                });
+        }
     };
 
-    $scope.repost = function() {
 
-
-        delete $scope.job._id;
-        delete $scope.job.applicants;
-        $scope.job.status = 'active';
-
-        $http({
-            method  : 'POST',
-            url     : '/jobPoster',
-            data   : $scope.job, //forms user object
-            headers : {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-            .then(function(response) {
-                {
-                    swal({   title: "Reposted",   type: "success",   timer: 2000,   showConfirmButton: false });
-                    $location.url("/myJobPosts");
-                }
-            });
-    };
-    $scope.edit = function() {
-
-        swal({
-                title: "Are you sure?",
-                type: "input",
-                text: "This update your post and notify all applicants. Please type your password to confirm",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
-                closeOnConfirm: false
-            },
-            function(inputValue) {
-
-                $http
-                    .post('/checkPassword', {email: user.contact.email, password: inputValue})
-                    .then(function (res, err) {
-                        console.log(res.data);
-                        if (!res.data) {
-                            console.log("awww");
-                            swal.showInputError("Incorrect Password!");
-                            return false;
-                        }
-                        else{
-                            delete $scope.job.applicants;
-                            $scope.job.status = 'active';
-
-                            $http({
-                                method: 'POST',
-                                url: '/jobUpdate',
-                                data: $scope.job, //forms user object
-                                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-                            })
-                                .then(function (response) {
-                                    {
-                                        swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
-
-                                        //notify here
-                                        $location.url("/myJobPosts");
-                                    }
-                                });
-
-                        }
-
-                    });
-            });
-
-
-    };
 });
 
 app.controller('navControl',function($scope, authService, session){
