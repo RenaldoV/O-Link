@@ -22,8 +22,10 @@
 	<div class="tab-content">
 
 		<div class="tab-pane fade  in" id="talentPane">
+			<br/>
+			<br/>
 			<form id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
-				<input type="radio" name="type" id="Studentradio" ng-model="user.type" value="student" >
+
 				<h4 class="form-section-label">Talent Info</h4>
 				<div class="list-group list-group-sm form-group">
 					<fieldset class="form-group">
@@ -46,7 +48,11 @@
 							<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 						</div>
 						<div class="list-group-item">
-							<input name="stuGender" type="text" class="controls form-control no-border" placeholder="Gender M/F" ng-model="user.gender" pattern="[M|F]{1,1}" required>
+							<select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender">
+								<option value="" selected disabled>Gender</option>
+								<option value="M">Male</option>
+								<option value="F">Female</option>
+							</select>
 						</div>
 					</fieldset>
 				</div>
@@ -106,8 +112,9 @@
 		</div>
 
 		<div class="tab-pane fade in" id="employerPane">
+			<br/>
+			<br/>
 			<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()">
-				<input type="radio" name="type" id="Employerradio" ng-model="user.type" value="employer">
 				<h4 class="form-section-label">Employer Info</h4>
 				<div class="list-group list-group-sm">
 					<div class="list-group-item">
@@ -156,10 +163,10 @@
 
 					<div class="list-group list-group-sm">
 						<label class="radio-inline">
-							<input type="radio" name="type" id="Individualradio" ng-model="user.employerType" value="Individual" checked required>Individual
+							<input type="radio" name="type1" id="Individualradio" ng-model="user.employerType" value="Individual" required>Individual
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="type" id="Companyradio" ng-model="user.employerType" value="Company" required>Company
+							<input type="radio" name="type1" id="Companyradio" ng-model="user.employerType" value="Company" required>Company
 						</label>
 					</div>
 				</div>
@@ -389,18 +396,9 @@
 			defaultDate: new Date(1990, 1 - 1, 1)
 		});
 
-	$(".employerSelected").on("click" , function() {
-		//$("#Employerradio").prop("checked" , true);
-		$("#Employerradio").trigger("click");
-	});
-
-	$(".talentSelected").on("click" , function() {
-		$("#Studentradio").prop("checked" , true);
-	});
-
 	$("#formTabs a").click(function(e) {
 		e.preventDefault();
-		this.tab('show');
+		//this.tab('show');
 	});
 
 </script>

@@ -235,6 +235,15 @@ app.controller('signup', function($scope, $rootScope,$http,$window, authService,
 	$scope.submitForm = function() {
 
 		var user = $scope.user;
+        if(!user.dob)
+        {
+            user.type = "employer";
+        }
+        else
+            user.type = "student";
+
+        alert(user.type);
+
         user.active = false;
 		$http({
 			method  : 'POST',
