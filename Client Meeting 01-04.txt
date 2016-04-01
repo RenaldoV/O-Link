@@ -1,0 +1,241 @@
+STYLING
+{
+    APPLICANTS PAGE:
+    {
+        dropdown must be same color as background
+    }
+    JOB PAGE: (View one single job)
+    {
+        top right picture change to company logo
+        caption - Company name
+        center all data
+        data boxed with blue rim
+    }
+    MAILS:
+    {
+        REGESTRATION
+        Welcome "User"
+        keep styling from dashboard page
+        image signature
+    }
+
+    OPEN JOB OFFERS PAGE:
+    {
+        Caption - Open Job Offers
+        Center sort by
+
+        DATA DISPLAYED ON EACH JOB OFFER:
+        {
+            company logo
+            Company name
+            Job category
+            date posted
+            -->take out description
+            dates underneath each other-only date, no minutes
+        }
+    }
+
+    SUCCESS POPUP:
+    {
+        capital letter Success
+    }
+
+    SIGN IN:
+    {
+        Capital case (log in)
+        Background picture of landing page (and caption)
+    }
+
+    SIGN UP:
+    {
+
+        Background image and caption----(Markup, not fixed image)
+        EMPLOYER:
+        {
+
+        }
+
+        TALENT:
+        {
+
+        }
+    }
+
+    POST JOB:
+    {
+        capitalise!!!
+        time periods descriptions!
+        start date required not end
+        add requirements
+            - work experience
+                (exact same as matric results)
+        check box fonts bigger
+        check box same as terms and conditions everywhere.
+        Threshold placeholder becomes
+            - applications accepted per position
+            - info blurp next to Threshold heading(Wait for info from client)
+
+        Character counter in details input
+        shared tips and individual tips 2 check boxes
+    }
+
+    DASHBOARD:
+    {
+        latest jobs at the top
+        blocks - get rid of icons
+        beneath blocks add slogan. (Innovative Thinking - Real World Solutions) - black
+        Top next to logo (Welcome(Black) "User"(Blue))
+        Replace name(dropdown) with picture(Same size as logo) with bigger dropdown 3stripes - send screenshot
+            - clicking on profile pic takes you to profile page
+
+        Category buttons boxed from start(white green border)-(Clicked goes green)
+        everything centered
+        time periods
+            - bigger
+            - description underneath each (On mockup or use case doc)
+            - add all time periods
+
+        Latest Job Posts - centered caption
+
+        COLORS:
+            thin border on blocks
+                - latest job posts blue
+                - categories green
+                - blocks pastel colors same as numbers
+        EMPLOYER:
+        {
+            - 4 buttons
+                - post job (Green)
+                - applicants        (the rest Blue)
+                - past job offers
+                - my job offers
+        }
+
+        TALENT:
+        {
+
+        }
+    }
+
+    PROFILE PAGE:
+    {
+        Take out profile pic because it is already in top bar.
+
+        EMPLOYER:
+        {
+            menu dropdown
+                - my job offers
+                - past job offers
+        }
+
+        TALENT:
+        {
+            underneath name - how many free or payed job applications still left (2 applications remaining today)
+            rating in middle of page
+            two blocks - info editable - one edit button redirects to signup page populated
+                - REQUIRED INFO
+                    - take out basic heading
+                    - keep everything in info tab
+                - Additionald info
+                    - Drivers licence - always shows even if no drivers licence
+                    - matric results
+                    -
+        }
+    }
+
+    EDIT PROFILE:
+    {
+        EMPLOYER:
+        {
+
+        }
+
+        TALENT:
+        {
+
+        }
+    }
+
+}
+
+FUNCTIONALITY:
+{
+    NB NB NB Students can only apply to 2 jobs a day.
+        - if more that two
+        - payment package
+
+    RESET PASSWORD:
+    {
+        Expire reset token when password is changed.
+    }
+    ACTIVATE ACCOUNT:
+    {
+        Invalid token error (Account already activated or token expired.) - redirect to login
+    }
+
+    SIGN UP:
+    {
+        TALENT:
+        {
+            Add aditional info(Optional) -- pops up new form
+                - Drivers Licence
+                - Past work exp.
+                    - Dropdown with all categories (Add internships) if other give description
+                    - Druation of experience
+                    - Optional contact details (Name number email)
+                    (Make the same as matric results.)
+            Matric result type (IEB, NSC)
+            take out qualification category
+            password placeholder explain format
+            validate ID number against DOB
+            email field (Wait for list of email addresses.)
+        }
+
+        EMPLOYER:
+        {
+            company description replaced by company category (List of categories from PAUL)
+            password placeholder explain format
+            Change Employer info to (Employer contact info - Title case)
+            all fields required except Position within company
+        }
+    }
+
+
+    GUEST BROWSE JOBS: (Button on landing page)
+    {
+        have background and caption
+        Just have latest job post, if Talent clicks on job post redirect to sign up
+        sign up sign in button top right of bar
+
+    }
+
+    EDIT JOB OFFER:
+    {
+        error message says deleted.
+    }
+
+    APPLY FOR JOB
+    {
+
+    }
+
+    EMPLOYER ACCEPTS YOU:
+    {
+        Talent receives email with link to confirm that they are available to work
+            - direct to application status and turns color code blue
+            - once talent confirmed
+                - Employer gets email saying talent has confirmed acceptance
+                - Spots available decreases.
+
+        Reposting an add - threshold goes back to initial setting
+    }
+}
+
+
+NB check password functionality
+
+ BUGS:
+
+ Check requirements validation on apllying for jobs
+ No doucle requirements
+ Check out apply for job(validating against requirements)
