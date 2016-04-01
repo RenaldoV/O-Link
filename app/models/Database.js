@@ -241,6 +241,12 @@ function update(colName, params, setData, cb){
 //update
 
 module.exports = {
+
+	jobs: jobModel,
+	users: userModel,
+	applications: appModel,
+	notifications: notificationModel,
+
 	getOneByReset: function(data,cb){
 		getOne('users', data, function(res){
 			return cb(res);

@@ -955,12 +955,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
     $scope.apply = function() {
 
-
-
-        if(typeof job.post.requirements == 'undefined')
+        var meets = []
+        if (typeof job.post.requirements == 'undefined'){
             job.post.requirements = [];
-        var meets = [job.post.requirements.length];
 
+        }   else meets = [job.post.requirements.length];
 
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
@@ -981,6 +980,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             if(value == false)
             {
                 met = false;
+
             }
 
         });
