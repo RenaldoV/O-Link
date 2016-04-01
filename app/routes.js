@@ -659,6 +659,44 @@ module.exports = function(app) {
 
 	});
 	//done
+	//make offer functionality
+	app.post('/makeOffer', function(req,res) {
 
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"offered"}}, function(err, doc){
+			res.send(doc);
+		});
+
+	});
+	//done
+
+	//accept offer functionality
+	app.post('/acceptOffer', function(req,res) {
+
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}, function(err, doc){
+			res.send(doc);
+		});
+
+	});
+	//done
+
+	//decline offer functionality
+	app.post('/declineOffer', function(req,res) {
+
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}}, function(err, doc){
+			res.send(doc);
+		});
+
+	});
+
+	//done
 };
 

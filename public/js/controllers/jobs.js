@@ -2,7 +2,7 @@
 //////Controllers for the job related activities///////
 ///////////////////////////////////////////////////////
 
-app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify){
 
 
 
@@ -199,14 +199,13 @@ $scope.categories = constants.categories;
                                         {
                                             swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
 
-                                            sweetAlert("Job has beed deleted", "", "success");
                                             for(var i = 0; i < applicants.length; i++) {
                                                 notify.go({
                                                     type: 'jobEdited',
-                                                    jobID: job._id,
+                                                    jobID: $scope.job._id,
                                                     userID: applicants[i],
                                                     status: 'edited',
-                                                    title: job.post.role
+                                                    title: $scope.job.post.role
                                                 });
                                             }
                                             $location.url("/myJobPosts");
