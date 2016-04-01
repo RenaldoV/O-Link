@@ -164,7 +164,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.getAge = function (dob) {
                     return getAge(dob);
                 };
-                console.log($scope.applications);
+
                 $scope.isDisabled = function(status){
                     if(status != "Declined"){
                         return false;
@@ -222,6 +222,30 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     changeStatus(app, oldstat, $scope, $http,notify, app.studentID);
                 };
 
+                $scope.isDeclined = function(status){
+                    if(status == "Declined"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isProv = function(status){
+                    if(status == "Provisionally accepted"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isPending = function(status){
+                    if(status == "Pending"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isConfirmed = function(status){
+                    if(status == "Confirmed"){
+                        return true;
+                    }
+                    return false;
+                };
             });
     }
 });

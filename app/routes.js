@@ -554,7 +554,7 @@ module.exports = function(app) {
 	//done
 
 	//for ratings, called for employers to rate talent
-	app.post('//getRatingDataForStudent', function(req,res){
+	app.post('/getRatingDataForStudent', function(req,res){
 
 		var student = req.body;
 
