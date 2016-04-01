@@ -368,9 +368,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                ' <input type="text" id="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
             $compile(input)($scope);
 
-           // $('#startTime').timepicker({ 'step': 15 });
-            //$('#endTime').timepicker({ 'step': 15 });
-            //$('#endTime').timepicker({ 'step': 15 });
+            $('#startTime').timepicker({ 'step': 15 });
+            $('#endTime').timepicker({ 'step': 15 });
+            $('#endTime').timepicker({ 'step': 15 });
 
         }
         else {

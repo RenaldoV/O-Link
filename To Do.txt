@@ -32,6 +32,8 @@
 21. Contact Applicant functionality
 22. Link Landing page
 23. Check notifications uit, wys daar is notification maar dropdown is empty.
+24. When delete job post, redirect to my job posts page.
+
 
 
 Check every day for completed jobs, set job.status to inactive, set applications to completed.

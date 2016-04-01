@@ -15,7 +15,7 @@
                 <input type="text" class="form-control no-border" placeholder="Job Role" ng-model="job.post.role" required>
             </div>
             <div class="list-group-item">
-                <textarea rows=7 class="form-control no-border" placeholder="Description" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
+                <textarea rows=7 class="form-control no-border" placeholder="Description (100 - 500 characters)" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
             </div>
             <div class="list-group-item">
                 <input type="text" class="form-control no-border" placeholder="Location" ng-model="job.post.location" required>
@@ -41,19 +41,6 @@
                     <option value="Other">Other</option>
                 </select>
             </div>
-            <div class="list-group-item">
-                <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
-            </div>
-            <div class="list-group-item">
-                <input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
-            </div>
-            <div class="list-group-item">
-                <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
-                    <option value="" selected disabled>Gender</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                </select>
-            </div>
         </fieldset>
     </div>
 
@@ -70,7 +57,7 @@
             <span>Tips</span> <input type="checkbox" name="tips" ng-model="job.post.tips">
         </div>
         <div class="list-group-item">
-            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" required>
+            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" regex="^[0-9]+$" required>
         </div>
     </div>
 
@@ -87,16 +74,15 @@
         </div>
     </div>
 
-    <div id="postJobForm" class="list-group list-group-sm" >
-
-        <label>Requirements</label>
+    <h4 class="form-section-label">Requirements</h4>
+    <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input list="gender" placeholder="Gender" class="controls form-control no-border" ng-model="job.post.gender" required>
-            <datalist id="gender">
-                <option value="M">
-                <option value="F">
-                <option value="Any">
-            </datalist>
+            <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="job.post.gender" required>
+                <option value="" selected disabled>Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="Any">Any</option>
+            </select>
         </div>
         <div id="reqGroup" class="list-group-item">
 
@@ -108,24 +94,31 @@
                 <button type="button" id="addReq" class="btn btn-default">Add requirement <span class="glyphicon glyphicon-plus"></span></button>
             </div>
 
-
-
         </div>
-        <br/>
-        <label>Thresholds</label>
-            <div class="list-group-item">
-                <input  type="number" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" required>
-            </div>
-            <div class="list-group-item">
-                <input  type="number" class="controls form-control no-border" width="50px" placeholder="Threshold" ng-model="job.post.threshold" required>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" ng-model="job.post.interviewRequired" value="">Interview required</label>
-            </div>
-            <button ng-if="!job.status" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" ng-model="job.post.driverslicence" value="">Drivers licence required</label>
+    </div>
+    <div class="checkbox">
+        <label><input type="checkbox" ng-model="job.post.interviewRequired" value="">Interview required</label>
+    </div>
+    <br/>
+    <h4 class="form-section-label">Thresholds</h4>
+    <div class="list-group list-group-sm form-group">
+        <div class="list-group-item">
+            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" required>
+        </div>
+        <div class="list-group-item">
+            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Threshold" ng-model="job.post.threshold" required>
+        </div>
+    </div>
+
+    <div id="postJobForm" class="list-group list-group-sm" >
+        <button ng-if="!job.status" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
         <button ng-if="job.status == 'inactive'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >RePost Job</button>
         <button ng-if="job.status == 'active'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Edit Job</button>
     </div>
+
     <div><p>{{message}}</p></div>
     </form>
 </div>
