@@ -467,7 +467,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
         if(!$scope.job.status){
             $scope.job.employerID = user._id;
-            console.log( $scope.job.employerID + ' Die');
             $scope.job.status = 'active';
 
             $http({

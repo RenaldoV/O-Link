@@ -550,7 +550,7 @@ module.exports = function(app) {
 		var user = req.body;
 
 		db.checkLogin(user.email,user.password,function(result){
-			console.log(result.valid);
+			
 			if(result.valid == true){
 				res.send(true);
 			}
