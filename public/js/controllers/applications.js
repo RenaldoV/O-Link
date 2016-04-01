@@ -73,7 +73,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             title: role
                                         });
                                         swal("Offer accepted.", "The user has been notified.", "success");
-                                        
+
 
                                     });
                             }
