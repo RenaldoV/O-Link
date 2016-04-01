@@ -2,7 +2,7 @@
 //////////////Controllers for the nav bar//////////////
 ///////////////////////////////////////////////////////
 
-app.controller('navControl',function($scope, authService, sessio, $location){
+app.controller('navControl',function($scope, authService, session, $location){
 
 
     if(authService.isAuthenticated()){

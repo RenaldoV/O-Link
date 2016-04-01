@@ -97,12 +97,12 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
     });
 
 //dashboard selection box for browsing jobs
-app.controller('goBrowse',function($scope, $location){
+app.controller('goBrowse',function($scope, $location, constants){
 
 
 
-    $scope.categories = ["Coach", "Tutor", "Delivery Person", "Retail Worker", "Model", "Waiter(res)","Host(ess)","Barman", "Aupair", "Photographer / Videographer", "Programmer/Developer", "Engineer","Assistant", "Cook/Chef", "Other"];
-    $scope.timePeriods = ["Once Off", "Short Term", "Long Term"];
+    $scope.categories = constants.categories;
+    $scope.timePeriods = constants.timePeriods;
 
     $scope.selection = [];
     $scope.selectionP = [];
@@ -181,5 +181,18 @@ app.controller('myJobFeed', function($scope,$http, session){
                 });
             }
         });
+});
+
+//controller for boxes on dash
+app.controller('stats', function($scope,$http, session){
+    var user = session.user;
+    var temp = {id: user._id, type: user.type };
+    $http
+        .post('/getStats', temp)
+        .then(function (res, err) {
+            console.log(res.data);
+            $scope.stats = res.data;
+        });
+
 });
 

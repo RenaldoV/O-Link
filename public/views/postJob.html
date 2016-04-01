@@ -22,23 +22,10 @@
             </div>
             <div class="list-group-item">
                 <select class="form-control no-border" ng-model="job.post.category" required>
+
                     <option value="" selected disabled>Select Category</option>
-                    <option value="Coach">Coach</option>
-                    <option value="Delivery Person">Delivery Person</option>
-                    <option value="Tutor">Tutor</option>
-                    <option value="Promoter">Promoter</option>
-                    <option value="Model">Model</option>
-                    <option value="Waiter(res)">Waiter(res)</option>
-                    <option value="Host(ess)">Host(ess)</option>
-                    <option value="Barman">Barman</option>
-                    <option value="Aupair">Aupair</option>
-                    <option value="Retail Worker">Retail Worker</option>
-                    <option value="Photographer / Videographer">Photographer / Videographer</option>
-                    <option value="Programmer / Developer">Programmer / Developer</option>
-                    <option value="Engineer">Engineer</option>
-                    <option value="Assistant">Assistant</option>
-                    <option value="Cook / Chef">Cook / Chef</option>
-                    <option value="Other">Other</option>
+                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+                    
                 </select>
             </div>
         </fieldset>

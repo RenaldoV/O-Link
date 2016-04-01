@@ -2,7 +2,7 @@
 //////Controllers for the job related activities///////
 ///////////////////////////////////////////////////////
 
-app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants){
 
 
 
@@ -13,7 +13,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 
 
-
+$scope.categories = constants.categories;
     //add end date if short term/long term
     $("#times").hide();
     $("#endDateDiv").hide();
