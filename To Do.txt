@@ -1,8 +1,6 @@
 1. Styling (R)
 //2. Splash screen with O-Link logo and loader before entering Dashboard (R)
 3. Link Terms and conditions(Waiting for files) (R)
-//4. Style and change signup pages (R)
-5. Check if mailer working correctly (Werk nie op Ronnie se rekenaar nie.)
 6. Notifications funstionality as follows(S)
 	- Notification everytime 
 		//- Student application status changes (Dropdown with links to apllication status tab, Send email notification)
@@ -40,7 +38,7 @@ Check every day for completed jobs, set job.status to inactive, set applications
 Notify at "//notify here"
 
 
-Nuwe Functionality (Los dit tot heel laaste ons charge extra daarvoor)
+Nuwe Functionality
 
 1. Google location api (Kry quote oor hoeveel dit gan kos.)
 2. Email Notifications (Options to turn off email notifications)
