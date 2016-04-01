@@ -538,6 +538,7 @@ module.exports = function(app) {
 
 	app.post('/removeJob', function(req,res){
 		var id = req.body.id;
+		console.log(req.body);
 		db.remove('jobs',id, function (row) {
 			res.send(row);
 			

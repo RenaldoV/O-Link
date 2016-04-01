@@ -415,6 +415,11 @@ module.exports = {
 				});
 			});
 
+	},
+	removeApplications: function(empID, cb){
+		appModel.remove({employerID: empID}, function(res){
+			cb(res);
+		});
 	}
 
 };

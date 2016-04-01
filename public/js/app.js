@@ -437,11 +437,13 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     });
 
 
+    var user = session.user;
+    console.log(user._id);
     $scope.job = {};
     $scope.job.post = {};
     $scope.job.post.requirements = {};
-    $scope.job.employerID = session.user._id;
-    var user = session.user;
+    $scope.job.employerID = user._id;
+
     var temp = $location.url();
 
     temp = temp.replace("/postJob?id=", '');
@@ -464,6 +466,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.submitForm = function(){
 
         if(!$scope.job.status){
+            $scope.job.employerID = user._id;
+            console.log( $scope.job.employerID + ' Die');
             $scope.job.status = 'active';
 
             $http({
