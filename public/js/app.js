@@ -893,7 +893,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                     $scope.admin = true;
 
                 }else $scope.canApply = true;
-
+                console.log(job);
 
 
 
