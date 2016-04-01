@@ -3,7 +3,7 @@
  */
 
 
-app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify, $compile) {
+app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify, $compile, $window) {
 
     var user = cacheUser.user;
     console.log(user);
@@ -50,6 +50,68 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     return false;
                 };
 
+                $scope.accept = function(id, employerID, jobID, role){
+                    swal({
+                            title: "Are you sure?",
+                            text: "This will notify the user and that you hve accepted",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes, I'm sure!",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+
+                            if (isConfirm) {
+                                $http
+                                    .post('/acceptOffer', {_id: id})
+                                    .then(function (res, err) {
+                                        notify.go({
+                                            type: 'accepted',
+                                            jobID: jobID,
+                                            userID: employerID,
+                                            status: 'accepted',
+                                            title: role
+                                        });
+                                        swal("Offer accepted.", "The user has been notified.", "success");
+
+
+                                    });
+                            }
+                        });
+
+                };
+
+                $scope.decline = function(id, employerID, jobID, role){
+                    swal({
+                            title: "Are you sure?",
+                            text: "This will notify the user and that you hve declined",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes, I'm sure!",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
+
+                            if (isConfirm) {
+                                $http
+                                    .post('/declineOffer', {_id: id})
+                                    .then(function (res, err) {
+                                        notify.go({
+                                            type: 'declined',
+                                            jobID: jobID,
+                                            userID: employerID,
+                                            status: 'declined',
+                                            title: role
+                                        });
+                                        swal("Offer declined.", "The user has been notified.", "success");
+
+
+                                    });
+                            }
+                        });
+
+                };
+
 
                 if($scope.applications.length == 0)
                 {
@@ -90,6 +152,37 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
     else{
 
         $scope.message = "You are not allowed to view other students' applications.";
+    }
+
+    $scope.offer = function(id, studentID, jobID, role){
+        swal({
+                title: "Are you sure?",
+                text: "This will notify the user and he will accept or decline",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/makeOffer', {_id: id})
+                        .then(function (res, err) {
+                            notify.go({
+                                type: 'offer',
+                                jobID: jobID,
+                                userID: studentID,
+                                status: 'offered',
+                                title: role
+                            });
+                            swal("Offer made.", "The user has been notified.", "success");
+
+
+                        });
+                }
+            });
+
     }
 
 
@@ -164,7 +257,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.getAge = function (dob) {
                     return getAge(dob);
                 };
-                console.log($scope.applications);
+
                 $scope.isDisabled = function(status){
                     if(status != "Declined"){
                         return false;
@@ -222,7 +315,61 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     changeStatus(app, oldstat, $scope, $http,notify, app.studentID);
                 };
 
+                $scope.isDeclined = function(status){
+                    if(status == "Declined"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isProv = function(status){
+                    if(status == "Provisionally accepted"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isPending = function(status){
+                    if(status == "Pending"){
+                        return true;
+                    }
+                    return false;
+                };
+                $scope.isConfirmed = function(status){
+                    if(status == "Confirmed"){
+                        return true;
+                    }
+                    return false;
+                };
             });
+    }
+    $scope.offer = function(id, studentID, jobID, role){
+        swal({
+                title: "Are you sure?",
+                text: "This will notify the user and he will accept or decline",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/makeOffer', {_id: id})
+                        .then(function (res, err) {
+                            notify.go({
+                                type: 'offer',
+                                jobID: jobID,
+                                userID: studentID,
+                                status: 'offered',
+                                title: role
+                            });
+                            swal("Offer made.", "The user has been notified.", "success");
+
+
+                        });
+                }
+            });
+
     }
 });
 

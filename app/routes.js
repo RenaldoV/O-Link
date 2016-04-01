@@ -7,6 +7,7 @@ var smtpttransport = require('nodemailer-smtp-transport');
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
 var fs = require('fs');
+var passwordHash = require('password-hash');
 
 function getDate(){
 	var currentdate = new Date();
@@ -52,7 +53,7 @@ module.exports = function(app) {
 			function(done) {
 
 
-				db.getOneByReset({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(user) {
+				db.users.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(er,user) {
 					if (!user) {
 						return res.send('error');
 					}
@@ -109,14 +110,14 @@ module.exports = function(app) {
 			},
 			function(token, done) {
 				
-				db.getUser(user.email,function(User){
+				db.users.findOne({'contact.email':user.email},function(User){
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
  
-					db.update({"_id" : tempUser._id},"users",tempUser,
+					db.users.update({"_id" : tempUser._id},tempUser,
 					function(err,res){
 						done(err,token,User);
 					});
@@ -153,101 +154,126 @@ module.exports = function(app) {
 
 		});
 	});
-	
+
+
+////////////////////////////////////////////////////////////////////
+	//begin chop
+////////////////////////////////////////////////////////////////////
+
+	//Returns the 10 latest job posts for students
 	app.post('/jobFeeder', function(req,res){
 
-		db.selectAll("jobs", function(rows){
+		db.jobs.find({}).limit(10).sort('-postDate').exec(function(err,rows){
+			if(err){
 
+			}
 			res.send(rows);
 		});
-	});
 
+	});
+	//done
+
+
+	//Returns all job posts from logged in employer
 	app.post('/myJobFeeder', function(req,res){
 
 		var user = req.body;
 
-		db.getBy("jobs", {employerID: user.id, status: {$ne: "inactive"}}, function(rows){
+		db.jobs.find({employerID: user.id, status: {$ne: "inactive"}},function(err,rows){
+			if(err){
 
+			}
 			res.send(rows);
 		});
+
 	});
+	//done
 
+
+	//Gets jobs based on categories and time periods
 	app.post('/jobBrowse', function(req,res){
-
 
 		var temp = req.body;
 
-
-
-		db.getByArr("jobs", 'post.category', temp.categories, temp.periods, function(rows){
-
-
+		db.jobs.find().where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).exec(function(err,rows){
 			res.send(rows);
 		});
+
 	});
+	//done
+
+
+	//post a job to database
 	app.post('/jobPoster', function(req,res) {
+
 		var job = {};
-
 		for(var key in req.body) {
-
 			job = JSON.parse(key);
-
 		}
 
-		db.insert(job,'jobs',function(result){
-				res.send(result);
+		db.jobs.create(job,function(err, jobi){
+			console.log(jobi);
+			res.send(jobi);
 		});
+
 	});
+	//done
 
+
+	//update job in database
 	app.post('/jobUpdate', function(req,res) {
+
 		var job = {};
-
 		for(var key in req.body) {
-
 			job = JSON.parse(key);
-
 		}
 
-		db.update({_id: job._id},'jobs', job,function(result){
+		db.jobs.update({_id: job._id}, {$set: job}, function(err,result){
 			res.send(result);
 		});
-	});
 
+	});
+	//done
+
+	//sign in to the app
 	app.post('/signin', function(req,res) {
 		var user = {};
+
 		for(var key in req.body) {
-
-			console.log(key);
 			user = JSON.parse(key);
-
 		}
 
-		db.checkLogin(user.email,user.password,function(result){
+		db.users.findOne({'contact.email': user.email}, function(err,doc){
+			if(err){
 
-			if(result.valid == true){
-				res.send(true);
+			}else {
+
+				if (doc) {
+					if (passwordHash.verify(user.password, doc.toObject().passwordHash)) {
+						res.send(true);
+					}else
+					res.send(false);
+				}else
+				res.send(false);
 			}
-			else res.send(false);
 		});
 	});
+	//done
 
+	//Add a new user to the db
 	app.post('/signup', function(req,res) {
+
 		var user = {};
 		for(var key in req.body) {
-
-
 			user = JSON.parse(key);
-
 		}
 
-
-
-
-			//add activation token and insert into db
+		//add activation token and insert into db
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');
 				user.activateToken = token;
-				db.addUser(user,function(result){
+				user.passwordHash = passwordHash.generate(user.passwordHash);
+				db.users.create(user,function(e,result){
 					if(result)
 						res.send(result);
 					if(result != 'email' && !err){
@@ -288,50 +314,55 @@ module.exports = function(app) {
 		});
 
 	});
+	//done
 
+	//Gets all students
 	app.post('/studentFeeder', function(req,res) {
 
-		db.selectAll("students", function(rows){
+		db.users.find({type: "student"}, function(err, rows){
 			res.send(rows);
 		});
-
 	});
+	//sone
 
+	//load user by email
 	app.post('/loadUser', function(req,res) {
 		var email = req.body;
-		db.getUser(email.email, function(rows){
+		db.users.findOne({'contact.email': email.email}, function(err, rows){
 			res.send(rows);
-			console.log(rows);
 		});
 
 	});
-
+	//done
+	//get job by id
 	app.post('/getJob', function(req,res) {
 
 		var id= req.body;
 		console.log(id);
-
-		db.getById('jobs',id.id, function(rows){
+		db.jobs.findOne({_id: id.id}, function(err,rows){
 			res.send(rows);
 		});
 
 	});
+	//done
 
+	//load a user by id
 	app.post('/loadUserById', function(req,res) {
 		var id= req.body;
 
-		db.getById('users',id.id, function(rows){
+		db.users.findOne({_id: id.id}, function(err, rows){
 			res.send(rows);
 		});
 
 	});
+	//done
+	//upload profile picture
 	app.post('/upload', multipartyMiddleware, function(req, res){
 		var file = req.files.file;
 		var id = req.body.user;
 
-		fs.readFile(file.path, function (err, data) {
-			// ...
 
+		fs.readFile(file.path, function (err, data) {
 
 			var temp = file.path;
 			console.log(temp);
@@ -343,7 +374,7 @@ module.exports = function(app) {
 				if(err) throw err;
 
 
-				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
+				db.users.update({_id:id}, {$set: {profilePicture: temp}}, function(err,result){
 					if (err) throw err;
 					fs.unlink(file.path, function(e){
 						if(!e){
@@ -357,7 +388,9 @@ module.exports = function(app) {
 		});
 
 	});
+	//done
 
+	//get profile picture data
 	app.post('/getPp', function(req, res){
 
 		var path = req.body.profilePicture;
@@ -378,24 +411,22 @@ module.exports = function(app) {
 				res.send(buf);
 			}
 		});
-
-
-
-
 	});
+	//done
 
+	//update a user
 	app.post('/updateUser', function(req,res){
 
 		var user = req.body;
-		delete user.profilePicture;
-		db.update({_id : user._id}, 'users', user, function(err){
+		db.users.update({_id : user._id}, {$set: user}, function(err, doc){
 			if (err) throw err;
-
 			res.send(true);
 		} );
 
 	});
+	//done
 
+	//Add application to db
 	app.post('/apply', function(req,res){
 
 		var user = req.body.user;
@@ -414,164 +445,258 @@ module.exports = function(app) {
 			status: 'Pending'
 
 		};
-		db.insert(application, 'applications', function(ress){
-			db.update({_id: job._id}, 'jobs',job, function(result){
-				res.send(ress);
+		db.applications.create(application, function(app){
+			db.jobs.update({_id: job._id}, {$set:job}, function(err,docs){
+				res.send(app);
 			});
 
 		});
 	});
+	//done
 
+	//make changes to application
 	app.post('/updateApplication', function(req,res){
 
 		var app = req.body;
 		console.log(app);
-		db.update({_id : app._id}, 'applications', app, function(err){
+		db.applications.findOneAndUpdate({_id : app._id},{$set: app}, function(err, app){
 			if (err) throw err;
-
 			res.send(true);
 		} );
 
 	});
+	//done
 
+	//loads applications by student
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
-		db.getStudentApplications(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({studentID: user._id}).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
+
+	//load applications by employer and populate job IDs
 	app.post('/loadApplicationsTo', function(req,res){
 
 		var user = req.body;
-		db.getStudentApplicationsBy(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load applications by employer and populate job and student IDs
 	app.post('/loadApplicants', function(req,res){
 
 		var user = req.body;
-		db.getEmployerApplicants(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load applications by job and populate job and student IDs
 	app.post('/loadApplicantsByJobId', function(req,res){
 
 		var job = req.body;
-		db.getJobApplicants(job._id, function(rows){
-			res.send(rows);
+		db.applications.find({jobID: job._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load notifications by user
 	app.post('/loadNotifications', function(req,res){
 
-
-		db.loadNotifications(req.body.id, function(rows){
+		db.notifications.find({userID: req.body.id, seen: false}, function(err, rows){
 			res.send(rows);
 		});
-
-
 	});
+	//done
 
+	//update a notification to be seen
 	app.post('/makeSeen', function(req,res){
 
-		var app = req.body;
-		console.log(app);
-		db.update({_id : app.id}, 'notifications', {seen : true}, function(err){
+		var noti = req.body;
+		db.notifications.findOneAndUpdate({_id : noti.id}, {$set: {seen : true}}, function(err, not){
 			if (err) throw err;
-
 			res.send(true);
 		} );
 
 	});
+	//done
 
-	app.post('/loadCompletedApplications', function(req,res){
+	//for ratings, called for employers to rate talent
+	app.post('/getRatingDataForEmployer', function(req,res){
 
 		var emp = req.body;
 
-		db.getCompletedApplicants(emp.id, function(rows){
-
+		db.applications.find({employerID: emp.id, status:"Completed"}).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 
 
 	});
+	//done
 
-	app.post('/loadCompletedJobs', function(req,res){
+	//for ratings, called for employers to rate talent
+	app.post('/getRatingDataForStudent', function(req,res){
 
 		var student = req.body;
 
-		db.getCompletedApplications(student.id, function(rows){
-
+		db.applications.find({studentID: student.id, status:"Completed"}).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 
-
 	});
+	//done
+
+	//loads completed jobs for a employer to review and or repost
 	app.post('/loadJobHistory', function(req,res){
 
 		var student= req.body;
 
-		db.getJobHistory(req.body, function(rows){
+		db.jobs.find(req.body).populate('jobID').where('status').equals('Completed').exec(function (err, docs) {
 
-			res.send(rows);
+			res.send(docs);
 		});
 
-
 	});
+	//done
 
+	//activate a new user
 	app.post('/activateUser', function(req,res){
 		var user = req.body;
 		console.log(user);
-		db.activateUser(req.body.token, function(row){
-			console.log(row);
-			res.send(row);
-		});
+		db.users.findOneAndUpdate({activateToken: user.token},{$set:{active: true},$unset: {activateToken:""}}, function(err,doc){
+			if(err) console.log(err);
+			res.send(doc);
+		} );
 	});
+	//done
 
+	//remove job
 	app.post('/removeJob', function(req,res){
 		var id = req.body.id;
-		console.log(req.body);
-		db.remove('jobs',id, function (row) {
-			res.send(row);
+
+		//remove job
+		db.jobs.remove({_id: id}, function (err,row) {
+			//remove applications
+				db.applications.remove({jobID:id}, function(err,rows){
+					res.send(row);
+				});
+
 			
 		});
 	});
+	//done
 
+	//checks Password on chnges
 	app.post('/checkPassword', function(req,res){
 
 		var user = req.body;
 
-		db.checkLogin(user.email,user.password,function(result){
+		db.users.findOne({'contact.email': user.email}, function(err,doc){
+			if(err){
 
-			if(result.valid == true){
-				res.send(true);
+			}else {
+
+				if (doc) {
+					if (passwordHash.verify(user.password, doc.toObject().passwordHash)) {
+						res.send(true);
+					}else
+						res.send(false);
+				}else
+					res.send(false);
 			}
-			else res.send(false);
 		});
 	});
 
+	//done
+
+	//get dashboard statistics
 	app.post('/getStats', function(req,res) {
 
 
 		var user = req.body;
-		db.getStats(user, function(r){
+		var stats = {};
+		db.users.count({type:'student'}, function(err, c){
+			stats.studentCount = c;
+			db.users.count({type:'employer'}, function(err, c){
+				stats.employerCount = c;
+				db.jobs.count({}, function(err, c){
+					stats.jobsCount = c;
+					if(user.type == 'student'){
+						db.applications.count({studentID:user.id}, function(err, c){
+							stats.myApplications = c;
+							res.send(stats);
+						});
+					}
+					else if(user.type == 'employer') {
+						db.jobs.count({employerID: user.id}, function (err, c) {
+							stats.myPosts = c;
+							res.send(stats);
+						});
+					}
+				});
 
-			console.log(r);
-			res.send(r);
+			});
+		});
+
+	});
+	//done
+	//make offer functionality
+	app.post('/makeOffer', function(req,res) {
+
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"offered"}}, function(err, doc){
+			res.send(doc);
+		});
+
+	});
+	//done
+
+	//accept offer functionality
+	app.post('/acceptOffer', function(req,res) {
+
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}, function(err, doc){
+			res.send(doc);
+		});
+
+	});
+	//done
+
+	//decline offer functionality
+	app.post('/declineOffer', function(req,res) {
+
+
+		var app = req.body;
+
+		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}}, function(err, doc){
+			res.send(doc);
 		});
 
 	});
 
-
+	//done
 };
+

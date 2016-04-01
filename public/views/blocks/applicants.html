@@ -8,18 +8,23 @@
             <td>{{getAge(app.studentID.dob);}}</td>
             <td>{{app.studentID.gender}}</td>
             <td>{{app.jobID.post.role}}</td>
-            <td><div class="estatusDiv"> <select id="status" ng-disabled="isDisabled(app.status)" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
+            <td><div  class="estatusDiv"> <select ng-if="!app.offered" id="status" ng-disabled="app.offered" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
                 <option value="Declined">Declined</option>
-                <option value="Pending">Pending</option>
+                <option value="Pending" disabled>Pending</option>
                 <option value="Provisionally accepted">Provisionally accepted</option>
-                <option value="Confirmed">Confirmed</option>
             </select>
+                <span ng-if="app.offered == 'accepted'">Confirmed</span >
+                <span ng-if="app.offered == 'declined'">Declined</span >
+                <span ng-if="app.offered == 'offered'">Offered</span >
                 <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                 <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                 <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
             </div>
             </td>
-            <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn btn-primary">Contact</button><button class="btn btn-primary">Make Offer</button> </td>
+            <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn btn-primary">Contact</button>
+                <button ng-if="!app.offered"class="btn btn-primary" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
+                <button ng-if="app.offered == 'offered'" class="btn btn-success" disabled>{{app.offered}}</button>
+            </td>
         </tr>
         </tbody>
     </table>

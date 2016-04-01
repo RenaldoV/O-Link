@@ -44,7 +44,7 @@ var db = require("./app/models/Database.js");
 
 io.on('connection', function(socket){
     socket.on('notify', function(data){
-        db.addNotification(data, function(res){
+        db.notifications.create(data, function(err,res){
 
             socket.emit('notified'+ data.userID, data, function(err){
                 if (err) throw err;
