@@ -53,7 +53,7 @@ module.exports = function(app) {
 			function(done) {
 
 
-				db.getOneByReset({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(user) {
+				db.users.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(er,user) {
 					if (!user) {
 						return res.send('error');
 					}
@@ -110,14 +110,14 @@ module.exports = function(app) {
 			},
 			function(token, done) {
 				
-				db.getUser(user.email,function(User){
+				db.users.findOne({'contact.email':user.email},function(User){
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
 					tempUser.resetPasswordToken = token;
 					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
  
-					db.update({"_id" : tempUser._id},"users",tempUser,
+					db.users.update({"_id" : tempUser._id},tempUser,
 					function(err,res){
 						done(err,token,User);
 					});
@@ -452,114 +452,132 @@ module.exports = function(app) {
 
 		});
 	});
+	//done
 
+	//make changes to application
 	app.post('/updateApplication', function(req,res){
 
 		var app = req.body;
 		console.log(app);
-		db.update({_id : app._id}, 'applications', app, function(err){
+		db.applications.findOneAndUpdate({_id : app._id},{$set: app}, function(err, app){
 			if (err) throw err;
-
 			res.send(true);
 		} );
 
 	});
+	//done
 
+	//loads applications by student
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
-		db.getStudentApplications(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({studentID: user._id}).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
+
+	//load applications by employer and populate job IDs
 	app.post('/loadApplicationsTo', function(req,res){
 
 		var user = req.body;
-		db.getStudentApplicationsBy(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load applications by employer and populate job and student IDs
 	app.post('/loadApplicants', function(req,res){
 
 		var user = req.body;
-		db.getEmployerApplicants(user._id, function(rows){
-			res.send(rows);
+		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load applications by job and populate job and student IDs
 	app.post('/loadApplicantsByJobId', function(req,res){
 
 		var job = req.body;
-		db.getJobApplicants(job._id, function(rows){
-			res.send(rows);
+		db.applications.find({jobID: job._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
+
+			res.send(docs);
 		});
 
 
 	});
+	//done
 
+	//load notifications by user
 	app.post('/loadNotifications', function(req,res){
 
-
-		db.loadNotifications(req.body.id, function(rows){
+		db.notifications.find({userID: req.body.id, seen: false}, function(err, rows){
 			res.send(rows);
 		});
-
-
 	});
+	//done
 
+	//update a notification to be seen
 	app.post('/makeSeen', function(req,res){
 
-		var app = req.body;
-		console.log(app);
-		db.update({_id : app.id}, 'notifications', {seen : true}, function(err){
+		var noti = req.body;
+		db.notifications.findOneAndUpdate({_id : noti.id}, {$set: {seen : true}}, function(err, not){
 			if (err) throw err;
-
 			res.send(true);
 		} );
 
 	});
+	//done
 
-	app.post('/loadCompletedApplications', function(req,res){
+	//for ratings, called for employers to rate talent
+	app.post('/getRatingDataForEmployer', function(req,res){
 
 		var emp = req.body;
 
-		db.getCompletedApplicants(emp.id, function(rows){
-
+		db.applications.find({employerID: emp.id, status:"Completed"}).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 
 
 	});
+	//done
 
-	app.post('/loadCompletedJobs', function(req,res){
+	//for ratings, called for employers to rate talent
+	app.post('//getRatingDataForStudent', function(req,res){
 
 		var student = req.body;
 
-		db.getCompletedApplications(student.id, function(rows){
-
+		db.applications.find({studentID: student.id, status:"Completed"}).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 
-
 	});
+	//done
+
+	//loads completed jobs for a employer to review and or repost
 	app.post('/loadJobHistory', function(req,res){
 
 		var student= req.body;
 
-		db.getJobHistory(req.body, function(rows){
+		db.jobs.find(req.body).populate('jobID').where('status').equals('Completed').exec(function (err, docs) {
 
-			res.send(rows);
+			res.send(docs);
 		});
 
-
 	});
+	//done
+
 	//activate a new user
 	app.post('/activateUser', function(req,res){
 		var user = req.body;
@@ -571,40 +589,76 @@ module.exports = function(app) {
 	});
 	//done
 
+	//remove job
 	app.post('/removeJob', function(req,res){
 		var id = req.body.id;
-		console.log(req.body);
-		db.remove('jobs',id, function (row) {
-			res.send(row);
+
+		//remove job
+		db.jobs.remove({_id: id}, function (err,row) {
+			//remove applications
+				db.applications.remove({jobID:id}, function(err,rows){
+					res.send(row);
+				});
+
 			
 		});
 	});
+	//done
 
+	//checks Password on chnges
 	app.post('/checkPassword', function(req,res){
 
 		var user = req.body;
 
-		db.checkLogin(user.email,user.password,function(result){
+		db.users.findOne({'contact.email': user.email}, function(err,doc){
+			if(err){
 
-			if(result.valid == true){
-				res.send(true);
+			}else {
+
+				if (doc) {
+					if (passwordHash.verify(user.password, doc.toObject().passwordHash)) {
+						res.send(true);
+					}else
+						res.send(false);
+				}else
+					res.send(false);
 			}
-			else res.send(false);
 		});
 	});
 
+	//done
+
+	//get dashboard statistics
 	app.post('/getStats', function(req,res) {
 
 
 		var user = req.body;
-		db.getStats(user, function(r){
+		var stats = {};
+		db.users.count({type:'student'}, function(err, c){
+			stats.studentCount = c;
+			db.users.count({type:'employer'}, function(err, c){
+				stats.employerCount = c;
+				db.jobs.count({}, function(err, c){
+					stats.jobsCount = c;
+					if(user.type == 'student'){
+						db.applications.count({studentID:user.id}, function(err, c){
+							stats.myApplications = c;
+							res.send(stats);
+						});
+					}
+					else if(user.type == 'employer') {
+						db.jobs.count({employerID: user.id}, function (err, c) {
+							stats.myPosts = c;
+							res.send(stats);
+						});
+					}
+				});
 
-			console.log(r);
-			res.send(r);
+			});
 		});
 
 	});
-
+	//done
 
 };
 

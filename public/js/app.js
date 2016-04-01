@@ -169,7 +169,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window){
     $http({
         method  : 'POST',
         url     : '/loadJobHistory',
-        data : {employerID: user._id, status:'Completed'}
+        data : {employerID: user._id}
     })
         .then(function(res) {
             {
@@ -678,7 +678,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
         if(user.type == "student")
         {
             $http
-                .post('/loadCompletedJobs', {id: user._id})
+                .post('/getRatingDataForStudent', {id: user._id})
                 .then(function (res) {
 
                     var notifications = res.data;
@@ -691,7 +691,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
             }}
         else if(user.type == "employer"){
             $http
-                .post('/loadCompletedApplications', {id: user._id})
+                .post('/getRatingDataForEmployer', {id: user._id})
                 .then(function (res) {
 
                     var notifications = res.data;

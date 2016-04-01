@@ -100,7 +100,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/updateApplication', {_id: app._id, status: app.status, studentRating: $scope.rating, commentToStudent: $scope.comment})
+            .post('/updateApplication', {_id: app._id, status: app.status, employerRating: $scope.rating, commentToStudent: $scope.comment})
             .then(function (res, err) {
 
                 console.log(res);
@@ -125,7 +125,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/updateApplication', {_id: app._id, status: app.status, employerRating: $scope.rating, commentToEmployer: $scope.comment})
+            .post('/updateApplication', {_id: app._id, status: app.status, studentRating: $scope.rating, commentToEmployer: $scope.comment})
             .then(function (res, err) {
 
                 console.log(res);
