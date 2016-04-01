@@ -345,9 +345,12 @@ module.exports = function(app) {
 
 				db.update({_id : id}, 'users', {profilePicture: temp}, function(err){
 					if (err) throw err;
-					console.log(temp);
-					fs.unlink(file.path);
-					res.send(true);
+					fs.unlink(file.path, function(e){
+						if(!e){
+							res.send(true);
+						}
+					});
+
 				} );
 			});
 
@@ -550,7 +553,7 @@ module.exports = function(app) {
 		var user = req.body;
 
 		db.checkLogin(user.email,user.password,function(result){
-			
+
 			if(result.valid == true){
 				res.send(true);
 			}
