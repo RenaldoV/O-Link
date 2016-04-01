@@ -5,12 +5,12 @@
     <div class="wrapper-md">
       <!-- stats -->
       <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-5" ng-controller="stats">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item card">
-                <div class="h1 text-info font-thin h1" id="newJobs">521</div>
-                <span class="text-muted text-xs">New jobs</span>
+                <div class="h1 text-info font-thin h1" id="newJobs">{{stats.jobsCount}}</div>
+                <span class="text-muted text-xs">Total Jobs</span>
                 <div class="top text-right w-full">
                   <i class="fa fa-caret-down text-warning m-r-sm"></i>
                 </div>
@@ -18,8 +18,8 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v item card">
-                <span class="text-success font-thin h1 block" id="newStudents">930</span>
-                <span class="text-muted text-xs">New Students</span>
+                <span class="text-success font-thin h1 block" id="newStudents">{{stats.myApplications}}</span>
+                <span class="text-muted text-xs">My Total Applications</span>
                 <span class="bottom text-right w-full">
                   <i class="fa fa-cloud-upload text-success m-r-sm"></i>
                 </span>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-xs-6">
               <a href class="block panel padder-v item card">
-                <span class="text-primary font-thin h1 block" id="totalEmployers">432</span>
+                <span class="text-primary font-thin h1 block" id="totalEmployers">{{stats.employerCount}}</span>
                 <span class="text-muted text-xs">Employers</span>
                 <span class="top text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
@@ -36,8 +36,8 @@
             </div>
             <div class="col-xs-6">
               <div class="panel padder-v item card">
-                <div class="font-thin h1" id="totalStudents">129</div>
-                <span class="text-muted text-xs">Students</span>
+                <div class="font-thin h1" id="totalStudents">{{stats.studentCount}}</div>
+                <span class="text-muted text-xs">Talent</span>
                 <div class="bottom text-left">
                   <i class="fa fa-caret-up text-warning m-l-sm"></i>
                 </div>

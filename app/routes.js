@@ -540,6 +540,7 @@ module.exports = function(app) {
 		var id = req.body.id;
 		db.remove('jobs',id, function (row) {
 			res.send(row);
+			
 		});
 	});
 
@@ -554,6 +555,18 @@ module.exports = function(app) {
 			}
 			else res.send(false);
 		});
+	});
+
+	app.post('/getStats', function(req,res) {
+
+
+		var user = req.body;
+		db.getStats(user, function(r){
+
+			console.log(r);
+			res.send(r);
+		});
+
 	});
 
 

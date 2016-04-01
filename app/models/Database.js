@@ -388,6 +388,33 @@ module.exports = {
 	col.remove({_id : id}, function(res){
 		return cb(res);
 	});
-}
+},
+	getStats: function(user,cb) {
+
+		var stats = {};
+		userModel.count({type:'student'}, function(err, c){
+			stats.studentCount = c;
+			userModel.count({type:'employer'}, function(err, c){
+				stats.employerCount = c;
+				jobModel.count({}, function(err, c){
+					stats.jobsCount = c;
+						if(user.type == 'student'){
+							appModel.count({studentID:user.id}, function(err, c){
+								stats.myApplications = c;
+								cb(stats);
+						});
+						}
+						else if(user.type == 'employer') {
+							jobModel.count({employerID: user.id}, function (err, c) {
+								stats.myPosts = c;
+								cb(stats);
+							});
+						}
+					});
+
+				});
+			});
+
+	}
 
 };

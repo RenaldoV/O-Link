@@ -928,14 +928,16 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 
                                     sweetAlert("Job has beed deleted", "", "success");
-                                    for(var i = 0; i < job.applicants.length; i++) {
-                                        notify.go({
-                                            type: 'jobDeleted',
-                                            jobID: job._id,
-                                            userID: job.applicants[i],
-                                            status: 'deleted',
-                                            title: job.post.role
-                                        });
+                                    if(job.applicants) {
+                                        for (var i = 0; i < job.applicants.length; i++) {
+                                            notify.go({
+                                                type: 'jobDeleted',
+                                                jobID: job._id,
+                                                userID: job.applicants[i],
+                                                status: 'deleted',
+                                                title: job.post.role
+                                            });
+                                        }
                                     }
                                     $window.location.href = '/myJobPosts';
 
