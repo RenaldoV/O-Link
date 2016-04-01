@@ -723,7 +723,7 @@ app.controller('goBrowse',function($scope, $location){
 
 
 
-    $scope.categories = ["Coach", "Tutor", "Delivery Person", "Sales Rep", "Model", "Waiter(res)", "Other"];
+    $scope.categories = ["Coach", "Tutor", "Delivery Person", "Retail Worker", "Model", "Waiter(res)","Host(ess)","Barman", "Aupair", "Photographer / Videographer", "Programmer/Developer", "Engineer","Assistant", "Cook/Chef", "Other"];
     $scope.timePeriods = ["Once Off", "Short Term", "Long Term"];
 
     $scope.selection = [];
