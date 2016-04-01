@@ -2,10 +2,7 @@
 
 
 	<div class="type wrapper text-center">
-		<strong>Sign up to get started</strong>
-		<br/>
-		<br/>
-		<strong>Sign up as:</strong>
+		<strong>Sign Up As:</strong>
 
 	</div>
 
@@ -372,7 +369,9 @@
 
 			$("input[name=stuRePassw]").on("blur", function () {
 				if($("input[name=stuPassw]").val() != $(this).val())
-					this.setCustomValidity("Passwords do not match.");	
+					this.setCustomValidity("Passwords do not match.");
+				else
+					this.setCustomValidity("");
 			});
 			$("input[name=stuRePassw]").on("change", function () {
 				this.setCustomValidity("");
