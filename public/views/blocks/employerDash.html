@@ -50,12 +50,12 @@
           <div class="panel wrapper">
 
             <h4 class="font-thin m-t-none m-b text-muted">My Job Offers</h4>
-            <div ng-controller="myJobFeed">
+            <div ng-controller="myJobFeed"  class="jobPosts">
               <table class="table">
                 <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="job in jobs">
+                <tr ng-repeat="job in jobs"  ng-click="getJob(job._id)"  style="cursor: pointer;" >
                   <td>{{job.post.category}}</td>
                   <td>{{job.post.role}}</td>
                   <td>{{job.applicants.length}}</td>

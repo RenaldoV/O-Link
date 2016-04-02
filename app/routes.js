@@ -156,9 +156,6 @@ module.exports = function(app) {
 	});
 
 
-////////////////////////////////////////////////////////////////////
-	//begin chop
-////////////////////////////////////////////////////////////////////
 
 	//Returns the 10 latest job posts for students
 	app.post('/jobFeeder', function(req,res){
@@ -206,10 +203,7 @@ module.exports = function(app) {
 	//post a job to database
 	app.post('/jobPoster', function(req,res) {
 
-		var job = {};
-		for(var key in req.body) {
-			job = JSON.parse(key);
-		}
+		var job = req.body;
 
 		db.jobs.create(job,function(err, jobi){
 			console.log(jobi);
@@ -223,12 +217,12 @@ module.exports = function(app) {
 	//update job in database
 	app.post('/jobUpdate', function(req,res) {
 
-		var job = {};
-		for(var key in req.body) {
-			job = JSON.parse(key);
-		}
+		var job = req.body.job;
+		console.log(job);
 
-		db.jobs.update({_id: job._id}, {$set: job}, function(err,result){
+
+		db.jobs.update({_id: job._id}, {$set:job}, function(err,result){
+			console.log(result);
 			res.send(result);
 		});
 

@@ -20,4 +20,15 @@ app.service('constants', function(){
         "Other"];
 
     this.timePeriods = ["Once Off", "Short Term", "Long Term"];
+
+    this.requirements = [
+        "Maths",
+        "AP Maths",
+        "English",
+        "Science",
+        "Afrikaans",
+        "Zulu",
+        "IT"
+    ];
+
 });

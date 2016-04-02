@@ -14,6 +14,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 
 $scope.categories = constants.categories;
+    $scope.reqNames = constants.requirements;
     //add end date if short term/long term
     $("#times").hide();
     $("#endDateDiv").hide();
@@ -50,62 +51,28 @@ $scope.categories = constants.categories;
     var btnGrp = $("#reqButtonGrp");
     var inputGrp = $("#reqInputs");
 
-
-
-    $('#addReq').click(function(e){
-
-        reqCount++;
-        var reqSelect = $(  '<div class="reqBox'+reqCount+'">' +
-            '<select class="form-control no-border" id="sel1" name="how" ng-model="job.post.requirements['+(reqCount-1)+'].name" required">' +
-            '<option value="" selected disabled>Choose Requirement</option>' +
-            '<option value="Maths">Maths</option>' +
-            '<option value="AP Maths">AP Maths</option>' +
-            '<option value="English">English</option>' +
-            '<option value="Science">Science</option>' +
-            '<option value="Afrikaans">Afrikaans</option>' +
-            '<option value="Zulu">Zulu</option>' +
-            '<option value="IT">IT</option>' +
-            '</select>' +
-            '<select class="form-control no-border" id="sel1" name="how" ng-model="job.post.requirements['+(reqCount-1)+'].symbol" required">' +
-            '<option value="" selected disabled>Choose Symbol</option>' +
-            '<option value="A">A (80-100%)</option>' +
-            '<option value="B">B (70-79%)</option>' +
-            '<option value="C">C (60-69%)</option>' +
-            '<option value="D">D (50-59%)</option>' +
-            '<option value="F">F (40-49%)</option>' +
-            '</select>' +
-            '</div>').appendTo(inputGrp);
-
-
-
-        if(reqCount <= 1)
-        {
-            var remBtn = $('<button type="button" class="removeReq btn btn-default" ng-click="close()">Remove<span class="glyphicon glyphicon-minus"></span></button></div>').prependTo(btnGrp);
-        }
-
-        $compile(reqSelect)($scope);
-        $compile(btnGrp)($scope);
-
-    });
-
-    $(document).on("click", ".removeReq", function(){
-        if(reqCount == 1)
-            $(this).remove();
-
-        $("#reqInputs .reqBox"+reqCount+"").remove();
-
-        reqCount--;
-        $scope.job.post.requirements[reqCount] = {};
-    });
-
+    
 
     var user = session.user;
     console.log(user._id);
     $scope.job = {};
     $scope.job.post = {};
-    $scope.job.post.requirements = {};
+    $scope.job.post.requirements = [];
     $scope.job.employerID = user._id;
 
+    $scope.close = function(reqs){
+
+        console.log($scope.job.post.requirements.pop());
+
+    };
+    $scope.add = function(){
+
+        if(!$scope.job.post.requirements){
+            $scope.job.post.requirements = [{}];
+        }else
+        console.log($scope.job.post.requirements.push({}));
+
+    };
     var temp = $location.url();
 
     temp = temp.replace("/postJob?id=", '');
@@ -122,6 +89,7 @@ $scope.categories = constants.categories;
                 $scope.job = res.data;
 
 
+
             });
     }
 
@@ -134,8 +102,7 @@ $scope.categories = constants.categories;
             $http({
                 method  : 'POST',
                 url     : '/jobPoster',
-                data   : $scope.job, //forms user object
-                headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+                data   : $scope.job
             })
                 .then(function(response) {
                     {
@@ -149,12 +116,10 @@ $scope.categories = constants.categories;
             delete $scope.job._id;
             delete $scope.job.applicants;
             $scope.job.status = 'active';
-
             $http({
                 method  : 'POST',
                 url     : '/jobPoster',
-                data   : $scope.job, //forms user object
-                headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+                data   : $scope.job
             })
                 .then(function(response) {
                     {
@@ -164,6 +129,7 @@ $scope.categories = constants.categories;
                 });
         }
         else if($scope.job.status == 'active'){
+
             swal({
                     title: "Are you sure?",
                     type: "input",
@@ -189,16 +155,17 @@ $scope.categories = constants.categories;
                                 delete $scope.job.applicants;
                                 $scope.job.status = 'active';
 
+
                                 $http({
                                     method: 'POST',
                                     url: '/jobUpdate',
-                                    data: $scope.job, //forms user object
-                                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                                    data: {job:$scope.job}
                                 })
                                     .then(function (response) {
                                         {
                                             swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
 
+                                            if(applicants){
                                             for(var i = 0; i < applicants.length; i++) {
                                                 notify.go({
                                                     type: 'jobEdited',
@@ -207,7 +174,7 @@ $scope.categories = constants.categories;
                                                     status: 'edited',
                                                     title: $scope.job.post.role
                                                 });
-                                            }
+                                            }}
                                             $location.url("/myJobPosts");
                                         }
                                     });

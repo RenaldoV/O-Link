@@ -161,7 +161,7 @@ app.controller('goBrowse',function($scope, $location, constants){
 });
 
 //employer dash jobs and /myJobs' controller
-app.controller('myJobFeed', function($scope,$http, session){
+app.controller('myJobFeed', function($scope,$http, session, $window){
 
     var user = session.user;
 
@@ -181,6 +181,9 @@ app.controller('myJobFeed', function($scope,$http, session){
                 });
             }
         });
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
 });
 
 //controller for boxes on dash
