@@ -1,13 +1,13 @@
 
+Works, and tested on closed local db
 
-
-Sign up as employer works
-Sign up as talent works
-Post Job 
-Sign in employer
-Sign in student
-post job
-edit job
+//Sign up as employer works
+//Sign up as talent works
+//Post Job Works
+//Sign in employer works
+//Sign in student works
+//post job works
+//edit job
 	\\requirements don't load for edit
 	//fixed
 	\\doesn't update anymore
@@ -15,7 +15,7 @@ edit job
 	//notifications work, to all that applied
 	//user asked to accept changes
 	//user accepts changes updates db
-delete job works, with notifications, deletes all applications for job aswsell
+//delete job works, with notifications, deletes all applications for job aswsell
 
 
 todo:
