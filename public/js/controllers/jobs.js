@@ -51,7 +51,8 @@ $scope.categories = constants.categories;
     var btnGrp = $("#reqButtonGrp");
     var inputGrp = $("#reqInputs");
 
-    
+    var now = new Date();
+    console.log(now.getDate());
 
     var user = session.user;
     console.log(user._id);

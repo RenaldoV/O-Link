@@ -218,13 +218,31 @@ module.exports = function(app) {
 	app.post('/jobUpdate', function(req,res) {
 
 		var job = req.body.job;
-		console.log(job);
 
 
-		db.jobs.update({_id: job._id}, {$set:job}, function(err,result){
-			console.log(result);
-			res.send(result);
+
+			db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,rows){
+				console.log(rows);
+				res.send(true);
+			});
+
+
+
+	});
+	//done
+	//user accepts changes to job
+	app.post('/acceptChanges', function(req,res) {
+
+		var app = req.body;
+
+
+
+		db.applications.update({_id:app.id},{$unset:{edited:'', editTime: ''}} , function(err,rows){
+			console.log(rows);
+			res.send(true);
 		});
+
+
 
 	});
 	//done

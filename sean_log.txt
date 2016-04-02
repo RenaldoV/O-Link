@@ -1,0 +1,32 @@
+
+
+
+Sign up as employer works
+Sign up as talent works
+Post Job 
+Sign in employer
+Sign in student
+post job
+edit job
+	\\requirements don't load for edit
+	//fixed
+	\\doesn't update anymore
+	//works
+	//notifications work, to all that applied
+	//user asked to accept changes
+	//user accepts changes updates db
+delete job works, with notifications, deletes all applications for job aswsell
+
+
+todo:
+
+apply for job(doesn't check requirements)
+change status works (no notification)
+
+daily syncs
+	-Delete unaccepted edited apps
+	-End jobs after endDate
+make email field save browser hash, nou isit op nommer of iets.
+
+
+

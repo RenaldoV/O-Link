@@ -113,6 +113,16 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 };
 
 
+                $scope.acceptChanges = function(id){
+                    $http
+                        .post('/acceptChanges', {id: id})
+                        .then(function (res, err) {
+
+                            swal("Changes accepted.", "The employer has been notified.", "success");
+
+
+                        });
+                };
                 if($scope.applications.length == 0)
                 {
                     $scope.message = "You haven't applied for any jobs.";
