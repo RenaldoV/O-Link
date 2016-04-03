@@ -1,5 +1,5 @@
 /**
- * Created by Sean on 2016/02/22.
+ * COntrollers to do with profiles.
  */
 app.controller('profileControl',function($scope, authService, session, $location, $http, cacheUser) {
 
@@ -80,11 +80,16 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
     $scope.user = cacheUser.user;
 
 
+
+
+
 });
 
-app.controller('studentProfileControl', function ($scope,$http,cacheUser, session) {
+app.controller('studentProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
 
     var user = cacheUser.user;
+    if (user._id = session.user._id)
+        $scope.myProfile = true;
 
     $scope.user = user;
 
@@ -100,13 +105,20 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
         $("#editLink").show();
     }
 
+    $scope.uploadPp = function() {
+        photoUpload.makeUploadBox();
+    };
+
 
 
 });
 
-app.controller('employerProfileControl', function ($scope,$http,cacheUser, session) {
+app.controller('employerProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
 
     var user = cacheUser.user;
+
+    if (user._id = session.user._id)
+    $scope.myProfile = true;
 
     $scope.user = user;
 
@@ -118,13 +130,16 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
 
 
         });
-    if(user._id == session.user._id){
-        $("#editLink").show();
-    }
 
+
+
+    $scope.uploadPp = function() {
+        photoUpload.makeUploadBox();
+    };
 
 
 });
+
 app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService, constants){
 
 
@@ -235,11 +250,11 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
 
 });
 
-
 app.controller('employerEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService){
 
 
     $scope.user = session.user;
+
     var user = session.user;
     if(!user.results)
     {
@@ -357,3 +372,43 @@ app.controller('activateProfileControl', function ($scope,$http,$location, authS
 
 });
 
+app.controller('photoUploadControl', function($scope,Upload,$timeout, session, authService, $window){
+    var user  = session.user;
+    $scope.upload = function (dataUrl) {
+        Upload.upload({
+            url: '/upload',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl),
+                user: user._id
+            }
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+            });
+            authService.login({email: user.contact.email});
+            $window.location.href="/myProfile";
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    };
+});
+
+app.service('photoUpload', function(ngDialog) {
+
+
+    this.makeUploadBox = function () {
+
+        ngDialog.open({
+                template: '../views/blocks/pictureUpload.html',
+                controller: 'photoUploadControl',
+                showClose: true
+
+            }
+        );
+
+
+    };
+});

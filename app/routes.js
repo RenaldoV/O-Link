@@ -408,7 +408,6 @@ module.exports = function(app) {
 		var path = req.body.profilePicture;
 		path = __dirname + path;
 		var def = __dirname + "\\uploads\\default.png";
-		console.log(path);
 		fs.readFile(path, function(err,data){
 			if(err) {
 				fs.readFile(def, function(err,data){

@@ -12,7 +12,8 @@
                         <div class="row m-t">
                             <div class="col-sm-7">
                                 <a href class="thumb-lg pull-left m-r">
-                                    <img ng-src="data:image/png;base64,{{image}}" class="img-circle">
+                                    <img ng-if="!myProfile" ng-src="data:image/png;base64,{{image}}" class="img-circle">
+                                    <img ng-if="myProfile" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}" class="img-circle">
                                 </a>
                                 <div class="clear m-b">
                                     <div class="m-b m-t-sm">
@@ -35,7 +36,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a id = "editLink" href="/editProfile" hidden>Edit Profile</a>
+                        <a ng-if="myProfile" href="/editProfile" >Edit Profile</a>
                     </div>
 
                 </div>

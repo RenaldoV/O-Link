@@ -1,11 +1,10 @@
 
-Works, and tested on closed local db
-
 //Sign up as employer works
 	//emails, token, activation works
 //Sign up as talent works
 	//emails, token, activation works
 	\\matric results not linking
+	//fixed
 //Post Job Works
 //Sign in employer works
 //Sign in student works
@@ -19,13 +18,25 @@ Works, and tested on closed local db
 	//user asked to accept changes
 	//user accepts changes updates db
 //delete job works, with notifications, deletes all applications for job aswsell
+//edit student profile
+	//works with signup form, loads everything, wide inputs
+//edit employer profile
+	//works with signup form, loads everything, wide inputs
+
+//studentProfile hides pills for individual
+//photo upload box on click at myProfile
+	//upload box works, 
+	\\cropper image flickers**
+
+
+
 
 
 todo:
 
-signup requirements arrayify
 
-employer jobs posted and star rating on profile, pills verander as daar nie company is nie
+employer jobs posted and star rating on profile
+
 deleted jobs net merk as deleted, net applications wat nie "Completed" ws nie delete(vir ratings)
 iets beter doen vir profile picture upload
 

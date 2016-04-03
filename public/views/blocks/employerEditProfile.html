@@ -21,75 +21,68 @@
         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
     </form><button ng-click="showUpload()" class="btn btn-default">Upload Profile Picture</button>
 
-    <form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="updateUser()">
+    <form id="employerSUForm1" class="form-validation" name="employerForm" ng-submit="updateUser()">
+        <h4 class="form-section-label">Employer Info</h4>
         <div class="list-group list-group-sm">
-            <fieldset class="form-group">
-                <label>Company Info</label>
+            <div class="list-group-item">
+                <input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+            </div>
+            <div class="list-group-item">
+                <input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+            </div>
+            <div class="list-group-item">
+                <input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
+                       pattern="[\d]{13,13}"   required>
+            </div>
+            <div class="list-group-item">
+                <input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
+            </div>
+            <div class="list-group-item">
+                <input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+            </div>
+        </div>
+
+
+
+        <div ng-if="user.employerType == 'Company'" class="companysection">
+            <h4 class="form-section-label">Company Info</h4>
+            <div class="list-group list-group-sm form-group" >
+
                 <div class="list-group-item">
-                    <input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" required>
+                    <input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
                 </div>
                 <div class="list-group-item">
-                    <input list="BC" name="cat" class="form-control no-border" placeholder="Choose business category or type own" ng-model="user.company.businessCategory" required>
-                </div>
-                <datalist id="BC">
-                    <option value="Coach">
-                    <option value="Delivery	Person">
-                    <option value="Tutor">
-                    <option value="Sales rep">
-                    <option value="Model">
-                    <option value="Waiter(res)">
-                </datalist>
-                <div class="list-group-item">
-                    <input name="RegNo" type="text" class="form-control no-border" placeholder="Company reg number YYYY/NNNNNN/NN" ng-model="user.company.regNo" pattern="((19|20)[\d]{2}/[\d]{6}/[\d]{2})">
-                </div>
-                <div class="list-group-item">
-                    <input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" required>
+                    <input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
                 </div>
                 <div class="list-group-item">
                     <!--Link google location API en gebruik location auto complete-->
-                    <input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.company.location" required>
-                </div>
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Contact Info</label>
-                <div class="list-group-item">
-                    <input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+                    <input id="pac-input" type="text" class="controls form-control no-border" placeholder="Enter Comany Location" ng-model="user.company.location" >
                 </div>
                 <div class="list-group-item">
-                    <input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+                    <input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" >
                 </div>
-                <div class="list-group-item">
-                    <input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
-                           pattern="[\d]{13,13}"   required>
-                </div>
-                <div class="list-group-item">
-                    <input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" required>
-                </div>
-                <div class="list-group-item">
-                    <input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
-                </div>
-                <div class="list-group-item">
-                    <input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
-                </div>
-
-            </fieldset>
-            <fieldset class="form-group">
-                <label>Alternate contact info</label>
-                <div class="list-group-item">
-                    <input placeholder="Alternate contact name" class="form-control no-border" ng-model="user.alternate.name" required>
-                </div>
-                <div class="list-group-item">
-                    <input placeholder="Alternate contact surname" class="form-control no-border" ng-model="user.alternate.surname" required>
-                </div>
-                <div class="list-group-item">
-                    <input name="empAdContact" placeholder="Alternate contact number" class="form-control no-border" ng-model="user.alternate.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
-                </div>
-            </fieldset>
-
-
-            <button type="submit" class="btn btn-lg btn-primary btn-block">Update</button>
+            </div>
         </div>
+
+
+        <h4 class="form-section-label">Other info</h4>
+        <div class="list-group list-group-sm form-group">
+            <fieldset class="form-group">
+                <div class="list-group-item">
+                    <select class="form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+                        <option value="" selected disabled>How did you hear about us?</option>
+                        <option value="Word of mouth">Word of mouth</option>
+                        <option value="Social media">Social media</option>
+                        <option value="Academic institution">Academic institution</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </fieldset>
+        </div>
+
+        <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Update</button>
     </form>
+
 
 
 

@@ -1,0 +1,20 @@
+<form name="myForm" ng-controller="photoUploadControl">
+    <div>Crop Image and Upload</div>
+    <button ngf-select ng-model="picFile" accept="image/*">
+        Select Picture</button>
+    <div ngf-drop ng-model="picFile" style="max-width: 420px;" ngf-pattern="image/*"
+         class="cropArea">
+        <img-crop  image="picFile  | ngfDataUrl"
+                  result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+        </img-crop>
+    </div>
+    <div>
+        <img ng-src="{{croppedDataUrl}}" />
+    </div>
+    <button ng-click="upload(croppedDataUrl)" class="btn btn-default">Upload Profile Picture</button>
+
+        <span class="progress" ng-show="progress >= 0">
+          <div ng-bind="progress + '%'"></div>
+        </span>
+    <span ng-show="result">Upload Successful</span>
+    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
