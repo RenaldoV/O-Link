@@ -28,7 +28,8 @@
 	//upload box works, 
 	\\cropper image flickers**
 
-
+//Delete unaccepted edited apps every hour
+//End jobs, mark as Completed, after endDate(start date for once off)
 
 
 
@@ -43,11 +44,10 @@ iets beter doen vir profile picture upload
 
 
 apply for job(doesn't check requirements)
-change status works (no notification)
 
-daily syncs
-	-Delete unaccepted edited apps
-	-End jobs after endDate
+change job status works (no notification)
+
+
 
 make email field save browser hash, nou isit op nommer of iets.
 

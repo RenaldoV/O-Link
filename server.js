@@ -53,6 +53,73 @@ io.on('connection', function(socket){
     } );
 });
 
+var CronJob = require('cron').CronJob;
+
+//function happens once every hour
+new CronJob('00 00 * * * *', function() {
+    //check for edited posts that weren't accepted
+    db.applications.find({edited:true}, function(err, rows){
+        for(var i =0; i < rows.length; i++){
+            if(rows[i].editTime + 86400000 >= Date.now() ){
+                db.applications.remove({_id:rows[i]._id}, function(err, res){
+                   console.log(res);
+                });
+            }
+        }
+    });
+    console.log('Hourly check');
+}, null, true);
+
+//function executes once a day
+new CronJob('00 00 00 * * *', function() {
+    //check for edited posts that weren't accepted
+    db.jobs.find({status:{$ne: 'Completed'}},function(err,rows){
+        rows.forEach(function(ro){
+            row = ro.toObject();
+            if (row.post.endDate) {
+                if(hasFinished(row.post.endDate))
+                {
+                    db.jobs.findOneAndUpdate({_id:rows._id}, {$set:{status: 'Completed'}}, function(err, dox){
+
+                    });
+                }
+
+            } else {
+                if(hasFinished(row.post.startingDate))
+                {
+                    db.jobs.findOneAndUpdate({_id:rows._id}, {$set:{status: 'Completed'}}, function(err, dox){
+
+                    });
+                }
+
+            }
+        });
+
+    });
+    console.log('Hourly check');
+}, null, true);
 
 
+function hasFinished(date){
+    console.log(date);
 
+    var datearr = date.split('/');
+    var now = new Date();
+    if(now.getYear() > datearr[2]){
+        return true;
+    }
+    if(now.getYear() == datearr[2]){
+        if(now.getMonth() > datearr[0])
+        {
+            return true;
+        }else if(now.getMonth() == datearr[0])
+        {
+            if(now.getDate() > datearr[1])
+            {
+                return true;
+            }
+        }
+    }
+        return false;
+
+}
