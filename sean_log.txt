@@ -48,13 +48,15 @@ change status works (no notification)
 daily syncs
 	-Delete unaccepted edited apps
 	-End jobs after endDate
+
 make email field save browser hash, nou isit op nommer of iets.
 
 edit profile vir employers edit vir idividuals ook
 
-notification ball op resize
+notification ball op resize net een op
 
-student dash select all by browser, load alles reg(check net), star rating & jobs completed
+
+student dash select all by browser, star rating & jobs completed
 
 
 

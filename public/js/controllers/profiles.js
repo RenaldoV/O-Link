@@ -23,7 +23,7 @@ app.controller('profileControl',function($scope, authService, session, $location
                 };
                 return;
             }
-        }
+        }else
 
         if(temp == '/editProfile'){
             var user = session.user;
@@ -41,28 +41,30 @@ app.controller('profileControl',function($scope, authService, session, $location
                 return;
             }
         }
-        temp = temp.replace("/profile?user=", '');
+        else {
+            temp = temp.replace("/profile?user=", '');
 
-        var credentials = {id: temp};
+            var credentials = {id: temp};
 
-        $http
-            .post('/loadUserById', credentials)
-            .then(function (res) {
+            $http
+                .post('/loadUserById', credentials)
+                .then(function (res) {
 
-                res.data.passwordHash = null;
-                var user = res.data;
-                cacheUser.create(res.data);
-                if (user.type == "student") {
-                    $scope.getProfile = function () {
-                        return "../views/blocks/studentProfile.html";
+                    res.data.passwordHash = null;
+                    var user = res.data;
+                    cacheUser.user = user;
+                    if (user.type == "student") {
+                        $scope.getProfile = function () {
+                            return "../views/blocks/studentProfile.html";
+                        }
                     }
-                }
-                else if (user.type == "employer") {
-                    $scope.getProfile = function () {
-                        return "../views/blocks/employerProfile.html";
+                    else if (user.type == "employer") {
+                        $scope.getProfile = function () {
+                            return "../views/blocks/employerProfile.html";
+                        }
                     }
-                }
-            });
+                });
+        }
     }
     if (authService.isAuthenticated()) {
         getUser();
@@ -88,9 +90,11 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 app.controller('studentProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
 
     var user = cacheUser.user;
+    $scope.myProfile = false;
     if (user._id = session.user._id)
         $scope.myProfile = true;
 
+    console.log(cacheUser.user._id + " " +session.user._id);
     $scope.user = user;
 
     $http
@@ -101,9 +105,7 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
 
     });
-    if(user._id == session.user._id){
-        $("#editLink").show();
-    }
+
 
     $scope.uploadPp = function() {
         photoUpload.makeUploadBox();
@@ -116,7 +118,7 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 app.controller('employerProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
 
     var user = cacheUser.user;
-
+    $scope.myProfile = false;
     if (user._id = session.user._id)
     $scope.myProfile = true;
 
