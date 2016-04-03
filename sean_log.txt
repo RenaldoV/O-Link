@@ -2,14 +2,17 @@
 Works, and tested on closed local db
 
 //Sign up as employer works
+	//emails, token, activation works
 //Sign up as talent works
+	//emails, token, activation works
+	\\matric results not linking
 //Post Job Works
 //Sign in employer works
 //Sign in student works
 //post job works
 //edit job
 	\\requirements don't load for edit
-	//fixed
+	//fixed (Die arrays wat gebruik was is weird, het dit nou reg gemaak, so mongolab db gaan maybe nie lekker werk nie)
 	\\doesn't update anymore
 	//works
 	//notifications work, to all that applied
@@ -20,6 +23,13 @@ Works, and tested on closed local db
 
 todo:
 
+signup requirements arrayify
+
+employer jobs posted and star rating on profile, pills verander as daar nie company is nie
+deleted jobs net merk as deleted, net applications wat nie "Completed" ws nie delete(vir ratings)
+iets beter doen vir profile picture upload
+
+
 apply for job(doesn't check requirements)
 change status works (no notification)
 
@@ -27,6 +37,13 @@ daily syncs
 	-Delete unaccepted edited apps
 	-End jobs after endDate
 make email field save browser hash, nou isit op nommer of iets.
+
+edit profile vir employers edit vir idividuals ook
+
+notification ball op resize
+
+student dash select all by browser, load alles reg(check net), star rating & jobs completed
+
 
 
 

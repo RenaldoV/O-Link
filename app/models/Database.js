@@ -9,8 +9,8 @@ var booleanValue = passwordHash.verify(Pass, hashValue);
 
  */
 var db = mongoose.connection;
-mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {});
-//mongoose.connect('mongodb://localhost:27017/olink', function(e) {});
+//mongoose.connect('mongodb://test:test@ds060968.mongolab.com:60968/olink', function(e) {});
+mongoose.connect('mongodb://localhost:27017/olink', function(e) {});
 
 
 db.on('error', console.error.bind(console, 'connection error:'));

@@ -41,7 +41,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, AUTH_EVENTS){
+app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants){
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
@@ -57,59 +57,25 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         //this.tab('show');
     });
 
-    var reqCount = 0;
 
-    var btnGrp = $("#reqButtonGrp");
-    var inputGrp = $("#reqInputs");
-
-    $('#addReq').click(function(e){
-
-        reqCount++;
-        var reqSelect = $(  '<div class="reqBox'+reqCount+'">' +
-            '<select class="form-control no-border" id="sel1" name="how" ng-model="user.results['+(reqCount-1)+'].name" required">' +
-            '<option value="" selected disabled>Choose Subject</option>' +
-            '<option value="Maths">Maths</option>' +
-            '<option value="AP Maths">AP Maths</option>' +
-            '<option value="English">English</option>' +
-            '<option value="Science">Science</option>' +
-            '<option value="Afrikaans">Afrikaans</option>' +
-            '<option value="Zulu">Zulu</option>' +
-            '<option value="IT">IT</option>' +
-            '</select>' +
-            '<select class="form-control no-border" id="sel1" name="how" ng-model="user.results['+(reqCount-1)+'].symbol" required">' +
-            '<option value="" selected disabled>Choose Symbol</option>' +
-            '<option value="A">A (80-100%)</option>' +
-            '<option value="B">B (70-79%)</option>' +
-            '<option value="C">C (60-69%)</option>' +
-            '<option value="D">D (50-59%)</option>' +
-            '<option value="F">F (40-49%)</option>' +
-            '</select>' +
-            '</div>').appendTo(inputGrp);
-
-
-
-        if(reqCount <= 1)
-        {
-            var remBtn = $('<button type="button" class="removeReq btn btn-default" ng-click="close()"><span class="glyphicon glyphicon-minus"></span> Remove</button></div>').prependTo(btnGrp);
-        }
-
-        $compile(reqSelect)($scope);
-        $compile(btnGrp)($scope);
-
-    });
-
-    $(document).on("click", ".removeReq", function(){
-        if(reqCount == 1)
-            $(this).remove();
-
-        $("#reqInputs .reqBox"+reqCount+"").remove();
-
-        reqCount--;
-        $scope.user.results[reqCount] = {};
-    });
-
+    $scope.reqNames = constants.requirements;
     $scope.user = {};
-    $scope.user.results = {};
+    $scope.user.results = [];
+    $scope.close = function(reqs){
+
+        console.log($scope.results.pop());
+
+    };
+    $scope.add = function(){
+
+        if(!$scope.user.results){
+            $scope.user.results = [{}];
+        }else
+            console.log($scope.user.results.push({}));
+
+    };
+
+
 
     $scope.submitForm = function() {
 
