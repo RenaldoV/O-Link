@@ -35,6 +35,7 @@
 todo:
 
 
+
 employer jobs posted and star rating on profile
 
 deleted jobs net merk as deleted, net applications wat nie "Completed" ws nie delete(vir ratings)
