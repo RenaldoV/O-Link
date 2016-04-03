@@ -60,10 +60,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     $scope.reqNames = constants.requirements;
     $scope.user = {};
-    $scope.user.results = [];
+
     $scope.close = function(reqs){
 
-        console.log($scope.results.pop());
+        console.log($scope.user.results.pop());
 
     };
     $scope.add = function(){

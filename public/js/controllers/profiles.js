@@ -125,18 +125,32 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
 
 
 });
-app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService){
+app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService, constants){
 
 
     $scope.user = session.user;
+    $scope.reqNames = constants.requirements;
+
+
+    $scope.close = function(reqs){
+
+        console.log($scope.user.results.pop());
+
+    };
+    $scope.add = function(){
+
+        if(!$scope.user.results){
+            $scope.user.results = [{}];
+        }else
+            console.log($scope.user.results.push({}));
+
+    };
+
     var tempdob = $scope.user.dob.substring(0,9);
     //tempdob = tempdob.replace(/-/g, "/");
     $scope.user.dob = tempdob;
     var user = session.user;
-    if(!user.results)
-    {
-        user.results = {};
-    }
+    
     console.log(user);
     $scope.upload = function (dataUrl) {
         Upload.upload({
@@ -188,17 +202,6 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
                         else{
 
 
-                            var temp = [];
-
-
-                            $(".resBox").each(function(i){
-
-                                var temp1 = {};
-                                temp1.name =  $(this).find('.subject').val();
-                                temp1.result = $(this).find('.result').val();
-                                temp.push(temp1);
-                            });
-                            $scope.user.results = temp;
                             $http
                                 .post('/updateUser', $scope.user)
                                 .then(function (res, err) {
@@ -218,30 +221,9 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
 
 
 
+
     };
-    $(document).on("click", ".removeRes", function() {
 
-        $(this).parent().remove();
-
-    });
-
-
-
-
-
-    $('#addRes').click(function(e){
-
-        console.log("yeah");
-        var input = $('<div class="resBox"><input class="subject" list="requirements" placeholder="Requirement" class="form-control no-border" required>' +
-            '<input class="result" list="symbols" placeholder="symbol" class="form-control no-border"  required> <button type="button" class="removeRes" class="btn btn-default">x</button></div>').insertBefore(this);
-
-
-        $compile(input)($scope);
-        $('.removeRes').click(function(e){
-
-            $(this).parent().remove();
-        });
-    });
 
 
     $(function(){
