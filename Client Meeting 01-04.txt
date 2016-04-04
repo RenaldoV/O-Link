@@ -31,7 +31,8 @@ STYLING
             Job category
             date posted
             -->take out description
-            dates underneath each other-only date, no minutes
+            dates underneath each other
+		-only date, no minutes
         }
     }
 
@@ -48,7 +49,6 @@ STYLING
 
     SIGN UP:
     {
-
         Background image and caption----(Markup, not fixed image)
         EMPLOYER:
         {
@@ -145,6 +145,7 @@ STYLING
 
     EDIT PROFILE:
     {
+	same form as sign up
         EMPLOYER:
         {
 
@@ -237,5 +238,5 @@ NB check password functionality
  BUGS:
 
  Check requirements validation on apllying for jobs
- No doucle requirements
+ No double requirements (Two of same matric subjects)
  Check out apply for job(validating against requirements)
