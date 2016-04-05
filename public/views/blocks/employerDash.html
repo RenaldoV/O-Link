@@ -7,47 +7,39 @@
       <div class="row">
         <div class="col-md-5" ng-controller="stats">
           <div class="row row-sm text-center">
-            <div class="col-xs-6">
-              <div class="panel padder-v item card">
-                <div class="h1 text-info font-thin h1" id="newJobs">{{stats.jobsCount}}</div>
+            <div class="col-xs-6 ">
+              <div class="panel padder-v item card dashboxBlue">
+                <div class="h1 font-thin h1" id="newJobs">{{stats.jobsCount}}</div>
                 <span class="text-muted text-xs">Total Jobs</span>
-                <div class="top text-right w-full">
-                  <i class="fa fa-caret-down text-warning m-r-sm"></i>
-                </div>
+
               </div>
             </div>
-            <div class="col-xs-6">
-              <a href class="block panel padder-v item card">
-                <span class="text-success font-thin h1 block" id="newStudents">{{stats.myPosts}}</span>
+            <div class="col-xs-6 ">
+              <a href class="block panel padder-v item card dashboxGreen">
+                <span class=" font-thin h1 block" id="newStudents">{{stats.myPosts}}</span>
                 <span class="text-muted text-xs">My Total Posts</span>
-                <span class="bottom text-right w-full">
-                  <i class="fa fa-cloud-upload text-success m-r-sm"></i>
-                </span>
               </a>
             </div>
-            <div class="col-xs-6">
-              <a href class="block panel padder-v item card">
-                <span class="text-primary font-thin h1 block" id="totalEmployers">{{stats.employerCount}}</span>
+            <div class="col-xs-6 ">
+              <a href class="block panel padder-v item card dashboxPurple">
+                <span class="font-thin h1 block" id="totalEmployers">{{stats.employerCount}}</span>
                 <span class="text-muted text-xs">Employers</span>
-                <span class="top text-left">
-                  <i class="fa fa-caret-up text-warning m-l-sm"></i>
-                </span>
+
               </a>
             </div>
             <div class="col-xs-6">
-              <div class="panel padder-v item card">
+              <div class="panel padder-v item card  dashboxMuted">
                 <div class="font-thin h1" id="totalStudents">{{stats.studentCount}}</div>
                 <span class="text-muted text-xs">Talent</span>
-                <div class="bottom text-left">
-                  <i class="fa fa-caret-up text-warning m-l-sm"></i>
-                </div>
+
               </div>
             </div>
 
           </div>
+          <div class="dashSlogan">Innovative Thinking <br> Real World Solutions</div>
         </div>
         <div class="col-md-7">
-          <div class="panel wrapper">
+          <div class="panel wrapper blueBorder">
 
             <h4 class="font-thin m-t-none m-b text-muted">My Job Offers</h4>
             <div ng-controller="myJobFeed"  class="jobPosts">
@@ -72,8 +64,15 @@
       <!-- service -->
 
 
-                <div class="center">
-                <a class="btn btn-primary btn-xlarge" href="/postJob">Post Job</a>
+                <div class="center" style="margin-top: 25px;" >
+
+                  <div>
+                    <a class="btn postButton btn-xlarge" href="/postJob">Post Job</a>
+                  </div>
+                  <a class="btn employerButton btn-xlarge" href="/applicants">Applicants</a>
+                  <a class="btn employerButton btn-xlarge" href="/myJobPosts">My Job Offers</a>
+                  <a class="btn employerButton btn-xlarge" href="/pastJobPosts">Past Job Offers</a>
+
                 </div>
 
 

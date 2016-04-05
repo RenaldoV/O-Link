@@ -176,7 +176,7 @@ module.exports = function(app) {
 
 		var user = req.body;
 
-		db.jobs.find({employerID: user.id, status: {$ne: "inactive"}},function(err,rows){
+		db.jobs.find({employerID: user.id, status: {$ne: "inactive"}}).sort('-post.postDate').exec(function(err,rows){
 			if(err){
 
 			}

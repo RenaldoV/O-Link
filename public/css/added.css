@@ -138,8 +138,8 @@
 
 .btn-xlarge {
     padding: 18px 28px;
-    font-size: 22px; //change this to your desired size
-line-height: normal;
+    font-size: 70px; //change this to your desired size
+    line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
@@ -304,4 +304,63 @@ h1 { font-size: 1.5em; margin: 10px; }
 
 .employerBanner{
     background: linear-gradient(to top right, #e8cf77, #d7b14f);
+}
+
+.dashboxBlue{
+    border: 1px solid #e8cf77;
+    color: #e8cf77;
+}
+
+
+.dashboxGreen{
+    border: 1px solid #ffaffe;
+    color: #ffaffe;
+}
+
+.dashboxPurple{
+    border: 1px solid #7266ba;
+    color: #7266ba;
+}
+
+.dashboxMuted{
+    border: 1px solid #58666e;
+    color: #58666e;
+}
+
+.dashSlogan{
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+}
+
+.postButton{
+
+    background-color: #00b488;
+}
+.employerButton{
+    background-color: #33B6CC;
+    padding: 18px 28px;
+    font-size: 20px; //change this to your desired size
+line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 200px;
+    margin: 10px;
+}
+
+.greenText{
+   color:#00b488;
+}
+
+.blueText{
+   color: #33B6CC;
+}
+
+.greenBorder{
+    border: 1px solid #00b488;
+}
+
+.blueBorder{
+    border: 1px solid #33B6CC;
 }

@@ -4746,11 +4746,12 @@ a.text-#000000:hover {
 
 .banner-logo
 {
+  margin-top:-15px;
 	height: 150px;
 }
 .banner-pp
 {
-  height: 150px;
+  height: 130px;
   cursor: pointer;
 }
 

@@ -12,14 +12,7 @@ STYLING
         center all data
         data boxed with blue rim
     }
-    MAILS:
-    {
-        REGESTRATION
-        Welcome "User"
-        keep styling from dashboard page
-        image signature
-    }
-
+  
     OPEN JOB OFFERS PAGE: 4 hours
     {
         Caption - Open Job Offers
@@ -162,9 +155,7 @@ STYLING
 
 FUNCTIONALITY:
 {
-    NB NB NB Students can only apply to 2 jobs a day.
-        - if more that two
-        - payment package
+    
 
     RESET PASSWORD: 1 hour
     {
@@ -203,13 +194,7 @@ FUNCTIONALITY:
     }
 
 
-    GUEST BROWSE JOBS: (Button on landing page)
-    {
-        have background and caption
-        Just have latest job post, if Talent clicks on job post redirect to sign up
-        sign up sign in button top right of bar
-
-    }
+    
 
     EDIT JOB OFFER: 1 hour
     {
@@ -323,3 +308,22 @@ OUT OF SCOPE FUNCTIONALITY:
  
 
 9. Showing map on Job Post {Med} 8 Hours
+  MAILS:
+    {
+        REGESTRATION
+        Welcome "User"
+        keep styling from dashboard page
+        image signature
+    }
+
+//NB NB NB Students can only apply to 2 jobs a day.
+       // - if more that two
+        //- payment package
+
+GUEST BROWSE JOBS: (Button on landing page)
+    {
+        have background and caption
+        Just have latest job post, if Talent clicks on job post redirect to sign up
+        sign up sign in button top right of bar
+
+    }
