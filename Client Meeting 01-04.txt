@@ -73,36 +73,36 @@ STYLING
         shared tips and individual tips 2 check boxes
     }
 
-    DASHBOARD: 6 hours
+    //DASHBOARD: 6 hours(Sean)
     {
-        latest jobs at the top
-        blocks - get rid of icons
-        beneath blocks add slogan. (Innovative Thinking - Real World Solutions) - black
-        Top next to logo (Welcome(Black) "User"(Blue))
-        Replace name(dropdown) with picture(Same size as logo) with bigger dropdown 3stripes - send screenshot
-            - clicking on profile pic takes you to profile page
+        //latest jobs at the top
+        //blocks - get rid of icons
+        //beneath blocks add slogan. (Innovative Thinking - Real World Solutions) - black
+        (Ronnie)Top next to logo (Welcome(Black) "User"(Blue))
+        //Replace name(dropdown) with picture(Same size as logo) with bigger dropdown 3stripes - send screenshot
+            //- clicking on profile pic takes you to profile page
 
-        Category buttons boxed from start(white green border)-(Clicked goes green)
-        everything centered
-        time periods
+        //Category buttons boxed from start(white green border)-(Clicked goes green)
+        //everything centered
+        //time periods
             - bigger
             - description underneath each (On mockup or use case doc)
             - add all time periods
 
-        Latest Job Posts - centered caption
+        //Latest Job Posts - centered caption
 
-        COLORS:
-            thin border on blocks
-                - latest job posts blue
-                - categories green
-                - blocks pastel colors same as numbers
-        EMPLOYER:
+        //COLORS:
+            //thin border on blocks
+                //- latest job posts blue
+                //- categories green
+                //- blocks pastel colors same as numbers
+        //EMPLOYER:
         {
-            - 4 buttons
-                - post job (Green)
-                - applicants        (the rest Blue)
-                - past job offers
-                - my job offers
+            /- 4 buttons
+                //- post job (Green)
+                //- applicants        (the rest Blue)
+                //- past job offers
+                //- my job offers
         }
 
         TALENT:
@@ -111,7 +111,7 @@ STYLING
         }
     }
 
-    PROFILE PAGE: 6 hours
+    PROFILE PAGE: 6 hours(Sean)
     {
         Take out profile pic because it is already in top bar.
 
@@ -196,7 +196,7 @@ FUNCTIONALITY:
 
     
 
-    EDIT JOB OFFER: 1 hour
+    EDIT JOB OFFER: 1 hour(Done)
     {
         error message says deleted.
     }
