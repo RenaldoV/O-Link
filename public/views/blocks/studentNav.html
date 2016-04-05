@@ -1,6 +1,10 @@
 <ul class="nav navbar-nav navbar-right" ng-controller="studentNav">
     <li>
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.name.name }} <span class="caret"></span></a>
+
+
+        <li><img ng-if="myProfile" ng-click="myProfile()" ng-src="data:image/png;base64,{{image}}" class="img-circle banner-pp"></li>
+        <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+
         <ul class="dropdown-menu">
             <li><a href="#" ng-click="myProfile()">User Profile </a></li>
             <li><a href="/applications">Application Status</a></li>
@@ -10,5 +14,5 @@
         </ul>
     </li>
 
-    <li data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications">
+    <li data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
 </ul>

@@ -4748,6 +4748,11 @@ a.text-#000000:hover {
 {
 	height: 150px;
 }
+.banner-pp
+{
+  height: 150px;
+  cursor: pointer;
+}
 
 
 .sign-in-btn{

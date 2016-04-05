@@ -9,7 +9,9 @@
         <td><div class="statusDiv"><span>{{app.status}}</span>
             <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
             <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
-            <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+            <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+            <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
+
 
         </div></td>
         <td ng-if="app.offered == 'offered'"><button class="btn btn-success" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></td>

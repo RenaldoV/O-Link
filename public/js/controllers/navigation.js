@@ -47,9 +47,18 @@ app.controller('navControl',function($scope, authService, session, $location){
 });
 
 
-app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS){
+app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http){
 
-    $scope.user = session.user;
+    var user = session.user;
+    $scope.user = user;
+
+    $http.post('/getPp', user)
+        .then(function (res) {
+
+            $scope.image=res.data;
+
+
+        });
 
     $scope.logOut = function() {
         swal({
@@ -70,15 +79,26 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
     };
     $scope.myProfile = function(){
         $window.location.href="/myProfile";
-    }
+    };
+
 
 
 });
 
-app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS){
+app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http){
 
-    $scope.user = session.user;
-    console.log($scope.user);
+    var user = session.user;
+    $scope.user = user;
+
+    $http.post('/getPp', user)
+        .then(function (res) {
+
+            $scope.image=res.data;
+
+
+        });
+
+
     $scope.logOut = function() {
         swal({
                 title: "Are you sure?", text: "The browser won't remember you next time you log in.",
@@ -95,7 +115,7 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
                 $window.location.href="/";
                 swal("You have been logged out.", "success");
             });
-    }
+    };
     $scope.myProfile = function(){
         $window.location.href="/myProfile";
     }
