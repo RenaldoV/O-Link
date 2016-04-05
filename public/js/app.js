@@ -97,29 +97,56 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
     });
 
 //dashboard selection box for browsing jobs
-app.controller('goBrowse',function($scope, $location, constants){
+app.controller('goBrowse',function($scope, $location, constants, $timeout){
 
 
 
     $scope.categories = constants.categories;
     $scope.timePeriods = constants.timePeriods;
-
+    $scope.timePeriods
     $scope.selection = [];
     $scope.selectionP = [];
 
-    $scope.toggleSelection = function(category) {
-
-        var idx = $scope.selection.indexOf(category);
-
-        // is currently selected
-        if (idx > -1) {
-            $scope.selection.splice(idx, 1);
+    $scope.selectAllP = function(){
+        if(!$('#selectAllP').is(':checked')){
+            $timeout(function () {
+                $('.periods').each(function(){
+                    if(!$(this).is(':checked')){
+                        $(this).trigger('click');
+                    }
+                });
+            });
+        }else {
+            $timeout(function () {
+                $('.periods').each(function(){
+                    if($(this).is(':checked')){
+                        $(this).trigger('click');
+                    }
+                });
+            });
         }
 
-        // is newly selected
-        else {
-            $scope.selection.push(category);
+    };
+    $scope.selectAllC = function(){
+
+        if(!$('#selectAllC').is(':checked')){
+        $timeout(function () {
+            $('.categories').each(function(){
+                if(!$(this).is(':checked')){
+                    $(this).trigger('click');
+                }
+            });
+        });
+        }else {
+            $timeout(function () {
+                $('.categories').each(function(){
+                    if($(this).is(':checked')){
+                        $(this).trigger('click');
+                    }
+                });
+            });
         }
+
     };
 
     $scope.toggleSelectionP = function(category) {

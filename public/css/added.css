@@ -336,6 +336,14 @@ h1 { font-size: 1.5em; margin: 10px; }
 .postButton{
 
     background-color: #00b488;
+    padding: 18px 28px;
+    font-size: 20px; //change this to your desired size
+line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    width: 200px;
+    margin: 10px;
 }
 .employerButton{
     background-color: #33B6CC;
@@ -346,6 +354,17 @@ line-height: normal;
     -moz-border-radius: 8px;
     border-radius: 8px;
     width: 200px;
+    margin: 10px;
+}
+
+.browseButton{
+    background-color: #33B6CC;
+    padding: 18px 28px;
+    font-size: 20px; //change this to your desired size
+line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     margin: 10px;
 }
 
@@ -363,4 +382,20 @@ line-height: normal;
 
 .blueBorder{
     border: 1px solid #33B6CC;
+}
+
+.timeSelect{
+    border: 1px solid #33B6CC;
+}
+.timeSelect.active{
+    background-color:  #33B6CC;
+}
+
+.categorySelect{
+    margin: 5px;
+    border: 1px solid #00b488;
+}
+
+.categorySelect.active{
+    background-color:  #00b488;
 }

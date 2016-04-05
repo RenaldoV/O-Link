@@ -36,11 +36,12 @@
             </div>
 
           </div>
+          <div class="dashSlogan">Innovative Thinking <br> Real World Solutions</div>
         </div>
         <div class="col-md-7">
-          <div class="panel wrapper  blueBorder">
+          <div class="panel wrapper  blueBorder  text-center">
 
-            <h4 class="font-thin m-t-none m-b text-muted">Latest Job Posts</h4>
+            <h4 class="font-thin m-t-none m-b blueText">Latest Job Posts</h4>
             <div ng-controller="jobFeed"  class="jobPosts">
               <table class="table">
                 <thead><th>Category</th><th>Role</th><th>Pay</th><th>Location</th>
@@ -61,15 +62,25 @@
       <!-- / stats -->
 
       <!-- service -->
-      <div class="panel hbox hbox-auto-xs greenBorder" ng-controller="goBrowse">
+      <div class="panel hbox hbox-auto-xs greenBorder  text-center" ng-controller="goBrowse">
         <div class="col wrapper">
           <form id="browseForm" ng-submit="submit()" >
-          <i class="fa fa-circle-o text-info m-r-sm pull-right"></i>
-          <h4 class="font-thin m-t-none m-b-none text-primary-lt">Browse Jobs</h4>
-            <div style="float: right;" class="btn-group-sm" data-toggle="buttons">
 
-              <label class="btn btn-primary-outline" ng-repeat="period in timePeriods" ng-click="toggleSelectionP(period)">
+          <h4 class="font-thin m-t-none m-b-none greenText">Browse Jobs</h4>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+
+              <label class="btn btn-primary-outline timeSelect" ng-click="selectAllP()">
                 <input
+                        id="selectAllP"
+                        type="checkbox"
+                        name="selectAll"
+                        value="Select All"
+
+                /> Select All
+              </label>
+              <label class="btn btn-primary-outline  timeSelect" ng-repeat="period in timePeriods" ng-click="toggleSelectionP(period)">
+                <input class="periods"
                         type="checkbox"
                         name="selectedPeriods[]"
                         value="{{period}}"
@@ -79,17 +90,27 @@
               </label>
 
             </div>
-          <span class="m-b block text-sm text-muted">Categories</span>
+          <br>
 
 
 
           <div>
               <div>
 
-                  <div class="btn-group-lg" data-toggle="buttons">
+                  <div class="btn-group-lg " data-toggle="buttons">
 
-                    <label class="btn btn-primary-outline" ng-repeat="category in categories" ng-click="toggleSelection(category)">
+                    <label class="btn btn-primary-outline  categorySelect" ng-click="selectAllC()">
                       <input
+                              id="selectAllC"
+                              type="checkbox"
+                              name="selectAll"
+                              value="Select All"
+
+                      /> Select All
+                    </label>
+                    <label class="btn btn-primary-outline categorySelect"" ng-repeat="category in categories" ng-click="toggleSelection(category)">
+                      <input
+                              class="categories"
                               type="checkbox"
                               name="selectedCategories[]"
                               value="{{category}}"
@@ -100,9 +121,8 @@
 
                   </div>
 
-                <div id="browseJobs">
-                <button type="submit" class="btn btn-primary" >Browse Jobs</button>
-                </div>
+                <br>
+                <button type="submit" class="btn browseButton" >Browse</button>
 
 
        </div>
