@@ -1,10 +1,11 @@
 STYLING
 {
-    APPLICANTS PAGE:
+    APPLICANTS PAGE: 1 hour
     {
         dropdown must be same color as background
     }
-    JOB PAGE: (View one single job)
+
+    JOB PAGE: (View one single job) 6 hours
     {
         top right picture change to company logo
         caption - Company name
@@ -19,7 +20,7 @@ STYLING
         image signature
     }
 
-    OPEN JOB OFFERS PAGE:
+    OPEN JOB OFFERS PAGE: 4 hours
     {
         Caption - Open Job Offers
         Center sort by
@@ -36,18 +37,18 @@ STYLING
         }
     }
 
-    SUCCESS POPUP:
+    SUCCESS POPUP: 1 hour
     {
         capital letter Success
     }
 
-    SIGN IN:
+    SIGN IN: 1 hour
     {
         Capital case (log in)
         Background picture of landing page (and caption)
     }
 
-    SIGN UP:
+    SIGN UP: 1 hour
     {
         Background image and caption----(Markup, not fixed image)
         EMPLOYER:
@@ -61,7 +62,7 @@ STYLING
         }
     }
 
-    POST JOB:
+    POST JOB: 3 hours
     {
         capitalise!!!
         time periods descriptions!
@@ -79,7 +80,7 @@ STYLING
         shared tips and individual tips 2 check boxes
     }
 
-    DASHBOARD:
+    DASHBOARD: 6 hours
     {
         latest jobs at the top
         blocks - get rid of icons
@@ -117,7 +118,7 @@ STYLING
         }
     }
 
-    PROFILE PAGE:
+    PROFILE PAGE: 6 hours
     {
         Take out profile pic because it is already in top bar.
 
@@ -143,7 +144,7 @@ STYLING
         }
     }
 
-    EDIT PROFILE:
+    EDIT PROFILE: 2 hours
     {
 	same form as sign up
         EMPLOYER:
@@ -165,16 +166,16 @@ FUNCTIONALITY:
         - if more that two
         - payment package
 
-    RESET PASSWORD:
+    RESET PASSWORD: 1 hour
     {
         Expire reset token when password is changed.
     }
-    ACTIVATE ACCOUNT:
+    ACTIVATE ACCOUNT: 1 hour
     {
         Invalid token error (Account already activated or token expired.) - redirect to login
     }
 
-    SIGN UP:
+    SIGN UP: 2 hours
     {
         TALENT:
         {
@@ -192,7 +193,7 @@ FUNCTIONALITY:
             email field (Wait for list of email addresses.)
         }
 
-        EMPLOYER:
+        EMPLOYER: 2 hours
         {
             company description replaced by company category (List of categories from PAUL)
             password placeholder explain format
@@ -210,7 +211,7 @@ FUNCTIONALITY:
 
     }
 
-    EDIT JOB OFFER:
+    EDIT JOB OFFER: 1 hour
     {
         error message says deleted.
     }
@@ -220,7 +221,7 @@ FUNCTIONALITY:
 
     }
 
-    EMPLOYER ACCEPTS YOU:
+    EMPLOYER ACCEPTS YOU: 6 hours
     {
         Talent receives email with link to confirm that they are available to work
             - direct to application status and turns color code blue
@@ -240,3 +241,85 @@ NB check password functionality
  Check requirements validation on apllying for jobs
  No double requirements (Two of same matric subjects)
  Check out apply for job(validating against requirements)
+
+
+TOTAL HOURS 46/2 = 23 hours. +- 1 week
+
+
+OUT OF SCOPE FUNCTIONALITY:
+
+{Min} +- 3-4 hours
+
+{Med} +- 4-8 Hours
+
+{High} +- 8-18 Hours
+
+{Very High} >2 Days
+
+ 
+
+1. Add additional info (Talent Sign Up) {Med} +- 6 hours
+
+-- User clicks on additional info and new interactive form pops up
+
+-- New fields saved in DB and displayed on profile page
+
+-- Validation on fields eg. duplicate fields
+
+ 
+
+2. Add work experience interactive form to Post Job page {Med} +- 6 hours
+
+-- User clicks on add work experience and interactive form pops up
+
+-- New fields saved in DB
+
+-- Validation on fields
+
+-- When user applies for this job, these new fields should be used to allow or disallow Talent to aplly for the job.
+
+ 
+
+3. Character Counter in Details input {Min} 4 Hours
+
+-- counts characters as user types detailed description of Job
+
+ 
+
+4. Any functionality in regards to Payment packages {?}
+
+-- Regulating free Job Applications per day and displaying how many left
+
+-- Regulating free job posts and payed job posts
+
+-- etc
+
+ 
+
+5. Guest Browse Jobs {med} 8 hours
+
+-- Allowing guests to browse jobs and limiting info displayed
+
+-- redirecting to signup pages when user tries to click or apply for jobs
+
+ 
+
+6. Any Email notifications except for Registration and Forgot Password {High} 14 Hours
+
+-- Sending of emails
+
+-- Styling of each different email notification
+
+ 
+
+7. Turn off Email Notifications {Min} 4 Hours
+
+ 
+
+8. Google API for searching locations in forms {med} 6 hours (additional costs for using Google Location API)
+
+-- as user types location google gives location suggestions
+
+ 
+
+9. Showing map on Job Post {Med} 8 Hours
