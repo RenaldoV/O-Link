@@ -8,14 +8,29 @@ app.controller('navControl',function($scope, authService, session, $location){
     if(authService.isAuthenticated()){
         var user = session.user;
 
+
+
+
         if(user.type == "student")
         {
+            if($location.path() == "/dashboard")
+            {
+                $scope.welcome = "Welcome ";
+                $scope.username = user.name.name+ "!";
+            }
             $scope.getNav= function() {
                 return "../views/blocks/studentNav.html";
             }}
         else if(user.type == "employer"){
 
-
+            if($location.path() == "/dashboard")
+            {
+                $scope.welcome = "Welcome ";
+                if(!user.company.name)
+                    $scope.username = user.contact.name + "!";
+                else
+                    $scope.username = user.company.name + "!";
+            }
 
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";

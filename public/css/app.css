@@ -4746,8 +4746,8 @@ a.text-#000000:hover {
 
 .banner-logo
 {
-  margin-top:-15px;
-	height: 150px;
+  margin-top:-17px;
+	height: 165px;
 }
 .banner-pp
 {
@@ -4832,3 +4832,25 @@ strong {
 }
 
 select:invalid { color: darkgrey; }
+
+h2.navbar-text {
+  font-size: 4vw;
+  color: blue;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+div.header-text{
+  text-align: center;
+  margin-left:80px;
+}
+
+p.navbar-txt
+{
+  color: #33B6CC;
+}
+
+span.green
+{
+  color: #00b488;
+  font-weight: bold;
+}
