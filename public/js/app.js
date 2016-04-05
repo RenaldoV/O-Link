@@ -103,8 +103,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
 
     $scope.categories = constants.categories;
     $scope.timePeriods = constants.timePeriods;
-    $scope.timePeriods
-    $scope.selection = [];
+        $scope.selectionC = [];
     $scope.selectionP = [];
 
     $scope.selectAllP = function(){
@@ -163,10 +162,24 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
             $scope.selectionP.push(category);
         }
     };
+    $scope.toggleSelectionC = function(category) {
+
+        var idx = $scope.selectionC.indexOf(category);
+
+        // is currently selected
+        if (idx > -1) {
+            $scope.selectionC.splice(idx, 1);
+        }
+
+        // is newly selected
+        else {
+            $scope.selectionC.push(category);
+        }
+    };
 
     $scope.submit = function () {
 
-        var temp = JSON.stringify($scope.selection);
+        var temp = JSON.stringify($scope.selectionC);
         var temp2 = JSON.stringify($scope.selectionP);
 
 

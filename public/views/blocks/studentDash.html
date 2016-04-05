@@ -108,13 +108,13 @@
 
                       /> Select All
                     </label>
-                    <label class="btn btn-primary-outline categorySelect"" ng-repeat="category in categories" ng-click="toggleSelection(category)">
+                    <label class="btn btn-primary-outline categorySelect" ng-repeat="category in categories" ng-click="toggleSelectionC(category)">
                       <input
                               class="categories"
                               type="checkbox"
                               name="selectedCategories[]"
                               value="{{category}}"
-                              ng-checked="selection.indexOf(category) > -1"
+                              ng-checked="selectionC.indexOf(category) > -1"
 
                       /> {{category}}
                     </label>

@@ -115,12 +115,12 @@ STYLING
     {
         Take out profile pic because it is already in top bar.
 
-        EMPLOYER:
-        {
-            menu dropdown
-                - my job offers
-                - past job offers
-        }
+        //EMPLOYER:
+        //{
+           // menu dropdown
+                //- my job offers
+                //- past job offers
+        //}
 
         TALENT:
         {
