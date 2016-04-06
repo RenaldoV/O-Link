@@ -275,11 +275,7 @@ module.exports = function(app) {
 	//Add a new user to the db
 	app.post('/signup', function(req,res) {
 
-		var user = {};
-		for(var key in req.body) {
-			user = JSON.parse(key);
-		}
-
+		var user = req.body;
 		//add activation token and insert into db
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');

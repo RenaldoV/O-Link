@@ -97,8 +97,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         $http({
             method  : 'POST',
             url     : '/signup',
-            data 	: user,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            data 	: user
         })
             .then(function(res) {
                 {
