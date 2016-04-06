@@ -4,6 +4,8 @@
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
+    $(".appbg").addClass('signupBG');
+
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};
@@ -26,6 +28,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
                             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                             $scope.setCurrentUser(user);
+                            $(".appbg").removeClass('signupBG');
                             $location.url("/dashboard");
 
 
@@ -42,6 +45,8 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
 
 app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants){
+
+    $(".appbg").addClass('signupBG');
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
@@ -78,6 +83,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
     $scope.submitForm = function() {
+        $scope.submitted = true;
 
         var user = $scope.user;
         if(!user.dob)
@@ -114,6 +120,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
                                 type: "success"
                             },
                             function(){
+
                                 location.href= '/';
                             });
                     }

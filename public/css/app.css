@@ -4834,14 +4834,24 @@ strong {
 select:invalid { color: darkgrey; }
 
 h2.navbar-text {
+  left: -50%;
+  text-align: center;
+  position: relative;
   font-size: 4vw;
   color: blue;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+h2.navbar-text .navbar-slog {
+  font-size: 3vw;
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
 div.header-text{
+  position: absolute;
+  left: 50%;
   text-align: center;
-  margin-left:80px;
 }
 
 p.navbar-txt
@@ -4853,4 +4863,23 @@ span.green
 {
   color: #00b488;
   font-weight: bold;
+}
+span.blue
+{
+  color: #33B6CC;
+  font-weight: bold;
+}
+
+html.signupBG {
+  background: url('../img/signup-bg1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+div.signupBox {
+  border:4px solid white;
+  background-color: white;
+  border-radius: 25px;
 }

@@ -5,6 +5,17 @@
 app.controller('navControl',function($scope, authService, session, $location){
 
 
+
+
+
+    if($location.path() == "/signUp") {
+        $scope.slog1 = {};
+        $scope.slog2 = {};
+        $scope.slog1 = "Today's Talent.";
+        $scope.slog2 = "Tomorrow's Success."
+    }
+
+
     if(authService.isAuthenticated()){
         var user = session.user;
 
@@ -15,8 +26,10 @@ app.controller('navControl',function($scope, authService, session, $location){
         {
             if($location.path() == "/dashboard")
             {
+                $scope.welcome = {};
+                $scope.talent = {};
                 $scope.welcome = "Welcome ";
-                $scope.username = user.name.name+ "!";
+                $scope.talent = user.name.name+ "!";
             }
             $scope.getNav= function() {
                 return "../views/blocks/studentNav.html";
@@ -25,11 +38,13 @@ app.controller('navControl',function($scope, authService, session, $location){
 
             if($location.path() == "/dashboard")
             {
+                $scope.welcome = {};
+                $scope.employer = {};
                 $scope.welcome = "Welcome ";
                 if(!user.company.name)
-                    $scope.username = user.contact.name + "!";
+                    $scope.employer = user.contact.name + "!";
                 else
-                    $scope.username = user.company.name + "!";
+                    $scope.employer = user.company.name + "!";
             }
 
             $scope.getNav= function() {

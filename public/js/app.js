@@ -45,7 +45,7 @@ app.controller('jobFeed', function($scope,$http, $window){
 //controller for all dashboards
 app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
-
+    $(".appbg").removeClass('signupBG');
 
     if(authService.isAuthenticated()){
         var user = session.user;

@@ -1,5 +1,10 @@
 STYLING
 {
+
+
+    TALENT COLOR CODE = BLUE
+    EMPLOYER COLOR CODE = GREEN
+
     APPLICANTS PAGE: 1 hour
     {
         dropdown must be same color as background
@@ -37,7 +42,6 @@ STYLING
 
     SIGN IN: 1 hour
     {
-        Capital case (log in)
         Background picture of landing page (and caption)
     }
 

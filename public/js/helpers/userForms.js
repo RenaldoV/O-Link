@@ -1,5 +1,12 @@
 ////Renaldo se user form scripts, uit sodat dit makliker is om te edit(gebruik vir edit profile ook)
 
+$(".talentSelected").on("click",function(){
+   $(".signupBox").css("border-color", "#33B6CC");
+});
+$(".employerSelected").on("click",function(){
+    $(".signupBox").css("border-color", "#00b488");
+});
+
 $(function () {
     $("#Individualradio").click(function () {
         $("#Companyradio").prop("checked", false);
