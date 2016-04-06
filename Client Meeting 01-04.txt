@@ -42,12 +42,12 @@ STYLING
 
     SIGN IN: 1 hour
     {
-        Background picture of landing page (and caption)
+        //Background picture of landing page (and caption)
     }
 
     SIGN UP: 1 hour
     {
-        Background image and caption----(Markup, not fixed image)
+        //Background image and caption----(Markup, not fixed image)
         EMPLOYER:
         {
 

@@ -2,50 +2,45 @@
 //////////////Controllers for the nav bar//////////////
 ///////////////////////////////////////////////////////
 
-app.controller('navControl',function($scope, authService, session, $location){
+app.controller('navControl',function($scope, authService, session, $location, $timeout){
 
-
-
-
-
-    if($location.path() == "/signUp") {
-        $scope.slog1 = {};
-        $scope.slog2 = {};
-        $scope.slog1 = "Today's Talent.";
-        $scope.slog2 = "Tomorrow's Success."
-    }
-
+    // Set header message of signup $ login pages
+    $timeout(function(){
+        if($location.path() == "/signUp" || $location.path() == "/") {
+            $scope.slog1 = "Today's Talent.";
+            $scope.slog2 = "Tomorrow's Success."
+        }
+    },2000);
 
     if(authService.isAuthenticated()){
         var user = session.user;
 
-
-
-
         if(user.type == "student")
         {
-            if($location.path() == "/dashboard")
-            {
-                $scope.welcome = {};
-                $scope.talent = {};
-                $scope.welcome = "Welcome ";
-                $scope.talent = user.name.name+ "!";
-            }
+            // Set header message of Dash
+            $timeout(function() {
+                if ($location.path() == "/dashboard") {
+                    $scope.welcome = "Welcome ";
+                    $scope.talent = user.name.name + "!";
+                }
+            },2000);
+
             $scope.getNav= function() {
                 return "../views/blocks/studentNav.html";
-            }}
+            }
+        }
         else if(user.type == "employer"){
 
-            if($location.path() == "/dashboard")
-            {
-                $scope.welcome = {};
-                $scope.employer = {};
-                $scope.welcome = "Welcome ";
-                if(!user.company.name)
-                    $scope.employer = user.contact.name + "!";
-                else
-                    $scope.employer = user.company.name + "!";
-            }
+            // Set header message of Dash
+            $timeout(function() {
+                if ($location.path() == "/dashboard") {
+                    $scope.welcome = "Welcome ";
+                    if (!user.company.name)
+                        $scope.employer = user.contact.name + "!";
+                    else
+                        $scope.employer = user.company.name + "!";
+                }
+            },2000);
 
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";
