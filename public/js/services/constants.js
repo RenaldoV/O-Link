@@ -19,7 +19,10 @@ app.service('constants', function(){
         "Cook/Chef",
         "Other"];
 
-    this.timePeriods = ["Once Off", "Short Term", "Long Term"];
+    this.timePeriods = [
+        {name: "Once Off", description: "< 1 week"},
+        {name:"Short Term",description: "> 1 week and < 1 month"},
+        {name:"Long Term", description: "> 1 month"}];
 
     this.requirements = [
         "Maths",

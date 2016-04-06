@@ -106,12 +106,16 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
         $scope.selectionC = [];
     $scope.selectionP = [];
 
+    $scope.allCat = "Select All";
+    $scope.allPer = "Select All";
+
     $scope.selectAllP = function(){
         if(!$('#selectAllP').is(':checked')){
             $timeout(function () {
                 $('.periods').each(function(){
                     if(!$(this).is(':checked')){
                         $(this).trigger('click');
+                        $scope.allPer = "Unselect All";
                     }
                 });
             });
@@ -120,6 +124,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
                 $('.periods').each(function(){
                     if($(this).is(':checked')){
                         $(this).trigger('click');
+                        $scope.allPer = "Select All";
                     }
                 });
             });
@@ -133,6 +138,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
             $('.categories').each(function(){
                 if(!$(this).is(':checked')){
                     $(this).trigger('click');
+                    $scope.allCat = "Unselect All";
                 }
             });
         });
@@ -141,6 +147,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
                 $('.categories').each(function(){
                     if($(this).is(':checked')){
                         $(this).trigger('click');
+                        $scope.allCat = "Select All";
                     }
                 });
             });

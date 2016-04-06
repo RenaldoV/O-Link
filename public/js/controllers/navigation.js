@@ -10,7 +10,7 @@ app.controller('navControl',function($scope, authService, session, $location, $t
             $scope.slog1 = "Today's Talent.";
             $scope.slog2 = "Tomorrow's Success."
         }
-    },2000);
+    });
 
     if(authService.isAuthenticated()){
         var user = session.user;
@@ -18,12 +18,14 @@ app.controller('navControl',function($scope, authService, session, $location, $t
         if(user.type == "student")
         {
             // Set header message of Dash
-            $timeout(function() {
+
                 if ($location.path() == "/dashboard") {
+                    $timeout(function() {
                     $scope.welcome = "Welcome ";
                     $scope.talent = user.name.name + "!";
+
+            });
                 }
-            },2000);
 
             $scope.getNav= function() {
                 return "../views/blocks/studentNav.html";
@@ -32,15 +34,16 @@ app.controller('navControl',function($scope, authService, session, $location, $t
         else if(user.type == "employer"){
 
             // Set header message of Dash
-            $timeout(function() {
-                if ($location.path() == "/dashboard") {
+            if ($location.path() == "/dashboard") {
+                $timeout(function () {
                     $scope.welcome = "Welcome ";
-                    if (!user.company.name)
+                    if (!user.company)
                         $scope.employer = user.contact.name + "!";
                     else
                         $scope.employer = user.company.name + "!";
-                }
-            },2000);
+
+                });
+            }
 
             $scope.getNav= function() {
                 return "../views/blocks/employerNav.html";
