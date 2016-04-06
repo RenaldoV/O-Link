@@ -2,61 +2,25 @@
 
 <!-- content -->
 <div id="content">
-    <div class="app-content-body" ng-controller = 'studentProfileControl'>
+    <div class="app-content-body text-center" ng-controller = 'studentProfileControl'>
 
-
+        <div class="profileHeader">{{user.name.name + " " + user.name.surname}}</div>
+        <div class="appCount muted">2 applications left</div>
+        <div class="profileRating">Star rating comes here</div>
         <div class="hbox hbox-auto-xs hbox-auto-sm">
-            <div class="col">
-                <div style="background:url(img/c4.jpg) center center; background-size:cover">
-                    <div class="wrapper-lg bg-white-opacity studentBanner">
-                        <div class="row m-t">
-                            <div class="col-sm-7">
-                                <a href class="thumb-lg pull-left m-r">
-                                    <img ng-if="!myProfile" ng-src="data:image/png;base64,{{image}}" class="img-circle">
-                                    <img ng-if="myProfile" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}" class="img-circle">
-                                </a>
-                                <div class="clear m-b">
-                                    <div class="m-b m-t-sm">
-                                        <span class="h3 text-black">{{user.name.name + " " + user.name.surname}}</span>
-                                        <small class="m-l">{{user.location}}</small>
-                                    </div>
-                                    <p class="m-b">
-                                        Star rating goes here<br>
-                                        from # reviews
-                                    </p>
 
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="pull-right pull-none-xs text-center">
-                                    <a href class="m-b-md inline m">
-                                        <span class="h3 block font-bold">2</span>
-                                        <small>Jobs Completed</small>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <a ng-if="myProfile" href="/editProfile" >Edit Profile</a>
-                    </div>
 
+
+
+
+            <div class="panel col-md-6 blueBorder cards" id="info">
+                <div class="card-header blueBack">
+                    <h4 class="font-thin m-t-none m-b-none ">Required Info</h4>
                 </div>
+                <div class="wrapper cards">
 
 
-            </div>
-            <div class="wrapper bg-white b-b">
-                <ul class="nav nav-pills nav-sm">
-                    <li class="active"><a data-toggle="pill" href data-target="#info">Info</a></li>
-                    <li><a data-toggle="pill" href  data-target="#qualification">Skills</a></li>
-                    <li><a data-toggle="pill" href data-target="#results">Matric Results</a></li>
-                    <li><a data-toggle="pill" href data-target="#applications">Applications</a></li>
-                    <li><a data-toggle="pill" href data-target="#jobHistory">Job History</a></li>
-                </ul>
-            </div>
-            <div class="tab-content">
-            <div class="tab-pane fade in active" id="info">
-                <div class="wrapper">
-                    <div class="">
-                        <h4 class="m-t-xs m-b-xs">Basic</h4>
+
                         <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
                                 <div class="clear">
@@ -92,10 +56,14 @@
 
                         </ul>
                     </div>
-                    </div>
+            </div>
+
+
+            <div class="panel col-md-6 greenBorder cards" id="additional">
+            <div class="card-header greenBack">
+                    <h4 class="font-thin m-t-none m-b-none ">Additional Info</h4>
                 </div>
 
-                <div class="tab-pane fade" id="qualification">
                     <div class="wrapper">
                         <div class="">
                             <h4 class="m-t-xs m-b-xs">Academia</h4>
@@ -131,46 +99,10 @@
                     </div>
                 </div>
 
-                <div class="tab-pane fade" id="results">
-                    <div class="wrapper">
-                        <div class="">
+            </div>
 
-                            <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item" ng-repeat="res in user.results">
-                                    <div class="clear">
-                                        <div>{{res.name}}</div>
-                                        <small class="text-muted">{{res.symbol}}</small>
-                                    </div>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="applications">
-                    <div class="wrapper">
-                        <div class="" ng-controller="studentApplications">
-                            <div ng-include="getApps()"></div>
-
-                            {{message}}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="jobHistory">
-                    <div class="wrapper">
-                        <div class="" ng-controller="jobHistory">
-                            <div ng-include="'../views/blocks/jobHistory.html'"></div>
-
-                            {{message}}
-                        </div>
-                    </div>
-                </div>
-                </div>
+        <a ng-if="myProfile" class="btn employerButton btn-xlarge" href="/editProfile">Edit</a>
 
 
 </div>
 </div>
-    </div>

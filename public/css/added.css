@@ -412,7 +412,6 @@ line-height: normal;
 }
 
 .card-header{
-    display: block;
     width:100%;
     color: white;
     margin:0;
@@ -423,3 +422,15 @@ line-height: normal;
 
 }
 
+.profileHeader{
+    font-size: 50px;
+}
+
+.profileRating{
+    margin: 20px;
+    display: inline-block;
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    background-color: white;
+}

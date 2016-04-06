@@ -91,7 +91,8 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
     var user = cacheUser.user;
     $scope.myProfile = false;
-    if (user._id = session.user._id)
+
+    if (user._id == session.user._id)
         $scope.myProfile = true;
 
     console.log(cacheUser.user._id + " " +session.user._id);
@@ -119,7 +120,7 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
 
     var user = cacheUser.user;
     $scope.myProfile = false;
-    if (user._id = session.user._id)
+    if (user._id == session.user._id)
     $scope.myProfile = true;
 
     $scope.user = user;
