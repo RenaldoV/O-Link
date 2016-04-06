@@ -427,10 +427,45 @@ line-height: normal;
 }
 
 .profileRating{
+
     margin: 20px;
     display: inline-block;
     height: 180px;
     width: 180px;
     border-radius: 100%;
     background-color: white;
+}
+
+.profileStars {
+    border: none;
+
+    align-content: center;
+    margin-right:22px;
+}
+
+.profileStars > input { display: none; }
+.profileStars > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.profileStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.profileStars > label {
+    color: #ddd;
+    float: right;
+}
+.profileStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700;  }
+.numberRating{
+
+    margin-top: 20px;
+
+    font-size: 70px;
 }
