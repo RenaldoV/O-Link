@@ -7,9 +7,15 @@
         <div class="profileHeader">{{user.name.name + " " + user.name.surname}}</div>
         <div class="appCount muted">2 applications left</div>
         <div class="profileRating">
-            <div class="numberRating">
+            <div ng-if="user.rating" class="numberRating">
                 {{user.rating}}
+
             </div>
+            <span ng-if="user.rating" class="small">From {{user.numRatings}} review(s)</span>
+            <div ng-if="!user.rating" class="numberRating">
+                N/A
+            </div>
+            <span ng-if="!user.rating" class="small">From 0 review(s)</span>
             <div>
             <fieldset class="profileStars">
                 <input type="radio" id="star5" name="rating" value=5 ng-model="user.rating"  disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>

@@ -789,6 +789,20 @@ module.exports = function(app) {
 	});
 
 	//done
+
+	//get offer count for employer profile
+	app.post('/getOfferCount', function(req, res){
+
+		var user = req.body._id;
+		console.log(user);
+
+		db.jobs.count({employerID: user,status:'active'}, function(err, count){
+			console.log(count);
+			res.send({count:count});
+		});
+
+	});
+	//done
 };
 
 function roundHalf(num) {

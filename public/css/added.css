@@ -428,7 +428,29 @@ line-height: normal;
 
 .profileRating{
 
+    
     margin: 20px;
+    display: inline-block;
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    background-color: white;
+}
+.empProfileRating{
+
+
+    margin: 20px;
+
+    display: inline-block;
+    height: 180px;
+    width: 180px;
+    border-radius: 100%;
+    background-color: white;
+}
+.openOffers{
+
+    margin: 20px;
+
     display: inline-block;
     height: 180px;
     width: 180px;
@@ -465,7 +487,8 @@ line-height: normal;
 { color: #FFD700;  }
 .numberRating{
 
-    margin-top: 20px;
+
+    margin-bottom: -10px;
 
     font-size: 70px;
 }
@@ -474,4 +497,8 @@ line-height: normal;
     display:inline-block;
     float:none;
 
+}
+
+.profileBalls{
+    width: 500px;
 }

@@ -120,19 +120,24 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
 
     var user = cacheUser.user;
     $scope.myProfile = false;
+    $scope.offers = 0;
     if (user._id == session.user._id)
     $scope.myProfile = true;
 
     $scope.user = user;
 
     $http
-        .post('/getPp', user)
+        .post('/getOfferCount', user)
         .then(function (res) {
 
-            $scope.image=res.data;
+            
+                    $scope.offers = res.data.count;
+
+                });
 
 
-        });
+
+
 
 
 

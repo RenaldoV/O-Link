@@ -7,54 +7,75 @@
 
         <div ng-if="user.employerType == 'Individual'"class="profileHeader">{{user.contact.name + " " + user.contact.surname}}</div>
         <div ng-if="user.employerType == 'Company'"class="profileHeader">{{user.company.name}}</div>
+        <h2 ng-if="user.employerType == 'Company'">{{user.contact.name + " " + user.contact.surname}}</h2>
 
-        <div class="profileRating">
-            <div class="numberRating">
-                {{user.rating}}
+        <div class="row">
+
+            <div class="empProfileRating">
+                <div ng-if="user.rating" class="numberRating">
+                    {{user.rating}}
+
+                </div>
+                <span ng-if="user.rating" class="small">From {{user.numRatings}} review(s)</span>
+                <div ng-if="!user.rating" class="numberRating">
+                    N/A
+                </div>
+                <span ng-if="!user.rating" class="small">From 0 review(s)</span>
+
+                <div>
+                    <fieldset class="profileStars">
+                        <input type="radio" id="star5" name="rating" value=5 ng-model="user.rating"  disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                        <input type="radio" id="star4half" name="rating" value=4.5 ng-model="user.rating" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                        <input type="radio" id="star4" name="rating" value=4 ng-model="user.rating" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                        <input type="radio" id="star3half" name="rating" value=3.5 ng-model="user.rating" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                        <input type="radio" id="star3" name="rating" value=3 ng-model="user.rating" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                        <input type="radio" id="star2half" name="rating" value=2.5 ng-model="user.rating" disabled /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                        <input type="radio" id="star2" name="rating" value=2 ng-model="user.rating" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                        <input type="radio" id="star1half" name="rating" value=1 ng-model="user.rating" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                        <input type="radio" id="star1" name="rating" value=1.5 ng-model="user.rating" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                        <input type="radio" id="starhalf" name="rating" value=0.5 ng-model="user.rating" disabled><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                    </fieldset></div>
+                </div>
+
+            <div class="openOffers">
+
+                <div class="numberRating">
+                    {{offers}}
+
+                </div>
+                <span class="small">Open offer(s)</span>
             </div>
-            <div>
-                <fieldset class="profileStars">
-                    <input type="radio" id="star5" name="rating" value=5 ng-model="user.rating"  disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                    <input type="radio" id="star4half" name="rating" value=4.5 ng-model="user.rating" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-                    <input type="radio" id="star4" name="rating" value=4 ng-model="user.rating" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                    <input type="radio" id="star3half" name="rating" value=3.5 ng-model="user.rating" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-                    <input type="radio" id="star3" name="rating" value=3 ng-model="user.rating" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                    <input type="radio" id="star2half" name="rating" value=2.5 ng-model="user.rating" disabled /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-                    <input type="radio" id="star2" name="rating" value=2 ng-model="user.rating" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                    <input type="radio" id="star1half" name="rating" value=1 ng-model="user.rating" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-                    <input type="radio" id="star1" name="rating" value=1.5 ng-model="user.rating" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                    <input type="radio" id="starhalf" name="rating" value=0.5 ng-model="user.rating" disabled><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
-                </fieldset></div>
-        </div>
-        <div class="row text-center">
+            </div>
+
+            <div class="row text-center ">
 
 
 
-            <div class="panel col-md-6 col-centered greenBorder cards" id="additional" ng-if="user.employerType == 'Company'">
-                <div class="card-header greenBack">
-                    <h4 class="font-thin m-t-none m-b-none ">Additional Info</h4>
+            <div class="panel col-md-6 blueBorder cards" id="additional" ng-if="user.employerType == 'Company'">
+                <div class="card-header blueBack">
+                    <h4 class="font-thin m-t-none m-b-none ">Info</h4>
                 </div>
 
                 <div class="wrapper">
-                    <div class="studies" ng-if="user.qualification">
-                        <h4 class="m-t-xs m-b-xs">Academia</h4>
+                    <div class="studies">
+                        <h4 class="m-t-xs m-b-xs">Company</h4>
                         <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Qualification Name</div>
-                                    <small class="text-muted">{{user.qualification.name}}</small>
+                                    <div>Company Name</div>
+                                    <small class="text-muted">{{user.company.name}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Qualification Description</div>
-                                    <small class="text-muted">{{user.qualification.description}}</small>
+                                    <div>Company Description</div>
+                                    <small class="text-muted">{{user.company.description}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Graduation Year</div>
-                                    <small class="text-muted">{{user.qualification.gradYear}}</small>
+                                    <div>Location</div>
+                                    <small class="text-muted">{{user.company.location}}</small>
                                 </div>
                             </li>
 
@@ -75,8 +96,8 @@
                 </div>
             </div>
 
-            <div class="panel col-md-6  col-centered  blueBorder cards " id="contact">
-                <div class="card-header blueBack">
+            <div class="panel col-md-6  col-centered  greenBorder cards " id="contact">
+                <div class="card-header greenBack">
                     <h4 class="font-thin m-t-none m-b-none ">Contact</h4>
                 </div>
                 <div class="wrapper cards">
