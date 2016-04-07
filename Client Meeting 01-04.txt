@@ -1,7 +1,5 @@
 STYLING
 {
-
-
     TALENT COLOR CODE = BLUE
     EMPLOYER COLOR CODE = GREEN
 
@@ -184,7 +182,7 @@ FUNCTIONALITY:
             Matric result type (IEB, NSC)
             take out qualification category
             password placeholder explain format
-            validate ID number against DOB
+            //validate ID number against DOB
             email field (Wait for list of email addresses.)
         }
 
