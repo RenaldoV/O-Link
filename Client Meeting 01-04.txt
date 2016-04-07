@@ -59,20 +59,17 @@ STYLING
 
     POST JOB: 3 hours
     {
-        capitalise!!!
-        time periods descriptions!
-        start date required not end
-        add requirements
-            - work experience
-                (exact same as matric results)
-        check box fonts bigger
-        check box same as terms and conditions everywhere.
-        Threshold placeholder becomes
-            - applications accepted per position
-            - info blurp next to Threshold heading(Wait for info from client)
+        //capitalise!!!
+        //time periods descriptions!
+        //start date required not end
+        //check box same as terms and conditions everywhere.
+        //Threshold placeholder becomes
+           // - applications accepted per position
 
-        Character counter in details input
-        shared tips and individual tips 2 check boxes
+
+        Matric list reduce as subjects are chosen all forms
+        check validation of number (Cannot start with 0) all forms
+
     }
 
     //DASHBOARD: 6 hours(Sean)
@@ -329,3 +326,15 @@ GUEST BROWSE JOBS: (Button on landing page)
         sign up sign in button top right of bar
 
     }
+
+JOB POST FORM:
+{
+    add own transport
+    Character counter in details input
+            shared tips and individual tips 2 check boxes
+            info blurp next to Threshold heading(Wait for info from client)
+
+            add requirements
+                        - work experience
+                            (exact same as matric results)
+}
