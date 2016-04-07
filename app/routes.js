@@ -355,7 +355,7 @@ module.exports = function(app) {
 
 		var id= req.body;
 		console.log(id);
-		db.jobs.findOne({_id: id.id}, function(err,rows){
+		db.jobs.findOne({_id: id.id}).populate('employerID').exec(function(err,rows){
 			res.send(rows);
 		});
 

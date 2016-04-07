@@ -1,7 +1,9 @@
-<div ng-controller="jobCtrl">
-    <h2>{{job.post.role}}</h2>
+<div ng-controller="jobCtrl" class="text-center">
 
-    <a href="/profile?user={{job.employerID}}">View employer profile</a>
+    <div ng-if="job.employerID.employerType == 'Individual'"class="profileHeader">{{job.employerID.contact.name + " " + job.employerID.contact.surname}}</div>
+    <div ng-if="job.employerID.employerType == 'Company'"class="profileHeader">{{job.employerID.company.name}}</div>
+   
+    <h2>{{job.post.role}}</h2>
     <div class="jobContent">
         <hr>
         {{job.post.description}}<hr>
