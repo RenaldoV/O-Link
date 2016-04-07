@@ -176,7 +176,7 @@ module.exports = function(app) {
 
 		var user = req.body;
 
-		db.jobs.find({employerID: user.id, status: {$ne: "inactive"}}).sort('-post.postDate').exec(function(err,rows){
+		db.jobs.find({employerID: user.id, status: {$ne: "inactive", $ne:"Completed"}}).sort('-post.postDate').exec(function(err,rows){
 			if(err){
 
 			}
@@ -277,6 +277,13 @@ module.exports = function(app) {
 
 		var user = req.body;
 		//add activation token and insert into db
+		db.users.find({'contact.email': user.contact.email}, function(err,users){
+			if(users.length > 0)
+			{
+				res.send('email');
+
+			}else
+
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');
 				user.activateToken = token;
@@ -319,6 +326,7 @@ module.exports = function(app) {
 			});
 
 
+		});
 		});
 
 	});

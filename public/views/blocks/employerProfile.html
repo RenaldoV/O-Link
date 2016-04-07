@@ -2,166 +2,123 @@
 
 <!-- content -->
 <div id="content">
-    <div class="app-content-body" ng-controller = 'employerProfileControl'>
+    <div class="app-content-body text-center" ng-controller = 'employerProfileControl'>
 
 
-        <div class="hbox hbox-auto-xs hbox-auto-sm">
-            <div class="col">
-                <div style="background:url(img/c4.jpg) center center; background-size:cover">
-                    <div class="wrapper-lg bg-white-opacity employerBanner">
-                        <div class="row m-t">
-                            <div class="col-sm-7">
-                                <a href class="thumb-lg pull-left m-r">
-                                    <img ng-if=!"myProfile" ng-src="data:image/png;base64,{{image}}" class="img-circle">
-                                    <img ng-if="myProfile" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}" class="img-circle">
-                                </a>
-                                <div class="clear m-b">
-                                    <div class="m-b m-t-sm">
-                                        <span class="h3 text-black">{{user.company.name}}</span>
-                                        <small class="m-l">{{user.location}}</small>
-                                    </div>
-                                    <p class="m-b">
-                                        Star rating goes here<br>
-                                        from # reviews
-                                    </p>
+        <div ng-if="user.employerType == 'Individual'"class="profileHeader">{{user.contact.name + " " + user.contact.surname}}</div>
+        <div ng-if="user.employerType == 'Company'"class="profileHeader">{{user.company.name}}</div>
 
+        <div class="profileRating">
+            <div class="numberRating">
+                {{user.rating}}
+            </div>
+            <div>
+                <fieldset class="profileStars">
+                    <input type="radio" id="star5" name="rating" value=5 ng-model="user.rating"  disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4half" name="rating" value=4.5 ng-model="user.rating" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value=4 ng-model="user.rating" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3half" name="rating" value=3.5 ng-model="user.rating" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                    <input type="radio" id="star3" name="rating" value=3 ng-model="user.rating" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2half" name="rating" value=2.5 ng-model="user.rating" disabled /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                    <input type="radio" id="star2" name="rating" value=2 ng-model="user.rating" disabled/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1half" name="rating" value=1 ng-model="user.rating" disabled/><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                    <input type="radio" id="star1" name="rating" value=1.5 ng-model="user.rating" disabled/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    <input type="radio" id="starhalf" name="rating" value=0.5 ng-model="user.rating" disabled><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                </fieldset></div>
+        </div>
+        <div class="row text-center">
+
+
+
+            <div class="panel col-md-6 col-centered greenBorder cards" id="additional" ng-if="user.employerType == 'Company'">
+                <div class="card-header greenBack">
+                    <h4 class="font-thin m-t-none m-b-none ">Additional Info</h4>
+                </div>
+
+                <div class="wrapper">
+                    <div class="studies" ng-if="user.qualification">
+                        <h4 class="m-t-xs m-b-xs">Academia</h4>
+                        <ul class="list-group no-bg no-borders pull-in">
+                            <li class="list-group-item">
+                                <div class="clear">
+                                    <div>Qualification Name</div>
+                                    <small class="text-muted">{{user.qualification.name}}</small>
                                 </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="pull-right pull-none-xs text-center">
-                                    <a href class="m-b-md inline m">
-                                        <span class="h3 block font-bold">2</span>
-                                        <small>Jobs Posted</small>
-                                    </a>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="clear">
+                                    <div>Qualification Description</div>
+                                    <small class="text-muted">{{user.qualification.description}}</small>
                                 </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="clear">
+                                    <div>Graduation Year</div>
+                                    <small class="text-muted">{{user.qualification.gradYear}}</small>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="matric" ng-if="user.results.length > 0">
+                        <h4 class="m-t-xs m-b-xs">Matric results</h4>
+                        <ul class="list-group no-bg no-borders pull-in">
+                            <li ng-repeat="res in user.results" class="list-group-item">
+                                <div class="clear">
+                                    <div>{{res.name}}</div>
+                                    <small class="text-muted">{{res.symbol}}</small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel col-md-6  col-centered  blueBorder cards " id="contact">
+                <div class="card-header blueBack">
+                    <h4 class="font-thin m-t-none m-b-none ">Contact</h4>
+                </div>
+                <div class="wrapper cards">
+
+
+
+                    <ul class="list-group no-bg no-borders pull-in">
+                        <li class="list-group-item">
+                            <div class="clear">
+                                <div>Name</div>
+                                <small class="text-muted">{{user.contact.name}}</small>
                             </div>
-                        </div>
-                        <a ng-if="myProfile" href="/editProfile" >Edit Profile</a>
-                    </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="clear">
+                                <div>Surname</div>
+                                <small class="text-muted">{{user.contact.surname}}</small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="clear">
+                                <div>Contact Number</div>
+                                <small class="text-muted">{{user.contact.contactNo}}</small>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="clear">
+                                <div>Email</div>
+                                <small class="text-muted">{{user.contact.email}}</small>
+                            </div>
+                        </li>
 
+
+                    </ul>
                 </div>
-
-
             </div>
-            <div class="wrapper bg-white b-b">
-                <ul class="nav nav-pills nav-sm">
-                    <li class="active"><a data-toggle="pill" href data-target="#contact">Info</a></li>
-                    <li ng-if="user.employerType=='Company'"><a data-toggle="pill" href  data-target="#company">Company</a></li>
-                    <li ng-if="user.employerType=='Company'"><a data-toggle="pill" href data-target="#alternate">Alternate</a></li>
-
-                </ul>
-            </div>
-            <div class="tab-content">
-
-                <div class="tab-pane fade in active" id="contact">
-                    <div class="wrapper">
-                        <div class="">
-                            <h4 class="m-t-xs m-b-xs">Details</h4>
-                            <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Name</div>
-                                        <small class="text-muted">{{user.contact.name +" " + user.contact.surname}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Position in company</div>
-                                        <small class="text-muted">{{user.contact.position}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>ID Number</div>
-                                        <small class="text-muted">{{user.contact.IDnumber}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Contact Number</div>
-                                        <small class="text-muted">{{user.contact.contactNo}}</small>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Email</div>
-                                        <small class="text-muted">{{user.contact.email}}</small>
-                                    </div>
-                                </li>
-
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tab-pane fade" id="company">
-                    <div class="wrapper">
-                        <div class="">
-                            <h4 class="m-t-xs m-b-xs">Company</h4>
-                            <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Business Category</div>
-                                        <small class="text-muted">{{user.company.businessCategory}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Registration Number</div>
-                                        <small class="text-muted">{{user.company.regNo}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Description</div>
-                                        <small class="text-muted">{{user.company.description}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Location</div>
-                                        <small class="text-muted">{{user.company.location}}</small>
-                                    </div>
-                                </li>
 
 
 
 
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        </div>
 
-                <div class="tab-pane fade" id="alternate">
-                    <div class="wrapper">
-                        <div class="">
+        <a ng-if="myProfile" class="btn employerButton btn-xlarge" href="/editProfile">Edit</a>
 
-                            <h4 class="m-t-xs m-b-xs">Details</h4>
-                            <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Name</div>
-                                        <small class="text-muted">{{user.alternate.name +" " + user.alternate.surname}}</small>
-                                    </div>
-                                </li>
-
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Contact Number</div>
-                                        <small class="text-muted">{{user.alternate.contactNo}}</small>
-                                    </div>
-                                </li>
-
-
-
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-</div>
-        </div></div>
+    </div></div>
