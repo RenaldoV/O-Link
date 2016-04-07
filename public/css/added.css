@@ -502,3 +502,10 @@ line-height: normal;
 .profileBalls{
     width: 500px;
 }
+
+#status{
+    background-color: #f0f3f4;
+}
+.statusOption{
+    background-color: #f0f3f4;
+}

@@ -9,9 +9,9 @@
             <td>{{app.studentID.gender}}</td>
             <td>{{app.jobID.post.role}}</td>
             <td><div  class="estatusDiv"> <select ng-if="!app.offered" id="status" ng-disabled="app.offered" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
-                <option value="Declined">Declined</option>
-                <option value="Pending" disabled>Pending</option>
-                <option value="Provisionally accepted">Provisionally accepted</option>
+                <option class="statusOption" value="Declined">Declined</option>
+                <option class="statusOption" value="Pending" disabled>Pending</option>
+                <option class="statusOption" value="Provisionally accepted">Provisionally accepted</option>
             </select>
                 <span ng-if="app.offered == 'accepted'">Confirmed</span >
                 <span ng-if="app.offered == 'declined'">Declined</span >
