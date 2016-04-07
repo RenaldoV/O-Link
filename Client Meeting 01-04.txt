@@ -35,7 +35,7 @@ STYLING
         }
     }
 
-    SUCCESS POPUP: 1 hour
+    //SUCCESS POPUP: 1 hour
     {
         capital letter Success
     }
