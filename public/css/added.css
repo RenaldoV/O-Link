@@ -509,3 +509,11 @@ line-height: normal;
 .statusOption{
     background-color: #f0f3f4;
 }
+
+.jobContent{
+    background-color: white;
+    width: 80%;
+    max-width: 500px;
+    min-width: 280px;
+    padding-bottom: 30px;
+}

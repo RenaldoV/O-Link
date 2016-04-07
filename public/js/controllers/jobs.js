@@ -296,7 +296,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
             }else
 
-            if(job.employerID == user._id){
+            if(job.employerID._id == user._id){
                 $scope.canApply = false;
                 $scope.admin = true;
 
@@ -411,7 +411,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                         notify.go({
                             type: 'application',
                             jobID: job._id,
-                            userID: job.employerID,
+                            userID: job.employerID._id,
                             status: 'Made',
                             title: job.post.role
                         });
