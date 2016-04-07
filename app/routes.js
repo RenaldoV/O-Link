@@ -485,11 +485,12 @@ module.exports = function(app) {
 		delete  app._id;
 		var user = app.id;
 		delete app.id;
+		var newRating = app.studentRating;
 		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
 			if (err) throw err;
 
 			db.users.findOne({_id:user}, function(err,us){
-				var tempRating = 0;
+
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -499,16 +500,18 @@ module.exports = function(app) {
 					var rating = us.rating;
 
 				}
-				tempRating = roundHalf(((rating * numRatings) + app.studentRating)/++numRatings);
+				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
+				console.log(tempRating);
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
-
+					res.send(true);
 				});
-				res.send(true);
+
 			});
 
 		} );
 
-	});
+		} );
+
 	//done
 	//make changes to application
 	app.post('/rateEmployer', function(req,res){
@@ -519,11 +522,12 @@ module.exports = function(app) {
 		delete  app._id;
 		var user = app.id;
 		delete app.id;
+		var newRating = app.employerRating;
 		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
 			if (err) throw err;
 
 			db.users.findOne({_id:user}, function(err,us){
-				var tempRating = 0;
+
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -533,11 +537,14 @@ module.exports = function(app) {
 					var rating = us.rating;
 
 				}
-				tempRating = roundHalf(((rating * numRatings) + app.employerRating)/++numRatings);
-				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}});
+				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
+				console.log(tempRating);
+				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
+					res.send(true);
+				});
 
 			});
-			res.send(true);
+
 		} );
 
 	});

@@ -99,7 +99,7 @@ app.controller('navControl',function($scope, authService, session, $location, $t
 });
 
 
-app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http){
+app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http, $location, $timeout){
 
     var user = session.user;
     $scope.user = user;

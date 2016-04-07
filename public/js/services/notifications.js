@@ -107,7 +107,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/rateEmployer', {_id: app._id, status: app.status, employerRating: parseInt($scope.rating), commentToStudent: $scope.comment,id: app.employerID._id})
+            .post('/rateEmployer', {_id: app._id, status: app.status, employerRating: parseFloat($scope.rating), commentToStudent: $scope.comment,id: app.employerID._id})
             .then(function (res, err) {
 
                 console.log(res);
@@ -132,7 +132,7 @@ var app = $scope.ngDialogData;
         console.log($scope.rating);
 
         $http
-            .post('/rateStudent', {_id: app._id, status: app.status, studentRating: pardeInt($scope.rating), commentToEmployer: $scope.comment, id: app.studentID._id})
+            .post('/rateStudent', {_id: app._id, status: app.status, studentRating: parseFloat($scope.rating), commentToEmployer: $scope.comment, id: app.studentID._id})
             .then(function (res, err) {
 
                 console.log(res);
