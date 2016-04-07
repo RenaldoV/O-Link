@@ -96,7 +96,7 @@ new CronJob('00 00 00 * * *', function() {
         });
 
     });
-    console.log('Hourly check');
+    console.log('Daily check');
 }, null, true);
 
 
