@@ -115,9 +115,9 @@ STYLING
         }
     }
 
-    PROFILE PAGE: 6 hours(Sean)
+    //PROFILE PAGE: 6 hours(Sean)
     {
-        Take out profile pic because it is already in top bar.
+        //Take out profile pic because it is already in top bar.
 
         //EMPLOYER:
         //{
@@ -128,12 +128,12 @@ STYLING
 
         TALENT:
         {
-            underneath name - how many free or payed job applications still left (2 applications remaining today)
-            rating in middle of page
-            two blocks - info editable - one edit button redirects to signup page populated
-                - REQUIRED INFO
-                    - take out basic heading
-                    - keep everything in info tab
+            //underneath name - how many free or payed job applications still left (2 applications remaining today)
+            //rating in middle of page
+            //two blocks - info editable - one edit button redirects to signup page populated
+                //- REQUIRED INFO
+                    //- take out basic heading
+                    //- keep everything in info tab
                 - Additionald info
                     - Drivers licence - always shows even if no drivers licence
                     - matric results
