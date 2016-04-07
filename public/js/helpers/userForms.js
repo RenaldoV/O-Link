@@ -29,7 +29,9 @@ $(function () {
     });
 });
 $(function () {
+
     $("input[name=empID]").on("invalid", function () {
+
         this.setCustomValidity("Please enter a valid SA ID number.");
     });
     $("input[name=empID]").on("change", function () {
@@ -117,7 +119,7 @@ $(function () {
     });
 
     $("input[name=stuID]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA ID number.");
+        this.setCustomValidity("Please enter a valid ID number.");
     });
     $("input[name=stuID]").on("change", function () {
         this.setCustomValidity("");
@@ -167,6 +169,8 @@ $(function () {
 
 });
 //Student form validation
+
+
 
 $('#stuDob').datepicker({
     changeMonth: true,

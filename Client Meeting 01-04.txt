@@ -37,7 +37,7 @@ STYLING
 
     SUCCESS POPUP: 1 hour
     {
-        capital letter Success
+        //capital letter Success
     }
 
     SIGN IN: 1 hour
@@ -159,7 +159,6 @@ STYLING
 
 FUNCTIONALITY:
 {
-    
 
     RESET PASSWORD: 1 hour
     {
@@ -182,7 +181,7 @@ FUNCTIONALITY:
                     - Optional contact details (Name number email)
                     (Make the same as matric results.)
             Matric result type (IEB, NSC)
-            take out qualification category
+            //take out qualification category
             password placeholder explain format
             validate ID number against DOB
             email field (Wait for list of email addresses.)
@@ -202,7 +201,7 @@ FUNCTIONALITY:
 
     EDIT JOB OFFER: 1 hour(Done)
     {
-        error message says deleted.
+        //error message says deleted.
     }
 
     APPLY FOR JOB

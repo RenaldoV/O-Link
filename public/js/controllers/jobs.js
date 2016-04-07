@@ -404,7 +404,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
                     console.log(res);
                     swal({
-                        title: "success",
+                        title: "Success",
                         text: 'Application Successful.',
                         type: "success"
                     },function(){

@@ -80,7 +80,23 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     };
 
+    $(function() {
+        var dob;
+        var idfill;
 
+        $("input[name=stuID]").on("click", function () {
+            dob = $scope.user.dob;
+            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+            $(this).val(idfill);
+        });
+        $("input[name=stuID]").focusout(function (){
+            if($(this).val().substring(0,6) != idfill)
+                this.setCustomValidity("Date of birth and ID does not match");
+        });
+        $("input[name=stuID]").on("change", function () {
+            this.setCustomValidity("");
+        });
+    });
 
     $scope.submitForm = function() {
         $scope.submitted = true;
@@ -152,7 +168,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                         tempUser.email = res.data.contact.email;
 
                         swal({
-                                title: "success",
+                                title: "Success",
                                 text: 'Your password has been changed successfully.',
                                 type: "success"
                             },
@@ -204,7 +220,7 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                     if(res.data) {
 
                         swal({
-                                title: "success",
+                                title: "Success",
                                 text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
                                 type: "success"
                             },
