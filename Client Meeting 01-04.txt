@@ -8,13 +8,13 @@ STYLING
        // dropdown must be same color as background
     //}
 
-    JOB PAGE: (View one single job) 6 hours
-    {
-        top right picture change to company logo
-        caption - Company name
-        center all data
-        data boxed with blue rim
-    }
+    //JOB PAGE: (View one single job) 6 hours
+    //{
+        //top right picture change to company logo
+        //caption - Company name
+        //center all data
+        //data boxed with blue rim
+    //}
   
     OPEN JOB OFFERS PAGE: 4 hours
     {
