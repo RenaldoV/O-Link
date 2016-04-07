@@ -71,24 +71,30 @@ new CronJob('00 00 * * * *', function() {
 }, null, true);
 
 //function executes once a day
-new CronJob('00 00 00 * * *', function() {
+//new CronJob('00 00 00 * * *', function() {
     //check for edited posts that weren't accepted
     db.jobs.find({status:{$ne: 'Completed'}},function(err,rows){
         rows.forEach(function(ro){
-            row = ro.toObject();
+            var row = ro.toObject();
             if (row.post.endDate) {
                 if(hasFinished(row.post.endDate))
                 {
-                    db.jobs.findOneAndUpdate({_id:rows._id}, {$set:{status: 'Completed'}}, function(err, dox){
+                    db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
 
+                        db.applications.update({jobID: dox._id}, {$set:{status:"Completed"}}, function(err,don){
+
+                        });
                     });
                 }
 
             } else {
                 if(hasFinished(row.post.startingDate))
                 {
-                    db.jobs.findOneAndUpdate({_id:rows._id}, {$set:{status: 'Completed'}}, function(err, dox){
 
+                    db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
+                        db.applications.update({jobID: dox._id}, {$set:{status:"Completed"}}, function(err,don){
+
+                        });
                     });
                 }
 
@@ -97,25 +103,28 @@ new CronJob('00 00 00 * * *', function() {
 
     });
     console.log('Daily check');
-}, null, true);
+//}, null, true);
 
 
 function hasFinished(date){
-    console.log(date);
-
-    var datearr = date.split('/');
+    var dateTemp = date.split('/');
+    var datearr = [parseInt(dateTemp[0] -1),parseInt(dateTemp[1]),parseInt(dateTemp[2])];
     var now = new Date();
-    if(now.getYear() > datearr[2]){
+
+    if(now.getFullYear() > datearr[2]){
         return true;
     }
-    if(now.getYear() == datearr[2]){
+    if(now.getFullYear() == datearr[2]){
+
         if(now.getMonth() > datearr[0])
         {
             return true;
         }else if(now.getMonth() == datearr[0])
         {
+
             if(now.getDate() > datearr[1])
             {
+
                 return true;
             }
         }

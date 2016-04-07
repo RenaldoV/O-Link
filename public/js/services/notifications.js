@@ -55,7 +55,7 @@ app.service('notify', function(){
 app.service('rate', function(ngDialog, $controller, $http){
 
 
-    this.makeStudentBox = function(data){
+    this.makeStudentBox = function(data, cb){
         $http
             .post('/getPp', data.studentID)
             .then(function (res) {
@@ -64,7 +64,10 @@ app.service('rate', function(ngDialog, $controller, $http){
                 ngDialog.open({template: '../views/blocks/rateStudent.html',
                     controller: 'rateBox',
                     data : data,showClose: false,
-                        closeByDocument : false
+                    closeByDocument : false,
+                    preCloseCallback: function(value){
+                        cb(value);
+                }
 
                     }
                 );
@@ -73,7 +76,7 @@ app.service('rate', function(ngDialog, $controller, $http){
 
     };
 
-    this.makeEmployerBox = function(data){
+    this.makeEmployerBox = function(data, cb){
         $http
             .post('/getPp', data.employertID)
             .then(function (res) {
@@ -82,7 +85,10 @@ app.service('rate', function(ngDialog, $controller, $http){
                 ngDialog.open({template: '../views/blocks/rateEmployer.html',
                         controller: 'rateBox',
                         data : data,showClose: false,
-                        closeByDocument : false
+                        closeByDocument : false,
+                    preCloseCallback: function(value){
+                        cb(value);
+                    }
 
                     }
                 );
@@ -96,7 +102,8 @@ app.controller('rateBox', function($scope, $http, notify){
     console.log($scope.ngDialogData);
 var app = $scope.ngDialogData;
 
-    $scope.confirmStudent = function(){
+    $scope.rating;
+    $scope.confirmEmployer = function(){
         console.log($scope.rating);
 
         $http
@@ -109,7 +116,7 @@ var app = $scope.ngDialogData;
                 notify.go({
                     type: 'rated',
                     jobID: app.jobID._id,
-                    userID: app.studentID._id,
+                    userID: app.employerID._id,
                     status: "rated "+$scope.rating+ " stars",
                     title: app.jobID.post.role,
                     comment: $scope.comment
@@ -121,7 +128,7 @@ var app = $scope.ngDialogData;
 
     };
 
-    $scope.confirmEmployer = function(){
+    $scope.confirmStudent = function(){
         console.log($scope.rating);
 
         $http
@@ -134,7 +141,7 @@ var app = $scope.ngDialogData;
                 notify.go({
                     type: 'rated',
                     jobID: app.jobID._id,
-                    userID: app.employerID._id,
+                    userID: app.studentID._id,
                     status: "rated "+$scope.rating+ " stars",
                     title: app.jobID.post.role,
                     comment: $scope.comment

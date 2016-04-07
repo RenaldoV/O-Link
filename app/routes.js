@@ -466,7 +466,9 @@ module.exports = function(app) {
 
 		var app = req.body;
 		console.log(app);
-		db.applications.findOneAndUpdate({_id : app._id},{$set: app}, function(err, app){
+		var id = app._id;
+		delete  app._id;
+		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
 			if (err) throw err;
 			res.send(true);
 		} );
@@ -552,7 +554,7 @@ module.exports = function(app) {
 
 		var emp = req.body;
 
-		db.applications.find({employerID: emp.id, status:"Completed"}).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, rows){
+		db.applications.find({employerID: emp.id, status:"Completed", offered:"accepted"}).populate('jobID').populate('studentID').exists('studentRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 
@@ -565,7 +567,7 @@ module.exports = function(app) {
 
 		var student = req.body;
 
-		db.applications.find({studentID: student.id, status:"Completed"}).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, rows){
+		db.applications.find({studentID: student.id, status:"Completed",offered:"accepted"}).populate('jobID').populate('employerID').exists('employerRating', false).exec(function (err, rows){
 			res.send(rows);
 		});
 

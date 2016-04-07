@@ -441,6 +441,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window){
     })
         .then(function(res) {
             {
+                console.log(res.data);
                 $scope.jobs = res.data;
                 $.each($scope.jobs, function(key,value){
                     if(!value.applicants)

@@ -45,6 +45,28 @@ app.controller('jobFeed', function($scope,$http, $window){
 //controller for all dashboards
 app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
+    function employerBoxes(arr, i){
+
+            rate.makeEmployerBox(arr[i], function(res){
+                if(i < arr.length -1)
+                {
+                    employerBoxes(arr, ++i);
+                }
+            });
+
+    }
+    function studentBoxes(arr, i){
+
+        rate.makeStudentBox(arr[i], function(res){
+            if(i < arr.length -1)
+            {
+                studentBoxes(arr, ++i);
+            }
+        });
+
+    }
+
+
     $(".appbg").removeClass('signupBG');
 
     if(authService.isAuthenticated()){
@@ -56,9 +78,8 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
                 .then(function (res) {
 
                     var notifications = res.data;
-                    $.each(notifications, function(key, value){
-                        rate.makeEmployerBox(value);
-                    });
+                    if(notifications.length>0)
+                   employerBoxes(notifications,0);
                 });
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
@@ -69,9 +90,8 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
                 .then(function (res) {
 
                     var notifications = res.data;
-                    $.each(notifications, function(key, value){
-                        rate.makeStudentBox(value);
-                    });
+                    if(notifications.length>0)
+                    studentBoxes(notifications,0);
                 });
             $scope.getDash= function() {
                 return "../views/blocks/employerDash.html";
