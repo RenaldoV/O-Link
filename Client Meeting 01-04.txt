@@ -43,7 +43,7 @@ STYLING
         //Background picture of landing page (and caption)
     }
 
-    SIGN UP: 1 hour
+    //SIGN UP: 1 hour
     {
         //Background image and caption----(Markup, not fixed image)
         EMPLOYER:
@@ -57,7 +57,7 @@ STYLING
         }
     }
 
-    POST JOB: 3 hours
+    //POST JOB: 3 hours
     {
         //capitalise!!!
         //time periods descriptions!
@@ -160,12 +160,12 @@ FUNCTIONALITY:
     {
         Expire reset token when password is changed.
     }
-    ACTIVATE ACCOUNT: 1 hour
+    //ACTIVATE ACCOUNT: 1 hour
     {
         Invalid token error (Account already activated or token expired.) - redirect to login
     }
 
-    SIGN UP: 2 hours
+    //SIGN UP: 2 hours
     {
         TALENT:
         {
@@ -195,12 +195,12 @@ FUNCTIONALITY:
 
     
 
-    EDIT JOB OFFER: 1 hour(Done)
+    //EDIT JOB OFFER: 1 hour(Done)
     {
         error message says deleted.
     }
 
-    APPLY FOR JOB
+    //APPLY FOR JOB
     {
 
     }
