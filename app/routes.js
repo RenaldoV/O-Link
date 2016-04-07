@@ -255,7 +255,7 @@ module.exports = function(app) {
 			user = JSON.parse(key);
 		}
 
-		db.users.findOne({'contact.email': user.email}, function(err,doc){
+		db.users.findOne({'contact.email': user.email, active:true}, function(err,doc){
 			if(err){
 
 			}else {
@@ -468,8 +468,75 @@ module.exports = function(app) {
 		console.log(app);
 		var id = app._id;
 		delete  app._id;
+
 		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
 			if (err) throw err;
+			res.send(true);
+		} );
+
+	});
+	//done
+	//make changes to application
+	app.post('/rateStudent', function(req,res){
+
+		var app = req.body;
+		console.log(app);
+		var id = app._id;
+		delete  app._id;
+		var user = app.id;
+		delete app.id;
+		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+			if (err) throw err;
+
+			db.users.findOne({_id:user}, function(err,us){
+				var tempRating = 0;
+				var numRatings = 0;
+				if(us.numRatings){
+					numRatings = us.numRatings;
+				}
+				var rating = 0;
+				if(us.rating){
+					var rating = us.rating;
+
+				}
+				tempRating = roundHalf(((rating * numRatings) + app.studentRating)/++numRatings);
+				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
+
+				});
+				res.send(true);
+			});
+
+		} );
+
+	});
+	//done
+	//make changes to application
+	app.post('/rateEmployer', function(req,res){
+
+		var app = req.body;
+		console.log("Here: "+app);
+		var id = app._id;
+		delete  app._id;
+		var user = app.id;
+		delete app.id;
+		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+			if (err) throw err;
+
+			db.users.findOne({_id:user}, function(err,us){
+				var tempRating = 0;
+				var numRatings = 0;
+				if(us.numRatings){
+					numRatings = us.numRatings;
+				}
+				var rating = 0;
+				if(us.rating){
+					var rating = us.rating;
+
+				}
+				tempRating = roundHalf(((rating * numRatings) + app.employerRating)/++numRatings);
+				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}});
+
+			});
 			res.send(true);
 		} );
 
@@ -709,3 +776,6 @@ module.exports = function(app) {
 	//done
 };
 
+function roundHalf(num) {
+	return Math.round(num*2)/2;
+}
