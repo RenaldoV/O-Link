@@ -68,7 +68,7 @@ STYLING
 
 
         Matric list reduce as subjects are chosen all forms
-        check validation of number (Cannot start with 0) all forms
+        //check validation of number (Cannot start with 0) all forms
 
     }
 
@@ -177,7 +177,7 @@ FUNCTIONALITY:
                     - Optional contact details (Name number email)
                     (Make the same as matric results.)
             Matric result type (IEB, NSC)
-            take out qualification category
+            //take out qualification category
             password placeholder explain format
             //validate ID number against DOB
             email field (Wait for list of email addresses.)

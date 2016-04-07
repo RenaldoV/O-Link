@@ -84,7 +84,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         var dob;
         var idfill;
 
-        $("input[name=stuID]").on("click", function () {
+        $("input[name=stuID]").focusin( function () {
+            $("input[name=stuID]").trigger("click");
             dob = $scope.user.dob;
             idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
             $(this).val(idfill);

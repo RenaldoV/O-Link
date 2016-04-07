@@ -52,7 +52,7 @@
             </div>
         </div>
         <div class="list-group-item">
-            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" regex="^[1-9][0-9]*$" required>
+            <input id="amount" name="amount"  type="text" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" min="1" pattern="[1-9]\d*" required>
         </div>
     </div>
 
@@ -128,10 +128,10 @@
     <h4 class="form-section-label">Thresholds</h4>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" regex="^[1-9][0-9]*$" required>
+            <input id="spotsAvail" name="spotsAvail"  type="text" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" pattern="[1-9]\d*" required>
         </div>
         <div class="list-group-item">
-            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Applications accepted per position" ng-model="job.post.threshold" regex="^[1-9][0-9]*$" required>
+            <input id="threshold" name="threshold"  type="text" class="controls form-control no-border" width="50px" placeholder="Applications accepted per position" ng-model="job.post.threshold" pattern="[1-9]\d*" required>
         </div>
     </div>
 
@@ -148,7 +148,31 @@
 <script>
 
 
-
+    //===================POST JOB VALIDATION==============
+    $(function () {
+        $("input[name=amount]").on("invalid", function () {
+            this.setCustomValidity("Please enter a valid number.");
+        });
+        $("input[name=amount]").on("change", function () {
+            this.setCustomValidity("");
+        });
+    });
+    $(function () {
+        $("input[name=spotsAvail]").on("invalid", function () {
+            this.setCustomValidity("Please enter a valid number.");
+        });
+        $("input[name=spotsAvail]").on("change", function () {
+            this.setCustomValidity("");
+        });
+    });
+    $(function () {
+        $("input[name=threshold]").on("invalid", function () {
+            this.setCustomValidity("Please enter a valid number.");
+        });
+        $("input[name=threshold]").on("change", function () {
+            this.setCustomValidity("");
+        });
+    });
 
 
     $('#startDate').datepicker({

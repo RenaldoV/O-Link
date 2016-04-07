@@ -35,7 +35,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             $('#endTime').timepicker({ 'step': 15 , 'minTime' : '12:00am'});
 
             $('#startTime').on('changeTime', function() {
-                $('#endTime').timepicker({'minTime' : $(this).val()});
+                $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
             });
 
         }
