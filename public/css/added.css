@@ -517,3 +517,7 @@ line-height: normal;
     min-width: 280px;
     padding-bottom: 30px;
 }
+
+.jobPosts{
+    text-align: center;
+}
