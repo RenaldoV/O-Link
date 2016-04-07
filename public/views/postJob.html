@@ -1,6 +1,6 @@
 <div class="container w-xxl w-auto-xs s" ng-controller="postJob">
     <div class="wrapper text-center">
-        <strong>Post a job</strong><br/>
+        <strong>Post a Job</strong><br/>
     </div>
 
 <form name="jobForm" class="list-group list-group-sm form-validation" ng-submit="submitForm()">
@@ -36,15 +36,23 @@
         <div class="list-group-item">
             <select id="period" class="form-control no-border" ng-model="job.post.timePeriod" required>
                 <option value="" selected disabled>Time Period</option>
-                <option value="Once Off">Once Off</option>
-                <option value="Short Term">Short Term</option>
-                <option value="Long Term">Long Term</option>
+
+                <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
             </select>
             <br>
-            <span>Tips</span> <input type="checkbox" name="tips" ng-model="job.post.tips">
+            <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="job.post.sharedTips"><i></i>Shared Tips
+                </label>
+            </div>
+            <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="job.post.individualTips"><i></i>Individual Tips
+                </label>
+            </div>
         </div>
         <div class="list-group-item">
-            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" regex="^[0-9]+$" required>
+            <input id="amount"  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" regex="^[1-9][0-9]*$" required>
         </div>
     </div>
 
@@ -96,23 +104,34 @@
                 <button ng-if="job.post.requirements" type="button" class="removeReq btn btn-default" ng-click="close(job.post.requirements)">Remove<span class="glyphicon glyphicon-minus"></span></button>
                 <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add requirement <span class="glyphicon glyphicon-plus"></span></button>
             </div>
-
+            <br/>
+            <br/>
+            <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="job.post.driverslicence"><i></i>Drivers licence required?
+                </label>
+            </div>
+            <!-- EXTRA SHIT <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="job.post.transport"><i></i>Own transport licence required?
+                </label>
+            </div>-->
+            <div class="checkbox m-b-md m-t-none">
+                <label class="i-checks">
+                    <input type="checkbox" ng-model="job.post.interviewRequired"><i></i>Interview required?
+                </label>
+            </div>
         </div>
     </div>
-    <div class="checkbox">
-        <label><input type="checkbox" ng-model="job.post.driverslicence" value="">Drivers licence required</label>
-    </div>
-    <div class="checkbox">
-        <label><input type="checkbox" ng-model="job.post.interviewRequired" value="">Interview required</label>
-    </div>
+
     <br/>
     <h4 class="form-section-label">Thresholds</h4>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" required>
+            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" regex="^[1-9][0-9]*$" required>
         </div>
         <div class="list-group-item">
-            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Threshold" ng-model="job.post.threshold" required>
+            <input  type="number" class="controls form-control no-border" width="50px" placeholder="Applications accepted per position" ng-model="job.post.threshold" regex="^[1-9][0-9]*$" required>
         </div>
     </div>
 
@@ -134,11 +153,18 @@
 
     $('#startDate').datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        minDate :0,
+        onSelect: function(selected) {
+            $("#endDate").datepicker("option","minDate", selected)
+        }
     });
     $('#endDate').datepicker({
         changeMonth: true,
-        changeYear: true
+        changeYear: true,
+        onSelect: function(selected) {
+            $("#startDate").datepicker("option","maxDate", selected)
+        }
     });
 
 

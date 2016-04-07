@@ -12,8 +12,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $window.location.href= '/';
 
 
-
-$scope.categories = constants.categories;
+    $scope.timePeriods = constants.timePeriods;
+    $scope.categories = constants.categories;
     $scope.reqNames = constants.requirements;
     //add end date if short term/long term
     $("#times").hide();
@@ -32,8 +32,11 @@ $scope.categories = constants.categories;
             $compile(input)($scope);
 
             $('#startTime').timepicker({ 'step': 15 });
-            $('#endTime').timepicker({ 'step': 15 });
-            $('#endTime').timepicker({ 'step': 15 });
+            $('#endTime').timepicker({ 'step': 15 , 'minTime' : '12:00am'});
+
+            $('#startTime').on('changeTime', function() {
+                $('#endTime').timepicker({'minTime' : $(this).val()});
+            });
 
         }
         else {
@@ -64,7 +67,6 @@ $scope.categories = constants.categories;
     $scope.close = function(reqs){
 
         console.log($scope.job.post.requirements.pop());
-
     };
     $scope.add = function(){
 
