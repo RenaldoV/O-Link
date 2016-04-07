@@ -13,6 +13,8 @@ app.controller('navControl',function($scope, authService, session, $location, $t
         }
     });
 
+
+
     if(authService.isAuthenticated()){
         var user = session.user;
         if(user.type == "student")

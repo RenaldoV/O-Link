@@ -8,7 +8,7 @@
         <div class="appCount muted">2 applications left</div>
         <div class="profileRating">
             <div class="numberRating">
-                4.5
+                {{user.rating}}
             </div>
             <div>
             <fieldset class="profileStars">
@@ -82,15 +82,9 @@
                 </div>
 
                     <div class="wrapper">
-                        <div class="">
+                        <div class="studies" ng-if="user.qualification">
                             <h4 class="m-t-xs m-b-xs">Academia</h4>
                             <ul class="list-group no-bg no-borders pull-in">
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Category</div>
-                                        <small class="text-muted">{{user.qualification.category}}</small>
-                                    </div>
-                                </li>
                                 <li class="list-group-item">
                                     <div class="clear">
                                         <div>Qualification Name</div>
@@ -111,6 +105,17 @@
                                 </li>
 
 
+                            </ul>
+                        </div>
+                        <div class="matric" ng-if="user.results.length > 0">
+                            <h4 class="m-t-xs m-b-xs">Matric results</h4>
+                            <ul class="list-group no-bg no-borders pull-in">
+                                <li ng-repeat="res in user.results" class="list-group-item">
+                                    <div class="clear">
+                                        <div>{{res.name}}</div>
+                                        <small class="text-muted">{{res.symbol}}</small>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                     </div>
