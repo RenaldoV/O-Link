@@ -1,8 +1,13 @@
 ///////////////////////////////////////////////////////
 //////////////Controllers for the nav bar//////////////
 ///////////////////////////////////////////////////////
+app.controller('logoClick', function($scope,$window){
+    $scope.toDash= function(){
+        $window.location.href="/dashboard";
+    };
+});
+app.controller('navControl',function($scope, authService, session, $location, $window, $timeout){
 
-app.controller('navControl',function($scope, authService, session, $location, $timeout){
 
     // Set header message of signup $ login pages
     $timeout(function(){
@@ -20,6 +25,7 @@ app.controller('navControl',function($scope, authService, session, $location, $t
         if(user.type == "student")
         {
             // Set header message of Dash
+            console.log($location.path());
             $scope.slog1 = "";
             $scope.slog2 = "";
             $timeout(function() {
