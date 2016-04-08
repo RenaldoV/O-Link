@@ -297,6 +297,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             job = res.data;
             if($.inArray(user._id, job.applicants) != -1)
             {
+                $scope.hasApplied=true;
                 $scope.canApply = false;
 
             }else

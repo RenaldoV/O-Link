@@ -412,9 +412,15 @@ line-height: normal;
 }
 
 .card-header{
+    font-size: 30px;
     width:100%;
     color: white;
     margin:0;
+}
+
+.card-header>h4{
+    font-size: 25px;
+
 }
 .cards{
 
@@ -526,4 +532,17 @@ line-height: normal;
 
 .profileBox{
     padding: 30px;
+}
+.timeSelect{
+    vertical-align: middle;
+    background-color: #e3e3e3;
+}
+
+#allP{
+    padding-top: 15px;
+}
+
+.jobButtons{
+ width: 130px;
+    margin: 10px;
 }

@@ -42,8 +42,8 @@
         </ul>
         <ul class="list-group no-bg no-borders pull-in">
 
-            <span>Positions available:  {{job.post.spotsAvailable}}</span><br>
-            <span>Max applicants:  {{job.post.spotsAvailable *job.post.threshold}}</span>
+            <span>Positions available:  <b>{{job.post.spotsAvailable}}</b></span><br>
+            <span>Max applicants:  <b>{{job.post.spotsAvailable *job.post.threshold}}</b></span>
 
 
         </ul>
@@ -55,9 +55,10 @@
 
 
     <div class="center">
-        <button ng-if="canApply" class="btn btn-primary btn-xlarge" ng-click="apply()">Apply</button>
-        <button ng-if="admin" class="btn btn-plain btn-xlarge" ng-click="edit(job._id)">Edit</button>
-        <button ng-if="admin" class="btn btn-danger btn-xlarge" ng-click="delete()">Delete</button>
+        <button ng-if="canApply" class="btn blueBack btn-xlarge" ng-click="apply()">Apply</button>
+        <button ng-if="hasApplied" class="btn greenBack btn-xlarge" disabled>Applied</button>
+        <button ng-if="admin" class="btn btn-plain btn-xlarge jobButtons" ng-click="edit(job._id)">Edit</button>
+        <button ng-if="admin" class="btn btn-danger btn-xlarge  jobButtons" ng-click="delete()">Delete</button>
     </div>
     </div>
 </div>
