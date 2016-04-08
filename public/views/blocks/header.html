@@ -39,7 +39,7 @@
         <ul class="nav navbar-nav navbar-right">
             <li><img ng-src="data:image/png;base64,{{image}}" ng-click="myProfile()" class="img-circle banner-pp"></li>
             <li data-ng-include="getNav()" ng-controller="navControl"></li>
-            <li data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
+            <li ng-if="loggedIn" data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
 
         </ul>
 

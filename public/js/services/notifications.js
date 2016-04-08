@@ -8,20 +8,25 @@ app.controller('notifications', function($scope,$http, session, cacheUser){
 
     $scope.notifications = {};
 
-    $scope.userType = session.user.type;
-    loadNotifications();
+    if(session.user) {
+        $scope.userType = session.user.type;
+        loadNotifications();
+        socket.on('notified'+ session.user._id, function(data){
+            loadNotifications();
+        });
+    }
 
 
     $scope.$on('auth-login-success',function(){
 
         $scope.userType = session.user.type;
+        console.log('here');
+        console.log(session.user);
         loadNotifications();
     });
 
 
-    socket.on('notified'+ session.user._id, function(data){
-       loadNotifications();
-    });
+
 
 
     $scope.makeSeen = function (id) {

@@ -27,6 +27,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
         if (authService.isAuthenticated()) {
 
+            $scope.loggedIn = true;
             $rootScope.$on('profile', function (data) {
                 $scope.welcoming = false;
                 $scope.slogan = false;
@@ -124,6 +125,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
         }
 
     $scope.$on('auth-login-success',function(){
+        $scope.loggedIn = true;
         $timeout(function() {
         var user = session.user;
 
