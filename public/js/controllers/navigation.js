@@ -27,20 +27,39 @@ app.controller('navControl',function($scope, authService, session, $location, $w
         $rootScope.$on('profile', function(data){
             $scope.welcome = '';
             $scope.talent = '';
-            $scope.cache = cacheUser.user;
-            if(cacheUser.user.type == 'student'){
-                $scope.studentProfile = true;
+            $timeout(function() {
+                $scope.cache = cacheUser.user;
+                if (cacheUser.user.type == 'student') {
+                    $scope.studentProfile = true;
 
-            }else if(cacheUser.user.type == 'employer'){
-                if(cacheUser.user.employerType == 'Individual')
-                $scope.individualProfile = true;
-                else if(cacheUser.user.employerType == 'Company')
-                $scope.companyProfile = true;
+                } else if (cacheUser.user.type == 'employer') {
+                    if (cacheUser.user.employerType == 'Individual')
+                        $scope.individualProfile = true;
+                    else if (cacheUser.user.employerType == 'Company')
+                        $scope.companyProfile = true;
 
-            }
-
-
+                }
+            });
         });
+        $rootScope.$on('job', function(){
+            $scope.welcome = '';
+            $scope.talent = '';
+            $timeout(function() {
+                $scope.cache = cacheUser.user;
+                if (cacheUser.user.type == 'student') {
+                    $scope.studentProfile = true;
+
+                } else if (cacheUser.user.type == 'employer') {
+                    if (cacheUser.user.employerType == 'Individual')
+                        $scope.individualProfile = true;
+                    else if (cacheUser.user.employerType == 'Company')
+                        $scope.companyProfile = true;
+
+                }
+            });
+        });
+
+
         var user = session.user;
         $http.post('/getPp', user)
             .then(function (res) {
@@ -49,6 +68,10 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
             });
+
+        $scope.myProfile = function(){
+            $window.location.href="/myProfile";
+        };
         if(user.type == "student")
         {
             // Set header message of Dash

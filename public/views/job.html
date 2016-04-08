@@ -4,8 +4,7 @@
 
 
     <div class="jobContent blueBorder container">
-        <div ng-if="job.employerID.employerType == 'Individual'"class="profileHeader">{{job.employerID.contact.name + " " + job.employerID.contact.surname}}</div>
-        <div ng-if="job.employerID.employerType == 'Company'"class="profileHeader">{{job.employerID.company.name}}</div>
+    
         <h2>{{job.post.role}}</h2>
         <hr>
         {{job.post.description}}<hr>

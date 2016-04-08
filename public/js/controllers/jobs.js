@@ -272,7 +272,7 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 });
 
-app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify){
+app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
     var temp = $location.url();
 
     var user = session.user;
@@ -290,6 +290,9 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     })
         .then(function(res) {
 
+
+            cacheUser.create(res.data.employerID);
+            $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
             job = res.data;
             if($.inArray(user._id, job.applicants) != -1)
@@ -303,7 +306,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 $scope.admin = true;
 
             }else $scope.canApply = true;
-            console.log(job);
+
 
 
 

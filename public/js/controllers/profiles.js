@@ -32,6 +32,9 @@ app.controller('profileControl',function($scope, authService, session, $location
             var user = session.user;
             cacheUser.create(user);
             $rootScope.$broadcast('profile',user);
+
+
+
             if (user.type == "student") {
                 $scope.getProfile = function () {
                     return "../views/blocks/studentEditProfile.html";
