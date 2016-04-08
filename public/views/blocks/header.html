@@ -1,16 +1,28 @@
 <!-- navbar header -->
-<div class="header-text center" ng-controller="navControl">
-    <h2 class="navbar-text navbar-left">
-        <p  class="navbar-slog">{{slog1}} {{slog2}}</p>
-        <p  class="navbar-txt">{{welcome}}
-            <span class='green'>{{employer}}</span>
-            <span class='blue'>{{talent}}</span>
-        </p>
-    </h2>
-</div>
+<div ng-controller="navControl">
+
 
 <nav class="navbar transparent navbar-default" >
     <div class="container-fluid nav-container">
+        <div class="header-text center" >
+
+            <h2 class="navbar-text navbar-left">
+                <p  class="navbar-slog">{{slog1}} {{slog2}}</p>
+                <p  class="navbar-txt">{{welcome}}
+                    <span class='green'>{{employer}}</span>
+                    <span class='blue'>{{talent}}</span>
+                </p>
+                <p ng-if="studentProfile" class="profileHeader">{{cache.name.name + " " + cache.name.surname}}</p>
+                <p ng-if="studentProfile" class="appCount muted">2 applications left</p>
+                <p ng-if="individualProfile" class="profileHeader">{{cache.contact.name + " " + cache.contact.surname}}</p>
+                <p ng-if="companyProfile" class="profileHeader">{{cache.company.name}}</p>
+                <p ng-if="companyProfile" class="appCount">{{cache.contact.name + " " + cache.contact.surname}}</p>
+            </h2>
+
+
+        </div>
+
+
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header" ng-controller="logoClick">
 
@@ -20,10 +32,18 @@
 
 
 
-        <div data-ng-include="getNav()" ng-controller="navControl">
 
-        </div>
+
+
+
+        <ul class="nav navbar-nav navbar-right">
+            <li><img ng-src="data:image/png;base64,{{image}}" ng-click="myProfile()" class="img-circle banner-pp"></li>
+            <li data-ng-include="getNav()" ng-controller="navControl"></li>
+            <li data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
+
+        </ul>
+
         </div><!-- /.navbar-collapse -->
    <!-- /.container-fluid -->
 </nav>
-
+</div>

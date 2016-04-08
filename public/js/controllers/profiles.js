@@ -1,16 +1,18 @@
 /**
  * COntrollers to do with profiles.
  */
-app.controller('profileControl',function($scope, authService, session, $location, $http, cacheUser) {
+app.controller('profileControl',function($scope, authService, session, $location, $http, cacheUser, $rootScope) {
 
 
     function getUser(){
         var temp = $location.url();
 
+
         if(temp == '/myProfile'){
             var user = session.user;
             cacheUser.create(user);
             console.log(user.type);
+            $rootScope.$broadcast('profile',user);
             if (user.type == "student") {
                 $scope.getProfile = function () {
                     return "../views/blocks/studentProfile.html";
@@ -23,11 +25,13 @@ app.controller('profileControl',function($scope, authService, session, $location
                 };
                 return;
             }
+
         }else
 
         if(temp == '/editProfile'){
             var user = session.user;
             cacheUser.create(user);
+            $rootScope.$broadcast('profile',user);
             if (user.type == "student") {
                 $scope.getProfile = function () {
                     return "../views/blocks/studentEditProfile.html";
@@ -40,6 +44,7 @@ app.controller('profileControl',function($scope, authService, session, $location
                 };
                 return;
             }
+
         }
         else {
             temp = temp.replace("/profile?user=", '');
@@ -53,6 +58,7 @@ app.controller('profileControl',function($scope, authService, session, $location
                     res.data.passwordHash = null;
                     var user = res.data;
                     cacheUser.user = user;
+                    $rootScope.$broadcast('profile',user);
                     if (user.type == "student") {
                         $scope.getProfile = function () {
                             return "../views/blocks/studentProfile.html";
@@ -64,7 +70,9 @@ app.controller('profileControl',function($scope, authService, session, $location
                         }
                     }
                 });
+
         }
+
     }
     if (authService.isAuthenticated()) {
         getUser();

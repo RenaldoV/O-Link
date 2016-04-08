@@ -4837,7 +4837,7 @@ h2.navbar-text {
   left: -50%;
   text-align: center;
   position: relative;
-  font-size: 4vw;
+  font-size: 3.2vw;
   color: blue;
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -4845,6 +4845,22 @@ h2.navbar-text {
 h2.navbar-text .navbar-slog {
   font-size: 2.5vw;
   color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+h2.navbar-text .profileHeader{
+
+  text-align: center;
+  position: relative;
+  font-size: 3.2vw;
+  color: black;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+h2.navbar-text .appCount{
+  ;
+  text-align: center;
+  position: relative;
+  font-size: 0.9vw;
+  color: black;
   font-family: 'Source Sans Pro', sans-serif;
 }
 

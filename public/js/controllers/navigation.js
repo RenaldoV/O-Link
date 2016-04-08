@@ -6,7 +6,7 @@ app.controller('logoClick', function($scope,$window){
         $window.location.href="/dashboard";
     };
 });
-app.controller('navControl',function($scope, authService, session, $location, $window, $timeout){
+app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http){
 
 
     // Set header message of signup $ login pages
@@ -20,8 +20,35 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
 
+
+
     if(authService.isAuthenticated()){
+
+        $rootScope.$on('profile', function(data){
+            $scope.welcome = '';
+            $scope.talent = '';
+            $scope.cache = cacheUser.user;
+            if(cacheUser.user.type == 'student'){
+                $scope.studentProfile = true;
+
+            }else if(cacheUser.user.type == 'employer'){
+                if(cacheUser.user.employerType == 'Individual')
+                $scope.individualProfile = true;
+                else if(cacheUser.user.employerType == 'Company')
+                $scope.companyProfile = true;
+
+            }
+
+
+        });
         var user = session.user;
+        $http.post('/getPp', user)
+            .then(function (res) {
+
+                $scope.image=res.data;
+
+
+            });
         if(user.type == "student")
         {
             // Set header message of Dash
@@ -57,6 +84,9 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                 return "../views/blocks/employerNav.html";
             }
         }
+
+
+
     }
     else if($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate")  {
         swal({   title: "Log in first",   type: "error",   timer: 2000,   showConfirmButton: false });
@@ -66,6 +96,13 @@ app.controller('navControl',function($scope, authService, session, $location, $w
     $scope.$on('auth-login-success',function(){
         var user = session.user;
 
+        $http.post('/getPp', user)
+            .then(function (res) {
+
+                $scope.image=res.data;
+
+
+            });
         if(user.type == "student")
         {
             // Set header message of Dash

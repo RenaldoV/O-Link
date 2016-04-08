@@ -1,8 +1,5 @@
-<ul class="nav navbar-nav navbar-right" ng-controller="employerNav">
-    <li>
-    <li><img ng-if="myProfile" ng-click="myProfile()" ng-src="data:image/png;base64,{{image}}" class="img-circle banner-pp"></li>
-    <li><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-        <ul class="dropdown-menu">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+        <ul ng-controller="employerNav" class="dropdown-menu">
             <li><a href="" ng-click="myProfile()">User Profile </a></li>
             <li><a href="/applicants">Applicants</a></li>
             <li><a href="/myJobPosts">My Job Offers</a></li>
@@ -10,9 +7,4 @@
             <li role="separator" class="divider"></li>
             <li><a href="#" ng-click="logOut()">Log Out</a></li>
         </ul>
-    </li>
 
-<li ng-include="'views/blocks/notifications.html'" ng-controller="notifications">
-
-</li>
-</ul>
