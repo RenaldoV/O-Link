@@ -496,6 +496,7 @@ line-height: normal;
 .col-centered {
     display:inline-block;
     float:none;
+    width: 100%;
 
 }
 
@@ -520,4 +521,8 @@ line-height: normal;
 
 .jobPosts{
     text-align: center;
+}
+
+.profileBox{
+    padding: 30px;
 }
