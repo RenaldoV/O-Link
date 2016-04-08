@@ -5,11 +5,19 @@ var socket = io();
 
 app.controller('notifications', function($scope,$http, session, cacheUser){
 
+
     $scope.notifications = {};
+
     $scope.userType = session.user.type;
-
-
     loadNotifications();
+
+
+    $scope.$on('auth-login-success',function(){
+
+        $scope.userType = session.user.type;
+        loadNotifications();
+    });
+
 
     socket.on('notified'+ session.user._id, function(data){
        loadNotifications();

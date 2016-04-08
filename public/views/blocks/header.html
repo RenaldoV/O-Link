@@ -7,8 +7,8 @@
         <div class="header-text center" >
 
             <h2 class="navbar-text navbar-left">
-                <p  class="navbar-slog">{{slog1}} {{slog2}}</p>
-                <p  class="navbar-txt">{{welcome}}
+                <p ng-if="slogan"  class="navbar-slog">{{slog1}} {{slog2}}</p>
+                <p ng-if="welcoming" class="navbar-txt">{{welcome}}
                     <span class='green'>{{employer}}</span>
                     <span class='blue'>{{talent}}</span>
                 </p>

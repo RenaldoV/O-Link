@@ -11,7 +11,10 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     // Set header message of signup $ login pages
     $timeout(function(){
+
         if($location.path() == "/signUp" || $location.path() == "/") {
+            $scope.welcoming = false;
+            $scope.slogan = true;
             $scope.slog = true;
             $scope.slog1 = "Today's Talent.";
             $scope.slog2 = "Tomorrow's Success."
@@ -22,101 +25,106 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
 
-    if(authService.isAuthenticated()){
+        if (authService.isAuthenticated()) {
 
-        $rootScope.$on('profile', function(data){
-            $scope.welcome = '';
-            $scope.talent = '';
-            $timeout(function() {
-                $scope.cache = cacheUser.user;
-                if (cacheUser.user.type == 'student') {
-                    $scope.studentProfile = true;
+            $rootScope.$on('profile', function (data) {
+                $scope.welcoming = false;
+                $scope.slogan = false;
+                $scope.welcome = '';
+                $scope.talent = '';
+                $timeout(function () {
+                    $scope.cache = cacheUser.user;
+                    if (cacheUser.user.type == 'student') {
+                        $scope.studentProfile = true;
 
-                } else if (cacheUser.user.type == 'employer') {
-                    if (cacheUser.user.employerType == 'Individual')
-                        $scope.individualProfile = true;
-                    else if (cacheUser.user.employerType == 'Company')
-                        $scope.companyProfile = true;
+                    } else if (cacheUser.user.type == 'employer') {
+                        if (cacheUser.user.employerType == 'Individual')
+                            $scope.individualProfile = true;
+                        else if (cacheUser.user.employerType == 'Company')
+                            $scope.companyProfile = true;
 
+                    }
+                });
+            });
+            $rootScope.$on('job', function () {
+                $scope.welcoming = false;
+                $scope.slogan = false;
+                $scope.welcome = '';
+                $scope.talent = '';
+                $timeout(function () {
+                    $scope.cache = cacheUser.user;
+                    if (cacheUser.user.type == 'student') {
+                        $scope.studentProfile = true;
+
+                    } else if (cacheUser.user.type == 'employer') {
+                        if (cacheUser.user.employerType == 'Individual')
+                            $scope.individualProfile = true;
+                        else if (cacheUser.user.employerType == 'Company')
+                            $scope.companyProfile = true;
+
+                    }
+                });
+            });
+
+
+            var user = session.user;
+            $http.post('/getPp', user)
+                .then(function (res) {
+
+                    $scope.image = res.data;
+
+
+                });
+
+            $scope.myProfile = function () {
+                $window.location.href = "/myProfile";
+            };
+            if (user.type == "student") {
+                // Set header message of Dash
+                console.log($location.path());
+                $scope.slog1 = "";
+                $scope.slog2 = "";
+                $timeout(function () {
+                    $scope.welcoming = true;
+                    if ($location.path() == "/dashboard") {
+                        $scope.welcome = "Welcome ";
+                        $scope.talent = user.name.name + "!";
+                    }
+                });
+                $scope.getNav = function () {
+
+                    return "../views/blocks/studentNav.html";
                 }
-            });
-        });
-        $rootScope.$on('job', function(){
-            $scope.welcome = '';
-            $scope.talent = '';
-            $timeout(function() {
-                $scope.cache = cacheUser.user;
-                if (cacheUser.user.type == 'student') {
-                    $scope.studentProfile = true;
-
-                } else if (cacheUser.user.type == 'employer') {
-                    if (cacheUser.user.employerType == 'Individual')
-                        $scope.individualProfile = true;
-                    else if (cacheUser.user.employerType == 'Company')
-                        $scope.companyProfile = true;
-
-                }
-            });
-        });
-
-
-        var user = session.user;
-        $http.post('/getPp', user)
-            .then(function (res) {
-
-                $scope.image=res.data;
-
-
-            });
-
-        $scope.myProfile = function(){
-            $window.location.href="/myProfile";
-        };
-        if(user.type == "student")
-        {
-            // Set header message of Dash
-            console.log($location.path());
-            $scope.slog1 = "";
-            $scope.slog2 = "";
-            $timeout(function() {
-                if ($location.path() == "/dashboard") {
-                    $scope.welcome = "Welcome ";
-                    $scope.talent = user.name.name + "!";
-                }
-            });
-            $scope.getNav= function() {
-
-                return "../views/blocks/studentNav.html";
             }
-        }
-        else if(user.type == "employer"){
-            // Set header message of Dash
-            $scope.slog1 = "";
-            $scope.slog2 = "";
-            $timeout(function () {
-                if ($location.path() == "/dashboard") {
-                    $scope.welcome = "Welcome ";
-                    if (!user.company)
-                        $scope.employer = user.contact.name + "!";
-                    else
-                        $scope.employer = user.company.name + "!";
+            else if (user.type == "employer") {
+                // Set header message of Dash
+                $scope.slog1 = "";
+                $scope.slog2 = "";
+                $timeout(function () {
+                    if ($location.path() == "/dashboard") {
+                        $scope.welcoming = true;
+                        $scope.welcome = "Welcome ";
+                        if (!user.company)
+                            $scope.employer = user.contact.name + "!";
+                        else
+                            $scope.employer = user.company.name + "!";
 
+                    }
+                });
+                $scope.getNav = function () {
+                    return "../views/blocks/employerNav.html";
                 }
-            });
-            $scope.getNav= function() {
-                return "../views/blocks/employerNav.html";
             }
+
+
         }
-
-
-
-    }
-    else if($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate")  {
-        swal({   title: "Log in first",   type: "error",   timer: 2000,   showConfirmButton: false });
-        $location.url("/signIn")
-    }
+        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate") {
+            swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
+            $location.url("/signIn")
+        }
 
     $scope.$on('auth-login-success',function(){
+        $timeout(function() {
         var user = session.user;
 
         $http.post('/getPp', user)
@@ -132,6 +140,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.slog1 = "";
             $scope.slog2 = "";
             $timeout(function() {
+                $scope.welcoming = true;
                 if ($location.path() == "/dashboard") {
                     $scope.welcome = "Welcome ";
                     $scope.talent = user.name.name + "!";
@@ -146,6 +155,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.slog1 = "";
             $scope.slog2 = "";
             $timeout(function () {
+                $scope.welcoming = true;
                 if ($location.path() == "/dashboard") {
                     $scope.welcome = "Welcome ";
                     if (!user.company)
@@ -159,7 +169,9 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                 return "../views/blocks/employerNav.html";
             }
         }
+        },200);
     } );
+
 
 
 
