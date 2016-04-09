@@ -107,6 +107,7 @@ new CronJob('00 00 00 * * *', function() {
 
 
 function hasFinished(date){
+    if(!date) return false;
     var dateTemp = date.split('/');
     var datearr = [parseInt(dateTemp[0] -1),parseInt(dateTemp[1]),parseInt(dateTemp[2])];
     var now = new Date();
