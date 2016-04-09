@@ -192,7 +192,11 @@ module.exports = function(app) {
 
 		var temp = req.body;
 
-		db.jobs.find().where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).exec(function(err,rows){
+		console.log(temp);
+		db.jobs.find({status:'active'}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
+			if(rows.length == 0)
+			res.send(false);
+			else
 			res.send(rows);
 		});
 

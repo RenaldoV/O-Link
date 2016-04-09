@@ -8,7 +8,7 @@ app.controller('logoClick', function($scope,$window){
 });
 app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http){
 
-
+$scope.browse = false;
     // Set header message of signup $ login pages
     $timeout(function(){
 
@@ -47,24 +47,15 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                     }
                 });
             });
-            $rootScope.$on('job', function () {
+            $rootScope.$on('browse', function () {
+                console.log("yay");
                 $scope.welcoming = false;
                 $scope.slogan = false;
-                $scope.welcome = '';
-                $scope.talent = '';
-                $timeout(function () {
-                    $scope.cache = cacheUser.user;
-                    if (cacheUser.user.type == 'student') {
-                        $scope.studentProfile = true;
+                /* $scope.studentProfile = false;
+                $scope.individualProfile = false;
+                $scope.companyProfile = false; */
+                $scope.browse = true;
 
-                    } else if (cacheUser.user.type == 'employer') {
-                        if (cacheUser.user.employerType == 'Individual')
-                            $scope.individualProfile = true;
-                        else if (cacheUser.user.employerType == 'Company')
-                            $scope.companyProfile = true;
-
-                    }
-                });
             });
 
 

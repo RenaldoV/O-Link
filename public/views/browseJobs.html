@@ -1,28 +1,30 @@
-<div ng-controller="jobBrowser">
-    <label style="float: right">Sort By
+<div ng-controller="jobBrowser" class="container text-center">
+    <div>
+    <label>Sort By
         <select ng-model="sortBy" ng-change="sort(sortBy)">
             <option value=0>Most Recent</option>
             <option value=1>Time Period</option>
             <option value=2>Category</option>
         </select>
     </label>
-<div class="jobBox feature" ng-repeat="job in jobs">
+    </div>
+<div class="jobBox feature blueBorder" ng-repeat="job in jobs">
 
         
-    <div class="row"><h2>{{job.post.role}}</h2>
-    <div class="col-md-6">
 
-    <span>{{job.post.description}}</span>
+        <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos">
+    <div ng-if="job.employerID.employerType == 'Company'" class="row"><h5>{{job.employerID.company.name}}</h5></div>
+    <div ng-if="job.employerID.employerType == 'Individual'" class="row"><h5>{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</h5></div>
+    <div class="row"><h2>{{job.post.role}}</h2></div>
+    <h4>{{job.post.category}}</h4>
 
-    </div>
-    <div class="col-md-3">
     <p>Pay: R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</p>
         <p>Location: {{job.post.location}}</p>
 
-        </div>
-    </div>
+
+
     <br>
-    <p>Starting Date: {{job.post.startingDate.substr(0,10)}}  Date Posted: {{job.post.postDate}}</p>
+    <p>Starting Date: {{job.post.startingDate.substr(0,10)}} </p><p> Date Posted: {{job.post.postDate}}</p>
 
     <a href="/job?id={{job._id}}"> </a>
 </div>

@@ -17,6 +17,7 @@
                 <p ng-if="individualProfile" class="profileHeader">{{cache.contact.name + " " + cache.contact.surname}}</p>
                 <p ng-if="companyProfile" class="profileHeader">{{cache.company.name}}</p>
                 <p ng-if="companyProfile" class="appCount">{{cache.contact.name + " " + cache.contact.surname}}</p>
+                <p ng-if="browse" class="profileHeader">Open Job Offers</p>
             </h2>
 
 
@@ -38,7 +39,7 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li><a href="/myProfile"><img ng-src="data:image/png;base64,{{image}}"  class="img-circle banner-pp"></a></li>
-            <li data-ng-include="getNav()" ng-controller="navControl"></li>
+            <li data-ng-include="getNav()" ></li>
             <li ng-if="loggedIn" data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
 
         </ul>

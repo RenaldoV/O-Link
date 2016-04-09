@@ -18,19 +18,21 @@ STYLING
   
     OPEN JOB OFFERS PAGE: 4 hours
     {
-        Caption - Open Job Offers
-        Center sort by
 
-        DATA DISPLAYED ON EACH JOB OFFER:
-        {
-            company logo
-            Company name
-            Job category
-            date posted
-            -->take out description
-            dates underneath each other
-		-only date, no minutes
-        }
+    !!Kry nie center align reg nie
+       // Caption - Open Job Offers
+       // Center sort by
+
+        //DATA DISPLAYED ON EACH JOB OFFER:
+        //{
+           // company logo
+           // Company name
+           // Job category
+           // date posted
+            //-->take out description
+            //dates underneath each other
+		//-only date, no minutes
+        //}
     }
 
     //SUCCESS POPUP: 1 hour

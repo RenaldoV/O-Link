@@ -12,6 +12,7 @@
     "ng-dialog": "^0.5.8",
     "ng-img-crop": "ngImgCrop#^0.3.2",
     "jquery-ui": "^1.11.4",
-    "jt.timepicker": "timepicker#^1.8.10"
+    "jt.timepicker": "timepicker#^1.8.10",
+    "ngInfiniteScroll": "^1.2.2"
   }
 }

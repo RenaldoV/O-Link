@@ -147,7 +147,7 @@
 
 div.feature {
     position: relative;
-    border-radius: 15px;
+
 }
 div.feature a {
     position: absolute;
@@ -166,6 +166,13 @@ div.feature:hover {
     background-color: #9ECADF;
 }
 .jobBox{
+
+    float:none;
+    width: 80%;
+    max-width: 500px;
+    min-width: 280px;
+    background-color: white;
+
     margin: 30px;
     border: 20px;
 }
@@ -545,4 +552,9 @@ line-height: normal;
 .jobButtons{
  width: 130px;
     margin: 10px;
+}
+
+.browseLogos{
+    width: 100px;
+    height: 100px;
 }

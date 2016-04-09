@@ -192,9 +192,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 });
 
-app.controller('jobBrowser',function($scope, $location, $http){
+app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
 
 
+    $scope.jobs = [];
+    $rootScope.$broadcast('browse', 1);
     $scope.sortBy = 0;
     var temp = $location.url();
     var temp = temp.split("&");
@@ -215,16 +217,34 @@ app.controller('jobBrowser',function($scope, $location, $http){
         data : {'categories': arr, 'periods' : arr2}
     })
         .then(function(res) {
-            {
+
                 $scope.jobs = res.data;
+
+            angular.forEach($scope.jobs, function(job){
+                job.post.postDate = job.post.postDate.substr(0,10);
+                console.log(job);
+                var user = {};
+                user.profilePicture = job.employerID.profilePicture;
+
+                $http.post('/getPp', user)
+                    .then(function (res) {
+
+                        console.log(job);
+                        job.logo =  res.data;
+                    });
+            });
+
                 $scope.getPer = function(cat){
                     if(cat == "Once Off"){
                         return cat;
                     }
                     else return "hr"
-                }
-            }
+                };
+
+
         });
+
+
 
     $scope.sort = function(by){
         if(by == 0){
@@ -271,7 +291,9 @@ app.controller('jobBrowser',function($scope, $location, $http){
 
 
 });
+function getPp(user,cb){
 
+}
 app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
     var temp = $location.url();
 
