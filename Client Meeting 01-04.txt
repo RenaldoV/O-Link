@@ -67,7 +67,7 @@ STYLING
            // - applications accepted per position
 
 
-        Matric list reduce as subjects are chosen all forms
+        //Matric list reduce as subjects are chosen all forms
         //check validation of number (Cannot start with 0) all forms
 
     }
@@ -77,7 +77,7 @@ STYLING
         //latest jobs at the top
         //blocks - get rid of icons
         //beneath blocks add slogan. (Innovative Thinking - Real World Solutions) - black
-        (Ronnie)Top next to logo (Welcome(Black) "User"(Blue))
+        //(Ronnie)Top next to logo (Welcome(Black) "User"(Blue))
         //Replace name(dropdown) with picture(Same size as logo) with bigger dropdown 3stripes - send screenshot
             //- clicking on profile pic takes you to profile page
 
