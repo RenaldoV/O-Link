@@ -80,6 +80,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             console.log($scope.user.results.push({}));
 
     };
+    $scope.remSub = function(name){
+      alert(name);
+      for(var i = 0; i < $scope.reqNames.length; i++)
+      {
+          if(name == $scope.reqNames[i])
+            $scope.reqNames.splice(i,1);
+      }
+    };
 
     $(function() {
         var dob;
