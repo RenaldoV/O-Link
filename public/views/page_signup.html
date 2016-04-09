@@ -114,7 +114,7 @@
 
 							<div id="reqButtonGrp" class="btn-group-vertical" role="group">
 
-								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results)">Remove<span class="glyphicon glyphicon-minus"></span></button>
+								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
 								<button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
 							</div>
 
