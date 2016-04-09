@@ -80,12 +80,27 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             console.log($scope.user.results.push({}));
 
     };
-    $scope.remSub = function(name){
-        var tempReqList = $scope.reqNames;
-        for(var i = 0; i < tempReqList.length; i++)
-        {
-            if(name == tempReqList[i])
-                tempReqList.splice(i,1);
+    var tempReqList = [];
+    for(var k = 0; k < $scope.reqNames.length;k++){
+       tempReqList.push($scope.reqNames[k]);
+    }
+    $scope.tempReq = tempReqList;
+    $scope.changeSub = function(){
+
+
+        tempReqList = [];
+        for(var k = 0; k < $scope.reqNames.length;k++){
+            tempReqList.push($scope.reqNames[k]);
+        }
+
+        for(var i = 0; i < $scope.user.results.length; i++) {
+            if ($scope.user.results[i].name) {
+
+                tempReqList.splice(tempReqList.indexOf($scope.user.results[i].name), 1);
+                $scope.tempReq = tempReqList;
+
+
+            }
         }
     };
 

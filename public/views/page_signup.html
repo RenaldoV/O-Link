@@ -96,9 +96,9 @@
 
 							<div id="reqInputs">
 								<div class="reqBox" ng-repeat="req in user.results">
-									<select class="form-control no-border" ng-model="req.name" ng-change="remSub(req.name)" required>
+									<select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
 										<option value="" selected disabled>Choose Subject</option>
-										<option ng-click="remSub(req.name)" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
+										<option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
 									</select>
 
 									<select name="how" class="form-control no-border" ng-model="req.symbol" required>
