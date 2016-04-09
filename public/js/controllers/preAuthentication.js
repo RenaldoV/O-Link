@@ -81,12 +81,12 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     };
     $scope.remSub = function(name){
-      alert(name);
-      for(var i = 0; i < $scope.reqNames.length; i++)
-      {
-          if(name == $scope.reqNames[i])
-            $scope.reqNames.splice(i,1);
-      }
+        var tempReqList = $scope.reqNames;
+        for(var i = 0; i < tempReqList.length; i++)
+        {
+            if(name == tempReqList[i])
+                tempReqList.splice(i,1);
+        }
     };
 
     $(function() {
