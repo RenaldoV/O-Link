@@ -51,11 +51,33 @@ $scope.browse = false;
                 console.log("yay");
                 $scope.welcoming = false;
                 $scope.slogan = false;
-                /* $scope.studentProfile = false;
+                $scope.studentProfile = false;
                 $scope.individualProfile = false;
-                $scope.companyProfile = false; */
+                $scope.companyProfile = false;
                 $scope.browse = true;
 
+            });
+            $rootScope.$on('job', function () {
+
+                $scope.welcome = '';
+                $scope.talent = '';
+                $scope.browse = false;
+                $scope.studentProfile = false;
+                $scope.individualProfile = false;
+                $scope.companyProfile = false;
+                $timeout(function () {
+                    $scope.cache = cacheUser.user;
+                    if (cacheUser.user.type == 'student') {
+                        $scope.studentProfile = true;
+                    }
+                    else if (cacheUser.user.type == 'employer') {
+                        if (cacheUser.user.employerType == 'Individual')
+                            $scope.individualProfile = true;
+                        else if (cacheUser.user.employerType == 'Company')
+                            $scope.companyProfile = true;
+
+                    }
+                });
             });
 
 

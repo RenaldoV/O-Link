@@ -1,5 +1,5 @@
 <div ng-controller="jobBrowser" class="container text-center">
-    <div>
+    <div style="margin-bottom: 42px">
     <label>Sort By
         <select ng-model="sortBy" ng-change="sort(sortBy)">
             <option value=0>Most Recent</option>
@@ -8,6 +8,7 @@
         </select>
     </label>
     </div>
+    <div class=" jobsContainer container">
 <div class="jobBox feature blueBorder" ng-repeat="job in jobs">
 
         
@@ -28,5 +29,5 @@
 
     <a href="/job?id={{job._id}}"> </a>
 </div>
-
+    </div>
 </div>

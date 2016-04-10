@@ -146,7 +146,9 @@
 }
 
 div.feature {
+
     position: relative;
+    display:block;
 
 }
 div.feature a {
@@ -166,15 +168,14 @@ div.feature:hover {
     background-color: #9ECADF;
 }
 .jobBox{
+    display: inline-block;
 
-    float:none;
-    width: 80%;
-    max-width: 500px;
-    min-width: 280px;
+    width: 100%;
+
     background-color: white;
-
-    margin: 30px;
-    border: 20px;
+    margin-bottom: 42px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .cropArea {
@@ -557,4 +558,11 @@ line-height: normal;
 .browseLogos{
     width: 100px;
     height: 100px;
+}
+.jobsContainer{
+    display: inline-block;
+
+    max-width: 500px;
+    min-width: 280px;
+    text-align: center;
 }
