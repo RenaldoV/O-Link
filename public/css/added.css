@@ -404,6 +404,7 @@ line-height: normal;
 }
 
 .timeSelect{
+    width: 160px;
     border: 1px solid #33B6CC;
 }
 .timeSelect.active{

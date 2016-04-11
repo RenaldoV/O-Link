@@ -46,7 +46,7 @@
             </div>
 
             <div ng-controller="jobFeed"  class="jobPosts">
-              <table class="table">
+              <table class="table text-left">
                 <thead><th>Category</th><th>Role</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
@@ -92,7 +92,7 @@
                         value="{{period}}"
                         ng-checked="selectionP.indexOf(period.name) > -1"
 
-                /> {{period.name}}<br><small>({{period.description}})</small>
+                /> {{period.name}}<br><small >({{period.description}})</small>
               </label>
 
             </div>
