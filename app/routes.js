@@ -109,8 +109,8 @@ module.exports = function(app) {
 				});
 			},
 			function(token, done) {
-				
-				db.users.findOne({'contact.email':user.email},function(User){
+
+				db.users.findOne({'contact.email':user.email},function(err,User){
 					if(!User)  return res.send(false);
 					
 					var tempUser = User.toJSON();
