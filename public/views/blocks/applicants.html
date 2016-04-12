@@ -21,9 +21,9 @@
                 <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
             </div>
             </td>
-            <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn btn-primary">Contact</button>
-                <button ng-if="!app.offered"class="btn btn-primary" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
-                <button ng-if="app.offered == 'offered'" class="btn btn-success" disabled>{{app.offered}}</button>
+            <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn blueBack">Contact</button>
+                <button ng-if="!app.offered"class="btn blueBack" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
+                <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
             </td>
         </tr>
         </tbody>
