@@ -1,4 +1,3 @@
-Signup not redirecting or showing succesfull signup
-
-//Edit user not updating after edit
-
+1. Log in First error message everytime redirecting to sign in form
+2. Reset password funtionality not working
+3. Clicking reset password link redirects to signin page and gives please log in first error

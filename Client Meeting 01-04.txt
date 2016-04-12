@@ -180,7 +180,7 @@ FUNCTIONALITY:
                     (Make the same as matric results.)
             Matric result type (IEB, NSC)
             //take out qualification category
-            password placeholder explain format
+            //password placeholder explain format
             //validate ID number against DOB
             email field (Wait for list of email addresses.)
         }
@@ -188,8 +188,8 @@ FUNCTIONALITY:
         EMPLOYER: 2 hours
         {
             company description replaced by company category (List of categories from PAUL)
-            password placeholder explain format
-            Change Employer info to (Employer contact info - Title case)
+            //password placeholder explain format
+            //Change Employer info to (Employer contact info - Title case)
             all fields required except Position within company
         }
     }

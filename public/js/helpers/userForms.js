@@ -56,7 +56,7 @@ $(function () {
 });
 $(function () {
     $("input[name=empPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");
+        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
     });
     $("input[name=empPassw]").on("change", function () {
         this.setCustomValidity("");
@@ -131,7 +131,7 @@ $(function () {
         this.setCustomValidity("");
     });
     $("input[name=stuPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 8 characters, 1 alphabet character and 1 number");
+        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
     });
     $("input[name=stuPassw]").on("change", function () {
         this.setCustomValidity("");

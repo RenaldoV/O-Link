@@ -125,13 +125,27 @@
     </div>
 
     <br/>
-    <h4 class="form-section-label">Thresholds</h4>
+    <h4 class="form-section-label">Thresholds <span title="Click here to find out more." class="threshTooltip glyphicon glyphicon-question-sign"></span></h4>
+    <p id="threshInfo" hidden>The threshold is one of many things which makes O-Link different.
+        You can limit the number of applications you would like to receive
+        for each position / interview available. The threshold figure is the
+        combination of positions / interviews you would like to fill and the
+        maximum number of applications you would like per position /
+        interview. i.e. If you have 2 jobs to fill, and would like a maximum of
+        10 applicants per job, your threshold will be 20 applicants. When this
+        threshold is reached, your offer will automatically be pulled from the
+        visible job offers, preventing any unwanted applications. If you do
+        not find the talent you are looking for from these 20 applicants, you
+        will be able to repost the offer and let O-Link find you new
+        applicants.<br/><br/>
+        If you need any assistance, please email the O-Link team at
+        info@olink.co.za and we will help you out in any way we can.</p>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input id="spotsAvail" name="spotsAvail"  type="text" class="controls form-control no-border" width="50px" placeholder="Positions available" ng-model="job.post.spotsAvailable" pattern="[1-9]\d*" required>
+            <input id="spotsAvail" name="spotsAvail"  type="text" class="controls form-control no-border" width="50px" placeholder="Positions / Interviews Available" ng-model="job.post.spotsAvailable" pattern="[1-9]\d*" required>
         </div>
         <div class="list-group-item">
-            <input id="threshold" name="threshold"  type="text" class="controls form-control no-border" width="50px" placeholder="Applications accepted per position" ng-model="job.post.threshold" pattern="[1-9]\d*" required>
+            <input id="threshold" name="threshold"  type="text" class="controls form-control no-border" width="50px" placeholder="Applicants per Position / Interview" ng-model="job.post.threshold" pattern="[1-9]\d*" required>
         </div>
     </div>
 
@@ -146,7 +160,10 @@
 </div>
 
 <script>
-
+    $( ".threshTooltip" ).tooltip();
+    $( ".threshTooltip" ).on("click", function() {
+        $("#threshInfo").toggle();
+    });
 
     //===================POST JOB VALIDATION==============
     $(function () {

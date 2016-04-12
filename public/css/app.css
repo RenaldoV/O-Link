@@ -4899,3 +4899,9 @@ div.signupBox {
   background-color: white;
   border-radius: 25px;
 }
+
+#threshInfo{
+  padding : 10px;
+  background-color: #d3d3d3;
+  border-radius: 5px;
+}
