@@ -63,10 +63,10 @@ module.exports = function(app) {
 		 			tempUser.resetPasswordToken = undefined;
 		 			tempUser.resetPasswordExpires = undefined;
 
-					db.updateUser({"_id" : tempUser._id},tempUser,
-						function(err, res1, updatedUser){
+					db.users.findOneAndUpdate({"_id" : tempUser._id},{$set:tempUser},
+						function(err, res1){
 							if(!err) {
-								return res.send(updatedUser);
+								return res.send(res1);
 								done(err, user);
 							}
 							else {

@@ -132,8 +132,8 @@ $scope.browse = false;
 
 
         }
-        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate") {
-            swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
+        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0 ) {
+            //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
             $location.url("/signIn")
         }
 
