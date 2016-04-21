@@ -4,6 +4,22 @@
 
 app.service('constants', function(){
 
+    this.companyCategories = ["Bar",
+        "Catering",
+        "Engineering",
+        "Film and Media",
+        "Financial",
+        "Information Technology",
+        "Model Agency",
+        "Promotion / Events",
+        "Restaurant / Café",
+        "Retail",
+        "School",
+        "Take-out Restaurant",
+        "Tutoring",
+        "University",
+        "Other"];
+
     this.categories = ["Coach",
         "Tutor",
         "Delivery Person",
