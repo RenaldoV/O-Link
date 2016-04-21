@@ -30,6 +30,11 @@ module.exports = function(app) {
 
 
 
+	app.get('/home', function(req, res) {
+
+		res.sendfile('./public/landing/index.html');
+
+	});
 	app.get('*', function(req, res) {
 
 		res.sendfile('./public/index.html');

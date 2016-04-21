@@ -268,3 +268,11 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
             });
     }
 });
+
+app.controller('home', function($scope,$location, authService) {
+
+    if (authService.isAuthenticated())
+        $location.url("/dashboard");
+    else
+        window.location = "/home"
+});
