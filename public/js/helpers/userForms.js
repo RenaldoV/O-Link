@@ -11,10 +11,16 @@ $(function () {
     $("#Individualradio").click(function () {
         $("#Companyradio").prop("checked", false);
         $(".companysection").hide();
+        $("#compName").prop('required',false);
+        $("#compDesc").prop('required',false);
+        $("#searchTextField").prop('required',false);
     });
     $("#Companyradio").click(function () {
         $("#Individualradio").prop("checked", false);
         $(".companysection").show();
+        $("#compName").prop('required',true);
+        $("#compDesc").prop('required',true);
+        $("#searchTextField").prop('required',true);
     });
 });
 //Script for changing between relevant forms

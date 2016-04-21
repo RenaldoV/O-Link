@@ -202,10 +202,10 @@
 					<div class="list-group list-group-sm form-group" >
 
 						<div class="list-group-item">
-							<input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
+							<input id="compName" type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
 						</div>
 						<div class="list-group-item">
-							<input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
+							<input id="compDesc" type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
 						</div>
 						<div class="list-group-item">
 							<!--Link google location API en gebruik location auto complete-->
@@ -256,14 +256,16 @@
 		<script>
 			$( ".passTooltip" ).tooltip();
 			var options = {
-				componentRestrictions: {country: 'us'}
+				componentRestrictions: {country: 'za'}
 			};
 
 			function initialize() {
 				var input = document.getElementById('searchTextField');
 				var autocomplete = new google.maps.places.Autocomplete(input,options);
 			}
-			google.maps.event.addDomListener(window, 'load', initialize);
+			$(function () {
+				google.maps.event.addDomListener(window, 'load', initialize);
+			});
 			</script>
 <script src="../js/helpers/userForms.js"></script>
 
