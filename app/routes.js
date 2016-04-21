@@ -78,10 +78,19 @@ module.exports = function(app) {
 			},
 			function(user, done) {
 		 		var tempUser = user.toJSON();
-				var smtpTransport = nodemailer.createTransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com');
+				var smtpTransport = nodemailer.createTransport(smtpttransport({
+					host: "mail.o-link.co.za",
+					secureConnection: false,
+					port: 25,
+					auth: {
+						user: "no-reply@o-link.co.za",
+						pass: "Olink@Noreply2016"
+					},
+					tls: {rejectUnauthorized: false}
+				}));
 				var mailOptions = {
 					to: tempUser.contact.email,
-					from: 'passwordreset@demo.com',
+					from: 'no-reply@o-link.co.za',
 					subject: 'Your password has been changed',
 					text: 'Hello,\n\n' +
 					'This is a confirmation that the password for your account ' + tempUser.contact.email + ' has just been changed.\n'
@@ -129,16 +138,18 @@ module.exports = function(app) {
 
 				var tempUser = user.toJSON();
 				var smtpTransport = nodemailer.createTransport(smtpttransport({
-					service: "Gmail",
+					host: "mail.o-link.co.za",
+					secureConnection: false,
+					port: 25,
 					auth: {
-						user: "olinkmailer@gmail.com",
-						pass: "olinkMailer"
+						user: "no-reply@o-link.co.za",
+						pass: "Olink@Noreply2016"
 					},
 					tls: {rejectUnauthorized: false}
 				}));
 				var mailOptions = {
 					to: tempUser.contact.email,
-					from: 'passwordreset@demo.com',
+					from: 'no-reply@o-link.co.za',
 					subject: 'O-Link Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 					  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -297,26 +308,19 @@ module.exports = function(app) {
 						res.send(result);
 					if(result != 'email' && !err){
 
-						/*var smtpTransport = nodemailer.createTransport("SMTP",{
-							service: "Gmail",
-							auth: {
-								user: "gmail.user@gmail.com",
-								pass: "userpass"
-							}
-						})*/
-					//var smtpTransport = nodemailer.createTransport(smtpttransport('smtps://olinkmailer%40gmail.com:mailClient@smtp.gmail.com'));
-
 					var smtpTransport = nodemailer.createTransport(smtpttransport({
-						service: "Gmail",
+						host: "mail.o-link.co.za",
+						secureConnection: false,
+						port: 25,
 						auth: {
-							user: "olinkmailer@gmail.com",
-							pass: "olinkMailer"
+							user: "no-reply@o-link.co.za",
+							pass: "Olink@Noreply2016"
 						},
 						tls: {rejectUnauthorized: false}
 					}));
 					var mailOptions = {
 						to: user.contact.email,
-						from: 'activationt@olink.com',
+						from: 'no-reply@o-link.co.za',
 						subject: 'Activate your new olink account',
 						text: 'You are receiving this because you (or someone else) have signed up to use olink.\n\n' +
 						'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
