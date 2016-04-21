@@ -39,7 +39,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			templateUrl: 'views/profile.html'
 		})
 		.when('/editProfile', {
-			templateUrl: 'views/profile.html'
+			templateUrl: 'views/editProfile.html'
 		})
 		.when('/applicants', {
 			templateUrl: 'views/blocks/applicants.html'

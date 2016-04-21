@@ -1,0 +1,243 @@
+<div class=" signupBox container w-xxl w-auto-xs s" ng-controller="editProfile">
+
+
+    <div class="type wrapper text-center">
+        <strong>Edit Profile</strong>
+
+    </div>
+
+
+    <div class="text-danger wrapper text-center">
+
+    </div>
+
+
+
+    <div>
+        <button type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
+        <div  id="talentPane" ng-if="user.type == 'student'">
+            <br/>
+            <br/>
+            <form id="studentSUForm" class="form-validation" name="studentForm" ng-submit="updateUser()">
+
+                <h4 class="form-section-label">Talent Info</h4>
+                <div class="list-group list-group-sm form-group">
+                    <fieldset class="form-group">
+                        <div class="list-group-item">
+                            <input type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" required >
+                        </div>
+                        <div class="list-group-item">
+                            <input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
+                        </div>
+                        <div class="list-group-item">
+                            <input type="text" name="stuDob" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
+                        </div>
+                        <div class="list-group-item">
+                            <input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email"  required>
+                        </div>
+                        <div class="list-group-item">
+                            <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+                        </div>
+                        <div class="list-group-item">
+                            <input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+                        </div>
+                        <div class="list-group-item">
+                            <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
+                                <option value="" selected disabled>Gender</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
+                    <h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
+                    <div class="list-group list-group-sm form-group">
+                        <fieldset class="form-group">
+                            <div class="list-group-item">
+                                <div class="input-group">
+
+                                    <input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+                                </div>
+                            </div>
+                            <div class="list-group-item">
+                                <div class="input-group">
+                                    <input name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
+							<span class="input-group-btn">
+								<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+							</span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <h4 class="form-section-label">Qualification Info (optional)</h4>
+                <div class="list-group list-group-sm form-group">
+                    <fieldset class="form-group">
+                        <div class="list-group-item">
+                            <input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name">
+                        </div>
+                        <div class="list-group-item">
+                            <input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description">
+                        </div>
+                        <div class="list-group-item">
+                            <input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear">
+                        </div>
+                        <div class="list-group-item">
+                            <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
+                        </div>
+                        <div id="reqGroup" class="list-group-item">
+
+                            <div id="reqInputs">
+                                <div class="reqBox" ng-repeat="req in user.results">
+                                    <select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
+                                        <option value="" selected disabled>Choose Subject</option>
+                                        <option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
+                                    </select>
+
+                                    <select name="how" class="form-control no-border" ng-model="req.symbol" required>
+                                        <option value="" selected disabled>Choose Symbol</option>
+                                        <option value="A">A (80-100%)</option>
+                                        <option value="B">B (70-79%)</option>
+                                        <option value="C">C (60-69%)</option>
+                                        <option value="D">D (50-59%)</option>
+                                        <option value="F">F (40-49%)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="reqButtonGrp" class="btn-group-vertical" role="group">
+
+                                <button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
+                                <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                </div>
+
+
+
+                <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
+            </form>
+        </div>
+
+        <div id="employerPane"  ng-if="user.type == 'employer'">
+            <br/>
+            <br/>
+            <form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="updateUser()">
+                <h4 class="form-section-label">Employer Contact Info</h4>
+                <div class="list-group list-group-sm">
+                    <div class="list-group-item">
+                        <input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+                    </div>
+                    <div class="list-group-item">
+                        <input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+                    </div>
+                    <div class="list-group-item">
+                        <input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
+                               pattern="[\d]{13,13}"   required>
+                    </div>
+                    <div class="list-group-item">
+                        <input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
+                    </div>
+                    <div class="list-group-item">
+                        <input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+                    </div>
+                </div>
+
+                <div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
+                    <h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
+                    <div class="list-group list-group-sm">
+                        <div class="list-group-item">
+                            <div class="input-group">
+
+                                <input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
+									<span class="input-group-btn">
+										<button class="btn btn-default reveal no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+									</span>
+                            </div>
+                        </div>
+                        <div class="list-group-item">
+                            <div class="input-group">
+                                <input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
+									<span class="input-group-btn">
+										<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+									</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="companysection" ng-if="user.employerType == 'Company'">
+                    <h4 class="form-section-label">Company Info</h4>
+                    <div class="list-group list-group-sm form-group" >
+
+                        <div class="list-group-item">
+                            <input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
+                        </div>
+                        <div class="list-group-item">
+                            <input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
+                        </div>
+                        <div class="list-group-item">
+                            <!--Link google location API en gebruik location auto complete-->
+                            <input id="searchTextField" type="text" class="controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location">
+                        </div>
+                        <div class="list-group-item">
+                            <input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" >
+                        </div>
+                    </div>
+                </div>
+
+
+                <h4 class="form-section-label">Other info</h4>
+                <div class="list-group list-group-sm form-group">
+                    <fieldset class="form-group">
+                        <div class="list-group-item">
+                            <select class="form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+                                <option value="" selected disabled>How did you hear about us?</option>
+                                <option value="Word of mouth">Word of mouth</option>
+                                <option value="Social media">Social media</option>
+                                <option value="Academic institution">Academic institution</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Edit</button>
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+<script>
+    $( ".passTooltip" ).tooltip();
+    var options = {
+        componentRestrictions: {country: 'us'}
+    };
+
+    function initialize() {
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input,options);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<script src="../js/helpers/userForms.js"></script>
+
+

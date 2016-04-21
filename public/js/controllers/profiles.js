@@ -415,6 +415,62 @@ app.controller('photoUploadControl', function($scope,Upload,$timeout, session, a
     };
 });
 
+app.controller('editProfile', function($scope,session, photoUpload, $http, $window){
+    $scope.user = session.user;
+
+    $scope.uploadPp = function(){
+        photoUpload.makeUploadBox();
+    };
+
+    $scope.updateUser = function()
+    {
+
+var user =  $scope.user;
+        swal({
+                title: "Are you sure?",
+                type: "input",
+                text: "This update your profile. Please type your password to confirm",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function(inputValue) {
+
+                $http
+                    .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                    .then(function (res, err) {
+                        console.log(res.data);
+                        if (!res.data) {
+                            console.log("awww");
+                            swal.showInputError("Incorrect Password!");
+                            return false;
+                        }
+                        else{
+
+
+                            $http
+                                .post('/updateUser', $scope.user)
+                                .then(function (res, err) {
+
+                                    session.create(user);
+                                    swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+                                    $window.location.href="/myProfile";
+
+                                });
+
+                        }
+
+                    });
+            });
+
+
+
+
+
+
+    };
+});
 app.service('photoUpload', function(ngDialog) {
 
 
