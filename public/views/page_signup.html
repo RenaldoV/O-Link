@@ -263,12 +263,9 @@
 				var input = document.getElementById('searchTextField');
 				var autocomplete = new google.maps.places.Autocomplete(input,options);
 			}
-			$(function () {
-				google.maps.event.addDomListener(window, 'load', initialize);
-			});
 
 			$( document ).ready(function() {
-				google.maps.event.addDomListener(window, 'load', initialize);
+				initialize();
 			});
 			</script>
 <script src="../js/helpers/userForms.js"></script>
