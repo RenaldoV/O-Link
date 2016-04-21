@@ -65,6 +65,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
     $scope.reqNames = constants.requirements;
+    $scope.compCat = constants.companyCategories;
     $scope.user = {};
 
     $scope.close = function(reqs){

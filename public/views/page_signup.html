@@ -205,7 +205,11 @@
 							<input id="compName" type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
 						</div>
 						<div class="list-group-item">
-							<input id="compDesc" type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
+							<select id="compDesc" class="form-control no-border" ng-model="user.company.category" required>
+								<option value="" selected disabled>Select a Company Category</option>
+
+								<option ng-repeat="cat in compCat" value="{{cat}}">{{cat}}</option>
+							</select>
 						</div>
 						<div class="list-group-item">
 							<!--Link google location API en gebruik location auto complete-->
