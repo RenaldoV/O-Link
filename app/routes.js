@@ -426,9 +426,15 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//get profile picture data
 	app.post('/getPp', function(req, res){
 
-		var path = req.body.profilePicture;
-		path = __dirname + path;
 		var def = __dirname + "\\uploads\\default.png";
+		if(req.body.profilePicture) {
+			var path = req.body.profilePicture;
+			path = __dirname + path;
+		}
+		else {
+			var path = def;
+		}
+
 		fs.readFile(path, function(err,data){
 			if(err) {
 				fs.readFile(def, function(err,data){
@@ -759,6 +765,9 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							stats.myPosts = c;
 							res.send(stats);
 						});
+					}
+					else if(user.type == 'guest'){
+						res.send(stats);
 					}
 				});
 

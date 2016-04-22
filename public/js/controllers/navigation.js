@@ -21,6 +21,23 @@ $scope.browse = false;
         }
     });
 
+    //for guests
+    if($location.path() == "/guest")
+    {
+        var user = {id:'guest', type:'guest'};
+        $scope.loggedIn = true;
+        $http.post('/getPp', user)
+            .then(function (res) {
+
+                $scope.image = res.data;
+
+
+            });
+
+    }else{
+        var user = session.user;
+    }
+
 
 function headings(){
     $scope.loggedIn = true;
@@ -79,7 +96,8 @@ function headings(){
     });
 
 
-    var user = session.user;
+
+
     $http.post('/getPp', user)
         .then(function (res) {
 
@@ -131,12 +149,9 @@ function headings(){
 
 
         if (authService.isAuthenticated()) {
-
-headings();
-
-
+            headings();
         }
-        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0 ) {
+        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" ) {
             //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
             $location.url("/signIn")
         }

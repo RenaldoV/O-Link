@@ -4,6 +4,7 @@
 app.controller('profileControl',function($scope, authService, session, $location, $http, cacheUser, $rootScope) {
 
 
+
     function getUser(){
         var temp = $location.url();
 
@@ -80,7 +81,7 @@ app.controller('profileControl',function($scope, authService, session, $location
     if (authService.isAuthenticated()) {
         getUser();
 
-    }
+    }else window.location = '/signIn';
 
     $scope.$on('auth-login-success', function () {
         getUser();

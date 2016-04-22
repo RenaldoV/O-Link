@@ -16,7 +16,7 @@
         <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos">
     <div ng-if="job.employerID.employerType == 'Company'" class="row"><h5>{{job.employerID.company.name}}</h5></div>
     <div ng-if="job.employerID.employerType == 'Individual'" class="row"><h5>{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</h5></div>
-    
+
     <div class="row"><h2>{{job.post.role}}</h2></div>
     <h4>{{job.post.category}}</h4>
     <p class="text-danger" ng-if="job.post.interviewRequired">Interview Required</p>

@@ -9,7 +9,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		.when('/dashboard', {
 			templateUrl: 'views/dashboard.html'
 		})
-
+			.when('/guest', {
+				templateUrl: 'views/dashboard.html'
+			})
 		.when('/signIn', {
 			templateUrl: 'views/page_signin.html'
 		})

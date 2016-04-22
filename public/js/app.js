@@ -98,6 +98,12 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
             }
         }
     }
+    else
+    {
+        $scope.getDash= function() {
+            return "../views/blocks/guestDash.html";
+        };
+    }
 
     $scope.$on('auth-login-success',function(){
         var user = session.user;
@@ -205,7 +211,9 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
     };
 
     $scope.submit = function () {
-
+        if($location.url() == '/guest'){
+            window.location = '/signIn';
+        }
         var temp = JSON.stringify($scope.selectionC);
         var temp2 = JSON.stringify($scope.selectionP);
 
@@ -254,8 +262,14 @@ app.controller('myJobFeed', function($scope,$http, session, $window){
 });
 
 //controller for boxes on dash
-app.controller('stats', function($scope,$http, session){
+app.controller('stats', function($scope,$http, session, $location){
+    if($location.path() == "/guest")
+    {
+        var user = {id:'guest', type:'guest'}
+    }
+    else{
     var user = session.user;
+    }
     var temp = {id: user._id, type: user.type };
     $http
         .post('/getStats', temp)
