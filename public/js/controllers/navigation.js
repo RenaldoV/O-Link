@@ -29,6 +29,7 @@ function headings(){
         $scope.slogan = false;
         $scope.welcome = '';
         $scope.talent = '';
+        $scope.browse = false;
 
         $timeout(function () {
             $scope.cache = data;
