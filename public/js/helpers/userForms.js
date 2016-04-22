@@ -23,6 +23,31 @@ $(function () {
         $("#searchTextField").prop('required',true);
     });
 });
+
+$(function () {
+    $("#schoolName").hide();
+    $("#uniName").hide();
+    $("#SecondaryRadio").click(function () {
+        $("#TertiaryRadio").prop("checked", false);
+        $(".instituteSection").show();
+        $("#schoolName").show();
+        $("#uniName").hide();
+        $("#qualName").hide();
+        $("#schoolName").prop('required',true);
+        $("#uniName").prop('required',false);
+        $("#uniName").prop('required',false);
+    });
+    $("#TertiaryRadio").click(function () {
+        $("#SecondaryRadio").prop("checked", false);
+        $(".instituteSection").show();
+        $("#uniName").show();
+        $("#qualName").show();
+        $("#schoolName").hide();
+        $("#uniName").prop('required',true);
+        $("#qualName").prop('required',true);
+        $("#schoolName").prop('required',false);
+    });
+});
 //Script for changing between relevant forms
 
 //Employer form validation

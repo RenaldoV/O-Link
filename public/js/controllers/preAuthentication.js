@@ -75,8 +75,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     $scope.reqNames = constants.requirements;
     $scope.compCat = constants.companyCategories;
+    $scope.tertInst = constants.tertiaryInstitutions;
     $scope.user = {};
     $scope.user.company = {};
+    $scope.user.institution = {};
 
 
     var input = document.getElementById('searchTextField');

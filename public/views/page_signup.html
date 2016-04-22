@@ -33,16 +33,19 @@
 							<input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 						</div>
 						<div class="list-group-item">
-							<input type="text" name="stuDob" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
+							<textarea rows=5 class="form-control no-border" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" maxlength="500" minlength="100" required></textarea>
 						</div>
 						<div class="list-group-item">
-							<input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email"  required>
+							<input type="text" name="stuDob" id="stuDob" placeholder="Date of Birth" class="controls form-control no-border"  ng-model="user.dob" required>
 						</div>
 						<div class="list-group-item">
-							<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+							<input name="stuEmail" type="email" class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email"  required>
 						</div>
 						<div class="list-group-item">
-							<input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+							<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact Number" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+						</div>
+						<div class="list-group-item">
+							<input name="stuID" type="text" class="form-control no-border" placeholder="ID Number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
 						</div>
 						<div class="list-group-item">
 							<select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
@@ -69,7 +72,7 @@
 							</div>
 							<div class="list-group-item">
 								<div class="input-group">
-									<input name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
+									<input name="stuRePassw" type="password" placeholder="Confirm Password" class="form-control no-border pwd3" required>
 							<span class="input-group-btn">
 								<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 							</span>
@@ -83,56 +86,61 @@
 				<div class="type1 list-group list-group-sm wrapper text-center">
 					<div class="list-group list-group-sm">
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="SecondaryRadio" ng-model="user.employerType" value="Individual" required>Secondary Institution
+							<input type="radio" name="type1" id="SecondaryRadio" ng-model="user.institution.type" value="Secondary" required>Secondary Institution
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="TertiaryRadio" ng-model="user.employerType" value="Company" required>Tertiary Institution
+							<input type="radio" name="type1" id="TertiaryRadio" ng-model="user.institution.type" value="Tertiary" required>Tertiary Institution
 						</label>
 					</div>
 				</div>
 
-				<div class="list-group list-group-sm form-group">
-					<fieldset class="form-group">
-						<div class="list-group-item">
-							<input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name">
-						</div>
-						<div class="list-group-item">
-							<input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description">
-						</div>
-						<div class="list-group-item">
-							<input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear">
-						</div>
-						<div class="list-group-item">
-							<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
-						</div>
-						<div id="reqGroup" class="list-group-item">
+				<div class="instituteSection" hidden>
+					<h4 class="form-section-label">Additional Info</h4>
+					<div class="list-group list-group-sm form-group">
+						<fieldset class="form-group">
+							<div class="list-group-item">
+								<input id="schoolName" placeholder="School Name" class="form-control no-border" ng-model="user.institution.name" hidden>
+								<select id="uniName" class="form-control no-border" ng-model="user.institution.name" hidden>
+									<option value="" selected disabled>Select a Tertiary Institute</option>
 
-							<div id="reqInputs">
-								<div class="reqBox" ng-repeat="req in user.results">
-									<select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
-										<option value="" selected disabled>Choose Subject</option>
-										<option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
-									</select>
+									<option ng-repeat="inst in tertInst" value="{{inst}}">{{inst}}</option>
+								</select>
+							</div>
+							<div id="qualName" class="list-group-item" hidden>
+								<input  placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" >
+							</div>
+							<div class="list-group-item">
+								<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
+							</div>
+							<div id="reqGroup" class="list-group-item">
 
-									<select name="how" class="form-control no-border" ng-model="req.symbol" required>
-										<option value="" selected disabled>Choose Symbol</option>
-										<option value="A">A (80-100%)</option>
-										<option value="B">B (70-79%)</option>
-										<option value="C">C (60-69%)</option>
-										<option value="D">D (50-59%)</option>
-										<option value="F">F (40-49%)</option>
-									</select>
+								<div id="reqInputs">
+									<div class="reqBox" ng-repeat="req in user.results">
+										<select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" hidden>
+											<option value="" selected disabled>Choose Subject</option>
+											<option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
+										</select>
+
+										<select name="how" class="form-control no-border" ng-model="req.symbol" required>
+											<option value="" selected disabled>Choose Symbol</option>
+											<option value="A">A (80-100%)</option>
+											<option value="B">B (70-79%)</option>
+											<option value="C">C (60-69%)</option>
+											<option value="D">D (50-59%)</option>
+											<option value="F">F (40-49%)</option>
+										</select>
+									</div>
 								</div>
+
+								<div id="reqButtonGrp" class="btn-group-vertical" role="group">
+
+									<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
+									<button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
+								</div>
+
 							</div>
-
-							<div id="reqButtonGrp" class="btn-group-vertical" role="group">
-
-								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
-								<button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
-							</div>
-
-						</div>
-					</fieldset>
+						</fieldset>
+					</div>
 				</div>
 
 
@@ -159,14 +167,14 @@
 						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="empID" placeholder="ID number" class="form-control no-border" ng-model="user.contact.IDnumber"
+						<input name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.contact.IDnumber"
 							   pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
-						<input name="empEmail" type="email" placeholder="Email" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
+						<input name="empEmail" type="email" placeholder="Email Address" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
 					</div>
 					<div class="list-group-item">
-						<input name="empContact" type="text" placeholder="Contact number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+						<input name="empContact" type="text" placeholder="Contact Number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
 					</div>
 				</div>
 
@@ -184,7 +192,7 @@
 						</div>
 						<div class="list-group-item">
 							<div class="input-group">
-								<input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
+								<input name="empRePassw" type="password" placeholder="Confirm Password" class="form-control no-border pwd1" required>
 									<span class="input-group-btn">
 										<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 									</span>
@@ -227,7 +235,7 @@
 							<input id="searchTextField" type="text" class="controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location">
 						</div>
 						<div class="list-group-item">
-							<input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" >
+							<input placeholder="Position Within Company" class="form-control no-border" ng-model="user.contact.position" >
 						</div>
 					</div>
 				</div>
