@@ -13,7 +13,7 @@
                 <div class="list-group-item">
                     <div class="input-group">
                         <!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
-                        <input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" required>
+                        <input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                 </span>
@@ -23,13 +23,13 @@
                     <div class="input-group">
                         <input name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
                                 <span class="input-group-btn">
-                                    <button class=" sign-in-btn btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    <button class=" btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                 </span>
                     </div>
                 </div>
             </div>
         </div>
-      <button target="_self" type="submit" class="btn btn-lg btn-primary btn-block" ng-click="reset()" ng-disabled='form.$invalid'>Reset Password</button>
+      <button target="_self" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" ng-click="reset()" ng-disabled='form.$invalid'>Reset Password</button>
       <div class="line line-dashed"></div>
     </form>
   </div>
@@ -38,6 +38,8 @@
 
 
 <script>
+    $( ".passTooltip" ).tooltip();
+
     $(".reveal2").mousedown(function() {
       $(".pwd2").get(0).type='text';
     })
