@@ -239,12 +239,16 @@ module.exports = function(app) {
 
 		var job = req.body.job;
 
+db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
+	if(d){
+		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,rows){
+			console.log(rows);
+			res.send(true);
+		});
+	}
+});
 
 
-			db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,rows){
-				console.log(rows);
-				res.send(true);
-			});
 
 
 

@@ -15,6 +15,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.timePeriods = constants.timePeriods;
     $scope.categories = constants.categories;
     $scope.reqNames = constants.requirements;
+    $scope.expNames = constants.categories;
     //add end date if short term/long term
     $("#times").hide();
     $("#endDateDiv").hide();
@@ -48,6 +49,59 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         }
     });
 
+
+    //remove requirement from selectable if selected
+    var tempReqList = [];
+    for(var k = 0; k < $scope.reqNames.length;k++){
+        tempReqList.push($scope.reqNames[k]);
+    }
+    $scope.tempReq = tempReqList;
+    $scope.changeSub = function(){
+
+
+        tempReqList = [];
+        for(var k = 0; k < $scope.reqNames.length;k++){
+            tempReqList.push($scope.reqNames[k]);
+        }
+
+        for(var i = 0; i < $scope.job.post.requirements.length; i++) {
+            if ($scope.job.post.requirements[i].name) {
+
+                tempReqList.splice(tempReqList.indexOf($scope.job.post.requirements[i].name), 1);
+                $scope.tempReq = tempReqList;
+
+
+            }
+        }
+    };
+
+    //remove experience from selectable if selected
+    var tempExpList = [];
+    for(var l = 0; l < $scope.expNames.length;l++){
+        tempExpList.push($scope.expNames[l]);
+    }
+    $scope.tempExp = tempExpList;
+    $scope.changeExp = function(){
+
+
+        tempExpList = [];
+        for(var k = 0; k < $scope.expNames.length;k++){
+            tempExpList.push($scope.expNames[k]);
+        }
+
+        for(var i = 0; i < $scope.job.post.experience.length; i++) {
+            if ($scope.job.post.experience[i].category) {
+
+                tempExpList.splice(tempExpList.indexOf($scope.job.post.experience[i].category), 1);
+                $scope.tempExp = tempExpList;
+
+
+            }
+        }
+    };
+
+
+
     var reqCount = 0;
     //add requirement
 
@@ -62,6 +116,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.job = {};
     $scope.job.post = {};
     $scope.job.post.requirements = [];
+    $scope.job.post.experience = [];
     $scope.job.employerID = user._id;
 
     $scope.close = function(reqs){
@@ -76,24 +131,39 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         console.log($scope.job.post.requirements.push({}));
 
     };
+
+    $scope.closeExp = function(reqs){
+
+        console.log($scope.job.post.experience.pop());
+    };
+    $scope.addExp = function(){
+
+        if(!$scope.job.post.experience){
+            $scope.job.post.experience = [{}];
+        }else
+            console.log($scope.job.post.experience.push({}));
+
+    };
+
     var temp = $location.url();
 
-    temp = temp.replace("/postJob?id=", '');
-    if(temp.trim() != ''){
+    if(temp.indexOf("/postJob?id=") > -1) {
+        temp = temp.replace("/postJob?id=", '');
+        if (temp.trim() != '') {
 
 
-        $http({
-            method  : 'POST',
-            url     : '/getJob',
-            data : {id:temp}
-        })
-            .then(function(res) {
+            $http({
+                method: 'POST',
+                url: '/getJob',
+                data: {id: temp}
+            })
+                .then(function (res) {
 
-                $scope.job = res.data;
+                    $scope.job = res.data;
 
 
-
-            });
+                });
+        }
     }
 
     $scope.submitForm = function(){
@@ -133,6 +203,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         }
         else if($scope.job.status == 'active'){
 
+            console.log($scope.job);
             swal({
                     title: "Are you sure?",
                     type: "input",
