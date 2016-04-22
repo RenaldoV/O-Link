@@ -47,7 +47,16 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
 app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants){
 
+    var options = {
+        componentRestrictions: {country: 'za'}
+    };
+
+
+
     $(".appbg").addClass('signupBG');
+
+
+
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
@@ -67,6 +76,16 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.reqNames = constants.requirements;
     $scope.compCat = constants.companyCategories;
     $scope.user = {};
+    $scope.user.company = {};
+
+
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var data = $("#searchTextField").val();
+        $scope.user.company.location = data;
+    });
+
 
     $scope.close = function(reqs){
 
