@@ -7,25 +7,42 @@
 
         <h2>{{job.post.role}}</h2>
         <hr>
-        {{job.post.description}}<hr>
+        {{job.post.description}}<br>
+        <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
+        <hr>
         Location:
         {{job.post.location}}<hr>
 
+        <ul class="list-group no-borders pull-in">
         Requirements:
+            </ul>
         <br>
-        <ul ng-if="job.post.requirements.length > 0 " class="list-group no-bg no-borders pull-in">
+        <ul ng-if="job.post.requirements.length > 0 " class="list-group no-borders pull-in">
             Matric Results
-            <li  class="list-group-item" ng-repeat="res in job.post.requirements">
+            <li   ng-repeat="res in job.post.requirements">
                 <div class="clear">
                     <div>{{res.name}}  {{res.symbol}}</div>
                 </div>
             </li>
 
         </ul>
-        <ul class="list-group no-bg no-borders pull-in">
-                Gender:
-                {{job.post.gender}}
+        <br>
+        <ul ng-if="job.post.experience.length > 0 " class="list-group no-bg no-borders pull-in">
+            Experience
+            <li   ng-repeat="res in job.post.experience">
+                <div class="clear">
+                    <div>{{res.category}}</div>
+                </div>
+            </li>
+
         </ul>
+        <ul class="list-group no-bg no-borders pull-in">
+                <div>Gender: {{job.post.gender}}</div>
+            <div ng-if="job.post.transport">Own Transport</div>
+            <div ng-if="job.post.driversLicense">Driver's License</div>
+        </ul>
+
+        <hr>
         <ul class="list-group no-bg no-borders pull-in">
 
                 Pay:  R{{job.post.pay}}

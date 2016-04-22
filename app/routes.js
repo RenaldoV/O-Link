@@ -63,7 +63,7 @@ module.exports = function(app) {
 						return res.send('error');
 					}
 		 			var tempUser = user.toJSON();
-		 			tempUser.passwordHash = pw.passwordHash;
+		 			tempUser.passwordHash = passwordHash.generate(pw.passwordHash);
 
 		 			tempUser.resetPasswordToken = undefined;
 		 			tempUser.resetPasswordExpires = undefined;
