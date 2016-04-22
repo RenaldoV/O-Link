@@ -22,113 +22,116 @@ $scope.browse = false;
     });
 
 
+function headings(){
+    $scope.loggedIn = true;
+    $rootScope.$on('profile', function (re,data) {
+        $scope.welcoming = false;
+        $scope.slogan = false;
+        $scope.welcome = '';
+        $scope.talent = '';
 
+        $timeout(function () {
+            $scope.cache = data;
+            if (cacheUser.user.type == 'student') {
+                $scope.studentProfile = true;
+
+            } else if (cacheUser.user.type == 'employer') {
+                if (cacheUser.user.employerType == 'Individual')
+                    $scope.individualProfile = true;
+                else if (cacheUser.user.employerType == 'Company')
+                    $scope.companyProfile = true;
+
+            }
+        });
+    });
+    $rootScope.$on('browse', function () {
+
+        $scope.welcoming = false;
+        $scope.slogan = false;
+        $scope.studentProfile = false;
+        $scope.individualProfile = false;
+        $scope.companyProfile = false;
+        $scope.browse = true;
+
+    });
+    $rootScope.$on('job', function () {
+
+        $scope.welcome = '';
+        $scope.talent = '';
+        $scope.browse = false;
+        $scope.studentProfile = false;
+        $scope.individualProfile = false;
+        $scope.companyProfile = false;
+        $timeout(function () {
+            $scope.cache = cacheUser.user;
+            if (cacheUser.user.type == 'student') {
+                $scope.studentProfile = true;
+            }
+            else if (cacheUser.user.type == 'employer') {
+                if (cacheUser.user.employerType == 'Individual')
+                    $scope.individualProfile = true;
+                else if (cacheUser.user.employerType == 'Company')
+                    $scope.companyProfile = true;
+
+            }
+        });
+    });
+
+
+    var user = session.user;
+    $http.post('/getPp', user)
+        .then(function (res) {
+
+            $scope.image = res.data;
+
+
+        });
+
+    $scope.myProfile = function () {
+        $window.location.href = "/myProfile";
+    };
+    if (user.type == "student") {
+        // Set header message of Dash
+        console.log($location.path());
+        $scope.slog1 = "";
+        $scope.slog2 = "";
+        $timeout(function () {
+            $scope.welcoming = true;
+            if ($location.path() == "/dashboard") {
+                $scope.welcome = "Welcome ";
+                $scope.talent = user.name.name + "!";
+            }
+        });
+        $scope.getNav = function () {
+
+            return "../views/blocks/studentNav.html";
+        }
+    }
+    else if (user.type == "employer") {
+        // Set header message of Dash
+        $scope.slog1 = "";
+        $scope.slog2 = "";
+        $timeout(function () {
+            if ($location.path() == "/dashboard") {
+                $scope.welcoming = true;
+                $scope.welcome = "Welcome ";
+                if (!user.company)
+                    $scope.employer = user.contact.name + "!";
+                else
+                    $scope.employer = user.company.name + "!";
+
+            }
+        });
+        $scope.getNav = function () {
+            return "../views/blocks/employerNav.html";
+        }
+    }
+}
 
 
         if (authService.isAuthenticated()) {
 
-            $scope.loggedIn = true;
-            $rootScope.$on('profile', function (data) {
-                $scope.welcoming = false;
-                $scope.slogan = false;
-                $scope.welcome = '';
-                $scope.talent = '';
-                $timeout(function () {
-                    $scope.cache = cacheUser.user;
-                    if (cacheUser.user.type == 'student') {
-                        $scope.studentProfile = true;
-
-                    } else if (cacheUser.user.type == 'employer') {
-                        if (cacheUser.user.employerType == 'Individual')
-                            $scope.individualProfile = true;
-                        else if (cacheUser.user.employerType == 'Company')
-                            $scope.companyProfile = true;
-
-                    }
-                });
-            });
-            $rootScope.$on('browse', function () {
-                console.log("yay");
-                $scope.welcoming = false;
-                $scope.slogan = false;
-                $scope.studentProfile = false;
-                $scope.individualProfile = false;
-                $scope.companyProfile = false;
-                $scope.browse = true;
-
-            });
-            $rootScope.$on('job', function () {
-
-                $scope.welcome = '';
-                $scope.talent = '';
-                $scope.browse = false;
-                $scope.studentProfile = false;
-                $scope.individualProfile = false;
-                $scope.companyProfile = false;
-                $timeout(function () {
-                    $scope.cache = cacheUser.user;
-                    if (cacheUser.user.type == 'student') {
-                        $scope.studentProfile = true;
-                    }
-                    else if (cacheUser.user.type == 'employer') {
-                        if (cacheUser.user.employerType == 'Individual')
-                            $scope.individualProfile = true;
-                        else if (cacheUser.user.employerType == 'Company')
-                            $scope.companyProfile = true;
-
-                    }
-                });
-            });
-
-
-            var user = session.user;
-            $http.post('/getPp', user)
-                .then(function (res) {
-
-                    $scope.image = res.data;
-
-
-                });
-
-            $scope.myProfile = function () {
-                $window.location.href = "/myProfile";
-            };
-            if (user.type == "student") {
-                // Set header message of Dash
-                console.log($location.path());
-                $scope.slog1 = "";
-                $scope.slog2 = "";
-                $timeout(function () {
-                    $scope.welcoming = true;
-                    if ($location.path() == "/dashboard") {
-                        $scope.welcome = "Welcome ";
-                        $scope.talent = user.name.name + "!";
-                    }
-                });
-                $scope.getNav = function () {
-
-                    return "../views/blocks/studentNav.html";
-                }
-            }
-            else if (user.type == "employer") {
-                // Set header message of Dash
-                $scope.slog1 = "";
-                $scope.slog2 = "";
-                $timeout(function () {
-                    if ($location.path() == "/dashboard") {
-                        $scope.welcoming = true;
-                        $scope.welcome = "Welcome ";
-                        if (!user.company)
-                            $scope.employer = user.contact.name + "!";
-                        else
-                            $scope.employer = user.company.name + "!";
-
-                    }
-                });
-                $scope.getNav = function () {
-                    return "../views/blocks/employerNav.html";
-                }
-            }
+headings();
 
 
         }
@@ -138,52 +141,9 @@ $scope.browse = false;
         }
 
     $scope.$on('auth-login-success',function(){
-        $scope.loggedIn = true;
+        
         $timeout(function() {
-        var user = session.user;
-
-        $http.post('/getPp', user)
-            .then(function (res) {
-
-                $scope.image=res.data;
-
-
-            });
-        if(user.type == "student")
-        {
-            // Set header message of Dash
-            $scope.slog1 = "";
-            $scope.slog2 = "";
-            $timeout(function() {
-                $scope.welcoming = true;
-                if ($location.path() == "/dashboard") {
-                    $scope.welcome = "Welcome ";
-                    $scope.talent = user.name.name + "!";
-                }
-            });
-            $scope.getNav= function() {
-                return "../views/blocks/studentNav.html";
-            }
-        }
-        else if(user.type == "employer"){
-            // Set header message of Dash
-            $scope.slog1 = "";
-            $scope.slog2 = "";
-            $timeout(function () {
-                $scope.welcoming = true;
-                if ($location.path() == "/dashboard") {
-                    $scope.welcome = "Welcome ";
-                    if (!user.company)
-                        $scope.employer = user.contact.name + "!";
-                    else
-                        $scope.employer = user.company.name + "!";
-
-                }
-            });
-            $scope.getNav= function() {
-                return "../views/blocks/employerNav.html";
-            }
-        }
+       headings();
         },200);
     } );
 
