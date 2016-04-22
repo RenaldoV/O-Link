@@ -20,11 +20,11 @@ $scope.browse = false;
             $scope.slog2 = "Tomorrow's Success."
         }
     });
-    var user;
+
     //for guests
     if($location.path() == "/guest")
     {
-        user = {id:'guest', type:'guest'};
+        var user = {id:'guest', type:'guest'};
         $scope.loggedIn = true;
         $http.post('/getPp', user)
             .then(function (res) {
@@ -35,11 +35,12 @@ $scope.browse = false;
             });
 
     }else{
-        user = session.user;
+        var user = session.user;
     }
 
 
 function headings(){
+    var user = session.user;
     $scope.loggedIn = true;
     $rootScope.$on('profile', function (re,data) {
         $scope.welcoming = false;
