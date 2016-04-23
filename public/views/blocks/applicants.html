@@ -5,6 +5,7 @@
         <div class="appHeading">
             {{job.post.role}}
         </div>
+            <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)</div>
         </div>
         <div ng-if="job.show">
             <table class="table applicantsTable">

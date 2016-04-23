@@ -573,6 +573,7 @@ line-height: normal;
     padding: 5px;
     font-weight: bold;
     color: white;
+    float: left;
 
 }
 
@@ -584,4 +585,11 @@ line-height: normal;
 
 .applicantsTable tbody tr:nth-child(odd) {
     background-color: white;
+}
+
+.interviewReq{
+    color: red;
+    margin-top: 13px;
+    font-size: 15px;
+    float:left;
 }
