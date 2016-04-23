@@ -90,10 +90,14 @@ module.exports ={
             }
             case 'jobEditedEmployer':{
 
+                args.subject = 'O-Link: Edited Job Offer is now Live';
+                send(template,args,cb);
                 break;
             }
             case 'jobEditedTalent':{
 
+                args.subject = 'O-Link: Edited Job Offer';
+                send(template,args,cb);
                 break;
             }
             case 'applicationMade':{

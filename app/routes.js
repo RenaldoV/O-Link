@@ -235,7 +235,7 @@ module.exports = function(app) {
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
 			var args = {};
-			args.role = jab.post.category;
+			args.category = jab.post.category;
 			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
 
 				if(!err){
@@ -267,11 +267,48 @@ module.exports = function(app) {
 	app.post('/jobUpdate', function(req,res) {
 
 		var job = req.body.job;
-
+var args = {};
 db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
+	args.category = job.post.category;
 	if(d){
-		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,rows){
-			console.log(rows);
+		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
+			db.applications.find({jobID:job._id} , function(err,rows){
+			db.users.findOne({_id:job.employerID}).exec(function(err,user) {
+
+				if(!err){
+				var usr = user.toObject();
+				if(usr.emailDisable == undefined || !usr.emailDisable) {
+						args.name = usr.contact.name;
+						args.count = rows.length;
+					args.email = usr.contact.email;
+					mailer.sendMail('jobEditedEmployer', usr._id,args,function(errr,rs){
+
+					});
+				}
+				}
+			});
+
+			rows.forEach(function(app) {
+
+				var temp = app.toObject();
+				db.users.findOne({_id: temp.studentID}).exec(function (err, user) {
+
+					if (!err) {
+						var usr = user.toObject();
+						if (usr.emailDisable == undefined || !usr.emailDisable) {
+							args.name = usr.contact.name;
+							args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
+							args.email = usr.contact.email;
+							mailer.sendMail('jobEditedTalent', usr._id, args, function (errr, rs) {
+
+							});
+						}
+					}
+				});
+
+			});
+			});
+
 			res.send(true);
 		});
 	}
