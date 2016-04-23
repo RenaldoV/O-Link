@@ -567,3 +567,38 @@ line-height: normal;
     min-width: 280px;
     text-align: center;
 }
+
+.appHeading{
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+    color: white;
+    float: left;
+
+}
+
+.applicantsTable{
+    background-color: #cee0f6;
+   margin-top: -10px;
+    margin-left: 10px;
+}
+
+.applicantsTable tbody tr:nth-child(odd) {
+    background-color: white;
+}
+
+.interviewReq{
+    color: red;
+    margin-top: 13px;
+    font-size: 15px;
+    float:left;
+}
+
+.btn{
+    color: white;
+}
+.applicantsHead{
+    width: calc(100% - 250px);
+    height: 40px;
+    margin: 10px;
+    background-color: #70a4e0;

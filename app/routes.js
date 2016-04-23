@@ -8,7 +8,7 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
 var fs = require('fs');
 var passwordHash = require('password-hash');
-
+var mailer = require("./models/mailer.js");
 function getDate(){
 	var currentdate = new Date();
 	var datetime = currentdate.getFullYear() + "-"
@@ -140,9 +140,16 @@ module.exports = function(app) {
 				});
 			},
  			function(token, user, done) {
-
 				var tempUser = user.toJSON();
-				var smtpTransport = nodemailer.createTransport(smtpttransport({
+				var args = {link:'http://' + req.headers.host + '/reset/' + token};
+
+
+				mailer.sendMail('forgotPassword',tempUser._id,args, function(err,res){
+					console.log(res);
+					done(err, 'done');
+				});
+
+				/*var smtpTransport = nodemailer.createTransport(smtpttransport({
 					host: "mail.o-link.co.za",
 					secureConnection: false,
 					port: 25,
@@ -158,12 +165,12 @@ module.exports = function(app) {
 					subject: 'O-Link Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 					  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-					  'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+					   + '\n\n' +
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
 					done(err, 'done');
-				});
+				});*/
 			} 
 		], function(err) {
 			if (err) return next(err);
@@ -208,7 +215,7 @@ module.exports = function(app) {
 
 		var temp = req.body;
 
-		console.log(temp);
+
 		db.jobs.find({status:'active'}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
 			if(rows.length == 0)
 			res.send(false);
@@ -226,8 +233,30 @@ module.exports = function(app) {
 		var job = req.body;
 
 		db.jobs.create(job,function(err, jobi){
-			console.log(jobi);
-			res.send(jobi);
+			var jab = jobi.toObject();
+			var args = {};
+			args.category = jab.post.category;
+			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
+
+				if(!err){
+					var usr = user.toObject();
+					if(usr.emailDisable == undefined || !usr.emailDisable){
+						args.name = usr.contact.name;
+						args.email = usr.contact.email;
+
+						mailer.sendMail('jobLive',jab.employerID,args, function(err,rss){
+							console.log(rss);
+							res.send(jobi);
+						});
+					}
+					else{
+						res.send(jobi);
+					}
+
+				}
+			});
+
+
 		});
 
 	});
@@ -238,11 +267,48 @@ module.exports = function(app) {
 	app.post('/jobUpdate', function(req,res) {
 
 		var job = req.body.job;
-
+var args = {};
 db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
+	args.category = job.post.category;
 	if(d){
-		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,rows){
-			console.log(rows);
+		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
+			db.applications.find({jobID:job._id} , function(err,rows){
+			db.users.findOne({_id:job.employerID}).exec(function(err,user) {
+
+				if(!err){
+				var usr = user.toObject();
+				if(usr.emailDisable == undefined || !usr.emailDisable) {
+						args.name = usr.contact.name;
+						args.count = rows.length;
+					args.email = usr.contact.email;
+					mailer.sendMail('jobEditedEmployer', usr._id,args,function(errr,rs){
+
+					});
+				}
+				}
+			});
+
+			rows.forEach(function(app) {
+
+				var temp = app.toObject();
+				db.users.findOne({_id: temp.studentID}).exec(function (err, user) {
+
+					if (!err) {
+						var usr = user.toObject();
+						if (usr.emailDisable == undefined || !usr.emailDisable) {
+							args.name = usr.contact.name;
+							args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
+							args.email = usr.contact.email;
+							mailer.sendMail('jobEditedTalent', usr._id, args, function (errr, rs) {
+
+							});
+						}
+					}
+				});
+
+			});
+			});
+
 			res.send(true);
 		});
 	}
@@ -262,7 +328,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		db.applications.update({_id:app.id},{$unset:{edited:'', editTime: ''}} , function(err,rows){
-			console.log(rows);
+
 			res.send(true);
 		});
 
@@ -313,11 +379,28 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				user.activateToken = token;
 				user.passwordHash = passwordHash.generate(user.passwordHash);
 				db.users.create(user,function(e,result){
-					if(result)
-						res.send(result);
+
 					if(result != 'email' && !err){
 
-					var smtpTransport = nodemailer.createTransport(smtpttransport({
+						var usr = result;
+						var args = {link: 'http://' + req.headers.host + '/activate?token=' + token, email: usr.contact.email};
+
+						if(usr.type == 'student'){
+							args.name = usr.name.name;
+							mailer.sendMail('welcomeTalent',usr._id,args, function(err,rrs){
+								if(!err)
+								res.send(result);
+								console.log(rrs);
+							});
+						}else if(usr.type = 'employer'){
+							args.name = usr.contact.name;
+							mailer.sendMail('welcomeEmployer',usr._id,args, function(err,rrs){
+								if(!err)
+									res.send(result);
+								console.log(rrs);
+							});
+						}
+					/*var smtpTransport = nodemailer.createTransport(smtpttransport({
 						host: "mail.o-link.co.za",
 						secureConnection: false,
 						port: 25,
@@ -338,7 +421,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					};
 					smtpTransport.sendMail(mailOptions, function(err) {
 						if(err) throw err;
-					});
+					});*/
 					}
 			});
 
@@ -371,7 +454,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/getJob', function(req,res) {
 
 		var id= req.body;
-		console.log(id);
 		db.jobs.findOne({_id: id.id}).populate('employerID').exec(function(err,rows){
 			res.send(rows);
 		});
@@ -398,7 +480,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		fs.readFile(file.path, function (err, data) {
 
 			var temp = file.path;
-			console.log(temp);
 			temp = temp.replace("tmp\\", '\\uploads\\');
 			temp = temp +".png";
 			var newPath = __dirname + temp;
@@ -465,29 +546,58 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//done
 
 	//Add application to db
-	app.post('/apply', function(req,res){
+	app.post('/apply', function(req,res) {
 
 		var user = req.body.user;
-		var job =  req.body.job;
-		if(!job.applicants)
-		{
+		var job = req.body.job;
+		if (!job.applicants) {
 			job.applicants = [];
 		}
 		job.applicants.push(user._id);
 
 
 		var application = {
-			studentID : user._id,
+			studentID: user._id,
 			jobID: job._id,
 			employerID: job.employerID,
 			status: 'Pending'
 
 		};
-		db.applications.create(application, function(app){
-			db.jobs.update({_id: job._id}, {$set:job}, function(err,docs){
-				res.send(app);
-			});
+		db.applications.create(application, function (app) {
+			db.jobs.update({_id: job._id}, {$set: job}, function (err, docs) {
+				db.users.findOne({_id: user._id}, function (err, usrr) {
+					if (err) console.log(err);
+					var usr = usrr.toObject();
+					var args = {};
+					if (usr.emailDisable == undefined || !usr.emailDisable) {
+						args.name = usr.name.name;
+						args.role = job.post.role;
+						args.date = job.post.startingDate;
+						args.email = usr.contact.email;
+						args.subject = "Application has been Made for " + job.post.role;
+						if (usr.applications) {
+							args.applicationsLeft = usr.applications;
+						}
+						else {
+							args.applicationsLeft = 0;
+						}
+						db.users.findOne({_id: job.employerID}, function (err, em) {
+							if (err) console.log(err);
+							var emp = em.toObject();
+							args.employerName = emp.contact.name + " " + emp.contact.surname;
+							mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
+								console.log(rs);
+								res.send(app);
+							});
+						});
 
+
+					}
+
+
+				});
+
+			});
 		});
 	});
 	//done
@@ -496,13 +606,44 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/updateApplication', function(req,res){
 
 		var app = req.body;
-		console.log(app);
 		var id = app._id;
 		delete  app._id;
 
-		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
-			res.send(true);
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+
+				if (usr.emailDisable == undefined || !usr.emailDisable) {
+					var args = {};
+					args.name = usr.name.name;
+					args.date = job.post.startingDate;
+					args.role = job.post.role;
+					args.email = usr.contact.email;
+					args.subject = "Provisionally Accepted as a(n) " + args.role;
+					args.link = 'http://' + req.headers.host + '/job?id=' + app.jobID;
+
+					if(emp.employerType == 'Company'){
+						args.employer = emp.company.name;
+					}else
+						args.employer = emp.contact.name + " "+ emp.contact.surname;
+
+					if(ap.interviewRequired){
+						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
+							console.log(rr);
+							res.send(true);
+						});
+					}
+					else {
+						mailer.sendMail('offerMade',usr._id,args,function(err,rr){
+							console.log(rr);
+							res.send(true);
+						});
+					}
+				}else res.send(true);
+
+
 		} );
 
 	});
@@ -511,7 +652,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/rateStudent', function(req,res){
 
 		var app = req.body;
-		console.log(app);
+
 		var id = app._id;
 		delete  app._id;
 		var user = app.id;
@@ -532,7 +673,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				}
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
-				console.log(tempRating);
+
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
 					res.send(true);
 				});
@@ -548,7 +689,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/rateEmployer', function(req,res){
 
 		var app = req.body;
-		console.log("Here: "+app);
+
 		var id = app._id;
 		delete  app._id;
 		var user = app.id;
@@ -569,7 +710,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				}
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
-				console.log(tempRating);
+
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
 					res.send(true);
 				});
@@ -610,11 +751,39 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//load applications by employer and populate job and student IDs
 	app.post('/loadApplicants', function(req,res){
 
-		var user = req.body;
-		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
 
-			res.send(docs);
+		var user = req.body;
+		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort('post.postDate').exec(function(err,rws) {
+			var rows = rws;
+			var ret = [];
+			var calls = [];
+			var ticks = [rows.count];
+			var  i = 0;
+			rows.forEach(function(j){
+				calls.push(function(callback){
+					var job = j.toObject();
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').populate('studentID').exec(function (err, docs) {
+					job.applications = docs;
+
+
+					ret.push(job);
+
+					i++;
+					callback(null, job);
+				});
+				});
+			});
+			async.parallel(calls, function(err, result) {
+				res.send(ret);
+				if (err)
+					return console.log(err);
+
+			});
+
+
+
 		});
+
 
 
 	});
