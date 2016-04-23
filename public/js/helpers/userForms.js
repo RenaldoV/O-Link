@@ -1,5 +1,24 @@
 ////Renaldo se user form scripts, uit sodat dit makliker is om te edit(gebruik vir edit profile ook)
 
+$(function() {
+    var dob;
+    var idfill;
+
+    $("input[name=stuID]").focusin( function () {
+        $("input[name=stuID]").trigger("click");
+        dob = $("#stuDob").val();
+        idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+        $(this).val(idfill);
+    });
+    $("input[name=stuID]").focusout(function (){
+        if($(this).val().substring(0,6) != idfill)
+            this.setCustomValidity("Date of birth and ID does not match");
+    });
+    $("input[name=stuID]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+
 $("#aboutMe").on("focusout", function () {
     if($("#aboutMe").val().length < 100 || ("#aboutMe").val().length < 500)
         this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
@@ -10,7 +29,7 @@ $("#aboutMe").on("change", function () {
     this.setCustomValidity("");
 });
 
-$(document).ready(function() {
+$(function () {
     var text_max = 500;
     $('#textarea_feedback').html(text_max + ' remaining');
 
@@ -157,11 +176,27 @@ $(".reveal1").mousedown(function() {
 
 //Student form validation
 $(function () {
-    $("input[name=stuEmail]").on("invalid", function () {
+    $("input[name=stuEmail]").on("focusout", function () {
         this.setCustomValidity("Please enter a valid SA tertiary institute email address.");
-    });
-    $("input[name=stuEmail]").on("change", function () {
-        this.setCustomValidity("");
+        var len = $(this).val().length;
+        if(len > 11)
+        {
+            if($(this).val().substr(len-11,11) == "@tuks.co.za")
+                this.setCustomValidity("");
+        }
+        if(len > 4)
+        {
+
+            if($(this).val().substr(len-4,4) == ".edu")
+                this.setCustomValidity("");
+        }
+        if(len > 6)
+        {
+
+            if($(this).val().substr(len-6,6) == ".ac.za")
+                this.setCustomValidity("");
+        }
+
     });
 
     $("input[name=stuContact]").on("invalid", function () {

@@ -87,10 +87,10 @@
 				<div class="type1 list-group list-group-sm wrapper text-center">
 					<div class="list-group list-group-sm">
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="SecondaryRadio" ng-model="user.institution.type" value="Secondary" required>Secondary Institution
+							<input type="radio" name="type2" id="SecondaryRadio" ng-model="user.institution.type" value="Secondary" required>Secondary Institution
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="TertiaryRadio" ng-model="user.institution.type" value="Tertiary" required>Tertiary Institution
+							<input type="radio" name="type2" id="TertiaryRadio" ng-model="user.institution.type" value="Tertiary" required>Tertiary Institution
 						</label>
 					</div>
 				</div>
@@ -114,10 +114,21 @@
 								<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
 							</div>
 							<div id="reqGroup" class="list-group-item">
-
+								<label>Matric Certificate Type</label>
+								<div class="list-group list-group-sm">
+									<label class="radio-inline">
+										<input type="radio" name="type3" id="CambridgeRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="Cambridge">Cambridge
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="type3" id="NSCRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="NSC">NSC
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="type3" id="IEBRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="IEB">IEB
+									</label>
+								</div>
 								<div id="reqInputs">
 									<div class="reqBox" ng-repeat="req in user.results">
-										<select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" hidden>
+										<select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
 											<option value="" selected disabled>Choose Subject</option>
 											<option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
 										</select>
@@ -140,11 +151,57 @@
 								</div>
 
 							</div>
+
+							<div id="workExpBox" class="list-group-item">
+
+								<div id="workInputs">
+
+									<div class="workBox" ng-repeat="cat in user.work">
+										<select class="form-control no-border" ng-model="cat.category" ng-change="changeWork()" required>
+											<option value="" selected disabled>Choose Work Category</option>
+											<option ng-if="cat.category == workName || tempWork.indexOf(workName) > -1 " ng-click="changeWork()" ng-repeat="workName in workNames" value="{{workName}}">{{workName}}</option>
+										</select>
+										<select id="period" class="form-control no-border" ng-model="cat.duration" required>
+											<option value="" selected disabled>Duration of Experience?</option>
+
+											<option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
+										</select>
+
+											<input type="text" placeholder="Contact Person Name" class="form-control no-border" ng-model="cat.contact.name">
+
+
+											<input name="stuContact" type="text"  placeholder="Contact Person Number" class="form-control no-border" ng-model="cat.contact.number" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$">
+
+
+											<input type="email"  placeholder="Contact Person Email" class="form-control no-border" ng-model="cat.contact.email">
+
+
+									</div>
+								</div>
+
+								<div id="workButtonGrp" class="btn-group-vertical" role="group">
+
+									<button ng-if="user.work" type="button" class="removeReq btn btn-default" ng-click="closeWork(user.work); changeWork()">Remove<span class="glyphicon glyphicon-minus"></span></button>
+									<button type="button" id="addWork" class="btn btn-default" ng-click="addWork()">Add Work Experience <span class="glyphicon glyphicon-plus"></span></button>
+								</div>
+
+							</div>
 						</fieldset>
+					</div>
+					<div class="checkbox m-b-md m-t-none">
+						<label class="i-checks">
+							<input type="checkbox" ng-model="user.driversLicence"><i></i>Drivers License?
+						</label>
+					</div>
+					<div class="checkbox m-b-md m-t-none">
+						<label class="i-checks">
+							<input type="checkbox" ng-model="user.ownTransport"><i></i>Own Transport?
+						</label>
 					</div>
 				</div>
 
 
+				<br/>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
 						<input type="checkbox" ng-model="agree" required><i></i> Agree the <a href="#">terms and policy</a>

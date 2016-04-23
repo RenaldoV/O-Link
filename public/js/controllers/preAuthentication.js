@@ -54,9 +54,19 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
     $(".appbg").addClass('signupBG');
+    $scope.reqNames = constants.requirements;
+    $("#addReq").hide();
+    $scope.matricTypeClick = function(type) {
+        $("#addReq").show();
 
+        /*if(type == "Cambridge")
+            $scope.reqNames = constants.Cambridge;
+        else if(type == "NSC")
+            $scope.reqNames = constants.NSC;
+        else if(type == "IEB")
+            $scope.reqNames = constants.IEB;*/
 
-
+    }
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
@@ -73,8 +83,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     });
 
 
-    $scope.reqNames = constants.requirements;
+
     $scope.compCat = constants.companyCategories;
+    $scope.timePeriods = constants.timePeriods;
+    $scope.workNames = constants.categories;
     $scope.tertInst = constants.tertiaryInstitutions;
     $scope.user = {};
     $scope.user.company = {};
@@ -89,9 +101,22 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     });
 
 
-    $scope.close = function(reqs){
 
-        console.log($scope.user.results.pop());
+    var numWork = 0;
+    var numReq = 0;
+
+    $scope.close = function(reqs){
+        numReq--;
+        $scope.user.results.pop();
+        if(numReq == 0)
+            $scope.user.results = false;
+
+    };
+    $scope.closeWork = function(cats){
+        numWork--;
+        $scope.user.work.pop();
+        if(numWork == 0)
+            $scope.user.work = false;
 
     };
     $scope.add = function(){
@@ -99,9 +124,42 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         if(!$scope.user.results){
             $scope.user.results = [{}];
         }else
-            console.log($scope.user.results.push({}));
+            $scope.user.results.push({});
+            numReq++;
 
     };
+    $scope.addWork = function(){
+
+        if(!$scope.user.work){
+            $scope.user.work = [{}];
+        }else
+            $scope.user.work.push({});
+            numWork++;
+
+    };
+
+    // work experience
+    var tempWorkList = [];
+    for(var k = 0; k < $scope.workNames.length;k++){
+        tempWorkList.push($scope.workNames[k]);
+    }
+    $scope.tempWork = tempWorkList;
+    $scope.changeWork = function(){
+
+        tempWorkList = [];
+        for(var k = 0; k < $scope.workNames.length;k++){
+            tempWorkList.push($scope.workNames[k]);
+        }
+
+        for(var i = 0; i < $scope.user.work.length; i++) {
+            if ($scope.user.work[i].category) {
+                tempWorkList.splice(tempWorkList.indexOf($scope.user.work[i].category), 1);
+                $scope.tempWork = tempWorkList;
+            }
+        }
+    };
+
+    // Matric Results
     var tempReqList = [];
     for(var k = 0; k < $scope.reqNames.length;k++){
        tempReqList.push($scope.reqNames[k]);
@@ -117,7 +175,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
         for(var i = 0; i < $scope.user.results.length; i++) {
             if ($scope.user.results[i].name) {
-
                 tempReqList.splice(tempReqList.indexOf($scope.user.results[i].name), 1);
                 $scope.tempReq = tempReqList;
 
@@ -125,25 +182,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             }
         }
     };
-
-    $(function() {
-        var dob;
-        var idfill;
-
-        $("input[name=stuID]").focusin( function () {
-            $("input[name=stuID]").trigger("click");
-            dob = $scope.user.dob;
-            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
-            $(this).val(idfill);
-        });
-        $("input[name=stuID]").focusout(function (){
-            if($(this).val().substring(0,6) != idfill)
-                this.setCustomValidity("Date of birth and ID does not match");
-        });
-        $("input[name=stuID]").on("change", function () {
-            this.setCustomValidity("");
-        });
-    });
 
     $scope.submitForm = function() {
         $scope.submitted = true;

@@ -80,6 +80,7 @@ app.service('constants', function(){
         "Programmer/Developer",
         "Engineer","Assistant",
         "Cook/Chef",
+        "Internship",
         "Other"];
 
     this.timePeriods = [
@@ -88,13 +89,94 @@ app.service('constants', function(){
         {name:"Long Term", description: "> 1 month"}];
 
     this.requirements = [
-        "Maths",
-        "AP Maths",
+        "Mathematics",
         "English",
-        "Science",
         "Afrikaans",
-        "Zulu",
-        "IT"
+        "Physics",
+        "Chemistry",
+        "Accounting",
+        "Business Studies",
+        "Biology",
+        "Computing",
+        "Design Technology",
+        "Economics",
+        "Geography",
+        "History",
+        "Music",
+        "Psychology",
+        "Sociology ",
+        "Technical Drawing",
+        "Information Technology",
+        "Physical Science",
+        "Life Science",
+        "Intro to Criminology",
+        "Mercantile Law",
+        "Travel and Tourism",
+        "IsiZulu",
+        "Sesotho",
+        "Design",
+        "Hospitality Studies",
+        "IsiXhosa",
+        "Other"
     ];
+
+    this.Cambridge = [
+        "Mathematics",
+        "English",
+        "Afrikaans",
+        "Physics",
+        "Chemistry",
+        "Accounting",
+        "Business Studies",
+        "Biology",
+        "Computing",
+        "Design Technology",
+        "Economics",
+        "Geography",
+        "History",
+        "Music",
+        "Psychology",
+        "Sociology ",
+        "Technical Drawing",
+        "Other"
+            ];
+
+    this.NSC = [
+        "Mathematics",
+        "English",
+        "Afrikaans",
+        "Physical Science",
+        "Life Science",
+        "Information Technology",
+        "Business Studies",
+        "Biology",
+        "Intro to Criminology",
+        "Economics",
+        "Geography",
+        "History",
+        "IsiZulu",
+        "Mercantile Law",
+        "Travel and Tourism",
+        "Technical Drawing",
+        "Other"
+            ];
+
+    this.IEB = [
+        "Mathematics",
+        "English",
+        "Afrikaans",
+        "Physical Science",
+        "Life Science",
+        "Information Technology",
+        "Design",
+        "Hospitality Studies",
+        "Economics",
+        "Geography",
+        "IsiXhosa",
+        "IsiZulu",
+        "Sesotho",
+        "Music",
+        "Other"
+            ];
 
 });
