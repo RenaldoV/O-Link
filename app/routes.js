@@ -622,7 +622,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					args.role = job.post.role;
 					args.email = usr.contact.email;
 					args.subject = "Provisionally Accepted as a(n) " + args.role;
-					args.link = 'http://' + req.headers.host + '/job?id=' + app.jobID;
+					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
 
 					if(emp.employerType == 'Company'){
 						args.employer = emp.company.name;
