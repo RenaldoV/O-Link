@@ -8,7 +8,7 @@ var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
 var fs = require('fs');
 var passwordHash = require('password-hash');
-
+var mailer = require("./models/mailer.js");
 function getDate(){
 	var currentdate = new Date();
 	var datetime = currentdate.getFullYear() + "-"
@@ -140,9 +140,16 @@ module.exports = function(app) {
 				});
 			},
  			function(token, user, done) {
-
 				var tempUser = user.toJSON();
-				var smtpTransport = nodemailer.createTransport(smtpttransport({
+				var args = {link:'http://' + req.headers.host + '/reset/' + token};
+
+
+				mailer.sendMail('forgotPassword',tempUser._id,args, function(err,res){
+					console.log(res);
+					done(err, 'done');
+				});
+
+				/*var smtpTransport = nodemailer.createTransport(smtpttransport({
 					host: "mail.o-link.co.za",
 					secureConnection: false,
 					port: 25,
@@ -158,12 +165,12 @@ module.exports = function(app) {
 					subject: 'O-Link Password Reset',
 					text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
 					  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-					  'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+					   + '\n\n' +
 					  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
 				};
 				smtpTransport.sendMail(mailOptions, function(err) {
 					done(err, 'done');
-				});
+				});*/
 			} 
 		], function(err) {
 			if (err) return next(err);
@@ -226,8 +233,30 @@ module.exports = function(app) {
 		var job = req.body;
 
 		db.jobs.create(job,function(err, jobi){
-			console.log(jobi);
-			res.send(jobi);
+			var jab = jobi.toObject();
+			var args = {};
+			args.role = jab.post.category;
+			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
+
+				if(!err){
+					var usr = user.toObject();
+					if(usr.emailDisable == undefined || !usr.emailDisable){
+						args.name = usr.contact.name;
+						args.email = usr.contact.email;
+
+						mailer.sendMail('jobLive',jab.employerID,args, function(err,rss){
+							console.log(rss);
+							res.send(jobi);
+						});
+					}
+					else{
+						res.send(jobi);
+					}
+
+				}
+			});
+
+
 		});
 
 	});
@@ -313,11 +342,28 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				user.activateToken = token;
 				user.passwordHash = passwordHash.generate(user.passwordHash);
 				db.users.create(user,function(e,result){
-					if(result)
-						res.send(result);
+
 					if(result != 'email' && !err){
 
-					var smtpTransport = nodemailer.createTransport(smtpttransport({
+						var usr = result;
+						var args = {link: 'http://' + req.headers.host + '/activate?token=' + token, email: usr.contact.email};
+
+						if(usr.type == 'student'){
+							args.name = usr.name.name;
+							mailer.sendMail('welcomeTalent',usr._id,args, function(err,rrs){
+								if(!err)
+								res.send(result);
+								console.log(rrs);
+							});
+						}else if(usr.type = 'employer'){
+							args.name = usr.contact.name;
+							mailer.sendMail('welcomeEmployer',usr._id,args, function(err,rrs){
+								if(!err)
+									res.send(result);
+								console.log(rrs);
+							});
+						}
+					/*var smtpTransport = nodemailer.createTransport(smtpttransport({
 						host: "mail.o-link.co.za",
 						secureConnection: false,
 						port: 25,
@@ -338,7 +384,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					};
 					smtpTransport.sendMail(mailOptions, function(err) {
 						if(err) throw err;
-					});
+					});*/
 					}
 			});
 
