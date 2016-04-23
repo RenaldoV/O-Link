@@ -463,7 +463,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         if (typeof job.post.requirements == 'undefined'){
             job.post.requirements = [];
 
-        }   else meets = [job.post.requirements.length];
+        }else{
+            for(var x = 0; x < job.post.requirements.length; x++)
+            {
+                meets.push(false);
+            }
+        }
 
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
@@ -480,7 +485,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             meets.push(false);
         }
         var met = true;
+
+        if(meets.length > 0){
+
         $.each(meets, function(key, value){
+            console.log(value);
             if(value == false)
             {
                 met = false;
@@ -488,7 +497,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             }
 
         });
-
+        }
         if(!met){
             sweetAlert("Requirements not met", "", "error");
 

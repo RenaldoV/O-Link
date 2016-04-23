@@ -4905,3 +4905,10 @@ div.signupBox {
   background-color: #d3d3d3;
   border-radius: 5px;
 }
+
+.applicantsHead{
+  width: calc(100% - 250px);
+  height: 40px;
+  margin: 10px;
+  background-color: #70a4e0;
+}

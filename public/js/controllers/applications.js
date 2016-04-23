@@ -262,8 +262,22 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
             .post('/loadApplicants', user)
             .then(function (res) {
 
-                $scope.applications = res.data;
+                $scope.applications = {};
 
+                $scope.jobs = res.data;
+                console.log($scope.jobs);
+
+                $scope.toggleApplicants = function(id){
+                    $.each($scope.jobs, function(idx,job){
+                       if(job._id == id){
+                           if(job.show == undefined){
+                               job.show = true;
+                           }
+                           else job.show = !job.show;
+
+                       }
+                    });
+                };
                 $scope.getAge = function (dob) {
                     return getAge(dob);
                 };

@@ -567,3 +567,21 @@ line-height: normal;
     min-width: 280px;
     text-align: center;
 }
+
+.appHeading{
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+    color: white;
+
+}
+
+.applicantsTable{
+    background-color: #cee0f6;
+   margin-top: -10px;
+    margin-left: 10px;
+}
+
+.applicantsTable tbody tr:nth-child(odd) {
+    background-color: white;
+}

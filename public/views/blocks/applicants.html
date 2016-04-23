@@ -1,32 +1,44 @@
 <div><div ng-controller="employerApplicants">
-    <table class="table">
-        <thead><th>Name</th><th>Age</th><th>Gender</th><th>Job</th><th>Status</th>
-        </thead>
-        <tbody>
-        <tr ng-repeat="app in applications">
-            <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
-            <td>{{getAge(app.studentID.dob);}}</td>
-            <td>{{app.studentID.gender}}</td>
-            <td>{{app.jobID.post.role}}</td>
-            <td><div  class="estatusDiv"> <select ng-if="!app.offered" id="status" ng-disabled="app.offered" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
-                <option class="statusOption" value="Declined">Declined</option>
-                <option class="statusOption" value="Pending" disabled>Pending</option>
-                <option class="statusOption" value="Provisionally accepted">Provisionally accepted</option>
-            </select>
-                <span ng-if="app.offered == 'accepted'">Confirmed</span >
-                <span ng-if="app.offered == 'declined'">Declined</span >
-                <span ng-if="app.offered == 'offered'">Offered</span >
-                <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
-                <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
-                <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
-            </div>
-            </td>
-            <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn blueBack">Contact</button>
-                <button ng-if="!app.offered"class="btn blueBack" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
-                <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" >
+        <div class="applicantsHead" ng-click="toggleApplicants(job._id)">
+        <div class="appHeading">
+            {{job.post.role}}
+        </div>
+        </div>
+        <div ng-if="job.show">
+            <table class="table applicantsTable">
+                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Status</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="app in job.applications">
+                    <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+                    <td>{{getAge(app.studentID.dob);}}</td>
+                    <td>{{app.studentID.gender}}</td>
+                    <td><div  class="estatusDiv"> <select ng-if="!app.offered" id="status" ng-disabled="app.offered" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
+                        <option class="statusOption" value="Declined">Declined</option>
+                        <option class="statusOption" value="Pending" disabled>Pending</option>
+                        <option class="statusOption" value="Provisionally accepted">Provisionally accepted</option>
+                    </select>
+                        <span ng-if="app.offered == 'accepted'">Confirmed</span >
+                        <span ng-if="app.offered == 'declined'">Declined</span >
+                        <span ng-if="app.offered == 'offered'">Offered</span >
+                        <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
+                        <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
+                        <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+                    </div>
+                    </td>
+                    <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn blueBack">Contact</button>
+                        <button ng-if="!app.offered"class="btn blueBack" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
+                        <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
 </div>
 </div>

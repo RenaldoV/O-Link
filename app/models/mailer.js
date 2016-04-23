@@ -101,7 +101,8 @@ module.exports ={
                 break;
             }
             case 'applicationMade':{
-
+                
+                send(template,args,cb);
                 break;
             }
             case 'offerMade':{

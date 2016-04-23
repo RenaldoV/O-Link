@@ -548,29 +548,58 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//done
 
 	//Add application to db
-	app.post('/apply', function(req,res){
+	app.post('/apply', function(req,res) {
 
 		var user = req.body.user;
-		var job =  req.body.job;
-		if(!job.applicants)
-		{
+		var job = req.body.job;
+		if (!job.applicants) {
 			job.applicants = [];
 		}
 		job.applicants.push(user._id);
 
 
 		var application = {
-			studentID : user._id,
+			studentID: user._id,
 			jobID: job._id,
 			employerID: job.employerID,
 			status: 'Pending'
 
 		};
-		db.applications.create(application, function(app){
-			db.jobs.update({_id: job._id}, {$set:job}, function(err,docs){
-				res.send(app);
-			});
+		db.applications.create(application, function (app) {
+			db.jobs.update({_id: job._id}, {$set: job}, function (err, docs) {
+				db.users.findOne({_id: user._id}, function (err, usrr) {
+					if (err) console.log(err);
+					var usr = usrr.toObject();
+					var args = {};
+					if (usr.emailDisable == undefined || !usr.emailDisable) {
+						args.name = usr.name.name;
+						args.role = job.post.role;
+						args.date = job.post.startingDate;
+						args.email = usr.contact.email;
+						args.subject = "Application has been Made for " + job.post.role;
+						if (usr.applications) {
+							args.applicationsLeft = usr.applications;
+						}
+						else {
+							args.applicationsLeft = 0;
+						}
+						db.users.findOne({_id: job.employerID}, function (err, em) {
+							if (err) console.log(err);
+							var emp = em.toObject();
+							args.employerName = emp.contact.name + " " + emp.contact.surname;
+							mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
+								console.log(rs);
+								res.send(app);
+							});
+						});
 
+
+					}
+
+
+				});
+
+			});
 		});
 	});
 	//done
@@ -693,11 +722,39 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//load applications by employer and populate job and student IDs
 	app.post('/loadApplicants', function(req,res){
 
-		var user = req.body;
-		db.applications.find({employerID: user._id}).where('status').ne('Completed').populate('jobID').populate('studentID').exec(function (err, docs) {
 
-			res.send(docs);
+		var user = req.body;
+		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort('post.postDate').exec(function(err,rws) {
+			var rows = rws;
+			var ret = [];
+			var calls = [];
+			var ticks = [rows.count];
+			var  i = 0;
+			rows.forEach(function(j){
+				calls.push(function(callback){
+					var job = j.toObject();
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').populate('studentID').exec(function (err, docs) {
+					job.applications = docs;
+
+
+					ret.push(job);
+
+					i++;
+					callback(null, job);
+				});
+				});
+			});
+			async.parallel(calls, function(err, result) {
+				res.send(ret);
+				if (err)
+					return console.log(err);
+				console.log(result);
+			});
+
+
+
 		});
+
 
 
 	});
