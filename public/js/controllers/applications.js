@@ -291,6 +291,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 $scope.changeStatus = function (app, oldstat) {
 
+
                     changeStatus(app, oldstat, $scope, $http, notify, app.studentID._id);
                 };
                 $scope.isDeclined = function(status){
@@ -339,6 +340,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     changeStatus(app, oldstat, $scope, $http,notify, app.studentID);
                 };
 
+
                 $scope.isDeclined = function(status){
                     if(status == "Declined"){
                         return true;
@@ -365,6 +367,12 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 };
             });
     }
+    $scope.makeOffer = function(app, role){
+
+        app.status = "Provisionally accepted";
+
+        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID,role);
+    };
     $scope.offer = function(id, studentID, jobID, role){
         swal({
                 title: "Are you sure?",
@@ -401,7 +409,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
-function changeStatus(app,oldstat, $scope, $http, notify, userID) {
+function changeStatus(app,oldstat, $scope, $http, notify, userID, role) {
     var check = false;
     console.log(app);
     swal({
@@ -416,8 +424,8 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID) {
 
             if (isConfirm) {
                 $http
-                    .post('/updateApplication', {_id: app._id, status: app.status})
-                    .then(function (res, err) {
+                    .post('/updateApplication', {_id: app._id, status: app.status, jobID:app.jobID._id})
+                    .then(function (err,res) {
 
                         console.log(res);
 
@@ -427,7 +435,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID) {
                             jobID: app.jobID._id,
                             userID: userID,
                             status: app.status,
-                            title: app.jobID.post.role
+                            title: role
                         });
                         swal("Status updated.", "The user has been notified.", "success");
 
@@ -435,17 +443,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID) {
                     });
 
             }
-            else {
-                for (var i = 0; i < $scope.applications.length; i++) {
-                    if ($scope.applications[i]._id == app._id) {
 
-                        $scope.applications[i].status = oldstat;
-                        $scope.$apply();
-                        console.log($scope.applications[i]);
-                    }
-                }
-
-            }
         }
     );
 }

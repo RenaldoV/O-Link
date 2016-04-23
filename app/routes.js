@@ -215,7 +215,7 @@ module.exports = function(app) {
 
 		var temp = req.body;
 
-		console.log(temp);
+
 		db.jobs.find({status:'active'}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
 			if(rows.length == 0)
 			res.send(false);
@@ -328,7 +328,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		db.applications.update({_id:app.id},{$unset:{edited:'', editTime: ''}} , function(err,rows){
-			console.log(rows);
+
 			res.send(true);
 		});
 
@@ -454,7 +454,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/getJob', function(req,res) {
 
 		var id= req.body;
-		console.log(id);
 		db.jobs.findOne({_id: id.id}).populate('employerID').exec(function(err,rows){
 			res.send(rows);
 		});
@@ -481,7 +480,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		fs.readFile(file.path, function (err, data) {
 
 			var temp = file.path;
-			console.log(temp);
 			temp = temp.replace("tmp\\", '\\uploads\\');
 			temp = temp +".png";
 			var newPath = __dirname + temp;
@@ -608,13 +606,44 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/updateApplication', function(req,res){
 
 		var app = req.body;
-		console.log(app);
 		var id = app._id;
 		delete  app._id;
 
-		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
-			res.send(true);
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+
+				if (usr.emailDisable == undefined || !usr.emailDisable) {
+					var args = {};
+					args.name = usr.name.name;
+					args.date = job.post.startingDate;
+					args.role = job.post.role;
+					args.email = usr.contact.email;
+					args.subject = "Provisionally Accepted as a(n) " + args.role;
+					args.link = 'http://' + req.headers.host + '/job?id=' + app.jobID;
+
+					if(emp.employerType == 'Company'){
+						args.employer = emp.company.name;
+					}else
+						args.employer = emp.contact.name + " "+ emp.contact.surname;
+
+					if(ap.interviewRequired){
+						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
+							console.log(rr);
+							res.send(true);
+						});
+					}
+					else {
+						mailer.sendMail('offerMade',usr._id,args,function(err,rr){
+							console.log(rr);
+							res.send(true);
+						});
+					}
+				}else res.send(true);
+
+
 		} );
 
 	});
@@ -623,7 +652,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/rateStudent', function(req,res){
 
 		var app = req.body;
-		console.log(app);
+
 		var id = app._id;
 		delete  app._id;
 		var user = app.id;
@@ -644,7 +673,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				}
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
-				console.log(tempRating);
+
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
 					res.send(true);
 				});
@@ -660,7 +689,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/rateEmployer', function(req,res){
 
 		var app = req.body;
-		console.log("Here: "+app);
+
 		var id = app._id;
 		delete  app._id;
 		var user = app.id;
@@ -681,7 +710,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				}
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
-				console.log(tempRating);
+
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
 					res.send(true);
 				});
@@ -748,7 +777,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				res.send(ret);
 				if (err)
 					return console.log(err);
-				console.log(result);
+
 			});
 
 

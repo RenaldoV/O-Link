@@ -593,3 +593,7 @@ line-height: normal;
     font-size: 15px;
     float:left;
 }
+
+.btn{
+    color: white;
+}

@@ -106,11 +106,11 @@ module.exports ={
                 break;
             }
             case 'offerMade':{
-
+                send(template,args,cb);
                 break;
             }
             case 'offerMadeInterview':{
-
+                send(template,args,cb);
                 break;
             }
             case 'applicationDenied':{

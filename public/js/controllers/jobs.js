@@ -171,7 +171,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if(!$scope.job.status){
             $scope.job.employerID = user._id;
             $scope.job.status = 'active';
-
             $http({
                 method  : 'POST',
                 url     : '/jobPoster',

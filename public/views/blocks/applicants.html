@@ -16,22 +16,22 @@
                     <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
                     <td>{{getAge(app.studentID.dob);}}</td>
                     <td>{{app.studentID.gender}}</td>
-                    <td><div  class="estatusDiv"> <select ng-if="!app.offered" id="status" ng-disabled="app.offered" ng-change='changeStatus(app,"{{app.status}}")' ng-model=app.status>
-                        <option class="statusOption" value="Declined">Declined</option>
-                        <option class="statusOption" value="Pending" disabled>Pending</option>
-                        <option class="statusOption" value="Provisionally accepted">Provisionally accepted</option>
-                    </select>
-                        <span ng-if="app.offered == 'accepted'">Confirmed</span >
-                        <span ng-if="app.offered == 'declined'">Declined</span >
-                        <span ng-if="app.offered == 'offered'">Offered</span >
+                    <td><div  class="estatusDiv">
+                        {{app.status}}
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                         <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                         <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
                     </div>
                     </td>
+
                     <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn blueBack">Contact</button>
                         <button ng-if="!app.offered"class="btn blueBack" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
                         <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
+                    </td>
+                    <td ng-if="app.status == 'Pending'">
+                        <button ng-if="!app.offered" class="btn greenBack" ng-click="makeOffer(app, job.post.role)">Make Offer</button>
+                        <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
+                        <button ng-if="!app.offered" class="btn btn-danger" ng-click="decline(app)">Decline</button>
                     </td>
                 </tr>
                 </tbody>
