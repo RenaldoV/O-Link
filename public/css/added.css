@@ -597,8 +597,9 @@ line-height: normal;
 .btn{
     color: white;
 }
-.applicantsHead{
+.applicantsHead {
     width: calc(100% - 250px);
     height: 40px;
     margin: 10px;
     background-color: #70a4e0;
+}
