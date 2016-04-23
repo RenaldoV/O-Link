@@ -4905,3 +4905,10 @@ div.signupBox {
   background-color: #d3d3d3;
   border-radius: 5px;
 }
+textarea {
+  resize: none;
+}
+
+#textarea_feedback{
+  color: #d3d3d3;
+}

@@ -1,5 +1,27 @@
 ////Renaldo se user form scripts, uit sodat dit makliker is om te edit(gebruik vir edit profile ook)
 
+$("#aboutMe").on("focusout", function () {
+    if($("#aboutMe").val().length < 100 || ("#aboutMe").val().length < 500)
+        this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
+    else
+        this.setCustomValidity("");
+});
+$("#aboutMe").on("change", function () {
+    this.setCustomValidity("");
+});
+
+$(document).ready(function() {
+    var text_max = 500;
+    $('#textarea_feedback').html(text_max + ' remaining');
+
+    $('#aboutMe').keyup(function() {
+        var text_length = $('#aboutMe').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' remaining');
+    });
+});
+
 $(".talentSelected").on("click",function(){
    $(".signupBox").css("border-color", "#33B6CC");
 });
