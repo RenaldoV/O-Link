@@ -119,6 +119,8 @@ module.exports ={
             }
             case 'applicationWithdrawn':{
 
+                args.subject = "Withdrawn Application";
+                send(template,args,cb);
                 break;
             }
             case 'rateTalent':{

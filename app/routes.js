@@ -988,8 +988,29 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		var app = req.body;
 
-		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}}, function(err, doc){
-			res.send(doc);
+		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
+			if (err) throw err;
+
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+			if(emp.emailDisable == undefined || !emp.emailDisable) {
+				var args = {
+					name: emp.contact.name,
+					talent: usr.name.name + " " + usr.name.surname,
+					email: emp.contact.email,
+					link: 'http://' + req.headers.host + '/applicants'
+				};
+
+				mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
+					console.log(rss);
+					res.send(false);
+				});
+			}else{
+
+				res.send(true);
+			}
+
 		});
 
 	});

@@ -14,10 +14,10 @@
 
 
         </div></td>
-        <td ng-if="app.offered == 'offered'"><button class="btn greenBack" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></td>
-        <td ng-if="app.offered == 'offered'"><button class="btn btn-danger" ng-click="decline(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Decline</button></td>
-        <td ng-if="app.offered == 'accepted'"><button class="btn greenBack" disabled>Accepted</button>
-        <td ng-if="app.edited"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button>
+        <td ng-if="app.status != 'Pending' && app.offered == 'offered' && !app.edited"><button class="btn greenBack" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></td>
+        <td ng-if="app.offered == 'accepted' && !app.edited"><button class="btn blueBack" ng-click="contect()">Contact</button>
+        <td ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button>
+        <td ng-if="(app.status != 'Pending' && app.offered == 'offered') || (app.edited && app.status != 'Declined')"><button class="btn btn-danger" ng-click="decline(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Withdraw</button></td>
         </td>
     </tr>
     </tbody>

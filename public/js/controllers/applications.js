@@ -84,7 +84,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $scope.decline = function(id, employerID, jobID, role){
                     swal({
                             title: "Are you sure?",
-                            text: "This will notify the user and that you hve declined",
+                            text: "This will notify the user and that you have withdrawn",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
                             confirmButtonText: "Yes, I'm sure!",
@@ -97,10 +97,10 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                     .post('/declineOffer', {_id: id})
                                     .then(function (res, err) {
                                         notify.go({
-                                            type: 'declined',
+                                            type: 'withdrawn',
                                             jobID: jobID,
                                             userID: employerID,
-                                            status: 'declined',
+                                            status: 'withdrawn',
                                             title: role
                                         });
                                         swal("Offer declined.", "The user has been notified.", "success");
