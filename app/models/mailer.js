@@ -114,7 +114,7 @@ module.exports ={
                 break;
             }
             case 'applicationDenied':{
-
+                send(template,args,cb);
                 break;
             }
             case 'applicationWithdrawn':{

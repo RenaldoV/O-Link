@@ -594,7 +594,10 @@ line-height: normal;
     float:left;
 }
 
-.btn{
+.btn.blueBack{
+    color: white;
+}
+.btn.greenBack{
     color: white;
 }
 .applicantsHead {

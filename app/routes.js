@@ -621,15 +621,17 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					args.date = job.post.startingDate;
 					args.role = job.post.role;
 					args.email = usr.contact.email;
-					args.subject = "Provisionally Accepted as a(n) " + args.role;
-					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
-
 					if(emp.employerType == 'Company'){
 						args.employer = emp.company.name;
 					}else
 						args.employer = emp.contact.name + " "+ emp.contact.surname;
 
-					if(ap.interviewRequired){
+
+					if(app.status == "Provisionally accepted"){
+					args.subject = "Provisionally Accepted as a(n) " + args.role;
+					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
+
+						if(ap.interviewRequired){
 						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
 							console.log(rr);
 							res.send(true);
@@ -637,6 +639,15 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					}
 					else {
 						mailer.sendMail('offerMade',usr._id,args,function(err,rr){
+							console.log(rr);
+							res.send(true);
+						});
+					}
+					}
+					else if(app.status == "Declined"){
+						args.subject = "Declined for a job as a(n) " + args.role;
+						args.link = 'http://' + req.headers.host + '/browseJobs?categories=Coach%25Tutor%25Delivery_Person%25Retail_Worker%25Model%25Waiter(res)%25Host(ess)%25Barman%25Aupair%25Photographer_%2F_Videographer%25Programmer%2FDeveloper%25Engineer%25Assistant%25Cook%2FChef%25Internship%25Other&timePeriods=Once_Off%25Short_Term%25Long_Term';
+						mailer.sendMail('applicationDenied',usr._id,args,function(err,rr){
 							console.log(rr);
 							res.send(true);
 						});
@@ -762,7 +773,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').populate('studentID').exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
 					job.applications = docs;
 
 

@@ -24,14 +24,10 @@
                     </div>
                     </td>
 
-                    <td ng-if="isConfirmed(app.status) || isProv(app.status)"><button class="btn blueBack">Contact</button>
-                        <button ng-if="!app.offered"class="btn blueBack" ng-click="offer(app._id, app.studentID._id, app.jobID._id, app.jobID.post.role)">Make Offer</button>
-                        <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
-                    </td>
-                    <td ng-if="app.status == 'Pending'">
-                        <button ng-if="!app.offered" class="btn greenBack" ng-click="makeOffer(app, job.post.role)">Make Offer</button>
-                        <button ng-if="app.offered == 'offered'" class="btn greenBack" disabled>{{app.offered}}</button>
-                        <button ng-if="!app.offered" class="btn btn-danger" ng-click="decline(app)">Decline</button>
+                    <td>
+                        <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.role)" class="btn greenBack">Make Offer</button>
+                        <button ng-if="app.status == 'Provisionally accepted' || app.status == 'Confirmed'" class="btn blueBack" >Contact</button>
+                        <button ng-if="app.status != 'Confirmed'" class="btn btn-danger" ng-click="decline(app)">Decline</button>
                     </td>
                 </tr>
                 </tbody>
