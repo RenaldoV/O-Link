@@ -134,11 +134,11 @@ module.exports ={
                 break;
             }
             case 'ratedTalent':{
-
+                send(template,args,cb);
                 break;
             }
             case 'ratedEmployer':{
-
+                send(template,args,cb);
                 break;
             }
             case 'offerAccepted':{

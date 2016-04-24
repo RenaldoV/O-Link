@@ -671,9 +671,17 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var user = app.id;
 		delete app.id;
 		var newRating = app.studentRating;
-		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+			var date;
+			if(job.endDate){
+				date = job.endDate;
+			}
+			else date = job.startingDate;
 			db.users.findOne({_id:user}, function(err,us){
 
 				var numRatings = 0;
@@ -688,6 +696,26 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
 
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
+
+
+					if(usr.emailDisable == undefined || !usr.emailDisable){
+
+						var args = {
+							link:'http://' + req.headers.host + '/ratings',
+								name: usr.name.name,
+								employerName: emp.contact.name,
+								category : job.post.category,
+								date: date,
+								email: usr.contact.email,
+								subject: "You have Received a Rating from " + emp.contact.name
+						};
+
+					mailer.sendMail('ratedTalent', rr._id,args,function(err, r){
+
+						console.log(r);
+						res.send(true);
+					});
+					}else
 					res.send(true);
 				});
 
@@ -708,8 +736,17 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var user = app.id;
 		delete app.id;
 		var newRating = app.employerRating;
-		db.applications.findOneAndUpdate({_id : id},{$set: app}, function(err, app){
+		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
+
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+			var date;
+			if(job.endDate){
+				date = job.endDate;
+			}
+			else date = job.startingDate;
 
 			db.users.findOne({_id:user}, function(err,us){
 
@@ -725,7 +762,27 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				var tempRating = roundHalf(((rating * numRatings) + newRating)/++numRatings);
 
 				db.users.findOneAndUpdate({_id:us._id}, {$set:{rating:tempRating, numRatings:numRatings}}, function(err, rr){
-					res.send(true);
+
+					if(emp.emailDisable == undefined || !emp.emailDisable){
+
+						var args = {
+							link:'http://' + req.headers.host + '/ratings',
+							name: emp.contact.name,
+							talentName: usr.name.name + ' ' + usr.name.surname,
+							category : job.post.category,
+							date: date,
+							email: emp.contact.email,
+							subject: "You have Received a Rating from " + usr.name.name
+						};
+
+						mailer.sendMail('ratedEmployer', rr._id,args,function(err, r){
+
+							console.log(r);
+							res.send(true);
+						});
+					}else
+						res.send(true);
+
 				});
 
 			});
