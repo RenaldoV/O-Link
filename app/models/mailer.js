@@ -124,11 +124,13 @@ module.exports ={
                 break;
             }
             case 'rateTalent':{
-
+                args.subject = "Please Rate your Employee";
+                send(template,args,cb);
                 break;
             }
             case 'rateEmployer':{
-
+                args.subject = "Please Rate your Employer";
+                send(template,args,cb);
                 break;
             }
             case 'ratedTalent':{
@@ -140,15 +142,18 @@ module.exports ={
                 break;
             }
             case 'offerAccepted':{
-
+                args.subject = args.talentName +" has Accepted your Offer";
+                send(template,args,cb);
                 break;
             }
             case 'interviewAccepted':
             {
 
+                args.subject = args.talentName +" has Accepted your Offer";
+                send(template,args,cb);
                 break;
             }
-            case 'welcomeTalent':{
+            case 'paymentReceived':{
 
                 break;
             }

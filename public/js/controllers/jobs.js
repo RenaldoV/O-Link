@@ -16,6 +16,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.categories = constants.categories;
     $scope.reqNames = constants.requirements;
     $scope.expNames = constants.categories;
+
+
     //add end date if short term/long term
     $("#times").hide();
     $("#endDateDiv").hide();
@@ -167,7 +169,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     }
 
     $scope.submitForm = function(){
-
+console.log($scope.job);
         if(!$scope.job.status){
             $scope.job.employerID = user._id;
             $scope.job.status = 'active';

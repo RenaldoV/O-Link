@@ -611,6 +611,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
+			var interview = ap.post.interviewRequired;
 			var usr = ap.studentID.toObject();
 			var emp = ap.employerID.toObject();
 			var job = ap.jobID.toObject();
@@ -631,7 +632,8 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					args.subject = "Provisionally Accepted as a(n) " + args.role;
 					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
 
-						if(ap.interviewRequired){
+						if(job.post.interviewRequired){
+							console.log("interwev");
 						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
 							console.log(rr);
 							res.send(true);
@@ -974,9 +976,42 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		var app = req.body;
+console.log(app);
+		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
+			if (err) throw err;
 
-		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}, function(err, doc){
-			res.send(doc);
+			var usr = ap.studentID.toObject();
+			var emp = ap.employerID.toObject();
+			var job = ap.jobID.toObject();
+			if(emp.emailDisable == undefined || !emp.emailDisable) {
+				var args = {
+					name: emp.contact.name,
+					talent: usr.name.name + " " + usr.name.surname,
+					talentName: usr.name.name,
+					talentEmail: usr.contact.email,
+					email: emp.contact.email,
+					category: job.post.category,
+					date: job.post.startingDate,
+					link: 'http://' + req.headers.host + '/applicants'
+				};
+console.log(job.post);
+				if(job.post.interviewRequired){
+					console.log("inteview");
+					mailer.sendMail('interviewAccepted', emp._id, args, function (er, rss) {
+						console.log(rss);
+						res.send(true);
+					});
+				}
+				else{
+					mailer.sendMail('offerAccepted', emp._id, args, function (er, rss) {
+						console.log(rss);
+						res.send(true);
+					});
+				}
+
+			}else{
+			res.send(true);
+			}
 		});
 
 	});
@@ -1004,7 +1039,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
 					console.log(rss);
-					res.send(false);
+					res.send(true);
 				});
 			}else{
 
