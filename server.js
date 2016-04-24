@@ -74,7 +74,7 @@ new CronJob('00 00 * * * *', function() {
 }, null, true);
 
 //function executes once a day
-new CronJob('50 * * * * *', function() {
+new CronJob('00 00 00 00 00 00', function() {
     //check for edited posts that weren't accepted
     db.jobs.find({status:{$ne: 'Completed'}},function(err,rows){
         rows.forEach(function(ro){
