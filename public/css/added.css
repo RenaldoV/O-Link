@@ -354,6 +354,12 @@ line-height: normal;
     margin: 10px;
     color: white;
 }
+
+.postButton:hover{
+    color: white;
+    background-color: #33B6CC;
+}
+
 .employerButton{
     background-color: #33B6CC;
     padding: 18px 28px;
@@ -367,6 +373,12 @@ line-height: normal;
     color: white;
 }
 
+.employerButton:hover{
+    color: white;
+    background-color: #00b488;
+}
+
+
 .browseButton{
     background-color: #33B6CC;
     padding: 18px 28px;
@@ -378,6 +390,12 @@ line-height: normal;
     margin: 10px;
     color: white;
 }
+
+.browseButton:hover{
+    color: white;
+    background-color: #00b488;
+}
+
 
 .greenText{
    color:#00b488;
@@ -597,8 +615,16 @@ line-height: normal;
 .btn.blueBack{
     color: white;
 }
+.btn.blueBack:hover{
+    color: white;
+    background-color: #00b488;
+}
 .btn.greenBack{
     color: white;
+}
+.btn.greenBack:hover{
+    color: white;
+    background-color: #33B6CC;
 }
 .applicantsHead {
     width: calc(100% - 250px);
