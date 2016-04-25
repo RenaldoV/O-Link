@@ -4762,8 +4762,28 @@ a.text-#000000:hover {
 	border: none;
 	transition: background .4s ease-in
 }
+.sign-in-btn.disabled{
+	background-color: #33B6CC;
+	border: none;
+	transition: background .4s ease-in
+}
+.sign-in-btn.disabled:hover{
+	background-color: #00b488;
+	border: none;
+	transition: background .4s ease-in
+}
 
 .post-job-btn{
+  background-color: #33B6CC;
+  border: none;
+  transition: background .4s ease-in
+}
+.post-job-btn.disabled{
+  background-color: #33B6CC;
+  border: none;
+  transition: background .4s ease-in
+}
+.post-job-btn.disabled:hover{
   background-color: #33B6CC;
   border: none;
   transition: background .4s ease-in
@@ -4780,7 +4800,12 @@ a.text-#000000:hover {
 }
 
 .goto-signup-btn{
-	border: none;
+	border: solid 1px #00b488;
+	transition: background .4s ease-in
+}
+.goto-signup-btn:hover{
+  background-color: #00b488;
+	border: solid 1px #00b488;
 	transition: background .4s ease-in
 }
 
