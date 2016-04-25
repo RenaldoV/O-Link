@@ -65,7 +65,7 @@ module.exports ={
 
                 db.users.findOne({_id:userID}, function(err,row){
                     var res = row.toObject();
-                   var args = {};
+                   var args = arg;
                     if(!err){
                         args.email = res.contact.email;
                         args.subject = 'O-Link Password Reset Requested';

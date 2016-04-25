@@ -150,6 +150,7 @@ module.exports = function(app) {
 			},
  			function(token, user, done) {
 				var tempUser = user.toJSON();
+
 				var args = {link:'http://' + req.headers.host + '/reset/' + token};
 
 
