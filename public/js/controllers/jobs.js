@@ -4,7 +4,15 @@
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify){
 
-
+    var options = {
+        componentRestrictions: {country: 'za'}
+    };
+    var input = document.getElementById('searchTextField');
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var data = $("#searchTextField").val();
+        $scope.job.post.location = data;
+    });
 
     if(!authService.isAuthenticated())
         $window.location.href= '/';

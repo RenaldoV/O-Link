@@ -4805,8 +4805,10 @@ a.text-#000000:hover {
 }
 .goto-signup-btn:hover{
   background-color: #00b488;
+  color: white;
 	border: solid 1px #00b488;
 	transition: background .4s ease-in
+
 }
 
 .navbar.transparent.navbar-default {

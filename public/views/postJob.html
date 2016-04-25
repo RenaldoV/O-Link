@@ -15,10 +15,11 @@
                 <input type="text" class="form-control no-border" placeholder="Job Role" ng-model="job.post.role" required>
             </div>
             <div class="list-group-item">
-                <textarea rows=7 class="form-control no-border" placeholder="Description (100 - 500 characters)" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
+                <textarea id="jobDescr" rows=4 class="form-control no-border" placeholder="Description (100 - 500 characters)" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
+                <div id="textarea_feedback"></div>
             </div>
             <div class="list-group-item">
-                <input type="text" class="form-control no-border" placeholder="Location" ng-model="job.post.location" required>
+                <input type="text" id="searchTextField" class="form-control no-border" placeholder="Location" ng-model="job.post.location" required>
             </div>
             <div class="list-group-item">
                 <select class="form-control no-border" ng-model="job.post.category" required>
@@ -229,7 +230,26 @@
             $("#startDate").datepicker("option","maxDate", selected)
         }*/
     });
+    $(function () {
+        var text_max = 500;
+        $('#textarea_feedback').html(text_max + ' remaining');
 
+        $('#jobDescr').keyup(function() {
+            var text_length = $('#jobDescr').val().length;
+            var text_remaining = text_max - text_length;
+
+            $('#textarea_feedback').html(text_remaining + ' remaining');
+        });
+    });
+    $("#jobDescr").on("focusout", function () {
+        if($("#jobDescr").val().length < 100 || ("#jobDescr").val().length < 500)
+            this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
+        else
+            this.setCustomValidity("");
+    });
+    $("#jobDescr").on("change", function () {
+        this.setCustomValidity("");
+    });
 
 
 </script>

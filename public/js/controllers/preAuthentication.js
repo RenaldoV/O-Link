@@ -47,9 +47,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
 app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants){
 
-    var options = {
-        componentRestrictions: {country: 'za'}
-    };
+
 
 
 
@@ -92,7 +90,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.user.company = {};
     $scope.user.institution = {};
 
-
+    var options = {
+        componentRestrictions: {country: 'za'}
+    };
     var input = document.getElementById('searchTextField');
     var autocomplete = new google.maps.places.Autocomplete(input,options);
     google.maps.event.addListener(autocomplete, 'place_changed', function() {

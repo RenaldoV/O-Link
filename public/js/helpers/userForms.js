@@ -177,25 +177,39 @@ $(".reveal1").mousedown(function() {
 //Student form validation
 $(function () {
     $("input[name=stuEmail]").on("focusout", function () {
+        var passed = false;
         this.setCustomValidity("Please enter a valid SA tertiary institute email address.");
         var len = $(this).val().length;
         if(len > 11)
         {
-            if($(this).val().substr(len-11,11) == "@tuks.co.za")
+            if($(this).val().substr(len-11,11) == "@tuks.co.za") {
                 this.setCustomValidity("");
+                passed = true;
+            }
         }
         if(len > 4)
         {
-
-            if($(this).val().substr(len-4,4) == ".edu")
+            if($(this).val().substr(len-4,4) == ".edu") {
                 this.setCustomValidity("");
+                passed = true;
+            }
         }
         if(len > 6)
         {
-
             if($(this).val().substr(len-6,6) == ".ac.za")
+            {
                 this.setCustomValidity("");
+                passed = true;
+            }
         }
+        if(!passed){
+            $("input[name=stuEmail]").prop('title',"If you are unable to register with your email address but you are at "+
+            "an academic institution, please email info@o-link.co.za from your "+
+            "academic email address and we will be sure to add it to our system "+
+            "and allow you to register.");
+            $("input[name=stuEmail]").tooltip();
+        }
+
 
     });
 
