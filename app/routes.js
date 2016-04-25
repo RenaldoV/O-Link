@@ -135,7 +135,7 @@ module.exports = function(app) {
 
 					db.users.update({"_id" : tempUser._id},tempUser,
 					function(err,res){
-						new CronJob(tempUser.resetPasswordExpires, function() {
+						new CronJob(new Date(Date.now() + 1800000), function() {
 							db.users.findOneAndUpdate({"_id" : tempUser._id},{$unset:{resetPasswordToken: 1}},
 									function(err,res) {
 
@@ -281,7 +281,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	args.category = job.post.category;
 	if(d){
 		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
-			new CronJob(Date.now() + 86400000, function() {
+			new CronJob(new Date(Date.now() + 86400000), function() {
 				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},
 						function(err,res) {
 
