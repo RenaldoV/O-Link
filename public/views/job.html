@@ -10,8 +10,14 @@
         {{job.post.description}}<br>
         <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
         <hr>
-        Location:
-        {{job.post.location}}<hr>
+        Location:<br/><iframe id="location"
+            width="300"
+            height="300"
+            frameborder="0" style="border:0"
+             allowfullscreen>
+        </iframe>
+
+        <hr>
 
         <ul class="list-group no-borders pull-in">
         Requirements:

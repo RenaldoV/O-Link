@@ -376,7 +376,6 @@ function getPp(user,cb){
 }
 app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
     var temp = $location.url();
-
     var user = session.user;
     temp = temp.replace("/job?id=", '');
     id = {id: temp};
@@ -396,6 +395,8 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             cacheUser.create(res.data.employerID);
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
+            var loc = $scope.job.post.location.split(' ').join('+');
+            $("#location").prop('src',"https://www.google.com/maps/embed/v1/place?key=AIzaSyDXnlJCOOsZVSdd-iUvTejH13UcZ0-jN0o&q="+loc+"&zoom=13");
             job = res.data;
             if($.inArray(user._id, job.applicants) != -1)
             {
