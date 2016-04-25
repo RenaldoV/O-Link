@@ -1,3 +1,6 @@
-//1. Log in First error message everytime redirecting to sign in form
-//2. Reset password funtionality not working
-//3. Clicking reset password link redirects to signin page and gives please log in first error
+1. interviewRequired bug. routes.js line 631
+    server crashes somewhere when making an offer to a student
+2. Reset Password Page is fucked (Ronnie)
+3. Signup (not all boxes light up when focused on and incorrect fields must receive asterisk)
+4. Welcome message not supposed to be on Job page
+5. Spelling on confirm message when accepting a job offer after you have been provisionally accepted. (After a Counter Accepted a provisionally accepted status he/she should not be able to accept again (button must be inactive))
