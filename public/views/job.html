@@ -23,7 +23,7 @@
         Requirements:
             </ul>
         <br>
-        <ul ng-if="job.post.requirements.length > 0 " class="list-group no-borders pull-in">
+        <ul ng-if="job.post.requirements.length > 0 " class="jobpg list-group no-borders pull-in">
             Matric Results
             <li   ng-repeat="res in job.post.requirements">
                 <div class="clear">
@@ -33,7 +33,7 @@
 
         </ul>
         <br>
-        <ul ng-if="job.post.experience.length > 0 " class="list-group no-bg no-borders pull-in">
+        <ul ng-if="job.post.experience.length > 0 " class="jobpg list-group no-bg no-borders pull-in">
             Experience
             <li   ng-repeat="res in job.post.experience">
                 <div class="clear">
@@ -42,28 +42,28 @@
             </li>
 
         </ul>
-        <ul class="list-group no-bg no-borders pull-in">
+        <ul class="jobpg list-group no-bg no-borders pull-in">
                 <div>Gender: {{job.post.gender}}</div>
             <div ng-if="job.post.transport">Own Transport</div>
             <div ng-if="job.post.driversLicense">Driver's License</div>
         </ul>
 
         <hr>
-        <ul class="list-group no-bg no-borders pull-in">
+        <ul class="jobpg list-group no-bg no-borders pull-in">
 
                 Pay:  R{{job.post.pay}}
                 <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
                 <span ng-if="!job.post.timePeriod == 'Once Off'">/hour</span>
 
         </ul>
-        <ul class="list-group no-bg no-borders pull-in">
+        <ul class="jobpg list-group no-bg no-borders pull-in">
 
             <span ng-if="job.post.timePeriod == 'Once Off'">Date:  {{job.post.startingDate}}</span>
             <span ng-if="job.post.endDate">Starting Date:  {{job.post.startingDate}}  End Date: {{job.post.startingDate}}</span><br>
             <span ng-if="job.post.hours"> {{job.post.hours.begin + " - " +job.post.hours.end}}</span>
 
         </ul>
-        <ul class="list-group no-bg no-borders pull-in">
+        <ul class="jobpg list-group no-bg no-borders pull-in">
 
             <span>Positions available:  <b>{{job.post.spotsAvailable}}</b></span><br>
             <span>Max applicants:  <b>{{job.post.spotsAvailable *job.post.threshold}}</b></span>
