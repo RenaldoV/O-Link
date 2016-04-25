@@ -9,6 +9,8 @@ var multipartyMiddleware = multiparty({ uploadDir: './tmp' });
 var fs = require('fs');
 var passwordHash = require('password-hash');
 var mailer = require("./models/mailer.js");
+var CronJob = require('cron').CronJob;
+
 function getDate(){
 	var currentdate = new Date();
 	var datetime = currentdate.getFullYear() + "-"
@@ -129,10 +131,17 @@ module.exports = function(app) {
 					
 					var tempUser = User.toJSON();
 					tempUser.resetPasswordToken = token;
-					tempUser.resetPasswordExpires = Date.now() + 3600000; // 1 hour	
- 
+					tempUser.resetPasswordExpires = Date.now() + 1800000; // 0.5 hour
+
 					db.users.update({"_id" : tempUser._id},tempUser,
 					function(err,res){
+						new CronJob(tempUser.resetPasswordExpires, function() {
+							db.users.findOneAndUpdate({"_id" : tempUser._id},{$unset:{resetPasswordToken: 1}},
+									function(err,res) {
+
+										//expiry reset
+									});
+						});
 						done(err,token,User);
 					});
 					
@@ -272,6 +281,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	args.category = job.post.category;
 	if(d){
 		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
+			new CronJob(Date.now() + 86400000, function() {
+				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},
+						function(err,res) {
+
+							//expiry reset
+						});
+			});
 			db.applications.find({jobID:job._id} , function(err,rows){
 			db.users.findOne({_id:job.employerID}).exec(function(err,user) {
 
@@ -327,7 +343,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 
-		db.applications.update({_id:app.id},{$unset:{edited:'', editTime: ''}} , function(err,rows){
+		db.applications.update({_id:app.id},{$unset:{edited:1, editTime: 1}} , function(err,rows){
 
 			res.send(true);
 		});
