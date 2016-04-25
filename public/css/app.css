@@ -4952,3 +4952,18 @@ textarea {
   outline: none;
 }
 
+select.form-control {
+  background-image: url("../img/down_arrow.png");
+  background-size: 14px 14px;
+  padding-right: 25px;
+  background-repeat: no-repeat;
+  background-position: right center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select.form-control::-ms-expand {
+  display: none;
+}
+
