@@ -9,17 +9,20 @@ app.controller('logoClick', function($scope,$window){
 app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http){
 
 $scope.browse = false;
-    // Set header message of signup $ login pages
-    $timeout(function(){
 
-        if($location.path() == "/signUp" || $location.path() == "/") {
+// Set header message of signup $ login pages
+
+
+        if($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
             $scope.welcoming = false;
             $scope.slogan = true;
             $scope.slog = true;
             $scope.slog1 = "Today's Talent.";
             $scope.slog2 = "Tomorrow's Success."
         }
-    });
+
+
+
 
     //for guests
     if($location.path() == "/guest")
@@ -154,7 +157,8 @@ function headings(){
         }
         else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" ) {
             //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
-            $location.url("/signIn")
+            $location.url("/signIn");
+
         }
 
     $scope.$on('auth-login-success',function(){
