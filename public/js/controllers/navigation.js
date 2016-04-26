@@ -84,6 +84,7 @@ function headings(){
         $scope.studentProfile = false;
         $scope.individualProfile = false;
         $scope.companyProfile = false;
+        $scope.welcoming = false;
         $timeout(function () {
             $scope.cache = cacheUser.user;
             if (cacheUser.user.type == 'student') {

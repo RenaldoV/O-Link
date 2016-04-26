@@ -428,6 +428,70 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         });
 
+    $scope.decline = function(id, employerID, jobID, role){
+        swal({
+                title: "Are you sure?",
+                text: "This will notify the user and that you have withdrawn",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/declineOffer', {_id: id})
+                        .then(function (res, err) {
+                            notify.go({
+                                type: 'withdrawn',
+                                jobID: jobID,
+                                userID: employerID,
+                                status: 'withdrawn',
+                                title: role
+                            });
+                            swal("Offer declined.", "The user has been notified.", "success");
+
+
+                        });
+                }
+            });
+        location.reload();
+
+    };
+
+    $scope.accept = function(id, employerID, jobID, role){
+        swal({
+                title: "Are you sure?",
+                text: "This will notify the user and that you hve accepted",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/acceptOffer', {_id: id})
+                        .then(function (res, err) {
+                            notify.go({
+                                type: 'accepted',
+                                jobID: jobID,
+                                userID: employerID,
+                                status: 'accepted',
+                                title: role
+                            });
+                            swal("Offer accepted.", "The user has been notified.", "success");
+
+
+                        });
+                }
+                location.reload();
+            });
+
+    };
+
     $scope.delete = function(){
 
         swal({
@@ -582,3 +646,44 @@ app.controller('pastJobFeed', function($scope,$http, session,$window){
             }
         });
 });
+
+
+function changeStatus(app,oldstat,$http, notify, userID, role) {
+    var check = false;
+    console.log(app);
+    swal({
+            title: "Are you sure?",
+            text: "This will change the status of this application from " + oldstat + " to " + app.status,
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, I'm sure!",
+            closeOnConfirm: false
+        },
+        function (isConfirm) {
+
+            if (isConfirm) {
+                $http
+                    .post('/updateApplication', {_id: app._id, status: app.status, jobID:app.jobID._id})
+                    .then(function (err,res) {
+
+                        console.log(res);
+
+
+                        notify.go({
+                            type: 'status change',
+                            jobID: app.jobID._id,
+                            userID: userID,
+                            status: app.status,
+                            title: role
+                        });
+                        swal("Status updated.", "The user has been notified.", "success");
+                        location.reload();
+
+
+                    });
+
+            }
+
+        }
+    );
+}

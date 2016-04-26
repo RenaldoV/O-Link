@@ -1105,7 +1105,7 @@ console.log(job.post);
 
 		var app = req.body;
 
-		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
+		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}, $unset:{edited:1, editTime:1}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
 			var usr = ap.studentID.toObject();

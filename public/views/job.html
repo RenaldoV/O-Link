@@ -7,7 +7,9 @@
 
         <h2>{{job.post.role}}</h2>
         <hr>
-        {{job.post.description}}<br>
+        <div class="wordwrap"> {{job.post.description}}
+        </div>
+        <br>
         <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
         <hr>
         Location:<br/><iframe id="location"
@@ -78,13 +80,25 @@
 
 
     <div class="center">
-        <button ng-if="application.edited" class="btn greenBack btn-xlarge" ng-click="accept()">Accept</button>
-        <button ng-if="application.edited" class="btn btn-danger btn-xlarge" ng-click="withdraw()">Withdraw</button>
+        <button ng-if="application.edited" class="btn greenBack btn-xlarge" ng-click="acceptChanges(application._id)">Accept Changes</button>
+        <button ng-if="application.edited" class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job.post.role)">Withdraw</button>
+
+
         <span ng-if="!application.edited">
-             <button ng-if="application.status == 'Provisionally accepted'" class="btn greenBack btn-xlarge" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button>
-             <a ng-if="application.offered == 'accepted'" class="btn blueBack btn-xlarge" href="">Contact</a>
+            <span ng-if="application.status == 'Provisionally accepted'" >
+
+                <button class="btn greenBack btn-xlarge" ng-click="accept(application._id, application.employerID, application.jobID, job.post.role )">Accept Offer</button>
+
+                <button class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job.post.role)">Decline</button>
+            </span>
+
+            <a ng-if="application.offered == 'accepted'" class="btn blueBack btn-xlarge" href="mailto:{{job.employerID.contact.email}}?Subject=O-Link:{{job.post.role}}" target="_blank">Contact</a>
+
         <button ng-if="canApply" class="btn blueBack btn-xlarge" ng-click="apply()">Apply</button>
-        <button ng-if="hasApplied && application.offered != 'accepted' && application.status != 'Provisionally accepted'" class="btn greenBack btn-xlarge" disabled>Applied</button>
+        <button ng-if="hasApplied && application.offered != 'accepted' && application.status != 'Provisionally accepted' && application.status != 'Declined'" class="btn greenBack btn-xlarge" disabled>Applied</button>
+            <button ng-if="hasApplied && application.status == 'Declined'" class="btn btn-danger btn-xlarge" disabled>Declined</button>
+
+
         <button ng-if="admin" class="btn btn-plain btn-xlarge jobButtons" ng-click="edit(job._id)">Edit</button>
         <button ng-if="admin" class="btn btn-danger btn-xlarge  jobButtons" ng-click="delete()">Delete</button>
             </span>

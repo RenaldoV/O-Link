@@ -401,7 +401,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                                 title: role
                             });
                             swal("Offer made.", "The user has been notified.", "success");
-
+                            location.reload();
 
                         });
                 }
@@ -443,7 +443,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, role) {
                             title: role
                         });
                         swal("Status updated.", "The user has been notified.", "success");
-
+                        location.reload();
 
                     });
 
