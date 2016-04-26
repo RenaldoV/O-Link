@@ -33,7 +33,7 @@
 							<input type="text" class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
 						</div>
 						<div class="list-group-item">
-							<textarea id="aboutMe" rows=4 class="form-control no-border" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" maxlength="500" minlength="100" required></textarea>
+							<textarea id="aboutMe" rows=4 class="form-control" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" maxlength="500" minlength="100" required></textarea>
 							<div id="textarea_feedback"></div>
 						</div>
 						<div class="list-group-item">
@@ -108,7 +108,7 @@
 								</select>
 							</div>
 							<div id="qualName" class="list-group-item" hidden>
-								<input  placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" >
+								<input type="text"  placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" >
 							</div>
 							<div class="list-group-item">
 								<input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
