@@ -121,7 +121,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                         .then(function (res, err) {
 
                             swal("Changes accepted.", "The employer has been notified.", "success");
-
+                            location.reload();
 
                         });
                 };
