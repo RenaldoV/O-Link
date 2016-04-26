@@ -219,13 +219,13 @@
 				<h4 class="form-section-label">Employer Contact Info</h4>
 				<div class="list-group list-group-sm">
 					<div class="list-group-item">
-						<input placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+						<input type="text"  placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
 					</div>
 					<div class="list-group-item">
-						<input placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+						<input type="text"  placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.contact.IDnumber"
+						<input type="text"  name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.contact.IDnumber"
 							   pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
@@ -293,7 +293,7 @@
 							<input id="searchTextField" type="text" class="controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location">
 						</div>
 						<div class="list-group-item">
-							<input placeholder="Position Within Company" class="form-control no-border" ng-model="user.contact.position" >
+							<input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.contact.position" >
 						</div>
 					</div>
 				</div>
