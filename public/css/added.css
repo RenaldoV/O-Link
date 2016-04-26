@@ -658,6 +658,26 @@ line-height: normal;
     background-color: white;
 }
 
+.applicantsTables{
+    background-color: #cee0f6;
+    margin-top: -10px;
+    margin-left: 10px;
+}
+
+.applicantsTables tbody tr:nth-child(odd) {
+    background-color: white;
+}
+.applicantsTables tbody tr td:last-child {
+    background-color: #f0f3f4;
+    float: right;
+    border: none;
+}
+.applicantsTables thead th:last-child {
+    background-color: #f0f3f4;
+    border: none;
+
+}
+
 .interviewReq{
     color: red;
     margin-top: 13px;
@@ -681,6 +701,8 @@ line-height: normal;
 }
 .applicantsHead {
     width: calc(100% - 250px);
+
+    min-width: 470px;
     height: 40px;
     margin: 10px;
     background-color: #70a4e0;
@@ -697,4 +719,9 @@ line-height: normal;
 .talentHistoryHead{
    padding-top: 50px;
     font-size: 20px;
+}
+
+.tableFour{
+    display: inline-block;
+    background-color: #00FF00;
 }
