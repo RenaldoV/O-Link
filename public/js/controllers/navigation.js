@@ -99,6 +99,7 @@ function headings(){
         });
     });
 
+
     $rootScope.$on('postJob', function (re,data) {
         $scope.welcoming = false;
         $scope.slogan = false;
@@ -107,7 +108,7 @@ function headings(){
         $scope.browse = false;
 
         $timeout(function () {
-            $scope.cache = data;
+            $scope.cache = session.user;
             if (session.user.type == 'student') {
                 $scope.studentProfile = true;
 
@@ -120,7 +121,6 @@ function headings(){
             }
         });
     });
-
 
 
     $http.post('/getPp', user)
@@ -170,6 +170,7 @@ function headings(){
             return "../views/blocks/employerNav.html";
         }
     }
+
 }
 
 

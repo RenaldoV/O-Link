@@ -2,9 +2,9 @@
 //////Controllers for the job related activities///////
 ///////////////////////////////////////////////////////
 
-app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify){
+app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify, $rootScope){
 
-    $rootScope.$broadcast('postJob', 1);
+
 
     var options = {
         componentRestrictions: {country: 'za'}
@@ -21,7 +21,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     if(session.user.type != 'employer')
         $window.location.href= '/';
 
-
+    $rootScope.$broadcast('postJob', 1);
     $scope.timePeriods = constants.timePeriods;
     $scope.categories = constants.categories;
     $scope.reqNames = constants.requirements;

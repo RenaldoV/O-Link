@@ -632,7 +632,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			var usr = ap.studentID.toObject();
 			var emp = ap.employerID.toObject();
 			var job = ap.jobID.toObject();
-			
+
 				if (usr.emailDisable == undefined || !usr.emailDisable) {
 					var args = {};
 					args.name = usr.name.name;
