@@ -344,16 +344,16 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 };
             });
     }
-    $scope.decline = function(app){
+    $scope.decline = function(app, role){
 
         app.status = "Declined";
-        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID);
+        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,role);
     };
     $scope.makeOffer = function(app, role){
 
         app.status = "Provisionally accepted";
 
-        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID,role);
+        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,role);
     };
     $scope.offer = function(id, studentID, jobID, role){
         swal({

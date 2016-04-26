@@ -174,6 +174,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     $scope.job = res.data;
 
 
+
                 });
         }
     }
@@ -195,7 +196,7 @@ console.log($scope.job);
                     }
                 });
         }
-        else if($scope.job.status == 'inactive'){
+        else if($scope.job.status == 'inactive' || $scope.job.status == 'Completed'){
 
             delete $scope.job._id;
             delete $scope.job.applicants;
@@ -451,15 +452,24 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 title: role
                             });
                             swal("Offer declined.", "The user has been notified.", "success");
-
+                            location.reload();
 
                         });
                 }
             });
-        location.reload();
+
 
     };
+    $scope.acceptChanges = function(id){
+        $http
+            .post('/acceptChanges', {id: id})
+            .then(function (res, err) {
 
+                swal("Changes accepted.", "The employer has been notified.", "success");
+                location.reload();
+
+            });
+    };
     $scope.accept = function(id, employerID, jobID, role){
         swal({
                 title: "Are you sure?",
@@ -483,11 +493,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 title: role
                             });
                             swal("Offer accepted.", "The user has been notified.", "success");
-
+                            location.reload();
 
                         });
                 }
-                location.reload();
+
             });
 
     };

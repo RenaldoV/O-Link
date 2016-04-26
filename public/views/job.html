@@ -80,6 +80,7 @@
 
 
     <div class="center">
+
         <button ng-if="application.edited" class="btn greenBack btn-xlarge" ng-click="acceptChanges(application._id)">Accept Changes</button>
         <button ng-if="application.edited" class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job.post.role)">Withdraw</button>
 

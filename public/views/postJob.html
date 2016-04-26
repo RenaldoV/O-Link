@@ -172,11 +172,11 @@
 
     <div id="postJobForm" class="list-group list-group-sm" >
         <button ng-if="!job.status" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
-        <button ng-if="job.status == 'inactive'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >RePost Job</button>
+        <button ng-if="job.status == 'Completed'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >RePost Job</button>
         <button ng-if="job.status == 'active'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Edit Job</button>
     </div>
 
-    <div><p>{{message}}</p></div>
+
     </form>
 </div>
 

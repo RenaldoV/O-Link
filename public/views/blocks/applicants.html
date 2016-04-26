@@ -26,9 +26,10 @@
                     </td>
 
                     <td width="250" height="42">
+
                         <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.role)" class="btn greenBack">Make Offer</button>
-                        <button ng-if="app.status == 'Confirmed'" class="btn blueBack" >Contact</button>
-                        <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app)">Decline</button>
+                        <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.role}}" target="_blank" >Contact</a>
+                        <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job.post.role)">Decline</button>
                     </td>
                 </tr>
                 </tbody>
