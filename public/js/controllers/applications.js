@@ -75,7 +75,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             title: role
                                         });
                                         swal("Offer accepted.", "The user has been notified.", "success");
-
+                                        location.reload();
 
                                     });
                             }
@@ -106,7 +106,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             title: role
                                         });
                                         swal("Offer declined.", "The user has been notified.", "success");
-
+                                        location.reload();
 
                                     });
                             }
@@ -187,7 +187,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                 title: role
                             });
                             swal("Offer made.", "The user has been notified.", "success");
-
+                            location.reload();
 
                         });
                 }
