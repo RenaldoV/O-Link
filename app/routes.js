@@ -809,6 +809,14 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	});
 	//done
 
+	app.post('/loadApplication', function(req,res){
+		var data = req.body;
+
+		db.applications.findOne({studentID: data.studentID, jobID: data.jobID}). exec(function(e,doc){
+			console.log(doc);
+			res.send(doc);
+		});
+	});
 	//loads applications by student
 	app.post('/loadApplications', function(req,res){
 

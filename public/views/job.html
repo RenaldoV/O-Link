@@ -78,10 +78,16 @@
 
 
     <div class="center">
+        <button ng-if="application.edited" class="btn greenBack btn-xlarge" ng-click="accept()">Accept</button>
+        <button ng-if="application.edited" class="btn btn-danger btn-xlarge" ng-click="withdraw()">Withdraw</button>
+        <span ng-if="!application.edited">
+             <button ng-if="application.status == 'Provisionally accepted'" class="btn greenBack btn-xlarge" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button>
+             <a ng-if="application.offered == 'accepted'" class="btn blueBack btn-xlarge" href="">Contact</a>
         <button ng-if="canApply" class="btn blueBack btn-xlarge" ng-click="apply()">Apply</button>
-        <button ng-if="hasApplied" class="btn greenBack btn-xlarge" disabled>Applied</button>
+        <button ng-if="hasApplied && application.offered != 'accepted' && application.status != 'Provisionally accepted'" class="btn greenBack btn-xlarge" disabled>Applied</button>
         <button ng-if="admin" class="btn btn-plain btn-xlarge jobButtons" ng-click="edit(job._id)">Edit</button>
         <button ng-if="admin" class="btn btn-danger btn-xlarge  jobButtons" ng-click="delete()">Delete</button>
+            </span>
     </div>
     </div>
 </div>

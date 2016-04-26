@@ -6,9 +6,9 @@
         <a ng-if="noti.type == 'status change' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>Application for<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'status change' && userType =='student'" ng-click="makeSeen(noti._id)" href="applications"><small>Application for<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'jobDeleted' && userType =='student'" ng-click="makeSeen(noti._id)" href="applications"><small>Job post<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
-        <a ng-if="noti.type == 'application' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>An application for<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
-        <a ng-if="noti.type == 'jobEdited' && userType =='student'" ng-click="makeSeen(noti._id)" href="applications"><small>Job post<b> {{noti.title}}</b> has been <b>{{noti.status}}</b> you have 1 day to accept these changes</small></a>
-        <a ng-if="noti.type == 'offer' && userType =='student'" ng-click="makeSeen(noti._id)" href="applications"><small>Position as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
+        <a ng-if="noti.type == 'application' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants"><small>An application for<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
+        <a ng-if="noti.type == 'jobEdited' && userType =='student'" ng-click="makeSeen(noti._id)" href="job?id={{noti.jobID}}"><small>Job post<b> {{noti.title}}</b> has been <b>{{noti.status}}</b> you have 1 day to accept these changes</small></a>
+        <a ng-if="noti.type == 'offer' && userType =='student'" ng-click="makeSeen(noti._id)" href="job?id={{noti.jobID}}"><small>Position as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'accepted' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants"><small>Offer as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'declined' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants"><small>Offer as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
 

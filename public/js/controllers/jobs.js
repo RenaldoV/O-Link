@@ -414,7 +414,17 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             }else $scope.canApply = true;
 
 
+            if($scope.hasApplied){
+                console.log(user._id + " " +job._id);
+                $http
+                    .post('/loadApplication', {studentID: user._id, jobID: job._id})
+                    .then(function (res, err) {
+                        $scope.application = res.data;
+                        console.log($scope.application);
 
+                    }
+                    );
+            }
 
         });
 
