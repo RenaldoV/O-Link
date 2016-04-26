@@ -8,11 +8,12 @@
             <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)</div>
         </div>
         <div ng-if="job.show">
-            <table class="table applicantsTable">
-                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Status</th>
+            <table class="table applicantsTables">
+                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Status</th><th width="200"></th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="app in job.applications">
+
                     <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
                     <td>{{getAge(app.studentID.dob);}}</td>
                     <td>{{app.studentID.gender}}</td>
@@ -24,7 +25,7 @@
                     </div>
                     </td>
 
-                    <td>
+                    <td width="250">
                         <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.role)" class="btn greenBack">Make Offer</button>
                         <button ng-if="app.status == 'Provisionally accepted' || app.status == 'Confirmed'" class="btn blueBack" >Contact</button>
                         <button ng-if="app.status != 'Confirmed'" class="btn btn-danger" ng-click="decline(app)">Decline</button>
