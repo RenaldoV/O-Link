@@ -955,6 +955,17 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	});
 	//done
+	app.post('/loadPostHistory', function(req,res){
+
+		var student= req.body;
+
+		db.jobs.find(req.body).where('status').equals('Completed').exec(function (err, docs) {
+
+			res.send(docs);
+		});
+
+	});
+	//done
 
 	//activate a new user
 	app.post('/activateUser', function(req,res){

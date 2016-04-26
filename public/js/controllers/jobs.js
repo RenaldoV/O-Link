@@ -621,16 +621,20 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 });
 
-app.controller('pastJobFeed', function($scope,$http, session,$window){
+app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope, $location){
 
     var user = session.user;
+
+    if($location.path() == "/pastJobPosts"){
+        $rootScope.$broadcast('myJobHistory',user);
+    }
 
     $scope.repost = function(id){
         $window.location.href= '/postJob?id='+id;
     };
     $http({
         method  : 'POST',
-        url     : '/loadJobHistory',
+        url     : '/loadPostHistory',
         data : {employerID: user._id}
     })
         .then(function(res) {

@@ -1,7 +1,7 @@
 
     <div ng-controller="myJobFeed">
-        <table class="table">
-            <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
+        <table style="margin-top: 42px;" class="table applicantsTable blueBorder">
+            <thead class="talentHistoryHead blueBack"><th>Category</th><th>Position</th><th>Number of Applicants</th><th></th><th></th>
             </thead>
             <tbody>
 
@@ -11,7 +11,7 @@
                 <td>{{job.post.role}}</td>
                 <td>{{job.applicants.length}}</td>
 
-                <td><a class="btn blueBacky" href="/applicants?jobID={{job._id}}">Assess Applicants</a></td>
+                <td><a  href="/applicants?jobID={{job._id}}">Assess Applicants</a></td>
                 <td><a class="btn blueBack" href="/job?id={{job._id}}">View</a></td>
             </tr>
             </tbody>

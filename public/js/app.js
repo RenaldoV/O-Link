@@ -236,10 +236,13 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
 });
 
 //employer dash jobs and /myJobs' controller
-app.controller('myJobFeed', function($scope,$http, session, $window){
+app.controller('myJobFeed', function($scope,$http, session, $window, $location, $rootScope){
 
     var user = session.user;
 
+    if($location.path() == "/myJobPosts"){
+        $rootScope.$broadcast('myJobs',user);
+    }
     $http({
         method  : 'POST',
         url     : '/myJobFeeder',

@@ -134,9 +134,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
             });
     }
     else if(session.user.type == 'employer'){
-        $scope.getApps = function(){
-            return "../views/blocks/employerApplication.html";
-        };
+
         $http
             .post('/loadApplicationsTo', session.user)
             .then(function (res) {
@@ -227,12 +225,14 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
 
 
-app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify) {
+app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify, $rootScope) {
 
     var user = session.user;
     $scope.user = user;
 
     var temp = $location.url();
+
+    $rootScope.$broadcast('myApplicants', 1);
 
     if(temp == '/applicants') {
         $http

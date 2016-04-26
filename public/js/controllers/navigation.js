@@ -14,9 +14,7 @@ $scope.browse = false;
 
 
         if($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
-            $scope.myApplications = false;
-            $scope.jobHistory = false;
-            $scope.welcoming = false;
+            disableHeadings();
             $scope.slogan = true;
             $scope.slog = true;
             $scope.slog1 = "Today's Talent.";
@@ -49,13 +47,7 @@ function headings(){
     $scope.loggedIn = true;
     $rootScope.$on('profile', function (re,data) {
 
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.welcoming = false;
-        $scope.slogan = false;
-        $scope.welcome = '';
-        $scope.talent = '';
-        $scope.browse = false;
+        disableHeadings();
 
         $timeout(function () {
             $scope.cache = data;
@@ -73,52 +65,45 @@ function headings(){
     });
     $rootScope.$on('browse', function () {
 
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.welcoming = false;
-        $scope.slogan = false;
-        $scope.studentProfile = false;
-        $scope.individualProfile = false;
-        $scope.companyProfile = false;
+        disableHeadings();
         $scope.browse = true;
+
+    });
+
+    $rootScope.$on('myApplicants', function () {
+
+        disableHeadings();
+        $scope.myApplicants = true;
 
     });
 
     $rootScope.$on('myApplications', function () {
 
-        $scope.jobHistory = false;
-        $scope.welcoming = false;
-        $scope.slogan = false;
-        $scope.studentProfile = false;
-        $scope.individualProfile = false;
-        $scope.companyProfile = false;
-        $scope.browse = false;
+        disableHeadings();
         $scope.myApplications = true;
+
+    });
+    $rootScope.$on('myJobs', function () {
+
+        disableHeadings();
+        $scope.myJobs = true;
+
+    });
+    $rootScope.$on('myJobHistory', function () {
+
+        disableHeadings();
+        $scope.myJobHistory = true;
 
     });
 
     $rootScope.$on('jobHistory', function () {
-        $scope.myApplications = false;
-        $scope.welcoming = false;
-        $scope.slogan = false;
-        $scope.studentProfile = false;
-        $scope.individualProfile = false;
-        $scope.companyProfile = false;
-        $scope.browse = false;
+        disableHeadings();
         $scope.jobHistory = true;
 
     });
 
     $rootScope.$on('job', function () {
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.welcome = '';
-        $scope.talent = '';
-        $scope.browse = false;
-        $scope.studentProfile = false;
-        $scope.individualProfile = false;
-        $scope.companyProfile = false;
-        $scope.welcoming = false;
+        disableHeadings();
         $timeout(function () {
             $scope.cache = cacheUser.user;
             if (cacheUser.user.type == 'student') {
@@ -136,13 +121,7 @@ function headings(){
 
 
     $rootScope.$on('postJob', function (re,data) {
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.welcoming = false;
-        $scope.slogan = false;
-        $scope.welcome = '';
-        $scope.talent = '';
-        $scope.browse = false;
+        disableHeadings();
 
         $timeout(function () {
             $scope.cache = session.user;
@@ -174,10 +153,7 @@ function headings(){
     if (user.type == "student") {
         // Set header message of Dash
         console.log($location.path());
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.slog1 = "";
-        $scope.slog2 = "";
+        disableHeadings();
         $timeout(function () {
             $scope.welcoming = true;
             if ($location.path() == "/dashboard") {
@@ -192,10 +168,7 @@ function headings(){
     }
     else if (user.type == "employer") {
         // Set header message of Dash
-        $scope.myApplications = false;
-        $scope.jobHistory = false;
-        $scope.slog1 = "";
-        $scope.slog2 = "";
+        disableHeadings();
         $timeout(function () {
             if ($location.path() == "/dashboard") {
                 $scope.welcoming = true;
@@ -211,6 +184,19 @@ function headings(){
             return "../views/blocks/employerNav.html";
         }
     }
+function disableHeadings(){
+    $scope.myApplications = false;
+    $scope.jobHistory = false;
+    $scope.welcoming = false;
+    $scope.slogan = false;
+    $scope.studentProfile = false;
+    $scope.individualProfile = false;
+    $scope.companyProfile = false;
+    $scope.browse = false;
+    $scope.myApplicants = false;
+    $scope.myJobs = false;
+    $scope.myJobHistory = false;
+}
 
 }
 
