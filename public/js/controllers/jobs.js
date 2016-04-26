@@ -550,11 +550,21 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             job.post.requirements = [];
 
         }else{
-            for(var x = 0; x < job.post.requirements.length; x++)
+            for(var x = 0; x < job.post.requirements.length ; x++)
             {
                 meets.push(false);
             }
         }
+        if (typeof job.post.experience == 'undefined'){
+            job.post.experience = [];
+
+        }else{
+            for(x = 0; x < job.post.experience.length ; x++)
+            {
+                meets.push(false);
+            }
+        }
+
 
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
@@ -562,6 +572,16 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                     if(val.result <= value.symbol){
                         meets[key] = true;
                     }
+                }
+            });
+        });
+
+        $.each(job.post.experience, function (key, value) {
+            $.each(user.work, function (i, val) {
+                if(value.category == val.category){
+
+                        meets[key] = true;
+
                 }
             });
         });

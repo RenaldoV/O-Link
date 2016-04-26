@@ -6,28 +6,25 @@ app.controller('logoClick', function($scope,$window){
         $window.location.href="/dashboard";
     };
 });
-app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http){
+app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http) {
 
-$scope.browse = false;
+    $scope.browse = false;
 
 // Set header message of signup $ login pages
 
 
-        if($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
-            disableHeadings();
-            $scope.slogan = true;
-            $scope.slog = true;
-            $scope.slog1 = "Today's Talent.";
-            $scope.slog2 = "Tomorrow's Success."
-        }
-
-
+    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
+        disableHeadings();
+        $scope.slogan = true;
+        $scope.slog = true;
+        $scope.slog1 = "Today's Talent.";
+        $scope.slog2 = "Tomorrow's Success."
+    }
 
 
     //for guests
-    if($location.path() == "/guest")
-    {
-        var user = {id:'guest', type:'guest'};
+    if ($location.path() == "/guest") {
+        var user = {id: 'guest', type: 'guest'};
         $scope.loggedIn = true;
         $http.post('/getPp', user)
             .then(function (res) {
@@ -37,168 +34,169 @@ $scope.browse = false;
 
             });
 
-    }else{
+    } else {
         var user = session.user;
     }
 
 
-function headings(){
-    var user = session.user;
-    $scope.loggedIn = true;
-    $rootScope.$on('profile', function (re,data) {
+    function headings() {
+        var user = session.user;
+        $scope.loggedIn = true;
+        $rootScope.$on('profile', function (re, data) {
 
-        disableHeadings();
+            disableHeadings();
 
-        $timeout(function () {
-            $scope.cache = data;
-            if (cacheUser.user.type == 'student') {
-                $scope.studentProfile = true;
+            $timeout(function () {
+                $scope.cache = data;
+                if (cacheUser.user.type == 'student') {
+                    $scope.studentProfile = true;
 
-            } else if (cacheUser.user.type == 'employer') {
-                if (cacheUser.user.employerType == 'Individual')
-                    $scope.individualProfile = true;
-                else if (cacheUser.user.employerType == 'Company')
-                    $scope.companyProfile = true;
+                } else if (cacheUser.user.type == 'employer') {
+                    if (cacheUser.user.employerType == 'Individual')
+                        $scope.individualProfile = true;
+                    else if (cacheUser.user.employerType == 'Company')
+                        $scope.companyProfile = true;
 
-            }
+                }
+            });
         });
-    });
-    $rootScope.$on('browse', function () {
+        $rootScope.$on('browse', function () {
 
-        disableHeadings();
-        $scope.browse = true;
-
-    });
-
-    $rootScope.$on('myApplicants', function () {
-
-        disableHeadings();
-        $scope.myApplicants = true;
-
-    });
-
-    $rootScope.$on('myApplications', function () {
-
-        disableHeadings();
-        $scope.myApplications = true;
-
-    });
-    $rootScope.$on('myJobs', function () {
-
-        disableHeadings();
-        $scope.myJobs = true;
-
-    });
-    $rootScope.$on('myJobHistory', function () {
-
-        disableHeadings();
-        $scope.myJobHistory = true;
-
-    });
-
-    $rootScope.$on('jobHistory', function () {
-        disableHeadings();
-        $scope.jobHistory = true;
-
-    });
-
-    $rootScope.$on('job', function () {
-        disableHeadings();
-        $timeout(function () {
-            $scope.cache = cacheUser.user;
-            if (cacheUser.user.type == 'student') {
-                $scope.studentProfile = true;
-            }
-            else if (cacheUser.user.type == 'employer') {
-                if (cacheUser.user.employerType == 'Individual')
-                    $scope.individualProfile = true;
-                else if (cacheUser.user.employerType == 'Company')
-                    $scope.companyProfile = true;
-
-            }
-        });
-    });
-
-
-    $rootScope.$on('postJob', function (re,data) {
-        disableHeadings();
-
-        $timeout(function () {
-            $scope.cache = session.user;
-            if (session.user.type == 'student') {
-                $scope.studentProfile = true;
-
-            } else if (session.user.type == 'employer') {
-                if (session.user.employerType == 'Individual')
-                    $scope.individualProfile = true;
-                else if (session.user.employerType == 'Company')
-                    $scope.companyProfile = true;
-
-            }
-        });
-    });
-
-
-    $http.post('/getPp', user)
-        .then(function (res) {
-
-            $scope.image = res.data;
-
+            disableHeadings();
+            $scope.browse = true;
 
         });
 
-    $scope.myProfile = function () {
-        $window.location.href = "/myProfile";
-    };
-    if (user.type == "student") {
-        // Set header message of Dash
-        console.log($location.path());
-        disableHeadings();
-        $timeout(function () {
-            $scope.welcoming = true;
-            if ($location.path() == "/dashboard") {
-                $scope.welcome = "Welcome ";
-                $scope.talent = user.name.name + "!";
-            }
-        });
-        $scope.getNav = function () {
+        $rootScope.$on('myApplicants', function () {
 
-            return "../views/blocks/studentNav.html";
-        }
-    }
-    else if (user.type == "employer") {
-        // Set header message of Dash
-        disableHeadings();
-        $timeout(function () {
-            if ($location.path() == "/dashboard") {
+            disableHeadings();
+            $scope.myApplicants = true;
+
+        });
+
+        $rootScope.$on('myApplications', function () {
+
+            disableHeadings();
+            $scope.myApplications = true;
+
+        });
+        $rootScope.$on('myJobs', function () {
+
+            disableHeadings();
+            $scope.myJobs = true;
+
+        });
+        $rootScope.$on('myJobHistory', function () {
+
+            disableHeadings();
+            $scope.myJobHistory = true;
+
+        });
+
+        $rootScope.$on('jobHistory', function () {
+            disableHeadings();
+            $scope.jobHistory = true;
+
+        });
+
+        $rootScope.$on('job', function () {
+            disableHeadings();
+            $timeout(function () {
+                $scope.cache = cacheUser.user;
+                if (cacheUser.user.type == 'student') {
+                    $scope.studentProfile = true;
+                }
+                else if (cacheUser.user.type == 'employer') {
+                    if (cacheUser.user.employerType == 'Individual')
+                        $scope.individualProfile = true;
+                    else if (cacheUser.user.employerType == 'Company')
+                        $scope.companyProfile = true;
+
+                }
+            });
+        });
+
+
+        $rootScope.$on('postJob', function (re, data) {
+            disableHeadings();
+
+            $timeout(function () {
+                $scope.cache = session.user;
+                if (session.user.type == 'student') {
+                    $scope.studentProfile = true;
+
+                } else if (session.user.type == 'employer') {
+                    if (session.user.employerType == 'Individual')
+                        $scope.individualProfile = true;
+                    else if (session.user.employerType == 'Company')
+                        $scope.companyProfile = true;
+
+                }
+            });
+        });
+
+
+        $http.post('/getPp', user)
+            .then(function (res) {
+
+                $scope.image = res.data;
+
+
+            });
+
+        $scope.myProfile = function () {
+            $window.location.href = "/myProfile";
+        };
+        if (user.type == "student") {
+            // Set header message of Dash
+            console.log($location.path());
+            disableHeadings();
+            $timeout(function () {
                 $scope.welcoming = true;
-                $scope.welcome = "Welcome ";
-                if (!user.company)
-                    $scope.employer = user.contact.name + "!";
-                else
-                    $scope.employer = user.company.name + "!";
+                if ($location.path() == "/dashboard") {
+                    $scope.welcome = "Welcome ";
+                    $scope.talent = user.name.name + "!";
+                }
+            });
+            $scope.getNav = function () {
 
+                return "../views/blocks/studentNav.html";
             }
-        });
-        $scope.getNav = function () {
-            return "../views/blocks/employerNav.html";
+        }
+        else if (user.type == "employer") {
+            // Set header message of Dash
+            disableHeadings();
+            $timeout(function () {
+                if ($location.path() == "/dashboard") {
+                    $scope.welcoming = true;
+                    $scope.welcome = "Welcome ";
+                    if (!user.company)
+                        $scope.employer = user.contact.name + "!";
+                    else
+                        $scope.employer = user.company.name + "!";
+
+                }
+            });
+            $scope.getNav = function () {
+                return "../views/blocks/employerNav.html";
+            }
         }
     }
-function disableHeadings(){
-    $scope.myApplications = false;
-    $scope.jobHistory = false;
-    $scope.welcoming = false;
-    $scope.slogan = false;
-    $scope.studentProfile = false;
-    $scope.individualProfile = false;
-    $scope.companyProfile = false;
-    $scope.browse = false;
-    $scope.myApplicants = false;
-    $scope.myJobs = false;
-    $scope.myJobHistory = false;
-}
+        function disableHeadings() {
+            $scope.myApplications = false;
+            $scope.jobHistory = false;
+            $scope.welcoming = false;
+            $scope.slogan = false;
+            $scope.studentProfile = false;
+            $scope.individualProfile = false;
+            $scope.companyProfile = false;
+            $scope.browse = false;
+            $scope.myApplicants = false;
+            $scope.myJobs = false;
+            $scope.myJobHistory = false;
+        }
 
-}
+
 
 
         if (authService.isAuthenticated()) {
