@@ -14,6 +14,8 @@ $scope.browse = false;
 
 
         if($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
+            $scope.myApplications = false;
+            $scope.jobHistory = false;
             $scope.welcoming = false;
             $scope.slogan = true;
             $scope.slog = true;
@@ -46,6 +48,9 @@ function headings(){
     var user = session.user;
     $scope.loggedIn = true;
     $rootScope.$on('profile', function (re,data) {
+
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.welcoming = false;
         $scope.slogan = false;
         $scope.welcome = '';
@@ -68,6 +73,8 @@ function headings(){
     });
     $rootScope.$on('browse', function () {
 
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.welcoming = false;
         $scope.slogan = false;
         $scope.studentProfile = false;
@@ -76,8 +83,35 @@ function headings(){
         $scope.browse = true;
 
     });
-    $rootScope.$on('job', function () {
 
+    $rootScope.$on('myApplications', function () {
+
+        $scope.jobHistory = false;
+        $scope.welcoming = false;
+        $scope.slogan = false;
+        $scope.studentProfile = false;
+        $scope.individualProfile = false;
+        $scope.companyProfile = false;
+        $scope.browse = false;
+        $scope.myApplications = true;
+
+    });
+
+    $rootScope.$on('jobHistory', function () {
+        $scope.myApplications = false;
+        $scope.welcoming = false;
+        $scope.slogan = false;
+        $scope.studentProfile = false;
+        $scope.individualProfile = false;
+        $scope.companyProfile = false;
+        $scope.browse = false;
+        $scope.jobHistory = true;
+
+    });
+
+    $rootScope.$on('job', function () {
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.welcome = '';
         $scope.talent = '';
         $scope.browse = false;
@@ -102,6 +136,8 @@ function headings(){
 
 
     $rootScope.$on('postJob', function (re,data) {
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.welcoming = false;
         $scope.slogan = false;
         $scope.welcome = '';
@@ -138,6 +174,8 @@ function headings(){
     if (user.type == "student") {
         // Set header message of Dash
         console.log($location.path());
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.slog1 = "";
         $scope.slog2 = "";
         $timeout(function () {
@@ -154,6 +192,8 @@ function headings(){
     }
     else if (user.type == "employer") {
         // Set header message of Dash
+        $scope.myApplications = false;
+        $scope.jobHistory = false;
         $scope.slog1 = "";
         $scope.slog2 = "";
         $timeout(function () {

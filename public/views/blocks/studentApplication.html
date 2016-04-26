@@ -1,5 +1,5 @@
-<div ng-controller="studentApplications"><table class="table">
-    <thead><th>Role</th><th>Pay</th><th>Location</th><th>Status</th>
+<div ng-controller="studentApplications"><table style="margin-top: 42px;" class="table applicantsTable blueBorder">
+    <thead class="talentHistoryHead blueBack"><th>Role</th><th>Pay</th><th>Location</th><th>Status</th><th></th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
@@ -14,10 +14,12 @@
 
 
         </div></td>
-        <td ng-if="app.status == 'Provisionally accepted' && !app.edited"><button class="btn greenBack" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></td>
-        <td ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="">Contact</a>
-        <td ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button>
-        <td ng-if="(app.status != 'Pending' && app.offered == 'offered') || (app.edited && app.status != 'Declined')"><button class="btn btn-danger" ng-click="decline(app)">Withdraw</button></td>
+        <td>
+        <span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></span>
+        <span ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="">Contact</a>
+        <span ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button></span>
+        <span ng-if="(app.status != 'Pending' && app.offered == 'offered') || (app.edited && app.status != 'Declined')"><button class="btn btn-danger" ng-click="decline(app)">Withdraw</button></span>
+
         </td>
     </tr>
     </tbody>

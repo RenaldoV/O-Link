@@ -647,6 +647,32 @@ app.controller('pastJobFeed', function($scope,$http, session,$window){
         });
 });
 
+app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+
+    var user = cacheUser.user;
+    if(!user){
+        user = session.user;
+    }
+    $scope.user = user;
+
+    $rootScope.$broadcast('jobHistory', 1);
+
+    $http
+        .post('/loadJobHistory', {studentID : user._id})
+        .then(function (res) {
+
+            $scope.applications = res.data;
+
+            if($scope.applications.length == 0)
+            {
+                $scope.message = "You haven't completed any jobs.";
+            }
+
+
+
+        });
+
+});
 
 function changeStatus(app,oldstat,$http, notify, userID, role) {
     var check = false;

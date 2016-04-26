@@ -718,7 +718,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					if(usr.emailDisable == undefined || !usr.emailDisable){
 
 						var args = {
-							link:'http://' + req.headers.host + '/ratings',
+							link:'http://' + req.headers.host + '/myJobHistory',
 								name: usr.name.name,
 								employerName: emp.contact.name,
 								category : job.post.category,
@@ -948,7 +948,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		var student= req.body;
 
-		db.jobs.find(req.body).populate('jobID').where('status').equals('Completed').exec(function (err, docs) {
+		db.applications.find(req.body).populate('jobID').populate('employerID').populate('studentID').where('status').equals('Completed').exec(function (err, docs) {
 
 			res.send(docs);
 		});

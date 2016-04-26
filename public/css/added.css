@@ -648,7 +648,7 @@ line-height: normal;
     margin-left: 10px;
 }
 
-.applicantsTable tbody tr:nth-child(odd) {
+.applicantsTable tbody tr:nth-child(even) {
     background-color: white;
 }
 
@@ -686,4 +686,9 @@ line-height: normal;
     white-space: -pre-wrap;     /* Opera <7 */
     white-space: -o-pre-wrap;   /* Opera 7 */
     word-wrap: break-word;      /* IE */
+}
+
+.talentHistoryHead{
+   padding-top: 50px;
+    font-size: 20px;
 }

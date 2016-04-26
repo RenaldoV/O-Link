@@ -1,16 +1,15 @@
-<div ng-controller="jobHistory"><table class="table">
-    <thead><th>Role</th><th>Pay</th><th>Location</th><th>Comment</th><th>Rating</th>
+<div ng-controller="jobHistory"><table style="margin-top: 42px;" class="table blueBorder applicantsTable">
+    <thead class="blueBack talentHistoryHead"><th>Employer</th></th><th>Role</th><th>Comment</th><th>Rating</th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
+        <td>{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
         <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.role}}</a></td>
-        <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
-        <td>{{app.jobID.post.location}}</td>
         <td>{{app.commentToStudent}}</td>
         <td><fieldset class="rating" style="float: left">
             <input type="radio" id="star5" name="rating" value=5 ng-model="app.studentRating"  disabled /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
             <input type="radio" id="star4half" name="rating" value=4.5 ng-model="app.studentRating" disabled/><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-            <input type="radio" id="star4" name="rating" value=5 ng-model="app.studentRating" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+            <input type="radio" id="star4" name="rating" value=4 ng-model="app.studentRating" disabled/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
             <input type="radio" id="star3half" name="rating" value=3.5 ng-model="app.studentRating" disabled/><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
             <input type="radio" id="star3" name="rating" value=3 ng-model="app.studentRating" disabled/><label class = "full" for="star3" title="Meh - 3 stars"></label>
             <input type="radio" id="star2half" name="rating" value=2.5 ng-model="app.studentRating" disabled /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
