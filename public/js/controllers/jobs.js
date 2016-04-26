@@ -4,6 +4,8 @@
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify){
 
+    $rootScope.$broadcast('postJob', 1);
+
     var options = {
         componentRestrictions: {country: 'za'}
     };

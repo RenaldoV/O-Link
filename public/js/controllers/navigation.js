@@ -99,6 +99,27 @@ function headings(){
         });
     });
 
+    $rootScope.$on('postJob', function (re,data) {
+        $scope.welcoming = false;
+        $scope.slogan = false;
+        $scope.welcome = '';
+        $scope.talent = '';
+        $scope.browse = false;
+
+        $timeout(function () {
+            $scope.cache = data;
+            if (session.user.type == 'student') {
+                $scope.studentProfile = true;
+
+            } else if (session.user.type == 'employer') {
+                if (session.user.employerType == 'Individual')
+                    $scope.individualProfile = true;
+                else if (session.user.employerType == 'Company')
+                    $scope.companyProfile = true;
+
+            }
+        });
+    });
 
 
 
