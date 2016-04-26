@@ -5,6 +5,14 @@ if (document.addEventListener) {
         element.addClass("invalid");
     }, true);
 }
+$(document).bind('change', function(e){
+
+    if( $(e.target).is(':invalid') ){
+        $(e.target).addClass('invalid');
+    } else {
+        $(e.target).removeClass('invalid');
+    }
+});
 $(document).bind('keypress', function(e){
 
     if( $(e.target).is(':invalid') ){

@@ -202,7 +202,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
         if (authService.isAuthenticated()) {
             headings();
         }
-        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" ) {
+        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {
             //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
             $location.url("/signIn");
 

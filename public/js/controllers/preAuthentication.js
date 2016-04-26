@@ -231,7 +231,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
 app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
-
+    $(".appbg").addClass('signupBG');
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};
@@ -258,6 +258,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                             type: "success"
                         },
                         function () {
+                            $(".appbg").removeClass('signupBG');
                             authService.login(tempUser).then(function (user) {
                                 $scope.setCurrentUser(user);
                                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
@@ -272,7 +273,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                 }
                 else
                     swal({
-                            title: "error",
+                            title: "Error",
                             text: "Password reset token is invalid or has expired. Please try again.",
                             type: "error"
                         },
@@ -287,7 +288,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
 });
 
 app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
-
+    $(".appbg").addClass('signupBG');
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};
@@ -308,9 +309,6 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                                 title: "Success",
                                 text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
                                 type: "success"
-                            },
-                            function(){
-                                location.reload();
                             });
                     }
                     else
@@ -318,9 +316,6 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                                 title: "error",
                                 text: "No account with that email address exists. Try again.",
                                 type: "error"
-                            },
-                            function(){
-                                window.location = '/forgot';
                             });
 
 
