@@ -178,19 +178,19 @@ FUNCTIONALITY:
                     - Druation of experience
                     - Optional contact details (Name number email)
                     (Make the same as matric results.)
-            Matric result type (IEB, NSC)
+            //Matric result type (IEB, NSC)
             //take out qualification category
             //password placeholder explain format
             //validate ID number against DOB
-            email field (Wait for list of email addresses.)
+            //email field (Wait for list of email addresses.)
         }
 
         EMPLOYER: 2 hours
         {
-            company description replaced by company category (List of categories from PAUL)
+            //company description replaced by company category (List of categories from PAUL)
             //password placeholder explain format
             //Change Employer info to (Employer contact info - Title case)
-            all fields required except Position within company
+            //all fields required except Position within company
         }
     }
 
@@ -244,7 +244,7 @@ OUT OF SCOPE FUNCTIONALITY:
 
  
 
-1. Add additional info (Talent Sign Up) {Med} +- 6 hours
+//1. Add additional info (Talent Sign Up) {Med} +- 6 hours
 
 -- User clicks on additional info and new interactive form pops up
 
@@ -254,7 +254,7 @@ OUT OF SCOPE FUNCTIONALITY:
 
  
 
-2. Add work experience interactive form to Post Job page {Med} +- 6 hours
+//2. Add work experience interactive form to Post Job page {Med} +- 6 hours
 
 -- User clicks on add work experience and interactive form pops up
 
@@ -266,7 +266,7 @@ OUT OF SCOPE FUNCTIONALITY:
 
  
 
-3. Character Counter in Details input {Min} 4 Hours
+//3. Character Counter in Details input {Min} 4 Hours
 
 -- counts characters as user types detailed description of Job
 
@@ -290,7 +290,7 @@ OUT OF SCOPE FUNCTIONALITY:
 
  
 
-6. Any Email notifications except for Registration and Forgot Password {High} 14 Hours
+//6. Any Email notifications except for Registration and Forgot Password {High} 14 Hours
 
 -- Sending of emails
 
@@ -302,13 +302,13 @@ OUT OF SCOPE FUNCTIONALITY:
 
  
 
-8. Google API for searching locations in forms {med} 6 hours (additional costs for using Google Location API)
+//8. Google API for searching locations in forms {med} 6 hours (additional costs for using Google Location API)
 
 -- as user types location google gives location suggestions
 
  
 
-9. Showing map on Job Post {Med} 8 Hours
+//9. Showing map on Job Post {Med} 8 Hours
   MAILS:
     {
         REGESTRATION
@@ -321,7 +321,7 @@ OUT OF SCOPE FUNCTIONALITY:
        // - if more that two
         //- payment package
 
-GUEST BROWSE JOBS: (Button on landing page)
+//GUEST BROWSE JOBS: (Button on landing page)
     {
         have background and caption
         Just have latest job post, if Talent clicks on job post redirect to sign up
@@ -329,7 +329,7 @@ GUEST BROWSE JOBS: (Button on landing page)
 
     }
 
-JOB POST FORM:
+//JOB POST FORM:
 {
     add own transport
     Character counter in details input
