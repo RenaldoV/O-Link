@@ -588,10 +588,10 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					var args = {};
 					if (usr.emailDisable == undefined || !usr.emailDisable) {
 						args.name = usr.name.name;
-						args.role = job.post.role;
+						args.role = job.post.category;
 						args.date = job.post.startingDate;
 						args.email = usr.contact.email;
-						args.subject = "Application has been Made for " + job.post.role;
+						args.subject = "Application has been Made for " + job.post.category;
 						if (usr.applications) {
 							args.applicationsLeft = usr.applications;
 						}
@@ -637,7 +637,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					var args = {};
 					args.name = usr.name.name;
 					args.date = job.post.startingDate;
-					args.role = job.post.role;
+					args.role = job.post.category;
 					args.email = usr.contact.email;
 					if(emp.employerType == 'Company'){
 						args.employer = emp.company.name;

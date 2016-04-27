@@ -1,9 +1,9 @@
 <div ng-controller="studentApplications"><table style="margin-top: 42px;" class="table applicantsTable blueBorder">
-    <thead class="talentHistoryHead blueBack"><th>Role</th><th>Pay</th><th>Location</th><th>Status</th><th></th>
+    <thead class="talentHistoryHead blueBack"><th>Category</th><th>Pay</th><th>Location</th><th>Status</th><th></th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
-        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.role}}</a></td>
+        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
         <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
         <td>{{app.jobID.post.location}}</td>
         <td><div class="statusDiv"><span>{{app.status}}</span>

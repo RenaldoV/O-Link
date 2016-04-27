@@ -3,7 +3,7 @@
     <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" >
         <div class="applicantsHead" ng-click="toggleApplicants(job._id)">
         <div class="appHeading">
-            {{job.post.role}}
+            {{job.post.category}}
         </div>
             <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)</div>
         </div>

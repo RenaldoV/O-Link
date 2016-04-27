@@ -258,7 +258,7 @@ console.log($scope.job);
                                                     jobID: $scope.job._id,
                                                     userID: applicants[i],
                                                     status: 'edited',
-                                                    title: $scope.job.post.role
+                                                    title: $scope.job.post.category
                                                 });
                                             }}
                                             $location.url("/myJobPosts");
@@ -429,7 +429,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         });
 
-    $scope.decline = function(id, employerID, jobID, role){
+    $scope.decline = function(id, employerID, jobID, category){
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and that you have withdrawn",
@@ -449,7 +449,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'withdrawn',
-                                title: role
+                                title: category
                             });
                             swal("Offer declined.", "The user has been notified.", "success");
                             location.reload();
@@ -470,7 +470,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
             });
     };
-    $scope.accept = function(id, employerID, jobID, role){
+    $scope.accept = function(id, employerID, jobID, category){
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and that you hve accepted",
@@ -490,7 +490,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'accepted',
-                                title: role
+                                title: category
                             });
                             swal("Offer accepted.", "The user has been notified.", "success");
                             location.reload();
@@ -538,7 +538,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                                 jobID: job._id,
                                                 userID: job.applicants[i],
                                                 status: 'deleted',
-                                                title: job.post.role
+                                                title: job.post.category
                                             });
                                         }
                                     }
@@ -637,7 +637,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                             jobID: job._id,
                             userID: job.employerID._id,
                             status: 'Made',
-                            title: job.post.role
+                            title: job.post.category
                         });
 
 

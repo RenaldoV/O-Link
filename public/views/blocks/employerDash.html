@@ -47,12 +47,11 @@
             <br>
             <div ng-controller="myJobFeed"  class="jobPosts">
               <table class="table text-left">
-                <thead><th>Category</th><th>Position</th><th>Number of Applicants</th>
+                <thead><th>Category</th><th>Number of Applicants</th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="job in jobs"  ng-click="getJob(job._id)"  style="cursor: pointer;" >
                   <td>{{job.post.category}}</td>
-                  <td>{{job.post.role}}</td>
                   <td>{{job.applicants.length}}</td>
 
                 </tr>

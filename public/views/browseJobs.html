@@ -17,8 +17,8 @@
     <div ng-if="job.employerID.employerType == 'Company'" class="row"><h5>{{job.employerID.company.name}}</h5></div>
     <div ng-if="job.employerID.employerType == 'Individual'" class="row"><h5>{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</h5></div>
 
-    <div class="row"><h2>{{job.post.role}}</h2></div>
-    <h4>{{job.post.category}}</h4>
+    <div class="row"><h2>{{job.post.category}}</h2></div>
+
     <p class="text-danger" ng-if="job.post.interviewRequired">Interview Required</p>
     <p>Pay: R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</p>
         <p>Location: {{job.post.location}}</p>

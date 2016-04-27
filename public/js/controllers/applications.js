@@ -344,18 +344,18 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 };
             });
     }
-    $scope.decline = function(app, role){
+    $scope.decline = function(app, category){
 
         app.status = "Declined";
-        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,role);
+        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,category);
     };
-    $scope.makeOffer = function(app, role){
+    $scope.makeOffer = function(app, category){
 
         app.status = "Provisionally accepted";
 
-        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,role);
+        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,category);
     };
-    $scope.offer = function(id, studentID, jobID, role){
+    $scope.offer = function(id, studentID, jobID, category){
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and he will accept or decline",
@@ -375,7 +375,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                                 jobID: jobID,
                                 userID: studentID,
                                 status: 'offered',
-                                title: role
+                                title: category
                             });
                             swal("Offer made.", "The user has been notified.", "success");
                             location.reload();
@@ -391,7 +391,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
-function changeStatus(app,oldstat, $scope, $http, notify, userID, role) {
+function changeStatus(app,oldstat, $scope, $http, notify, userID, category) {
     var check = false;
     console.log(app);
     swal({
@@ -417,7 +417,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, role) {
                             jobID: app.jobID._id,
                             userID: userID,
                             status: app.status,
-                            title: role
+                            title: category
                         });
                         swal("Status updated.", "The user has been notified.", "success");
                         location.reload();

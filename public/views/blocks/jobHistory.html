@@ -1,10 +1,10 @@
 <div ng-controller="jobHistory"><table style="margin-top: 42px;" class="table blueBorder applicantsTable">
-    <thead class="blueBack talentHistoryHead"><th>Employer</th></th><th>Role</th><th>Comment</th><th>Rating</th>
+    <thead class="blueBack talentHistoryHead"><th>Employer</th></th><th>Category</th><th>Comment</th><th>Rating</th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
         <td>{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
-        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.role}}</a></td>
+        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
         <td>{{app.commentToStudent}}</td>
         <td><fieldset class="rating" style="float: left">
             <input type="radio" id="star5" name="rating" value=5 ng-model="app.studentRating"  disabled /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
