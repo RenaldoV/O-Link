@@ -1,63 +1,7 @@
+What colour should job offer bar on applicants page be?
 
-//Sign up as employer works
-	//emails, token, activation works
-//Sign up as talent works
-	//emails, token, activation works
-	\\matric results not linking
-	//fixed
-//Post Job Works
-//Sign in employer works
-//Sign in student works
-//post job works
-//edit job
-	\\requirements don't load for edit
-	//fixed (Die arrays wat gebruik was is weird, het dit nou reg gemaak, so mongolab db gaan maybe nie lekker werk nie)
-	\\doesn't update anymore
-	//works
-	//notifications work, to all that applied
-	//user asked to accept changes
-	//user accepts changes updates db
-//delete job works, with notifications, deletes all applications for job aswsell
-//edit student profile
-	//works with signup form, loads everything, wide inputs
-//edit employer profile
-	//works with signup form, loads everything, wide inputs
-
-//studentProfile hides pills for individual
-//photo upload box on click at myProfile
-	//upload box works, 
-	\\cropper image flickers**
-
-//Delete unaccepted edited apps every hour
-//End jobs, mark as Completed, after endDate(start date for once off)
-
-
-
-todo:
-
-
-
-employer jobs posted and star rating on profile
-
-deleted jobs net merk as deleted, net applications wat nie "Completed" ws nie delete(vir ratings)
-iets beter doen vir profile picture upload
-
-
-apply for job(doesn't check requirements)
-
-change job status works (no notification)
-
-
-
-make email field save browser hash, nou isit op nommer of iets.
-
-edit profile vir employers edit vir idividuals ook
-
-notification ball op resize net een op
-
-
-student dash select all by browser, star rating & jobs completed
-
-
-
+Talent dashboard 
+"If I select a job offer in the “Latest Job Offers” block Paul has made, I can view it, but if
+I try browse for the job using the categories and time frames, I cannot. The filters
+don’t appear to be working." -- Ek kan die nie recreate nie
 

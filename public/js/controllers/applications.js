@@ -22,10 +22,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 $rootScope.$broadcast('myApplications', 1);
 
-                $scope.changeStatus = function(app, oldstat) {
 
-                    changeStatus(app,oldstat, $scope, $http,notify,app.employerID);
-                };
 
                 $scope.isDeclined = function(status){
                     if(status == "Declined"){
@@ -266,11 +263,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     return true;
                 };
 
-                $scope.changeStatus = function (app, oldstat) {
 
-
-                    changeStatus(app, oldstat, $scope, $http, notify, app.studentID._id);
-                };
                 $scope.isDeclined = function(status){
                     if(status == "Declined"){
                         return true;
@@ -312,10 +305,6 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 console.log($scope.applications);
 
 
-                $scope.changeStatus = function (app, oldstat) {
-
-                    changeStatus(app, oldstat, $scope, $http,notify, app.studentID);
-                };
 
 
                 $scope.isDeclined = function(status){
@@ -344,15 +333,16 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 };
             });
     }
-    $scope.decline = function(app, category){
-
+    $scope.decline = function(ap, category){
+        var app = jQuery.extend(true, {}, ap);
         app.status = "Declined";
+        $scope.col = '#DD6B55';
         changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,category);
     };
     $scope.makeOffer = function(ap, category){
         var app = jQuery.extend(true, {}, ap);
         app.status = "Provisionally accepted";
-
+        $scope.col = '#00b488';
         changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,category);
     };
     $scope.offer = function(id, studentID, jobID, category){
@@ -393,17 +383,21 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 function changeStatus(app,oldstat, $scope, $http, notify, userID, category) {
     var check = false;
+    if($scope.col){
+        var col = $scope.col;
+    }
+    else var col = "#00b488";
 
     swal({
             title: "Are you sure?",
             text: "This will change the status of this application from " + oldstat + " to " + app.status,
             showCancelButton: true,
-            confirmButtonColor: "#00b488",
+            confirmButtonColor: col,
             confirmButtonText: "Yes, I'm sure!",
             closeOnConfirm: false
         },
         function (isConfirm) {
-
+delete $scope.col;
             if (isConfirm) {
                 $http
                     .post('/updateApplication', {_id: app._id, status: app.status, jobID:app.jobID._id})

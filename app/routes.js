@@ -259,7 +259,6 @@ module.exports = function(app) {
 
 						});
 					}
-					else
 						res.send(jobi);
 
 

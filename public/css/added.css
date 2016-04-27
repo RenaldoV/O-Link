@@ -482,13 +482,16 @@ line-height: normal;
 .blueBorder{
     border: 1px solid #33B6CC;
 }
-
+#selectAllP{
+    display: none;
+}
 .timeSelect{
     width: 160px;
     border: 1px solid #33B6CC;
 }
 .timeSelect.active{
     background-color:  #33B6CC;
+    color: white;
 }
 
 .categorySelect{
@@ -498,7 +501,10 @@ line-height: normal;
 
 .categorySelect.active{
     background-color:  #00b488;
+    color: white;
 }
+
+
 
 .card-header{
     font-size: 30px;

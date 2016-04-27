@@ -180,11 +180,12 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     }
 
     $scope.submitForm = function(){
-console.log($scope.job);
+
+        var job  = jQuery.extend(true, {}, $scope.job);
         if(!$scope.job.status){
             $scope.job.employerID = user._id;
 
-            var job  = jQuery.extend(true, {}, $scope.job);
+
             job.status = 'active';
             $http({
                 method  : 'POST',
@@ -200,13 +201,13 @@ console.log($scope.job);
         }
         else if($scope.job.status == 'inactive' || $scope.job.status == 'Completed'){
 
-            delete $scope.job._id;
-            delete $scope.job.applicants;
-            $scope.job.status = 'active';
+            delete job._id;
+            delete job.applicants;
+            job.status = 'active';
             $http({
                 method  : 'POST',
                 url     : '/jobPoster',
-                data   : $scope.job
+                data   : job
             })
                 .then(function(response) {
                     {
@@ -240,14 +241,14 @@ console.log($scope.job);
                             }
                             else{
                                 var applicants = $scope.job.applicants;
-                                delete $scope.job.applicants;
-                                $scope.job.status = 'active';
+                                delete job.applicants;
+                                job.status = 'active';
 
 
                                 $http({
                                     method: 'POST',
                                     url: '/jobUpdate',
-                                    data: {job:$scope.job}
+                                    data: {job:job}
                                 })
                                     .then(function (response) {
                                         {
