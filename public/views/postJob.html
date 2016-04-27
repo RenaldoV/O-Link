@@ -12,7 +12,12 @@
     <div class="list-group list-group-sm form-group">
         <fieldset class="form-group">
             <div class="list-group-item">
-                <input type="text" class="form-control no-border" placeholder="Job Role" ng-model="job.post.role" required>
+                <select class="form-control no-border" ng-model="job.post.category" required>
+
+                    <option value="" selected disabled>Select Category</option>
+                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+
+                </select>
             </div>
             <div class="list-group-item">
                 <textarea id="jobDescr" rows=4 class="form-control no-border" placeholder="Description (100 - 500 characters)" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
@@ -21,14 +26,7 @@
             <div class="list-group-item">
                 <input type="text" id="searchTextField" class="form-control no-border" placeholder="Location" ng-model="job.post.location" required>
             </div>
-            <div class="list-group-item">
-                <select class="form-control no-border" ng-model="job.post.category" required>
 
-                    <option value="" selected disabled>Select Category</option>
-                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
-
-                </select>
-            </div>
         </fieldset>
     </div>
 
