@@ -183,11 +183,13 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 console.log($scope.job);
         if(!$scope.job.status){
             $scope.job.employerID = user._id;
-            $scope.job.status = 'active';
+
+            var job  = jQuery.extend(true, {}, $scope.job);
+            job.status = 'active';
             $http({
                 method  : 'POST',
                 url     : '/jobPoster',
-                data   : $scope.job
+                data   : job
             })
                 .then(function(response) {
                     {
@@ -538,7 +540,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                                 jobID: job._id,
                                                 userID: job.applicants[i],
                                                 status: 'deleted',
-                                                title: job.post.category
+                                                title: job.post.role
                                             });
                                         }
                                     }
@@ -637,7 +639,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                             jobID: job._id,
                             userID: job.employerID._id,
                             status: 'Made',
-                            title: job.post.category
+                            title: job.post.role
                         });
 
 
