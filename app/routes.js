@@ -256,12 +256,12 @@ module.exports = function(app) {
 
 						mailer.sendMail('jobLive',jab.employerID,args, function(err,rss){
 							console.log(rss);
-							res.send(jobi);
+
 						});
 					}
-					else{
+					else
 						res.send(jobi);
-					}
+
 
 				}
 			});
@@ -577,7 +577,8 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			studentID: user._id,
 			jobID: job._id,
 			employerID: job.employerID,
-			status: 'Pending'
+			status: 'Pending',
+			date: Date.now()
 
 		};
 		db.applications.create(application, function (app) {
@@ -604,12 +605,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							args.employerName = emp.contact.name + " " + emp.contact.surname;
 							mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
 								console.log(rs);
-								res.send(app);
+
 							});
 						});
 
 
 					}
+					res.send(app);
 
 
 				});
@@ -637,7 +639,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					var args = {};
 					args.name = usr.name.name;
 					args.date = job.post.startingDate;
-					args.role = job.post.category;
+					args.role = job.post.role;
 					args.email = usr.contact.email;
 					if(emp.employerType == 'Company'){
 						args.employer = emp.company.name;
@@ -653,13 +655,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							console.log("interwev");
 						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
 							console.log(rr);
-							res.send(true);
+
 						});
 					}
 					else {
 						mailer.sendMail('offerMade',usr._id,args,function(err,rr){
 							console.log(rr);
-							res.send(true);
+
 						});
 					}
 					}
@@ -668,10 +670,11 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 						args.link = 'http://' + req.headers.host + '/browseJobs?categories=Coach%25Tutor%25Delivery_Person%25Retail_Worker%25Model%25Waiter(res)%25Host(ess)%25Barman%25Aupair%25Photographer_%2F_Videographer%25Programmer%2FDeveloper%25Engineer%25Assistant%25Cook%2FChef%25Internship%25Other&timePeriods=Once_Off%25Short_Term%25Long_Term';
 						mailer.sendMail('applicationDenied',usr._id,args,function(err,rr){
 							console.log(rr);
-							res.send(true);
+
 						});
 					}
-				}else res.send(true);
+				}
+			res.send(true);
 
 
 		} );
@@ -730,9 +733,9 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					mailer.sendMail('ratedTalent', rr._id,args,function(err, r){
 
 						console.log(r);
-						res.send(true);
+
 					});
-					}else
+					}
 					res.send(true);
 				});
 
@@ -795,9 +798,9 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 						mailer.sendMail('ratedEmployer', rr._id,args,function(err, r){
 
 							console.log(r);
-							res.send(true);
+
 						});
-					}else
+					}
 						res.send(true);
 
 				});
@@ -857,7 +860,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({date:1}).exec(function (err, docs) {
 					job.applications = docs;
 
 
@@ -1092,19 +1095,19 @@ console.log(job.post);
 					console.log("inteview");
 					mailer.sendMail('interviewAccepted', emp._id, args, function (er, rss) {
 						console.log(rss);
-						res.send(true);
+
 					});
 				}
 				else{
 					mailer.sendMail('offerAccepted', emp._id, args, function (er, rss) {
 						console.log(rss);
-						res.send(true);
+
 					});
 				}
 
-			}else{
-			res.send(true);
 			}
+			res.send(true);
+
 		});
 
 	});
@@ -1132,12 +1135,12 @@ console.log(job.post);
 
 				mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
 					console.log(rss);
-					res.send(true);
+
 				});
-			}else{
+			}
 
 				res.send(true);
-			}
+
 
 		});
 

@@ -1,23 +1,33 @@
 <div><div ng-controller="employerApplicants">
 
     <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" >
-        <div class="applicantsHead" ng-click="toggleApplicants(job._id)">
+        <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
         <div class="appHeading">
             {{job.post.category}}
         </div>
-            <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)</div>
+            <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)
+            </div>
+
+
+            <div class="pull-right cheviBox">
+                <span ng-if="job.show" class=" glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="!job.show" class=" glyphicon glyphicon-chevron-down"></span>
+            </div>
         </div>
+
+
         <div ng-if="job.show">
             <table class="table applicantsTables">
-                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Status</th><th width="200"></th>
+                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Rating</th><th>Status</th><th width="200"></th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="app in job.applications">
+                <tr ng-repeat="app in job.applications" >
 
                     <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
                     <td>{{getAge(app.studentID.dob);}}</td>
                     <td>{{app.studentID.gender}}</td>
-                    <td><div  class="estatusDiv">
+                    <td><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
+                    <td width="100" height="42"><div  class="estatusDiv">
                         {{app.status}}
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                         <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>

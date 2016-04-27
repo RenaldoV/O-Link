@@ -349,8 +349,8 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
         app.status = "Declined";
         changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,category);
     };
-    $scope.makeOffer = function(app, category){
-
+    $scope.makeOffer = function(ap, category){
+        var app = jQuery.extend(true, {}, ap);
         app.status = "Provisionally accepted";
 
         changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,category);
@@ -393,12 +393,12 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 function changeStatus(app,oldstat, $scope, $http, notify, userID, category) {
     var check = false;
-    console.log(app);
+
     swal({
             title: "Are you sure?",
             text: "This will change the status of this application from " + oldstat + " to " + app.status,
             showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
+            confirmButtonColor: "#00b488",
             confirmButtonText: "Yes, I'm sure!",
             closeOnConfirm: false
         },

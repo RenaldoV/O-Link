@@ -3,10 +3,10 @@
  */
 function getAge(dob){
 
-    var d = dob.split('-');
-    var y = parseInt(d[0]);
+    var d = dob.split('/');
+    var y = parseInt(d[2]);
     var m = parseInt(d[1]);
-    var da = parseInt(d[2]);
+    var da = parseInt(d[0]);
     var date = new Date();
     var temp = date.getFullYear() - y;
 
