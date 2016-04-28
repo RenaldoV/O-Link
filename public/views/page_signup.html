@@ -55,10 +55,14 @@
 								<option value="F">Female</option>
 							</select>
 						</div>
+						<div class="list-group-item">
+							<!--Link google location API en gebruik location auto complete-->
+							<input id="searchTextField1" type="text" class="location controls form-control no-border" placeholder="Enter Home Address" ng-model="user.location.address" required>
+						</div>
 					</fieldset>
 				</div>
 
-				<div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
+				<div class="passTooltip" title="Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character">
 					<h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
 					<div class="list-group list-group-sm form-group">
 						<fieldset class="form-group">
@@ -225,7 +229,7 @@
 						<input type="text"  placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
 					</div>
 					<div class="list-group-item">
-						<input type="text"  name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.contact.IDnumber"
+						<input type="text"  name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.IDnumber"
 							   pattern="[\d]{13,13}"   required>
 					</div>
 					<div class="list-group-item">
@@ -236,7 +240,7 @@
 					</div>
 				</div>
 
-				<div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
+				<div class="passTooltip" title="Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character">
 					<h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
 					<div class="list-group list-group-sm">
 						<div class="list-group-item">
@@ -290,10 +294,10 @@
 						</div>
 						<div class="list-group-item">
 							<!--Link google location API en gebruik location auto complete-->
-							<input id="searchTextField" type="text" class="controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location">
+							<input id="searchTextField" type="text" class="location controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location.address">
 						</div>
 						<div class="list-group-item">
-							<input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.contact.position" >
+							<input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.company.position" >
 						</div>
 					</div>
 				</div>
