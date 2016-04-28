@@ -1,10 +1,18 @@
 ///////////////////////////////////////////////////////
 //////////////Controllers for the nav bar//////////////
 ///////////////////////////////////////////////////////
-app.controller('logoClick', function($scope,$window){
-    $scope.toDash= function(){
-        $window.location.href="/dashboard";
-    };
+app.controller('logoClick', function(authService,$scope,$window){
+    if(authService.isAuthenticated()) {
+        $scope.toDash = function () {
+            $window.location.href = "/dashboard";
+        };
+    }
+    else
+    {
+        $scope.toDash = function () {
+            $window.location.href = "/signIn";
+        };
+    }
 });
 app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http) {
 
@@ -13,7 +21,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 // Set header message of signup $ login pages
 
 
-    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn") {
+    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn" || $location.path() == "/forgot") {
         disableHeadings();
         $scope.slogan = true;
         $scope.slog = true;
