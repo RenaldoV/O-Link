@@ -4747,6 +4747,7 @@ a.text-#000000:hover {
 .banner-logo
 {
   margin-top:-3px;
+  margin-left: -15px;
 	height: 165px;
   cursor: pointer;
 }
