@@ -1,4 +1,4 @@
-<div ng-controller="jobBrowser" class="container text-center">
+<div ng-controller="jobBrowser" class="text-center">
     <div style="margin-bottom: 42px">
     <label>Sort By
         <select ng-model="sortBy" ng-change="sort(sortBy)">
@@ -9,26 +9,82 @@
     </label>
     </div>
     <div class=" jobsContainer container">
-<div class="jobBox feature blueBorder" ng-repeat="job in jobs">
+<div class="row jobBox feature blueTop col-md-12" ng-repeat="job in jobs">
 
         
 
-        <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos">
-    <div ng-if="job.employerID.employerType == 'Company'" class="row"><h5>{{job.employerID.company.name}}</h5></div>
-    <div ng-if="job.employerID.employerType == 'Individual'" class="row"><h5>{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</h5></div>
+    <div class="col-md-2">
+        <div>
+        <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos"><br>
+        <a class="companyLink">
+            <span ng-if="job.employerID.employerType == 'Company'" >{{job.employerID.company.name}}</span>
+            <span ng-if="job.employerID.employerType == 'Individual'" >{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
+        </a>
+            </div>
+    </div>
+    <div class="col-md-10">
+    <div class="col-md-10 jobsHead">
+        <h2>{{job.post.category}}</h2>
 
-    <div class="row"><h2>{{job.post.category}}</h2></div>
+    </div>
+        <div class="col-md-12">
+            <div class="row ">
+            <span class="wordwrap"> {{job.post.description}}</span>
+                <span class="text-danger" ng-if="job.post.interviewRequired"> <br><span class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
+                <br><span class="pull-right small"> Posted on: {{job.post.postDate}}</span>
+            </div>
+            <br>
+            <div class="row text-center">
+                <table class="col-md-4 jobInfoBox">
+                    <thead class="blueBack">
+                    <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr><td>{{job.post.location}}</td></tr>
+                    </tbody>
+                </table>
+                <table class="col-md-2 jobInfoBox">
+                    <thead class="blueBack">
+                    <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr><td> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td></tr>
+                    </tbody>
+                </table>
 
-    <p class="text-danger" ng-if="job.post.interviewRequired">Interview Required</p>
-    <p>Pay: R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</p>
-        <p>Location: {{job.post.location}}</p>
+                <table class="col-md-2 jobInfoBox">
+                <thead class="blueBack">
+                <th class="glyphicon glyphicon-time infoBoxHead "></th>
+                </thead>
+                <tbody>
+                <tr><td>{{job.post.timePeriod}}</td></tr>
+                </tbody>
+            </table>
+                <table class="col-md-2 jobInfoBox">
+                    <thead class="blueBack">
+                    <th class=" glyphicon glyphicon-calendar infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr><td>{{job.post.startingDate}}</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
 
 
 
     <br>
-    <p>Starting Date: {{job.post.startingDate.substr(0,10)}} </p><p> Date Posted: {{job.post.postDate}}</p>
 
-    <a href="/job?id={{job._id}}"> </a>
+
+    <a class="jobLink" href="/job?id={{job._id}}"> </a>
 </div>
     </div>
 </div>
