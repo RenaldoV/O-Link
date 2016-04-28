@@ -9,17 +9,19 @@
 
         <div class="row">
 
+            <div class="col-md-6 text-right">
             <div class="empProfileRating">
                 <div ng-if="user.rating" class="numberRating">
                     {{user.rating}}
 
                 </div>
+                <div class="text-center">
                 <span ng-if="user.rating" class="small">From {{user.numRatings}} review(s)</span>
                 <div ng-if="!user.rating" class="numberRating">
                     N/A
                 </div>
                 <span ng-if="!user.rating" class="small">From 0 review(s)</span>
-
+                </div>
                 <div>
                     <fieldset class="profileStars">
                         <input type="radio" id="star5" name="rating" value=5 ng-model="user.rating"  disabled/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
@@ -34,14 +36,16 @@
                         <input type="radio" id="starhalf" name="rating" value=0.5 ng-model="user.rating" disabled><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                     </fieldset></div>
                 </div>
+        </div>
+            <div class="col-md-6 text-left">
+                <div class="openOffers text-center">
 
-            <div class="openOffers">
-
-                <div class="numberRating">
+                <div class="numberRat">
                     {{offers}}
 
                 </div>
                 <span class="small">Open offer(s)</span>
+            </div>
             </div>
             </div>
 
