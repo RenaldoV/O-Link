@@ -4753,6 +4753,7 @@ a.text-#000000:hover {
 }
 .banner-pp
 {
+  margin-right: -17px;
   height: 130px;
   cursor: pointer;
 }

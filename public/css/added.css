@@ -585,8 +585,16 @@ line-height: normal;
 { color: #FFD700;  }
 .numberRating{
 
-
+text-align: center;
     margin-bottom: -10px;
+
+    font-size: 70px;
+}
+.numberRat{
+
+padding-top: 18px;
+
+    text-align: center;
 
     font-size: 70px;
 }
@@ -773,4 +781,8 @@ margin-left: 21px;
 }
 .blueTop{
     border-top: 1px solid #33B6CC;
+}
+
+.page{
+    padding: 21px;
 }
