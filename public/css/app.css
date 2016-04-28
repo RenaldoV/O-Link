@@ -218,6 +218,9 @@ a:hover .caret-white {
   background-color: #edf1f2;
   border-color: #cfdadd;
 }
+.input-group-btn {
+  z-index: 1;
+}
 
 .list-group {
   border-radius: 2px;
