@@ -210,24 +210,6 @@
         });
     });
 
-
-    $('#startDate').datepicker({
-        changeMonth: true,
-        changeYear: true,
-        minDate :0
-        /*,
-        onSelect: function(selected) {
-            $("#endDate").datepicker("option","minDate", selected)
-        }*/
-    });
-    $('#endDate').datepicker({
-        changeMonth: true,
-        changeYear: true
-        /*,
-        onSelect: function(selected) {
-            $("#startDate").datepicker("option","maxDate", selected)
-        }*/
-    });
     $(function () {
         var text_max = 500;
         $('#textarea_feedback').html(text_max + ' remaining');

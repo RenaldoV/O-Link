@@ -4,7 +4,24 @@
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify, $rootScope){
 
-
+    $('#startDate').datepicker({
+        changeMonth: true,
+        changeYear: true,
+        minDate :0
+        ,
+        onSelect: function(selected) {
+            $("#endDate").datepicker("option","minDate", selected)
+            $scope.job.post.startingDate = selected;
+        }
+    });
+    $('#endDate').datepicker({
+        changeMonth: true,
+        changeYear: true
+        ,
+        onSelect: function(selected) {
+            $scope.job.post.endDate = selected;
+        }
+    });
 
     var options = {
         componentRestrictions: {country: 'za'}
