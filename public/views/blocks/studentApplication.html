@@ -14,7 +14,7 @@
 
 
         </div></td>
-        <td>
+        <td class="appBtns">
         <span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID,app.jobID._id, app.jobID.post.role )">Accept</button></span>
         <span ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link:{{app.jobID.post.role}}" target="_blank">Contact</a></span>
         <span ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button></span>

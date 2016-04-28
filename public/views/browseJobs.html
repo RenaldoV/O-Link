@@ -1,5 +1,16 @@
 <div ng-controller="jobBrowser" class="text-center">
-    <div style="margin-bottom: 42px">
+    <div class="filterOptions" style="margin-bottom: 42px">
+<!--
+        <label>Range
+            <select ng-model="sortBy" ng-change="sort(sortBy)">
+                <option value=0> < 5km</option>
+                <option value=1> < 10km</option>
+                <option value=2> < 20km</option>
+                <option value=1> < 50km</option>
+                <option value=2>50km +</option>
+            </select>
+        </label>
+-->
     <label>Sort By
         <select ng-model="sortBy" ng-change="sort(sortBy)">
             <option value=0>Most Recent</option>
@@ -7,6 +18,8 @@
             <option value=2>Category</option>
         </select>
     </label>
+
+
     </div>
     <div class=" jobsContainer container">
 <div class="row jobBox feature blueTop col-md-12" ng-repeat="job in jobs">
