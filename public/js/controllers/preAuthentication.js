@@ -45,7 +45,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants){
+app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants, session){
 
 
 
@@ -65,6 +65,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             $scope.reqNames = constants.IEB;*/
 
     }
+    if($window.location.href == '/signUp'){
+
 
     if(authService.isAuthenticated())
         $window.location.href= '/dashboard';
@@ -82,10 +84,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
 
-    $scope.compCat = constants.companyCategories;
-    $scope.timePeriods = constants.timePeriods;
-    $scope.workNames = constants.categories;
-    $scope.tertInst = constants.tertiaryInstitutions;
+
     $scope.user = {};
     $scope.user.company = {};
     $scope.user.institution = {};
@@ -96,7 +95,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.user.location.address = {};
     $scope.user.location.geo = {};
 
-
+    }
+    else{
+        $scope.user = session.user;
+    }
+    $scope.compCat = constants.companyCategories;
+    $scope.timePeriods = constants.timePeriods;
+    $scope.workNames = constants.categories;
+    $scope.tertInst = constants.tertiaryInstitutions;
 
     var options = {
         componentRestrictions: {country: 'za'}

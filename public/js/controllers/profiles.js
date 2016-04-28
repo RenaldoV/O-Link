@@ -406,7 +406,7 @@ app.controller('photoUploadControl', function($scope,Upload,$timeout, session, a
                 $scope.result = response.data;
             });
             authService.login({email: user.contact.email});
-            $window.location.href="/myProfile";
+            $window.location.href="/editProfile";
         }, function (response) {
             if (response.status > 0) $scope.errorMsg = response.status
                 + ': ' + response.data;
@@ -416,8 +416,153 @@ app.controller('photoUploadControl', function($scope,Upload,$timeout, session, a
     };
 });
 
-app.controller('editProfile', function($scope,session, photoUpload, $http, $window){
-    $scope.user = session.user;
+app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants){
+
+
+
+    $("#addReq").hide();
+    $scope.matricTypeClick = function(type) {
+        $("#addReq").show();
+
+        /*if(type == "Cambridge")
+         $scope.reqNames = constants.Cambridge;
+         else if(type == "NSC")
+         $scope.reqNames = constants.NSC;
+         else if(type == "IEB")
+         $scope.reqNames = constants.IEB;*/
+
+    };
+
+        $scope.user = session.user;
+    $scope.reqNames = constants.requirements;
+    $scope.compCat = constants.companyCategories;
+    $scope.timePeriods = constants.timePeriods;
+    $scope.workNames = constants.categories;
+    $scope.tertInst = constants.tertiaryInstitutions;
+
+    var options = {
+        componentRestrictions: {country: 'za'}
+    };
+    var input = document.getElementById('searchTextField');
+    var input1 = document.getElementById('searchTextField1');
+    var autocomplete = new google.maps.places.Autocomplete(input,options);
+    var autocomplete1 = new google.maps.places.Autocomplete(input1,options);
+    var geocoder = new google.maps.Geocoder();
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var data = $("#searchTextField").val();
+        $scope.user.company.location.address = data;
+        geocoder.geocode({'address': data}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.user.company.location.geo = results[0].geometry.location;
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+        //alert($scope.user.company.location.geo);
+    });
+    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+        var data = $("#searchTextField1").val();
+        $scope.user.location.address = data;
+        geocoder.geocode({'address': data}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.user.location.geo = results[0].geometry.location;
+
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+        //alert($scope.user.address.geo);
+    });
+
+
+
+
+
+    var numWork = 0;
+    var numReq = 0;
+
+    $scope.close = function(reqs){
+        numReq--;
+        $scope.user.results.pop();
+        if(numReq == 0)
+            $scope.user.results = false;
+
+    };
+    $scope.closeWork = function(cats){
+        numWork--;
+        $scope.user.work.pop();
+        if(numWork == 0)
+            $scope.user.work = false;
+
+    };
+    $scope.add = function(){
+
+        if(!$scope.user.results){
+            $scope.user.results = [{}];
+        }else
+            $scope.user.results.push({});
+        numReq++;
+
+    };
+    $scope.addWork = function(){
+
+        if(!$scope.user.work){
+            $scope.user.work = [{}];
+        }else
+            $scope.user.work.push({});
+        numWork++;
+
+    };
+
+    // work experience
+    var tempWorkList = [];
+    for(var k = 0; k < $scope.workNames.length;k++){
+        tempWorkList.push($scope.workNames[k]);
+    }
+    $scope.tempWork = tempWorkList;
+    $scope.changeWork = function(){
+
+        tempWorkList = [];
+        for(var k = 0; k < $scope.workNames.length;k++){
+            tempWorkList.push($scope.workNames[k]);
+        }
+
+        for(var i = 0; i < $scope.user.work.length; i++) {
+            if ($scope.user.work[i].category) {
+                tempWorkList.splice(tempWorkList.indexOf($scope.user.work[i].category), 1);
+                $scope.tempWork = tempWorkList;
+            }
+        }
+    };
+
+    // Matric Results
+    var tempReqList = [];
+    for(var k = 0; k < $scope.reqNames.length;k++){
+        tempReqList.push($scope.reqNames[k]);
+    }
+    $scope.tempReq = tempReqList;
+    $scope.changeSub = function(){
+
+
+        tempReqList = [];
+        for(var k = 0; k < $scope.reqNames.length;k++){
+            tempReqList.push($scope.reqNames[k]);
+        }
+
+        for(var i = 0; i < $scope.user.results.length; i++) {
+            if ($scope.user.results[i].name) {
+                tempReqList.splice(tempReqList.indexOf($scope.user.results[i].name), 1);
+                $scope.tempReq = tempReqList;
+
+
+            }
+        }
+    };
+
+
+
+
 
     $scope.uploadPp = function(){
         photoUpload.makeUploadBox();

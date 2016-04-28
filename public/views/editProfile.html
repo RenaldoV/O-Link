@@ -15,7 +15,7 @@
 
     <div>
         <button type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
-        <div  id="talentPane" ng-if="user.type == 'student'">
+        <div  id="talentPane" ng-hide="user.type != 'student'">
             <br/>
             <br/>
             <form id="studentSUForm" class="form-validation" name="studentForm" ng-submit="updateUser()">
@@ -27,107 +27,163 @@
                             <input type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" required >
                         </div>
                         <div class="list-group-item">
-                            <input class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
+                            <input type="text" class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
                         </div>
                         <div class="list-group-item">
-                            <input type="text" name="stuDob" id="stuDob" placeholder="Date of birth" class="controls form-control no-border"  ng-model="user.dob" required>
+                            <textarea id="aboutMe" rows=4 class="form-control" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" maxlength="500" minlength="100" required></textarea>
+                            <div id="textarea_feedback"></div>
                         </div>
                         <div class="list-group-item">
-                            <input name="stuEmail" type="email" class="form-control no-border" placeholder="valid .ac.za email" ng-model="user.contact.email"  required>
+                            <input type="text" name="stuDob" id="stuDob" placeholder="Date of Birth" class="controls form-control no-border"  ng-model="user.dob" required>
                         </div>
                         <div class="list-group-item">
-                            <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact No." ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+                            <input name="stuEmail" type="email" class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email"  required>
                         </div>
                         <div class="list-group-item">
-                            <input name="stuID" type="text" class="form-control no-border" placeholder="ID number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+                            <input name="stuContact" type="text" class="form-control no-border" placeholder="Contact Number" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
                         </div>
                         <div class="list-group-item">
-                            <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
+                            <input name="stuID" type="text" class="form-control no-border" placeholder="ID Number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+                        </div>
+                        <div class="list-group-item">
+                            <select id="stuGender" class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
                                 <option value="" selected disabled>Gender</option>
                                 <option value="M">Male</option>
                                 <option value="F">Female</option>
                             </select>
                         </div>
+                        <div class="list-group-item">
+                            <!--Link google location API en gebruik location auto complete-->
+                            <input id="searchTextField1" type="text" class="location controls form-control no-border" placeholder="Enter Home Address" ng-model="user.location.address" required>
+                        </div>
                     </fieldset>
                 </div>
 
-                <div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
-                    <h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
-                    <div class="list-group list-group-sm form-group">
-                        <fieldset class="form-group">
-                            <div class="list-group-item">
-                                <div class="input-group">
 
-                                    <input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
-							<span class="input-group-btn">
-								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-							</span>
-                                </div>
-                            </div>
-                            <div class="list-group-item">
-                                <div class="input-group">
-                                    <input name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
-							<span class="input-group-btn">
-								<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-							</span>
-                                </div>
-                            </div>
-                        </fieldset>
+                <h4 class="form-section-label">Institution Type</h4>
+                <div class="type1 list-group list-group-sm wrapper text-center">
+                    <div class="list-group list-group-sm">
+                        <label class="radio-inline">
+                            <input type="radio" name="type2" id="SecondaryRadio" ng-model="user.institution.type" value="Secondary" required>Secondary Institution
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="type2" id="TertiaryRadio" ng-model="user.institution.type" value="Tertiary" required>Tertiary Institution
+                        </label>
                     </div>
                 </div>
 
-                <h4 class="form-section-label">Qualification Info (optional)</h4>
-                <div class="list-group list-group-sm form-group">
-                    <fieldset class="form-group">
-                        <div class="list-group-item">
-                            <input placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name">
-                        </div>
-                        <div class="list-group-item">
-                            <input placeholder="Brief qualification description" class="form-control no-border" ng-model="user.qualification.description">
-                        </div>
-                        <div class="list-group-item">
-                            <input type="text" placeholder="Graduation Year" class="form-control no-border" ng-model="user.qualification.gradYear">
-                        </div>
-                        <div class="list-group-item">
-                            <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
-                        </div>
-                        <div id="reqGroup" class="list-group-item">
+                <div class="instituteSection" ng-hide="">
+                    <h4 class="form-section-label">Additional Info</h4>
+                    <div class="list-group list-group-sm form-group">
+                        <fieldset class="form-group">
+                            <div class="list-group-item">
+                                <input ng-if="user.institution.type == 'Secondary'"  placeholder="School Name" class="form-control no-border" ng-model="user.institution.name" >
+                                <select ng-if="user.institution.type == 'Tertiary'"  class=" form-control no-border" ng-model="user.institution.name">
+                                    <option value="" selected disabled>Select a Tertiary Institute</option>
 
-                            <div id="reqInputs">
-                                <div class="reqBox" ng-repeat="req in user.results">
-                                    <select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
-                                        <option value="" selected disabled>Choose Subject</option>
-                                        <option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
-                                    </select>
-
-                                    <select name="how" class="form-control no-border" ng-model="req.symbol" required>
-                                        <option value="" selected disabled>Choose Symbol</option>
-                                        <option value="A">A (80-100%)</option>
-                                        <option value="B">B (70-79%)</option>
-                                        <option value="C">C (60-69%)</option>
-                                        <option value="D">D (50-59%)</option>
-                                        <option value="F">F (40-49%)</option>
-                                    </select>
+                                    <option ng-repeat="inst in tertInst" value="{{inst}}">{{inst}}</option>
+                                </select>
+                            </div>
+                            <div id="qualName" class="list-group-item" hidden>
+                                <input type="text"  placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" >
+                            </div>
+                            <div class="list-group-item">
+                                <input  type="number" step="any" class="controls form-control no-border" width="50px" placeholder="GPA" ng-model="user.qualification.GPA">
+                            </div>
+                            <div id="reqGroup" class="list-group-item">
+                                <label>Matric Certificate Type</label>
+                                <div class="list-group list-group-sm">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="type3" id="CambridgeRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="Cambridge">Cambridge
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="type3" id="NSCRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="NSC">NSC
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="type3" id="IEBRadio" ng-click="matricTypeClick(user.institution.matricType)" ng-model="user.institution.matricType" value="IEB">IEB
+                                    </label>
                                 </div>
+                                <div id="reqInputs">
+                                    <div class="reqBox" ng-repeat="req in user.results">
+                                        <select id="mRes" class=" form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
+                                            <option value="" selected disabled>Choose Subject</option>
+                                            <option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
+                                        </select>
+
+                                        <select id="mSymbol" class=" form-control no-border" ng-model="req.symbol" required>
+                                            <option value="" selected disabled>Choose Symbol</option>
+                                            <option value="A">A (80-100%)</option>
+                                            <option value="B">B (70-79%)</option>
+                                            <option value="C">C (60-69%)</option>
+                                            <option value="D">D (50-59%)</option>
+                                            <option value="F">F (40-49%)</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="reqButtonGrp" class="btn-group-vertical" role="group">
+
+                                    <button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
+                                    <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+
                             </div>
 
-                            <div id="reqButtonGrp" class="btn-group-vertical" role="group">
+                            <div id="workExpBox" class="list-group-item">
 
-                                <button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
-                                <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
+                                <div id="workInputs">
+
+                                    <div class="workBox" ng-repeat="cat in user.work">
+                                        <select class=" form-control no-border" ng-model="cat.category" ng-change="changeWork()" required>
+                                            <option value="" selected disabled>Choose Work Category</option>
+                                            <option ng-if="cat.category == workName || tempWork.indexOf(workName) > -1 " ng-click="changeWork()" ng-repeat="workName in workNames" value="{{workName}}">{{workName}}</option>
+                                        </select>
+                                        <select id="period" class=" form-control no-border" ng-model="cat.duration" required>
+                                            <option value="" selected disabled>Duration of Experience?</option>
+
+                                            <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
+                                        </select>
+
+                                        <input type="text" placeholder="Contact Person Name" class="form-control no-border" ng-model="cat.contact.name">
+
+
+                                        <input name="stuContact" type="text"  placeholder="Contact Person Number" class="form-control no-border" ng-model="cat.contact.number" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$">
+
+
+                                        <input type="email"  placeholder="Contact Person Email" class="form-control no-border" ng-model="cat.contact.email">
+
+
+                                    </div>
+                                </div>
+
+                                <div id="workButtonGrp" class="btn-group-vertical" role="group">
+
+                                    <button ng-if="user.work" type="button" class="removeReq btn btn-default" ng-click="closeWork(user.work); changeWork()">Remove<span class="glyphicon glyphicon-minus"></span></button>
+                                    <button type="button" id="addWork" class="btn btn-default" ng-click="addWork()">Add Work Experience <span class="glyphicon glyphicon-plus"></span></button>
+                                </div>
+
                             </div>
-
-                        </div>
-                    </fieldset>
+                        </fieldset>
+                    </div>
+                    <div class="checkbox m-b-md m-t-none">
+                        <label class="i-checks">
+                            <input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license.
+                        </label>
+                    </div>
+                    <div class="checkbox m-b-md m-t-none">
+                        <label class="i-checks">
+                            <input type="checkbox" ng-model="user.ownTransport"><i></i>I have my own vehicle.
+                        </label>
+                    </div>
                 </div>
 
 
 
-                <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
+                <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Edit</button>
             </form>
         </div>
 
-        <div id="employerPane"  ng-if="user.type == 'employer'">
+        <div id="employerPane"  ng-hide="user.type != 'employer'">
             <br/>
             <br/>
             <form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="updateUser()">
@@ -151,67 +207,35 @@
                     </div>
                 </div>
 
-                <div class="passTooltip" title="6 or more Character, 1 or more Capital letters, 1 or more Special Characters (eg: !,@,#,$)">
-                    <h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
-                    <div class="list-group list-group-sm">
-                        <div class="list-group-item">
-                            <div class="input-group">
-
-                                <input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
-									<span class="input-group-btn">
-										<button class="btn btn-default reveal no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-									</span>
-                            </div>
-                        </div>
-                        <div class="list-group-item">
-                            <div class="input-group">
-                                <input name="empRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd1" required>
-									<span class="input-group-btn">
-										<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-									</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
 
 
-                <div class="companysection" ng-if="user.employerType == 'Company'">
+
+
+                <div class="companysection" ng-hide="user.employerType != 'Company'">
                     <h4 class="form-section-label">Company Info</h4>
                     <div class="list-group list-group-sm form-group" >
 
                         <div class="list-group-item">
-                            <input type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
+                            <input id="compName" type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
                         </div>
                         <div class="list-group-item">
-                            <input type="text" class="form-control no-border" placeholder="Brief company description" ng-model="user.company.description" maxlength="500" >
+                            <select id="compDesc" class=" form-control no-border" ng-model="user.company.category" required>
+                                <option value="" selected disabled>Select a Company Category</option>
+
+                                <option ng-repeat="cat in compCat" value="{{cat}}">{{cat}}</option>
+                            </select>
                         </div>
                         <div class="list-group-item">
                             <!--Link google location API en gebruik location auto complete-->
-                            <input id="searchTextField" type="text" class="controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location">
+                            <input id="searchTextField" type="text" class="location controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location.address">
                         </div>
                         <div class="list-group-item">
-                            <input placeholder="Position within company" class="form-control no-border" ng-model="user.contact.position" >
+                            <input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.company.position" >
                         </div>
                     </div>
-                </div>
-
-
-                <h4 class="form-section-label">Other info</h4>
-                <div class="list-group list-group-sm form-group">
-                    <fieldset class="form-group">
-                        <div class="list-group-item">
-                            <select class="form-control no-border" id="sel1" name="how" ng-model="user.suggested">
-                                <option value="" selected disabled>How did you hear about us?</option>
-                                <option value="Word of mouth">Word of mouth</option>
-                                <option value="Social media">Social media</option>
-                                <option value="Academic institution">Academic institution</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-                    </fieldset>
                 </div>
 
                 <button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Edit</button>
