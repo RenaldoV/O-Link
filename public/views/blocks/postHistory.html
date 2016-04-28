@@ -1,11 +1,12 @@
 <div ng-controller="pastJobFeed">
     <table style="margin-top: 42px;" class="table applicantsTable blueBorder">
-        <thead class="talentHistoryHead blueBack"><th>Category</th><th></th>
+        <thead class="talentHistoryHead blueBack"><th>Category</th><th>Date</th><th></th><th></th>
         </thead>
         <tbody>
         <tr  ng-repeat="job in jobs" >
             <td>{{job.post.category}}</td>
-
+            <td>{{job.post.startingDate}}</td>
+            <td></td>
             <td><button class="btn blueBack" ng-click="repost(job._id)">Edit and repost</button></td>
         </tr>
         </tbody>
