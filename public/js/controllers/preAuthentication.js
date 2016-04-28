@@ -92,9 +92,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.user.company.location = {};
     $scope.user.company.location.address = {};
     $scope.user.company.location.geo = {};
-    $scope.user.address = {};
-    $scope.user.address.address = {};
-    $scope.user.address.geo = {};
+    $scope.user.location = {};
+    $scope.user.location.address = {};
+    $scope.user.location.geo = {};
 
 
 
@@ -121,10 +121,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     });
     google.maps.event.addListener(autocomplete1, 'place_changed', function() {
         var data = $("#searchTextField1").val();
-        $scope.user.address.address = data;
+        $scope.user.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.address.geo = results[0].geometry.location;
+                $scope.user.location.geo = results[0].geometry.location;
 
             } else {
                 console.log('Geocode was not successful for the following reason: ' + status);

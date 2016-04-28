@@ -11,9 +11,18 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     };
     var input = document.getElementById('searchTextField');
     var autocomplete = new google.maps.places.Autocomplete(input,options);
+    var geocoder = new google.maps.Geocoder();
+
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var data = $("#searchTextField").val();
-        $scope.job.post.location = data;
+        $scope.job.post.location.address = data;
+        geocoder.geocode({'address': data}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.job.post.location.geo = results[0].geometry.location;
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
     });
 
     if(!authService.isAuthenticated())
@@ -401,7 +410,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             cacheUser.create(res.data.employerID);
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
-            var loc = $scope.job.post.location.split(' ').join('+');
+            var loc = $scope.job.post.location.address.split(' ').join('+');
             $("#location").prop('src',"https://www.google.com/maps/embed/v1/place?key=AIzaSyDXnlJCOOsZVSdd-iUvTejH13UcZ0-jN0o&q="+loc+"&zoom=13");
             job = res.data;
             if($.inArray(user._id, job.applicants) != -1)
