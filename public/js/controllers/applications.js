@@ -231,7 +231,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
     $rootScope.$broadcast('myApplicants', 1);
 
-    if(temp == '/applicants') {
+
         $http
             .post('/loadApplicants', user)
             .then(function (res) {
@@ -240,6 +240,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 $scope.jobs = res.data;
                 console.log($scope.jobs);
+
 
                 $scope.toggleApplicants = function(id){
                     $.each($scope.jobs, function(idx,job){
@@ -252,6 +253,10 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                        }
                     });
                 };
+                temp = temp.replace("/applicants?jobID=", '');
+                if(temp != ''){
+                    $scope.toggleApplicants(temp);
+                }
                 $scope.getAge = function (dob) {
                     return getAge(dob);
                 };
@@ -290,49 +295,8 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 };
 
             });
-    }
-    else {
-        temp = temp.replace("/applicants?jobID=", '');
-        $http
-            .post('/loadApplicantsByJobId', {_id:temp})
-            .then(function (res) {
-
-                $scope.applications = res.data;
-
-                $scope.getAge = function (dob) {
-                    return getAge(dob);
-                };
-                console.log($scope.applications);
 
 
-
-
-                $scope.isDeclined = function(status){
-                    if(status == "Declined"){
-                        return true;
-                    }
-                    return false;
-                };
-                $scope.isProv = function(status){
-                    if(status == "Provisionally accepted"){
-                        return true;
-                    }
-                    return false;
-                };
-                $scope.isPending = function(status){
-                    if(status == "Pending"){
-                        return true;
-                    }
-                    return false;
-                };
-                $scope.isConfirmed = function(status){
-                    if(status == "Confirmed"){
-                        return true;
-                    }
-                    return false;
-                };
-            });
-    }
     $scope.decline = function(ap, category){
         var app = jQuery.extend(true, {}, ap);
         app.status = "Declined";
