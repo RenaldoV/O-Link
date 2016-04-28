@@ -89,16 +89,51 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.user = {};
     $scope.user.company = {};
     $scope.user.institution = {};
+    $scope.user.company.location = {};
+    $scope.user.company.location.address = {};
+    $scope.user.company.location.geo = {};
+    $scope.user.address = {};
+    $scope.user.address.address = {};
+    $scope.user.address.geo = {};
+
+
 
     var options = {
         componentRestrictions: {country: 'za'}
     };
     var input = document.getElementById('searchTextField');
+    var input1 = document.getElementById('searchTextField1');
     var autocomplete = new google.maps.places.Autocomplete(input,options);
+    var autocomplete1 = new google.maps.places.Autocomplete(input1,options);
+    var geocoder = new google.maps.Geocoder();
+
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
         var data = $("#searchTextField").val();
-        $scope.user.company.location = data;
+        $scope.user.company.location.address = data;
+        geocoder.geocode({'address': data}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.user.company.location.geo = results[0].geometry.location;
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+        //alert($scope.user.company.location.geo);
     });
+    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+        var data = $("#searchTextField1").val();
+        $scope.user.address.address = data;
+        geocoder.geocode({'address': data}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.user.address.geo = results[0].geometry.location;
+
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+        //alert($scope.user.address.geo);
+    });
+
+
 
 
 
@@ -184,6 +219,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     };
 
     $scope.submitForm = function() {
+
         $scope.submitted = true;
 
         var user = $scope.user;

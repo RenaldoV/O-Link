@@ -1,4 +1,5 @@
 ////Renaldo se user form scripts, uit sodat dit makliker is om te edit(gebruik vir edit profile ook)
+
 if (document.addEventListener) {
     document.addEventListener('invalid', function(e) {
         var element = $(e.target);
