@@ -123,7 +123,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
     });
 
 //dashboard selection box for browsing jobs
-app.controller('goBrowse',function($scope, $location, constants, $timeout){
+app.controller('goBrowse',function($scope, $location, constants, $timeout, $window){
 
 
 
@@ -214,22 +214,16 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout){
         if($location.url() == '/guest'){
             window.location = '/signIn';
         }
+
+        var dat = {};
+        dat.timePeriods = $scope.selectionP;
+        dat.categories = $scope.selectionC;
+        var parm = $.param(dat);
+        $window.location.href= '/browseJobs?'+ parm;
+
         var temp = JSON.stringify($scope.selectionC);
         var temp2 = JSON.stringify($scope.selectionP);
 
-
-        temp = temp.replace(/,/g, '%');
-        temp = temp.replace(/"/g, '');
-        temp = temp.replace(/ /g, '_');
-        temp = temp.slice(1, -1);
-
-        temp2 = temp2.replace(/,/g, '%');
-        temp2 = temp2.replace(/"/g, '');
-        temp2 = temp2.replace(/ /g, '_');
-        temp2 = temp2.slice(1, -1);
-
-
-       $location.path('/browseJobs').search('categories', temp).search('timePeriods', temp2 );
 
     }
 
