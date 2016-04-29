@@ -19,3 +19,7 @@ accept interview: check
 withdraw: check
 job edited to talent: check
 job edited to emp: check
+rate talent:check
+rate emp:check
+rated talent:check
+rated emp:check

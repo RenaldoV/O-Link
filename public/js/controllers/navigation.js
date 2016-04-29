@@ -68,6 +68,13 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                 }
             });
         });
+
+        $rootScope.$on('empHistory', function () {
+
+            disableHeadings();
+            $scope.empHistory = true;
+
+        });
         $rootScope.$on('browse', function () {
 
             disableHeadings();
@@ -202,6 +209,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.myApplicants = false;
             $scope.myJobs = false;
             $scope.myJobHistory = false;
+            $scope.empHistory = false;
         }
 
 

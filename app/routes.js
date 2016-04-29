@@ -792,7 +792,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					if(emp.emailDisable == undefined || !emp.emailDisable){
 
 						var args = {
-							link:'http://' + req.headers.host + '/ratings',
+							link:'http://' + req.headers.host + '/employmentHistory',
 							name: emp.contact.name,
 							talentName: usr.name.name + ' ' + usr.name.surname,
 							category : job.post.category,
@@ -964,6 +964,8 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	});
 	//done
+
+
 	app.post('/loadPostHistory', function(req,res){
 
 		var student= req.body;

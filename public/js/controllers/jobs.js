@@ -737,3 +737,30 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
 
 });
 
+
+app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+
+    var user = cacheUser.user;
+    if(!user){
+        user = session.user;
+    }
+    $scope.user = user;
+
+    $rootScope.$broadcast('empHistory', 1);
+
+    $http
+        .post('/loadJobHistory', {employerID : user._id})
+        .then(function (res) {
+
+            $scope.applications = res.data;
+
+            if($scope.applications.length == 0)
+            {
+                $scope.message = "You haven't completed any jobs.";
+            }
+
+
+
+        });
+
+});

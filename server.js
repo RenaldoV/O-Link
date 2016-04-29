@@ -76,7 +76,7 @@ new CronJob('00 00 * * * *', function() {
 //function executes once a day
 new CronJob('00 00 00 00 00 00', function() {
     //check for edited posts that weren't accepted
-    db.jobs.find({status:{$ne: 'Completed'}},function(err,rows){
+    db.jobs.find({status: 'active'},function(err,rows){
         rows.forEach(function(ro){
             var row = ro.toObject();
             if (row.post.endDate) {
@@ -84,8 +84,8 @@ new CronJob('00 00 00 00 00 00', function() {
                 {
                     db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
 
-                        db.applications.update({jobID: dox._id}, {$set:{status:"Completed"}}, function(err,don){
-                            db.applications.find({jobID:dox._id}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
+                        db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}, {multi:true}, function(err,don){
+                            db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
                                 if (err) throw err;
                                 aps.forEach(function (ap) {
 
@@ -107,14 +107,14 @@ new CronJob('00 00 00 00 00 00', function() {
 
                                     if(emp.emailDisable == undefined || !emp.emailDisable) {
                                         args.email = emp.contact.email;
-                                        mailer.sendMail('rateTalent', emp._id, args, function (err, rs) {
+                                        mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
                                             console.log(rs);
                                         });
                                     }
 
                                     if(usr.emailDisable == undefined || !usr.emailDisable) {
                                         args.email = usr.contact.email;
-                                        mailer.sendMail('rateEmployer', usr._id, args, function (err, rs) {
+                                        mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
                                             console.log(rs);
                                         });
                                     }
@@ -129,8 +129,8 @@ new CronJob('00 00 00 00 00 00', function() {
                 {
 
                     db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
-                        db.applications.update({jobID: dox._id}, {$set:{status:"Completed"}}).exec(function(err,res){
-                            db.applications.find({jobID:dox._id}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
+                        db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
+                            db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
                                     if (err) throw err;
                                     aps.forEach(function (ap) {
 
@@ -152,14 +152,14 @@ new CronJob('00 00 00 00 00 00', function() {
 
                                         if(emp.emailDisable == undefined || !emp.emailDisable) {
                                             args.email = emp.contact.email;
-                                            mailer.sendMail('rateTalent', emp._id, args, function (err, rs) {
+                                            mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
                                                 console.log(rs);
                                             });
                                         }
 
                                         if(usr.emailDisable == undefined || !usr.emailDisable) {
                                             args.email = usr.contact.email;
-                                            mailer.sendMail('rateEmployer', usr._id, args, function (err, rs) {
+                                            mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
                                                 console.log(rs);
                                             });
                                         }
