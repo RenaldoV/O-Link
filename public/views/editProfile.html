@@ -222,7 +222,7 @@
                             <input id="compName" type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
                         </div>
                         <div class="list-group-item">
-                            <select id="compDesc" class=" form-control no-border" ng-model="user.company.category" required>
+                            <select id="compDesc" class=" form-control no-border" ng-model="user.company.category" >
                                 <option value="" selected disabled>Select a Company Category</option>
 
                                 <option ng-repeat="cat in compCat" value="{{cat}}">{{cat}}</option>

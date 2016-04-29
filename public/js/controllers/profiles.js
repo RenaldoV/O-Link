@@ -572,6 +572,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
     {
 
 var user =  $scope.user;
+        console.log(user);
         swal({
                 title: "Are you sure?",
                 type: "input",
