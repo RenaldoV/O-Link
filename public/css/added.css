@@ -793,3 +793,8 @@ margin-left: 21px;
 .appBtns {
     height: 51px;
 }
+
+.jobSubHeader{
+    font-size: 18px;
+    font-weight: bold;
+}

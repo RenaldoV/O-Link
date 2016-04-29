@@ -310,23 +310,14 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
     $scope.jobs = [];
     $rootScope.$broadcast('browse', 1);
     $scope.sortBy = 0;
-    var temp = $location.url();
-    var temp = temp.split("&");
-    temp[0] = temp[0].replace("/browseJobs?categories=", '');
-    temp[0] = temp[0].replace(/_/g, ' ');
-    var arr = temp[0].split("%25");
 
-    var arr2 = [];
-    if(temp[1]){
-        temp[1] = temp[1].replace("timePeriods=", '');
-        temp[1] = temp[1].replace(/_/g, ' ');
-        arr2 = temp[1].split("%25");
-    }
+    var temp = $.deparam.querystring();
+
     //get the jobs
     $http({
         method  : 'POST',
         url     : '/jobBrowse',
-        data : {'categories': arr, 'periods' : arr2}
+        data : {'categories': temp.categories, 'periods' : temp.timePeriods}
     })
         .then(function(res) {
 
@@ -334,14 +325,14 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
 
             angular.forEach($scope.jobs, function(job){
                 job.post.postDate = job.post.postDate.substr(0,10);
-                console.log(job);
+
                 var user = {};
                 user.profilePicture = job.employerID.profilePicture;
 
                 $http.post('/getPp', user)
                     .then(function (res) {
 
-                        console.log(job);
+
                         job.logo =  res.data;
                     });
             });
