@@ -609,14 +609,15 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         $.each(job.post.experience, function (key, value) {
             $.each(user.work, function (i, val) {
-                if(value.category == val.category){
 
-                        meets[key] = true;
+                if(value.category == val.category){
+                    
+                        meets[key+job.post.requirements.length] = true;
 
                 }
             });
         });
-
+console.log(meets);
 
         if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
         {
