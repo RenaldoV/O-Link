@@ -4749,9 +4749,9 @@ a.text-#000000:hover {
 
 .banner-logo
 {
-  margin-top:-3px;
+  margin-top:13px;
   margin-left: -15px;
-	height: 165px;
+	height: 130px;
   cursor: pointer;
 }
 .banner-pp
@@ -4885,7 +4885,7 @@ h2.navbar-text .profileHeader{
   text-align: center;
   position: relative;
   font-size: 3.2vw;
-  color: black;
+  color: white;
   font-family: 'Source Sans Pro', sans-serif;
 }
 h2.navbar-text .appCount{
@@ -4893,7 +4893,7 @@ h2.navbar-text .appCount{
   text-align: center;
   position: relative;
   font-size: 0.9vw;
-  color: black;
+  color: white;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
@@ -4905,8 +4905,9 @@ div.header-text{
 
 p.navbar-txt
 {
-  color: black;
+  color: white;
 }
+
 
 span.green
 {
@@ -4921,6 +4922,13 @@ span.blue
 
 html.signupBG {
   background: url('../img/signup-bg1.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+html.dashBG {
+  background: url('../img/dash-bg2.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

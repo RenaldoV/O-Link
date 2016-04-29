@@ -5,6 +5,7 @@ app.controller('logoClick', function(authService,$scope,$window){
     if(authService.isAuthenticated()) {
         $scope.toDash = function () {
             $window.location.href = "/dashboard";
+            $(".appbg").addClass('dashBG');
         };
     }
     else
@@ -32,6 +33,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     //for guests
     if ($location.path() == "/guest") {
+        $(".appbg").addClass('dashBG');
         var user = {id: 'guest', type: 'guest'};
         $scope.loggedIn = true;
         $http.post('/getPp', user)
@@ -216,6 +218,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
         if (authService.isAuthenticated()) {
+            $(".appbg").addClass('dashBG');
             headings();
         }
         else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {

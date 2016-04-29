@@ -30,6 +30,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                             $scope.setCurrentUser(user);
                             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                             $(".appbg").removeClass('signupBG');
+                            $(".appbg").addClass('dashBG');
                             $location.url("/dashboard");
 
 
@@ -301,6 +302,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                         },
                         function () {
                             $(".appbg").removeClass('signupBG');
+                            $(".appbg").addClass('dashBG');
                             authService.login(tempUser).then(function (user) {
                                 $scope.setCurrentUser(user);
                                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);

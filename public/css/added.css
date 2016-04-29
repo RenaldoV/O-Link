@@ -397,7 +397,10 @@ h1 { font-size: 1.5em; margin: 10px; }
 .dashSlogan{
     width: 100%;
     text-align: center;
-    font-size: 30px;
+    font-size: 25px;
+    color: white;
+    margin-bottom: 15px;
+   font-weight: 200;
 }
 
 .postButton{
