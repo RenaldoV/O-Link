@@ -22,13 +22,15 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 // Set header message of signup $ login pages
 
 
-    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn" || $location.path() == "/forgot") {
+    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn" || $location.path() == "/forgot" || $location.path() == "/reset") {
         disableHeadings();
         $scope.slogan = true;
         $scope.slog = true;
         $scope.slog1 = "Today's Talent.";
         $scope.slog2 = "Tomorrow's Success."
     }
+    else
+        $(".appbg").addClass('dashBG');
 
 
     //for guests
