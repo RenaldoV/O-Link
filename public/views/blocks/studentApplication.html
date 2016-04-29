@@ -7,7 +7,7 @@
         <td>R{{app.jobID.post.pay }}
             <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
             <span ng-if="!job.post.timePeriod == 'Once Off'">/Hour</span></td>
-        <td>{{app.jobID.post.location}}</td>
+        <td>{{app.jobID.post.location.address}}</td>
         <td><div class="statusDiv"><span>{{app.status}}</span>
             <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
             <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>

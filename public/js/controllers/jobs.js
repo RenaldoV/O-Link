@@ -611,7 +611,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             $.each(user.work, function (i, val) {
 
                 if(value.category == val.category){
-                    
+
                         meets[key+job.post.requirements.length] = true;
 
                 }
