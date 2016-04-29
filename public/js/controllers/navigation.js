@@ -24,7 +24,6 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn" || $location.path() == "/forgot") {
         disableHeadings();
-        
         $scope.slogan = true;
         $scope.slog = true;
         $scope.slog1 = "Today's Talent.";
