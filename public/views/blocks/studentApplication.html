@@ -4,7 +4,9 @@
     <tbody>
     <tr ng-repeat="app in applications">
         <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td>R{{app.jobID.post.pay + "/" + app.jobID.payPer}}</td>
+        <td>R{{app.jobID.post.pay }}
+            <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
+            <span ng-if="!job.post.timePeriod == 'Once Off'">/Hour</span></td>
         <td>{{app.jobID.post.location}}</td>
         <td><div class="statusDiv"><span>{{app.status}}</span>
             <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
