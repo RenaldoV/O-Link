@@ -685,21 +685,28 @@ margin-left: 21px;
 }
 
 .applicantsTables{
-    background-color: #cee0f6;
+    background-color: transparent;
     margin-top: -10px;
     margin-left: 10px;
 }
-
-.applicantsTables tbody tr:nth-child(odd) {
+.applicantsTables thead th{
+    background-color: #cee0f6;
+}
+.applicantsTables tbody th:last-child {
+    background-color: transparent;
+    float: right;
+    border: none;
+}
+.applicantsTables tbody tr td {
     background-color: white;
 }
 .applicantsTables tbody tr td:last-child {
-    background-color: #f0f3f4;
+    background-color: transparent;
     float: right;
     border: none;
 }
 .applicantsTables thead th:last-child {
-    background-color: #f0f3f4;
+    background-color: transparent;
     border: none;
 
 }
