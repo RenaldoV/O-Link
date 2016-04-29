@@ -558,7 +558,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                                 jobID: job._id,
                                                 userID: job.applicants[i],
                                                 status: 'deleted',
-                                                title: job.post.role
+                                                title: job.post.category
                                             });
                                         }
                                     }
@@ -675,7 +675,7 @@ console.log(meets);
                             jobID: job._id,
                             userID: job.employerID._id,
                             status: 'Made',
-                            title: job.post.role
+                            title: job.post.category
                         });
 
 

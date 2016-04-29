@@ -49,7 +49,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     return false;
                 };
 
-                $scope.accept = function(id, employerID, jobID, role){
+                $scope.accept = function(id, employerID, jobID, category){
                     swal({
                             title: "Are you sure?",
                             text: "This will notify the user and that you hve accepted",
@@ -69,7 +69,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'accepted',
-                                            title: role
+                                            title: category
                                         });
                                         swal("Offer accepted.", "The user has been notified.", "success");
                                         location.reload();
@@ -80,7 +80,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 };
 
-                $scope.decline = function(id, employerID, jobID, role){
+                $scope.decline = function(id, employerID, jobID, category){
                     swal({
                             title: "Are you sure?",
                             text: "This will notify the user and that you have withdrawn",
@@ -100,7 +100,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'withdrawn',
-                                            title: role
+                                            title: category
                                         });
                                         swal("Offer declined.", "The user has been notified.", "success");
                                         location.reload();
@@ -161,7 +161,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
         $scope.message = "You are not allowed to view other students' applications.";
     }
 
-    $scope.offer = function(id, studentID, jobID, role){
+    $scope.offer = function(id, studentID, jobID, category){
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and he will accept or decline",
@@ -181,7 +181,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                 jobID: jobID,
                                 userID: studentID,
                                 status: 'offered',
-                                title: role
+                                title: category
                             });
                             swal("Offer made.", "The user has been notified.", "success");
                             location.reload();
