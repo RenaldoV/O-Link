@@ -4,7 +4,7 @@
 
 var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch']);
 //Starts when the app starts
-app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
+app.run(function($cookies,$rootScope,$location, session, authService, AUTH_EVENTS, rate){
 
     if ($cookies.get("user")){
         session.create(JSON.parse($cookies.get("user")));
@@ -12,12 +12,26 @@ app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
     }
 
 
+        $rootScope.$watch(function() {
+                return $location.path();
+            },
+            function(path){
+                if (path != "/" && path != "/signIn" && path != "/signUp" && path != "/activate" && path.indexOf("/reset/") != 0&& path != "/guest" && path != "/forgot") {
+                    //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
+                    $location.url("/signIn");
+
+                }
+
+            });
+
 
 
 });
 
 //feed on student dashboard
-app.controller('jobFeed', function($scope,$http, $window){
+app.controller('jobFeed', function($scope,$http, $window, session){
+
+
 
     $http({
         method  : 'POST',
@@ -37,6 +51,7 @@ app.controller('jobFeed', function($scope,$http, $window){
 
             }
         });
+
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
     };

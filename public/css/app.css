@@ -1100,6 +1100,7 @@ body {
   .navbar-form .form-group {
     margin-bottom: 0;
   }
+
 }
 
 html.bg {
@@ -5010,4 +5011,3 @@ select.form-control::-ms-expand {
 ul.jobpg {
   list-style: none;
 }
-

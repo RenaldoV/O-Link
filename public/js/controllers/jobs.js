@@ -304,49 +304,49 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 });
 
-app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
+app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session){
 
+    if(session.user) {
+        $scope.jobs = [];
+        $rootScope.$broadcast('browse', 1);
+        $scope.sortBy = 0;
 
-    $scope.jobs = [];
-    $rootScope.$broadcast('browse', 1);
-    $scope.sortBy = 0;
+        var temp = $.deparam.querystring();
 
-    var temp = $.deparam.querystring();
-
-    //get the jobs
-    $http({
-        method  : 'POST',
-        url     : '/jobBrowse',
-        data : {'categories': temp.categories, 'periods' : temp.timePeriods}
-    })
-        .then(function(res) {
+        //get the jobs
+        $http({
+            method: 'POST',
+            url: '/jobBrowse',
+            data: {'categories': temp.categories, 'periods': temp.timePeriods}
+        })
+            .then(function (res) {
 
                 $scope.jobs = res.data;
 
-            angular.forEach($scope.jobs, function(job){
-                job.post.postDate = job.post.postDate.substr(0,10);
+                angular.forEach($scope.jobs, function (job) {
+                    job.post.postDate = job.post.postDate.substr(0, 10);
 
-                var user = {};
-                user.profilePicture = job.employerID.profilePicture;
+                    var user = {};
+                    user.profilePicture = job.employerID.profilePicture;
 
-                $http.post('/getPp', user)
-                    .then(function (res) {
+                    $http.post('/getPp', user)
+                        .then(function (res) {
 
 
-                        job.logo =  res.data;
-                    });
-            });
+                            job.logo = res.data;
+                        });
+                });
 
-                $scope.getPer = function(cat){
-                    if(cat == "Once Off"){
+                $scope.getPer = function (cat) {
+                    if (cat == "Once Off") {
                         return cat;
                     }
                     else return "hr"
                 };
 
 
-        });
-
+            });
+    }
 
 
     $scope.sort = function(by){
@@ -398,6 +398,10 @@ function getPp(user,cb){
 
 }
 app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
+
+    if(!session.user){
+        $location.url('/signUp');
+    }
     var temp = $location.url();
     var user = session.user;
     temp = temp.replace("/job?id=", '');
@@ -598,7 +602,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
-               
+
                 if(value.name == val.name){
                     if(val.symbol <= value.symbol){
                         meets[key] = true;
