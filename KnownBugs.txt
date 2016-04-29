@@ -4,3 +4,5 @@
 3. Signup (not all boxes light up when focused on and incorrect fields must receive asterisk)
 4. Welcome message not supposed to be on Job page
 5. Spelling on confirm message when accepting a job offer after you have been provisionally accepted. (After a Counter Accepted a provisionally accepted status he/she should not be able to accept again (button must be inactive))
+6. Edit Talent profile (Add button of matric results acting weird)
+7. When Talent Accept offer made by Employer, Employer gets no in browser notifications and color dot doesn't turn blue.

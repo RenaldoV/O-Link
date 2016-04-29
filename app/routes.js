@@ -1176,11 +1176,22 @@ console.log(job.post);
 	app.post('/toggleEmail', function(req, res){
 
 		var user = req.body;
-		console.log(user);
 
 		db.users.findOneAndUpdate({_id: user.id}, {$set:{emailDisable:user.emailDisable}}, function(err, count){
 			if(!err){
 				res.send(true);
+			}
+		});
+
+	});
+	app.post('/setEmailToggle', function(req, res){
+
+		var user = req.body;
+
+
+		db.users.findOne({_id: user.id}, {emailDisable: 1, _id:0}, function(err,data){
+			if(!err){
+				res.send(data);
 			}
 		});
 

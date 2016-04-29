@@ -636,6 +636,21 @@ console.log(meets);
             }
 
         });
+
+        }
+        if(job.post.driversLicense != 'undefined')
+        {
+            //console.log("job license: " + job.post.driversLicense);
+            //console.log("user license: " + user.driversLicence);
+            if(user.driversLicence != job.post.driversLicense)
+                met = false;
+        }
+        if(job.post.transport != 'undefined')
+        {
+            //console.log("job trans: " + job.post.transport);
+            //console.log("user trans: " + user.ownTransport);
+            if(user.ownTransport != job.post.transport)
+                met = false;
         }
         if(!met){
             sweetAlert("Requirements not met", "", "error");

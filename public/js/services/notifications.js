@@ -10,7 +10,14 @@ app.controller('notifications', function($scope,$http, session, cacheUser){
 
     if(session.user) {
         $scope.userType = session.user.type;
-        $scope.emailNoti = !session.user.emailDisable;
+        $http
+            .post('/setEmailToggle', {id: session.user._id})
+            .then(function (res) {
+                if(res){
+                    $scope.emailNoti = !res.data.emailDisable;
+                }
+            });
+        //console.log($scope.emailNoti);
         loadNotifications();
         socket.on('notified'+ session.user._id, function(data){
             loadNotifications();
@@ -41,6 +48,7 @@ $scope.toggleEmail = function(){
         .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
         .then(function (res) {
             if(res){
+
             swal("Email Notifications Changed", "Your email notifications have been "+message, "success");
             }
 
