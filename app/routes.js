@@ -1173,6 +1173,20 @@ console.log(job.post);
 
 	});
 	//done
+	app.post('/toggleEmail', function(req, res){
+
+		var user = req.body;
+		console.log(user);
+
+		db.users.findOneAndUpdate({_id: user.id}, {$set:{emailDisable:user.emailDisable}}, function(err, count){
+			if(!err){
+				res.send(true);
+			}
+		});
+
+	});
+
+
 };
 
 function roundHalf(num) {

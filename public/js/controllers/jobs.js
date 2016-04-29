@@ -598,8 +598,9 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         $.each(job.post.requirements, function (key, value) {
             $.each(user.results, function (i, val) {
+               
                 if(value.name == val.name){
-                    if(val.result <= value.symbol){
+                    if(val.symbol <= value.symbol){
                         meets[key] = true;
                     }
                 }
@@ -615,6 +616,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 }
             });
         });
+
 
         if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
         {
