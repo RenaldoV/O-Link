@@ -706,6 +706,9 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
                         value.applicants=[];
                     }
                 });
+                if($scope.jobs.length == 0){
+                    $scope.message = "No jobs have been completed, yet.";
+                }
             }
         });
 });
@@ -728,7 +731,7 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
 
             if($scope.applications.length == 0)
             {
-                $scope.message = "You haven't completed any jobs.";
+                $scope.message = "You haven't completed any jobs, yet.";
             }
 
 
@@ -756,7 +759,7 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
 
             if($scope.applications.length == 0)
             {
-                $scope.message = "You haven't completed any jobs.";
+                $scope.message = "No talent has been used, yet.";
             }
 
 
