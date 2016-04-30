@@ -52,7 +52,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $scope.accept = function(id, employerID, jobID, category){
                     swal({
                             title: "Are you sure?",
-                            text: "This will notify the user and that you hve accepted",
+                            text: "This will notify the user and that you have accepted",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
                             confirmButtonText: "Yes, I'm sure!",

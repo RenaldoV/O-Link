@@ -493,7 +493,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     $scope.accept = function(id, employerID, jobID, category){
         swal({
                 title: "Are you sure?",
-                text: "This will notify the user and that you hve accepted",
+                text: "This will notify the user and that you have accepted",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, I'm sure!",
@@ -617,7 +617,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 }
             });
         });
-console.log(meets);
+
 
         if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
         {
@@ -642,14 +642,16 @@ console.log(meets);
         {
             //console.log("job license: " + job.post.driversLicense);
             //console.log("user license: " + user.driversLicence);
-            if(user.driversLicence != job.post.driversLicense)
+
+            if(!user.driversLicence && job.post.driversLicense)
                 met = false;
         }
         if(job.post.transport != 'undefined')
         {
+
             //console.log("job trans: " + job.post.transport);
             //console.log("user trans: " + user.ownTransport);
-            if(user.ownTransport != job.post.transport)
+            if(!user.ownTransport && job.post.transport)
                 met = false;
         }
         if(!met){

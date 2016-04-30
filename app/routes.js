@@ -924,6 +924,12 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			res.send(true);
 		} );
 
+		/*
+		 db.notifications.find({_id : noti.id}).remove().exec( function(err, not){
+		 if (err) throw err;
+		 res.send(true);
+		 } );
+		 */
 	});
 	//done
 

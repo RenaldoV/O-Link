@@ -31,7 +31,8 @@
                         {{app.status}}
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                         <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
-                        <div ng-if="isConfirmed(app.status) || isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+                        <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+                        <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
                     </div>
                     </td>
 
