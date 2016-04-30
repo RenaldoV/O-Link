@@ -572,6 +572,10 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		job.applicants.push(user._id);
 
 
+		if(job.applicants.length >= (job.post.spotsAvailable * job.post.threshold)){
+			job.status = 'filled';
+		}
+
 		var application = {
 			studentID: user._id,
 			jobID: job._id,
