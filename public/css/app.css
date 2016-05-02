@@ -5011,18 +5011,61 @@ ul.jobpg {
 }
 
 @media (max-width: 990px) {
-
   .navbar-text{
     display:none;!important;
   }
   .banner-logo{
+    margin-top: 0px;
     width:50px;
     height:50px;
   }
   img.banner-pp{
-    right:20px;
+    margin-top: -14px;
+    right:30px;
     position:absolute;
     width:50px;
     height:50px;
+  }
+  #notifications
+  {
+    margin-right: 45px;
+  }
+  nav.navbar.transparent.navbar-default{
+    top:auto;
+    right:0px;!important;
+    left:0px;!important;
+    width: 100%;!important;
+    background-color: #00b488;!important;
+    opacity: 1;
+    padding:5px;
+  }
+
+  .glyphicon-menu-hamburger
+  {
+    color:#d3d3d3;
+  }
+  .glyphicon-menu-hamburger:hover
+  {
+    color:white;
+  }
+  .navbar-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100% !important;
+    left: 0;
+  }
+
+  .app-content{
+    margin-top: 40px;
+  }
+  .navbar-inverse .navbar-nav > .open > a:focus{
+    background-color: #00c999;!important;
+  }
+  .navbar-inverse .navbar-nav > .open > a{
+    background-color: #00c999;!important;
+  }
+  .signupBox{
+    margin-top: 20px;
   }
 }
