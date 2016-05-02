@@ -2,7 +2,7 @@
 <div ng-controller="navControl">
 
 
-<nav class="navbar transparent navbar-default" >
+<nav class="navbar navbar-inverse transparent navbar-default" >
     <div class="container nav-container">
         <div class="header-text center" >
 
@@ -47,7 +47,7 @@
 
             <li data-ng-include="getNav()" ></li>
             <li ng-if="loggedIn" data-ng-include="'views/blocks/notifications.html'" ng-controller="notifications"></li>
-            <li><a href="/myProfile"><img  ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle banner-pp"></a></li>
+            <li><a href="/myProfile"><img ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle banner-pp"></a></li>
         </ul>
 
         </div><!-- /.navbar-collapse -->

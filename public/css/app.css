@@ -773,7 +773,6 @@ body {
 .app-content-body {
   float: left;
   width: 100%;
-  padding-bottom: 50px;
 }
 
 .app-footer {
@@ -5011,3 +5010,19 @@ ul.jobpg {
   list-style: none;
 }
 
+@media (max-width: 990px) {
+
+  .navbar-text{
+    display:none;!important;
+  }
+  .banner-logo{
+    width:50px;
+    height:50px;
+  }
+  img.banner-pp{
+    right:20px;
+    position:absolute;
+    width:50px;
+    height:50px;
+  }
+}
