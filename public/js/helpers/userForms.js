@@ -63,7 +63,13 @@ $(function () {
         $('#textarea_feedback').html(text_remaining + ' remaining');
     });
 });
-
+$(document).ready(function ($) {
+    $('#tabs').tab();
+});
+$('#formTabs a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
 $(".talentSelected").on("click",function(){
    $(".signupBox").css("border-color", "#33B6CC");
 });

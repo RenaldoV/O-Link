@@ -5010,6 +5010,28 @@ ul.jobpg {
   list-style: none;
 }
 
+
+.nav-pills > li.talentSelected.active > a, .nav-pills > li.talentSelected.active > a:focus {
+  color: white;
+  background-color: #33B6CC;!important;
+}
+
+.nav-pills > li.talentSelected.active > a:hover {
+  background-color: #33D6CC;!important;
+  color:white;
+}
+
+.nav-pills > li.employerSelected.active > a, .nav-pills > li.employerSelected.active > a:focus {
+  color: white;
+  background-color: #00b488;!important;
+}
+
+.nav-pills > li.employerSelected.active > a:hover {
+  background-color: #00d488;!important;
+  color:white;
+}
+
+
 @media (max-width: 990px) {
   .navbar-text{
     display:none;!important;
@@ -5031,6 +5053,8 @@ ul.jobpg {
     margin-right: 45px;
   }
   nav.navbar.transparent.navbar-default{
+    z-index: 20;
+    position: fixed;
     top:auto;
     right:0px;!important;
     left:0px;!important;

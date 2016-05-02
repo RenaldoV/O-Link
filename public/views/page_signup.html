@@ -1,6 +1,5 @@
 ﻿<div class=" signupBox container w-xxl w-auto-xs s" ng-controller="signup">
 
-
 	<div class="type wrapper text-center">
 		<strong>Sign Up As:</strong>
 
@@ -12,13 +11,13 @@
     </div>
 
 
-	<ul id="formTabs" class="nav nav-tabs" role="tablist">
-		<li class="talentSelected"><a href="#talentPane" role="tab" data-toggle="tab">Talent</a></li>
-		<li class="employerSelected"><a href="#employerPane" role="tab" data-toggle="tab">Employer</a></li>
+	<ul id="formTabs" class="nav nav-pills" role="tablist" data-tabs="tabs">
+		<li class="talentSelected"><a href="#talentPane" data-toggle="tab">Talent</a></li>
+		<li class="employerSelected"><a href="#employerPane" data-toggle="tab">Employer</a></li>
 	</ul>
 	<div class="tab-content">
 
-		<div class="tab-pane fade  in" id="talentPane">
+		<div class="tab-pane" id="talentPane">
 			<br/>
 			<br/>
 			<form id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
