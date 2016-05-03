@@ -421,18 +421,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
 
 
-    $("#addReq").hide();
-    $scope.matricTypeClick = function(type) {
-        $("#addReq").show();
 
-        /*if(type == "Cambridge")
-         $scope.reqNames = constants.Cambridge;
-         else if(type == "NSC")
-         $scope.reqNames = constants.NSC;
-         else if(type == "IEB")
-         $scope.reqNames = constants.IEB;*/
-
-    };
 
         $scope.user = session.user;
     $scope.reqNames = constants.requirements;

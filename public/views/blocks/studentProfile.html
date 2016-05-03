@@ -115,7 +115,14 @@
                                         <small class="text-muted">{{user.qualification.name}}</small>
                                     </div>
                                 </li>
-
+                                <li class="list-group-item" ng-if="user.qualification.name">
+                                    <div class="clear">
+                                        <small class="greenText" ng-if="user.driversLicence">Has License<br></small>
+                                        <small class="text-danger" ng-if="!user.driversLicence">No License<br></small>
+                                        <small class=" greenText" ng-if="user.ownTransport">Has Transport<br></small>
+                                        <small class="text-danger" ng-if="!user.ownTransport">No Transport</small>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
                         <div class="matric" ng-if="user.results.length > 0">
@@ -142,6 +149,7 @@
                             </li>
                                 </ul>
                         </div>
+
                     </div>
 
                 </div>
