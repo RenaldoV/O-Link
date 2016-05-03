@@ -4948,6 +4948,10 @@ ul.jobpg {
 
 
 @media (max-width: 990px) {
+  .profileBall{
+    float: none;
+    text-align: center;
+  }
   .navbar-text{
     display:none;!important;
   }
@@ -5010,6 +5014,10 @@ ul.jobpg {
 }
 
 @media (max-width: 767px) {
+  .profileBall{
+    float: none;
+    text-align: center;
+  }
   .navbar-header{
     width:50px;
   }
