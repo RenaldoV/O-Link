@@ -640,6 +640,6 @@ app.controller('buy', function($scope, constants, session, $location, $rootScope
     }
 
     $scope.goPay = function(name){
-        $location.path('/confirmPay').search({package:pre+"_"+name});
+        $location.path('/confirmPayment').search({package:pre+"_"+name});
     }
 });
