@@ -68,8 +68,20 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 				templateUrl: 'views/blocks/postHistory.html'
 
 			})
+
 			.when('/buy', {
 				templateUrl: 'views/blocks/buy.html'
+			})
+
+			.when('/confirmPayment', {
+				templateUrl: 'views/blocks/confirmPay.html'
+			})
+			.when('/paymentSuccessful', {
+				templateUrl: 'views/blocks/paymentSuccessful.html'
+
+			})
+			.when('/paymentCanceled', {
+				templateUrl: 'views/blocks/paymentCanceled.html'
 
 			});
 
