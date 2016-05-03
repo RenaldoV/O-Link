@@ -1206,7 +1206,20 @@ console.log(job.post);
 		});
 
 	});
+	app.post('/getPayment', function(req, res){
 
+		var user = req.body;
+		//console.log(user.packages.paymentToken);
+		user.packages.paymentToken = passwordHash.generate(user.packages.paymentToken);
+		//console.log(user.packages);
+		db.users.findOneAndUpdate({_id: user._id}, {$push:{packages:user.packages}}, {returnNewDocument : true}, function(err,usr){
+			if(!err){
+				res.send(user.packages.paymentToken);
+			}
+			else
+				res.send(false);
+		});
+	});
 
 };
 
