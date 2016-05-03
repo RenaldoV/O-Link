@@ -67,6 +67,17 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			.when('/pastJobPosts', {
 				templateUrl: 'views/blocks/postHistory.html'
 
+			})
+			.when('/confirmPayment', {
+				templateUrl: 'views/blocks/confirmPay.html'
+			})
+			.when('/paymentSuccessful', {
+				templateUrl: 'views/blocks/paymentSuccessful.html'
+
+			})
+			.when('/paymentCanceled', {
+				templateUrl: 'views/blocks/paymentCanceled.html'
+
 			});
 
 
