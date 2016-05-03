@@ -85,6 +85,18 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.browse = true;
 
         });
+        $rootScope.$on('buyApplications', function () {
+
+            disableHeadings();
+            $scope.buyApplications = true;
+
+        });
+        $rootScope.$on('empBuy', function () {
+
+            disableHeadings();
+            $scope.empBuy = true;
+
+        });
 
         $rootScope.$on('myApplicants', function () {
 
@@ -214,6 +226,8 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.myJobs = false;
             $scope.myJobHistory = false;
             $scope.empHistory = false;
+            $scope.buyApplications = false;
+            $scope.empBuy = false;
         }
 
 

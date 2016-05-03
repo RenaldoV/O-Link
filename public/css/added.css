@@ -821,3 +821,49 @@ margin-left: 21px;
     overflow-y: scroll;
 }
 
+.buyBox{
+    display: inline-block;
+height: 460px;
+width: 240px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 5px;
+}
+
+.buyInner{
+    display: inline-block;
+    width: 230px;
+    height: 283px;
+    background-color: white;
+}
+
+.buyTop{
+    font-size: 35px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.cart{
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.cost{
+    font-size: 61px;
+
+}
+
+.timeFrame{
+    font-size: 24px;
+    font-weight: 100;
+    color: rgba(127, 127, 127, 0.7);
+}
+
+.package{
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 100;
+    width: 160px ;
+    color: rgb(127, 127, 127);
+    margin-top: 84px;
+}

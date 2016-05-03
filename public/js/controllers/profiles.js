@@ -624,3 +624,22 @@ app.service('photoUpload', function(ngDialog) {
 
     };
 });
+
+app.controller('buy', function($scope, constants, session, $location, $rootScope){
+    var user = session.user;
+    var pre = '';
+    if(user.type == 'student'){
+    $scope.packages = constants.studentPackages;
+    $rootScope.$broadcast('buyApplications',1);
+        pre = 'Talent'
+    }
+    else if(user.type == 'employer'){
+        $scope.packages = constants.employerPackages;
+        $rootScope.$broadcast('empBuy',1);
+        pre = "Employer"
+    }
+
+    $scope.goPay = function(name){
+        $location.path('/confirmPay').search({package:pre+"_"+name});
+    }
+});
