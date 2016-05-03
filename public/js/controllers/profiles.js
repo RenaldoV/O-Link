@@ -101,6 +101,7 @@ app.controller('empProfileControl', function ($scope,cacheUser) {
 
 app.controller('studentProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
 
+
     var user = cacheUser.user;
     $scope.myProfile = false;
 

@@ -607,6 +607,8 @@ padding-top: 18px;
     float:none;
 
 
+
+
 }
 .center-col{
     width: 100%;
@@ -814,3 +816,8 @@ margin-left: 21px;
 .notis{
    min-width: 200px;
 }
+
+#additional{
+    overflow-y: scroll;
+}
+

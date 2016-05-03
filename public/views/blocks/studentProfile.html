@@ -34,12 +34,12 @@
 
 
 
-            <div class=" profileBox col-md-6">
-            <div class="panel blueBorder cards" id="info">
+            <div class="profileBox col-md-6">
+            <div master   class="panel blueBorder cards" id="info">
                 <div class="card-header blueBack">
                     <h4 class="font-thin m-t-none m-b-none ">Required Info</h4>
                 </div>
-                <div class="wrapper cards">
+                <div class="wrapper cards" style="margin:30px">
 
 
 
@@ -74,6 +74,12 @@
                                     <small class="text-muted">{{user.dob}}</small>
                                 </div>
                             </li>
+                            <li class="list-group-item">
+                                <div class="clear">
+                                    <div>About</div>
+                                    <small class="text-muted">{{user.aboutme}}</small>
+                                </div>
+                            </li>
 
 
                         </ul>
@@ -81,8 +87,8 @@
             </div>
             </div>
 
-            <div class=" profileBox col-md-6">
-            <div class="panel greenBorder cards " id="additional">
+            <div  class="profileBox col-md-6">
+            <div  ng-style="style"  class="panel greenBorder cards " id="additional">
             <div class="card-header greenBack">
                     <h4 class="font-thin m-t-none m-b-none ">Additional Info</h4>
                 </div>
@@ -93,39 +99,53 @@
                             <ul class="list-group no-bg no-borders pull-in">
                                 <li class="list-group-item">
                                     <div class="clear">
+                                        <div>Institution Type</div>
+                                        <small class="text-muted">{{user.institution.type}}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="clear">
+                                        <div>Institution Name</div>
+                                        <small class="text-muted">{{user.institution.name}}</small>
+                                    </div>
+                                </li>
+                                <li class="list-group-item" ng-if="user.qualification.name">
+                                    <div class="clear">
                                         <div>Qualification Name</div>
                                         <small class="text-muted">{{user.qualification.name}}</small>
                                     </div>
                                 </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Qualification Description</div>
-                                        <small class="text-muted">{{user.qualification.description}}</small>
-                                    </div>
-                                </li>
-                                <li class="list-group-item">
-                                    <div class="clear">
-                                        <div>Graduation Year</div>
-                                        <small class="text-muted">{{user.qualification.gradYear}}</small>
-                                    </div>
-                                </li>
-
 
                             </ul>
                         </div>
                         <div class="matric" ng-if="user.results.length > 0">
                             <h4 class="m-t-xs m-b-xs">Matric results</h4>
                             <ul class="list-group no-bg no-borders pull-in">
-                                <li ng-repeat="res in user.results" class="list-group-item">
+                                <li  class="list-group-item">
                                     <div class="clear">
-                                        <div>{{res.name}}</div>
-                                        <small class="text-muted">{{res.symbol}}</small>
+                                        <small class="text-muted" ng-repeat="res in user.results">{{res.name + " "+res.symbol}}<br></small>
                                     </div>
                                 </li>
                             </ul>
                         </div>
+                        <div class="expr" ng-if="user.work.length > 0">
+                            <h4 class="m-t-xs m-b-xs">Work Experience</h4>
+                            <ul class="list-group no-bg no-borders pull-in">
+                            <li class="list-group-item" ng-repeat="work in user.work">
+                                <div class="clear">
+                                    <div>{{work.category}}</div>
+                                    <small class="text-muted">{{work.duration}}<br></small>
+                                    <small class="text-muted">{{work.contact.name}}<br></small>
+                                    <small class="text-muted">{{work.contact.email}}<br></small>
+                                    <small class="text-muted">{{work.contact.number}}</small>
+                                </div>
+                            </li>
+                                </ul>
+                        </div>
                     </div>
+
                 </div>
+
             </div>
             </div>
 
