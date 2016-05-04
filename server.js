@@ -79,6 +79,10 @@ new CronJob('00 00 00 * * *', function() {
     db.users.update({type:'student'},{$set:{freeApplications:2}}, {multi:true}).exec(function(err,res){
        console.log(res);
     });
+    //remove expired packages
+    db.users.update({type:'student'},{$pull:{packages:{ expiryDate:{$lt:Date.now()}}}}, {multi:true}).exec(function(err,res){
+        console.log(res);
+    });
     //check for edited posts that weren't accepted
     db.jobs.find({status: 'active'},function(err,rows){
         rows.forEach(function(ro){

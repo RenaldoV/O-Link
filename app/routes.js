@@ -394,6 +394,9 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				var token = buf.toString('hex');
 				user.activateToken = token;
 				user.passwordHash = passwordHash.generate(user.passwordHash);
+			if(user.type == 'student'){
+				user.freeApplications = 2;
+			}
 				db.users.create(user,function(e,result){
 
 					if(result != 'email' && !err){
@@ -627,12 +630,23 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 									args.date = job.post.startingDate;
 									args.email = usr.contact.email;
 									args.subject = "Application has been Made for " + job.post.category;
-									if (usr.applications) {
-										args.applicationsLeft = usr.applications;
+
+
+
+									args.applicationsLeft = usr.freeApplications;
+
+									for(var r = 0; r < tempPackages.length; r++){
+										if(tempPackages[r].active) {
+											if(tempPackages[r].remainingApplications == 'unlimited')
+											{
+												args.applicationsLeft = 'unlimited';
+												break;
+											}
+											args.applicationsLeft += tempPackages[r].remainingApplications;
+										}
 									}
-									else {
-										args.applicationsLeft = 0;
-									}
+
+
 									db.users.findOne({_id: job.employerID}, function (err, em) {
 										if (err) console.log(err);
 										var emp = em.toObject();
