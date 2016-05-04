@@ -1287,7 +1287,7 @@ console.log(job.post);
 
 		db.users.findOneAndUpdate(	{_id:user._id,"packages.paymentToken":user.paymentToken,"packages.active":false, "packages.packageType" : user.packageType},
 									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : ""}},
-									{returnNewDocument : true}, function(err,doc){
+									{new : true}, function(err,doc){
 			if(!err) {
 				res.send(doc);
 			}

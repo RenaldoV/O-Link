@@ -63,7 +63,7 @@ app.controller('confirmPayment',function($scope, $routeParams, authService, sess
     }
 });
 
-app.controller('paymentSuccessful',function($scope,$routeParams, authService, session, $location, $http, cacheUser) {
+app.controller('paymentSuccessful',function($scope,$routeParams, authService, session, $location, $http, cacheUser, $window) {
 
     var paymentToken = decodeURIComponent($routeParams.paymentToken);
     var packageType = decodeURIComponent($routeParams.packageType);
@@ -84,7 +84,9 @@ app.controller('paymentSuccessful',function($scope,$routeParams, authService, se
                             type: "success"
                         },
                         function () {
-                            location.href = "/dashboard";
+                            console.log(res.data);
+                            session.create(res.data);
+                            $window.location.href="/dashboard";
                         });
                 }
                 else
