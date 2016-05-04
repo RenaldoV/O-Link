@@ -1209,7 +1209,6 @@ console.log(job.post);
 	app.post('/getPayment', function(req, res){
 
 		var user = req.body;
-		//console.log(user.packages.paymentToken);
 		user.packages.paymentToken = passwordHash.generate(user.packages.paymentToken);
 		//console.log(user.packages);
 		db.users.findOneAndUpdate({_id: user._id}, {$push:{packages:user.packages}}, {returnNewDocument : true}, function(err,usr){
@@ -1218,6 +1217,33 @@ console.log(job.post);
 			}
 			else
 				res.send(false);
+		});
+	});
+	app.post('/checkPaymentToken', function(req, res){
+
+		var user = req.body;
+		var now = new Date();
+		var remainingApplications = 0;
+		switch(user.packageType)
+		{
+			case "Talent_Basic" :
+				now.setDate(now.getDate()+7);remainingApplications = 3;break;
+			case "Talent_Classic" :
+				now.setDate(now.getDate()+7);remainingApplications = 7;break;
+			case "Talent_Ultimate" :
+				now.setDate(now.getDate()+31);remainingApplications = "unlimited";break;
+		}
+		//console.log(now);
+		now = now.getTime();
+
+		db.users.findOneAndUpdate(	{_id:user._id,"packages.paymentToken":user.paymentToken,"packages.active":false, "packages.packageType" : user.packageType},
+									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : ""}},
+									{returnNewDocument : true}, function(err,doc){
+			if(!err) {
+				res.send(doc);
+			}
+			else
+				res.send("error");
 		});
 	});
 
