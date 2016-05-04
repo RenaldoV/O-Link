@@ -645,7 +645,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 								}
-								res.send(app);
+								res.send(usr);
 
 							});
 

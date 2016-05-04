@@ -683,9 +683,9 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 title: job.post.category
                             });
 
+                            session.create(res.data);
+                            $window.location.href="/dashboard";
 
-                                $window.location.reload();
-                            
 
                         });
                     }
