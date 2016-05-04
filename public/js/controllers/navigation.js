@@ -62,6 +62,25 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                 $scope.cache = data;
                 if (cacheUser.user.type == 'student') {
                     $scope.studentProfile = true;
+                    var tempNum = user.freeApplications;
+                    var unlim = false;
+                    if(user.packages){
+                        for(var i = 0; i < user.packages.length; i++){
+                            if(user.packages[i].active){
+                                if(user.packages[i].remainingApplications == 'unlimited'){
+                                    unlim = true;
+                                }
+                                else{
+                                    tempNum += user.packages[i].remainingApplications;
+                                }
+                            }
+                        }
+
+                    }
+                    if(unlim){
+                        $scope.numApps = 'Unlimited';
+                    }else $scope.numApps = tempNum;
+                    var tempPack = user.packages;
 
                 } else if (cacheUser.user.type == 'employer') {
                     if (cacheUser.user.employerType == 'Individual')
