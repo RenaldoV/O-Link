@@ -75,6 +75,10 @@ new CronJob('00 00 * * * *', function() {
 
 //function executes once a day
 new CronJob('00 00 00 * * *', function() {
+    //give each talent 2 free applications
+    db.users.update({type:'student'},{$set:{freeApplications:2}}, {multi:true}).exec(function(err,res){
+       console.log(res);
+    });
     //check for edited posts that weren't accepted
     db.jobs.find({status: 'active'},function(err,rows){
         rows.forEach(function(ro){
