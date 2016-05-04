@@ -584,42 +584,77 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			date: Date.now()
 
 		};
-		db.applications.create(application, function (app) {
-			db.jobs.update({_id: job._id}, {$set: job}, function (err, docs) {
+
 				db.users.findOne({_id: user._id}, function (err, usrr) {
 					if (err) console.log(err);
 					var usr = usrr.toObject();
-					var args = {};
-					if (usr.emailDisable == undefined || !usr.emailDisable) {
-						args.name = usr.name.name;
-						args.role = job.post.category;
-						args.date = job.post.startingDate;
-						args.email = usr.contact.email;
-						args.subject = "Application has been Made for " + job.post.category;
-						if (usr.applications) {
-							args.applicationsLeft = usr.applications;
+					//application stuff
+					var flag = false;
+					if(usr.freeApplications > 0){
+						usr.freeApplications--;
+						flag = true;
+					}else{
+						if(usr.packages) {
+							var tempPackages = usr.packages;
+							tempPackages.sort(sortPackages);
+
+							for(var k = 0; k < tempPackages.length; k++){
+								if(tempPackages[k].active && tempPackages[k].remainingApplications == 'unlimited'){
+									flag = true;
+									break;
+								}
+								if(tempPackages[k].active && tempPackages[k].remainingApplications > 0){
+									tempPackages[k].remainingApplications--;
+									flag = true;
+									break;
+								}
+							}usr.packages = tempPackages;
+							console.log(tempPackages);
 						}
-						else {
-							args.applicationsLeft = 0;
-						}
-						db.users.findOne({_id: job.employerID}, function (err, em) {
-							if (err) console.log(err);
-							var emp = em.toObject();
-							args.employerName = emp.contact.name + " " + emp.contact.surname;
-							mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
-								console.log(rs);
+					}
+					if(!flag){
+						res.send('noApps');
+					}
+					else{
+					db.users.findOneAndUpdate({_id:usr._id}, {$set:usr}).exec(function(err,rsss){
+						db.applications.create(application, function (app) {
+							db.jobs.update({_id: job._id}, {$set: job}, function (err, docs) {
+
+								var args = {};
+								if (usr.emailDisable == undefined || !usr.emailDisable) {
+									args.name = usr.name.name;
+									args.role = job.post.category;
+									args.date = job.post.startingDate;
+									args.email = usr.contact.email;
+									args.subject = "Application has been Made for " + job.post.category;
+									if (usr.applications) {
+										args.applicationsLeft = usr.applications;
+									}
+									else {
+										args.applicationsLeft = 0;
+									}
+									db.users.findOne({_id: job.employerID}, function (err, em) {
+										if (err) console.log(err);
+										var emp = em.toObject();
+										args.employerName = emp.contact.name + " " + emp.contact.surname;
+										mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
+											console.log(rs);
+
+										});
+									});
+
+
+								}
+								res.send(app);
 
 							});
+
 						});
+					});
 
 
 					}
-					res.send(app);
 
-
-				});
-
-			});
 		});
 	});
 	//done
@@ -1251,4 +1286,15 @@ console.log(job.post);
 
 function roundHalf(num) {
 	return Math.round(num*2)/2;
+}
+
+function sortPackages(a,b){
+	if (a.expiryDate < b.expiryDate) {
+		return -1;
+	}
+	if (a.expiryDate > b.expiryDate) {
+		return 1;
+	}
+	// a must be equal to b
+	return 0;
 }

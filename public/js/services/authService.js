@@ -29,6 +29,7 @@ app.factory('authService', function($http,session){
             });
     };
 
+
     authService.isAuthenticated = function () {
         return !!session.user;
     };
@@ -37,13 +38,20 @@ app.factory('authService', function($http,session){
     return authService;
 });
 
-app.service('session', function ($cookies) {
+app.service('session', function ($cookies, $timeout) {
     this.create = function (user) {
         this.user = user;
         $cookies.put("user", JSON.stringify(user));
     };
     this.destroy = function () {
         this.user  = null;
+    };
+    this.update = function (user,cb) {
+        $timeout(function () {
+            this.user = user;
+            $cookies.put("user", JSON.stringify(user));
+            cb(true);
+        });
     };
 });
 

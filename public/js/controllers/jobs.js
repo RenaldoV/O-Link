@@ -666,23 +666,29 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             })
                 .then(function(res) {
 
-                    console.log(res);
-                    swal({
-                        title: "Success",
-                        text: 'Application Successful.',
-                        type: "success"
-                    },function(){
-                        notify.go({
-                            type: 'application',
-                            jobID: job._id,
-                            userID: job.employerID._id,
-                            status: 'Made',
-                            title: job.post.category
+                    if(res.data == 'noApps'){
+                        sweetAlert("You don't have any applications", "", "error");
+                    }
+                    else {
+                        swal({
+                            title: "Success",
+                            text: 'Application Successful.',
+                            type: "success"
+                        }, function () {
+                            notify.go({
+                                type: 'application',
+                                jobID: job._id,
+                                userID: job.employerID._id,
+                                status: 'Made',
+                                title: job.post.category
+                            });
+
+
+                                $window.location.reload();
+                            
+
                         });
-
-
-                        $window.location.href= '/';
-                    });
+                    }
                 });
         }
 
