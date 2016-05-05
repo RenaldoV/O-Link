@@ -393,7 +393,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');
 				user.activateToken = token;
-				user.passwordHash = passwordHash.generate(user.passwordHash);
+				user.passwordHash = passwordHash.generate(String(user.passwordHash));
 			if(user.type == 'student'){
 				user.freeApplications = 2;
 			}
