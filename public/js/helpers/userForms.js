@@ -14,8 +14,7 @@ $(document).bind('change', function(e){
         $(e.target).removeClass('invalid');
     }
 });
-$(document).bind('keypress', function(e){
-
+$(document).bind('focusout', function(e){
     if( $(e.target).is(':invalid') ){
         $(e.target).addClass('invalid');
     } else {
@@ -164,7 +163,7 @@ $(function () {
     });
 });
 $(function () {
-    $("input[name=empRePassw]").on("blur", function () {
+    $("input[name=empRePassw]").on("focusout", function () {
         if($("input[name=empPassw]").val() != $(this).val())
             this.setCustomValidity("Passwords do not match.");
     });
@@ -268,7 +267,7 @@ $(function () {
         this.setCustomValidity("");
     });
 
-    $("input[name=stuRePassw]").on("blur", function () {
+    $("input[name=stuRePassw]").on("focusout", function () {
         if($("input[name=stuPassw]").val() != $(this).val())
             this.setCustomValidity("Passwords do not match.");
         else
@@ -297,7 +296,7 @@ $(function () {
         .mouseout(function() {
             $(".pwd3").get(0).type='password';
         });
-
+    $('#stuDob').setCustomValidity("Please select a valid date");
 });
 //Student form validation
 
@@ -307,7 +306,11 @@ $('#stuDob').datepicker({
     changeMonth: true,
     changeYear: true,
     minDate: new Date(1980, 1 - 1, 1),
-    defaultDate: new Date(1990, 1 - 1, 1)
+    defaultDate: new Date(1990, 1 - 1, 1),
+    onSelect: function (date) {
+        alert();
+        this.setCustomValidity("");
+    }
 });
 
 
