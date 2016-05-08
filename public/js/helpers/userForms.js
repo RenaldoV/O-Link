@@ -300,9 +300,16 @@ $(function () {
 });
 //Student form validation
 
-$(".location").on("keypress", function(){
-   this.setCustomValidity("Please select a valid location from the dropdown.");
+$("#actualLocation").on("change", function(){
+   this.setCustomValidity("");
 });
+
+$("#actualLocation").on("load", function(){
+    alert();
+    this.setCustomValidity("Please select an address from the dropdown.");
+    $("#searchTextField1").addClass("invalid");
+});
+
 $('#stuDob').on("keypress", function() {
     this.setCustomValidity("Please select a valid date");
 });

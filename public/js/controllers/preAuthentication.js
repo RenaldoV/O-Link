@@ -130,7 +130,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     google.maps.event.addListener(autocomplete1, 'place_changed', function() {
 
         var data = $("#searchTextField1").val();
-        $("#actualLocation").val(data);
+        $("#actualLocation").val(data).trigger("change");
         $scope.user.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
