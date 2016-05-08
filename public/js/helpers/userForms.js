@@ -296,20 +296,24 @@ $(function () {
         .mouseout(function() {
             $(".pwd3").get(0).type='password';
         });
-    $('#stuDob').setCustomValidity("Please select a valid date");
+
 });
 //Student form validation
 
-
-
+$(".location").on("keypress", function(){
+   this.setCustomValidity("Please select a valid location from the dropdown.");
+});
+$('#stuDob').on("keypress", function() {
+    this.setCustomValidity("Please select a valid date");
+});
 $('#stuDob').datepicker({
     changeMonth: true,
     changeYear: true,
     minDate: new Date(1980, 1 - 1, 1),
     defaultDate: new Date(1990, 1 - 1, 1),
     onSelect: function (date) {
-        alert();
         this.setCustomValidity("");
+        $(this).removeClass('invalid');
     }
 });
 

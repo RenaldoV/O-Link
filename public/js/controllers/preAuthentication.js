@@ -115,6 +115,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     var geocoder = new google.maps.Geocoder();
 
     google.maps.event.addListener(autocomplete, 'place_changed', function() {
+
         var data = $("#searchTextField").val();
         $scope.user.company.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
@@ -127,7 +128,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         //alert($scope.user.company.location.geo);
     });
     google.maps.event.addListener(autocomplete1, 'place_changed', function() {
+
         var data = $("#searchTextField1").val();
+        $("#actualLocation").val(data);
         $scope.user.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {

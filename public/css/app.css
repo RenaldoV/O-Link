@@ -5111,3 +5111,8 @@ ul.jobpg {
  }
 
 }
+
+.form-control[readonly]
+{
+  background-color:white;!important;
+}
