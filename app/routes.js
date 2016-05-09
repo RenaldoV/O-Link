@@ -590,6 +590,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 				db.users.findOne({_id: user._id}, function (err, usrr) {
 					if (err) console.log(err);
+					var tempPackages = [];
 					var usr = usrr.toObject();
 					//application stuff
 					var flag = false;
@@ -597,6 +598,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 						usr.freeApplications--;
 						flag = true;
 					}else{
+
 						if(usr.packages) {
 							var tempPackages = usr.packages;
 							tempPackages.sort(sortPackages);
