@@ -1,5 +1,5 @@
 <div ng-controller="jobBrowser" class="text-center">
-    <div class="filterOptions" style="margin-bottom: 42px">
+    <div class="filterOptions" style="margin-bottom: 14px">
 <!--
         <label>Range
             <select ng-model="sortBy" ng-change="sort(sortBy)">
@@ -22,7 +22,7 @@
 
     </div>
     <div class=" jobsContainer container">
-<div class="row jobBox feature blueTop col-md-12" ng-repeat="job in jobs">
+<div class="row jobBox feature blueTop" ng-repeat="job in jobs">
 
         
 
@@ -43,7 +43,7 @@
 
         <div class="col-md-12">
             <div class="row ">
-            <span class="wordwrap"> {{job.post.description}}</span>
+            <span class="wordwrap"> {{job.post.description.substring(0,30)}}...</span>
                 <span class="text-danger" ng-if="job.post.interviewRequired"> <br><span class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
                 <br><span class="pull-right small"> Posted on: {{job.post.postDate}}</span>
             </div>

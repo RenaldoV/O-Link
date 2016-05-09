@@ -233,6 +233,7 @@ div.feature:hover {
 
 
     background-color: white;
+
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -661,7 +662,7 @@ padding-top: 18px;
 .jobsContainer{
     text-align: center;
     display: inline-block;
-    max-width: 98%;
+    width: 98%;
 margin-left: 21px;
 
     text-align: center;
@@ -773,12 +774,12 @@ margin-left: 21px;
 
 .jobInfoBox{
 
-    margin: 0;
+    margin: 4px;
     padding: 0;
     min-width: 144px;
     height: 42px;
     border: 1px solid #33B6CC;
-  
+  display:inline-table;
 
 }
 
@@ -866,4 +867,19 @@ width: 240px;
     width: 160px ;
     color: rgb(127, 127, 127);
     margin-top: 84px;
+}
+
+.filterOptions{
+    padding-right: 42px;
+    text-align: right;
+    background-color: white;
+    border: 1px solid grey;
+    background: radial-gradient(white, whitesmoke);
+
+    display: inline-block;
+    width: 98%;
+    line-height: 84px;
+    margin-left: 21px;
+
+
 }
