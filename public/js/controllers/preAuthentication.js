@@ -4,7 +4,7 @@
 
 app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location){
 
-    $(".appbg").addClass('signupBG');
+    $(".appbg").addClass('dashBG');
 
     if(authService.isAuthenticated())
         $location.url("/dashboard");
@@ -29,7 +29,6 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
                             $scope.setCurrentUser(user);
                             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $(".appbg").removeClass('signupBG');
                             $(".appbg").addClass('dashBG');
                             $location.url("/dashboard");
 
@@ -52,9 +51,23 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
 
-    $(".appbg").addClass('signupBG');
+    $(".appbg").addClass('dashBG');
     $scope.reqNames = constants.requirements;
     $("#addReq").hide();
+    $scope.WorkClick = function(work,num)
+    {
+        if(work == "company")
+        {
+            $("#compHired"+num+"").show();
+            $("#compHired"+num+"").prop("required",true);
+        }
+        else
+        {
+            $("#compHired"+num+"").hide();
+            $("#compHired"+num+"").prop("required",false);
+        }
+
+    };
     $scope.matricTypeClick = function(type) {
         $("#addReq").show();
 
@@ -65,7 +78,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         else if(type == "IEB")
             $scope.reqNames = constants.IEB;*/
 
-    }
+    };
     if($window.location.href == '/signUp'){
 
 
@@ -148,7 +161,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     var numWork = 0;
     var numReq = 0;
-
+    var workRadios = 3;
     $scope.close = function(reqs){
         numReq--;
         $scope.user.results.pop();
@@ -157,6 +170,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     };
     $scope.closeWork = function(cats){
+        workRadios--;
         numWork--;
         $scope.user.work.pop();
         if(numWork == 0)
@@ -172,8 +186,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             numReq++;
 
     };
-    $scope.addWork = function(){
 
+    $scope.addWork = function(){
+        workRadios++;
+        $scope.typenum = workRadios;
         if(!$scope.user.work){
             $scope.user.work = [{}];
         }else
@@ -188,8 +204,16 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         tempWorkList.push($scope.workNames[k]);
     }
     $scope.tempWork = tempWorkList;
-    $scope.changeWork = function(){
-
+    $scope.changeWork = function(workName){
+        if(workName == "Other")
+        {
+            $("#otherCategory").prop('required',true);
+            $("#otherCategory").show();
+        }
+        else{
+            $("#otherCategory").prop('required',false);
+            $("#otherCategory").hide();
+        }
         tempWorkList = [];
         for(var k = 0; k < $scope.workNames.length;k++){
             tempWorkList.push($scope.workNames[k]);
@@ -276,7 +300,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
 
 app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location,$routeParams) {
-    $(".appbg").addClass('signupBG');
+    $(".appbg").addClass('dashBG');
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};
@@ -303,7 +327,6 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
                             type: "success"
                         },
                         function () {
-                            $(".appbg").removeClass('signupBG');
                             $(".appbg").addClass('dashBG');
                             authService.login(tempUser).then(function (user) {
                                 $scope.setCurrentUser(user);
@@ -334,7 +357,7 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
 });
 
 app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVENTS, $location) {
-    $(".appbg").addClass('signupBG');
+    $(".appbg").addClass('dashBG');
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};

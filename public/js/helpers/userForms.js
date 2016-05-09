@@ -1,5 +1,23 @@
 ////Renaldo se user form scripts, uit sodat dit makliker is om te edit(gebruik vir edit profile ook)
 
+
+//===========================INIT TABS=============================
+$(document).ready(function ($) {
+    $('#tabs').tab();
+});
+$('#formTabs a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+$(".talentSelected").on("click",function(){
+    $(".signupBox").css("border-color", "#33B6CC");
+});
+$(".employerSelected").on("click",function(){
+    $(".signupBox").css("border-color", "#00b488");
+});
+//==================================================================
+
+//===============BIND ON INVALID STYLE CHANGE========================
 if (document.addEventListener) {
     document.addEventListener('invalid', function(e) {
         var element = $(e.target);
@@ -21,7 +39,25 @@ $(document).bind('focusout', function(e){
         $(e.target).removeClass('invalid');
     }
 });
+//=====================================================================
 
+//========================TALENT FORM VALIDATION================================================================
+
+$('#stuDob').on("keypress", function() {
+    this.setCustomValidity("Please select a valid date");
+});
+$('#stuDob').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    minDate: new Date(1980, 1 - 1, 1),
+    defaultDate: new Date(1990, 1 - 1, 1),
+    onSelect: function (date) {
+        this.setCustomValidity("");
+        $(this).removeClass('invalid');
+    }
+});
+
+//=======================ID/DOB validation=========================
 $(function() {
     var dob;
     var idfill;
@@ -40,7 +76,9 @@ $(function() {
         this.setCustomValidity("");
     });
 });
+//==================================================================
 
+//=================ABOUTME CHARS LEFT AND VALIDATION================
 $("#aboutMe").on("focusout", function () {
     if($("#aboutMe").val().length < 100 || ("#aboutMe").val().length < 500)
         this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
@@ -62,147 +100,8 @@ $(function () {
         $('#textarea_feedback').html(text_remaining + ' remaining');
     });
 });
-$(document).ready(function ($) {
-    $('#tabs').tab();
-});
-$('#formTabs a').click(function(e) {
-    e.preventDefault();
-    $(this).tab('show');
-});
-$(".talentSelected").on("click",function(){
-   $(".signupBox").css("border-color", "#33B6CC");
-});
-$(".employerSelected").on("click",function(){
-    $(".signupBox").css("border-color", "#00b488");
-});
+//==================================================================
 
-$(function () {
-    $("#Individualradio").click(function () {
-        $("#Companyradio").prop("checked", false);
-        $(".companysection").hide();
-        $("#compName").prop('required',false);
-        $("#compDesc").prop('required',false);
-        $("#searchTextField").prop('required',false);
-    });
-    $("#Companyradio").click(function () {
-        $("#Individualradio").prop("checked", false);
-        $(".companysection").show();
-        $("#compName").prop('required',true);
-        $("#compDesc").prop('required',true);
-        $("#searchTextField").prop('required',true);
-    });
-});
-
-$(function () {
-    $("#schoolName").hide();
-    $("#uniName").hide();
-    $("#SecondaryRadio").click(function () {
-        $("#TertiaryRadio").prop("checked", false);
-        $(".instituteSection").show();
-        $("#schoolName").show();
-        $("#uniName").hide();
-        $("#qualName").hide();
-        $("#schoolName").prop('required',true);
-        $("#uniName").prop('required',false);
-        $("#uniName").prop('required',false);
-    });
-    $("#TertiaryRadio").click(function () {
-        $("#SecondaryRadio").prop("checked", false);
-        $(".instituteSection").show();
-        $("#uniName").show();
-        $("#qualName").show();
-        $("#schoolName").hide();
-        $("#uniName").prop('required',true);
-        $("#qualName").prop('required',true);
-        $("#schoolName").prop('required',false);
-    });
-});
-//Script for changing between relevant forms
-
-//Employer form validation
-$(function () {
-    $("input[name=RegNo]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA registration number.");
-    });
-    $("input[name=RegNo]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-
-    $("input[name=empID]").on("invalid", function () {
-
-        this.setCustomValidity("Please enter a valid SA ID number.");
-    });
-    $("input[name=empID]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empEmail]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid email address.");
-    });
-    $("input[name=empEmail]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empContact]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA contact number.");
-    });
-    $("input[name=empContact]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
-    });
-    $("input[name=empPassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empRePassw]").on("focusout", function () {
-        if($("input[name=empPassw]").val() != $(this).val())
-            this.setCustomValidity("Passwords do not match.");
-    });
-    $("input[name=empRePassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empAdContact]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA contact number.");
-    });
-    $("input[name=empAdContact]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-
-$(".reveal").mousedown(function() {
-        $(".pwd").get(0).type='text';
-    })
-    .mouseup(function() {
-        $(".pwd").get(0).type='password';
-    })
-    .mouseout(function() {
-        $(".pwd").get(0).type='password';
-    });
-
-$(".reveal1").mousedown(function() {
-        $(".pwd1").get(0).type='text';
-    })
-    .mouseup(function() {
-        $(".pwd1").get(0).type='password';
-    })
-    .mouseout(function() {
-        $(".pwd1").get(0).type='password';
-    });
-//Employer form validation
-
-
-//Student form validation
 $(function () {
     $("input[name=stuEmail]").on("focusout", function () {
         var passed = false;
@@ -278,8 +177,8 @@ $(function () {
     });
 
     $(".reveal2").mousedown(function() {
-            $(".pwd2").get(0).type='text';
-        })
+        $(".pwd2").get(0).type='text';
+    })
         .mouseup(function() {
             $(".pwd2").get(0).type='password';
         })
@@ -288,8 +187,8 @@ $(function () {
         });
 
     $(".reveal3").mousedown(function() {
-            $(".pwd3").get(0).type='text';
-        })
+        $(".pwd3").get(0).type='text';
+    })
         .mouseup(function() {
             $(".pwd3").get(0).type='password';
         })
@@ -298,9 +197,157 @@ $(function () {
         });
 
 });
-//Student form validation
+
+//=================================SECONDARY TERTIARY RADIOS==========
+$(function () {
+    $("#schoolName").hide();
+    $("#uniName").hide();
+    $("#SecondaryRadio").click(function () {
+        $("#TertiaryRadio").prop("checked", false);
+        $(".instituteSection").show();
+        $("#schoolName").show();
+        $("#uniName").hide();
+        $("#qualName").hide();
+        $("#schoolName").prop('required',true);
+        $("#uniName").prop('required',false);
+        $("#uniName").prop('required',false);
+    });
+    $("#TertiaryRadio").click(function () {
+        $("#SecondaryRadio").prop("checked", false);
+        $(".instituteSection").show();
+        $("#uniName").show();
+        $("#qualName").show();
+        $("#schoolName").hide();
+        $("#uniName").prop('required',true);
+        $("#qualName").prop('required',true);
+        $("#schoolName").prop('required',false);
+    });
+});
+
+$('#uniName').change(function(){
+    if($(this).val() == "Other")
+    {
+        $("#uniOtherVal").prop('required',true);
+        $("#uniOther").show();
+    }
+    else{
+        $("#uniOtherVal").prop('required',false);
+        $("#uniOther").hide();
+    }
+});
 
 
+$("#qualifName, #schoolName").on("change", function(){
+    if($(this).val() != "")
+        $("#gpa").prop("disabled",false);
+    else
+    {
+        $("#gpa").prop("disabled",false);
+        $("#gpa").val("");
+    }
+
+});
+
+$("#workmail, #workcell").on("change", function(){
+    if($(this).val() == "" && $("#workcell").val() == "")
+        this.setCustomValidity("Please enter an email address or cell number.");
+    else
+        this.setCustomValidity("");
+});
+
+
+//==================================================================
+//========================TALENT FORM VALIDATION================================================================
+
+
+
+
+
+//========================EMPLOYER FORM VALIDATION================================================================
+
+//===========================EMPLOYER TYPE RADIOS==================
+$(function () {
+    $("#Individualradio").click(function () {
+        $("#Companyradio").prop("checked", false);
+        $(".companysection").hide();
+        $("#compName").prop('required',false);
+        $("#compDesc").prop('required',false);
+        $("#searchTextField").prop('required',false);
+    });
+    $("#Companyradio").click(function () {
+        $("#Individualradio").prop("checked", false);
+        $(".companysection").show();
+        $("#compName").prop('required',true);
+        $("#compDesc").prop('required',true);
+        $("#searchTextField").prop('required',true);
+    });
+});
+//==================================================================
+
+$(function () {
+
+    $("input[name=empID]").on("invalid", function () {
+        this.setCustomValidity("Please enter a valid SA ID number.");
+    });
+    $("input[name=empID]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+$(function () {
+    $("input[name=empEmail]").on("invalid", function () {
+        this.setCustomValidity("Please enter a valid email address.");
+    });
+    $("input[name=empEmail]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+$(function () {
+    $("input[name=empContact]").on("invalid", function () {
+        this.setCustomValidity("Please enter a valid SA contact number.");
+    });
+    $("input[name=empContact]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+$(function () {
+    $("input[name=empPassw]").on("invalid", function () {
+        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
+    });
+    $("input[name=empPassw]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+$(function () {
+    $("input[name=empRePassw]").on("focusout", function () {
+        if($("input[name=empPassw]").val() != $(this).val())
+            this.setCustomValidity("Passwords do not match.");
+    });
+    $("input[name=empRePassw]").on("change", function () {
+        this.setCustomValidity("");
+    });
+});
+
+$(".reveal").mousedown(function() {
+        $(".pwd").get(0).type='text';
+    })
+    .mouseup(function() {
+        $(".pwd").get(0).type='password';
+    })
+    .mouseout(function() {
+        $(".pwd").get(0).type='password';
+    });
+
+$(".reveal1").mousedown(function() {
+        $(".pwd1").get(0).type='text';
+    })
+    .mouseup(function() {
+        $(".pwd1").get(0).type='password';
+    })
+    .mouseout(function() {
+        $(".pwd1").get(0).type='password';
+    });
+
+//========================EMPLOYER FORM VALIDATION================================================================
 
 
 //=================FIX FOR SAFARI
@@ -331,19 +378,7 @@ $("#employerSUForm").on( "submit", function( event ) {
 });*/
 
 
-$('#stuDob').on("keypress", function() {
-    this.setCustomValidity("Please select a valid date");
-});
-$('#stuDob').datepicker({
-    changeMonth: true,
-    changeYear: true,
-    minDate: new Date(1980, 1 - 1, 1),
-    defaultDate: new Date(1990, 1 - 1, 1),
-    onSelect: function (date) {
-        this.setCustomValidity("");
-        $(this).removeClass('invalid');
-    }
-});
+
 
 
 
