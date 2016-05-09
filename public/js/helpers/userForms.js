@@ -300,15 +300,36 @@ $(function () {
 });
 //Student form validation
 
-$("#actualLocation").on("change", function(){
-   this.setCustomValidity("");
-});
 
-$("#actualLocation").on("load", function(){
-    alert();
-    this.setCustomValidity("Please select an address from the dropdown.");
-    $("#searchTextField1").addClass("invalid");
+
+
+//=================FIX FOR SAFARI
+/*$("#studentSUForm").on( "submit", function( event ) {
+    if ( this.checkValidity && !this.checkValidity() ) {
+
+        $( this ).find( ":invalid" ).first().focus();
+        var invalid = $( this ).find( ":invalid" );
+        for(var i = 0; i < invalid.length; i++){
+            invalid[i].validationMessage;
+        }
+        event.preventDefault();
+    }
 });
+$("#employerSUForm").on( "submit", function( event ) {
+    if ( this.checkValidity && !this.checkValidity() ) {
+
+        $( this ).find( ":invalid" ).first().focus();
+        var invalid = $( this ).find( ":invalid" );
+        for(var i = 0; i < invalid.length; i++){
+            invalid[i].validationMessage;
+        }
+
+
+
+        event.preventDefault();
+    }
+});*/
+
 
 $('#stuDob').on("keypress", function() {
     this.setCustomValidity("Please select a valid date");
