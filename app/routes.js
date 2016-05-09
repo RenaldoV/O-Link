@@ -919,7 +919,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({date:1}).exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({_id:1}).exec(function (err, docs) {
 					job.applications = docs;
 
 
@@ -1327,6 +1327,20 @@ console.log(job.post);
 		});
 	});
 
+	app.post('/getNumApps', function(req, res){
+
+
+		var user = req.body;
+
+		db.users.findOne({_id: user.id}, function(err,usr){
+			if(!err){
+
+				res.send(usr.toObject().packages);
+			}
+			else
+				res.send(false);
+		});
+	});
 };
 
 function roundHalf(num) {
