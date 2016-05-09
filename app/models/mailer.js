@@ -154,7 +154,8 @@ module.exports ={
                 break;
             }
             case 'paymentReceived':{
-
+                args.subject = args.package + " Purchased"
+                send(template,args,cb);
                 break;
             }
         }

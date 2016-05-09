@@ -40,6 +40,7 @@ app.factory('authService', function($http,session){
 
 app.service('session', function ($cookies, $timeout) {
     this.create = function (user) {
+        delete user.packages;
         this.user = user;
         $cookies.put("user", JSON.stringify(user));
     };
@@ -48,6 +49,7 @@ app.service('session', function ($cookies, $timeout) {
     };
     this.update = function (user,cb) {
         $timeout(function () {
+            delete user.packages;
             this.user = user;
             $cookies.put("user", JSON.stringify(user));
             cb(true);
@@ -66,9 +68,11 @@ app.controller('ApplicationController', function ($scope,authService) {
 
 app.service('cacheUser', function () {
     this.create = function (user) {
+        delete user.packages;
         this.user = user;
     };
     this.destroy = function () {
+        delete user.packages;
         this.user  = null;
     };
 });

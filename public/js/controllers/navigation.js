@@ -64,22 +64,29 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                     $scope.studentProfile = true;
                     var tempNum = user.freeApplications;
                     var unlim = false;
-                    if(user.packages){
-                        for(var i = 0; i < user.packages.length; i++){
-                            if(user.packages[i].active){
-                                if(user.packages[i].remainingApplications == 'unlimited'){
-                                    unlim = true;
-                                }
-                                else{
-                                    tempNum += user.packages[i].remainingApplications;
-                                }
-                            }
-                        }
+                    $http.post('/getNumApps', {id:cacheUser.user._id})
+                        .then(function (res) {
 
-                    }
-                    if(unlim){
-                        $scope.numApps = 'Unlimited';
-                    }else $scope.numApps = tempNum;
+                            user.packages = res.data;
+                            if(user.packages){
+                                for(var i = 0; i < user.packages.length; i++){
+                                    if(user.packages[i].active){
+                                        if(user.packages[i].remainingApplications == 'unlimited'){
+                                            unlim = true;
+                                        }
+                                        else{
+                                            tempNum += user.packages[i].remainingApplications;
+                                        }
+                                    }
+                                }
+
+                            }
+                            if(unlim){
+                                $scope.numApps = 'Unlimited';
+                            }else $scope.numApps = tempNum;
+
+                        });
+
                     var tempPack = user.packages;
 
                 } else if (cacheUser.user.type == 'employer') {

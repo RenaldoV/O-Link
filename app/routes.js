@@ -919,7 +919,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({date:1}).exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({_id:1}).exec(function (err, docs) {
 					job.applications = docs;
 
 
@@ -1289,13 +1289,58 @@ console.log(job.post);
 									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : ""}},
 									{new : true}, function(err,doc){
 			if(!err) {
+				if(!doc){
+					res.send('error');
+				}else {
+
+					var usr = doc.toObject();
+					if(usr.emailDisable == undefined || !usr.emailDisable) {
+						//mailer args
+						var args = {};
+
+						args.name = usr.name.name;
+						args.package = user.packageType;
+						args.email = usr.contact.email;
+						args.applicationsLeft = usr.freeApplications;
+						var tempPackages = usr.packages;
+						for (var r = 0; r < tempPackages.length; r++) {
+							if (tempPackages[r].active) {
+								if (tempPackages[r].remainingApplications == 'unlimited') {
+									args.applicationsLeft = 'unlimited';
+									break;
+								}
+								args.applicationsLeft += tempPackages[r].remainingApplications;
+							}
+						}
+
+						mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
+							console.log(rss);
+
+						});
+					}
 				res.send(doc);
+	}
+
 			}
 			else
 				res.send("error");
 		});
 	});
 
+	app.post('/getNumApps', function(req, res){
+
+
+		var user = req.body;
+
+		db.users.findOne({_id: user.id}, function(err,usr){
+			if(!err){
+
+				res.send(usr.toObject().packages);
+			}
+			else
+				res.send(false);
+		});
+	});
 };
 
 function roundHalf(num) {
