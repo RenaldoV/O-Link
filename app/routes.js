@@ -1289,7 +1289,38 @@ console.log(job.post);
 									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : ""}},
 									{new : true}, function(err,doc){
 			if(!err) {
+				if(!doc){
+					res.send('error');
+				}else {
+
+					var usr = doc.toObject();
+					if(usr.emailDisable == undefined || !usr.emailDisable) {
+						//mailer args
+						var args = {};
+
+						args.name = usr.name.name;
+						args.package = user.packageType;
+						args.email = usr.contact.email;
+						args.applicationsLeft = usr.freeApplications;
+						var tempPackages = usr.packages;
+						for (var r = 0; r < tempPackages.length; r++) {
+							if (tempPackages[r].active) {
+								if (tempPackages[r].remainingApplications == 'unlimited') {
+									args.applicationsLeft = 'unlimited';
+									break;
+								}
+								args.applicationsLeft += tempPackages[r].remainingApplications;
+							}
+						}
+
+						mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
+							console.log(rss);
+
+						});
+					}
 				res.send(doc);
+	}
+
 			}
 			else
 				res.send("error");
