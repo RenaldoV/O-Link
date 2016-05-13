@@ -1,14 +1,29 @@
-textarea.invalid{
+textarea.ng-invalid.ng-touched{
 
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
     outline: 0 none;
 }
-select.invalid{
+select.ng-invalid.ng-touched{
 
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
     outline: 0 none;
 }
-input.invalid{
+input.ng-invalid.ng-touched{
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
+    outline: 0 none;
+}
+form.ng-submitted textarea.ng-invalid{
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
+    outline: 0 none;
+}
+form.ng-submitted select.ng-invalid{
+
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
+    outline: 0 none;
+}
+form.ng-submitted input.ng-invalid{
 
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(255,0,0,0.6); !important;
     outline: 0 none;

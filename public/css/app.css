@@ -5120,3 +5120,12 @@ ul.jobpg {
 .cluttered{
   margin-bottom: 6px;!important;
 }
+
+p.has-error{
+  padding: 3px;
+  color: #a94442;
+}
+
+div.error-block{
+  margin-top: 6px;
+}

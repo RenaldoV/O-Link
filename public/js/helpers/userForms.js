@@ -18,7 +18,7 @@ $(".employerSelected").on("click",function(){
 //==================================================================
 
 //===============BIND ON INVALID STYLE CHANGE========================
-if (document.addEventListener) {
+/*if (document.addEventListener) {
     document.addEventListener('invalid', function(e) {
         var element = $(e.target);
         element.addClass("invalid");
@@ -38,24 +38,12 @@ $(document).bind('focusout', function(e){
     } else {
         $(e.target).removeClass('invalid');
     }
-});
+});*/
 //=====================================================================
 
 //========================TALENT FORM VALIDATION================================================================
 
-$('#stuDob').on("keypress", function() {
-    this.setCustomValidity("Please select a valid date");
-});
-$('#stuDob').datepicker({
-    changeMonth: true,
-    changeYear: true,
-    minDate: new Date(1980, 1 - 1, 1),
-    defaultDate: new Date(1990, 1 - 1, 1),
-    onSelect: function (date) {
-        this.setCustomValidity("");
-        $(this).removeClass('invalid');
-    }
-});
+
 
 //=======================ID/DOB validation=========================
 $(function() {
@@ -78,17 +66,7 @@ $(function() {
 });
 //==================================================================
 
-//=================ABOUTME CHARS LEFT AND VALIDATION================
-$("#aboutMe").on("focusout", function () {
-    if($("#aboutMe").val().length < 100 || ("#aboutMe").val().length < 500)
-        this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
-    else
-        this.setCustomValidity("");
-});
-$("#aboutMe").on("change", function () {
-    this.setCustomValidity("");
-});
-
+//=================ABOUTME CHARS LEFT================
 $(function () {
     var text_max = 500;
     $('#textarea_feedback').html(text_max + ' remaining');
@@ -103,42 +81,6 @@ $(function () {
 //==================================================================
 
 $(function () {
-    $("input[name=stuEmail]").on("focusout", function () {
-        var passed = false;
-        this.setCustomValidity("Please enter a valid SA tertiary institute email address.");
-        var len = $(this).val().length;
-        if(len > 11)
-        {
-            if($(this).val().substr(len-11,11) == "@tuks.co.za") {
-                this.setCustomValidity("");
-                passed = true;
-            }
-        }
-        if(len > 4)
-        {
-            if($(this).val().substr(len-4,4) == ".edu") {
-                this.setCustomValidity("");
-                passed = true;
-            }
-        }
-        if(len > 6)
-        {
-            if($(this).val().substr(len-6,6) == ".ac.za")
-            {
-                this.setCustomValidity("");
-                passed = true;
-            }
-        }
-        if(!passed){
-            $("input[name=stuEmail]").prop('title',"If you are unable to register with your email address but you are at "+
-            "an academic institution, please email info@o-link.co.za from your "+
-            "academic email address and we will be sure to add it to our system "+
-            "and allow you to register.");
-            $("input[name=stuEmail]").tooltip();
-        }
-
-
-    });
 
     $("input[name=stuContact]").on("invalid", function () {
         this.setCustomValidity("Please enter a valid SA contact number.");

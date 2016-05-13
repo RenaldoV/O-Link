@@ -20,29 +20,54 @@
 		<div class="tab-pane" id="talentPane">
 			<br/>
 			<br/>
-			<form id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
+			<form novalidate id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
 
 				<h4 class="form-section-label">Talent Info</h4>
 				<div class="list-group list-group-sm form-group">
 					<fieldset class="form-group">
 						<div class="list-group-item">
-							<input type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" required >
+							<input name="stuName" type="text" class="form-control no-border" placeholder="Name" ng-model="user.name.name" ng-required="true" ng-minlength="2">
+							<div ng-show="studentForm.$submitted || studentForm.stuName.$touched" class="error-block">
+								<p ng-show="studentForm.stuName.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuName.$error.minlength" class="has-error">Minimum length is 2</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<input type="text" class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" required>
+							<input name="stuSurname" type="text" class="form-control no-border" placeholder="Surname" ng-model="user.name.surname" ng-required="true" ng-minlength="2">
+							<div ng-show="studentForm.$submitted || studentForm.stuSurname.$touched" class="error-block">
+								<p ng-show="studentForm.stuSurname.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuSurname.$error.minlength" class="has-error">Minimum length is 2</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<textarea id="aboutMe" rows=4 class="form-control" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" maxlength=500 minlength=100 required></textarea>
-							<div id="textarea_feedback"></div>
+							<textarea name="stuAboutMe" id="aboutMe" rows=4 class="form-control" placeholder="About Me (100 - 500 characters)" ng-model="user.aboutme" ng-maxlength="500" ng-minlength="100" required></textarea>
+							<div id="textarea_feedback"></div><br/>
+							<div ng-show="studentForm.$submitted || studentForm.stuAboutMe.$touched" class="error-block">
+								<p ng-show="studentForm.stuAboutMe.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuAboutMe.$error.minlength" class="has-error">Minimum length is 100</p>
+								<p ng-show="studentForm.stuAboutMe.$error.maxlength" class="has-error">Maximum length is 500</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<input type="text" name="stuDob" id="stuDob" placeholder="Date of Birth" class="controls form-control no-border"  ng-model="user.dob" required>
+							<input ui-date="dateOptions" ui-date-format="DD, d MM, yy" type="text" name="stuDob" id="stuDob" placeholder="Date of Birth" class="controls form-control no-border"
+								   ng-model="user.dob" ng-required="true">
+							<div ng-show="studentForm.$submitted || studentForm.stuDob.$touched" class="error-block">
+								<p ng-show="studentForm.stuDob.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<input name="stuEmail" type="email" class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email" required>
+							<input name="stuEmail" ui-validate="{validStuEmail : 'validateStuEmail($value)'}" class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email" ng-required="true">
+							<div ng-show="studentForm.$submitted || studentForm.stuEmail.$touched" class="error-block">
+								<p ng-show="studentForm.stuEmail.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuEmail.$error.validStuEmail" class="has-error">Not a valid academic institutions email address</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact Number" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+							<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact Number" ng-model="user.contact.contactNo" ng-pattern="/^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$/" ng-required="true">
+							<div ng-show="studentForm.$submitted || studentForm.stuContact.$touched" class="error-block">
+								<p ng-show="studentForm.stuContact.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuContact.$error.pattern" class="has-error">Not a valid SA cell number</p>
+							</div>
 						</div>
 						<div class="list-group-item">
 							<input name="stuID" type="text" class="form-control no-border" placeholder="ID Number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>

@@ -46,12 +46,9 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
 
 app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants, session){
-
-
-
-
-
     $(".appbg").addClass('dashBG');
+
+
     $scope.reqNames = constants.requirements;
     $("#addReq").hide();
     $scope.WorkClick = function(work,num)
@@ -81,33 +78,29 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     };
     if($window.location.href == '/signUp'){
 
+        if(authService.isAuthenticated())
+            $window.location.href= '/dashboard';
 
-    if(authService.isAuthenticated())
-        $window.location.href= '/dashboard';
+        $("#formTabs a").click(function(e) {
+            e.preventDefault();
+            $("#studentSUForm").trigger('reset');
+            $("#employerSUForm").trigger('reset');
 
-    $("#formTabs a").click(function(e) {
-        e.preventDefault();
-        $("#studentSUForm").trigger('reset');
-        $("#employerSUForm").trigger('reset');
+            $scope.user.dob = {};
+            $scope.user.dob = undefined;
+            $scope.user.type = {};
+            //this.tab('show');
+        });
 
-        $scope.user.dob = {};
-        $scope.user.dob = undefined;
-        $scope.user.type = {};
-        //this.tab('show');
-    });
-
-
-
-
-    $scope.user = {};
-    $scope.user.company = {};
-    $scope.user.institution = {};
-    $scope.user.company.location = {};
-    $scope.user.company.location.address = {};
-    $scope.user.company.location.geo = {};
-    $scope.user.location = {};
-    $scope.user.location.address = {};
-    $scope.user.location.geo = {};
+        $scope.user = {};
+        $scope.user.company = {};
+        $scope.user.institution = {};
+        $scope.user.company.location = {};
+        $scope.user.company.location.address = {};
+        $scope.user.company.location.geo = {};
+        $scope.user.location = {};
+        $scope.user.location.address = {};
+        $scope.user.location.geo = {};
 
     }
     else{
@@ -155,8 +148,85 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         //alert($scope.user.address.geo);
     });
 
+    $scope.dateOptions = {
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(1980, 1 - 1, 1),
+        defaultDate: new Date(1990, 1 - 1, 1)
+    };
+
+    $scope.validateStuEmail = function(val)
+    {
+        if(val!=undefined)
+        {
+            var passed = false;
+            var len = val.length;
+
+            if (len > 11) {
+                if (val.substr(len - 11, 11) == "@tuks.co.za") {
+                    passed = true;
+                }
+            }
+            if (len > 4) {
+                if (val.substr(len - 4, 4) == ".edu") {
+                    passed = true;
+                }
+            }
+            if (len > 6) {
+                if (val.substr(len - 6, 6) == ".ac.za") {
+                    passed = true;
+                }
+            }
+            if (!passed) {
+                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
+                "an academic institution, please email info@o-link.co.za from your " +
+                "academic email address and we will be sure to add it to our system " +
+                "and allow you to register.");
+                $("input[name=stuEmail]").tooltip();
+                return passed;
+            }
+            else
+                return passed;
+        }
+
+    };
+
+    /*$(function () {
+        $("input[name=stuEmail]").on("focusout", function () {
+            var passed = false;
+            $scope.studentForm.stuEmail.$setValidity("pattern", false);
+            var len = $(this).val().length;
+
+            if (len > 11) {
+                if ($(this).val().substr(len - 11, 11) == "@tuks.co.za") {
+                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
+                    passed = true;
+                    alert($(this).val().substr(len - 11, 11));
+                }
+            }
+            if (len > 4) {
+                if ($(this).val().substr(len - 4, 4) == ".edu") {
+                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
+                    passed = true;
+                }
+            }
+            if (len > 6) {
+                if ($(this).val().substr(len - 6, 6) == ".ac.za") {
+                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
+                    passed = true;
+                }
+            }
+            if (!passed) {
+                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
+                "an academic institution, please email info@o-link.co.za from your " +
+                "academic email address and we will be sure to add it to our system " +
+                "and allow you to register.");
+                $("input[name=stuEmail]").tooltip();
+            }
 
 
+        });
+    });*/
 
 
     var numWork = 0;
@@ -251,50 +321,50 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
         }
     };
 
-    $scope.submitForm = function() {
-
+    $scope.submitForm = function(isValid) {
         $scope.submitted = true;
+        if(isValid) {
 
-        var user = $scope.user;
-        if(!user.dob)
-        {
-            user.type = "employer";
+            var user = $scope.user;
+            if (!user.dob) {
+                user.type = "employer";
+            }
+            else
+                user.type = "student";
+
+            user.active = false;
+            $http({
+                method: 'POST',
+                url: '/signup',
+                data: user
+            })
+                .then(function (res) {
+                    {
+                        console.log(res);
+                        if (res.data == "email") {
+                            swal({
+                                    title: "User exists",
+                                    text: 'The email you have entered already has an account associated with it.',
+                                    type: "error"
+                                },
+                                function () {
+                                    location.reload();
+                                });
+                        }
+                        else if (res.data) {
+                            swal({
+                                    title: "Account created",
+                                    text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
+                                    type: "success"
+                                },
+                                function () {
+
+                                    location.href = '/';
+                                });
+                        }
+                    }
+                });
         }
-        else
-            user.type = "student";
-
-        user.active = false;
-        $http({
-            method  : 'POST',
-            url     : '/signup',
-            data 	: user
-        })
-            .then(function(res) {
-                {
-                    console.log(res);
-                    if(res.data == "email"){
-                        swal({
-                                title: "User exists",
-                                text: 'The email you have entered already has an account associated with it.',
-                                type: "error"
-                            },
-                            function(){
-                                location.reload();
-                            });
-                    }
-                    else if(res.data){
-                        swal({
-                                title: "Account created",
-                                text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
-                                type: "success"
-                            },
-                            function(){
-
-                                location.href= '/';
-                            });
-                    }
-                }
-            });
     }
 });
 
