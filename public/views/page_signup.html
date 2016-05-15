@@ -56,7 +56,8 @@
 							</div>
 						</div>
 						<div class="list-group-item">
-							<input name="stuEmail" ui-validate="{validStuEmail : 'validateStuEmail($value)'}" class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email" ng-required="true">
+							<input name="stuEmail" ui-validate="{validStuEmail : 'validateStuEmail($value)'}"
+								   class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email" ng-required="true">
 							<div ng-show="studentForm.$submitted || studentForm.stuEmail.$touched" class="error-block">
 								<p ng-show="studentForm.stuEmail.$error.required" class="has-error">This field is required</p>
 								<p ng-show="studentForm.stuEmail.$error.validStuEmail" class="has-error">Not a valid academic institutions email address</p>
@@ -66,22 +67,36 @@
 							<input name="stuContact" type="text" class="form-control no-border" placeholder="Contact Number" ng-model="user.contact.contactNo" ng-pattern="/^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$/" ng-required="true">
 							<div ng-show="studentForm.$submitted || studentForm.stuContact.$touched" class="error-block">
 								<p ng-show="studentForm.stuContact.$error.required" class="has-error">This field is required</p>
-								<p ng-show="studentForm.stuContact.$error.pattern" class="has-error">Not a valid SA cell number</p>
+								<p ng-show="studentForm.stuContact.$error.pattern" class="has-error">Not a valid cell number</p>
 							</div>
 						</div>
 						<div class="list-group-item">
-							<input name="stuID" type="text" class="form-control no-border" placeholder="ID Number" ng-model="user.IDnumber" pattern="[\d]{13,13}" required>
+							<input name="stuID" type="text" class="form-control no-border" placeholder="ID Number (first select a date of birth)" ng-model="user.IDnumber"
+								   ng-pattern="/[\d]{13,13}/" ng-required="true" ui-validate="{validStuID : 'validateStuID($value)'}" ng-maxlength="13" ng-disabled="idfill">
+							<div ng-show="studentForm.$submitted || studentForm.stuID.$touched" class="error-block">
+								<p ng-show="studentForm.stuID.$error.required" class="has-error">This field is required</p>
+								<p ng-show="studentForm.stuID.$error.pattern" class="has-error">Not a valid ID number</p>
+								<p ng-show="studentForm.stuID.$error.maxlength" class="has-error">Not a valid ID number</p>
+								<p ng-show="studentForm.stuID.$error.validStuID" class="has-error">Date of birth and ID does not match</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<select id="stuGender" class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" required>
+							<select class="form-control no-border" id="stuGender" name="stuGender" ng-model="user.gender" ng-required="true">
 								<option value="" selected disabled>Gender</option>
 								<option value="M">Male</option>
 								<option value="F">Female</option>
 							</select>
+							<div ng-show="studentForm.$submitted || studentForm.stuGender.$touched" class="error-block">
+								<p ng-show="studentForm.stuGender.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 						<div class="list-group-item">
 							<!--Link google location API en gebruik location auto complete-->
-							<input id="searchTextField1" type="text" class="location controls form-control no-border" ng-model="user.location.address" placeholder="Enter Home Address" required>
+							<input name="searchTextField1" id="searchTextField1" g-places-autocomplete force-selection="true" type="text" class="location controls form-control no-border"
+								   ng-model="user.location.address" options="autocompleteOptions" placeholder="Enter Home Address" ng-required="true">
+							<div ng-show="studentForm.$submitted || studentForm.searchTextField1.$touched" class="error-block">
+								<p ng-show="studentForm.searchTextField1.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 					</fieldset>
 				</div>
@@ -93,18 +108,28 @@
 							<div class="list-group-item">
 								<div class="input-group">
 									<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
-									<input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
-							<span class="input-group-btn">
-								<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-							</span>
+									<input name="stuPassw" type="password" placeholder="Password" class="form-control no-border pwd2"
+										   ng-model="user.passwordHash" ng-pattern="/((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})/" ng-required="true">
+									<span class="input-group-btn">
+										<button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+									</span>
+								</div>
+								<div ng-show="studentForm.$submitted || studentForm.stuPassw.$touched" class="error-block">
+									<p ng-show="studentForm.stuPassw.$error.required" class="has-error">This field is required</p>
+									<p ng-show="studentForm.stuPassw.$error.pattern" class="has-error">Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character</p>
 								</div>
 							</div>
 							<div class="list-group-item">
 								<div class="input-group">
-									<input name="stuRePassw" type="password" placeholder="Confirm Password" class="form-control no-border pwd3" required>
-							<span class="input-group-btn">
-								<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
-							</span>
+									<input name="stuRePassw" type="password" placeholder="Confirm Password" class="form-control no-border pwd3"
+										   ui-validate="{validRePassw : 'validatestuPassw($value)'}" ng-required="true" ng-model="stuRePass">
+									<span class="input-group-btn">
+										<button class="btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+									</span>
+								</div>
+								<div ng-show="studentForm.$submitted || studentForm.stuRePassw.$touched" class="error-block">
+									<p ng-show="studentForm.stuRePassw.$error.required" class="has-error">This field is required</p>
+									<p ng-show="studentForm.stuRePassw.$error.validRePassw" class="has-error">Password do not match</p>
 								</div>
 							</div>
 						</fieldset>

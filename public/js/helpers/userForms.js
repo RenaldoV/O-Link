@@ -5,10 +5,7 @@
 $(document).ready(function ($) {
     $('#tabs').tab();
 });
-$('#formTabs a').click(function(e) {
-    e.preventDefault();
-    $(this).tab('show');
-});
+
 $(".talentSelected").on("click",function(){
     $(".signupBox").css("border-color", "#33B6CC");
 });
@@ -17,54 +14,7 @@ $(".employerSelected").on("click",function(){
 });
 //==================================================================
 
-//===============BIND ON INVALID STYLE CHANGE========================
-/*if (document.addEventListener) {
-    document.addEventListener('invalid', function(e) {
-        var element = $(e.target);
-        element.addClass("invalid");
-    }, true);
-}
-$(document).bind('change', function(e){
-
-    if( $(e.target).is(':invalid') ){
-        $(e.target).addClass('invalid');
-    } else {
-        $(e.target).removeClass('invalid');
-    }
-});
-$(document).bind('focusout', function(e){
-    if( $(e.target).is(':invalid') ){
-        $(e.target).addClass('invalid');
-    } else {
-        $(e.target).removeClass('invalid');
-    }
-});*/
-//=====================================================================
-
 //========================TALENT FORM VALIDATION================================================================
-
-
-
-//=======================ID/DOB validation=========================
-$(function() {
-    var dob;
-    var idfill;
-
-    $("input[name=stuID]").focusin( function () {
-        $("input[name=stuID]").trigger("click");
-        dob = $("#stuDob").val();
-        idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
-        $(this).val(idfill);
-    });
-    $("input[name=stuID]").focusout(function (){
-        if($(this).val().substring(0,6) != idfill)
-            this.setCustomValidity("Date of birth and ID does not match");
-    });
-    $("input[name=stuID]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-//==================================================================
 
 //=================ABOUTME CHARS LEFT================
 $(function () {
@@ -81,42 +31,6 @@ $(function () {
 //==================================================================
 
 $(function () {
-
-    $("input[name=stuContact]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA contact number.");
-    });
-    $("input[name=stuContact]").on("change", function () {
-        this.setCustomValidity("");
-    });
-
-    $("input[name=stuID]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid ID number.");
-    });
-    $("input[name=stuID]").on("change", function () {
-        this.setCustomValidity("");
-    });
-    $("input[name=stuGender]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid gender, M/F.");
-    });
-    $("input[name=stuGender]").on("change", function () {
-        this.setCustomValidity("");
-    });
-    $("input[name=stuPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
-    });
-    $("input[name=stuPassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-
-    $("input[name=stuRePassw]").on("focusout", function () {
-        if($("input[name=stuPassw]").val() != $(this).val())
-            this.setCustomValidity("Passwords do not match.");
-        else
-            this.setCustomValidity("");
-    });
-    $("input[name=stuRePassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
 
     $(".reveal2").mousedown(function() {
         $(".pwd2").get(0).type='text';

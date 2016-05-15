@@ -45,9 +45,27 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants, session){
+app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session){
     $(".appbg").addClass('dashBG');
 
+    $("#formTabs a").click(function(e) {
+        e.preventDefault();
+        $("#studentSUForm").trigger('reset');
+        $("#employerSUForm").trigger('reset');
+        $scope.user = {};
+        $scope.user.company = {};
+        $scope.user.institution = {};
+        $scope.user.company.location = {};
+        $scope.user.company.location.address = {};
+        $scope.user.company.location.geo = {};
+        $scope.user.location = {};
+        $scope.user.location.address = {};
+        $scope.user.location.geo = {};
+        $scope.user.dob = {};
+        $scope.user.dob = undefined;
+        $scope.user.type = $(this).text();
+        //this.tab('show');
+    });
 
     $scope.reqNames = constants.requirements;
     $("#addReq").hide();
@@ -76,31 +94,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
             $scope.reqNames = constants.IEB;*/
 
     };
-    if($window.location.href == '/signUp'){
+    if($location== '/signUp'){
 
         if(authService.isAuthenticated())
             $window.location.href= '/dashboard';
-
-        $("#formTabs a").click(function(e) {
-            e.preventDefault();
-            $("#studentSUForm").trigger('reset');
-            $("#employerSUForm").trigger('reset');
-
-            $scope.user.dob = {};
-            $scope.user.dob = undefined;
-            $scope.user.type = {};
-            //this.tab('show');
-        });
-
-        $scope.user = {};
-        $scope.user.company = {};
-        $scope.user.institution = {};
-        $scope.user.company.location = {};
-        $scope.user.company.location.address = {};
-        $scope.user.company.location.geo = {};
-        $scope.user.location = {};
-        $scope.user.location.address = {};
-        $scope.user.location.geo = {};
 
     }
     else{
@@ -111,16 +108,29 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.workNames = constants.categories;
     $scope.tertInst = constants.tertiaryInstitutions;
 
-    var options = {
-        componentRestrictions: {country: 'za'}
+
+    $scope.autocompleteOptions = {
+        componentRestrictions: { country: 'za' }
     };
-    var input = document.getElementById('searchTextField');
-    var input1 = document.getElementById('searchTextField1');
-    var autocomplete = new google.maps.places.Autocomplete(input,options);
-    var autocomplete1 = new google.maps.places.Autocomplete(input1,options);
+
     var geocoder = new google.maps.Geocoder();
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    $scope.$on('g-places-autocomplete:select', function (event, param) {
+        if($scope.user.type == "Talent") {
+            $scope.user.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.location.address}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+            console.log($scope.user.location);
+        }
+    });
+
+    /*google.maps.event.addListener(autocomplete, 'place_changed', function() {
 
         var data = $("#searchTextField").val();
         $scope.user.company.location.address = data;
@@ -135,8 +145,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     });
     google.maps.event.addListener(autocomplete1, 'place_changed', function() {
 
-        var data = $("#searchTextField1").val();
-        $scope.user.location.address = data;
+        var data = $scope.user.location.address;
+        //$scope.user.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $scope.user.location.geo = results[0].geometry.location;
@@ -145,18 +155,25 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
         });
-        //alert($scope.user.address.geo);
-    });
+        alert($scope.user.address.geo);
+    });*/
 
+
+    $scope.idfill = true;
+    var idfill;
     $scope.dateOptions = {
         changeMonth: true,
         changeYear: true,
         minDate: new Date(1980, 1 - 1, 1),
-        defaultDate: new Date(1990, 1 - 1, 1)
+        defaultDate: new Date(1990, 1 - 1, 1),
+        onSelect: function(dob){
+            $scope.idfill = false;
+            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+            $scope.user.IDnumber = idfill;
+        }
     };
 
-    $scope.validateStuEmail = function(val)
-    {
+    $scope.validateStuEmail = function(val) {
         if(val!=undefined)
         {
             var passed = false;
@@ -191,6 +208,22 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
 
     };
 
+    $scope.validateStuID = function(val){
+      if(val != undefined && idfill != undefined){
+          if(val.substring(0,6) != idfill){
+              return false;
+          }
+          else {
+              return true;
+          }
+      }
+    };
+
+    $scope.validatestuPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    }
     /*$(function () {
         $("input[name=stuEmail]").on("focusout", function () {
             var passed = false;
