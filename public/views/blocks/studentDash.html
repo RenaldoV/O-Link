@@ -5,7 +5,7 @@
     <div class="wrapper-md">
       <!-- stats -->
       <div class="row">
-        <div class="col-md-5" ng-controller="stats">
+        <div class="col-md-5 dashTops" ng-controller="stats">
           <div class="row row-sm text-center">
             <div class="col-xs-6">
               <div class="panel padder-v item card dashboxBlue">
@@ -76,7 +76,7 @@
             <div>
            <b> Please Select a Time</b>
               <br>
-            <div class="btn-group" data-toggle="buttons">
+            <div class="btn-group timeBrowse" data-toggle="buttons">
 
 
               <label class="btn btn-primary-outline  timeSelect" ng-repeat="period in timePeriods" ng-click="toggleSelectionP(period.name)">
@@ -88,7 +88,7 @@
 
                 /> {{period.name}}<br><small >({{period.description}})</small>
               </label>
-              <div><label class="btn btn-primary-outline timeSelect" id="allP" style="height:54px;" ng-click="selectAllP()">
+              <div><label class="btn btn-primary-outline timeSelect" id="allP" ng-click="selectAllP()">
                 <input
                         id="selectAllP"
                         type="checkbox"
@@ -107,7 +107,7 @@
               <div>
                 <br>
 <b>Please Select a Category</b>
-                  <div class="btn-group-lg " data-toggle="buttons">
+                  <div class="btn-group-lg catSelect" data-toggle="buttons">
 
 
                     <label class="btn btn-primary-outline categorySelect" ng-repeat="category in categories" ng-click="toggleSelectionC(category)">

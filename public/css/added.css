@@ -338,7 +338,8 @@ h1 { font-size: 1.5em; margin: 10px; }
     width: 160px;
 }
 .estatusDiv{
-    width: 190px;
+    max-width: 190px;
+    min-width: 100px;
 }
 .statusBall {
     float:right;
@@ -679,8 +680,7 @@ margin-left: 21px;
 
 .applicantsTable{
     background-color: #cee0f6;
-   margin-top: -10px;
-    margin-left: 10px;
+
 }
 
 .applicantsTable tbody tr:nth-child(even) {
@@ -689,8 +689,8 @@ margin-left: 21px;
 
 .applicantsTables{
     background-color: transparent;
-    margin-top: -10px;
-    margin-left: 10px;
+
+
 }
 .applicantsTables thead th{
     background-color: #cee0f6;
@@ -738,9 +738,9 @@ margin-left: 21px;
 .applicantsHead {
     width: calc(100% - 250px);
 
-    min-width: 470px;
+    min-width: 230px;
     height: 40px;
-    margin: 10px;
+
     background-color:  #33B6CC;
 }
 
@@ -882,4 +882,8 @@ width: 240px;
     margin-left: 21px;
 
 
+}
+
+#allP{
+    height:54px;
 }

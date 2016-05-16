@@ -1,6 +1,6 @@
-<div><div ng-controller="employerApplicants">
+<div><div ng-controller="employerApplicants" class="empApplicants">
 
-    <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" >
+    <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
         <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
         <div class="appHeading">
             {{job.post.category}}
@@ -18,15 +18,15 @@
 
         <div ng-if="job.show">
             <table class="table applicantsTables">
-                <thead><th>Name</th><th>Age</th><th>Gender</th><th>Rating</th><th>Status</th><th width="200"></th>
+                <thead><th>Name</th><th class="tableAdd">Age</th><th class="tableAdd">Gender</th><th class="tableAdd">Rating</th><th>Status</th><th width="100"></th>
                 </thead>
                 <tbody>
                 <tr ng-repeat="app in job.applications" >
 
-                    <td><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
-                    <td>{{getAge(app.studentID.dob);}}</td>
-                    <td>{{app.studentID.gender}}</td>
-                    <td><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
+                    <td class="appName"><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+                    <td class="tableAdd">{{getAge(app.studentID.dob);}}</td>
+                    <td class="tableAdd">{{app.studentID.gender}}</td>
+                    <td class="tableAdd"><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
                     <td width="100" height="42"><div  class="estatusDiv">
                         {{app.status}}
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>

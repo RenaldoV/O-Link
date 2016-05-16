@@ -1,13 +1,13 @@
-<div ng-controller="studentApplications"><table style="margin-top: 42px;" class="table applicantsTable blueBorder">
-    <thead class="talentHistoryHead blueBack"><th>Category</th><th>Pay</th><th>Location</th><th>Status</th><th></th>
+<div ng-controller="studentApplications" class="studentAppsPage"><table style="margin-top: 42px;" class="table applicantsTable blueBorder">
+    <thead class="talentHistoryHead blueBack"><th>Category</th><th class="tableAdd">Pay</th><th class="tableAdd">Location</th><th>Status</th><th></th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
         <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td>R{{app.jobID.post.pay }}
+        <td class="tableAdd">R{{app.jobID.post.pay }}
             <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
             <span ng-if="!job.post.timePeriod == 'Once Off'">/Hour</span></td>
-        <td>{{app.jobID.post.location.address}}</td>
+        <td class="tableAdd">{{app.jobID.post.location.address}}</td>
         <td><div class="statusDiv"><span>{{app.status}}</span>
             <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
             <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
