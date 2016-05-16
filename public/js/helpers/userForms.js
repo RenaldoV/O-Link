@@ -14,7 +14,7 @@ $(".employerSelected").on("click",function(){
 });
 //==================================================================
 
-//========================TALENT FORM VALIDATION================================================================
+//========================TALENT FORM================================================================
 
 //=================ABOUTME CHARS LEFT================
 $(function () {
@@ -28,7 +28,7 @@ $(function () {
         $('#textarea_feedback').html(text_remaining + ' remaining');
     });
 });
-//==================================================================
+//====================================================
 
 $(function () {
 
@@ -53,73 +53,10 @@ $(function () {
         });
 
 });
-
-//=================================SECONDARY TERTIARY RADIOS==========
-$(function () {
-    $("#schoolName").hide();
-    $("#uniName").hide();
-    $("#SecondaryRadio").click(function () {
-        $("#TertiaryRadio").prop("checked", false);
-        $(".instituteSection").show();
-        $("#schoolName").show();
-        $("#uniName").hide();
-        $("#qualName").hide();
-        $("#schoolName").prop('required',true);
-        $("#uniName").prop('required',false);
-        $("#uniName").prop('required',false);
-    });
-    $("#TertiaryRadio").click(function () {
-        $("#SecondaryRadio").prop("checked", false);
-        $(".instituteSection").show();
-        $("#uniName").show();
-        $("#qualName").show();
-        $("#schoolName").hide();
-        $("#uniName").prop('required',true);
-        $("#qualName").prop('required',true);
-        $("#schoolName").prop('required',false);
-    });
-});
-
-$('#uniName').change(function(){
-    if($(this).val() == "Other")
-    {
-        $("#uniOtherVal").prop('required',true);
-        $("#uniOther").show();
-    }
-    else{
-        $("#uniOtherVal").prop('required',false);
-        $("#uniOther").hide();
-    }
-});
+//========================TALENT FORM================================================================
 
 
-$("#qualifName, #schoolName").on("change", function(){
-    if($(this).val() != "")
-        $("#gpa").prop("disabled",false);
-    else
-    {
-        $("#gpa").prop("disabled",false);
-        $("#gpa").val("");
-    }
-
-});
-
-$("#workmail, #workcell").on("change", function(){
-    if($(this).val() == "" && $("#workcell").val() == "")
-        this.setCustomValidity("Please enter an email address or cell number.");
-    else
-        this.setCustomValidity("");
-});
-
-
-//==================================================================
-//========================TALENT FORM VALIDATION================================================================
-
-
-
-
-
-//========================EMPLOYER FORM VALIDATION================================================================
+//========================EMPLOYER FORM==============================================================
 
 //===========================EMPLOYER TYPE RADIOS==================
 $(function () {
@@ -205,33 +142,6 @@ $(".reveal1").mousedown(function() {
 
 //========================EMPLOYER FORM VALIDATION================================================================
 
-
-//=================FIX FOR SAFARI
-/*$("#studentSUForm").on( "submit", function( event ) {
-    if ( this.checkValidity && !this.checkValidity() ) {
-
-        $( this ).find( ":invalid" ).first().focus();
-        var invalid = $( this ).find( ":invalid" );
-        for(var i = 0; i < invalid.length; i++){
-            invalid[i].validationMessage;
-        }
-        event.preventDefault();
-    }
-});
-$("#employerSUForm").on( "submit", function( event ) {
-    if ( this.checkValidity && !this.checkValidity() ) {
-
-        $( this ).find( ":invalid" ).first().focus();
-        var invalid = $( this ).find( ":invalid" );
-        for(var i = 0; i < invalid.length; i++){
-            invalid[i].validationMessage;
-        }
-
-
-
-        event.preventDefault();
-    }
-});*/
 
 
 

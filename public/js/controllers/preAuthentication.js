@@ -63,37 +63,15 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         $scope.user.location.geo = {};
         $scope.user.dob = {};
         $scope.user.dob = undefined;
-        $scope.user.type = $(this).text();
-        //this.tab('show');
+        if($(this).text() == "Talent")
+            $scope.user.type = "student";
+        else if($(this).text() == "Employer")
+            $scope.user.type = "employer";
     });
 
     $scope.reqNames = constants.requirements;
-    $("#addReq").hide();
-    $scope.WorkClick = function(work,num)
-    {
-        if(work == "company")
-        {
-            $("#compHired"+num+"").show();
-            $("#compHired"+num+"").prop("required",true);
-        }
-        else
-        {
-            $("#compHired"+num+"").hide();
-            $("#compHired"+num+"").prop("required",false);
-        }
 
-    };
-    $scope.matricTypeClick = function(type) {
-        $("#addReq").show();
 
-        /*if(type == "Cambridge")
-            $scope.reqNames = constants.Cambridge;
-        else if(type == "NSC")
-            $scope.reqNames = constants.NSC;
-        else if(type == "IEB")
-            $scope.reqNames = constants.IEB;*/
-
-    };
     if($location== '/signUp'){
 
         if(authService.isAuthenticated())
@@ -112,11 +90,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     $scope.autocompleteOptions = {
         componentRestrictions: { country: 'za' }
     };
-
     var geocoder = new google.maps.Geocoder();
-
     $scope.$on('g-places-autocomplete:select', function (event, param) {
-        if($scope.user.type == "Talent") {
+        if($scope.user.type == "student") {
             $scope.user.location.address = param.formatted_address;
             geocoder.geocode({'address': $scope.user.location.address}, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
@@ -126,38 +102,23 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                     console.log('Geocode was not successful for the following reason: ' + status);
                 }
             });
+        }
+        else if($scope.user.type == "employer")
+        {
+            alert("Employer");
+            $scope.user.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.location.address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
+
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
             console.log($scope.user.location);
         }
-    });
-
-    /*google.maps.event.addListener(autocomplete, 'place_changed', function() {
-
-        var data = $("#searchTextField").val();
-        $scope.user.company.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.company.location.geo = results[0].geometry.location;
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-        //alert($scope.user.company.location.geo);
-    });
-    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-
-        var data = $scope.user.location.address;
-        //$scope.user.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.location.geo = results[0].geometry.location;
-
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-        alert($scope.user.address.geo);
-    });*/
-
+    }); // Save location and geometry
 
     $scope.idfill = true;
     var idfill;
@@ -167,11 +128,12 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         minDate: new Date(1980, 1 - 1, 1),
         defaultDate: new Date(1990, 1 - 1, 1),
         onSelect: function(dob){
+            $scope.user.dob = dob;
             $scope.idfill = false;
             idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
             $scope.user.IDnumber = idfill;
         }
-    };
+    }; // Autofill ID first 6 charaters
 
     $scope.validateStuEmail = function(val) {
         if(val!=undefined)
@@ -224,42 +186,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             return pass == $scope.user.passwordHash
         }
     }
-    /*$(function () {
-        $("input[name=stuEmail]").on("focusout", function () {
-            var passed = false;
-            $scope.studentForm.stuEmail.$setValidity("pattern", false);
-            var len = $(this).val().length;
-
-            if (len > 11) {
-                if ($(this).val().substr(len - 11, 11) == "@tuks.co.za") {
-                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
-                    passed = true;
-                    alert($(this).val().substr(len - 11, 11));
-                }
-            }
-            if (len > 4) {
-                if ($(this).val().substr(len - 4, 4) == ".edu") {
-                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
-                    passed = true;
-                }
-            }
-            if (len > 6) {
-                if ($(this).val().substr(len - 6, 6) == ".ac.za") {
-                    $scope.studentForm.stuEmail.$setValidity("pattern", true);
-                    passed = true;
-                }
-            }
-            if (!passed) {
-                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
-                "an academic institution, please email info@o-link.co.za from your " +
-                "academic email address and we will be sure to add it to our system " +
-                "and allow you to register.");
-                $("input[name=stuEmail]").tooltip();
-            }
-
-
-        });
-    });*/
 
 
     var numWork = 0;
@@ -354,16 +280,11 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
     };
 
-    $scope.submitForm = function(isValid) {
+    $scope.submitForm = function() {
         $scope.submitted = true;
-        if(isValid) {
+        if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
             var user = $scope.user;
-            if (!user.dob) {
-                user.type = "employer";
-            }
-            else
-                user.type = "student";
 
             user.active = false;
             $http({
