@@ -4879,6 +4879,7 @@ ul.jobpg {
 
 
 @media (max-width: 990px) {
+
   .profileBall{
     float: none;
     text-align: center;
@@ -4946,7 +4947,7 @@ ul.jobpg {
     margin-top: 20px;
   }
   .page{
-      text-align: left;
+      text-align: center;
       margin: 0;
   }
 }
