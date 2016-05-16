@@ -2,12 +2,12 @@
 
     <table style="margin-top: 42px;" class="table blueBorder applicantsTable">
 
-    <thead class="blueBack talentHistoryHead"><th>Employer</th></th><th class="tableAdd">Category</th><th>Comment</th><th>Rating</th>
+    <thead class="blueBack talentHistoryHead"><th>Employer</th></th><th>Category</th><th>Comment</th><th>Rating</th>
     </thead>
     <tbody>
     <tr ng-repeat="app in applications">
         <td>{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
-        <td class="tableAdd"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
+        <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
         <td ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
         <td ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
         <td><fieldset class="rating" style="float: left">

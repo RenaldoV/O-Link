@@ -1087,10 +1087,79 @@ html.bg {
   padding-left: 0;
 }
 
+@media (min-width: 768px) {
+  .app.container {
+    width: 750px;
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  }
+  .app.container .app-aside {
+    overflow-x: hidden;
+  }
+  .app.container.app-aside-folded .app-aside {
+    overflow-x: visible;
+  }
+  .app.container.app-aside-fixed .aside-wrap {
+    left: inherit;
+  }
+  .app.container.app-aside-fixed.app-aside-folded .app-aside > ul.nav {
+    position: absolute;
+  }
+  .app.container .app-header,
+  .app.container .app-aside {
+    max-width: 750px;
+  }
+  .app.container .app-footer-fixed {
+    right: auto;
+    left: auto;
+    width: 100%;
+    max-width: 550px;
+  }
+  .app.container.app-aside-folded .app-footer-fixed {
+    max-width: 690px;
+  }
+  .app.container.app-aside-dock .app-footer-fixed {
+    max-width: 750px;
+  }
+}
 
+@media (min-width: 992px) {
+  .app.container {
+    width: 970px;
+  }
+  .app.container .app-header,
+  .app.container .app-aside {
+    max-width: 970px;
+  }
+  .app.container .app-footer-fixed {
+    max-width: 770px;
+  }
+  .app.container.app-aside-folded .app-footer-fixed {
+    max-width: 910px;
+  }
+  .app.container.app-aside-dock .app-footer-fixed {
+    max-width: 970px;
+  }
+}
 
-
-
+@media (min-width: 1200px) {
+  .app.container {
+    width: 1170px;
+  }
+  .app.container .app-header,
+  .app.container .app-aside {
+    max-width: 1170px;
+  }
+  .app.container .app-footer-fixed {
+    max-width: 970px;
+  }
+  .app.container.app-aside-folded .app-footer-fixed {
+    max-width: 1110px;
+  }
+  .app.container.app-aside-dock .app-footer-fixed {
+    max-width: 1170px;
+  }
+}
 
 .nav-sub {
   height: 0;
@@ -4883,7 +4952,9 @@ ul.jobpg {
     float: none;
     text-align: center;
   }
-
+  .navbar-text{
+    display:none;!important;
+  }
   .banner-logo{
     margin-top: 0px;
     width:50px;
@@ -4899,9 +4970,6 @@ ul.jobpg {
   #notifications
   {
     margin-right: 45px;
-  }
-  .navbar-text{
-    display: none; !important;
   }
   nav.navbar.transparent.navbar-default{
     z-index: 20;
@@ -4946,7 +5014,7 @@ ul.jobpg {
     margin-top: 20px;
   }
   .page{
-      text-align: left;
+      text-align: center;
       margin: 0;
   }
 }
@@ -5054,130 +5122,13 @@ ul.jobpg {
         width:100%;
 
     }
-    div.page{
-
+    .page{
+        position: relative;
         display: inline-block;
         text-align: center;
 
+        padding: 0;
     }
-
-
-
-    div.timeBrowse{
-      text-align: center;
-      margin: 0;
-      display: inline-block;
-      font-size: 12px;
-      transform: scale(0.8,0.8);
-      width: 100%;
-    }
-    div.catSelect{
-      transform: scale(0.8,0.8);
-      width:100%;
-      margin-bottom: 0px;
-    }
-    div.dashTops{
-      margin-top: 20px;
-    }
-    div.jobsContainer{
-      width: 100%;
-margin:0;
-    }
-    div.jobBox{
-      margin: 0px;
-    }
-    div.filterOptions{
-    margin: 0;
-      margin-top:20px;
-      width: 100%;
-
-    }
-    table.jobInfoBox{
-      width: 100%;
-    }
-
-    div.jobContent{
-margin-top: 32px;
-    }
-    div.profileRating{
-      margin-top: 32px;
-    }
-    #location{
-      width: 100%;
-
-    }
-    label.btn.timeSelect.ng-scope{
-      width:100%
-    }
-    div.card-header>h4{
-      font-size: 18px;
-    }
-    table{
-      font-size: 12px;
-    }
-    .tableAdd{
-      display: none;
-    }
-    .applicantsTable{
-      display: inline-table;
-    text-align: left;
-    transform: scale(0.8,0.8);
-      margin-left: -5px;
-      width: 100%;
-    }
-    .applicantsTable thead{
-      font-size: 18px;
-    }
-    div.myApps{
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    div.studentAppsPage{
-      width: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    div.buye{
-      margin-top: 32px;
-    }
-    div.empDash{
-      margin-top: 32px;
-    }
-    div.empProfileRating{
-      margin-top: 32px;
-    }
-    div.empApplicants{
-      transform: scale(0.7,0.7);
-      padding: 0;
-      margin-top: 32px;
-      width: 100%;
-      margin-left: -42px;
-    }
-    table{
-      text-align: left;
-    }
-    div.jobApps{
-      width: 100%;
-
-    }
-    .appName{
-      min-width: 100px;
-    }
-
-    div.appHeading{
-      font-size: 18px;
-    }
-  div.interviewReq{
-    font-size: 13px;
-  }
-  .hash{
-   visibility: visible;
-  }
-}
-
-.hash{
 
 }
 
