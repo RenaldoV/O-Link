@@ -45,69 +45,37 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$compile, authService, constants, session){
-
-
-
-
-
+app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session){
     $(".appbg").addClass('dashBG');
-    $scope.reqNames = constants.requirements;
-    $("#addReq").hide();
-    $scope.WorkClick = function(work,num)
-    {
-        if(work == "company")
-        {
-            $("#compHired"+num+"").show();
-            $("#compHired"+num+"").prop("required",true);
-        }
-        else
-        {
-            $("#compHired"+num+"").hide();
-            $("#compHired"+num+"").prop("required",false);
-        }
-
-    };
-    $scope.matricTypeClick = function(type) {
-        $("#addReq").show();
-
-        /*if(type == "Cambridge")
-            $scope.reqNames = constants.Cambridge;
-        else if(type == "NSC")
-            $scope.reqNames = constants.NSC;
-        else if(type == "IEB")
-            $scope.reqNames = constants.IEB;*/
-
-    };
-    if($window.location.href == '/signUp'){
-
-
-    if(authService.isAuthenticated())
-        $window.location.href= '/dashboard';
 
     $("#formTabs a").click(function(e) {
         e.preventDefault();
         $("#studentSUForm").trigger('reset');
         $("#employerSUForm").trigger('reset');
-
+        $scope.user = {};
+        $scope.user.company = {};
+        $scope.user.institution = {};
+        $scope.user.company.location = {};
+        $scope.user.company.location.address = {};
+        $scope.user.company.location.geo = {};
+        $scope.user.location = {};
+        $scope.user.location.address = {};
+        $scope.user.location.geo = {};
         $scope.user.dob = {};
         $scope.user.dob = undefined;
-        $scope.user.type = {};
-        //this.tab('show');
+        if($(this).text() == "Talent")
+            $scope.user.type = "student";
+        else if($(this).text() == "Employer")
+            $scope.user.type = "employer";
     });
 
+    $scope.reqNames = constants.requirements;
 
 
+    if($location== '/signUp'){
 
-    $scope.user = {};
-    $scope.user.company = {};
-    $scope.user.institution = {};
-    $scope.user.company.location = {};
-    $scope.user.company.location.address = {};
-    $scope.user.company.location.geo = {};
-    $scope.user.location = {};
-    $scope.user.location.address = {};
-    $scope.user.location.geo = {};
+        if(authService.isAuthenticated())
+            $window.location.href= '/dashboard';
 
     }
     else{
@@ -118,45 +86,106 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     $scope.workNames = constants.categories;
     $scope.tertInst = constants.tertiaryInstitutions;
 
-    var options = {
-        componentRestrictions: {country: 'za'}
+
+    $scope.autocompleteOptions = {
+        componentRestrictions: { country: 'za' }
     };
-    var input = document.getElementById('searchTextField');
-    var input1 = document.getElementById('searchTextField1');
-    var autocomplete = new google.maps.places.Autocomplete(input,options);
-    var autocomplete1 = new google.maps.places.Autocomplete(input1,options);
     var geocoder = new google.maps.Geocoder();
+    $scope.$on('g-places-autocomplete:select', function (event, param) {
+        if($scope.user.type == "student") {
+            $scope.user.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.location.address}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+        else if($scope.user.type == "employer")
+        {
+            alert("Employer");
+            $scope.user.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.location.address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+            console.log($scope.user.location);
+        }
+    }); // Save location and geometry
 
-        var data = $("#searchTextField").val();
-        $scope.user.company.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.company.location.geo = results[0].geometry.location;
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
+    $scope.idfill = true;
+    var idfill;
+    $scope.dateOptions = {
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(1980, 1 - 1, 1),
+        defaultDate: new Date(1990, 1 - 1, 1),
+        onSelect: function(dob){
+            $scope.user.dob = dob;
+            $scope.idfill = false;
+            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+            $scope.user.IDnumber = idfill;
+        }
+    }; // Autofill ID first 6 charaters
+
+    $scope.validateStuEmail = function(val) {
+        if(val!=undefined)
+        {
+            var passed = false;
+            var len = val.length;
+
+            if (len > 11) {
+                if (val.substr(len - 11, 11) == "@tuks.co.za") {
+                    passed = true;
+                }
             }
-        });
-        //alert($scope.user.company.location.geo);
-    });
-    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-
-        var data = $("#searchTextField1").val();
-        $scope.user.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.location.geo = results[0].geometry.location;
-
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
+            if (len > 4) {
+                if (val.substr(len - 4, 4) == ".edu") {
+                    passed = true;
+                }
             }
-        });
-        //alert($scope.user.address.geo);
-    });
+            if (len > 6) {
+                if (val.substr(len - 6, 6) == ".ac.za") {
+                    passed = true;
+                }
+            }
+            if (!passed) {
+                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
+                "an academic institution, please email info@o-link.co.za from your " +
+                "academic email address and we will be sure to add it to our system " +
+                "and allow you to register.");
+                $("input[name=stuEmail]").tooltip();
+                return passed;
+            }
+            else
+                return passed;
+        }
 
+    };
 
+    $scope.validateStuID = function(val){
+      if(val != undefined && idfill != undefined){
+          if(val.substring(0,6) != idfill){
+              return false;
+          }
+          else {
+              return true;
+          }
+      }
+    };
 
+    $scope.validatestuPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    }
 
 
     var numWork = 0;
@@ -252,49 +281,44 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$compile, aut
     };
 
     $scope.submitForm = function() {
-
         $scope.submitted = true;
+        if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
-        var user = $scope.user;
-        if(!user.dob)
-        {
-            user.type = "employer";
+            var user = $scope.user;
+
+            user.active = false;
+            $http({
+                method: 'POST',
+                url: '/signup',
+                data: user
+            })
+                .then(function (res) {
+                    {
+                        console.log(res);
+                        if (res.data == "email") {
+                            swal({
+                                    title: "User exists",
+                                    text: 'The email you have entered already has an account associated with it.',
+                                    type: "error"
+                                },
+                                function () {
+                                    location.reload();
+                                });
+                        }
+                        else if (res.data) {
+                            swal({
+                                    title: "Account created",
+                                    text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
+                                    type: "success"
+                                },
+                                function () {
+
+                                    location.href = '/';
+                                });
+                        }
+                    }
+                });
         }
-        else
-            user.type = "student";
-
-        user.active = false;
-        $http({
-            method  : 'POST',
-            url     : '/signup',
-            data 	: user
-        })
-            .then(function(res) {
-                {
-                    console.log(res);
-                    if(res.data == "email"){
-                        swal({
-                                title: "User exists",
-                                text: 'The email you have entered already has an account associated with it.',
-                                type: "error"
-                            },
-                            function(){
-                                location.reload();
-                            });
-                    }
-                    else if(res.data){
-                        swal({
-                                title: "Account created",
-                                text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
-                                type: "success"
-                            },
-                            function(){
-
-                                location.href= '/';
-                            });
-                    }
-                }
-            });
     }
 });
 
