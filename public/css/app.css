@@ -5048,6 +5048,9 @@ ul.jobpg {
    float:right;
    margin-top: -60px;
  }
+ h4.form-section-label{
+   margin-left:100px;!important;
+ }
     .signupBox{
         display: inline-block;
         margin:0;
@@ -5198,4 +5201,19 @@ p.has-error{
 
 div.error-block{
   margin-top: 6px;
+}
+
+.content-heading{
+  padding-top: 3px;
+}
+.heading-img{
+  width: 45px;!important;
+  height:45px;!important;
+  float:left;
+  margin-left:15px;
+
+  margin-right: 5px;
+}
+.span4{
+  vertical-align: middle;
 }

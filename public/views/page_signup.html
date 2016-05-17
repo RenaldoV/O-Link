@@ -22,7 +22,10 @@
 			<br/>
 			<form novalidate id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
 
-				<h4 class="form-section-label">Talent Info</h4>
+				<div class="row">
+					<img src="../img/Icons/talent%20info.png" class="heading-img img-responsive">
+					<div class="content-heading"><h4 class="form-section-label">Talent Info</h4><br/></div>
+				</div>
 				<div class="list-group list-group-sm form-group">
 					<fieldset class="form-group">
 						<div class="list-group-item">
@@ -102,7 +105,10 @@
 				</div>
 
 				<div class="passTooltip" title="Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character">
-					<h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
+					<div class="row">
+						<img src="../img/Icons/password.png" class="heading-img img-responsive">
+						<div class="content-heading"><h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4><br/></div>
+					</div>
 					<div class="list-group list-group-sm form-group">
 						<fieldset class="form-group">
 							<div class="list-group-item">
@@ -136,7 +142,11 @@
 					</div>
 				</div>
 
-				<h4 class="form-section-label">Institution Type</h4>
+
+				<div class="row">
+					<img src="../img/Icons/institution%20type1.png" class="heading-img img-responsive">
+					<div class="content-heading"><h4 class="form-section-label">Institution Type</h4><br/></div>
+				</div>
 				<div class="type1 list-group list-group-sm wrapper text-center">
 					<div class="list-group list-group-sm">
 						<label class="radio-inline">
@@ -152,7 +162,10 @@
 				</div>
 
 				<div class="instituteSection" ng-show="user.institution.type">
-					<h4 class="form-section-label">Additional Info</h4>
+					<div class="row">
+						<img src="../img/Icons/add%20info.png" class="heading-img img-responsive">
+						<div class="content-heading"><h4 class="form-section-label">Additional Info</h4><br/></div>
+					</div>
 					<div class="list-group list-group-sm form-group">
 						<fieldset class="form-group">
 							<div class="list-group-item">
@@ -193,8 +206,14 @@
 						</fieldset>
 					</div>
 
-					<h4 class="form-section-label">Matric Results</h4>
-					<div class="list-group list-group-sm form-group">
+					<div class="row" ng-show="user.institution.type == 'Secondary'">
+						<img src="../img/Icons/matric%20results.png" class="heading-img img-responsive">
+						<div class="content-heading">
+							<h4 class="form-section-label">Matric Results</h4>
+							<br/>
+						</div>
+					</div>
+					<div ng-show="user.institution.type == 'Secondary'" class="list-group list-group-sm form-group">
 					<div id="reqGroup" class="list-group-item" style="text-align: center;">
 						<label>Matric Certificate Type</label>
 						<div class="list-group list-group-sm">
@@ -245,7 +264,10 @@
 					</div>
 					</div>
 
-					<h4 class="form-section-label">Work Experience</h4>
+					<div class="row">
+						<img src="../img/Icons/work%20experience.png" class="heading-img img-responsive">
+						<div class="content-heading"><h4 class="form-section-label">Work Experience</h4><br/></div>
+					</div>
 					<div class="list-group list-group-sm form-group">
 					<div id="workExpBox" class="list-group-item" style="text-align: center;">
 
@@ -345,7 +367,7 @@
 				<br/>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
-						<input name="terms" type="checkbox" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="#">terms and policy</a> of use.
+						<input name="terms" type="checkbox" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="#">terms and conditions</a> of use.
 					</label>
 				</div>
 				<div ng-show="studentForm.$submitted || studentForm.terms.$touched" class="error-block">
@@ -359,24 +381,48 @@
 		<div class="tab-pane fade in" id="employerPane">
 			<br/>
 			<br/>
-			<form id="employerSUForm" class="form-validation" name="employerForm" ng-submit="submitForm()">
+			<form id="employerSUForm" class="form-validation" novalidate name="employerForm" ng-submit="submitForm()">
 				<h4 class="form-section-label">Employer Contact Info</h4>
 				<div class="list-group list-group-sm">
 					<div class="list-group-item">
-						<input type="text"  placeholder="Name" class="form-control no-border" ng-model="user.contact.name" required>
+						<input type="text" name="empName" ng-minlength="2"  placeholder="Name" class="form-control no-border" ng-model="user.contact.name" ng-required="true">
+						<div ng-show="employerForm.$submitted || employerForm.empName.$touched" class="error-block">
+							<p ng-show="employerForm.empName.$error.required" class="has-error">This field is required</p>
+							<p ng-show="employerForm.empName.$error.minlength" class="has-error">Minimum length is 2</p>
+						</div>
+					</div>
+
+					<div class="list-group-item">
+						<input type="text" name="empSurn" ng-minlength="2"  placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" ng-required="true">
+						<div ng-show="employerForm.$submitted || employerForm.empSurn.$touched" class="error-block">
+							<p ng-show="employerForm.empSurn.$error.required" class="has-error">This field is required</p>
+							<p ng-show="employerForm.empSurn.$error.minlength" class="has-error">Minimum length is 2</p>
+						</div>
 					</div>
 					<div class="list-group-item">
-						<input type="text"  placeholder="Surname" class="form-control no-border" ng-model="user.contact.surname" required>
+						<input type="text"  name="empID" ng-maxlength="13" placeholder="ID Number" class="form-control no-border" ng-model="user.IDnumber"
+							   ng-pattern="/[\d]{13,13}/" ng-required="true">
+						<div ng-show="employerForm.$submitted || employerForm.empID.$touched" class="error-block">
+							<p ng-show="employerForm.empID.$error.required" class="has-error">This field is required</p>
+							<p ng-show="employerForm.empID.$error.pattern" class="has-error">Not a valid ID number</p>
+							<p ng-show="employerForm.empID.$error.maxlength" class="has-error">Not a valid ID number</p>
+						</div>
 					</div>
 					<div class="list-group-item">
-						<input type="text"  name="empID" placeholder="ID Number" class="form-control no-border" ng-model="user.IDnumber"
-							   pattern="[\d]{13,13}"   required>
+						<input name="empEmail" type="email" placeholder="Email Address" class="form-control no-border" ng-model="user.contact.email"
+							   ng-pattern="/^[^@]+@[^@]+\.[^@]+$/" ng-required="true">
+						<div ng-show="employerForm.$submitted || employerForm.empEmail.$touched" class="error-block">
+							<p ng-show="employerForm.empEmail.$error.required" class="has-error">This field is required</p>
+							<p ng-show="employerForm.empEmail.$error.pattern" class="has-error">Not a valid email address</p>
+						</div>
 					</div>
 					<div class="list-group-item">
-						<input name="empEmail" type="email" placeholder="Email Address" class="form-control no-border" ng-model="user.contact.email" pattern="^[^@]+@[^@]+\.[^@]+$" required>
-					</div>
-					<div class="list-group-item">
-						<input name="empContact" type="text" placeholder="Contact Number" class="form-control no-border" ng-model="user.contact.contactNo" pattern="^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$" required>
+						<input name="empContact" type="text" placeholder="Contact Number" class="form-control no-border" ng-model="user.contact.contactNo"
+							   ng-pattern="/^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$/" ng-required="true">
+						<div ng-show="employerForm.$submitted || employerForm.empContact.$touched" class="error-block">
+							<p ng-show="employerForm.empContact.$error.required" class="has-error">This field is required</p>
+							<p ng-show="employerForm.empContact.$error.pattern" class="has-error">Not a valid cell number</p>
+						</div>
 					</div>
 				</div>
 
@@ -386,18 +432,28 @@
 						<div class="list-group-item">
 							<div class="input-group">
 								<!-- password req  Minimum 8 chars at least 1 alphabet char and 1 number-->
-								<input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash" pattern="((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})" required>
+								<input name="empPassw" type="password" placeholder="Password" class="form-control no-border pwd" ng-model="user.passwordHash"
+									   ng-pattern="/((?=.*\d)(?=.*[A-Z])(?=.+\W).{6,20})/" ng-required="true">
 									<span class="input-group-btn">
 										<button class="btn btn-default reveal no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 									</span>
 							</div>
+							<div ng-show="employerForm.$submitted || employerForm.empPassw.$touched" class="error-block">
+								<p ng-show="employerForm.empPassw.$error.required" class="has-error">This field is required</p>
+								<p ng-show="employerForm.empPassw.$error.pattern" class="has-error">Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character</p>
+							</div>
 						</div>
 						<div class="list-group-item">
 							<div class="input-group">
-								<input name="empRePassw" type="password" placeholder="Confirm Password" class="form-control no-border pwd1" required>
+								<input name="empRePassw" ui-validate="{validRePassw : 'validateempPassw($value)'}" type="password"
+									   placeholder="Confirm Password" ng-model="empRePass" class="form-control no-border pwd1" ng-required>
 									<span class="input-group-btn">
 										<button class="btn btn-default reveal1 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
 									</span>
+							</div>
+							<div ng-show="employerForm.$submitted || employerForm.empRePassw.$touched" class="error-block">
+								<p ng-show="employerForm.empRePassw.$error.required" class="has-error">This field is required</p>
+								<p ng-show="employerForm.empRePassw.$error.validRePassw" class="has-error">Password do not match</p>
 							</div>
 						</div>
 					</div>
@@ -409,32 +465,44 @@
 
 					<div class="list-group list-group-sm">
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="Individualradio" ng-model="user.employerType" value="Individual" required>Individual
+							<input type="radio" name="type1" id="Individualradio" ng-model="user.employerType" value="Individual" ng-required="true">Individual
 						</label>
 						<label class="radio-inline">
-							<input type="radio" name="type1" id="Companyradio" ng-model="user.employerType" value="Company" required>Company
+							<input type="radio" name="type1" id="Companyradio" ng-model="user.employerType" value="Company" ng-required="true">Company
 						</label>
+					</div>
+					<div ng-show="employerForm.$submitted || employerForm.type1.$touched" class="error-block">
+						<p ng-show="employerForm.type1.$error.required" class="has-error">This field is required</p>
 					</div>
 				</div>
 
 
-				<div class="companysection" hidden>
+				<div class="companysection" ng-show="user.employerType == 'Company'">
 					<h4 class="form-section-label">Company Info</h4>
 					<div class="list-group list-group-sm form-group" >
-
 						<div class="list-group-item">
-							<input id="compName" type="text" class="form-control no-border" placeholder="Company Name" ng-model="user.company.name" >
+							<input id="compName" name="compName" type="text" class="form-control no-border" placeholder="Company Name"
+								   ng-model="user.company.name" ng-required="user.employerType == 'Company'">
+							<div ng-show="employerForm.$submitted || employerForm.compName.$touched" class="error-block">
+								<p ng-show="employerForm.compName.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<select id="compDesc" class=" form-control no-border" ng-model="user.company.category" required>
+							<select id="compDesc" name="compCat" class=" form-control no-border" ng-model="user.company.category" ng-required="user.employerType == 'Company'">
 								<option value="" selected disabled>Select a Company Category</option>
 
 								<option ng-repeat="cat in compCat" value="{{cat}}">{{cat}}</option>
 							</select>
+							<div ng-show="employerForm.$submitted || employerForm.compCat.$touched" class="error-block">
+								<p ng-show="employerForm.compCat.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 						<div class="list-group-item">
-							<!--Link google location API en gebruik location auto complete-->
-							<input id="searchTextField" type="text" class="location controls form-control no-border" placeholder="Enter Company Location" ng-model="user.company.location.address">
+							<input id="searchTextField" name="searchTextField" type="text" g-places-autocomplete force-selection="true" class="location controls form-control no-border"
+								   placeholder="Enter Company Location" ng-model="user.company.location.address" ng-required="user.employerType == 'Company'">
+							<div ng-show="employerForm.$submitted || employerForm.searchTextField.$touched" class="error-block">
+								<p ng-show="employerForm.searchTextField.$error.required" class="has-error">This field is required</p>
+							</div>
 						</div>
 						<div class="list-group-item">
 							<input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.company.position" >
@@ -459,8 +527,11 @@
 				</div>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
-						<input type="checkbox" ng-model="agree" required><i></i> I agree to the <a href="#">terms and policy</a> of use.
+						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="#">terms and conditions</a> of use.
 					</label>
+				</div>
+				<div ng-show="employerForm.$submitted || employerForm.terms.$touched" class="error-block">
+					<p ng-show="employerForm.terms.$error.required" class="has-error">Agree to the terms and conditions</p>
 				</div>
 				<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block">Sign Up</button>
 			</form>

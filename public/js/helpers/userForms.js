@@ -58,67 +58,6 @@ $(function () {
 
 //========================EMPLOYER FORM==============================================================
 
-//===========================EMPLOYER TYPE RADIOS==================
-$(function () {
-    $("#Individualradio").click(function () {
-        $("#Companyradio").prop("checked", false);
-        $(".companysection").hide();
-        $("#compName").prop('required',false);
-        $("#compDesc").prop('required',false);
-        $("#searchTextField").prop('required',false);
-    });
-    $("#Companyradio").click(function () {
-        $("#Individualradio").prop("checked", false);
-        $(".companysection").show();
-        $("#compName").prop('required',true);
-        $("#compDesc").prop('required',true);
-        $("#searchTextField").prop('required',true);
-    });
-});
-//==================================================================
-
-$(function () {
-
-    $("input[name=empID]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA ID number.");
-    });
-    $("input[name=empID]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empEmail]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid email address.");
-    });
-    $("input[name=empEmail]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empContact]").on("invalid", function () {
-        this.setCustomValidity("Please enter a valid SA contact number.");
-    });
-    $("input[name=empContact]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
-    });
-    $("input[name=empPassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
-$(function () {
-    $("input[name=empRePassw]").on("focusout", function () {
-        if($("input[name=empPassw]").val() != $(this).val())
-            this.setCustomValidity("Passwords do not match.");
-    });
-    $("input[name=empRePassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-});
 
 $(".reveal").mousedown(function() {
         $(".pwd").get(0).type='text';

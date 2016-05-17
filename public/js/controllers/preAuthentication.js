@@ -52,6 +52,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         e.preventDefault();
         $("#studentSUForm").trigger('reset');
         $("#employerSUForm").trigger('reset');
+        $scope.studentForm.$valid = false;
+        $scope.employerForm.$valid = false;
         $scope.user = {};
         $scope.user.company = {};
         $scope.user.institution = {};
@@ -105,18 +107,16 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
         else if($scope.user.type == "employer")
         {
-            alert("Employer");
-            $scope.user.location.address = param.formatted_address;
-            geocoder.geocode({'address': $scope.user.location.address}, function(results, status) {
+            $scope.user.company.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.company.location.address}, function(results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
-                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
-                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
+                    $scope.user.company.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.company.location.geo.lng = results[0].geometry.location.lng();
 
                 } else {
                     console.log('Geocode was not successful for the following reason: ' + status);
                 }
             });
-            console.log($scope.user.location);
         }
     }); // Save location and geometry
 
@@ -185,7 +185,13 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         if(pass != undefined && $scope.user.passwordHash != undefined){
             return pass == $scope.user.passwordHash
         }
-    }
+    };
+
+    $scope.validateempPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    };
 
 
     var numWork = 0;
@@ -282,6 +288,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
 
     $scope.submitForm = function() {
         $scope.submitted = true;
+
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
             var user = $scope.user;
