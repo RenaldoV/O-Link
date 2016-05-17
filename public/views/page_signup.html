@@ -202,7 +202,15 @@
 									<p ng-show="studentForm.gpa.$error.max" class="has-error">Maximum length is 100</p>
 								</div>
 							</div>
-
+							<div class="list-group-item">
+								<select class=" form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+									<option value="" selected disabled>How did you hear about us?</option>
+									<option value="Word of mouth">Word of mouth</option>
+									<option value="Social media">Social media</option>
+									<option value="Academic institution">Academic institution</option>
+									<option value="Other">Other</option>
+								</select>
+							</div>
 						</fieldset>
 					</div>
 
@@ -265,7 +273,7 @@
 					</div>
 
 					<div class="row">
-						<img src="../img/Icons/work%20experience.png" class="heading-img img-responsive">
+						<img src="../img/Icons/briefcase.png" class="heading-img img-responsive">
 						<div class="content-heading"><h4 class="form-section-label">Work Experience</h4><br/></div>
 					</div>
 					<div class="list-group list-group-sm form-group">
@@ -301,6 +309,14 @@
 									<div ng-show="studentForm.$submitted || workForm.otherCategory.$touched" class="error-block">
 										<p ng-show="workForm.otherCategory.$error.required" class="has-error">This field is required</p>
 									</div>
+
+
+									<textarea name="workRole" id="workRole" rows=2 class="form-control cluttered" placeholder="Briefly describe your role at the company (otional)(20 - 500 characters)" ng-model="cat.roleDescription" ng-maxlength="500" ng-minlength="20"></textarea>
+									<div ng-show="studentForm.$submitted || workForm.workRole.$touched" class="error-block">
+										<p ng-show="workForm.workRole.$error.minlength" class="has-error">Minimum length is 20</p>
+										<p ng-show="workForm.workRole.$error.maxlength" class="has-error">Maximum length is 500</p>
+									</div>
+
 
 									<select id="period" name="period" class="cluttered form-control no-border" ng-model="cat.duration" required>
 										<option value="" selected disabled>* Duration of Experience?</option>
@@ -367,7 +383,7 @@
 				<br/>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
-						<input name="terms" type="checkbox" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="#">terms and conditions</a> of use.
+						<input name="terms" type="checkbox" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
 					</label>
 				</div>
 				<div ng-show="studentForm.$submitted || studentForm.terms.$touched" class="error-block">
@@ -511,7 +527,7 @@
 				</div>
 
 
-				<h4 class="form-section-label">Other info</h4>
+				<h4 class="form-section-label">Additional info</h4>
 				<div class="list-group list-group-sm form-group">
 					<fieldset class="form-group">
 						<div class="list-group-item">
@@ -527,7 +543,7 @@
 				</div>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
-						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="#">terms and conditions</a> of use.
+						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
 					</label>
 				</div>
 				<div ng-show="employerForm.$submitted || employerForm.terms.$touched" class="error-block">

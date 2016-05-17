@@ -11,36 +11,38 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
     $scope.user = {};
 
     $scope.submitForm = function() {
-        $http({
-            method  : 'POST',
-            url     : '/signin',
-            data 	: $scope.user,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-            .then(function(res) {
-                {
+        if($scope.form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/signin',
+                data: $scope.user,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .then(function (res) {
+                    {
 
-                    if(res.data) {
+                        if (res.data) {
 
-                        swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });
+                            swal({title: "Welcome", type: "success", timer: 800, showConfirmButton: false});
 
-                        authService.login($scope.user).then(function (user) {
-
-
-                            $scope.setCurrentUser(user);
-                            $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                            $(".appbg").addClass('dashBG');
-                            $location.url("/dashboard");
+                            authService.login($scope.user).then(function (user) {
 
 
-                        }, function () {
-                            $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                        });
+                                $scope.setCurrentUser(user);
+                                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                                $(".appbg").addClass('dashBG');
+                                $location.url("/dashboard");
 
+
+                            }, function () {
+                                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                            });
+
+                        }
+                        else sweetAlert("Incorrect login details, or your account hasn't been activated", "Please try again.", "error");
                     }
-                    else sweetAlert("Incorrect login details, or your account hasn't been activated", "Please try again.", "error");
-                }
-            });
+                });
+        }
     }
 });
 

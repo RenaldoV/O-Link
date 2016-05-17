@@ -4,16 +4,22 @@
     <div class="wrapper text-center">
       <strong >Sign In</strong>
     </div>
-    <form name="form" class="list-group list-group-sm form-validation" ng-submit="submitForm()">
+    <form name="form" novalidate class="list-group list-group-sm form-validation" ng-submit="submitForm()">
       <div class="text-danger wrapper text-center">
           
       </div>
       <div class="list-group list-group-sm">
         <div class="list-group-item">
-          <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
+          <input type="email" name="emailSi" placeholder="Email" class="form-control no-border" ng-model="user.email" ng-required="true">
+          <div ng-show="form.$submitted || form.emailSi.$touched" class="error-block">
+            <p ng-show="form.emailSi.$error.required" class="has-error">This field is required</p>
+          </div>
         </div>
         <div class="list-group-item">
-           <input type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" required>
+           <input name="pwSi" type="password" placeholder="Password" class="form-control no-border" ng-model="user.password" ng-required="true">
+          <div ng-show="form.$submitted || form.pwSi.$touched" class="error-block">
+            <p ng-show="form.pwSi.$error.required" class="has-error">This field is required</p>
+          </div>
         </div>
       </div>
       <button target="_self" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" ng-click="login()" >Log in</button>
@@ -26,28 +32,5 @@
  <div>{{result}}</div>
 </div>
 
-        <script>
-          if (document.addEventListener) {
-            document.addEventListener('invalid', function(e) {
-              var element = $(e.target);
-              element.addClass("invalid");
-            }, true);
-          }
-          $(document).bind('change', function(e){
-
-            if( $(e.target).is(':invalid') ){
-              $(e.target).addClass('invalid');
-            } else {
-              $(e.target).removeClass('invalid');
-            }
-          });
-          $(document).bind('focusout', function(e){
-            if( $(e.target).is(':invalid') ){
-              $(e.target).addClass('invalid');
-            } else {
-              $(e.target).removeClass('invalid');
-            }
-          });
-        </script>
 
 

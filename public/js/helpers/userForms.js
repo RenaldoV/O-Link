@@ -28,6 +28,7 @@ $(function () {
         $('#textarea_feedback').html(text_remaining + ' remaining');
     });
 });
+
 //====================================================
 
 $(function () {

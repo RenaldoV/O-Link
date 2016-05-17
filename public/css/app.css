@@ -4795,7 +4795,8 @@ textarea {
   resize: none;
 }
 
-#textarea_feedback{
+#textarea_feedback,
+#textarea_feedback1{
   color: #d3d3d3;
 }
 
