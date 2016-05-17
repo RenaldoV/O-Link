@@ -75,7 +75,7 @@ app.controller('paymentSuccessful',function($scope,$routeParams, authService, se
     })
         .then(function (res) {
             {
-                if (res.data) { // Valid Token activate package
+                if (res.data && res.data != 'error') { // Valid Token activate package
                     //console.log(res.data);
                     //doen all die nodige hier
                     swal({

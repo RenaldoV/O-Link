@@ -1262,7 +1262,7 @@ console.log(job.post);
 		var user = req.body;
 		user.packages.paymentToken = passwordHash.generate(user.packages.paymentToken);
 		//console.log(user.packages);
-		db.users.findOneAndUpdate({_id: user._id}, {$push:{packages:user.packages}}, {returnNewDocument : true}, function(err,usr){
+		db.users.findOneAndUpdate({_id: user._id}, {$push:{packages:user.packages}}, {new : true}, function(err,usr){
 			if(!err){
 				res.send(user.packages.paymentToken);
 			}
@@ -1288,14 +1288,15 @@ console.log(job.post);
 		now = now.getTime();
 
 		db.users.findOneAndUpdate(	{_id:user._id,"packages.paymentToken":user.paymentToken,"packages.active":false, "packages.packageType" : user.packageType},
-									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : ""}},
+									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : 1}},
 									{new : true}, function(err,doc){
 			if(!err) {
-				if(!doc){
+				if(!doc || doc == null){
 					res.send('error');
 				}else {
 
 					var usr = doc.toObject();
+
 					if(usr.emailDisable == undefined || !usr.emailDisable) {
 						//mailer args
 						var args = {};
