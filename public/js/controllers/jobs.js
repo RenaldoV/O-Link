@@ -35,7 +35,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $scope.job.post.location.address = data;
         geocoder.geocode({'address': data}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                $scope.job.post.location.geo = results[0].geometry.location;
+                $scope.job.post.location.geo = {type:"Point", coordinates:[results[0].geometry.location.lng(),results[0].geometry.location.lat()]};
+                console.log($scope.job.post.location.geo);
             } else {
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
@@ -304,20 +305,28 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 });
 
-app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
+app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session){
 
 
     $scope.jobs = [];
     $rootScope.$broadcast('browse', 1);
     $scope.sortBy = 0;
-
-    var temp = $.deparam.querystring();
+var me = session.user;
+    var ob = $.deparam.querystring();
+var region = '';
+    getJobs(ob);
 
     //get the jobs
+    function getJobs(temp){
+        var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
+        if(temp.radius){
+            data.radius = temp.radius;
+            data.userLocation = me.location.geo;
+        }
     $http({
         method  : 'POST',
         url     : '/jobBrowse',
-        data : {'categories': temp.categories, 'periods' : temp.timePeriods}
+        data : data
     })
         .then(function(res) {
 
@@ -347,7 +356,49 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope){
 
         });
 
+    }
+    $scope.applyFilters = function(){
 
+        var radius = { max:parseInt($scope.radius)};
+
+        switch(radius.max){
+            case 5:{
+                radius.min = 0;
+                break;
+            }
+            case 10:{
+                radius.min = 5;
+                break;
+            }
+            case 20:{
+                radius.min = 10;
+                break;
+            }
+            case 50:
+            {
+                radius.min = 20;
+                break;
+            }
+            case 2000:{
+                radius.min = 50;
+                break;
+            }
+        }
+
+        if($scope.radius) {
+            ob.radius = radius;
+        }
+            if(!$scope.region){
+                ob.region = '';
+            }
+            else{
+                ob.region = $scope.region;
+            }
+            getJobs(ob);
+
+
+
+    };
 
     $scope.sort = function(by){
         if(by == 0){

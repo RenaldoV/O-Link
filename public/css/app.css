@@ -5099,6 +5099,7 @@ margin:0;
     }
     table.jobInfoBox{
       width: 100%;
+      text-align: center;
     }
 
     div.jobContent{

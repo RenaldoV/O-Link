@@ -902,3 +902,19 @@ width: 240px;
 #allP{
     height:54px;
 }
+
+
+.jobTimePeriod{
+    display: block;
+    font-size: 10px;
+    margin-left:6px;
+
+}
+
+.jobCategory{
+margin-bottom: 0;
+}
+
+.applyFilter{
+    margin: 10px;
+}

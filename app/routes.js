@@ -224,15 +224,42 @@ module.exports = function(app) {
 	app.post('/jobBrowse', function(req,res){
 
 		var temp = req.body;
+		if(temp.region == null){
+			temp.region='';
+		}
+console.log(temp.region);
+if(temp.radius != null){
 
+	db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}, 'post.location.geo':{$near:{coordinates:[ temp.userLocation.lng, temp.userLocation.lat ], type:"Point"}, $maxDistance: temp.radius.max*1000, $minDistance: temp.radius.min*1000}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
+		if(err) throw err;
+		else{
 
-		db.jobs.find({status:'active'}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
+			console.log(1);
+		if(rows.length == 0){
+
+			res.send(false);
+		}
+
+		else{
+
+			res.send(rows);
+		}
+
+		}
+	});
+}else{
+		db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
+			if(err) throw err;
+			else{
+			console.log(2);
+
 			if(rows.length == 0)
 			res.send(false);
 			else
 			res.send(rows);
+			}
 		});
-
+	}
 	});
 	//done
 

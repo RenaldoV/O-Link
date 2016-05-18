@@ -19,7 +19,11 @@ db.once('open', function (callback) {
 
 });
 
-var jobSchema = new Schema({ employerID : {type: String, ref: 'users'},post:{postDate: {type: Date, default: Date.now}, category: String}}, {strict:false});
+var jobSchema = new Schema({ employerID : {type: String, ref: 'users'},post:{postDate: {type: Date, default: Date.now}, category: String, location: { geo:{
+	'type': { type: String, default: 'Point' },
+	coordinates: [Number]}
+} }}, {strict:false});
+jobSchema.index({ 'post.location.geo' : '2dsphere' });
 var idSchema = new Schema({}, {strict:false});
 var applicationSchema = new Schema({jobID: {type: String, ref: 'jobs'},studentID: {type: String, ref: 'users'}, employerID : {type: String, ref: 'users'}}, {strict:false});
 var notificationSchema = new Schema({jobID: {type: String, ref: 'jobs'},applicationID:{type: String, ref: 'applications'},dateTime: {type: Date, default: Date.now}}, {strict:false});

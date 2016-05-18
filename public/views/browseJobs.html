@@ -1,16 +1,20 @@
 <div ng-controller="jobBrowser" class="text-center">
     <div class="filterOptions" style="margin-bottom: 14px">
-<!--
+
+        <label>
+           <input ng-model="region" type="text" placeholder="suburb/city" class="form-control">
+        </label>
+
         <label>Range
-            <select ng-model="sortBy" ng-change="sort(sortBy)">
-                <option value=0> < 5km</option>
-                <option value=1> < 10km</option>
-                <option value=2> < 20km</option>
-                <option value=1> < 50km</option>
-                <option value=2>50km +</option>
+            <select ng-model="radius" >
+                <option value=5> < 5km</option>
+                <option value=10> 5-10km</option>
+                <option value=20> 10-20km</option>
+                <option value=50>  20-50km</option>
+                <option value=2000>  50km +</option>
             </select>
         </label>
--->
+
     <label>Sort By
         <select ng-model="sortBy" ng-change="sort(sortBy)">
             <option value=0>Most Recent</option>
@@ -19,7 +23,7 @@
         </select>
     </label>
 
-
+<button class="btn blueBack applyFilter" ng-click="applyFilters()">Apply Filters</button>
     </div>
     <div class=" jobsContainer container">
 <div class="row jobBox feature blueTop" ng-repeat="job in jobs">
@@ -27,7 +31,7 @@
         
 
     <div class="col-md-2">
-        <div>
+        <div >
         <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos"><br>
         <a class="companyLink">
             <span ng-if="job.employerID.employerType == 'Company'" >{{job.employerID.company.name}}</span>
@@ -37,8 +41,8 @@
     </div>
     <div class="col-md-10">
     <div class="col-md-10 jobsHead">
-        <h2>{{job.post.category}}</h2>
-
+        <h2 class="jobCategory">{{job.post.category}}</h2>
+        <small class="jobTimePeriod">{{job.post.timePeriod}}</small>
     </div>
 
         <div class="col-md-12">
@@ -55,7 +59,7 @@
                     <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
                     </thead>
                     <tbody>
-                    <tr><td>{{job.post.location.address}}</td></tr>
+                    <tr><td>{{job.post.location.address.split(',')[0]}}</td></tr>
                     </tbody>
                 </table>
                 <table class="col-md-2 jobInfoBox">
