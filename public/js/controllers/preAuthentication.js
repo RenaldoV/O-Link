@@ -198,12 +198,20 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
 
     var numWork = 0;
     var numReq = 0;
+    var numCert = 0;
     var workRadios = 3;
     $scope.close = function(reqs){
         numReq--;
         $scope.user.results.pop();
         if(numReq == 0)
             $scope.user.results = false;
+
+    };
+    $scope.closeCert = function(certs){
+        numCert--;
+        $scope.user.certifications.pop();
+        if(numCert == 0)
+            $scope.user.certifications = false;
 
     };
     $scope.closeWork = function(cats){
@@ -221,6 +229,16 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }else
             $scope.user.results.push({});
             numReq++;
+
+    };
+    $scope.addCert = function(){
+
+        if(!$scope.user.certifications){
+            $scope.user.certifications = [{}];
+        }else {
+            $scope.user.certifications.push({});
+        }
+            numCert++;
 
     };
 
