@@ -242,15 +242,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     }
     $scope.tempWork = tempWorkList;
     $scope.changeWork = function(workName){
-        if(workName == "Other")
-        {
-            $("#otherCategory").prop('required',true);
-            $("#otherCategory").show();
-        }
-        else{
-            $("#otherCategory").prop('required',false);
-            $("#otherCategory").hide();
-        }
         tempWorkList = [];
         for(var k = 0; k < $scope.workNames.length;k++){
             tempWorkList.push($scope.workNames[k]);

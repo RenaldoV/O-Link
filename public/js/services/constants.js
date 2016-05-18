@@ -81,6 +81,7 @@ app.service('constants', function(){
         "Engineer","Assistant",
         "Cook/Chef",
         "Internship",
+        "Promoter",
         "Other"];
 
     this.timePeriods = [
