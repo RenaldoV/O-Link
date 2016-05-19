@@ -297,12 +297,23 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
     };
 
+
+    $scope.nextForm = function(){
+        $scope.submitted = true;
+      if($scope.studentForm.$valid || $scope.employerForm.$valid)
+      {
+          $scope.next = true;
+          $scope.submitted = false;
+      }
+    };
+
     $scope.submitForm = function() {
         $scope.submitted = true;
 
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
             var user = $scope.user;
+            console.log(user);
 
             user.active = false;
             $http({

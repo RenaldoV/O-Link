@@ -5219,3 +5219,7 @@ div.error-block{
 .span4{
   vertical-align: middle;
 }
+
+.checkbox{
+  margin-left: 2px;
+}
