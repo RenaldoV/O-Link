@@ -4951,9 +4951,19 @@ ul.jobpg {
       text-align: center;
       margin: 0;
   }
+  .ngdialog.ngdialog-theme-default .ngdialog-content {
+    transform: scale(0.8,0.8);
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    width: 120vh;
+    height: 120vh;
+    top:0;
+  }
 }
 
 @media (max-width: 767px) {
+
   .profileBall{
     float: none;
     text-align: center;
@@ -5181,6 +5191,7 @@ margin-top: 32px;
   .hash{
    visibility: visible;
   }
+
 }
 
 .hash{
