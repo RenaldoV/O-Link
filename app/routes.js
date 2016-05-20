@@ -522,7 +522,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var file = req.files.file;
 		var id = req.body.user;
 
-
 		fs.readFile(file.path, function (err, data) {
 
 			var temp = file.path;
@@ -534,16 +533,53 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				if(err) throw err;
 
 
-				db.users.update({_id:id}, {$set: {profilePicture: temp}}, function(err,result){
-					if (err) throw err;
+				if(id){
+					db.users.update({_id:id}, {$set: {profilePicture: temp}}, function(err,result){
+						if (err) throw err;
+						fs.unlink(file.path, function(e){
+							if(!e){
+								res.send(true);
+							}
+						});
+
+					} );
+				}
+				else{
 					fs.unlink(file.path, function(e){
 						if(!e){
-							res.send(true);
+							res.send(temp);
 						}
 					});
 
-				} );
+				}
+
 			});
+
+		});
+
+	});
+	//done
+
+	//upload profile picture
+	app.post('/uploadFile', multipartyMiddleware, function(req, res){
+		var file = req.files.file;
+
+		fs.readFile(file.path, function (err, data) {
+
+			var temp = file.path;
+			temp = temp.replace("tmp\\", '\\uploads\\');
+			temp = temp +".png";
+			var newPath = __dirname + temp;
+
+			fs.writeFile(newPath, data, function (err) {
+				if(err) throw err;
+
+				else{
+							res.send(temp);
+						}
+
+
+				});
 
 		});
 

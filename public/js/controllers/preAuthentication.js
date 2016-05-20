@@ -47,7 +47,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session){
+app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session, signUpPhotoUpload){
     $(".appbg").addClass('dashBG');
 
     $("#formTabs a").click(function(e) {
@@ -302,10 +302,29 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         $scope.submitted = true;
       if($scope.studentForm.$valid || $scope.employerForm.$valid)
       {
+          console.log("yey");
           $scope.next = true;
           $scope.submitted = false;
       }
     };
+
+    $scope.uploadPp = function() {
+        signUpPhotoUpload.makeUploadBox();
+        $rootScope.$on('signUpPP', function(evt,thing){
+            console.log(thing);
+            $scope.user.profilePicture = thing;
+            $http
+                .post('/getPp', $scope.user)
+                .then(function (res) {
+
+                    $scope.image=res.data;
+
+
+                });
+        });
+    };
+
+
 
     $scope.submitForm = function() {
         $scope.submitted = true;

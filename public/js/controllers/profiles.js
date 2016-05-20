@@ -417,6 +417,30 @@ app.controller('photoUploadControl', function($scope,Upload,$timeout, session, a
     };
 });
 
+app.controller('signUpPhotoUploadControl', function($scope,Upload,$timeout, $rootScope){
+
+    $scope.upload = function (dataUrl) {
+        Upload.upload({
+            url: '/upload',
+            data: {
+                file: Upload.dataUrltoBlob(dataUrl)
+            }
+        }).then(function (response) {
+            $timeout(function () {
+                $scope.result = response.data;
+                $rootScope.$broadcast('signUpPP', response.data);
+                $scope.closeThisDialog();
+            });
+
+        }, function (response) {
+            if (response.status > 0) $scope.errorMsg = response.status
+                + ': ' + response.data;
+        }, function (evt) {
+            $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+    };
+});
+
 app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants){
 
 
@@ -624,6 +648,23 @@ app.service('photoUpload', function(ngDialog) {
 
     };
 });
+app.service('signUpPhotoUpload', function(ngDialog) {
+
+
+    this.makeUploadBox = function () {
+
+        ngDialog.open({
+                template: '../views/blocks/pictureUpload.html',
+                controller: 'signUpPhotoUploadControl',
+                showClose: true
+
+            }
+        );
+
+
+    };
+});
+
 
 app.controller('buy', function($scope, constants, session, $location, $rootScope){
     var user = session.user;
