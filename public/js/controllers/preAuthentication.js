@@ -324,7 +324,27 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         });
     };
 
-
+    $scope.upload = function (file, to) {
+        console.log(file);
+        Upload.upload({
+            url: '/uploadFile',
+            data: {file: file}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name);
+            if(to == 'matric'){
+                $scope.user.matricFile = resp.data;
+            }
+            else{
+                $scope.user.certifications[to].file = resp.data;
+            }
+            to =  resp.data;
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
 
     $scope.submitForm = function() {
         $scope.submitted = true;
@@ -334,54 +354,45 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             var user = $scope.user;
             console.log(user);
 
-            if(user.matricFile){
-                var reader = new FileReader();
-                reader.readAsDataURL(user.matricFile);
-                reader.onload = function(e) {
-                    // browser completed reading file - display it
-                    user.matricFile = e.target.result;
-                }
-                //user.matricFile = Upload.dataUrltoBlob(window.URL.createObjectURL(user.matricFile));
-            }
-            if(user.certifications){
-                for(var p = 0; p<user.certifications.length;p++){
-                    if(user.certifications[p].file){
-                        user.certifications[p].file = Upload.dataUrltoBlob(window.URL.createObjectURL( user.certifications[p].file));
-                    }
-                }
-            }
-            user.active = false;
-            $http({
-                method: 'POST',
-                url: '/signup',
-                data: user
-            })
-                .then(function (res) {
-                    {
-                        console.log(res);
-                        if (res.data == "email") {
-                            swal({
-                                    title: "User exists",
-                                    text: 'The email you have entered already has an account associated with it.',
-                                    type: "error"
-                                },
-                                function () {
-                                    location.reload();
-                                });
-                        }
-                        else if (res.data) {
-                            swal({
-                                    title: "Account created",
-                                    text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
-                                    type: "success"
-                                },
-                                function () {
 
-                                    location.href = '/';
-                                });
+
+
+
+           postIt();
+            user.active = false;
+            function postIt() {
+                $http({
+                    method: 'POST',
+                    url: '/signup',
+                    data: user
+                })
+                    .then(function (res) {
+                        {
+                            console.log(res);
+                            if (res.data == "email") {
+                                swal({
+                                        title: "User exists",
+                                        text: 'The email you have entered already has an account associated with it.',
+                                        type: "error"
+                                    },
+                                    function () {
+                                        location.reload();
+                                    });
+                            }
+                            else if (res.data) {
+                                swal({
+                                        title: "Account created",
+                                        text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
+                                        type: "success"
+                                    },
+                                    function () {
+
+                                        location.href = '/';
+                                    });
+                            }
                         }
-                    }
-                });
+                    });
+            }
         }
     }
 });

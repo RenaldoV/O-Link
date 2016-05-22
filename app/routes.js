@@ -417,19 +417,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 			}else
 
-			if(user.matricFile){
 
-				user.matricFile = saveFile(user.matricFile);
-				console.log(user.matricFile);
-			}
-			if(user.certifications){
-				for(var k = 0; k < user.certifications.length; k++){
-					if(user.certifications[k].file){
-						user.certifications[k].file = saveFile(user.certifications[k].file);
-					}
-				}
-			}
-/*
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');
 				user.activateToken = token;
@@ -459,33 +447,12 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 								console.log(rrs);
 							});
 						}
-					/*var smtpTransport = nodemailer.createTransport(smtpttransport({
-						host: "mail.o-link.co.za",
-						secureConnection: false,
-						port: 25,
-						auth: {
-							user: "no-reply@o-link.co.za",
-							pass: "Olink@Noreply2016"
-						},
-						tls: {rejectUnauthorized: false}
-					}));
-					var mailOptions = {
-						to: user.contact.email,
-						from: 'no-reply@o-link.co.za',
-						subject: 'Activate your new olink account',
-						text: 'You are receiving this because you (or someone else) have signed up to use olink.\n\n' +
-						'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-						'http://' + req.headers.host + '/activate?token=' + token + '\n\n' +
-						'If you did not request this, please ignore this email.\n'
-					};
-					smtpTransport.sendMail(mailOptions, function(err) {
-						if(err) throw err;
-					});
+
 					}
 			});
 
 
-		}); */
+		});
 		});
 
 	});
@@ -577,23 +544,8 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/uploadFile', multipartyMiddleware, function(req, res){
 		var file = req.files.file;
 
-		fs.readFile(file.path, function (err, data) {
-
-			var temp = file.path;
-			temp = temp.replace("tmp\\", '\\uploads\\');
-			temp = temp +".png";
-			var newPath = __dirname + temp;
-
-			fs.writeFile(newPath, data, function (err) {
-				if(err) throw err;
-
-				else{
-							res.send(temp);
-						}
-
-
-				});
-
+		saveFile(file, function(rslt){
+			res.send(rslt);
 		});
 
 	});
@@ -1437,27 +1389,26 @@ function sortPackages(a,b){
 	return 0;
 }
 
-function saveFile(file){
+function saveFile(file, cb){
+var path = require('path');
+	fs.readFile(file.path, function (err, data) {
 
-	var regex = /^data:.+\/(.+);base64,(.*)$/;
-
-	var matches = String(file).match(regex);
-	var ext = matches[1];
-
-
-		var temp = '\\uploads\\'+Date.now().toString();
+		var temp = file.path;
 		temp = temp.replace("tmp\\", '\\uploads\\');
-		temp = temp +ext;
+
 		var newPath = __dirname + temp;
 
-		fs.writeFile(newPath, file, function (err) {
+		fs.writeFile(newPath, data, function (err) {
 			if(err) throw err;
 
 			else{
-				return temp;
+				console.log(temp);
+				cb(temp);
 			}
 
 
+		});
 
 	});
+
 }
