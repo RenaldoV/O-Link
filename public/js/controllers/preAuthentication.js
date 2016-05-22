@@ -47,7 +47,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 });
 
 
-app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session, signUpPhotoUpload){
+app.controller('signup', function($scope, $rootScope,$http,$window,$location,$compile, authService, constants, session, signUpPhotoUpload, Upload){
     $(".appbg").addClass('dashBG');
 
     $("#formTabs a").click(function(e) {
@@ -334,6 +334,22 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             var user = $scope.user;
             console.log(user);
 
+            if(user.matricFile){
+                var reader = new FileReader();
+                reader.readAsDataURL(user.matricFile);
+                reader.onload = function(e) {
+                    // browser completed reading file - display it
+                    user.matricFile = e.target.result;
+                }
+                //user.matricFile = Upload.dataUrltoBlob(window.URL.createObjectURL(user.matricFile));
+            }
+            if(user.certifications){
+                for(var p = 0; p<user.certifications.length;p++){
+                    if(user.certifications[p].file){
+                        user.certifications[p].file = Upload.dataUrltoBlob(window.URL.createObjectURL( user.certifications[p].file));
+                    }
+                }
+            }
             user.active = false;
             $http({
                 method: 'POST',

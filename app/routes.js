@@ -417,6 +417,19 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 			}else
 
+			if(user.matricFile){
+
+				user.matricFile = saveFile(user.matricFile);
+				console.log(user.matricFile);
+			}
+			if(user.certifications){
+				for(var k = 0; k < user.certifications.length; k++){
+					if(user.certifications[k].file){
+						user.certifications[k].file = saveFile(user.certifications[k].file);
+					}
+				}
+			}
+/*
 		crypto.randomBytes(20, function(err, buf) {
 				var token = buf.toString('hex');
 				user.activateToken = token;
@@ -467,12 +480,12 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					};
 					smtpTransport.sendMail(mailOptions, function(err) {
 						if(err) throw err;
-					});*/
+					});
 					}
 			});
 
 
-		});
+		}); */
 		});
 
 	});
@@ -1422,4 +1435,29 @@ function sortPackages(a,b){
 	}
 	// a must be equal to b
 	return 0;
+}
+
+function saveFile(file){
+
+	var regex = /^data:.+\/(.+);base64,(.*)$/;
+
+	var matches = String(file).match(regex);
+	var ext = matches[1];
+
+
+		var temp = '\\uploads\\'+Date.now().toString();
+		temp = temp.replace("tmp\\", '\\uploads\\');
+		temp = temp +ext;
+		var newPath = __dirname + temp;
+
+		fs.writeFile(newPath, file, function (err) {
+			if(err) throw err;
+
+			else{
+				return temp;
+			}
+
+
+
+	});
 }

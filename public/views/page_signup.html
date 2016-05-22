@@ -271,7 +271,7 @@
 								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
 								<button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
 							</div>
-							<input style="width: 100%" class="btn blueBack" type="file" ngf-select ng-model="user.results.matricFile" name="file"
+							<input style="width: 100%" class="btn blueBack" type="file" ngf-select ng-model="user.matricFile" name="file"
 								   accept="image/*, application/pdf" ngf-max-size="5MB"
 								   ngf-model-invalid="errorFile">
 						</div>
