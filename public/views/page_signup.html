@@ -270,11 +270,11 @@
 
 								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
 								<button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
-							</div>
-							Upload Matric Results
-							<input type="file" style="width: 100%" class="btn blueBack" ngf-select="upload($file,'matric')"
+							</div><br/><br/>
+							<label ng-if="user.results">Upload Matric Results</label>
+							<input ng-if="user.results" type="file" style="width: 100%" class="btn blueBack" ngf-select="upload($file,'matric')"
 								   accept="image/*, application/pdf" ngf-max-size="5MB"
-								   ngf-model-invalid="errorFile"></input>
+								   ngf-model-invalid="errorFile">
 						</div>
 
 						</div>
@@ -612,7 +612,7 @@
 				</div>
 				<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
 					<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
-					<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
+					<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Company Logo</button>
 				</div>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
