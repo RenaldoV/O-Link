@@ -441,7 +441,7 @@ app.controller('signUpPhotoUploadControl', function($scope,Upload,$timeout, $roo
     };
 });
 
-app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants){
+app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants, $location, Upload){
 
 
 
@@ -454,48 +454,119 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
     $scope.workNames = constants.categories;
     $scope.tertInst = constants.tertiaryInstitutions;
 
-    var options = {
-        componentRestrictions: {country: 'za'}
+    $scope.reqNames = constants.requirements;
+
+
+
+    $scope.autocompleteOptions = {
+        componentRestrictions: { country: 'za' }
     };
-    var input = document.getElementById('searchTextField');
-    var input1 = document.getElementById('searchTextField1');
-    var autocomplete = new google.maps.places.Autocomplete(input,options);
-    var autocomplete1 = new google.maps.places.Autocomplete(input1,options);
     var geocoder = new google.maps.Geocoder();
+    $scope.$on('g-places-autocomplete:select', function (event, param) {
+        if($scope.user.type == "student") {
+            $scope.user.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.location.address}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.location.geo.lng = results[0].geometry.location.lng();
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+        else if($scope.user.type == "employer")
+        {
+            $scope.user.company.location.address = param.formatted_address;
+            geocoder.geocode({'address': $scope.user.company.location.address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    $scope.user.company.location.geo.lat = results[0].geometry.location.lat();
+                    $scope.user.company.location.geo.lng = results[0].geometry.location.lng();
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        var data = $("#searchTextField").val();
-        $scope.user.company.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.company.location.geo = results[0].geometry.location;
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    }); // Save location and geometry
+
+    $scope.idfill = true;
+    var idfill;
+    $scope.dateOptions = {
+        changeMonth: true,
+        changeYear: true,
+        minDate: new Date(1980, 1 - 1, 1),
+        defaultDate: new Date(1990, 1 - 1, 1),
+        onSelect: function(dob){
+            $scope.user.dob = dob;
+            $scope.idfill = false;
+            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+            $scope.user.IDnumber = idfill;
+        }
+    }; // Autofill ID first 6 charaters
+
+    $scope.validateStuEmail = function(val) {
+        if(val!=undefined)
+        {
+            var passed = false;
+            var len = val.length;
+
+            if (len > 11) {
+                if (val.substr(len - 11, 11) == "@tuks.co.za") {
+                    passed = true;
+                }
             }
-        });
-        //alert($scope.user.company.location.geo);
-    });
-    google.maps.event.addListener(autocomplete1, 'place_changed', function() {
-        var data = $("#searchTextField1").val();
-        $scope.user.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                $scope.user.location.geo = results[0].geometry.location;
-
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
+            if (len > 4) {
+                if (val.substr(len - 4, 4) == ".edu") {
+                    passed = true;
+                }
             }
-        });
-        //alert($scope.user.address.geo);
-    });
+            if (len > 6) {
+                if (val.substr(len - 6, 6) == ".ac.za") {
+                    passed = true;
+                }
+            }
+            if (!passed) {
+                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
+                    "an academic institution, please email info@o-link.co.za from your " +
+                    "academic email address and we will be sure to add it to our system " +
+                    "and allow you to register.");
+                $("input[name=stuEmail]").tooltip();
+                return passed;
+            }
+            else
+                return passed;
+        }
 
+    };
 
+    $scope.validateStuID = function(val){
+        if(val != undefined && idfill != undefined){
+            if(val.substring(0,6) != idfill){
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    };
 
+    $scope.validatestuPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    };
+
+    $scope.validateempPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    };
 
 
     var numWork = 0;
     var numReq = 0;
-
+    var numCert = 0;
+    var workRadios = 3;
     $scope.close = function(reqs){
         numReq--;
         $scope.user.results.pop();
@@ -503,7 +574,15 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
             $scope.user.results = false;
 
     };
+    $scope.closeCert = function(certs){
+        numCert--;
+        $scope.user.certifications.pop();
+        if(numCert == 0)
+            $scope.user.certifications = false;
+
+    };
     $scope.closeWork = function(cats){
+        workRadios--;
         numWork--;
         $scope.user.work.pop();
         if(numWork == 0)
@@ -519,8 +598,20 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         numReq++;
 
     };
-    $scope.addWork = function(){
+    $scope.addCert = function(){
 
+        if(!$scope.user.certifications){
+            $scope.user.certifications = [{}];
+        }else {
+            $scope.user.certifications.push({});
+        }
+        numCert++;
+
+    };
+
+    $scope.addWork = function(){
+        workRadios++;
+        $scope.typenum = workRadios;
         if(!$scope.user.work){
             $scope.user.work = [{}];
         }else
@@ -535,8 +626,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         tempWorkList.push($scope.workNames[k]);
     }
     $scope.tempWork = tempWorkList;
-    $scope.changeWork = function(){
-
+    $scope.changeWork = function(workName){
         tempWorkList = [];
         for(var k = 0; k < $scope.workNames.length;k++){
             tempWorkList.push($scope.workNames[k]);
@@ -576,13 +666,32 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
 
 
-
-
+    $scope.upload = function (file, to) {
+        console.log(file);
+        Upload.upload({
+            url: '/uploadFile',
+            data: {file: file}
+        }).then(function (resp) {
+            console.log('Success ' + resp.config.data.file.name);
+            if(to == 'matric'){
+                $scope.user.matricFile = resp.data;
+            }
+            else{
+                $scope.user.certifications[to].file = resp.data;
+            }
+            to =  resp.data;
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+        }, function (evt) {
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+        });
+    };
     $scope.uploadPp = function(){
         photoUpload.makeUploadBox();
     };
 
-    $scope.updateUser = function()
+    $scope.submitForm = function()
     {
 
 var user =  $scope.user;
