@@ -4612,6 +4612,11 @@ a.text-#000000:hover {
 	border: none;
 	transition: background .4s ease-in
 }
+.sign-in-btn-empl{
+	background-color: #00b488;
+	border: none;
+	transition: background .4s ease-in
+}
 .sign-in-btn.disabled{
 	background-color: #33B6CC;
 	border: none;
@@ -4646,6 +4651,10 @@ a.text-#000000:hover {
 
 .sign-in-btn:hover{
 	background-color: #00b488;
+	transition: background .4s ease-in
+}
+.sign-in-btn-empl:hover{
+	background-color: #33B6CC;
 	transition: background .4s ease-in
 }
 
@@ -5232,4 +5241,35 @@ div.error-block{
 
 .checkbox{
   margin-left: 2px;
+}
+
+.inputWrapper {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  color:white;
+  background-color: #33B6CC;
+  /*Using a background color, but you can use a background image to represent a button*/
+}
+.inputWrapper:hover {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  color:white;
+  background-color: #33C6DD;
+  /*Using a background color, but you can use a background image to represent a button*/
+}
+.fileInput {
+  cursor: pointer;
+  height: 100%;
+  position:absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+  /*This makes the button huge. If you want a bigger button, increase the font size*/
+  font-size:50px;
+  /*Opacity settings for all browsers*/
+  opacity: 0;
+  -moz-opacity: 0;
+  filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }

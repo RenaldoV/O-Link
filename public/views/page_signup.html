@@ -11,9 +11,9 @@
     </div>
 
 
-	<ul id="formTabs" class="nav nav-pills" role="tablist" data-tabs="tabs">
+	<ul id="formTabs" class="nav nav-pills" role="tablist" data-tabs="tabs" >
 		<li class="talentSelected"><a href="#talentPane" data-toggle="tab">Talent</a></li>
-		<li class="employerSelected"><a href="#employerPane" data-toggle="tab">Employer</a></li>
+		<li class="employerSelected" ng-hide="next"><a href="#employerPane" data-toggle="tab">Employer</a></li>
 	</ul>
 	<div class="tab-content">
 
@@ -146,9 +146,13 @@
 				</div>
 
 				<div ng-show="next">
+					<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
+						<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
+						<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
+					</div>
 					<div class="row">
 						<img src="../img/Icons/institution%20type1.png" class="heading-img img-responsive">
-						<div class="content-heading"><h4 class="form-section-label">Institution Type</h4><br/></div>
+						<div class="content-heading"><h4 class="form-section-label">Institution</h4><br/></div>
 					</div>
 					<div class="type1 list-group list-group-sm wrapper text-center">
 						<div class="list-group list-group-sm">
@@ -165,10 +169,6 @@
 					</div>
 
 					<div class="instituteSection" ng-show="user.institution.type">
-						<div class="row">
-							<img src="../img/Icons/add%20info.png" class="heading-img img-responsive">
-							<div class="content-heading"><h4 class="form-section-label">Additional Info</h4><br/></div>
-						</div>
 						<div class="list-group list-group-sm form-group">
 							<fieldset class="form-group">
 								<div class="list-group-item">
@@ -204,15 +204,6 @@
 										<p ng-show="studentForm.gpa.$error.min" class="has-error">Minimum length is 0</p>
 										<p ng-show="studentForm.gpa.$error.max" class="has-error">Maximum length is 100</p>
 									</div>
-								</div>
-								<div class="list-group-item">
-									<select class=" form-control no-border" id="sel1" name="how" ng-model="user.suggested">
-										<option value="" selected disabled>How did you hear about us?</option>
-										<option value="Word of mouth">Word of mouth</option>
-										<option value="Social media">Social media</option>
-										<option value="Academic institution">Academic institution</option>
-										<option value="Other">Other</option>
-									</select>
 								</div>
 							</fieldset>
 						</div>
@@ -271,11 +262,12 @@
 								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
 								<button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
 							</div><br/><br/>
-							<label ng-if="user.results">Upload Matric Results</label>
-							<input ng-if="user.results" type="file" style="width: 100%" class="btn blueBack" ngf-select="upload($file,'matric')"
-								   accept="image/*, application/pdf" ngf-max-size="5MB"
-								   ngf-model-invalid="errorFile">
-							<div style="font-size:10px;" class="greenText" ng-if="cert.matricFile">File Uploaded</div>
+							<div class="inputWrapper btn" ng-if="user.results">
+								<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,'matric')"
+									   accept="image/*, application/pdf" ngf-max-size="5MB"
+									   ngf-model-invalid="errorFile">Upload Matric Results
+							</div>
+							<div style="font-size:15px;" class="greenText" ng-if="user.matricFile">File Uploaded</div>
 						</div>
 
 						</div>
@@ -398,11 +390,13 @@
 											<div ng-show="studentForm.$submitted || certificationForm.certDesc.$touched" class="error-block">
 												<p ng-show="certificationForm.certDesc.$error.minlength" class="has-error">Minimum length is 20</p>
 												<p ng-show="certificationForm.certDesc.$error.maxlength" class="has-error">Maximum length is 500</p>
-											</div>Upload Certificate
-											<input type="file" style="width: 100%" class="btn blueBack" ngf-select="upload($file,$index)"
-												 accept="image/*, application/pdf" ngf-max-size="5MB"
-												 ngf-model-invalid="errorFile">
-											<div style="font-size:10px;" class="greenText" ng-if="cert.file">File Uploaded</div>
+											</div>
+											<div class="inputWrapper btn">
+												<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,$index)"
+													 accept="image/*, application/pdf" ngf-max-size="5MB"
+													 ngf-model-invalid="errorFile">Upload Certificate / Proof of Qualification
+											</div>
+											<div style="font-size:15px;" class="greenText" ng-if="cert.file">File Uploaded</div>
 										</ng-form>
 										<hr>
 									</div>
@@ -414,10 +408,6 @@
 									<button type="button" id="addCert" class="btn btn-default" ng-click="addCert()">Add certification <span class="glyphicon glyphicon-plus"></span></button>
 								</div>
 
-							</div>
-							<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
-								<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
-								<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
 							</div>
 						</div>
 
@@ -448,9 +438,21 @@
 					<br/>
 				</div>
 
-				<div class="checkbox m-b-md m-t-none">
+				<div class="list-group list-group-sm form-group">
+					<div class="list-group-item" ng-hide="additional && !next">
+						<select class=" form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+							<option value="" selected disabled>How did you hear about us?</option>
+							<option value="Word of mouth">Word of mouth</option>
+							<option value="Social media">Social media</option>
+							<option value="Academic institution">Academic institution</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div><br/>
+
+				<div class="checkbox m-b-md m-t-none" ng-hide="additional && !next">
 					<label class="i-checks">
-						<input name="terms" type="checkbox" ng-model="agree" ng-required="true"><i></i> I agree to the <a style="color:blue;" target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
+						<input name="terms" type="checkbox" ng-model="agree" ng-required="!additional || next"><i></i> I agree to the <a style="color:blue;" target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
 					</label>
 				</div>
 				<div ng-show="studentForm.$submitted || studentForm.terms.$touched" class="error-block">
@@ -617,15 +619,17 @@
 							<input  type="text" placeholder="Position Within Company" class="form-control no-border" ng-model="user.company.position" >
 						</div>
 					</div>
-				</div>
-
-				<div class="row">
-					<img src="../img/Icons/add%20info%20green.png" class="heading-img img-responsive">
-					<div class="content-heading">
-						<h4 class="form-section-label">Additional info</h4>
-						<br/>
+					<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
+						<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
+						<button style="background-color: #00b488;" ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Company Logo</button>
 					</div>
 				</div>
+
+				<div ng-if="user.employerType == 'Individual'" style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
+					<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
+					<button style="background-color: #00b488;" ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
+				</div>
+
 				<div class="list-group list-group-sm form-group">
 					<fieldset class="form-group">
 						<div class="list-group-item">
@@ -639,10 +643,6 @@
 						</div>
 					</fieldset>
 				</div>
-				<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
-					<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
-					<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Company Logo</button>
-				</div>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
 						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
@@ -653,7 +653,7 @@
 				<div ng-show="employerForm.$submitted || employerForm.terms.$touched" class="error-block">
 					<p ng-show="employerForm.terms.$error.required" class="has-error">Agree to the terms and conditions</p>
 				</div>
-				<button type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
+				<button type="submit" class="sign-in-btn-empl btn btn-lg btn-primary btn-block" >Sign Up</button>
 			</form>
 		</div>
 

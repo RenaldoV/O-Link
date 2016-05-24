@@ -738,6 +738,7 @@ margin-left: 21px;
 
 .btn.blueBack{
     color: white;
+    border:none;
 }
 .btn.blueBack:hover{
     color: white;

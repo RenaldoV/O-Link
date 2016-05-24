@@ -302,7 +302,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         $scope.submitted = true;
       if($scope.studentForm.$valid || $scope.employerForm.$valid)
       {
-          console.log("yey");
           $scope.next = true;
           $scope.submitted = false;
       }
@@ -325,7 +324,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     };
 
     $scope.upload = function (file, to) {
-        console.log(file);
         Upload.upload({
             url: '/uploadFile',
             data: {file: file}
@@ -333,6 +331,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             console.log('Success ' + resp.config.data.file.name);
             if(to == 'matric'){
                 $scope.user.matricFile = resp.data;
+                $scope.matricFile = file.name;
             }
             else{
                 $scope.user.certifications[to].file = resp.data;
