@@ -385,7 +385,7 @@
 												<p ng-show="certificationForm.certName.$error.required" class="has-error">This field is required</p>
 											</div>
 
-											<textarea name="certDesc" rows=2 class="form-control cluttered" placeholder="Brief description (20 - 500 characters)"
+											<textarea name="certDesc" rows=2 class="form-control cluttered" placeholder="About my qualification / certification, a brief description (20 - 500 characters)"
 													  ng-model="cert.roleDescription" ng-maxlength="500" ng-minlength="20"></textarea>
 											<div ng-show="studentForm.$submitted || certificationForm.certDesc.$touched" class="error-block">
 												<p ng-show="certificationForm.certDesc.$error.minlength" class="has-error">Minimum length is 20</p>
@@ -405,7 +405,7 @@
 								<div id="reqButtonGrp" class="btn-group-vertical" role="group">
 
 									<button ng-if="user.certifications" type="button" class="removeReq btn btn-default" ng-click="closeCert(user.certifications);">Remove <span class="glyphicon glyphicon-minus"></span></button>
-									<button type="button" id="addCert" class="btn btn-default" ng-click="addCert()">Add certification <span class="glyphicon glyphicon-plus"></span></button>
+									<button type="button" id="addCert" class="btn btn-default" ng-click="addCert()">Add Qualification / Certification <span class="glyphicon glyphicon-plus"></span></button>
 								</div>
 
 							</div>
