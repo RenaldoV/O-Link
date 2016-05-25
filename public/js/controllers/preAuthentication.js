@@ -322,6 +322,21 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                 });
         });
     };
+    $scope.uploadCL = function() {
+        signUpPhotoUpload.makeUploadBoxCompanyLogo();
+        $rootScope.$on('signUpPP', function(evt,thing){
+            console.log(thing);
+            $scope.user.profilePicture = thing;
+            $http
+                .post('/getPp', $scope.user)
+                .then(function (res) {
+
+                    $scope.image=res.data;
+
+
+                });
+        });
+    };
 
     $scope.upload = function (file, to) {
         Upload.upload({

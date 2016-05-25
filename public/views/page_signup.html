@@ -452,7 +452,7 @@
 
 				<div class="checkbox m-b-md m-t-none" ng-hide="additional && !next">
 					<label class="i-checks">
-						<input name="terms" type="checkbox" ng-model="agree" ng-required="!additional || next"><i></i> I agree to the <a style="color:blue;" target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
+						<input name="terms" type="checkbox" ng-model="agree" ng-required="!additional || next"><i></i> I agree to the <a style="font-weight: bold;" target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
 					</label>
 				</div>
 				<div ng-show="studentForm.$submitted || studentForm.terms.$touched" class="error-block">
@@ -620,8 +620,8 @@
 						</div>
 					</div>
 					<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
-						<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
-						<button style="background-color: #00b488;" ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Company Logo</button>
+						<img ng-if="user.profilePicture" ng-click="uploadCL()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
+						<button style="background-color: #00b488;" ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadCL()">Upload Company Logo</button>
 					</div>
 				</div>
 
@@ -645,7 +645,7 @@
 				</div>
 				<div class="checkbox m-b-md m-t-none">
 					<label class="i-checks">
-						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
+						<input type="checkbox" name="terms" ng-model="agree" ng-required="true"><i></i> I agree to the <a style="font-weight: bold;" target="_blank" href="http://o-link.co.za/assets/terms-and-conditions-(v1).pdf">terms and conditions</a> of use.
 					</label>
 				</div>
 
