@@ -772,19 +772,6 @@ app.service('signUpPhotoUpload', function(ngDialog) {
 
 
     };
-
-    this.makeUploadBoxCompanyLogo = function () {
-
-        ngDialog.open({
-                template: '../views/blocks/pictureUploadCompany.html',
-                controller: 'signUpPhotoUploadControl',
-                showClose: true
-
-            }
-        );
-
-
-    };
 });
 
 
