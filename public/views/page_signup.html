@@ -608,6 +608,13 @@
 								<p ng-show="employerForm.compCat.$error.required" class="has-error">This field is required</p>
 							</div>
 						</div>
+						<div class="list-group-item" ng-show="user.company.category == 'Other'">
+							<input name="otherCompCategory" type="text" placeholder="* Please name your category" class="cluttered form-control no-border"
+								   ng-model="user.company.otherCategory" ng-show="user.company.category == 'Other'" ng-required="user.company.category == 'Other'">
+							<div ng-show="employerForm.$submitted || employerForm.otherCompCategory.$touched" class="error-block">
+								<p ng-show="employerForm.otherCompCategory.$error.required" class="has-error">This field is required</p>
+							</div>
+						</div>
 						<div class="list-group-item">
 							<input id="searchTextField" name="searchTextField" type="text" g-places-autocomplete force-selection="true" class="location controls form-control no-border"
 								   placeholder="Enter Company Location" ng-model="user.company.location.address" ng-required="user.employerType == 'Company'">
