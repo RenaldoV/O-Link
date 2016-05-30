@@ -4,36 +4,32 @@
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify, $rootScope){
 
-    $('#startDate').datepicker({
+    $scope.startDate = {
         changeMonth: true,
         changeYear: true,
-        minDate :0
-        ,
-        onSelect: function(selected) {
-            $("#endDate").datepicker("option","minDate", selected)
+        minDate: 0,
+        onSelect: function(selected){
+            $("#endDate").datepicker("option","minDate", selected);
             $scope.job.post.startingDate = selected;
         }
-    });
-    $('#endDate').datepicker({
+    };
+    $scope.endDate = {
         changeMonth: true,
-        changeYear: true
-        ,
-        onSelect: function(selected) {
+        changeYear: true,
+        minDate: 0,
+        onSelect: function(selected){
             $scope.job.post.endDate = selected;
         }
-    });
-
-    var options = {
-        componentRestrictions: {country: 'za'}
     };
-    var input = document.getElementById('searchTextField');
-    var autocomplete = new google.maps.places.Autocomplete(input,options);
-    var geocoder = new google.maps.Geocoder();
 
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-        var data = $("#searchTextField").val();
-        $scope.job.post.location.address = data;
-        geocoder.geocode({'address': data}, function(results, status) {
+    $scope.autocompleteOptions = {
+        componentRestrictions: { country: 'za' }
+    };
+    var geocoder = new google.maps.Geocoder();
+    $scope.$on('g-places-autocomplete:select', function (event, param) {
+        $scope.job.post.location ={};
+        $scope.job.post.location.address = param.formatted_address;
+        geocoder.geocode({'address': $scope.job.post.location.address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $scope.job.post.location.geo = {type:"Point", coordinates:[results[0].geometry.location.lng(),results[0].geometry.location.lat()]};
                 console.log($scope.job.post.location.geo);
@@ -41,7 +37,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
         });
-    });
+    }); // Save location and geometry
+
 
     if(!authService.isAuthenticated())
         $window.location.href= '/';
@@ -67,8 +64,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             $("#amount").attr("placeholder","Amount per day");
             $("#endDateDiv").hide();
             $("#times").show();
-            var input = $('<div><input type="text" id="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" required >' +
-                ' <input type="text" id="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" required> </div>').appendTo("#times");
+            var input = $('<div><input type="text" id="startTime" name="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" ng-required="true" >' +
+                ' <br/><input type="text" id="endTime" name="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" ng-required="true"> </div>').appendTo("#times");
             $compile(input)($scope);
 
             $('#startTime').timepicker({ 'step': 15 });

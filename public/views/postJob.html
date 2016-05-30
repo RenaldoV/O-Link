@@ -3,7 +3,7 @@
         <strong>Post a Job</strong><br/>
     </div>
 
-<form name="jobForm" class="list-group list-group-sm form-validation" ng-submit="submitForm()">
+<form novalidate name="jobForm" class="list-group list-group-sm form-validation" ng-submit="submitForm()">
     <div class="text-danger wrapper text-center">
 
     </div>
@@ -12,19 +12,29 @@
     <div class="list-group list-group-sm form-group">
         <fieldset class="form-group">
             <div class="list-group-item">
-                <select class="form-control no-border" ng-model="job.post.category" required>
-
+                <select name="jobCat" class="form-control no-border" ng-model="job.post.category" ng-required="true">
                     <option value="" selected disabled>Select Category</option>
                     <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
-
                 </select>
+                <div ng-show="jobForm.$submitted || jobForm.jobCat.$touched" class="error-block">
+                    <p ng-show="jobForm.jobCat.$error.required" class="has-error">This field is required</p>
+                </div>
             </div>
             <div class="list-group-item">
-                <textarea id="jobDescr" rows=4 class="form-control no-border" placeholder="Please enter between 100 and 500 characters" ng-model="job.post.description" maxlength="500" minlength="100" required></textarea>
+                <textarea name="jobDescr" id="jobDescr" rows=4 class="form-control no-border" placeholder="Please enter between 100 and 500 characters" ng-model="job.post.description" ng-maxlength="500" ng-minlength="100" ng-required="true"></textarea>
                 <div id="textarea_feedback"></div>
+                <div ng-show="jobForm.$submitted || jobForm.jobDescr.$touched" class="error-block">
+                    <p ng-show="jobForm.jobDescr.$error.required" class="has-error">This field is required</p>
+                    <p ng-show="jobForm.jobDescr.$error.minlength" class="has-error">Minimum length is 100</p>
+                    <p ng-show="jobForm.jobDescr.$error.maxlength" class="has-error">Maximum length is 500</p>
+                </div>
             </div>
             <div class="list-group-item">
-                <input type="text" id="searchTextField" class="form-control no-border" placeholder="Location" ng-model="job.post.location.address" required>
+                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions" class="form-control no-border" placeholder="Location"
+                       ng-model="job.post.location.address" g-places-autocomplete force-selection="true" ng-required="true">
+                <div ng-show="jobForm.$submitted || jobForm.searchTextField.$touched" class="error-block">
+                    <p ng-show="jobForm.searchTextField.$error.required" class="has-error">This field is required</p>
+                </div>
             </div>
 
         </fieldset>
@@ -33,12 +43,14 @@
     <h4 class="form-section-label">Pay</h4>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <select id="period" class="form-control no-border" ng-model="job.post.timePeriod" required>
+            <select id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
                 <option value="" selected disabled>Time Period</option>
-
                 <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
             </select>
-            <br>
+            <div ng-show="jobForm.$submitted || jobForm.period.$touched" class="error-block">
+                <p ng-show="jobForm.period.$error.required" class="has-error">This field is required</p>
+            </div>
+            <br/>
             <div class="checkbox m-b-md m-t-none">
                 <label class="i-checks">
                     <input type="checkbox" ng-model="job.post.sharedTips"><i></i>Shared Tips
@@ -51,20 +63,35 @@
             </div>
         </div>
         <div class="list-group-item">
-            <input id="amount" name="amount"  type="text" step="any" class="controls form-control no-border" width="50px" placeholder="Amount" ng-model="job.post.pay" min="1" pattern="[1-9]\d*" required>
+            <input id="amount" name="amount"  type="number" step="any" class="controls form-control no-border"
+                   width="50px" placeholder="Amount" ng-model="job.post.pay" min="1"  ng-required="true">
+            <div ng-show="jobForm.$submitted || jobForm.amount.$touched" class="error-block">
+                <p ng-show="jobForm.amount.$error.required" class="has-error">This field is required</p>
+                <p ng-show="jobForm.amount.$error.number" class="has-error">Not a valid amount</p>
+            </div>
         </div>
     </div>
 
     <h4 id="datesLabel" class="form-section-label">Dates</h4>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input id="startDate" type="text" class="controls form-control no-border" placeholder="Starting Date"  ng-model="job.post.startingDate" required>
+            <input ui-date="startDate" ui-date-format="DD, d MM, yy" id="startDate" name="startDate" type="text" class="controls form-control no-border"
+                   placeholder="Starting Date"  ng-model="startingDate" ng-required="true">
+            <div ng-show="jobForm.$submitted || jobForm.startDate.$touched" class="error-block">
+                <p ng-show="jobForm.startDate.$error.required" class="has-error">This field is required</p>
+            </div>
         </div>
         <div id="endDateDiv" class="list-group-item" hidden="hidden">
-            <input id="endDate" type="text" class="controls form-control no-border" placeholder="End Date" ng-model="job.post.endDate" >
+            <input id="endDate" name="endDate" type="text" class="controls form-control no-border"
+                   ui-date="endDate" ui-date-format="DD, d MM, yy" placeholder="End Date" ng-model="endDate" >
         </div>
         <div class="list-group-item" id="times" hidden>
-
+            <div ng-show="jobForm.$submitted || jobForm.startTime.$touched" class="error-block">
+                <p ng-show="jobForm.startTime.$error.required" class="has-error">Starting time is required</p>
+            </div>
+            <div ng-show="jobForm.$submitted || jobForm.endTime.$touched" class="error-block">
+                <p ng-show="jobForm.endTime.$error.required" class="has-error">End time is required</p>
+            </div>
         </div>
     </div>
 
@@ -185,30 +212,6 @@
     });
 
     //===================POST JOB VALIDATION==============
-    $(function () {
-        $("input[name=amount]").on("invalid", function () {
-            this.setCustomValidity("Please enter a valid number.");
-        });
-        $("input[name=amount]").on("change", function () {
-            this.setCustomValidity("");
-        });
-    });
-    $(function () {
-        $("input[name=spotsAvail]").on("invalid", function () {
-            this.setCustomValidity("Please enter a valid number.");
-        });
-        $("input[name=spotsAvail]").on("change", function () {
-            this.setCustomValidity("");
-        });
-    });
-    $(function () {
-        $("input[name=threshold]").on("invalid", function () {
-            this.setCustomValidity("Please enter a valid number.");
-        });
-        $("input[name=threshold]").on("change", function () {
-            this.setCustomValidity("");
-        });
-    });
 
     $(function () {
         var text_max = 500;
@@ -220,15 +223,6 @@
 
             $('#textarea_feedback').html(text_remaining + ' remaining');
         });
-    });
-    $("#jobDescr").on("focusout", function () {
-        if($("#jobDescr").val().length < 100 || ("#jobDescr").val().length < 500)
-            this.setCustomValidity("Please enter more than 100 characters and less than 500 characters.");
-        else
-            this.setCustomValidity("");
-    });
-    $("#jobDescr").on("change", function () {
-        this.setCustomValidity("");
     });
 
 
