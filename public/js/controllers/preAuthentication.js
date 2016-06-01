@@ -344,7 +344,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
         });
     };
-
+    $scope.goBack = function(){
+      $scope.next = false;
+    };
     $scope.submitForm = function() {
         $scope.submitted = true;
 

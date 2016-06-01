@@ -12,6 +12,7 @@
 
 
 	<ul id="formTabs" class="nav nav-pills" role="tablist" data-tabs="tabs" >
+		<li ng-if="next"><a title="Go Back" class="passTooltip" ng-click="goBack()"><span class="passTooltip signupGoBack glyphicon glyphicon-arrow-left"></span> Go Back</a></li>
 		<li class="talentSelected"><a href="#talentPane" data-toggle="tab">Talent</a></li>
 		<li class="employerSelected" ng-hide="next"><a href="#employerPane" data-toggle="tab">Employer</a></li>
 	</ul>
@@ -460,7 +461,7 @@
 				</div>
 
 				<button ng-show="next" ng-hide="additional" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
-				<button ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
+				<button type="button" ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
 			</form>
 		</div>
 
