@@ -145,7 +145,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     var inputGrp = $("#reqInputs");
 
     var now = new Date();
-    console.log(now.getDate());
 
     var user = session.user;
     console.log(user._id);
