@@ -4793,6 +4793,7 @@ div.signupBox {
   border:4px solid white;
   background-color: white;
   border-radius: 25px;
+  position: relative;
 }
 
 #threshInfo{
@@ -5277,3 +5278,9 @@ div.error-block{
 .signupGoBack{
   color: #33C6DD;
 }
+
+.goBackPil{
+  position:absolute;
+  left:0;
+}
+
