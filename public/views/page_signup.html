@@ -26,9 +26,10 @@
 			<form novalidate id="studentSUForm" class="form-validation" name="studentForm" ng-submit="submitForm()">
 
 
+
 				<div ng-hide="next">
 					<div class="row">
-						<img src="../img/Icons/talent%20info.svg" class="heading-img img-responsive">
+						<img src="../img/Icons/talent-info-new.png" class="heading-img img-responsive">
 						<div class="content-heading"><h4 class="form-section-label">Talent Info</h4><br/></div>
 					</div>
 					<div class="list-group list-group-sm form-group">
@@ -111,7 +112,7 @@
 
 					<div class="passTooltip" title="Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character">
 						<div class="row">
-							<img src="../img/Icons/password.svg" class="heading-img img-responsive">
+							<img src="../img/Icons/password-new.png" class="heading-img img-responsive">
 							<div class="content-heading"><h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4><br/></div>
 						</div>
 						<div class="list-group list-group-sm form-group">
@@ -154,7 +155,7 @@
 						<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
 					</div>
 					<div class="row">
-						<img src="../img/Icons/institution%20type1.svg" class="heading-img img-responsive">
+						<img src="../img/Icons/institution-type1-new.png" class="heading-img img-responsive">
 						<div class="content-heading"><h4 class="form-section-label">Institution</h4><br/></div>
 					</div>
 					<div class="type1 list-group list-group-sm wrapper text-center">
@@ -212,7 +213,7 @@
 						</div>
 
 						<div class="row" ng-show="user.institution.type == 'Tertiary'">
-							<img src="../img/Icons/matric%20results.svg" class="heading-img img-responsive">
+							<img src="../img/Icons/matric-results-new.png" class="heading-img img-responsive">
 							<div class="content-heading">
 								<h4 class="form-section-label">Matric Results</h4>
 								<br/>
@@ -263,7 +264,7 @@
 							<div id="reqButtonGrp" class="btn-group-vertical" role="group">
 
 								<button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
-								<button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add matric result <span class="glyphicon glyphicon-plus"></span></button>
+								<button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add Matric Result <span class="glyphicon glyphicon-plus"></span></button>
 							</div><br/><br/>
 							<div class="inputWrapper btn" ng-if="user.results">
 								<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,'matric')"
@@ -371,7 +372,7 @@
 						</div>
 
 						<div class="row">
-							<img src="../img/Icons/work%20experience.svg" class="heading-img img-responsive">
+							<img src="../img/Icons/work-experience-new.png" class="heading-img img-responsive">
 							<div class="content-heading">
 								<h4 class="form-section-label">Additional Qualifications / Certifications</h4>
 								<br/>
@@ -430,7 +431,7 @@
 				<div ng-hide="next" class="passTooltip"
 					 title="Adding Additional Info such as, institution of study, field of study, academic results, past work experience and qualifications / certifications will better your chances of a successful application. We strongly suggest that you populate the Additional Info form now.">
 					<div class="row">
-						<img src="../img/Icons/add%20info.svg" class="heading-img img-responsive">
+						<img src="../img/Icons/add-info-new.png" class="heading-img img-responsive">
 						<div class="content-heading"><h4 class="form-section-label">Additional Info <span class="glyphicon glyphicon-info-sign"></h4><br/></div>
 					</div>
 					<div class="checkbox m-b-md m-t-none">
@@ -463,7 +464,7 @@
 				</div>
 
 				<button ng-show="next" ng-hide="additional" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
-				<button type="button" ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
+				<button type="submit" ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
 			</form>
 		</div>
 
@@ -474,7 +475,7 @@
 
 
 					<div class="row">
-						<img src="../img/Icons/employer%20contact%20green.svg" class="heading-img img-responsive">
+						<img src="../img/Icons/employer-contact-green-new.png" class="heading-img img-responsive">
 						<div class="content-heading">
 							<h4 class="form-section-label">Employer Contact Info</h4>
 							<br/>
@@ -525,7 +526,7 @@
 
 					<div class="passTooltip" title="Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character">
 						<div class="row">
-							<img src="../img/Icons/password%20green.svg" class="heading-img img-responsive">
+							<img src="../img/Icons/password-green-new.png" class="heading-img img-responsive">
 							<div class="content-heading">
 								<h4 class="form-section-label">Password <span class="glyphicon glyphicon-info-sign"></span></h4>
 								<br/>
@@ -563,7 +564,7 @@
 					</div>
 
 				<div class="row">
-					<img src="../img/Icons/employer%20type%20green.svg" class="heading-img img-responsive">
+					<img src="../img/Icons/employer-type-green-new.png" class="heading-img img-responsive">
 					<div class="content-heading">
 						<h4 class="form-section-label">Employer Type</h4>
 						<br/>
@@ -587,7 +588,7 @@
 
 				<div class="companysection" ng-show="user.employerType == 'Company'">
 					<div class="row">
-						<img src="../img/Icons/company%20info%20green.svg" class="heading-img img-responsive">
+						<img src="../img/Icons/company-info-green-new.png" class="heading-img img-responsive">
 						<div class="content-heading">
 							<h4 class="form-section-label">Company Info</h4>
 							<br/>
@@ -612,7 +613,7 @@
 							</div>
 						</div>
 						<div class="list-group-item" ng-show="user.company.category == 'Other'">
-							<input name="otherCompCategory" type="text" placeholder="* Please name your category" class="cluttered form-control no-border"
+							<input name="otherCompCategory" type="text" placeholder="* Please Name Your Company Category" class="cluttered form-control no-border"
 								   ng-model="user.company.otherCategory" ng-show="user.company.category == 'Other'" ng-required="user.company.category == 'Other'">
 							<div ng-show="employerForm.$submitted || employerForm.otherCompCategory.$touched" class="error-block">
 								<p ng-show="employerForm.otherCompCategory.$error.required" class="has-error">This field is required</p>

@@ -299,11 +299,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
 
 
     $scope.nextForm = function(){
-        $scope.submitted = true;
       if($scope.studentForm.$valid || $scope.employerForm.$valid)
       {
           $scope.next = true;
-          $scope.submitted = false;
+          $scope.Validate = true;
       }
     };
 
@@ -397,7 +396,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     }, false);
 
     $scope.submitForm = function() {
-        $scope.submitted = true;
+        if($scope.next && $scope.Validate)
+        {
+            $scope.studentForm.$setPristine();
+            $scope.submitted = false;
+            $scope.Validate = false;
+        }
+        else
+            $scope.submitted = true;
 
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
