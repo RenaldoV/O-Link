@@ -627,10 +627,10 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         photoUpload.makeUploadBox();
     };
 
-    $scope.submitForm = function()
-    {
-
-        var user =  $scope.user;
+    $scope.submitForm = function() {
+        $scope.submitted = true;
+        if ($scope.studentForm.$valid || $scope.employerForm.$valid){
+            var user = $scope.user;
         console.log(user);
         swal({
                 title: "Are you sure?",
@@ -641,7 +641,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },
-            function(inputValue) {
+            function (inputValue) {
 
                 $http
                     .post('/checkPassword', {email: user.contact.email, password: inputValue})
@@ -652,7 +652,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
                             swal.showInputError("Incorrect Password!");
                             return false;
                         }
-                        else{
+                        else {
 
 
                             $http
@@ -661,7 +661,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
                                     session.create(user);
                                     swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
-                                    $window.location.href="/myProfile";
+                                    $window.location.href = "/myProfile";
 
                                 });
 
@@ -669,6 +669,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
                     });
             });
+    }
 
 
 

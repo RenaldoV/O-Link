@@ -14,7 +14,7 @@
 
 
     <div>
-        <button type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
+        <div style="text-align: center;"><button type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button></div>
         <div  id="talentPane" ng-hide="user.type != 'student'">
             <br/>
             <br/>
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="list-group-item">
-                                <input disabled type="email" name="stuEmail" ui-validate="{validStuEmail : 'validateStuEmail($value)'}"
+                                <input disabled type="email" name="stuEmail"
                                        class="form-control no-border" placeholder="Valid Student Email Address" ng-model="user.contact.email" ng-required="true">
                                 <div ng-show="studentForm.$submitted || studentForm.stuEmail.$touched" class="error-block">
                                     <p ng-show="studentForm.stuEmail.$error.required" class="has-error">This field is required</p>

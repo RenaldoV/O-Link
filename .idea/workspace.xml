@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/editProfile.html" afterPath="$PROJECT_DIR$/public/views/editProfile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/profiles.js" afterPath="$PROJECT_DIR$/public/js/controllers/profiles.js" />
     </list>
     <ignored path="o-link.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.11948052" vertical-offset="85284" max-vertical-offset="90100">
+            <state vertical-scroll-proportion="1.6428572" vertical-offset="85284" max-vertical-offset="90100">
               <caret line="5014" column="28" selection-start-line="5014" selection-start-column="28" selection-end-line="5014" selection-end-column="28" />
               <folding />
             </state>
@@ -39,8 +40,8 @@
       <file leaf-file-name="page_signup.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9444444" vertical-offset="3907" max-vertical-offset="8755">
-              <caret line="380" column="24" selection-start-line="380" selection-start-column="24" selection-end-line="415" selection-end-column="30" />
+            <state vertical-scroll-proportion="19.777779" vertical-offset="7681" max-vertical-offset="8755">
+              <caret line="568" column="68" selection-start-line="568" selection-start-column="68" selection-end-line="568" selection-end-column="68" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#div#2;n#div#3;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
@@ -89,20 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-106.01852" vertical-offset="191" max-vertical-offset="8993">
-              <caret line="383" column="14" selection-start-line="383" selection-start-column="14" selection-end-line="383" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.46239555" vertical-offset="752" max-vertical-offset="8993">
+              <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
               <folding>
-                <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#5;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#5;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -111,8 +113,8 @@
       <file leaf-file-name="profiles.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="8704" max-vertical-offset="12512">
-              <caret line="499" column="34" selection-start-line="499" selection-start-column="34" selection-end-line="499" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="10506" max-vertical-offset="12529">
+              <caret line="631" column="69" selection-start-line="631" selection-start-column="69" selection-end-line="631" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -141,8 +143,8 @@
       <file leaf-file-name="preAuthentication.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/preAuthentication.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6535" max-vertical-offset="9520">
-              <caret line="402" column="36" selection-start-line="402" selection-start-column="36" selection-end-line="402" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6637" max-vertical-offset="9520">
+              <caret line="407" column="8" selection-start-line="407" selection-start-column="8" selection-end-line="407" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -213,9 +215,9 @@
         <option value="$PROJECT_DIR$/public/js/controllers/preAuthentication.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/header.html" />
         <option value="$PROJECT_DIR$/public/views/page_signup.html" />
+        <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
         <option value="$PROJECT_DIR$/public/views/editProfile.html" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
       </list>
     </option>
   </component>
@@ -823,14 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/preAuthentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6535" max-vertical-offset="9520">
-          <caret line="402" column="36" selection-start-line="402" selection-start-column="36" selection-end-line="402" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/navigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="367" max-vertical-offset="6290">
@@ -839,10 +833,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.769231" vertical-offset="459" max-vertical-offset="1088">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.6428572" vertical-offset="85284" max-vertical-offset="90100">
+          <caret line="5014" column="28" selection-start-line="5014" selection-start-column="28" selection-end-line="5014" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9444444" vertical-offset="3907" max-vertical-offset="8755">
-          <caret line="380" column="24" selection-start-line="380" selection-start-column="24" selection-end-line="415" selection-end-column="30" />
+        <state vertical-scroll-proportion="19.777779" vertical-offset="7681" max-vertical-offset="8755">
+          <caret line="568" column="68" selection-start-line="568" selection-start-column="68" selection-end-line="568" selection-end-column="68" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#div#2;n#div#3;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
@@ -860,44 +870,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/preAuthentication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6637" max-vertical-offset="9520">
+          <caret line="407" column="8" selection-start-line="407" selection-start-column="8" selection-end-line="407" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="8704" max-vertical-offset="12512">
-          <caret line="499" column="34" selection-start-line="499" selection-start-column="34" selection-end-line="499" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="10506" max-vertical-offset="12529">
+          <caret line="631" column="69" selection-start-line="631" selection-start-column="69" selection-end-line="631" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-106.01852" vertical-offset="191" max-vertical-offset="8993">
-          <caret line="383" column="14" selection-start-line="383" selection-start-column="14" selection-end-line="383" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.46239555" vertical-offset="752" max-vertical-offset="8993">
+          <caret line="54" column="76" selection-start-line="54" selection-start-column="76" selection-end-line="54" selection-end-column="76" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#5;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#1;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.769231" vertical-offset="459" max-vertical-offset="1088">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.11948052" vertical-offset="85284" max-vertical-offset="90100">
-          <caret line="5014" column="28" selection-start-line="5014" selection-start-column="28" selection-end-line="5014" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
