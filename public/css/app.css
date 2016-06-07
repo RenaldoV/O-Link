@@ -4897,6 +4897,7 @@ ul.jobpg {
   }
 
   .banner-logo{
+    filter: invert(100%);
     margin-top: 0px;
     width:50px;
     height:50px;
@@ -4922,7 +4923,10 @@ ul.jobpg {
     right:0px;!important;
     left:0px;!important;
     width: 100%;!important;
-    background-color: #00b488;!important;
+    background-color: white;!important;
+    border-bottom: solid;
+    border-bottom-color: #00b488;
+    border-bottom-width: 2px;
     opacity: 1;
     padding:5px;
   }
@@ -4982,6 +4986,7 @@ ul.jobpg {
     width:50px;
   }
   .banner-logo{
+    filter: invert(100%);
     margin-left: 10px;!important;
     width:50px;
     height:50px;
@@ -5004,7 +5009,10 @@ ul.jobpg {
     right:0px;!important;
     left:0px;!important;
     width: 100%;!important;
-    background-color: #00b488;!important;
+    background-color: white;!important;
+    border-bottom: solid;
+    border-bottom-color: #00b488;
+    border-bottom-width: 2px;
     opacity: 1;
     padding:5px;
     height: 60px;

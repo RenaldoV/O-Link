@@ -2,80 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/Pay-Green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/User-Id-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/User-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/add-info-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/add-info-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/building-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/calender-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/company-info-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/dates-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/dates-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/details-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/education-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/employer-contact-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/employer-type-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/employernew.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/institution-type-2-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/institution-type1-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/job-details-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/matric-results-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/password-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/password-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/pay-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/post-a-job-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/talent-info-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/threshold-1-green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/threshold-1-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/threshold-2-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/threshold2green-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/Icons/work-experience-new.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/logo/Option3white.svg" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\Calendar.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\Location.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\Pay Green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\User Add.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\User Id.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\User.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\add info green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\add info.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\address.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\building green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\company details.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\company info green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\company info.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\dates green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\dates.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\education.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\employer contact green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\employer type green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\employer1.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\institution type 2.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\institution type1.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\job details green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\matric results.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\notification.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\password green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\password.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\pay.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\post a job.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\post green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\requirements green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\talent info.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\threshold 1 green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\threshold 1.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\threshold2.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\threshold2green.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\Icons\work experience.svg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\signup-bg.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\img\signup-bg1.jpg" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/uploads/default.png" afterPath="$PROJECT_DIR$/app/uploads/default.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/editProfile.html" afterPath="$PROJECT_DIR$/public/views/editProfile.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/header.html" afterPath="$PROJECT_DIR$/public/views/blocks/header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/page_signup.html" afterPath="$PROJECT_DIR$/public/views/page_signup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/payments.js" afterPath="$PROJECT_DIR$/public/js/controllers/payments.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/preAuthentication.js" afterPath="$PROJECT_DIR$/public/js/controllers/preAuthentication.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/profiles.js" afterPath="$PROJECT_DIR$/public/js/controllers/profiles.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="o-link.iws" />
@@ -100,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="89578" max-vertical-offset="89964">
-              <caret line="5284" column="1" selection-start-line="5284" selection-start-column="1" selection-end-line="5284" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.8077922" vertical-offset="84927" max-vertical-offset="90100">
+              <caret line="5014" column="29" selection-start-line="5014" selection-start-column="29" selection-end-line="5014" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -146,7 +74,7 @@
       <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="1088">
+            <state vertical-scroll-proportion="11.769231" vertical-offset="459" max-vertical-offset="1088">
               <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
               <folding />
             </state>
@@ -163,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.08502" vertical-offset="4090" max-vertical-offset="8993">
-              <caret line="364" column="30" selection-start-line="364" selection-start-column="30" selection-end-line="364" selection-end-column="30" />
+            <state vertical-scroll-proportion="-106.01852" vertical-offset="191" max-vertical-offset="8993">
+              <caret line="383" column="14" selection-start-line="383" selection-start-column="14" selection-end-line="383" selection-end-column="14" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -178,6 +106,16 @@
                 <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profiles.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="8704" max-vertical-offset="12512">
+              <caret line="499" column="34" selection-start-line="499" selection-start-column="34" selection-end-line="499" selection-end-column="34" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -207,16 +145,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="6535" max-vertical-offset="9520">
               <caret line="402" column="36" selection-start-line="402" selection-start-column="36" selection-end-line="402" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/routes.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7106" max-vertical-offset="24123">
-              <caret line="418" column="0" selection-start-line="418" selection-start-column="0" selection-end-line="418" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -263,7 +191,6 @@
         <option value="$PROJECT_DIR$/public/views/blocks/employerNav.html" />
         <option value="$PROJECT_DIR$/public/libs/bootstrap/dist/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentProfile.html" />
-        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
         <option value="$PROJECT_DIR$/public/js/appRoutes.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/confirmPay.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/paymentSuccessful.html" />
@@ -284,12 +211,13 @@
         <option value="$PROJECT_DIR$/public/js/helpers/userForms.js" />
         <option value="$PROJECT_DIR$/public/js/services/constants.js" />
         <option value="$PROJECT_DIR$/app/routes.js" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/js/controllers/payments.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/preAuthentication.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/header.html" />
         <option value="$PROJECT_DIR$/public/views/page_signup.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
         <option value="$PROJECT_DIR$/public/views/editProfile.html" />
+        <option value="$PROJECT_DIR$/public/css/app.css" />
       </list>
     </option>
   </component>
@@ -376,7 +304,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -394,11 +322,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="blocks" />
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -520,7 +448,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2889813" sideWeight="0.4915254" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.056133058" sideWeight="0.4915254" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -715,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7827476" vertical-offset="0" max-vertical-offset="0">
-          <caret line="642" column="62" selection-start-line="642" selection-start-column="62" selection-end-line="642" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/appRoutes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -872,14 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="89578" max-vertical-offset="89964">
-          <caret line="5284" column="1" selection-start-line="5284" selection-start-column="1" selection-end-line="5284" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="23.423077" vertical-offset="1374" max-vertical-offset="1649">
@@ -928,14 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="1088">
-          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9444444" vertical-offset="3907" max-vertical-offset="8755">
@@ -957,10 +862,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8704" max-vertical-offset="12512">
+          <caret line="499" column="34" selection-start-line="499" selection-start-column="34" selection-end-line="499" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.08502" vertical-offset="4090" max-vertical-offset="8993">
-          <caret line="364" column="30" selection-start-line="364" selection-start-column="30" selection-end-line="364" selection-end-column="30" />
+        <state vertical-scroll-proportion="-106.01852" vertical-offset="191" max-vertical-offset="8993">
+          <caret line="383" column="14" selection-start-line="383" selection-start-column="14" selection-end-line="383" selection-end-column="14" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#3;n#div#0;n#div#3;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
@@ -971,6 +884,22 @@
             <element signature="n#style#0;n#input#0;n#div#2;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#3;n#ng-form#0;n#div#0;n#div#0;n#div#0;n#div#7;n#div#2;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.769231" vertical-offset="459" max-vertical-offset="1088">
+          <caret line="9" column="68" selection-start-line="9" selection-start-column="68" selection-end-line="9" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8077922" vertical-offset="84927" max-vertical-offset="90100">
+          <caret line="5014" column="29" selection-start-line="5014" selection-start-column="29" selection-end-line="5014" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
