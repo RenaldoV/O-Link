@@ -4926,18 +4926,18 @@ ul.jobpg {
     background-color: white;!important;
     border-bottom: solid;
     border-bottom-color: #00b488;
-    border-bottom-width: 2px;
+    border-bottom-width: 1.5px;
     opacity: 1;
     padding:5px;
   }
 
   .glyphicon-menu-hamburger
   {
-    color:#d3d3d3;
+    color:black;
   }
   .glyphicon-menu-hamburger:hover
   {
-    color:white;
+    color:#696969;
   }
   .navbar-wrapper {
     position: absolute;
@@ -5012,7 +5012,7 @@ ul.jobpg {
     background-color: white;!important;
     border-bottom: solid;
     border-bottom-color: #00b488;
-    border-bottom-width: 2px;
+    border-bottom-width: 1.5px;
     opacity: 1;
     padding:5px;
     height: 60px;
@@ -5020,11 +5020,11 @@ ul.jobpg {
 
   .glyphicon-menu-hamburger
   {
-    color:#d3d3d3;
+    color:black;
   }
   .glyphicon-menu-hamburger:hover
   {
-    color:white;
+    color:#696969;
   }
   .navbar-wrapper {
     position: absolute;
