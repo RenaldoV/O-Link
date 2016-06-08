@@ -102,7 +102,7 @@
 							</div>
 							<div class="list-group-item">
 								<input name="searchTextField1" id="searchTextField1" g-places-autocomplete force-selection="true" type="text" class="location controls form-control no-border"
-									   ng-model="user.location.address" options="autocompleteOptions" placeholder="Enter Home Address" ng-required="true">
+									   ng-model="user.location.address" options="autocompleteOptions" placeholder="Residential Address" ng-required="true">
 								<div ng-show="studentForm.$submitted || studentForm.searchTextField1.$touched" class="error-block">
 									<p ng-show="studentForm.searchTextField1.$error.required" class="has-error">This field is required</p>
 								</div>
@@ -177,9 +177,9 @@
 							<fieldset class="form-group">
 								<div class="list-group-item">
 									<input id="schoolName" name="schoolName" placeholder="School Name" class="form-control no-border"
-										   ng-model="user.institution.name" ng-show="user.institution.type == 'Secondary'" ng-required="user.institution.type == 'Secondary'">
+										   ng-model="user.institution.name" ng-show="user.institution.type == 'Secondary'" ng-required="user.institution.type == 'Secondary' && next">
 									<select id="uniName" name="uniName" class=" form-control no-border" ng-model="user.institution.name"
-											ng-show="user.institution.type == 'Tertiary'" ng-required="user.institution.type == 'Tertiary'">
+											ng-show="user.institution.type == 'Tertiary'" ng-required="user.institution.type == 'Tertiary' && next">
 										<option value="" selected disabled>Select a Tertiary Institute</option>
 
 										<option ng-repeat="inst in tertInst" value="{{inst}}">{{inst}}</option>
@@ -193,7 +193,7 @@
 								</div>
 								<div id="uniOther" name="uniOther" class="list-group-item" ng-show="user.institution.name == 'Other'">
 									<input type="text" id="uniOtherVal" placeholder="Tertiary Institute Name" class="form-control no-border"
-										   ng-model="user.institution.otherName" ng-required="user.institution.name == 'Other'">
+										   ng-model="user.institution.otherName" ng-required="user.institution.name == 'Other' && next">
 									<div ng-show="studentForm.$submitted || studentForm.uniOther.$touched" class="error-block">
 										<p ng-show="studentForm.uniOther.$error.required" class="has-error">This field is required</p>
 									</div>
@@ -236,7 +236,7 @@
 							<div id="reqInputs">
 								<div class="reqBox" ng-repeat="req in user.results">
 									<ng-form name="matricForm">
-										<select id="mRes" name="mRes" class="cluttered form-control no-border" ng-model="req.name" ng-change="changeSub()" ng-required="true">
+										<select id="mRes" name="mRes" class="cluttered form-control no-border" ng-model="req.name" ng-change="changeSub()" ng-required="next">
 											<option value="" selected disabled>Choose Subject</option>
 											<option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
 										</select>
@@ -245,7 +245,7 @@
 											<p ng-show="matricForm.mRes.$error.required" class="has-error">This field is required</p>
 										</div>
 
-										<select id="mSymbol" name="mSymbol" class="cluttered form-control no-border" ng-model="req.symbol" ng-required="true">
+										<select id="mSymbol" name="mSymbol" class="cluttered form-control no-border" ng-model="req.symbol" ng-required="next">
 											<option value="" selected disabled>Choose Symbol</option>
 											<option value="A">A (80-100%)</option>
 											<option value="B">B (70-79%)</option>
@@ -290,17 +290,17 @@
 										<label>Were You Hired By:</label>
 										<div class="list-group list-group-sm">
 											<label class="radio-inline">
-												<input type="radio" class="workTypeCompany" ng-model="cat.employerType" value="Company" ng-required="true">Company
+												<input type="radio" class="workTypeCompany" ng-model="cat.employerType" value="Company" ng-required="next">Company
 											</label>
 											<label class="radio-inline">
-												<input type="radio" class="workTypeIndividual" ng-model="cat.employerType" value="Individual" ng-required="true">Individual
+												<input type="radio" class="workTypeIndividual" ng-model="cat.employerType" value="Individual" ng-required="next">Individual
 											</label>
 											<div ng-show="studentForm.$submitted" class="error-block">
 												<p ng-show="cat.employerType == undefined" class="has-error">This field is required</p>
 											</div>
 										</div>
 
-										<select id="workCategory" name="workCategory" class="cluttered form-control no-border" ng-model="cat.category" ng-change="changeWork(cat.category)" ng-required="true">
+										<select id="workCategory" name="workCategory" class="cluttered form-control no-border" ng-model="cat.category" ng-change="changeWork(cat.category)" ng-required="next">
 											<option value="" selected disabled>* Choose Work Category</option>
 											<option ng-if="cat.category == workName || tempWork.indexOf(workName) > -1 " ng-click="changeWork()" ng-repeat="workName in workNames" value="{{workName}}">{{workName}}</option>
 										</select>
@@ -348,13 +348,14 @@
 											   ng-pattern="/^((?:\+27|27)|0)(\d{2})-?(\d{3})-?(\d{4})$/" ng-required="!cat.contact.email">
 										<div ng-show="studentForm.$submitted || workForm.workContact.$touched" class="error-block">
 											<p ng-show="workForm.workContact.$error.pattern" class="has-error">Not a valid contact number</p>
+											<p ng-show="workForm.workContact.$error.required || workform.workEmail.$error.required" class="has-error">Please enter a contact number or email address</p>
 										</div>
 
 										<input type="email" name="workEmail"  placeholder="Contact Person Email" class="cluttered form-control no-border"
 											   ng-model="cat.contact.email" ng-required="!cat.contact.number">
 										<div ng-show="studentForm.$submitted" class="error-block">
 											<p ng-show="workForm.workEmail.$error.email" class="has-error">Not a valid email address</p>
-											<p ng-show="workForm.workContact.$error.required || studentForm.workContact.$error.required" class="has-error">Please enter a contact number or email address</p>
+											<p ng-show="workForm.workContact.$error.required || workform.workEmail.$error.required" class="has-error">Please enter a contact number or email address</p>
 										</div>
 
 									</ng-form>
@@ -384,7 +385,7 @@
 									<div class="certBox" ng-repeat="cert in user.certifications">
 										<ng-form name="certificationForm">
 											<input type="text" name="certName"  placeholder="Name of Qualification / Certification" class="cluttered form-control no-border"
-												   ng-model="cert.name" ng-required="true">
+												   ng-model="cert.name" ng-required="next">
 											<div ng-show="studentForm.$submitted || certificationForm.certName.$touched" class="error-block">
 												<p ng-show="certificationForm.certName.$error.required" class="has-error">This field is required</p>
 											</div>

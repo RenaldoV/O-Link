@@ -4895,9 +4895,13 @@ ul.jobpg {
     float: none;
     text-align: center;
   }
-
+  img.banner-logo.web{
+    display:none;!important;
+  }
+  img.banner-logo.mobile{
+    display:block;!important;
+  }
   .banner-logo{
-    filter: invert(100%);
     margin-top: 0px;
     width:50px;
     height:50px;
@@ -4985,8 +4989,13 @@ ul.jobpg {
   .navbar-header{
     width:50px;
   }
+  img.banner-logo.web{
+    display:none;!important;
+  }
+  img.banner-logo.mobile{
+    display:block;!important;
+  }
   .banner-logo{
-    filter: invert(100%);
     margin-left: 10px;!important;
     width:50px;
     height:50px;
