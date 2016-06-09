@@ -1412,7 +1412,7 @@ var path = require('path');
 	});
 
 }
-
+/*
 function test(){
 	var args = {link: 'http://olink.co.za/activate?token=', email: 'sean.hill.t@gmail.com'};
 
@@ -1424,3 +1424,4 @@ function test(){
 		});
 }
 test();
+		*/
