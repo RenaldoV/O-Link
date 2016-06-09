@@ -443,17 +443,12 @@ app.controller('signUpPhotoUploadControl', function($scope,Upload,$timeout, $roo
 
 app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants, $location, Upload){
 
-
-
-
-
-        $scope.user = session.user;
+    $scope.user = session.user;
     $scope.reqNames = constants.requirements;
     $scope.compCat = constants.companyCategories;
     $scope.timePeriods = constants.timePeriods;
     $scope.workNames = constants.categories;
     $scope.tertInst = constants.tertiaryInstitutions;
-
     $scope.reqNames = constants.requirements;
 
 
@@ -489,67 +484,6 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         }
     }); // Save location and geometry
 
-    $scope.idfill = true;
-    var idfill;
-    $scope.dateOptions = {
-        changeMonth: true,
-        changeYear: true,
-        minDate: new Date(1980, 1 - 1, 1),
-        defaultDate: new Date(1990, 1 - 1, 1),
-        onSelect: function(dob){
-            $scope.user.dob = dob;
-            $scope.idfill = false;
-            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
-            $scope.user.IDnumber = idfill;
-        }
-    }; // Autofill ID first 6 charaters
-
-    $scope.validateStuEmail = function(val) {
-        if(val!=undefined)
-        {
-            var passed = false;
-            var len = val.length;
-
-            if (len > 11) {
-                if (val.substr(len - 11, 11) == "@tuks.co.za") {
-                    passed = true;
-                }
-            }
-            if (len > 4) {
-                if (val.substr(len - 4, 4) == ".edu") {
-                    passed = true;
-                }
-            }
-            if (len > 6) {
-                if (val.substr(len - 6, 6) == ".ac.za") {
-                    passed = true;
-                }
-            }
-            if (!passed) {
-                $("input[name=stuEmail]").prop('title', "If you are unable to register with your email address but you are at " +
-                    "an academic institution, please email info@o-link.co.za from your " +
-                    "academic email address and we will be sure to add it to our system " +
-                    "and allow you to register.");
-                $("input[name=stuEmail]").tooltip();
-                return passed;
-            }
-            else
-                return passed;
-        }
-
-    };
-
-    $scope.validateStuID = function(val){
-        if(val != undefined && idfill != undefined){
-            if(val.substring(0,6) != idfill){
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
-    };
-
     $scope.validatestuPassw = function(pass){
         if(pass != undefined && $scope.user.passwordHash != undefined){
             return pass == $scope.user.passwordHash
@@ -563,10 +497,12 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
     };
 
 
-    var numWork = 0;
-    var numReq = 0;
-    var numCert = 0;
+    var numWork = $scope.user.work.length;
+    var numReq = $scope.user.results.length;
+    var numCert = $scope.user.certifications.length;
     var workRadios = 3;
+
+
     $scope.close = function(reqs){
         numReq--;
         $scope.user.results.pop();
@@ -691,10 +627,10 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         photoUpload.makeUploadBox();
     };
 
-    $scope.submitForm = function()
-    {
-
-var user =  $scope.user;
+    $scope.submitForm = function() {
+        $scope.submitted = true;
+        if ($scope.studentForm.$valid || $scope.employerForm.$valid){
+            var user = $scope.user;
         console.log(user);
         swal({
                 title: "Are you sure?",
@@ -705,7 +641,7 @@ var user =  $scope.user;
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },
-            function(inputValue) {
+            function (inputValue) {
 
                 $http
                     .post('/checkPassword', {email: user.contact.email, password: inputValue})
@@ -716,7 +652,7 @@ var user =  $scope.user;
                             swal.showInputError("Incorrect Password!");
                             return false;
                         }
-                        else{
+                        else {
 
 
                             $http
@@ -725,7 +661,7 @@ var user =  $scope.user;
 
                                     session.create(user);
                                     swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
-                                    $window.location.href="/myProfile";
+                                    $window.location.href = "/myProfile";
 
                                 });
 
@@ -733,6 +669,7 @@ var user =  $scope.user;
 
                     });
             });
+    }
 
 
 

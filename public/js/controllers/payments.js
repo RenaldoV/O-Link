@@ -32,7 +32,7 @@ app.controller('confirmPayment',function($scope, $routeParams, authService, sess
                         var url = "";
 
                         if(package == 'Talent_Basic') {
-                            var url = "https://sandbox.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Basic&item_description=R29+for+3+further+applications%2C+valid+for+one+week.&amount=29.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Basic&amp;cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled";
+                            var url = "https://payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Basic&item_description=R29+for+3+further+applications%2C+valid+for+one+week.&amount=29.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Basic&amp;cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled";
                         }
                         else if(package == 'Talent_Classic')
                         {

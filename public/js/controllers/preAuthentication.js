@@ -299,11 +299,10 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
 
 
     $scope.nextForm = function(){
-        $scope.submitted = true;
       if($scope.studentForm.$valid || $scope.employerForm.$valid)
       {
           $scope.next = true;
-          $scope.submitted = false;
+          $scope.Validate = true;
       }
     };
 
@@ -345,10 +344,70 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         });
     };
     $scope.goBack = function(){
+
       $scope.next = false;
+        $scope.user.work = false;
+        $scope.user.results = false;
+        $scope.user.certifications = false;
     };
+
+    history.replaceState(null, document.title, location.pathname);
+    history.pushState(null, document.title, location.pathname);
+
+    window.addEventListener("popstate", function(e) {
+        if($scope.next) {
+            swal({
+                    title: "Are you sure?",
+                    text: "Going back at this stage will erase your progress. To go back to the previous section click the back arrow in the top left corner.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#33C6DD",
+                    confirmButtonText: "Go Back",
+                    cancelButtonText: "Cancel",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        window.history.back();
+                    } else {
+                        history.replaceState(null, document.title, location.pathname);
+                        history.pushState(null, document.title, location.pathname);
+                    }
+                });
+        }
+        else{
+            swal({
+                    title: "Are you sure?",
+                    text: "Going back at this stage will erase your progress.",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#33C6DD",
+                    confirmButtonText: "Go Back",
+                    cancelButtonText: "Cancel",
+                    closeOnConfirm: true,
+                    closeOnCancel: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        window.history.back();
+                    } else {
+                        history.replaceState(null, document.title, location.pathname);
+                        history.pushState(null, document.title, location.pathname);
+                    }
+                });
+        }
+    }, false);
+
     $scope.submitForm = function() {
-        $scope.submitted = true;
+        if($scope.next && $scope.Validate)
+        {
+            $scope.studentForm.$setPristine();
+            $scope.submitted = false;
+            $scope.Validate = false;
+        }
+        else
+            $scope.submitted = true;
 
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
