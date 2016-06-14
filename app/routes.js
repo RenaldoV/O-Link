@@ -1412,3 +1412,16 @@ var path = require('path');
 	});
 
 }
+/*
+function test(){
+	var args = {link: 'http://olink.co.za/activate?token=', email: 'sean.hill.t@gmail.com'};
+
+
+		args.name = 'Sean';
+		mailer.sendMail('welcomeTalent',1,args, function(err,rrs){
+			if(!err)
+			console.log(rrs);
+		});
+}
+test();
+*/
