@@ -13,11 +13,6 @@
         <a ng-if="noti.type == 'declined' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>Offer as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
         <a ng-if="noti.type == 'withdrawn' && userType =='employer'" ng-click="makeSeen(noti._id)" href="applicants?jobID={{noti.jobID}}"><small>Offer as<b> {{noti.title}}</b> has been <b>{{noti.status}}</b></small></a>
     </li>
-    <hr>
-<li>
-     <span class="blue">&nbsp;&nbsp;Email Notifications</span>
-    <toggle-switch ng-model="emailNoti" ng-change="toggleEmail()" class="emailSwitch"><toggle-switch><br/>
-</li>
 </ul>
 
 <script>
