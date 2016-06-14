@@ -288,6 +288,36 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
     var user = session.user;
     $scope.user = user;
 
+    $http
+        .post('/setEmailToggle', {id: session.user._id})
+        .then(function (res) {
+            if(res){
+                $scope.emailNoti = !res.data.emailDisable;
+            }
+        });
+
+    $scope.toggleEmail = function(){
+        $scope.emailNoti = $scope.emailNoti;
+        alert($scope.emailNoti);
+        var message;
+        if($scope.emailNoti){
+            message = "enabled";
+        }
+        if(!$scope.emailNoti){
+            message = "disabled";
+        }
+
+        return $http
+            .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
+            .then(function (res) {
+                if(res){
+                    swal("Email Notifications Changed", "Your email notifications have been "+message, "success");
+                }
+
+
+            });
+    };
+
     if ($location.path() == "/dashboard") {
         $timeout(function() {
             $scope.welcome = "Welcome ";
@@ -332,6 +362,36 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
 
     var user = session.user;
     $scope.user = user;
+
+    $http
+        .post('/setEmailToggle', {id: session.user._id})
+        .then(function (res) {
+            if(res){
+                $scope.emailNoti = !res.data.emailDisable;
+            }
+        });
+
+    $scope.toggleEmail = function(){
+        $scope.emailNoti = $scope.emailNoti;
+        alert($scope.emailNoti);
+        var message;
+        if($scope.emailNoti){
+            message = "enabled";
+        }
+        if(!$scope.emailNoti){
+            message = "disabled";
+        }
+
+        return $http
+            .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
+            .then(function (res) {
+                if(res){
+                    swal("Email Notifications Changed", "Your email notifications have been "+message, "success");
+                }
+
+
+            });
+    };
 
     $http.post('/getPp', user)
         .then(function (res) {

@@ -5300,4 +5300,14 @@ div.error-block{
   position:absolute;
   left:0;
 }
+.emailSwitch{
+  width: 35px;!important;
+  height:16px;!important;
+  min-width:0px;!important;
+  margin-bottom:-4px;
+}
+.toggle-switch span{
+  padding: 0px;!important;
+  line-height: 15px;
+}
 
