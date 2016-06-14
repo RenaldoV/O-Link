@@ -25,7 +25,24 @@ app.controller('jobFeed', function($scope,$http, $window){
     })
         .then(function(res) {
             {
-                $scope.jobs = res.data;
+
+                var jobs = res.data;
+                console.log(jobs);
+                console.log(jobs.length);
+                var len = jobs.length;
+                $.each(jobs,function(i,job){
+
+
+                    $http
+                        .post('/getPp', {profilePicture:job.employerID.profilePicture})
+                        .then(function (res) {
+
+                            job.image = res.data;
+
+
+                        });
+                });
+                $scope.jobs = jobs;
 
 
                 $scope.getPer = function(cat){
@@ -37,6 +54,10 @@ app.controller('jobFeed', function($scope,$http, $window){
 
             }
         });
+
+    $scope.getPp = function(pp){
+
+    };
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
     };

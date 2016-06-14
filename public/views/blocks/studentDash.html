@@ -47,10 +47,11 @@
 
             <div ng-controller="jobFeed"  class="jobPosts">
               <table class="table text-left">
-                <thead><th>Category</th><th>Pay</th><th>Location</th>
+                <thead><th></th><th>Category</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
                 <tr  ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
+                  <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
                   <td>{{job.post.category}}</td>
                   <td>R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
                   <td>{{job.post.location.address}}</td>
@@ -74,9 +75,9 @@
 
             <br>
             <div>
-           <b> Please Select a Time</b>
+                <b class="browseHeaders"> Please Select a Time</b>
               <br>
-            <div class="btn-group timeBrowse" data-toggle="buttons">
+            <div class="btn-group-md timeBrowse" data-toggle="buttons">
 
 
               <label class="btn btn-primary-outline  timeSelect" ng-repeat="period in timePeriods" ng-click="toggleSelectionP(period.name)">
@@ -106,7 +107,7 @@
           <div>
               <div>
                 <br>
-<b>Please Select a Category</b>
+<b class="browseHeaders">Please Select a Category</b>
                   <div class="btn-group-lg catSelect" data-toggle="buttons">
 
 
@@ -123,7 +124,6 @@
 
                   </div>
 
-                <br>
                 <div>
                 <div class="btn-group-lg " data-toggle="buttons">
                 <label class="btn btn-primary-outline  categorySelect" ng-click="selectAllC()">

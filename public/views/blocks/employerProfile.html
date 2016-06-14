@@ -16,11 +16,11 @@
 
                 </div>
                 <div class="text-center">
-                <span ng-if="user.rating" class="small">From {{user.numRatings}} review(s)</span>
+                <span ng-if="user.rating" class="small">From {{user.numRatings}} review<span ng-if="user.numRatings != 1">s</span></span>
                 <div ng-if="!user.rating" class="numberRating">
                     N/A
                 </div>
-                <span ng-if="!user.rating" class="small">From 0 review(s)</span>
+                <span ng-if="!user.rating" class="small">From 0 reviews</span>
                 </div>
                 <div>
                     <fieldset class="profileStars">
@@ -44,7 +44,7 @@
                     {{offers}}
 
                 </div>
-                <span class="small">Open offer(s)</span>
+                <span class="small">Open offer<span ng-if="offers != 1">s</span></span>
             </div>
             </div>
             </div>
