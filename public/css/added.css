@@ -500,10 +500,22 @@ line-height: normal;
     background-color:#00b488;
 }
 
+
 .blueBack{
+
     color: white;
     background-color: #33B6CC;
 }
+thead.blueBack{
+
+    background-color: transparent;
+}
+thead.blueBack th{
+
+    color: white;
+    background-color: #33B6CC;
+}
+
 .greenBorder{
     border: 1px solid #00b488;
     border-radius: 10px;
@@ -732,7 +744,7 @@ margin-left: 21px;
 
 .applicantsTables{
     background-color: transparent;
-
+    border-radius: 8px;
 
 }
 .applicantsTables thead th{
@@ -764,19 +776,7 @@ margin-left: 21px;
 
 }
 
-.applicantsTables tbody tr:last-child td:first-child {
 
-    border-bottom-left-radius: 10px;
-
-
-}
-
-.applicantsTables tbody tr:last-child td:last-child {
-
-
-    border-bottom-right-radius: 10px;
-
-}
 
 .interviewReq{
     color: red;
@@ -804,6 +804,7 @@ margin-left: 21px;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
     min-width: 230px;
     height: 40px;
 
@@ -822,6 +823,7 @@ margin-left: 21px;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
    padding-top: 50px;
     font-size: 20px;
 }
@@ -855,13 +857,17 @@ margin-left: 21px;
   display:inline-table;
 
 }
-.tab thead th:first-child{
-    border-top-left-radius: 8px;
+table{
+    border-radius: inherit;
+    border-collapse: separate;
+}
+.tab > thead th:first-child{
+    border-top-left-radius: 7px;
 
 }
 .tab thead th:last-child{
 
-    border-top-right-radius: 8px;
+    border-top-right-radius: 7px;
 }
 .infoBoxHead{
 
