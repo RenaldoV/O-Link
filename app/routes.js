@@ -193,7 +193,7 @@ module.exports = function(app) {
 	//Returns the 10 latest job posts for students
 	app.post('/jobFeeder', function(req,res){
 
-		db.jobs.find({status:'active'}).limit(10).sort('-post.postDate').exec(function(err,rows){
+		db.jobs.find({status:'active'}).limit(10).populate('employerID').sort('-post.postDate').exec(function(err,rows){
 			if(err){
 
 			}

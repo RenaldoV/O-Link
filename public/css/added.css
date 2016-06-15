@@ -390,7 +390,10 @@ h1 { font-size: 1.5em; margin: 10px; }
 .studentBanner{
     background: linear-gradient(#b5d2ff, #8aa0c1);
 }
-
+.studentAppsPage{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
 .employerBanner{
     background: linear-gradient(to top right, #e8cf77, #d7b14f);
 }
@@ -488,7 +491,9 @@ line-height: normal;
 .blueText{
    color: #33B6CC;
 }
-
+.jobHist{
+    border-radius:10px;
+}
 
 .greenBack{
     color: white;
@@ -501,15 +506,18 @@ line-height: normal;
 }
 .greenBorder{
     border: 1px solid #00b488;
+    border-radius: 10px;
 }
 
 .blueBorder{
     border: 1px solid #33B6CC;
+    border-radius: 10px;
 }
 #selectAllP{
     display: none;
 }
 .timeSelect{
+    border-radius: 8px;
     width: 160px;
     border: 1px solid #33B6CC;
 }
@@ -535,6 +543,9 @@ line-height: normal;
     width:100%;
     color: white;
     margin:0;
+    border-top-left-radius: 9px;
+
+    border-top-right-radius: 9px;
 }
 
 .card-header>h4{
@@ -547,8 +558,15 @@ line-height: normal;
 
 }
 
-
-
+.browseHeaders{
+    font-size: 18px;
+}
+.block{
+    border-radius: 10px;
+}
+.card{
+    border-radius: 10px;
+}
 .profileRating{
 
     
@@ -663,6 +681,7 @@ padding-top: 18px;
     padding: 30px;
 }
 .timeSelect{
+    margin: 5px;
     vertical-align: middle;
     background-color: #e3e3e3;
 }
@@ -697,9 +716,13 @@ margin-left: 21px;
     float: left;
 
 }
-
+.tab{
+    margin-bottom: 0;
+}
 .applicantsTable{
+
     background-color: #cee0f6;
+    border-radius: 10px;
 
 }
 
@@ -716,7 +739,7 @@ margin-left: 21px;
     background-color: #cee0f6;
 }
 .applicantsTables tbody th:last-child {
-    background-color: transparent;
+
     float: right;
     border: none;
 }
@@ -724,13 +747,34 @@ margin-left: 21px;
     background-color: white;
 }
 .applicantsTables tbody tr td:last-child {
-    background-color: transparent;
+
     float: right;
     border: none;
+
+}
+.applicantsTables tbody tr td:last-child button {
+
+    margin-top: -3px;
+
+
 }
 .applicantsTables thead th:last-child {
-    background-color: transparent;
+
     border: none;
+
+}
+
+.applicantsTables tbody tr:last-child td:first-child {
+
+    border-bottom-left-radius: 10px;
+
+
+}
+
+.applicantsTables tbody tr:last-child td:last-child {
+
+
+    border-bottom-right-radius: 10px;
 
 }
 
@@ -757,8 +801,9 @@ margin-left: 21px;
     background-color: #33B6CC;
 }
 .applicantsHead {
-    width: calc(100% - 250px);
-
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     min-width: 230px;
     height: 40px;
 
@@ -774,10 +819,17 @@ margin-left: 21px;
 }
 
 .talentHistoryHead{
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
    padding-top: 50px;
     font-size: 20px;
 }
-
+.lilPp{
+    margin-top: -5px;
+    width: 25px;
+    height: 25px;
+}
 .tableFour{
     display: inline-block;
     background-color: #00FF00;
@@ -803,7 +855,14 @@ margin-left: 21px;
   display:inline-table;
 
 }
+.tab thead th:first-child{
+    border-top-left-radius: 8px;
 
+}
+.tab thead th:last-child{
+
+    border-top-right-radius: 8px;
+}
 .infoBoxHead{
 
 
@@ -826,7 +885,7 @@ margin-left: 21px;
 }
 
 .jobSubHeader{
-    font-size: 18px;
+    display: inline-block;
     font-weight: bold;
 }
 
@@ -836,6 +895,7 @@ margin-left: 21px;
 }
 
 #additional{
+    height: 420px;
     overflow-y: scroll;
 }
 
