@@ -11,6 +11,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
     });
 
+
+
     $scope.startDate = {
         changeMonth: true,
         changeYear: true,
