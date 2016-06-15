@@ -293,13 +293,15 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
         .then(function (res) {
             if(res){
                 $scope.emailNoti = !res.data.emailDisable;
-                //alert($scope.emailNoti);
             }
         });
 
+    $scope.toggleClicked = function(){
+        $scope.emailNoti = !$scope.emailNoti;
+    };
+
     $scope.toggleEmail = function(){
         $scope.emailNoti = !$scope.emailNoti;
-        //alert($scope.emailNoti);
         var message;
         if($scope.emailNoti){
             message = "enabled";
@@ -359,7 +361,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
 
 });
 
-app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http){
+app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http,$timeout){
 
     var user = session.user;
     $scope.user = user;
@@ -369,13 +371,15 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
         .then(function (res) {
             if(res){
                 $scope.emailNoti = !res.data.emailDisable;
-                //alert($scope.emailNoti);
             }
         });
 
+    $scope.toggleClicked = function(){
+        $scope.emailNoti = !$scope.emailNoti;
+    };
+
     $scope.toggleEmail = function(){
-        $scope.emailNoti = $scope.emailNoti;
-        //alert($scope.emailNoti);
+        $scope.emailNoti = !$scope.emailNoti;
         var message;
         if($scope.emailNoti){
             message = "enabled";

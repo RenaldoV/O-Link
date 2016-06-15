@@ -289,16 +289,16 @@
 									<ng-form name="workForm">
 										<label>Were You Hired By:</label>
 										<div class="list-group list-group-sm">
-											<label class="radio-inline">
-												<input type="radio" class="workTypeCompany" ng-model="cat.employerType" value="Company" ng-required="next">Company
-											</label>
-											<label class="radio-inline">
-												<input type="radio" class="workTypeIndividual" ng-model="cat.employerType" value="Individual" ng-required="next">Individual
-											</label>
-											<div ng-show="studentForm.$submitted" class="error-block">
-												<p ng-show="cat.employerType == undefined" class="has-error">This field is required</p>
-											</div>
+										<label class="radio-inline">
+											<input type="radio" class="workTypeCompany" ng-model="cat.employerType" value="Company" ng-required="next">Company
+										</label>
+										<label class="radio-inline">
+											<input type="radio" class="workTypeIndividual" ng-model="cat.employerType" value="Individual" ng-required="next">Individual
+										</label>
+										<div ng-show="studentForm.$submitted" class="error-block">
+											<p ng-show="cat.employerType == undefined" class="has-error">This field is required</p>
 										</div>
+									</div>
 
 										<select id="workCategory" name="workCategory" class="cluttered form-control no-border" ng-model="cat.category" ng-change="changeWork(cat.category)" ng-required="next">
 											<option value="" selected disabled>* Choose Work Category</option>

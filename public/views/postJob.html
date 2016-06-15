@@ -8,7 +8,10 @@
 
     </div>
 
-    <h4 class="form-section-label">Job Details</h4>
+    <div class="row">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Job Details</h4><br/></div>
+    </div>
     <div class="list-group list-group-sm form-group">
         <fieldset class="form-group">
             <div class="list-group-item">
@@ -40,8 +43,26 @@
         </fieldset>
     </div>
 
-    <h4 class="form-section-label">Pay</h4>
+    <div class="row">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Pay</h4><br/></div>
+    </div>
     <div class="list-group list-group-sm form-group">
+
+        <div class="list-group-item">
+                <label class="radio-inline">
+                    <input name="payPer" type="radio" ng-model="job.post.payPer" value="hour" ng-required="true">Payed per Hour
+                </label><br/>
+                <label class="radio-inline">
+                    <input name="payPer" type="radio" ng-model="job.post.payPer" value="tips" ng-required="true">Payed in Tips
+                </label><br/>
+                <label class="radio-inline">
+                    <input name="payPer" type="radio" ng-model="job.post.payPer" value="hourAndTips" ng-required="true">Payed per Hour & Tips
+                </label>
+                <div ng-show="jobForm.$submitted" class="error-block">
+                    <p ng-show="job.post.payPer == undefined" class="has-error">This field is required</p>
+                </div>
+        </div>
         <div class="list-group-item">
             <select id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
                 <option value="" selected disabled>Time Period</option>
@@ -50,21 +71,21 @@
             <div ng-show="jobForm.$submitted || jobForm.period.$touched" class="error-block">
                 <p ng-show="jobForm.period.$error.required" class="has-error">This field is required</p>
             </div>
-            <br/>
-            <div class="checkbox m-b-md m-t-none">
-                <label class="i-checks">
-                    <input type="checkbox" ng-model="job.post.sharedTips"><i></i>Shared Tips
-                </label>
-            </div>
-            <div class="checkbox m-b-md m-t-none">
-                <label class="i-checks">
-                    <input type="checkbox" ng-model="job.post.individualTips"><i></i>Individual Tips
-                </label>
+        </div>
+        <div class="list-group-item" ng-show="job.post.payPer == 'tips' || job.post.payPer == 'hourAndTips'">
+            <label class="radio-inline">
+                <input name="tips" type="radio" ng-model="job.post.tips" value="sharedTips" ng-required="job.post.payPer == 'tips' || job.post.payPer == 'hourAndTips'">Shared Tips
+            </label><br/>
+            <label class="radio-inline">
+                <input name="tips" type="radio" ng-model="job.post.tips" value="individualTips" ng-required="job.post.payPer == 'tips' || job.post.payPer == 'hourAndTips'">Individual Tips
+            </label><br/>
+            <div ng-show="jobForm.$submitted" class="error-block">
+                <p ng-show="job.post.tips == undefined" class="has-error">This field is required</p>
             </div>
         </div>
-        <div class="list-group-item">
+        <div class="list-group-item" ng-show="job.post.payPer == 'hour' || job.post.payPer == 'hourAndTips'">
             <input id="amount" name="amount"  type="number" step="any" class="controls form-control no-border"
-                   width="50px" placeholder="Amount" ng-model="job.post.pay" min="1"  ng-required="true">
+                   width="50px" placeholder="Amount per Hour" ng-model="job.post.pay" min="1"  ng-required="job.post.payPer == 'hour' || job.post.payPer == 'hourAndTips'">
             <div ng-show="jobForm.$submitted || jobForm.amount.$touched" class="error-block">
                 <p ng-show="jobForm.amount.$error.required" class="has-error">This field is required</p>
                 <p ng-show="jobForm.amount.$error.number" class="has-error">Not a valid amount</p>
@@ -72,7 +93,10 @@
         </div>
     </div>
 
-    <h4 id="datesLabel" class="form-section-label">Dates</h4>
+    <div class="row">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Dates</h4><br/></div>
+    </div>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
             <input ui-date="startDate" ui-date-format="DD, d MM, yy" id="startDate" name="startDate" type="text" class="controls form-control no-border"
@@ -81,14 +105,24 @@
                 <p ng-show="jobForm.startDate.$error.required" class="has-error">This field is required</p>
             </div>
         </div>
-        <div id="endDateDiv" class="list-group-item" hidden="hidden">
+        <div ng-hide="job.post.timePeriod == 'Once Off'" class="list-group-item" hidden="hidden">
             <input id="endDate" name="endDate" type="text" class="controls form-control no-border"
                    ui-date="endDate" ui-date-format="DD, d MM, yy" placeholder="End Date" ng-model="endDate" >
         </div>
-        <div class="list-group-item" id="times" hidden>
+    </div>
+
+
+    <div class="row" ng-show="job.post.timePeriod == 'Once Off'">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Times</h4><br/></div>
+    </div>
+    <div class="list-group list-group-sm form-group" ng-show="job.post.timePeriod == 'Once Off'">
+        <div class="list-group-item" id="times" >
+            <input type="text" id="startTime" name="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" ng-required="job.post.timePeriod == 'Once Off'">
             <div ng-show="jobForm.$submitted || jobForm.startTime.$touched" class="error-block">
                 <p ng-show="jobForm.startTime.$error.required" class="has-error">Starting time is required</p>
             </div>
+            <input type="text" id="endTime" name="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" ng-required="job.post.timePeriod == 'Once Off'">
             <div ng-show="jobForm.$submitted || jobForm.endTime.$touched" class="error-block">
                 <p ng-show="jobForm.endTime.$error.required" class="has-error">End time is required</p>
             </div>
@@ -104,49 +138,66 @@
                 <option value="F">Female</option>
                 <option value="Any">Any</option>
             </select>
+            <div ng-show="jobForm.$submitted || jobForm.stuGender.$touched" class="error-block">
+                <p ng-show="jobForm.stuGender.$error.required" class="has-error">This field is required</p>
+            </div>
         </div>
         <div id="reqGroup" class="list-group-item">
 
             <div id="reqInputs">
                 <div class="reqBox" ng-repeat="req in job.post.requirements">
-                    <select class="form-control no-border" ng-model="req.name" ng-change="changeSub()" required>
-                        <option value="" selected disabled>Choose Requirement</option>
+                    <ng-form name="matricForm">
+                        <select name="sub" class="cluttered form-control no-border" ng-model="req.name" ng-change="changeSub()" ng-required="true">
+                            <option value="" selected disabled>Choose Requirement</option>
 
-                        <option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
-                    </select>
+                            <option ng-if="req.name == reqName || tempReq.indexOf(reqName) > -1 " ng-click="changeSub()" ng-repeat="reqName in reqNames" value="{{reqName}}">{{reqName}}</option>
+                        </select>
+                        <div ng-show="jobForm.$submitted || matricForm.sub.$touched" class="error-block">
+                            <p ng-show="matricForm.sub.$error.required" class="has-error">This field is required</p>
+                        </div>
 
-                    <select name="how" class="form-control no-border" ng-model="req.symbol" required>
-                        <option value="" selected disabled>Choose Symbol</option>
-                        <option value="A">A (80-100%)</option>
-                        <option value="B">B (70-79%)</option>
-                        <option value="C">C (60-69%)</option>
-                        <option value="D">D (50-59%)</option>
-                        <option value="F">F (40-49%)</option>
-                    </select>
+                        <select name="how" class="cluttered form-control no-border" ng-model="req.symbol" ng-required="true">
+                            <option value="" selected disabled>Choose Symbol</option>
+                            <option value="A">A (80-100%)</option>
+                            <option value="B">B (70-79%)</option>
+                            <option value="C">C (60-69%)</option>
+                            <option value="D">D (50-59%)</option>
+                            <option value="F">F (40-49%)</option>
+                        </select>
+                        <div ng-show="jobForm.$submitted || matricForm.how.$touched" class="error-block">
+                            <p ng-show="matricForm.how.$error.required" class="has-error">This field is required</p>
+                        </div>
+                    </ng-form>
+                    <hr>
                 </div>
             </div>
+
 
             <div id="reqButtonGrp" class="btn-group-vertical" role="group">
 
                 <button ng-if="job.post.requirements.length > 0" type="button" class="removeReq btn btn-default" ng-click="close(job.post.requirements)">Remove<span class="glyphicon glyphicon-minus"></span></button>
-                <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add result requirement <span class="glyphicon glyphicon-plus"></span></button>
+                <button type="button" id="addReq" class="btn btn-default" ng-click="add()">Add Matric Result Requirement <span class="glyphicon glyphicon-plus"></span></button>
             </div>
-            <br>
-            <br>
+            <hr>
             <div >
                 <div class="reqBox" ng-repeat="req in job.post.experience">
-                    <select class="form-control no-border" ng-model="req.category" ng-change="changeExp()" required>
+                    <ng-form name="workForm">
+                    <select name="cat" class="cluttered form-control no-border" ng-model="req.category" ng-change="changeExp()" ng-required="true">
                         <option value="" selected disabled>Choose Requirement</option>
                         <option ng-if="req.category == expName || tempExp.indexOf(expName) > -1 " ng-click="changeExp()" ng-repeat="expName in expNames" value="{{expName}}">{{expName}}</option>
                     </select>
-
+                    <div ng-show="jobForm.$submitted || workForm.how.$touched" class="error-block">
+                        <p ng-show="workForm.cat.$error.required" class="has-error">This field is required</p>
+                    </div>
+                    </ng-form>
+                    <hr>
                 </div>
             </div>
 
             <div class="btn-group-vertical" role="group">
 
                 <button ng-if="job.post.experience.length > 0" type="button" class="removeReq btn btn-default" ng-click="closeExp(job.post.experience)">Remove<span class="glyphicon glyphicon-minus"></span></button>
-                <button type="button"  class="btn btn-default" ng-click="addExp()">Add experience requirement <span class="glyphicon glyphicon-plus"></span></button>
+                <button type="button"  class="btn btn-default" ng-click="addExp()">Add Work Experience Requirement <span class="glyphicon glyphicon-plus"></span></button>
             </div>
             <br/>
             <br/>
@@ -160,8 +211,9 @@
                     <input type="checkbox" ng-model="job.post.transport"><i></i>Own transport required?
                 </label>
             </div>
+            <hr>
             <div class="checkbox m-b-md m-t-none">
-                <label class="i-checks">
+                <label class="i-checks" style="font-weight: bold;">
                     <input type="checkbox" ng-model="job.post.interviewRequired"><i></i>Interview required?
                 </label>
             </div>
@@ -188,10 +240,20 @@
         info@olink.co.za and we will help you out in any way we can.</p>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input id="spotsAvail" name="spotsAvail"  type="text" class="controls form-control no-border" width="50px" placeholder="Positions / Interviews Available" ng-model="job.post.spotsAvailable" pattern="[1-9]\d*" required>
+            <input id="spotsAvail" name="spotsAvail"  type="text" class="controls form-control no-border" width="50px"
+                   placeholder="Positions / Interviews Available" ng-model="job.post.spotsAvailable" pattern="[1-9]\d*" ng-required="true">
+            <div ng-show="jobForm.$submitted || jobForm.spotsAvail.$touched" class="error-block">
+                <p ng-show="jobForm.spotsAvail.$error.required" class="has-error">This field is required</p>
+                <p ng-show="jobForm.spotsAvail.$error.pattern" class="has-error">This must be a number greater than 0</p>
+            </div>
         </div>
         <div class="list-group-item">
-            <input id="threshold" name="threshold"  type="text" class="controls form-control no-border" width="50px" placeholder="Applicants per Position / Interview" ng-model="job.post.threshold" pattern="[1-9]\d*" required>
+            <input id="threshold" name="threshold"  type="text" class="controls form-control no-border" width="50px"
+                   placeholder="Applicants per Position / Interview" ng-model="job.post.threshold" pattern="[1-9]\d*" ng-required="true">
+            <div ng-show="jobForm.$submitted || jobForm.threshold.$touched" class="error-block">
+                <p ng-show="jobForm.threshold.$error.required" class="has-error">This field is required</p>
+                <p ng-show="jobForm.threshold.$error.pattern" class="has-error">This must be a number greater than 0</p>
+            </div>
         </div>
     </div>
 

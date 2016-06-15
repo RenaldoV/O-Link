@@ -4,6 +4,13 @@
 
 app.controller('postJob',function($scope, $http, $window, authService, session, $compile, $location, constants, notify, $rootScope){
 
+    $('#startTime').timepicker({ 'step': 15  , 'minTime' : '05:00am'});
+    $('#endTime').timepicker({ 'step': 15});
+
+    $('#startTime').on('changeTime', function() {
+        $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
+    });
+
     $scope.startDate = {
         changeMonth: true,
         changeYear: true,
@@ -51,39 +58,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     $scope.reqNames = constants.requirements;
     $scope.expNames = constants.categories;
 
-
-    //add end date if short term/long term
-    $("#times").hide();
-    $("#endDateDiv").hide();
-
-    $("#period").change(function(e){
-
-        if(this.value == "Once Off")
-        {
-            $("#datesLabel").text("Date and Time");
-            $("#amount").attr("placeholder","Amount per day");
-            $("#endDateDiv").hide();
-            $("#times").show();
-            var input = $('<div><input type="text" id="startTime" name="startTime" placeholder="Start time" class="form-control no-border" ng-model="job.post.hours.begin" ng-required="true" >' +
-                ' <br/><input type="text" id="endTime" name="endTime"  placeholder="End time" class="form-control no-border" ng-model="job.post.hours.end" ng-required="true"> </div>').appendTo("#times");
-            $compile(input)($scope);
-
-            $('#startTime').timepicker({ 'step': 15 });
-            $('#endTime').timepicker({ 'step': 15 , 'minTime' : '12:00am'});
-
-            $('#startTime').on('changeTime', function() {
-                $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
-            });
-
-        }
-        else {
-            $("#datesLabel").text("Dates");
-            $("#amount").attr("placeholder","Amount per hour");
-            $("#endDateDiv").show();
-            $("#times").hide();
-            $("#times").html('');
-        }
-    });
 
 
     //remove requirement from selectable if selected
@@ -202,44 +176,46 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         }
     }
 
-    $scope.submitForm = function(){
+    $scope.submitForm = function() {
 
-        var job  = jQuery.extend(true, {}, $scope.job);
-        if(!$scope.job.status){
+        $scope.submitted = true;
+        if ($scope.jobForm.$valid){
+            var job = jQuery.extend(true, {}, $scope.job);
+        if (!$scope.job.status) {
             $scope.job.employerID = user._id;
 
 
             job.status = 'active';
             $http({
-                method  : 'POST',
-                url     : '/jobPoster',
-                data   : job
+                method: 'POST',
+                url: '/jobPoster',
+                data: job
             })
-                .then(function(response) {
+                .then(function (response) {
                     {
-                        swal({   title: "Posted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                        swal({title: "Posted", type: "success", timer: 2000, showConfirmButton: false});
                         $location.url("/dashboard");
                     }
                 });
         }
-        else if($scope.job.status == 'inactive' || $scope.job.status == 'Completed'){
+        else if ($scope.job.status == 'inactive' || $scope.job.status == 'Completed') {
 
             delete job._id;
             delete job.applicants;
             job.status = 'active';
             $http({
-                method  : 'POST',
-                url     : '/jobPoster',
-                data   : job
+                method: 'POST',
+                url: '/jobPoster',
+                data: job
             })
-                .then(function(response) {
+                .then(function (response) {
                     {
-                        swal({   title: "Reposted",   type: "success",   timer: 2000,   showConfirmButton: false });
+                        swal({title: "Reposted", type: "success", timer: 2000, showConfirmButton: false});
                         $location.url("/myJobPosts");
                     }
                 });
         }
-        else if($scope.job.status == 'active'){
+        else if ($scope.job.status == 'active') {
 
             console.log($scope.job);
             swal({
@@ -251,7 +227,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     confirmButtonText: "Yes, I'm sure!",
                     closeOnConfirm: false
                 },
-                function(inputValue) {
+                function (inputValue) {
 
                     $http
                         .post('/checkPassword', {email: user.contact.email, password: inputValue})
@@ -262,7 +238,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                 swal.showInputError("Incorrect Password!");
                                 return false;
                             }
-                            else{
+                            else {
                                 var applicants = $scope.job.applicants;
                                 delete job.applicants;
                                 job.status = 'active';
@@ -271,22 +247,28 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                 $http({
                                     method: 'POST',
                                     url: '/jobUpdate',
-                                    data: {job:job}
+                                    data: {job: job}
                                 })
                                     .then(function (response) {
                                         {
-                                            swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+                                            swal({
+                                                title: "Edited",
+                                                type: "success",
+                                                timer: 2000,
+                                                showConfirmButton: false
+                                            });
 
-                                            if(applicants){
-                                            for(var i = 0; i < applicants.length; i++) {
-                                                notify.go({
-                                                    type: 'jobEdited',
-                                                    jobID: $scope.job._id,
-                                                    userID: applicants[i],
-                                                    status: 'edited',
-                                                    title: $scope.job.post.category
-                                                });
-                                            }}
+                                            if (applicants) {
+                                                for (var i = 0; i < applicants.length; i++) {
+                                                    notify.go({
+                                                        type: 'jobEdited',
+                                                        jobID: $scope.job._id,
+                                                        userID: applicants[i],
+                                                        status: 'edited',
+                                                        title: $scope.job.post.category
+                                                    });
+                                                }
+                                            }
                                             $location.url("/myJobPosts");
                                         }
                                     });
@@ -296,6 +278,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         });
                 });
         }
+    }
     };
 
 
