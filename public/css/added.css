@@ -755,18 +755,39 @@ margin-left: 21px;
     float: right;
     border: none;
 }
+.applicantsTables tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.applicantsTables tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
 .applicantsTables tbody tr td {
     background-color: white;
+    padding-top: 10px;
 }
 .applicantsTables tbody tr td:last-child {
+    padding-top:8px;
+    float: right;
 
+
+}
+
+
+.applicantsTable tbody tr td {
+
+    padding-top: 12px;
+}
+.applicantsTable tbody tr td:last-child {
+    padding-top:8px;
     float: right;
     border: none;
 
 }
-.applicantsTables tbody tr td:last-child button {
+.table tbody tr td button {
 
     margin-top: -3px;
+
 
 
 }
