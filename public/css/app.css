@@ -4595,7 +4595,7 @@ a.text-#000000:hover {
 .banner-logo
 {
   margin-top:13px;
-  margin-left: -15px;
+  margin-left: -52px;
 	height: 130px;
   cursor: pointer;
 }
@@ -5137,6 +5137,7 @@ margin:0;
       width: 100%;
       text-align: center;
     }
+
 
     div.jobContent{
 margin-top: 32px;
