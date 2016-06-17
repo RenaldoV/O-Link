@@ -774,8 +774,21 @@ margin-left: 21px;
 
 
 }
+#jobEmployer{
+    display: inline-block;
+    text-align: center;
+    width:342px;
+}
+#employerName{
+    display: inline-block;
+    margin-left: 4px;
+}
+.jobPp{
+    display: inline-block;
+    width: 68px;
+    height: 68px;
 
-
+}
 .applicantsTable tbody tr td {
 
     padding-top: 12px;

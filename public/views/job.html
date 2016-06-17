@@ -9,14 +9,26 @@
         <hr>
         <div class="wordwrap"> {{job.post.description}}
         </div>
-        <br>
-        <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
-        <hr>
 
+        <hr>
+        <span class="jobSubHeader">For</span><br>
+        <div id="jobEmployer">
+
+            <a href="/profile?user={{job.employerID._id}}"><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse img-circle jobPp"></a>
+            <div id="employerName">
+            <h2 ng-if="job.employerID.employerType=='Company'">{{job.employerID.company.name}}</h2>
+            <h2 ng-if="job.employerID.employerType=='Individual'">{{job.employerID.contact.name +" "+job.employerID.contact.surname}}</h2>
+            </div>
+        </div>
         <ul class="list-group no-borders pull-in">
+<hr>
        <span class="jobSubHeader">Requirements:</span>
             </ul>
+
+        <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
+        <div ng-if="!job.post.interviewRequired" style="color: grey">Interview Not Required</div>
         <br>
+
         <ul ng-if="job.post.requirements.length > 0 " class="jobpg list-group no-borders pull-in">
             <b>Matric Results</b>
             <li   ng-repeat="res in job.post.requirements">
@@ -38,8 +50,8 @@
         </ul>
         <ul class="jobpg list-group no-bg no-borders pull-in">
                 <div><b>Gender:</b> {{job.post.gender}}</div>
-            <div ng-if="job.post.transport"><span class="greenText">Own Transport</span></div>
-            <div ng-if="job.post.driversLicense"><span class="greenText">Driver's License</span></div>
+            <div ng-if="job.post.transport"><span >Own Transport</span></div>
+            <div ng-if="job.post.driversLicense"><span >Driver's License</span></div>
         </ul>
 
         <hr>

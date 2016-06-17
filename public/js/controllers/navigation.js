@@ -158,7 +158,8 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
         $rootScope.$on('job', function () {
             disableHeadings();
-            $timeout(function () {
+            $scope.job = true;
+           /* $timeout(function () {
                 $scope.cache = cacheUser.user;
                 if (cacheUser.user.type == 'student') {
                     $scope.studentProfile = true;
@@ -170,7 +171,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                         $scope.companyProfile = true;
 
                 }
-            });
+            });*/
         });
 
 
@@ -254,6 +255,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.empHistory = false;
             $scope.buyApplications = false;
             $scope.empBuy = false;
+            $scope.job = false;
         }
 
 

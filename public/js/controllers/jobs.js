@@ -447,12 +447,25 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         .then(function(res) {
 
 
-            cacheUser.create(res.data.employerID);
+
+
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
             var loc = $scope.job.post.location.address.split(' ').join('+');
             $("#location").prop('src',"https://www.google.com/maps/embed/v1/place?key=AIzaSyDXnlJCOOsZVSdd-iUvTejH13UcZ0-jN0o&q="+loc+"&zoom=13");
             job = res.data;
+
+            cacheUser.create(res.data.employerID);
+//get profile Picture
+            $http
+                .post('/getPp', {profilePicture:job.employerID.profilePicture})
+                .then(function (res) {
+
+                    job.image = res.data;
+
+
+                });
+
             if($.inArray(user._id, job.applicants) != -1)
             {
                 $scope.hasApplied=true;
