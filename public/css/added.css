@@ -823,7 +823,7 @@ margin-left: 21px;
 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
+border-bottom: 0;
    padding-top: 50px;
     font-size: 20px;
 }
@@ -858,7 +858,7 @@ margin-left: 21px;
 
 }
 table{
-    border-radius: inherit;
+
     border-collapse: separate;
 }
 .tab > thead th:first-child{

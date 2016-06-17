@@ -54,7 +54,7 @@
                   <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
                   <td>{{job.post.category}}</td>
                   <td>R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
-                  <td>{{job.post.location.address}}</td>
+                  <td>{{job.post.location.address.split(',')[0]}}</td>
                 </tr>
                 </tbody>
               </table>
