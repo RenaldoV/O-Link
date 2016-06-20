@@ -68,15 +68,21 @@
       <div class="panel hbox hbox-auto-xs greenBorder text-center" ng-controller="goBrowse">
         <div class="col wrapper cards">
           <div class="card-header greenBack">
-            <h4 class="font-thin m-t-none m-b-none ">Browse Jobs</h4>
+            <h2 class="font-thin m-t-none m-b-none "><span class="glyphicon glyphicon-search"></span> Browse Jobs</h2>
           </div>
           <form id="browseForm" ng-submit="submit()" >
 
 
             <br>
             <div>
-                <b class="browseHeaders"> Please Select a Time</b>
-              <br>
+              <div class="row">
+                <div class="col-xs-2 col-centered" style="width:240px; margin-left:-45px;">
+                  <img src="../img/Icons/briefcase.svg" class="heading-img-browse-jobs img-responsive">
+                  <div class="browse-jobs-head"><h4 class="form-section-label-browse">Please Select a Time Period</h4><br/></div>
+                </div>
+
+              </div>
+
             <div class="btn-group-md timeBrowse" data-toggle="buttons">
 
 
@@ -89,7 +95,7 @@
 
                 /> {{period.name}}<br><small >({{period.description}})</small>
               </label>
-              <div><label class="btn btn-primary-outline timeSelect" id="allP" ng-click="selectAllP()">
+              <div><label class="btn btn-primary-outline categorySelect" id="allP" ng-click="selectAllP()">
                 <input
                         id="selectAllP"
                         type="checkbox"
@@ -107,7 +113,14 @@
           <div>
               <div>
                 <br>
-<b class="browseHeaders">Please Select a Category</b>
+                <div class="row">
+                  <div class="col-xs-2 col-centered" style="width:240px; margin-left:-45px;">
+                    <img src="../img/Icons/briefcase.svg" class="heading-img-browse-jobs img-responsive">
+                    <div class="browse-jobs-head"><h4 class="form-section-label-browse">Please Select a Category</h4><br/></div>
+                  </div>
+
+                </div>
+
                   <div class="btn-group-lg catSelect" data-toggle="buttons">
 
 

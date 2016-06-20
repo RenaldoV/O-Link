@@ -5312,3 +5312,18 @@ div.error-block{
   line-height: 15px;
 }
 
+.browse-jobs-head{
+  font-weight:bold;
+}
+.heading-img-browse-jobs{
+  width: 45px;!important;
+  height:45px;!important;
+
+  float: left;
+
+}
+
+h4.form-section-label-browse{
+  font-weight: bold;
+}
+

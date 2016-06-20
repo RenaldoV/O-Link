@@ -99,8 +99,7 @@
     </div>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-
-            <--<input ui-date="startDate" ui-date-format="DD, d MM, yy" id="startDate" name="startDate" type="text" class="controls form-control no-border"
+            <input ui-date="startDate"  id="startDate" name="startDate" type="text" class="controls form-control no-border"
                    placeholder="Starting Date"  ng-model="startingDate" ng-required="true">
             <div ng-show="jobForm.$submitted || jobForm.startDate.$touched" class="error-block">
                 <p ng-show="jobForm.startDate.$error.required" class="has-error">This field is required</p>
@@ -108,7 +107,7 @@
         </div>
         <div ng-hide="job.post.timePeriod == 'Once Off'" class="list-group-item" hidden="hidden">
             <input id="endDate" name="endDate" type="text" class="controls form-control no-border"
-                   ui-date="endDate" ui-date-format="DD, d MM, yy" placeholder="End Date" ng-model="endDate" >
+                   ui-date="endDate" placeholder="End Date" ng-model="endDate" >
         </div>
     </div>
 
@@ -130,7 +129,10 @@
         </div>
     </div>
 
-    <h4 class="form-section-label">Requirements</h4>
+    <div class="row">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Requirements</h4><br/></div>
+    </div>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
             <select class="form-control no-border" id="stuGender" name="stuGender" ng-model="job.post.gender" required>
@@ -224,7 +226,11 @@
     </div>
 
     <br/>
-    <h4 class="form-section-label">Thresholds <span title="Click here to find out more." class="threshTooltip glyphicon glyphicon-question-sign"></span></h4>
+    <div class="row">
+        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <div class="content-heading"><h4 class="form-section-label">Thresholds <span title="Click here to find out more." class="threshTooltip glyphicon glyphicon-question-sign"></span></h4><br/></div>
+    </div>
+
     <p id="threshInfo" hidden>The threshold is one of many things which makes O-Link different.
         You can limit the number of applications you would like to receive
         for each position / interview available. The threshold figure is the
