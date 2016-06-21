@@ -230,7 +230,7 @@ module.exports = function(app) {
 console.log(temp.region);
 if(temp.radius != null){
 
-	db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}, 'post.location.geo':{$near:{coordinates:[ temp.userLocation.lng, temp.userLocation.lat ], type:"Point"}, $maxDistance: temp.radius.max*1000, $minDistance: temp.radius.min*1000}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
+	db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}, 'post.location.geo':{$near:{coordinates:[ temp.userLocation.lng, temp.userLocation.lat ], type:"Point"}, $maxDistance: temp.radius*1000}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
 		if(err) throw err;
 		else{
 

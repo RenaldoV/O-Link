@@ -320,9 +320,34 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                 //=======================================================================
                 //====================Call apply filter here (range is 1km - "x"km)
                 //========================================================================
+applyFilters(x);
             }
         }
     };
+    function applyFilters(radius){
+        var data = {};
+        if(!$scope.jobCategory){
+                data.categories = $scope.categories;
+        }
+        else data.categories = [$scope.jobCategory];
+
+        if(!$scope.jobPeriod){
+            data.timePeriods = [];
+            for(var i = 0; i< $scope.timePeriods.length; i++){
+                data.timePeriods.push($scope.timePeriods[i].name);
+            }
+
+        }
+        else {
+            data.timePeriods = $scope.jobPeriod;
+        }
+
+        if(radius){
+            data.radius = radius;
+            data.userLocation = session.user.location.geo;
+        }
+       getJobs(data);
+    }
     $scope.autocompleteOptions = {
         componentRestrictions: { country: 'za' }
     };
@@ -450,6 +475,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
     //get the jobs
     function getJobs(temp){
+        console.log(temp);
         var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
         if(temp.radius){
             data.radius = temp.radius;
