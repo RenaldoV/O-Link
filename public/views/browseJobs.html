@@ -100,7 +100,7 @@
             <br>
             <div class="row text-center">
                 <div class="col-md-1"></div>
-                <table class="col-md-4 jobInfoBox">
+                <table class="col-md-2 jobInfoBox">
                     <thead class="blueBack">
                     <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
                     </thead>
@@ -131,6 +131,14 @@
                     </thead>
                     <tbody>
                     <tr><td>{{job.post.startingDate}}</td></tr>
+                    </tbody>
+                </table>
+                <table class="col-md-2 jobInfoBox">
+                    <thead class="blueBack">
+                    <th class=" glyphicon glyphicon-send infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr><td>{{job.distance}}km</td></tr>
                     </tbody>
                 </table>
             </div>

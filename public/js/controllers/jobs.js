@@ -363,7 +363,8 @@ else
     var geocoder = new google.maps.Geocoder();
     $scope.$on('g-places-autocomplete:select', function (event, param) {
 
-        geocoder.geocode({'address': $scope.resAddress}, function(results, status) {
+        console.log(param);
+        geocoder.geocode({'address':param.formatted_address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $scope.resAddress = param.formatted_address;
                 swal({
@@ -499,6 +500,7 @@ else
             data.radius = temp.radius;
             data.userLocation = temp.userLocation;
         }
+        var locat = session.user.location.geo;
     $http({
         method  : 'POST',
         url     : '/jobBrowse',
@@ -520,6 +522,11 @@ else
 
                         job.logo =  res.data;
                     });
+
+
+
+                job.distance = distance(locat.lat,locat.lng, job.post.location.geo.coordinates[1], job.post.location.geo.coordinates[0]);
+
             });
 
                 $scope.getPer = function(cat){
@@ -533,6 +540,25 @@ else
         });
 
     }
+
+    function distance(lat1, lon1, lat2, lon2) {
+        console.log(lat1);
+        console.log(lon1);
+        console.log(lat2);
+        console.log(lon2);
+        var radlat1 = Math.PI * lat1/180;
+        var radlat2 = Math.PI * lat2/180;
+        var theta = lon1-lon2;
+        var radtheta = Math.PI * theta/180;
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist);
+        dist = dist * 180/Math.PI;
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
+
+        return Math.round( dist * 10 ) / 10;
+    }
+
     $scope.applyFilters = function(){
 
         var radius = { max:parseInt($scope.radius)};
@@ -1024,3 +1050,4 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
         });
 
 });
+
