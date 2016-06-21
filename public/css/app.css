@@ -5326,3 +5326,19 @@ h4.form-section-label-browse{
   font-weight: bold;
 }
 
+.blueBack.filterButtons{
+  height:34px;
+}
+
+.rzslider .rz-pointer{
+  background-color: #00b488;!important;
+}
+.rzslider .rz-pointer.rz-active::after{
+  background-color: #33B6CC;!important;
+}
+
+.rzslider .rz-bar.rz-selection{
+  background-color: #00b488;!important;
+}
+
+

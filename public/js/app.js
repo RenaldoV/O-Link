@@ -2,7 +2,7 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule']);
 //Starts when the app starts
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 

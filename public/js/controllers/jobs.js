@@ -286,15 +286,166 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 });
 
-app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session){
+app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
+    //=======================================================================
+    //====================Filter box init
+    //========================================================================
+    $scope.slider = {
+        rangeSlider: 1,
+        minValue: 10,
+        options: {
+            floor: 1,
+            ceil: 50,
+            minLimit: 7,
+            showSelectionBar: true,
+            translate: function(value, sliderId, label) {
+                switch (label) {
+                    case 'model':
+                    {
+                        if(value == 50)
+                            return 'and <b>' + value +'+</b>  kms';
+                        else
+                            return 'and <b>' + value +'</b>  kms';
+                    }
+
+                    case 'floor':
+                        return "<b>" + value + "</b>km";
+                    default:
+                        return value + "+ kms";
+                }
+            },
+            onEnd: function() {
+                var x = $scope.slider.minValue;
+                //console.log(x + ' km');
+                //=======================================================================
+                //====================Call apply filter here (range is 1km - "x"km)
+                //========================================================================
+            }
+        }
+    };
+    $scope.autocompleteOptions = {
+        componentRestrictions: { country: 'za' }
+    };
+    var geocoder = new google.maps.Geocoder();
+    $scope.$on('g-places-autocomplete:select', function (event, param) {
+
+        geocoder.geocode({'address': $scope.resAddress}, function(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                $scope.resAddress = param.formatted_address;
+                swal({
+                        title: "Are you sure?",
+                        type: "input",
+                        text: "This will change your residential address. Please type your password to confirm",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, I'm sure!",
+                        closeOnConfirm: false
+                    },
+                    function (inputValue) {
+
+                        $http
+                            .post('/checkPassword', {email: session.user.contact.email, password: inputValue})
+                            .then(function (res, err) {
+                                console.log(res.data);
+                                if (!res.data) {
+                                    console.log("awww");
+                                    swal.showInputError("Incorrect Password!");
+                                    return false;
+                                }
+                                else {
+                                    session.user.location.geo = {type:"Point", coordinates:[results[0].geometry.location.lng(),results[0].geometry.location.lat()]};
+                                    session.user.location.address = param.formatted_address;
+                                    $http({
+                                        method: 'POST',
+                                        url: '/updateUser',
+                                        data: session.user
+                                    })
+                                        .then(function (response) {
+                                            {
+                                                swal({
+                                                    title: "Edited",
+                                                    type: "success",
+                                                    timer: 2000,
+                                                    showConfirmButton: false
+                                                });
+                                                //=======================================================================
+                                                //Call apply filter here with new location info if other filters have been applied
+                                                //========================================================================
+                                            }
+                                        });
+
+                                }
+
+                            });
+                    });
+
+            } else {
+                console.log('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }); // Save location and geometry
+    $("#searchTextField").click(function(){
+        $(this).select();
+    });
+    $scope.editLocation = function(){
+        $scope.editLoc = true;
+        $scope.resAddress = session.user.location.address;
+        $timeout(function() {
+            $("#searchTextField").trigger('click');
+        }, 100);
+
+    };
+    $scope.locFocusOut = function(){
+        $scope.editLoc = false;
+        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+        if($scope.resAddress.length > 26)
+        {
+            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+        }
+    };
+    $scope.resAddress = session.user.location.address.split(/,(.+)?/)[0];
+    if($scope.resAddress.length > 26)
+    {
+        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+    }
+    $scope.categories = constants.categories;
+    $scope.timePeriods = constants.timePeriods;
+    //=======================================================================
+    //====================Filter box init
+    //========================================================================
+
+
+    //=======================================================================
+    //====================Filter box filter functions
+    //========================================================================
+    $scope.mostRecentFilter = function(){
+        //console.log("most recent");\
+        //=======================================================================
+        //Apply most recent filter here
+        //========================================================================
+    };
+    $scope.categoryFilter = function(){
+        //console.log($scope.jobCategory);
+        //=======================================================================
+        //Apply category filter here with $scope.jobCategory
+        //========================================================================
+    };
+    $scope.periodFilter = function(){
+        //console.log($scope.jobPeriod);
+        //=======================================================================
+        //Apply period filter here with $scope.jobPeriod
+        //========================================================================
+    };
+
+
 
 
     $scope.jobs = [];
     $rootScope.$broadcast('browse', 1);
     $scope.sortBy = 0;
-var me = session.user;
+    var me = session.user;
     var ob = $.deparam.querystring();
-var region = '';
+    var region = '';
     getJobs(ob);
 
     //get the jobs

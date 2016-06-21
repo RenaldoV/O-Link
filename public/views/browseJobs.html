@@ -1,7 +1,53 @@
 <div ng-controller="jobBrowser" class="text-center">
-    <div class="filterOptions" style="margin-bottom: 14px">
+    <div class="filterOptions container" style="margin-bottom: 14px; border-radius: 10px;">
 
-        <label>
+        <div class="row">
+            <div class="col-md-3">
+                <span class="fa-stack fa-lg green" style="float: left; margin-left: -10px;" ng-hide="editLoc">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 ng-click="editLocation()" ng-hide="editLoc" style="margin-left:30px;">{{resAddress}}</h4>
+                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions" class="btn btn-block" placeholder="Location"
+                       ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc" ng-blur="locFocusOut()" style="margin-top:5px;">
+            </div>
+            <div class="col-md-1">
+                <button ng-click="editLocation()" class="btn btn-sm greenBack" style="margin-top:10px;">Edit</button>
+            </div>
+            <div class="col-md-8">
+                <div style="margin-top: -10px;">
+                    <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
+                    <rzslider style="width:75%; margin-left:20px;" rz-slider-model="slider.minValue" rz-slider-options="slider.options"></rzslider>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <span class="fa-stack fa-lg blue" style="float: left; margin-left: -10px;">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4  style="margin-left:30px;">Sort By:</h4>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-block blueBack filterButtons" href="#" ng-click="mostRecentFilter()" style="margin-top:5px;">Most Recent</a>
+            </div>
+            <div class="col-md-3">
+                <select name="jobCat" ng-change="categoryFilter()" class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png');">
+                    <option value="" selected disabled>Category</option>
+                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select ng-change="periodFilter()" name="period" class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png');">
+                    <option value="" selected disabled>Time Period</option>
+                    <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
+                </select>
+            </div>
+        </div>
+        <!--<label>
            <input ng-model="region" type="text" placeholder="suburb/city" class="form-control">
         </label>
 
@@ -23,7 +69,7 @@
         </select>
     </label>
 
-<button class="btn blueBack applyFilter" ng-click="applyFilters()">Apply Filters</button>
+<button class="btn blueBack applyFilter" ng-click="applyFilters()">Apply Filters</button>-->
     </div>
     <div class=" jobsContainer container">
 <div class="row jobBox feature blueTop" ng-repeat="job in jobs">

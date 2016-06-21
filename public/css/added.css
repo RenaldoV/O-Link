@@ -995,15 +995,13 @@ width: 240px;
 }
 
 .filterOptions{
-    padding-right: 42px;
-    text-align: right;
+    text-align: left;
     background-color: white;
     border: 1px solid grey;
     background: radial-gradient(white, whitesmoke);
-
+    padding: 10px;
     display: inline-block;
     width: 98%;
-    line-height: 84px;
     margin-left: 21px;
 
 
