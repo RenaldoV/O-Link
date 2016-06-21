@@ -5318,9 +5318,8 @@ div.error-block{
 .heading-img-browse-jobs{
   width: 45px;!important;
   height:45px;!important;
-
+  margin-top: 7px;
   float: left;
-
 }
 
 h4.form-section-label-browse{

@@ -40,9 +40,17 @@
         </div>
         <div class="col-md-7">
           <div class="panel wrapper  blueBorder  text-center cards">
-
             <div class="card-header blueBack">
-              <h4 class="font-thin m-t-none m-b">Latest Job Posts</h4>
+              <div class="row">
+                <div class="col-xs-2 col-centered" style="width:240px; ">
+                  <span class="glyphicon glyphicon-time"></span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 col-centered" style="width:240px;">
+                  <h2 class="font-thin m-t-none m-b-none">Latest Job Posts</h2>
+                </div>
+              </div>
             </div>
 
             <div ng-controller="jobFeed"  class="jobPosts">
@@ -68,7 +76,17 @@
       <div class="panel hbox hbox-auto-xs greenBorder text-center" ng-controller="goBrowse">
         <div class="col wrapper cards">
           <div class="card-header greenBack">
-            <h2 class="font-thin m-t-none m-b-none "><span class="glyphicon glyphicon-search"></span> Browse Jobs</h2>
+            <div class="row">
+              <div class="col-xs-2 col-centered" style="width:240px;">
+                <span class="glyphicon glyphicon-search"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-2 col-centered" style="width:240px;">
+                <h2 class="font-thin m-t-none m-b-none ">Browse Jobs</h2>
+              </div>
+            </div>
+
           </div>
           <form id="browseForm" ng-submit="submit()" >
 

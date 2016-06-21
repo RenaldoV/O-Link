@@ -426,7 +426,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     text-align: center;
     font-size: 25px;
     color: white;
-    margin-bottom: 15px;
+    margin-top: 15px;
    font-weight: 200;
 }
 
@@ -531,6 +531,7 @@ thead.blueBack th{
     display: none;
 }
 .timeSelect{
+    font-size: 18px;!important;
     border-radius: 6px;
     width: 160px;
     border: 1px solid #33B6CC;
