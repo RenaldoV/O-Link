@@ -287,12 +287,14 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 });
 
 app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
+
+    var rad = 30;
     //=======================================================================
     //====================Filter box init
     //========================================================================
     $scope.slider = {
         rangeSlider: 0,
-        minValue: 2,
+        minValue: 30,
         options: {
             floor: 0,
             ceil: 30,
@@ -302,7 +304,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                 switch (label) {
                     case 'model':
                     {
-                        if(value == 30)
+                        if(value >= 30 || value <= 0)
                             return 'and <b>' + value +'+</b>  kms';
                         else
                             return '<b>' + value +'</b>  kms';
@@ -316,6 +318,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
             },
             onEnd: function() {
                 var x = $scope.slider.minValue;
+                rad = x;
                 //console.log(x + ' km');
                 //=======================================================================
                 //====================Call apply filter here (range is 1km - "x"km)
@@ -324,7 +327,9 @@ applyFilters(x);
             }
         }
     };
-    function applyFilters(radius){
+    function applyFilters(radius,geo){
+        if(radius == 30)
+        radius = null;
         var data = {};
         if(!$scope.jobCategory){
                 data.categories = $scope.categories;
@@ -339,12 +344,16 @@ applyFilters(x);
 
         }
         else {
-            data.timePeriods = $scope.jobPeriod;
+            data.timePeriods = [$scope.jobPeriod];
         }
 
         if(radius){
             data.radius = radius;
-            data.userLocation = session.user.location.geo;
+if(!geo)
+                data.userLocation = session.user.location.geo;
+else
+    data.userLocation = geo;
+
         }
        getJobs(data);
     }
@@ -378,12 +387,14 @@ applyFilters(x);
                                     return false;
                                 }
                                 else {
-                                    session.user.location.geo = {type:"Point", coordinates:[results[0].geometry.location.lng(),results[0].geometry.location.lat()]};
-                                    session.user.location.address = param.formatted_address;
+                                    console.log(results);
+                                    var usr = {_id: session.user._id, location:{geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address}};
+                                    var tmp = session.user;
+                                    tmp.location = {geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address};
                                     $http({
                                         method: 'POST',
                                         url: '/updateUser',
-                                        data: session.user
+                                        data: usr
                                     })
                                         .then(function (response) {
                                             {
@@ -393,9 +404,13 @@ applyFilters(x);
                                                     timer: 2000,
                                                     showConfirmButton: false
                                                 });
+                                                session.update(tmp, function(t){
+                                                    applyFilters($scope.slider.minValue, usr.location.geo);
+                                                });
                                                 //=======================================================================
                                                 //Call apply filter here with new location info if other filters have been applied
                                                 //========================================================================
+
                                             }
                                         });
 
@@ -448,18 +463,21 @@ applyFilters(x);
         //=======================================================================
         //Apply most recent filter here
         //========================================================================
+        applyFilters(null);
     };
     $scope.categoryFilter = function(){
         //console.log($scope.jobCategory);
         //=======================================================================
         //Apply category filter here with $scope.jobCategory
         //========================================================================
+        applyFilters(null);
     };
     $scope.periodFilter = function(){
         //console.log($scope.jobPeriod);
         //=======================================================================
         //Apply period filter here with $scope.jobPeriod
         //========================================================================
+        applyFilters(null);
     };
 
 
@@ -479,7 +497,7 @@ applyFilters(x);
         var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
         if(temp.radius){
             data.radius = temp.radius;
-            data.userLocation = me.location.geo;
+            data.userLocation = temp.userLocation;
         }
     $http({
         method  : 'POST',
