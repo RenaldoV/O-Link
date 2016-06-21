@@ -291,25 +291,25 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     //====================Filter box init
     //========================================================================
     $scope.slider = {
-        rangeSlider: 1,
-        minValue: 10,
+        rangeSlider: 0,
+        minValue: 2,
         options: {
-            floor: 1,
-            ceil: 50,
-            minLimit: 7,
+            floor: 0,
+            ceil: 30,
+            minLimit: 2,
             showSelectionBar: true,
             translate: function(value, sliderId, label) {
                 switch (label) {
                     case 'model':
                     {
-                        if(value == 50)
+                        if(value == 30)
                             return 'and <b>' + value +'+</b>  kms';
                         else
-                            return 'and <b>' + value +'</b>  kms';
+                            return '<b>' + value +'</b>  kms';
                     }
 
                     case 'floor':
-                        return "<b>" + value + "</b>km";
+                        return "<b>" + value + "</b>km and";
                     default:
                         return value + "+ kms";
                 }

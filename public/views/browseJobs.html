@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div style="margin-top: -10px;">
                     <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
-                    <rzslider style="width:75%; margin-left:20px;" rz-slider-model="slider.minValue" rz-slider-options="slider.options"></rzslider>
+                    <rzslider style="width:75%; margin-left:50px;" rz-slider-model="slider.minValue" rz-slider-options="slider.options"></rzslider>
                 </div>
             </div>
         </div>
@@ -34,14 +34,14 @@
             </div>
             <div class="col-md-3">
                 <select name="jobCat" ng-change="categoryFilter()" class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png');">
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
                     <option value="" selected disabled>Category</option>
                     <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
                 </select>
             </div>
             <div class="col-md-3">
                 <select ng-change="periodFilter()" name="period" class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png');">
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
                     <option value="" selected disabled>Time Period</option>
                     <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
                 </select>
