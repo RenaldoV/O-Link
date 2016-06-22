@@ -925,9 +925,7 @@ width: 100%;
     border-top: 1px solid #33B6CC;
 }
 
-.page{
-    padding: 21px;
-}
+
 
 .appBtns {
     height: 51px;
@@ -1016,8 +1014,9 @@ width: 240px;
 
 .jobTimePeriod{
     display: block;
-    font-size: 10px;
-    margin-left:6px;
+    font-size: 12px;
+    margin-left:2px;
+    margin-top:5px;
 
 }
 

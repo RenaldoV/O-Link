@@ -2,8 +2,9 @@
     <div class="filterOptions container" style="margin-bottom: 14px; border-radius: 10px;">
 
         <div class="row">
-            <div class="col-md-3">
-                <span class="fa-stack fa-lg green" style="float: left; margin-left: -10px;" ng-hide="editLoc">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <span class="fa-stack fa-lg green"  ng-hide="editLoc">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                 </span>
@@ -19,14 +20,15 @@
             <div class="col-md-8">
                 <div style="margin-top: -10px;">
                     <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
-                    <rzslider style="width:75%; margin-left:50px;" rz-slider-model="slider.minValue"
+                    <rzslider style="width:70%; margin-left:55px;" rz-slider-model="slider.minValue"
                               rz-slider-options="slider.options"></rzslider>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
-                <span class="fa-stack fa-lg blue" style="float: left; margin-left: -10px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <span class="fa-stack fa-lg blue" >
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
                 </span>
@@ -39,16 +41,18 @@
             <div class="col-md-3">
                 <select name="jobCat" ng-change="categoryFilter()"
                         class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px; text-align: -webkit-center;">
                     <option value="" selected disabled>Category</option>
+                    <option value="all">All Categories</option>
                     <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
                 </select>
             </div>
             <div class="col-md-3">
                 <select ng-change="periodFilter()" name="period"
                         class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
+                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px; text-align: -webkit-center;">
                     <option value="" selected disabled>Time Period</option>
+                    <option value="all" >All Time Periods</option>
                     <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}}
                         ({{period.description}})
                     </option>
@@ -57,39 +61,39 @@
         </div>
     </div>
         <div class=" jobsContainer container">
-            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 20px; border-color:#33B6CC;">
+            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 10px; border-color:#33B6CC;">
 
 
             <div class="col-md-2">
                 <div>
                     <img ng-src="data:image/png;base64,{{job.logo}}" class="img-circle browseLogos"><br>
                     <a class="companyLink">
-                        <span ng-if="job.employerID.employerType == 'Company'">{{job.employerID.company.name}}</span>
-                        <span ng-if="job.employerID.employerType == 'Individual'">{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
+                        <span style="font-size: 25px" ng-if="job.employerID.employerType == 'Company'">{{job.employerID.company.name}}</span>
+                        <span style="font-size: 25px" ng-if="job.employerID.employerType == 'Individual'">{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
                     </a>
                 </div>
             </div>
             <div class="col-md-10">
                 <div class="col-md-6 jobsHead" style="margin-left: -10px">
                     <h2 class="jobCategory">{{job.post.category}}</h2>
-                    <small class="jobTimePeriod">Posted on: {{job.post.postDate}}</small>
+                    <span class="jobTimePeriod">Posted on: {{job.post.postDate}}</span>
                 </div>
                 <div class="col-md-6 jobsHead">
-                    <span class="text-danger" ng-if="job.post.interviewRequired"> <br><span
+                    <span style="font-size: 16px" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
                             class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
                 </div>
-                    <br>
+
                 <div class="col-md-12">
                     <hr style="text-align: left; margin-left: -7px;">
                     <div class="row " style="text-align: left; margin-left: -7px;">
                         <span> {{job.post.description}}</span>
                     </div>
                     <hr style="text-align: left; margin-left: -7px;">
-                    <br>
+
 
                     <div class="row text-center">
 
-                        <table class="col-md-3 jobInfoBox">
+                        <table class="col-md-3 jobInfoBox" title="Job Location">
                             <thead class="blueBack">
                             <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
                             </thead>
@@ -103,11 +107,23 @@
                         </table>
                         <table class="col-md-2 jobInfoBox">
                             <thead class="blueBack">
+                            <th class=" glyphicon glyphicon-send infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{job.distance}}km</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="col-md-2 jobInfoBox">
+                            <thead class="blueBack">
                             <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
                             </thead>
                             <tbody>
                             <tr>
-                                <td> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td>
+                                <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td>
+                                <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'individualTips' ? "Individual Tips" : "Shared Tips"}}</td>
+                                <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -132,16 +148,6 @@
                             </tr>
                             </tbody>
                         </table>
-                        <table class="col-md-2 jobInfoBox">
-                            <thead class="blueBack">
-                            <th class=" glyphicon glyphicon-send infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{job.distance}}km</td>
-                            </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
@@ -151,3 +157,7 @@
         </div>
     </div>
 </div>
+
+<script>
+    $( ".jobInfoBox" ).tooltip();
+</script>

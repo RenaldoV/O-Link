@@ -849,7 +849,6 @@ body {
 }
 
 .navbar {
-  margin: 0;
   border-width: 0;
   border-radius: 0;
 }
@@ -4595,13 +4594,12 @@ a.text-#000000:hover {
 .banner-logo
 {
   margin-top:13px;
-  margin-left: -52px;
 	height: 130px;
   cursor: pointer;
 }
 .banner-pp
 {
-  margin-right: -17px;
+  margin-right: 6px;
   height: 130px;
   cursor: pointer;
 }
@@ -4887,10 +4885,38 @@ ul.jobpg {
   background-color: #00d488;!important;
   color:white;
 }
-
-
+.filterOptions > .row > .col-md-2
+{
+  margin-left: -50px;
+}
+span.fa-stack.fa-lg.green{
+  float: left;
+  margin-left: -30px;
+}
+span.fa-stack.fa-lg.blue{
+  float: left;
+  margin-left: -30px;
+}
 @media (max-width: 990px) {
-
+  .filterOptions > .row > .col-md-2 > h4
+  {
+    margin-bottom: 20px;
+  }
+  div.filterOptions.container{
+    margin-top:50px;
+  }
+  span.fa-stack.fa-lg.green{
+    margin-top: -8px;!important;
+    margin-left:0px;!important;
+  }
+  span.fa-stack.fa-lg.blue{
+    margin-top: -8px;!important;
+    margin-left:0px;!important;
+  }
+  .filterOptions > .row > .col-md-2
+  {
+    margin-left: 0px;
+  }
   .profileBall{
     float: none;
     text-align: center;
@@ -4908,7 +4934,7 @@ ul.jobpg {
   }
   img.banner-pp{
     margin-top: -14px;
-    right:30px;
+    right:8px;
     position:absolute;
     width:50px;
     height:50px;
@@ -5002,7 +5028,7 @@ ul.jobpg {
   }
   img.banner-pp{
     margin-top: -55px;
-    right:50px;
+    right:25px;
     position:absolute;
     width:50px;
     height:50px;

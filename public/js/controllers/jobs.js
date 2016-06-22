@@ -305,7 +305,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                     case 'model':
                     {
                         if(value >= 30 || value <= 0)
-                            return 'and <b>' + value +'+</b>  kms';
+                            return '<b>' + value +'+</b>  kms';
                         else
                             return '<b>' + value +'</b>  kms';
                     }
@@ -331,12 +331,12 @@ applyFilters(x);
         if(radius == 30)
         radius = null;
         var data = {};
-        if(!$scope.jobCategory){
+        if(!$scope.jobCategory || $scope.jobCategory == 'all'){
                 data.categories = $scope.categories;
         }
         else data.categories = [$scope.jobCategory];
 
-        if(!$scope.jobPeriod){
+        if(!$scope.jobPeriod || $scope.jobPeriod == 'all'){
             data.timePeriods = [];
             for(var i = 0; i< $scope.timePeriods.length; i++){
                 data.timePeriods.push($scope.timePeriods[i].name);
@@ -450,7 +450,6 @@ else
 
     };
     $scope.locFocusOut = function(){
-        console.log("Focus out");
         $scope.editLoc = false;
         $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
         if($scope.resAddress.length > 26)
