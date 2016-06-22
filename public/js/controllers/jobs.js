@@ -288,13 +288,13 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
 
-    var rad = 30;
+    var rad = 15;
     //=======================================================================
     //====================Filter box init
     //========================================================================
     $scope.slider = {
         rangeSlider: 0,
-        minValue: 30,
+        minValue: 15,
         options: {
             floor: 0,
             ceil: 30,
@@ -362,11 +362,14 @@ else
     };
     var geocoder = new google.maps.Geocoder();
     $scope.$on('g-places-autocomplete:select', function (event, param) {
-
-        console.log(param);
+        $scope.resAddress = param.formatted_address;
+        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+        if($scope.resAddress.length > 26)
+        {
+            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+        }
         geocoder.geocode({'address':param.formatted_address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
-                $scope.resAddress = param.formatted_address;
                 swal({
                         title: "Are you sure?",
                         type: "input",
@@ -383,12 +386,22 @@ else
                             .then(function (res, err) {
                                 console.log(res.data);
                                 if (!res.data) {
-                                    console.log("awww");
+                                    $scope.resAddress = session.user.location.address;
+                                    $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+                                    if($scope.resAddress.length > 26)
+                                    {
+                                        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+                                    }
                                     swal.showInputError("Incorrect Password!");
                                     return false;
                                 }
                                 else {
-                                    console.log(results);
+                                    $scope.resAddress = param.formatted_address;
+                                    $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+                                    if($scope.resAddress.length > 26)
+                                    {
+                                        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+                                    }
                                     var usr = {_id: session.user._id, location:{geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address}};
                                     var tmp = session.user;
                                     tmp.location = {geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address};
@@ -437,6 +450,7 @@ else
 
     };
     $scope.locFocusOut = function(){
+        console.log("Focus out");
         $scope.editLoc = false;
         $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
         if($scope.resAddress.length > 26)
@@ -494,7 +508,7 @@ else
 
     //get the jobs
     function getJobs(temp){
-        console.log(temp);
+        //console.log(temp);
         var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
         if(temp.radius){
             data.radius = temp.radius;
@@ -542,10 +556,6 @@ else
     }
 
     function distance(lat1, lon1, lat2, lon2) {
-        console.log(lat1);
-        console.log(lon1);
-        console.log(lat2);
-        console.log(lon2);
         var radlat1 = Math.PI * lat1/180;
         var radlat2 = Math.PI * lat2/180;
         var theta = lon1-lon2;

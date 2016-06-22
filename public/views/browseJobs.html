@@ -8,8 +8,10 @@
                     <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                 </span>
                 <h4 ng-click="editLocation()" ng-hide="editLoc" style="margin-left:30px;">{{resAddress}}</h4>
-                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions" class="btn btn-block" placeholder="Location"
-                       ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc" ng-blur="locFocusOut()" style="margin-top:5px;">
+                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
+                       class="btn btn-block" placeholder="Location"
+                       ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
+                       ng-blur="locFocusOut()" style="margin-top:5px;">
             </div>
             <div class="col-md-1">
                 <button ng-click="editLocation()" class="btn btn-sm greenBack" style="margin-top:10px;">Edit</button>
@@ -17,7 +19,8 @@
             <div class="col-md-8">
                 <div style="margin-top: -10px;">
                     <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
-                    <rzslider style="width:75%; margin-left:50px;" rz-slider-model="slider.minValue" rz-slider-options="slider.options"></rzslider>
+                    <rzslider style="width:75%; margin-left:50px;" rz-slider-model="slider.minValue"
+                              rz-slider-options="slider.options"></rzslider>
                 </div>
             </div>
         </div>
@@ -27,137 +30,122 @@
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4  style="margin-left:30px;">Sort By:</h4>
+                <h4 style="margin-left:30px;">Sort By:</h4>
             </div>
             <div class="col-md-3">
-                <a class="btn btn-block blueBack filterButtons" href="#" ng-click="mostRecentFilter()" style="margin-top:5px;">Most Recent</a>
+                <a class="btn btn-block blueBack filterButtons" href="#" ng-click="mostRecentFilter()"
+                   style="margin-top:5px;">Most Recent</a>
             </div>
             <div class="col-md-3">
-                <select name="jobCat" ng-change="categoryFilter()" class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
+                <select name="jobCat" ng-change="categoryFilter()"
+                        class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
                         style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
                     <option value="" selected disabled>Category</option>
                     <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
                 </select>
             </div>
             <div class="col-md-3">
-                <select ng-change="periodFilter()" name="period" class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
+                <select ng-change="periodFilter()" name="period"
+                        class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
                         style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px;">
                     <option value="" selected disabled>Time Period</option>
-                    <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
+                    <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}}
+                        ({{period.description}})
+                    </option>
                 </select>
             </div>
         </div>
-        <!--<label>
-           <input ng-model="region" type="text" placeholder="suburb/city" class="form-control">
-        </label>
-
-        <label>Range
-            <select ng-model="radius" >
-                <option value=5> < 5km</option>
-                <option value=10> 5-10km</option>
-                <option value=20> 10-20km</option>
-                <option value=50>  20-50km</option>
-                <option value=2000>  50km +</option>
-            </select>
-        </label>
-
-    <label>Sort By
-        <select ng-model="sortBy" ng-change="sort(sortBy)">
-            <option value=0>Most Recent</option>
-            <option value=1>Time Period</option>
-            <option value=2>Category</option>
-        </select>
-    </label>
-
-<button class="btn blueBack applyFilter" ng-click="applyFilters()">Apply Filters</button>-->
     </div>
-    <div class=" jobsContainer container">
-<div class="row jobBox feature blueTop" ng-repeat="job in jobs">
+        <div class=" jobsContainer container">
+            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 20px; border-color:#33B6CC;">
 
-        
 
-    <div class="col-md-2">
-        <div >
-        <img  ng-src="data:image/png;base64,{{job.logo}}"  class="img-circle browseLogos"><br>
-        <a class="companyLink">
-            <span ng-if="job.employerID.employerType == 'Company'" >{{job.employerID.company.name}}</span>
-            <span ng-if="job.employerID.employerType == 'Individual'" >{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
-        </a>
+            <div class="col-md-2">
+                <div>
+                    <img ng-src="data:image/png;base64,{{job.logo}}" class="img-circle browseLogos"><br>
+                    <a class="companyLink">
+                        <span ng-if="job.employerID.employerType == 'Company'">{{job.employerID.company.name}}</span>
+                        <span ng-if="job.employerID.employerType == 'Individual'">{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
+                    </a>
+                </div>
             </div>
-    </div>
-    <div class="col-md-10">
-    <div class="col-md-10 jobsHead">
-        <h2 class="jobCategory">{{job.post.category}}</h2>
-        <small class="jobTimePeriod">{{job.post.timePeriod}}</small>
-    </div>
+            <div class="col-md-10">
+                <div class="col-md-6 jobsHead" style="margin-left: -10px">
+                    <h2 class="jobCategory">{{job.post.category}}</h2>
+                    <small class="jobTimePeriod">Posted on: {{job.post.postDate}}</small>
+                </div>
+                <div class="col-md-6 jobsHead">
+                    <span class="text-danger" ng-if="job.post.interviewRequired"> <br><span
+                            class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
+                </div>
 
-        <div class="col-md-12">
-            <div class="row ">
-            <span class="wordwrap"> {{job.post.description.substring(0,30)}}...</span>
-                <span class="text-danger" ng-if="job.post.interviewRequired"> <br><span class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
-                <br><span class="pull-right small"> Posted on: {{job.post.postDate}}</span>
-            </div>
-            <br>
-            <div class="row text-center">
-                <div class="col-md-1"></div>
-                <table class="col-md-2 jobInfoBox">
-                    <thead class="blueBack">
-                    <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
-                    </thead>
-                    <tbody>
-                    <tr><td>{{job.post.location.address.split(',')[0]}}</td></tr>
-                    </tbody>
-                </table>
-                <table class="col-md-2 jobInfoBox">
-                    <thead class="blueBack">
-                    <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
-                    </thead>
-                    <tbody>
-                    <tr><td> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td></tr>
-                    </tbody>
-                </table>
+                <div class="col-md-12">
+                    <div class="row ">
+                        <span> {{job.post.description}}</span>
+                    </div>
+                    <br>
 
-                <table class="col-md-2 jobInfoBox">
-                <thead class="blueBack">
-                <th class="glyphicon glyphicon-time infoBoxHead "></th>
-                </thead>
-                <tbody>
-                <tr><td>{{job.post.timePeriod}}</td></tr>
-                </tbody>
-            </table>
-                <table class="col-md-2 jobInfoBox">
-                    <thead class="blueBack">
-                    <th class=" glyphicon glyphicon-calendar infoBoxHead "></th>
-                    </thead>
-                    <tbody>
-                    <tr><td>{{job.post.startingDate}}</td></tr>
-                    </tbody>
-                </table>
-                <table class="col-md-2 jobInfoBox">
-                    <thead class="blueBack">
-                    <th class=" glyphicon glyphicon-send infoBoxHead "></th>
-                    </thead>
-                    <tbody>
-                    <tr><td>{{job.distance}}km</td></tr>
-                    </tbody>
-                </table>
+                    <div class="row text-center">
+
+                        <table class="col-md-3 jobInfoBox">
+                            <thead class="blueBack">
+                            <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{job.post.location.address.split(',')[0]+", " +
+                                    job.post.location.address.split(',')[1]}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="col-md-2 jobInfoBox">
+                            <thead class="blueBack">
+                            <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="col-md-2 jobInfoBox">
+                            <thead class="blueBack">
+                            <th class="glyphicon glyphicon-time infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{job.post.timePeriod}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="col-md-2 jobInfoBox">
+                            <thead class="blueBack">
+                            <th class=" glyphicon glyphicon-calendar infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{job.post.startingDate}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="col-md-2 jobInfoBox">
+                            <thead class="blueBack">
+                            <th class=" glyphicon glyphicon-send infoBoxHead "></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>{{job.distance}}km</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+
+            <a class="jobLink" href="/job?id={{job._id}}"> </a>
+                <br>
         </div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-    <br>
-
-
-    <a class="jobLink" href="/job?id={{job._id}}"> </a>
-</div>
     </div>
 </div>
