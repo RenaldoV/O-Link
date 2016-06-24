@@ -5366,5 +5366,8 @@ h4.form-section-label-browse{
 .rzslider .rz-bar.rz-selection{
   background-color: #00b488;!important;
 }
+.col-md-2 > input.btn.btn-block{
+  -webkit-user-select: auto;
+}
 
 

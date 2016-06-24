@@ -438,14 +438,19 @@ else
             }
         });
     }); // Save location and geometry
-    $("#searchTextField").click(function(){
-        $(this).select();
+    $("#searchTextField").focus(function(){
+        $(this).select().mouseup(function (e) {
+            e.preventDefault();
+            $(this).unbind("mouseup");
+        });
     });
     $scope.editLocation = function(){
         $scope.editLoc = true;
         $scope.resAddress = session.user.location.address;
         $timeout(function() {
             $("#searchTextField").trigger('click');
+            $("#searchTextField").focus();
+
         }, 100);
 
     };
