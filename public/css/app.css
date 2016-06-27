@@ -1,7 +1,11 @@
 /* 
 
 */
-
+.navbar-nav > li > .dropdown-menu {
+  margin-top: 0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 html {
   background-color: #f0f3f4;
 }
@@ -529,12 +533,21 @@ pre {
 }
 
 .dropdown-menu {
+min-width: 184px;
   border: 1px solid #dee5e7;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+
+
   -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
+.open > .dropdown-menu {
+
+  display: block;
+  border-radius: 10px;
+
+}
+
 
 .dropdown-menu.pull-left {
   left: 100%;
@@ -1073,6 +1086,15 @@ body {
     width: auto;
     height: auto;
   }
+  .open > .dropdown-menu{
+  position: fixed;
+
+    top:50px;
+    left:18px;
+    right:18px;
+    height:auto;
+
+  }
 }
 
 html.bg {
@@ -1346,7 +1368,7 @@ html.bg {
   }
   .app-aside-dock .app-aside.b-r {
     border-bottom: 1px solid #dee5e7;
-    border-right-width: 0;
+
   }
   .app-aside-dock .app-aside:before {
     display: none;
@@ -5068,23 +5090,21 @@ span.fa-stack.fa-lg.blue{
     width: 100% !important;
     left: 0;
   }
-  .navbar-nav > li > .dropdown-menu {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  #menuDrop.dropdown-menu{
-    margin-top: 55px;!important;
-    left:0;!important;
-    right:0;!important;
-    width:100%;!important;
-  }
+
+
+
   .navbar-right .dropdown-menu{
     right: 0;
     left: auto;
   }
-  navbar-nav .open .dropdown-menu {
+  .navbar-nav .open .dropdown-menu {
     background-color: white;!important;
     display: block;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    left:0;!important;
+    right:0;!important;
+    width:100%;!important;
   }
   .dropdown-toggle.ng-scope{
     width: 45px;
@@ -5093,7 +5113,7 @@ span.fa-stack.fa-lg.blue{
     width: 45px;
     margin-top: 15px;
     margin-right: 100px;
-    float:left;
+
   }
   .noti.ng-scope{
     margin-left: 30px;
