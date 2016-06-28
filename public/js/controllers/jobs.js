@@ -323,10 +323,12 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                 //=======================================================================
                 //====================Call apply filter here (range is 1km - "x"km)
                 //========================================================================
-applyFilters(x);
+            applyFilters(x);
             }
         }
     };
+
+    //Filter function
     function applyFilters(radius,geo){
         if(radius == 30)
         radius = null;
@@ -349,14 +351,16 @@ applyFilters(x);
 
         if(radius){
             data.radius = radius;
-if(!geo)
+        if(!geo)
                 data.userLocation = session.user.location.geo;
-else
-    data.userLocation = geo;
+        else
+            data.userLocation = geo;
 
         }
        getJobs(data);
     }
+
+
     $scope.autocompleteOptions = {
         componentRestrictions: { country: 'za' }
     };
@@ -501,12 +505,14 @@ else
 
 
 
-
+//runtime work
     $scope.jobs = [];
     $rootScope.$broadcast('browse', 1);
     $scope.sortBy = 0;
     var me = session.user;
     var ob = $.deparam.querystring();
+    ob.radius = 15;
+    ob.userLocation = session.user.location.geo;
     var region = '';
     getJobs(ob);
 
