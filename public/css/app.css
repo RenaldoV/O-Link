@@ -4625,13 +4625,13 @@ a.text-#000000:hover {
 
 .banner-logo
 {
-  margin-top:13px;
+  margin-top:15px;
 	height: 130px;
   cursor: pointer;
 }
 .banner-pp
 {
-  margin-right: 6px;
+  margin-right: 32px;
   height: 130px;
   cursor: pointer;
 }
@@ -4930,6 +4930,10 @@ span.fa-stack.fa-lg.blue{
   margin-left: -30px;
 }
 @media (max-width: 990px) {
+  .col-xs-7.jobsHead.interviewDanger{
+    height: 75.15px;
+    text-align: right;
+  }
   .filterOptions > .row > .col-md-2 > h4
   {
     margin-bottom: 20px;
@@ -4966,7 +4970,7 @@ span.fa-stack.fa-lg.blue{
   }
   img.banner-pp{
     margin-top: -14px;
-    right:8px;
+    right: -20px;
     position:absolute;
     width:50px;
     height:50px;
@@ -4986,20 +4990,29 @@ span.fa-stack.fa-lg.blue{
     left:0px;!important;
     width: 100%;!important;
     background-color: white;!important;
-    border-bottom: solid;
-    border-bottom-color: #00b488;
-    border-bottom-width: 1.5px;
     opacity: 1;
     padding:5px;
   }
-
-  .glyphicon-menu-hamburger
-  {
-    color:black;
+  nav.navbar.transparent.navbar-default.employer{
+    border-bottom: solid;
+    border-bottom-color: #00b488;
+    border-bottom-width: 1.6px;
   }
-  .glyphicon-menu-hamburger:hover
+  nav.navbar.transparent.navbar-default.student{
+    border-bottom: solid;
+    border-bottom-color: #33B6CC;
+    border-bottom-width: 1.6px;
+  }
+
+  span.glyphicon-menu-hamburger
   {
-    color:#696969;
+    color:black;!important;
+    font-size: 18px;!important;
+  }
+  span.glyphicon-menu-hamburger:hover
+  {
+    color:#696969;!important;
+    font-size:18px;!important;
   }
   .navbar-wrapper {
     position: absolute;
@@ -5059,8 +5072,8 @@ span.fa-stack.fa-lg.blue{
     height:50px;
   }
   img.banner-pp{
-    margin-top: -55px;
-    right:25px;
+    margin-top: -58px;
+    right:0px;
     position:absolute;
     width:50px;
     height:50px;
@@ -5068,7 +5081,9 @@ span.fa-stack.fa-lg.blue{
   #notifications
   {
     margin-right: 45px;
+    margin-top: -3px;
   }
+
   nav.navbar.transparent.navbar-default{
     z-index: 20;
     position: fixed;
@@ -5077,21 +5092,30 @@ span.fa-stack.fa-lg.blue{
     left:0px;!important;
     width: 100%;!important;
     background-color: white;!important;
-    border-bottom: solid;
-    border-bottom-color: #00b488;
-    border-bottom-width: 1.5px;
     opacity: 1;
     padding:5px;
     height: 60px;
   }
-
-  .glyphicon-menu-hamburger
-  {
-    color:black;
+  nav.navbar.transparent.navbar-default.employer{
+    border-bottom: solid;
+    border-bottom-color: #00b488;
+    border-bottom-width: 1.6px;
   }
-  .glyphicon-menu-hamburger:hover
+  nav.navbar.transparent.navbar-default.student{
+    border-bottom: solid;
+    border-bottom-color: #33B6CC;
+    border-bottom-width: 1.6px;
+  }
+
+  span.glyphicon-menu-hamburger
   {
-    color:#696969;
+    color:black;!important;
+    font-size:18px;!important;
+  }
+  span.glyphicon-menu-hamburger:hover
+  {
+    color:#696969;!important;
+    font-size:18px;!important;
   }
   .navbar-wrapper {
     position: absolute;
@@ -5164,12 +5188,8 @@ span.fa-stack.fa-lg.blue{
       text-align: center;
       margin: 0;
       display: inline-block;
-      font-size: 12px;
-      transform: scale(0.8,0.8);
-      width: 100%;
     }
     div.catSelect{
-      transform: scale(0.8,0.8);
       width:100%;
       margin-bottom: 0px;
     }
@@ -5205,9 +5225,7 @@ margin-top: 32px;
       width: 100%;
 
     }
-    label.btn.timeSelect.ng-scope{
-      width:100%
-    }
+
     div.card-header>h4{
       font-size: 18px;
     }
@@ -5399,5 +5417,12 @@ h4.form-section-label-browse{
 .col-md-2 > input.btn.btn-block{
   -webkit-user-select: auto;
 }
-
+.glyphicon-menu-hamburger{
+  font-size: 23px;
+  color : lightgrey;
+}
+.glyphicon-menu-hamburger:hover{
+  font-size: 25px;
+  color : white;
+}
 

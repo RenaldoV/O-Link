@@ -702,9 +702,10 @@ padding-top: 18px;
 }
 
 #allP{
-    padding: 10px 16px;
+    padding: 8px 16px;
     border-color: #33B6CC;
     border-radius: 6px;
+    height: 46px;
 }
 #allP.active{
     background-color: #33B6CC;
@@ -722,8 +723,7 @@ padding-top: 18px;
 .jobsContainer{
     text-align: center;
     display: inline-block;
-    width: 98%;
-    margin-left: 21px;
+    width: 97%;
 }
 
 .appHeading{
@@ -946,8 +946,7 @@ width: 100%;
 
 .buyBox{
     display: inline-block;
-height: 460px;
-width: 240px;
+    width: 240px;
     border-radius: 20px;
     text-align: center;
     margin: 5px;
@@ -956,7 +955,7 @@ width: 240px;
 .buyInner{
     display: inline-block;
     width: 230px;
-    height: 283px;
+    height: 260px;
     background-color: white;
 }
 
@@ -967,28 +966,29 @@ width: 240px;
 }
 
 .cart{
-    font-size: 35px;
-    margin-top: 20px;
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 .cost{
     font-size: 61px;
-
 }
 
 .timeFrame{
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 100;
     color: rgba(127, 127, 127, 0.7);
+    margin-top: 35px;
 }
 
 .package{
     display: inline-block;
-    font-size: 24px;
+    font-size: 23px;
     font-weight: 100;
     width: 160px ;
-    color: rgb(127, 127, 127);
-    margin-top: 84px;
+    color: black;
+    margin-top: 20px;
 }
 
 .filterOptions{
@@ -998,10 +998,7 @@ width: 240px;
     background: radial-gradient(white, whitesmoke);
     padding: 10px;
     display: inline-block;
-    width: 98%;
-    margin-left: 21px;
-
-
+    width: 97%;
 }
 
 #allP{

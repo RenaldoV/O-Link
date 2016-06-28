@@ -103,7 +103,6 @@
 
             <div class="btn-group-md timeBrowse" data-toggle="buttons">
 
-
               <label class="btn btn-primary-outline  timeSelect" ng-repeat="period in timePeriods" ng-click="toggleSelectionP(period.name)">
                 <input class="periods"
                         type="checkbox"
@@ -113,7 +112,8 @@
 
                 /> {{period.name}}<br><small >({{period.description}})</small>
               </label>
-              <div><label class="btn btn-primary-outline categorySelect" id="allP" ng-click="selectAllP()">
+
+              <div class="btn-group-lg catSelect"><label class="btn btn-primary-outline categorySelect" id="allP" ng-click="selectAllP()">
                 <input
                         id="selectAllP"
                         type="checkbox"
@@ -123,6 +123,7 @@
                 /> {{allPer}}
               </label></div>
             </div>
+
             </div>
 
 

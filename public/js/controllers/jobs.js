@@ -377,7 +377,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                 swal({
                         title: "Are you sure?",
                         type: "input",
-                        text: "This will change your residential address. Please type your password to confirm",
+                        text: "This will change your residential address. Please type your password to confirm.",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "Yes, I'm sure!",
