@@ -17,11 +17,15 @@ app.controller('logoClick', function(authService,$scope,$window){
 });
 app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http) {
 
+<<<<<<< HEAD
     $scope.browse = false;
     if(!session.user)
         $scope.type = 'grey';
     else
         $scope.type = session.user.type;
+=======
+
+>>>>>>> origin/master
 // Set header message of signup $ login pages
 
 
@@ -33,10 +37,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
         $scope.slog2 = "Tomorrow's Success."
     }
     else
-        $(".appbg").addClass('dashBG');
 
-
-    //for guests
     if ($location.path() == "/guest") {
         $(".appbg").addClass('dashBG');
         var user = {id: 'guest', type: 'guest'};
@@ -51,6 +52,9 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     } else {
         var user = session.user;
+        $scope.browse = false;
+        $scope.type = session.user.type;
+        $(".appbg").addClass('dashBG');
     }
 
 
