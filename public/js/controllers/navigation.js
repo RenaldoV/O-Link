@@ -17,15 +17,11 @@ app.controller('logoClick', function(authService,$scope,$window){
 });
 app.controller('navControl',function($scope, authService, session, $location, $window, $timeout,$rootScope, cacheUser,$http) {
 
-<<<<<<< HEAD
+
     $scope.browse = false;
     if(!session.user)
         $scope.type = 'grey';
-    else
-        $scope.type = session.user.type;
-=======
 
->>>>>>> origin/master
 // Set header message of signup $ login pages
 
 
