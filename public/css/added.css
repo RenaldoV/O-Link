@@ -781,7 +781,7 @@ padding-top: 18px;
 #jobEmployer{
     display: inline-block;
     text-align: center;
-    width:342px;
+    width:auto;
 }
 #employerName{
     display: inline-block;
