@@ -4757,6 +4757,7 @@ h2.navbar-text {
   font-size: 3.2vw;
   color: blue;
   font-family: 'Source Sans Pro', sans-serif;
+  margin-top: 50px;
 }
 
 h2.navbar-text .navbar-slog {
@@ -5003,6 +5004,11 @@ span.fa-stack.fa-lg.blue{
     border-bottom-color: #33B6CC;
     border-bottom-width: 1.6px;
   }
+  nav.navbar.transparent.navbar-default.grey{
+    border-bottom: solid;
+    border-bottom-color: #999;
+    border-bottom-width: 1.6px;
+  }
 
   span.glyphicon-menu-hamburger
   {
@@ -5104,6 +5110,11 @@ span.fa-stack.fa-lg.blue{
   nav.navbar.transparent.navbar-default.student{
     border-bottom: solid;
     border-bottom-color: #33B6CC;
+    border-bottom-width: 1.6px;
+  }
+  nav.navbar.transparent.navbar-default.grey{
+    border-bottom: solid;
+    border-bottom-color: #999;
     border-bottom-width: 1.6px;
   }
 
@@ -5426,3 +5437,9 @@ h4.form-section-label-browse{
   color : white;
 }
 
+.navbar-nav > li.menuButton {
+  margin-top: 53px;
+}
+.navbar-nav > li.noti {
+  margin-top: 55px;
+}
