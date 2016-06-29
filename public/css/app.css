@@ -5040,7 +5040,7 @@ span.fa-stack.fa-lg.blue{
   .signupBox{
       display: inline-block;
       margin:0;
-    margin-top: 20px;
+    margin-top: 40px;
   }
   .page{
       text-align: center;
@@ -5194,7 +5194,7 @@ span.fa-stack.fa-lg.blue{
     .signupBox{
         display: inline-block;
         margin: 0 -9999rem;
-        margin-top: 20px;
+        margin-top: 40px;
         width:100%;!important;
     }
     div.page{

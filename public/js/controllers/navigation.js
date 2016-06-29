@@ -355,7 +355,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
                 $cookies.remove("user");
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 $window.location.href="/";
-                swal("You have been logged out.", "success");
+                swal("You have been logged out.", "");
             });
     };
     $scope.myProfile = function(){
@@ -427,7 +427,7 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
                 $cookies.remove("user");
                 $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 $window.location.href="/";
-                swal("You have been logged out.", "success");
+                swal("You have been logged out.", "");
             });
     };
     $scope.myProfile = function(){
