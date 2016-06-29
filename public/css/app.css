@@ -4933,6 +4933,7 @@ span.fa-stack.fa-lg.blue{
 @media (max-width: 990px) {
   .col-xs-7.jobsHead.interviewDanger{
     height: 75.15px;
+    margin-top: -17px;
     text-align: right;
   }
   .filterOptions > .row > .col-md-2 > h4
