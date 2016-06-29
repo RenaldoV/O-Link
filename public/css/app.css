@@ -5055,10 +5055,21 @@ span.fa-stack.fa-lg.blue{
     height: 120vh;
     top:0;
   }
+  .navbar-nav > li.menuButton {
+    margin-top: 0px;
+  }
+  .navbar-nav > li.noti {
+    margin-top: 0px;
+  }
 }
 
 @media (max-width: 767px) {
-
+  .navbar-nav > li.menuButton {
+    margin-top: 0px;
+  }
+  .navbar-nav > li.noti {
+    margin-top: -40px;
+  }
   .profileBall{
     float: none;
     text-align: center;
@@ -5437,9 +5448,9 @@ h4.form-section-label-browse{
   color : white;
 }
 
-.navbar-nav > li.menuButton {
+.navbar-nav > .menuButton {
   margin-top: 53px;
 }
-.navbar-nav > li.noti {
+.navbar-nav > .noti {
   margin-top: 55px;
 }
