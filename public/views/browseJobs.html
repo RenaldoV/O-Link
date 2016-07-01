@@ -20,7 +20,7 @@
             <div class="col-md-8">
                 <div style="margin-top: -10px;">
                     <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
-                    <rzslider style="width:70%; margin-left:55px;" rz-slider-model="slider.minValue"
+                    <rzslider style="width:70%; margin-left:66px;" rz-slider-model="slider.minValue"
                               rz-slider-options="slider.options"></rzslider>
                 </div>
             </div>
@@ -100,8 +100,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{job.post.location.address.split(',')[0]+", " +
-                                    job.post.location.address.split(',')[1]}}
+                                <td>{{job.post.location.address}}
                                 </td>
                             </tr>
                             </tbody>
@@ -122,9 +121,9 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + "/" + getPer(job.post.timePeriod) }}</td>
+                                <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + getPer(job.post.timePeriod) }}</td>
                                 <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'individualTips' ? "Individual Tips" : "Shared Tips"}}</td>
-                                <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + "/" + getPer(job.post.timePeriod) + " + Tips" }}</td>
+                                <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + getPer(job.post.timePeriod) + " + Tips" }}</td>
                             </tr>
                             </tbody>
                         </table>

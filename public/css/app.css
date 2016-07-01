@@ -5455,3 +5455,16 @@ h4.form-section-label-browse{
 .navbar-nav > .noti {
   margin-top: 55px;
 }
+.white {
+  color: white;
+}
+
+h2.confirmPay{
+  margin-left: -34px;
+}
+h3.packagePay{
+  margin-left: -21px;
+}
+h3.totalPay{
+  margin-left: -26px;
+}

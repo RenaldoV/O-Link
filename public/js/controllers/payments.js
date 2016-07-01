@@ -33,15 +33,15 @@ app.controller('confirmPayment',function($scope, $routeParams, authService, sess
                         var url = "";
 
                         if(package == 'Talent_Basic') {
-                            var url = "https://www.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Basic&item_description=R29+for+3+further+applications%2C+valid+for+one+week.&amount=29.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Basic&amp;cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled";
+                            var url = "https://www.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Basic&item_description=R29+for+3+further+applications%2C+valid+for+one+week.&amount=29.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Basic&cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled%3FpaymentToken%3D"+paymentToken+"";
                         }
                         else if(package == 'Talent_Classic')
                         {
-                            var url = "https://sandbox.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Classic&item_description=R49+for+7+further+applications%2C+valid+for+one+week.&amount=49.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Classic&amp;cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled";
+                            var url = "https://sandbox.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Classic&item_description=R49+for+7+further+applications%2C+valid+for+one+week.&amount=49.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Classic&cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled%3FpaymentToken%3D"+paymentToken+"";
                         }
                         else if(package == 'Talent_Ultimate')
                         {
-                            var url = "https://sandbox.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Ultimate&item_description=R99+for+unlimited+further+applications%2C+valid+for+one+month.&amount=99.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Ultimate&amp;cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled";
+                            var url = "https://sandbox.payfast.co.za/eng/process?cmd=_paynow&receiver=paulontong%40me.com&item_name=Talent+Ultimate&item_description=R99+for+unlimited+further+applications%2C+valid+for+one+month.&amount=99.00&return_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentSuccessful%3FpaymentToken%3D"+paymentToken+"%26packageType%3DTalent_Ultimate&cancel_url=http%3A%2F%2F154.66.197.62%3A8080%2FpaymentCanceled%3FpaymentToken%3D"+paymentToken+"";
                         }
 
                         window.location.assign(url);

@@ -550,14 +550,18 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
 
                 job.distance = distance(locat.lat,locat.lng, job.post.location.geo.coordinates[1], job.post.location.geo.coordinates[0]);
-
+                job.post.location.address = job.post.location.address.split(',')[0]+", " + job.post.location.address.split(',')[1];
+                if(job.post.location.address.length > 30)
+                {
+                    job.post.location.address = job.post.location.address.substring(0,job.post.location.address.lastIndexOf(" ")) + "...";
+                }
             });
 
                 $scope.getPer = function(cat){
                     if(cat == "Once Off"){
-                        return cat;
+                        return "";
                     }
-                    else return "hr"
+                    else return "/hr"
                 };
 
 
