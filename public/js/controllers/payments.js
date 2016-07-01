@@ -87,7 +87,7 @@ app.controller('paymentSuccessful',function($scope,$routeParams, authService, se
                         function () {
                             console.log(res.data);
                             session.create(res.data);
-                            $window.location.href="/dashboard";
+                            $window.location.href="/myProfile";
                         });
                 }
                 else
@@ -102,6 +102,43 @@ app.controller('paymentSuccessful',function($scope,$routeParams, authService, se
 
 
 
+            }
+        });
+});
+
+app.controller('paymentCanceled',function($scope,$routeParams, authService, session, $location, $http, cacheUser, $window) {
+
+    var paymentToken = decodeURIComponent($routeParams.paymentToken);
+
+
+    $http({
+        method: 'POST',
+        url: '/cancelPaymentToken',
+        data: {"_id" : session.user._id, "paymentToken" : paymentToken}
+    })
+        .then(function (res) {
+            {
+                if (res.data && res.data!='error') {
+                    swal({
+                     title: "Payment Canceled",
+                     text: "",
+                     type: "error"
+                     },
+                     function () {
+
+                     $window.location.href="/myProfile";
+                     });
+                    console.log(res.data);
+                }
+                else
+                    swal({
+                            title: "Error",
+                            text: "Payment couldn't be canceled.",
+                            type: "error"
+                        },
+                        function () {
+                            location.href = "/dashboard";
+                        });
             }
         });
 });

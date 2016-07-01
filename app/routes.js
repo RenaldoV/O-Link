@@ -1317,46 +1317,65 @@ console.log(job.post);
 		now = now.getTime();
 
 		db.users.findOneAndUpdate(	{_id:user._id,"packages.paymentToken":user.paymentToken,"packages.active":false, "packages.packageType" : user.packageType},
-									{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : 1}},
-									{new : true}, function(err,doc){
-			if(!err) {
-				if(!doc || doc == null){
-					res.send('error');
-				}else {
+				{$set: {"packages.$.expiryDate" : now, "packages.$.active" : true , "packages.$.remainingApplications" : remainingApplications},$unset : {"packages.$.paymentToken" : 1}},
+				{new : true}, function(err,doc){
+					if(!err) {
+						if(!doc || doc == null){
+							res.send('error');
+						}else {
 
-					var usr = doc.toObject();
+							var usr = doc.toObject();
 
-					if(usr.emailDisable == undefined || !usr.emailDisable) {
-						//mailer args
-						var args = {};
+							if(usr.emailDisable == undefined || !usr.emailDisable) {
+								//mailer args
+								var args = {};
 
-						args.name = usr.name.name;
-						args.package = user.packageType;
-						args.email = usr.contact.email;
-						args.applicationsLeft = usr.freeApplications;
-						var tempPackages = usr.packages;
-						for (var r = 0; r < tempPackages.length; r++) {
-							if (tempPackages[r].active) {
-								if (tempPackages[r].remainingApplications == 'unlimited') {
-									args.applicationsLeft = 'unlimited';
-									break;
+								args.name = usr.name.name;
+								args.package = user.packageType;
+								args.email = usr.contact.email;
+								args.applicationsLeft = usr.freeApplications;
+								var tempPackages = usr.packages;
+								for (var r = 0; r < tempPackages.length; r++) {
+									if (tempPackages[r].active) {
+										if (tempPackages[r].remainingApplications == 'unlimited') {
+											args.applicationsLeft = 'unlimited';
+											break;
+										}
+										args.applicationsLeft += tempPackages[r].remainingApplications;
+									}
 								}
-								args.applicationsLeft += tempPackages[r].remainingApplications;
+
+								mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
+									console.log(rss);
+
+								});
 							}
+							res.send(doc);
 						}
 
-						mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
-							console.log(rss);
-
-						});
 					}
-				res.send(doc);
-	}
+					else
+						res.send("error");
+				});
+	});
 
-			}
-			else
-				res.send("error");
-		});
+	app.post('/cancelPaymentToken', function(req, res){
+
+		var user = req.body;
+
+
+		db.users.update({_id:user._id},
+				{$pull:{packages:{'paymentToken' : user.paymentToken}}}, function(err,doc){
+					if(!err) {
+						console.log(doc);
+						res.send(doc);
+						}
+					else
+					{
+						console.log(err);
+						res.send("error");
+					}
+				});
 	});
 
 	app.post('/getNumApps', function(req, res){
