@@ -319,7 +319,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
             .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
             .then(function (res) {
                 if(res){
-                    swal("Email Notifications Changed", "Your email notifications have been "+message, "success");
+                    swal("Email Notifications Changed", "Your email notifications have been "+message+".", "success");
                 }
 
 
@@ -397,7 +397,7 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
             .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
             .then(function (res) {
                 if(res){
-                    swal("Email Notifications Changed", "Your email notifications have been "+message, "success");
+                    swal("Email Notifications Changed", "Your email notifications have been "+message+".", "success");
                 }
 
 

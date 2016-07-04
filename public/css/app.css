@@ -925,6 +925,17 @@ body {
 }
 
 @media (min-width: 768px) {
+  h4.white{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  h3.white{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .jobMobileSpace{
+    display: block;
+  }
   .app-aside,
   .navbar-header {
     width: 200px;
@@ -1048,8 +1059,8 @@ body {
     display: table-cell !important;
   }
 }
-
 @media (min-width: 768px) and (max-width: 991px) {
+
   .hbox-auto-sm {
     display: block;
   }
@@ -1064,6 +1075,15 @@ body {
 }
 
 @media (max-width: 767px) {
+  h4.white{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  h3.white{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   body {
     height: auto;
     min-height: 100%;
@@ -1201,6 +1221,14 @@ html.bg {
 }
 
 @media (min-width: 768px) {
+  h4.white{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  h3.white{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .app-aside-folded .nav-sub-header {
     display: block !important;
   }
@@ -1344,6 +1372,14 @@ html.bg {
 }
 
 @media (min-width: 992px) {
+  h4.white{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  h3.white{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
   .app-aside-dock .app-content,
   .app-aside-dock .app-footer {
     margin-right: 0 !important;
@@ -4931,6 +4967,35 @@ span.fa-stack.fa-lg.blue{
   margin-left: -30px;
 }
 @media (max-width: 990px) {
+  div.buyInner{
+    display: inline-block;!important;
+    width: 230px;!important;
+    height: 160px;!important;
+    background-color: white;!important;
+  }
+
+  div.cost{
+    font-size: 45px;!important;
+  }
+
+  div.timeFrame{
+    font-size: 18px;!important;
+    font-weight: 100;!important;
+    color: rgba(127, 127, 127, 0.7);!important;
+    margin-top: 15px;!important;
+  }
+
+  div.package{
+    display: inline-block;!important;
+    font-size: 20px;!important;
+    font-weight: 100;!important;
+    width: 160px ;!important;
+    color: black;!important;
+    margin-top: 0px;!important;
+  }
+  span.cart{
+    margin-top: 8px;
+  }
   .col-xs-7.jobsHead.interviewDanger{
     height: 75.15px;
     margin-top: -17px;
@@ -5065,6 +5130,31 @@ span.fa-stack.fa-lg.blue{
 }
 
 @media (max-width: 767px) {
+  .buyInner{
+    display: inline-block;!important;
+    width: 230px;!important;
+    height: 160px;!important;
+    background-color: white;!important;
+  }
+
+  .cost{
+    font-size: 45px;!important;
+  }
+
+  .timeFrame{
+    font-size: 18px;!important;
+    font-weight: 100;!important;
+    color: rgba(127, 127, 127, 0.7);!important;
+    margin-top: 15px;!important;
+  }
+
+  .package{
+    display: inline-block;!important;
+    font-size: 20px;!important;
+    font-weight: 100;!important;
+    width: 160px ;!important;
+    color: black;!important;
+  }
   .navbar-nav > li.menuButton {
     margin-top: 0px;
   }
@@ -5426,7 +5516,10 @@ h4.form-section-label-browse{
 .blueBack.filterButtons{
   height:34px;
 }
-
+.rzslider{
+  width: 74%;
+  margin-left: 66px;
+}
 .rzslider .rz-pointer{
   background-color: #00b488;!important;
 }
@@ -5461,10 +5554,4 @@ h4.form-section-label-browse{
 
 h2.confirmPay{
   margin-left: -34px;
-}
-h3.packagePay{
-  margin-left: -21px;
-}
-h3.totalPay{
-  margin-left: -26px;
 }
