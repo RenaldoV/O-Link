@@ -1,92 +1,384 @@
-<manifest alg="2" build="2015.1.2.344" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="www.o-link.co.za" resolutions="1x" timestamp="1461567517880">
+<manifest alg="2" build="2015.1.2.344" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive" exportTarget="other" domain="www.profectuspos.co.za" resolutions="1x,2x" timestamp="1467641511019">
   <folder name="css">
-    <file name="site_global.css" crc="532715248"/>
-    <file name="faq-s.css" crc="4124927747" ref="faq-s"/>
-    <file name="download.css" crc="4124927747" ref="download"/>
-    <file name="contact-us.css" crc="4124927747" ref="contact-us"/>
-    <file name="how-it-works.css" crc="4124927747" ref="how-it-works"/>
-    <file name="index.css" crc="167778206" ref="index"/>
-    <file name="iefonts_index.css" crc="4233913921" ref="index"/>
+    <file name="site_global.css" crc="3908172439"/>
+    <file name="master_header-footer.css" crc="419041020" ref="work-single:t-s---c-s:how-it-works:faq-s:contact-us:download"/>
+    <file name="work-single.css" crc="502984899" ref="work-single"/>
+    <file name="t-s---c-s.css" crc="98594385" ref="t-s---c-s"/>
+    <file name="how-it-works.css" crc="69534785" ref="how-it-works"/>
+    <file name="faq-s.css" crc="4112088463" ref="faq-s"/>
+    <file name="contact-us.css" crc="3926543549" ref="contact-us"/>
+    <file name="download.css" crc="393813742" ref="download"/>
+    <file name="index.css" crc="531630159" ref="index"/>
+    <file name="iefonts_index.css" crc="3837398455" ref="index"/>
   </folder>
   <folder name="fonts">
     <file name="fontawesome-webfont.woff" crc="352826516"/>
     <file name="fontawesome-webfont.eot" crc="4001993384"/>
     <file name="fontawesome-webfont.svg" crc="313638970"/>
+    <file name="montserrat-regular-webfont.woff" crc="39257885"/>
+    <file name="montserrat-regular-webfont.eot" crc="243248049"/>
   </folder>
   <folder name="assets">
-    <file name="terms-and-conditions-(v1).docx" crc="199988343" seo="true" mt="1460408640000"/>
+    <file name="terms-and-conditions-(v1).pdf" crc="413625234" seo="true" mt="1461928936000"/>
   </folder>
   <folder name="scripts">
-    <file name="jquery-1.8.3.min.js" crc="207176553" ref="index:download:how-it-works:faq-s:contact-us"/>
-    <file name="museutils.js" crc="3790713428" ref="index:download:how-it-works:faq-s:contact-us"/>
-    <file name="whatinput.js" crc="84559013" ref="index:download:how-it-works:faq-s:contact-us"/>
-    <file name="pie.js" crc="3827607177" ref="index"/>
-    <file name="jquery.musemenu.js" crc="238543590" ref="index"/>
-    <file name="jquery.watch.js" crc="4244854265" ref="index:download:how-it-works:faq-s:contact-us"/>
-    <file name="webpro.js" crc="329496574" ref="index"/>
-    <file name="musewpslideshow.js" crc="394033048" ref="index"/>
-    <file name="jquery.museoverlay.js" crc="4265131668" ref="index"/>
-    <file name="touchswipe.js" crc="497316881" ref="index"/>
-    <file name="form_check.php" crc="3805695515" ref="index"/>
-    <file name="form_throttle.php" crc="3802629389" ref="index"/>
-    <file name="form_process.php" crc="54267062" ref="index"/>
-    <file name="form-u5741.php" crc="475556530" ref="index"/>
-    <file name="form-u9304.php" crc="457380707" ref="index"/>
-    <file name="form-u9729.php" crc="4129930478" ref="index"/>
-    <file name="jquery.musepolyfill.bgsize.js" crc="3918880840" ref="index"/>
-    <file name="form-u2470.php" crc="255376905" ref="index"/>
-    <file name="musewpdisclosure.js" crc="4234230767" ref="index"/>
-    <file name="form-u9098.php" crc="298621574" ref="index"/>
-    <file name="jquery.scrolleffects.js" crc="4219894366" ref="index"/>
-    <file name="html5shiv.js" crc="4241844378" ref="index:download:how-it-works:faq-s:contact-us"/>
+    <file name="jquery-1.8.3.min.js" crc="207176553" ref="phone>index:phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>work-single:phone>faq-s:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="museutils.js" crc="3790713428" ref="phone>index:phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>work-single:phone>faq-s:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="whatinput.js" crc="84559013" ref="phone>index:phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>work-single:phone>faq-s:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="jquery.watch.js" crc="4244854265" ref="phone>index:phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>work-single:phone>faq-s:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="pie.js" crc="3827607177" ref="phone>index:phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single"/>
+    <file name="jquery.musepolyfill.bgsize.js" crc="3918880840" ref="phone>download:phone>how-it-work-talent:phone>how-it-works-employer:phone>home-talent:tablet>company:tablet>services:tablet>work:index:download:how-it-works:faq-s"/>
+    <file name="webpro.js" crc="329496574" ref="phone>download:phone>how-it-work-talent:phone>work-single:phone>faq-s:phone>contact-us:phone>home-talent:tablet>index:tablet>company:tablet>services:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:t-s---c-s:work-single:contact-us"/>
+    <file name="musewpdisclosure.js" crc="4234230767" ref="phone>download:phone>how-it-work-talent:phone>faq-s:phone>home-talent:tablet>company:index:download"/>
+    <file name="jquery.scrolleffects.js" crc="4219894366" ref="phone>download:phone>contact-us:phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="form_check.php" crc="3805695515" ref="phone>how-it-work-talent:phone>contact-us:phone>home-talent:tablet>services:tablet>contact:index:how-it-works:t-s---c-s"/>
+    <file name="form_throttle.php" crc="3802629389" ref="phone>how-it-work-talent:phone>contact-us:phone>home-talent:tablet>services:tablet>contact:index:how-it-works:t-s---c-s"/>
+    <file name="form_process.php" crc="54267062" ref="phone>how-it-work-talent:phone>contact-us:phone>home-talent:tablet>services:tablet>contact:index:how-it-works:t-s---c-s"/>
+    <file name="form-u18829.php" crc="3964102687" ref="phone>how-it-work-talent"/>
+    <file name="musewpslideshow.js" crc="394033048" ref="phone>how-it-work-talent:phone>work-single:phone>home-talent:tablet>index:tablet>services:tablet>work-single:tablet>resources:index:how-it-works:work-single:contact-us"/>
+    <file name="jquery.museoverlay.js" crc="4265131668" ref="phone>how-it-work-talent:phone>work-single:phone>home-talent:tablet>index:tablet>services:tablet>work-single:tablet>resources:index:how-it-works:work-single:contact-us"/>
+    <file name="touchswipe.js" crc="497316881" ref="phone>how-it-work-talent:phone>work-single:phone>home-talent:tablet>index:tablet>services:tablet>work-single:tablet>resources:index:how-it-works:work-single:contact-us"/>
+    <file name="form-u19209.php" crc="331393332" ref="phone>contact-us"/>
+    <file name="form-u19250.php" crc="3930046062" ref="phone>contact-us"/>
+    <file name="jquery.musemenu.js" crc="238543590" ref="phone>home-talent:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="form-u35711.php" crc="234846032" ref="phone>home-talent"/>
+    <file name="form-u36960.php" crc="462280823" ref="phone>home-talent"/>
+    <file name="html5shiv.js" crc="4241844378" ref="phone>home-talent:phone>home-employer:tablet>index:tablet>company:tablet>services:tablet>work:tablet>work-single:tablet>resources:tablet>contact:index:download:how-it-works:faq-s:t-s---c-s:work-single:contact-us"/>
+    <file name="museredirect.js" crc="71780213" ref="tablet>index:tablet>work-single:index:download:faq-s:work-single:contact-us"/>
+    <file name="form-u20679.php" crc="3964102687" ref="tablet>services"/>
+    <file name="form-u21663.php" crc="3911313391" ref="tablet>contact"/>
+    <file name="form-u21287.php" crc="3930046062" ref="tablet>contact"/>
+    <file name="form-u25706.php" crc="478228504" ref="index"/>
+    <file name="form-u25486.php" crc="3896629697" ref="index"/>
+    <file name="form-u32950.php" crc="4051416974" ref="index"/>
+    <file name="form-u15148.php" crc="3964102687" ref="how-it-works"/>
+    <file name="form-u16014.php" crc="3930046062" ref="t-s---c-s"/>
+    <file name="form-u15845.php" crc="3996940391" ref="t-s---c-s"/>
   </folder>
   <folder name="images">
-    <file name="o-link-favicon.ico" crc="3876851264" ref="index"/>
-    <file name="option3.jpg" crc="294565149" seo="true" ref="index"/>
-    <file name="apple-device-transparent.png" crc="3865161473" seo="true" ref="index"/>
-    <file name="blank.gif" crc="4208392903" ref="index"/>
-    <file name="mobile_4.png" crc="4050296394" seo="true" ref="index"/>
-    <file name="loading.gif" crc="3815509949" ref="index"/>
-    <file name="u5751-17.png" crc="4041880562" ref="index"/>
-    <file name="u5751-17-r.png" crc="429909658" ref="index"/>
-    <file name="u5751-17-m.png" crc="527182234" ref="index"/>
-    <file name="u5751-17-fs.png" crc="64267662" ref="index"/>
-    <file name="u9305-17.png" crc="4041880562" ref="index"/>
-    <file name="u9305-17-r.png" crc="429909658" ref="index"/>
-    <file name="u9305-17-m.png" crc="527182234" ref="index"/>
-    <file name="u9305-17-fs.png" crc="64267662" ref="index"/>
-    <file name="u9745-17.png" crc="4041880562" ref="index"/>
-    <file name="u9745-17-r.png" crc="429909658" ref="index"/>
-    <file name="u9745-17-m.png" crc="527182234" ref="index"/>
-    <file name="u9745-17-fs.png" crc="64267662" ref="index"/>
-    <file name="arrow.png" crc="4199736968" seo="true" ref="index"/>
-    <file name="s2_2.png" crc="453244724" seo="true" ref="index"/>
-    <file name="s1_2.png" crc="461694740" seo="true" ref="index"/>
-    <file name="mc_cities_lowres_016.jpg" crc="350916596" ref="index"/>
-    <file name="recruitmentwordcloudfull.jpg" crc="4077711433" ref="index"/>
-    <file name="retailer.jpg" crc="4215030388" ref="index"/>
-    <file name="slips3.jpg" crc="456146590" ref="index"/>
+    <file name="home-favicon.ico" crc="3876851264" ref="phone>index"/>
+    <file name="ronnie-logo.svg" crc="394601264" ref="phone>index:phone>home-talent:index"/>
+    <file name="ronnie logo_poster_.png" crc="4053259471" ref="phone>index"/>
+    <file name="user-new.png" crc="3867923153" seo="true" ref="phone>index"/>
+    <file name="user-new_2x.png" crc="58240395" seo="true" ref="phone>index"/>
+    <file name="employernew.png" crc="46085003" seo="true" ref="phone>index"/>
+    <file name="employernew_2x.png" crc="439586750" seo="true" ref="phone>index"/>
+    <file name="fast.jpg" crc="3763222116" ref="phone>download:tablet>company:download"/>
+    <file name="u18262-grad.png" crc="44694074" ref="phone>download:tablet>company:download"/>
+    <file name="efficient.jpg" crc="368633027" ref="phone>download:tablet>company:download"/>
+    <file name="highgoals.jpg" crc="4090602132" ref="phone>download:tablet>company:download"/>
+    <file name="u18272-grad.png" crc="460009981" ref="phone>download:tablet>company:download"/>
+    <file name="camera.jpg" crc="4224436225" ref="phone>download:tablet>company:download"/>
+    <file name="team02.jpg" crc="147945182" ref="phone>download:tablet>company:download"/>
+    <file name="u18296-grad.png" crc="254039889" ref="phone>download:tablet>company:download"/>
+    <file name="u18296-r-grad.png" crc="430587810" ref="phone>download:tablet>company:download"/>
+    <file name="team03.jpg" crc="4262020431" ref="phone>download:tablet>company:download"/>
+    <file name="team01.jpg" crc="3804418772" ref="phone>download:tablet>company:download"/>
+    <file name="team04.jpg" crc="166709099" ref="phone>download:tablet>company:download"/>
+    <file name="coffeemug.jpg" crc="4210689515" ref="phone>download:tablet>company:download"/>
+    <file name="mackbook-air-mock-up_03.png" crc="4281121399" seo="true" ref="phone>download:tablet>company:download"/>
+    <file name="mackbook-air-mock-up_03_2x.png" crc="4281121399" seo="true" ref="phone>download:tablet>company:download"/>
+    <file name="girl.jpg" crc="72317110" seo="true" ref="phone>download:tablet>company:download"/>
+    <file name="type.jpg" crc="16083518" ref="phone>download:phone>how-it-work-talent:phone>contact-us:tablet>company:tablet>services:tablet>contact:download:how-it-works:t-s---c-s"/>
+    <file name="footer_lodyas.jpg" crc="186683282" ref="phone>download:phone>home-employer:tablet>company:download"/>
+    <file name="option3white56x56.png" crc="3836588698" seo="true" ref="phone>download"/>
+    <file name="option3white56x56_2x.png" crc="4234727836" seo="true" ref="phone>download"/>
+    <file name="tools.jpg" crc="526187098" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="imac1270x264.jpg" crc="152011070" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="imac1270x264_2x.jpg" crc="89449701" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="ipad270x204.jpg" crc="77200181" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="ipad270x204_2x.jpg" crc="3876949980" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="imac2271x262.jpg" crc="494099958" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="imac2271x262_2x.jpg" crc="3880426654" seo="true" ref="phone>how-it-work-talent"/>
+    <file name="feautred-work08-u18681-fr.png" crc="105893377" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="feautred-work07-u18695-fr.png" crc="3991747114" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="feautred-work09-u18702-fr.png" crc="3806872733" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="feautred-work10-u18687-fr.png" crc="149233890" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="feautred-work11-u18698-fr.png" crc="4247429501" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="feautred-work12-u18710-fr.png" crc="3952749113" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="meeting.png" crc="4059713869" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="dot2.png" crc="3987672867" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="idea.png" crc="243386867" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="laptop.png" crc="227248795" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="speaker.png" crc="117823629" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="u18837-17.png" crc="3924253928" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-r.png" crc="232337049" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-m.png" crc="232337049" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-fs.png" crc="4071638346" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17_2x.png" crc="3866253157" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-r_2x.png" crc="3808378376" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-m_2x.png" crc="3808378376" ref="phone>how-it-work-talent"/>
+    <file name="u18837-17-fs_2x.png" crc="481636081" ref="phone>how-it-work-talent"/>
+    <file name="client02.jpg" crc="3864205661" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client01.jpg" crc="249400800" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client03.jpg" crc="112189988" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client04.jpg" crc="131537102" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo4.jpg" crc="80041949" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo1.jpg" crc="74160493" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo5.jpg" crc="4164360244" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo2.jpg" crc="4224887554" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo3.jpg" crc="330837370" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="client-logo6.jpg" crc="40387890" seo="true" ref="phone>how-it-work-talent:tablet>services:how-it-works"/>
+    <file name="portfolio01.jpg" crc="3843337164" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio02.jpg" crc="343515929" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio03-u19111-fr.jpg" crc="4141625518" ref="phone>how-it-works-employer:faq-s"/>
+    <file name="portfolio04.jpg" crc="3940623719" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio05-u19099-fr.jpg" crc="382483910" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio06.jpg" crc="3848357536" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio07.jpg" crc="525880649" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio08.jpg" crc="3857344727" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio09-u19121-fr.jpg" crc="51534602" ref="phone>how-it-works-employer:tablet>work"/>
+    <file name="portfolio10-u19086-fr.jpg" crc="4257203777" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio11.jpg" crc="4149497407" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio12.jpg" crc="226184205" ref="phone>how-it-works-employer:tablet>work:faq-s"/>
+    <file name="portfolio03.jpg" crc="3906047110" seo="true" ref="phone>work-single:tablet>work:tablet>work-single"/>
+    <file name="blank.gif" crc="4208392903" ref="phone>work-single:phone>home-talent:tablet>index:tablet>work-single:index:work-single"/>
+    <file name="portfolio05.jpg" crc="4063281270" seo="true" ref="phone>work-single:tablet>work-single"/>
+    <file name="portfolio09.jpg" crc="321413167" seo="true" ref="phone>work-single:tablet>work-single:faq-s"/>
+    <file name="portfolio10.jpg" crc="469374376" seo="true" ref="phone>work-single:tablet>work-single"/>
+    <file name="loading.gif" crc="3815509949" ref="phone>work-single:phone>home-talent:tablet>index:tablet>work-single:index:work-single"/>
+    <file name="u19229-17.png" crc="3918900660" ref="phone>contact-us"/>
+    <file name="u19229-17-r.png" crc="531413436" ref="phone>contact-us"/>
+    <file name="u19229-17-m.png" crc="531413436" ref="phone>contact-us"/>
+    <file name="u19229-17-fs.png" crc="4235618929" ref="phone>contact-us"/>
+    <file name="u19229-17_2x.png" crc="505086812" ref="phone>contact-us"/>
+    <file name="u19229-17-r_2x.png" crc="452470973" ref="phone>contact-us"/>
+    <file name="u19229-17-m_2x.png" crc="452470973" ref="phone>contact-us"/>
+    <file name="u19229-17-fs_2x.png" crc="3964489758" ref="phone>contact-us"/>
+    <file name="u19251-17.png" crc="4170616164" ref="phone>contact-us"/>
+    <file name="u19251-17-r.png" crc="232337049" ref="phone>contact-us"/>
+    <file name="u19251-17-m.png" crc="232337049" ref="phone>contact-us"/>
+    <file name="u19251-17-fs.png" crc="4280499691" ref="phone>contact-us"/>
+    <file name="u19251-17_2x.png" crc="4074802670" ref="phone>contact-us"/>
+    <file name="u19251-17-r_2x.png" crc="3808378376" ref="phone>contact-us"/>
+    <file name="u19251-17-m_2x.png" crc="3808378376" ref="phone>contact-us"/>
+    <file name="u19251-17-fs_2x.png" crc="3959359363" ref="phone>contact-us"/>
+    <file name="switch-composite path.png" crc="88993196" seo="true" ref="phone>home-talent"/>
+    <file name="switch-composite path_2x.png" crc="453163123" seo="true" ref="phone>home-talent"/>
+    <file name="switch-composite path2.png" crc="371734402" seo="true" ref="phone>home-talent"/>
+    <file name="switch-composite path_2x2.png" crc="127543917" seo="true" ref="phone>home-talent"/>
+    <file name="option3white99x99.png" crc="4070735623" seo="true" ref="phone>home-talent"/>
+    <file name="option3white99x99_2x.png" crc="3954493998" seo="true" ref="phone>home-talent"/>
+    <file name="paul.jpg" crc="4218745600" ref="phone>home-talent:index"/>
+    <file name="option3white.png" crc="466435328" seo="true" ref="phone>home-talent"/>
+    <file name="option3white_2x.png" crc="3954493998" seo="true" ref="phone>home-talent"/>
+    <file name="apple-device-transparent.png" crc="4125427143" seo="true" ref="phone>home-talent"/>
+    <file name="apple-device-transparent_2x.png" crc="320203986" seo="true" ref="phone>home-talent"/>
+    <file name="mobile_4.png" crc="3985789491" seo="true" ref="phone>home-talent"/>
+    <file name="mobile_4_2x.png" crc="3861439141" seo="true" ref="phone>home-talent"/>
+    <file name="noble-zero2.png" crc="467289109" seo="true" ref="phone>home-talent"/>
+    <file name="iphone342x598172x300.png" crc="445926104" seo="true" ref="phone>home-talent"/>
+    <file name="post-a-job.svg" crc="4258559945" ref="phone>home-talent"/>
+    <file name="post a job_poster_.png" crc="4139479955" ref="phone>home-talent"/>
+    <file name="u35717-17.png" crc="24604358" ref="phone>home-talent"/>
+    <file name="u35717-17-r.png" crc="4146021921" ref="phone>home-talent"/>
+    <file name="u35717-17-m.png" crc="454830423" ref="phone>home-talent"/>
+    <file name="u35717-17-fs.png" crc="3821820872" ref="phone>home-talent"/>
+    <file name="u35717-17_2x.png" crc="444618871" ref="phone>home-talent"/>
+    <file name="u35717-17-r_2x.png" crc="4212404702" ref="phone>home-talent"/>
+    <file name="u35717-17-m_2x.png" crc="4031154323" ref="phone>home-talent"/>
+    <file name="u35717-17-fs_2x.png" crc="3994693104" ref="phone>home-talent"/>
+    <file name="radiobuttonunchecked.png" crc="3976871150" ref="phone>home-talent:index"/>
+    <file name="radiobuttonunchecked_2x.png" crc="513732622" ref="phone>home-talent:index"/>
+    <file name="radiobuttonuncheckedrollover.png" crc="4276313674" ref="phone>home-talent:index"/>
+    <file name="radiobuttonuncheckedrollover_2x.png" crc="4247830771" ref="phone>home-talent:index"/>
+    <file name="radiobuttonuncheckedmousedown.png" crc="54863585" ref="phone>home-talent:index"/>
+    <file name="radiobuttonuncheckedmousedown_2x.png" crc="488488871" ref="phone>home-talent:index"/>
+    <file name="radiobuttonchecked.png" crc="4193302265" ref="phone>home-talent:index"/>
+    <file name="radiobuttonchecked_2x.png" crc="511964773" ref="phone>home-talent:index"/>
+    <file name="radiobuttoncheckedrollover.png" crc="88928956" ref="phone>home-talent:index"/>
+    <file name="radiobuttoncheckedrollover_2x.png" crc="3892053348" ref="phone>home-talent:index"/>
+    <file name="radiobuttoncheckedmousedown.png" crc="4280357799" ref="phone>home-talent:index"/>
+    <file name="radiobuttoncheckedmousedown_2x.png" crc="4195749169" ref="phone>home-talent:index"/>
+    <file name="rock sushi thai.png" crc="338994655" seo="true" ref="phone>home-talent:index"/>
+    <file name="u36965-17.png" crc="13624279" ref="phone>home-talent"/>
+    <file name="u36965-17-r.png" crc="398303532" ref="phone>home-talent"/>
+    <file name="u36965-17-m.png" crc="3982957406" ref="phone>home-talent"/>
+    <file name="u36965-17-fs.png" crc="32257828" ref="phone>home-talent"/>
+    <file name="u36965-17_2x.png" crc="4006224769" ref="phone>home-talent"/>
+    <file name="u36965-17-r_2x.png" crc="3947915519" ref="phone>home-talent"/>
+    <file name="u36965-17-m_2x.png" crc="3810836237" ref="phone>home-talent"/>
+    <file name="u36965-17-fs_2x.png" crc="421657340" ref="phone>home-talent"/>
+    <file name="puer logo gold85x65.png" crc="4147325612" seo="true" ref="phone>home-talent"/>
+    <file name="puer logo gold85x65_2x.png" crc="4189716231" seo="true" ref="phone>home-talent"/>
+    <file name="rondebosch boys-crop-u35692.png" crc="274390411" ref="phone>home-talent"/>
+    <file name="slug and lettuce.png" crc="196709164" seo="true" ref="phone>home-talent:index"/>
+    <file name="teachme2.png" crc="121024574" seo="true" ref="phone>home-talent:index"/>
+    <file name="the toad.png" crc="3816472544" seo="true" ref="phone>home-talent:index"/>
+    <file name="tonic promotions.png" crc="3945945612" seo="true" ref="phone>home-talent:index"/>
+    <file name="butlers pizza.png" crc="4187128642" seo="true" ref="phone>home-talent:index"/>
+    <file name="geckobar-crop-u35704.png" crc="4082941431" ref="phone>home-talent"/>
+    <file name="intuition.png" crc="446931122" seo="true" ref="phone>home-talent:index"/>
+    <file name="tunnel.jpg" crc="4129225789" seo="true" ref="tablet>index"/>
+    <file name="watch.jpg" crc="3790426662" seo="true" ref="tablet>index"/>
+    <file name="railtrack.jpg" crc="3852531372" seo="true" ref="tablet>index"/>
+    <file name="u21431-grad.png" crc="3779703179" ref="tablet>company:download"/>
+    <file name="u21441-grad.png" crc="4125728692" ref="tablet>company:download"/>
+    <file name="u21531-grad.png" crc="263308026" ref="tablet>services:how-it-works"/>
+    <file name="imac1.jpg" crc="89449701" seo="true" ref="tablet>services:how-it-works"/>
+    <file name="ipad.jpg" crc="3876949980" seo="true" ref="tablet>services:how-it-works"/>
+    <file name="imac2.jpg" crc="3880426654" seo="true" ref="tablet>services:how-it-works"/>
+    <file name="u20687-17.png" crc="519469802" ref="tablet>services"/>
+    <file name="u20687-17-r.png" crc="3893827826" ref="tablet>services"/>
+    <file name="u20687-17-m.png" crc="3893827826" ref="tablet>services"/>
+    <file name="u20687-17-fs.png" crc="519469802" ref="tablet>services"/>
+    <file name="u20687-17_2x.png" crc="403923699" ref="tablet>services"/>
+    <file name="u20687-17-r_2x.png" crc="4065908068" ref="tablet>services"/>
+    <file name="u20687-17-m_2x.png" crc="4065908068" ref="tablet>services"/>
+    <file name="u20687-17-fs_2x.png" crc="403923699" ref="tablet>services"/>
+    <file name="u21664-17.png" crc="3918900660" ref="tablet>contact"/>
+    <file name="u21664-17-r.png" crc="531413436" ref="tablet>contact"/>
+    <file name="u21664-17-m.png" crc="531413436" ref="tablet>contact"/>
+    <file name="u21664-17-fs.png" crc="4235618929" ref="tablet>contact"/>
+    <file name="u21664-17_2x.png" crc="505086812" ref="tablet>contact"/>
+    <file name="u21664-17-r_2x.png" crc="452470973" ref="tablet>contact"/>
+    <file name="u21664-17-m_2x.png" crc="452470973" ref="tablet>contact"/>
+    <file name="u21664-17-fs_2x.png" crc="3964489758" ref="tablet>contact"/>
+    <file name="u21294-17.png" crc="519469802" ref="tablet>contact"/>
+    <file name="u21294-17-r.png" crc="3893827826" ref="tablet>contact"/>
+    <file name="u21294-17-m.png" crc="3893827826" ref="tablet>contact"/>
+    <file name="u21294-17-fs.png" crc="519469802" ref="tablet>contact"/>
+    <file name="u21294-17_2x.png" crc="403923699" ref="tablet>contact"/>
+    <file name="u21294-17-r_2x.png" crc="4065908068" ref="tablet>contact"/>
+    <file name="u21294-17-m_2x.png" crc="4065908068" ref="tablet>contact"/>
+    <file name="u21294-17-fs_2x.png" crc="403923699" ref="tablet>contact"/>
+    <file name="option3white.svg" crc="84686986" ref="index"/>
+    <file name="option3white_poster_.png" crc="4041863272" ref="index"/>
+    <file name="multi device.png" crc="4258506801" seo="true" ref="index"/>
+    <file name="multi device_2x.png" crc="262104297" seo="true" ref="index"/>
+    <file name="samsung-galaxy-s7.png" crc="3863527733" seo="true" ref="index"/>
+    <file name="u25722-17.png" crc="438011131" ref="index"/>
+    <file name="u25722-17-r.png" crc="40861212" ref="index"/>
+    <file name="u25722-17-m.png" crc="377144494" ref="index"/>
+    <file name="u25722-17-fs.png" crc="4281459506" ref="index"/>
+    <file name="u25722-17_2x.png" crc="468022343" ref="index"/>
+    <file name="u25722-17-r_2x.png" crc="144435829" ref="index"/>
+    <file name="u25722-17-m_2x.png" crc="4210623501" ref="index"/>
+    <file name="u25722-17-fs_2x.png" crc="4211180343" ref="index"/>
+    <file name="s2_2.png" crc="435204011" seo="true" ref="index"/>
+    <file name="samsung-galaxy-s7362x362.png" crc="3871606534" seo="true" ref="index"/>
+    <file name="mc_cities_lowres_016.jpg" crc="259793346" ref="index"/>
+    <file name="recruitmentwordcloudfull-u25630-fr.jpg" crc="3922842718" ref="index"/>
+    <file name="recruitmentwordcloudfull-u25630-fr_2x.jpg" crc="3805512151" ref="index"/>
+    <file name="retailer-u25629-fr.jpg" crc="3994558755" ref="index"/>
+    <file name="slips3-u25632-fr.jpg" crc="3883995933" ref="index"/>
+    <file name="galaxys4_black_portrait.png" crc="109044094" seo="true" ref="index"/>
+    <file name="recruitmentwordcloudfull-u25591-fr.jpg" crc="122588705" ref="index"/>
+    <file name="recruitmentwordcloudfull-u25591-fr_2x.jpg" crc="356856799" ref="index"/>
+    <file name="retailer-u25588-fr.jpg" crc="3885342323" ref="index"/>
+    <file name="slips3-u25586-fr.jpg" crc="317409946" ref="index"/>
     <file name="iphone342x598.png" crc="501255889" seo="true" ref="index"/>
-    <file name="u2486-17.png" crc="184735215" ref="index"/>
-    <file name="u2486-17-r.png" crc="456988925" ref="index"/>
-    <file name="u2486-17-m.png" crc="4082448714" ref="index"/>
-    <file name="u2486-17-fs.png" crc="92978113" ref="index"/>
-    <file name="slit shadow 2 sharp.png" crc="510555609" seo="true" ref="index"/>
-    <file name="u9109-17.png" crc="292421491" ref="index"/>
-    <file name="u9109-17-r.png" crc="249476952" ref="index"/>
-    <file name="u9109-17-m.png" crc="4119863901" ref="index"/>
-    <file name="u9109-17-fs.png" crc="372609269" ref="index"/>
-    <file name="radiobuttonunchecked.png" crc="3976871150" ref="index"/>
-    <file name="radiobuttonuncheckedrollover.png" crc="4276313674" ref="index"/>
-    <file name="radiobuttonuncheckedmousedown.png" crc="54863585" ref="index"/>
-    <file name="radiobuttonchecked.png" crc="4193302265" ref="index"/>
-    <file name="radiobuttoncheckedrollover.png" crc="88928956" ref="index"/>
-    <file name="radiobuttoncheckedmousedown.png" crc="4280357799" ref="index"/>
-    <file name="web.png" crc="4174656385" seo="true" ref="index"/>
+    <file name="u25502-17.png" crc="24604358" ref="index"/>
+    <file name="u25502-17-r.png" crc="4146021921" ref="index"/>
+    <file name="u25502-17-m.png" crc="454830423" ref="index"/>
+    <file name="u25502-17-fs.png" crc="3821820872" ref="index"/>
+    <file name="u25502-17_2x.png" crc="444618871" ref="index"/>
+    <file name="u25502-17-r_2x.png" crc="4212404702" ref="index"/>
+    <file name="u25502-17-m_2x.png" crc="4031154323" ref="index"/>
+    <file name="u25502-17-fs_2x.png" crc="3994693104" ref="index"/>
+    <file name="u32966-17.png" crc="3343100" ref="index"/>
+    <file name="u32966-17-r.png" crc="4270794686" ref="index"/>
+    <file name="u32966-17-m.png" crc="323297500" ref="index"/>
+    <file name="u32966-17-fs.png" crc="203842085" ref="index"/>
+    <file name="u32966-17_2x.png" crc="3846605391" ref="index"/>
+    <file name="u32966-17-r_2x.png" crc="4068849378" ref="index"/>
+    <file name="u32966-17-m_2x.png" crc="193710543" ref="index"/>
+    <file name="u32966-17-fs_2x.png" crc="289964822" ref="index"/>
+    <file name="puer logo gold.png" crc="498002565" seo="true" ref="index"/>
+    <file name="puer logo gold_2x.png" crc="3832563767" seo="true" ref="index"/>
+    <file name="rondebosch boys.png" crc="230941636" seo="true" ref="index"/>
+    <file name="geckobar.png" crc="4165020703" seo="true" ref="index"/>
+    <file name="option3whitewhite.png" crc="3931771387" seo="true" ref="index"/>
+    <file name="option3whitewhite_2x.png" crc="3980034829" seo="true" ref="index"/>
+    <file name="half-white.gif" crc="4199377683" ref="download:how-it-works:t-s---c-s"/>
+    <file name="dot.png" crc="4187112353" ref="how-it-works"/>
+    <file name="u15164-17.png" crc="519469802" ref="how-it-works"/>
+    <file name="u15164-17-r.png" crc="3893827826" ref="how-it-works"/>
+    <file name="u15164-17-m.png" crc="3893827826" ref="how-it-works"/>
+    <file name="u15164-17-fs.png" crc="519469802" ref="how-it-works"/>
+    <file name="u15164-17_2x.png" crc="403923699" ref="how-it-works"/>
+    <file name="u15164-17-r_2x.png" crc="4065908068" ref="how-it-works"/>
+    <file name="u15164-17-m_2x.png" crc="4065908068" ref="how-it-works"/>
+    <file name="u15164-17-fs_2x.png" crc="403923699" ref="how-it-works"/>
+    <file name="u16022-17.png" crc="4170616164" ref="t-s---c-s"/>
+    <file name="u16022-17-r.png" crc="232337049" ref="t-s---c-s"/>
+    <file name="u16022-17-m.png" crc="232337049" ref="t-s---c-s"/>
+    <file name="u16022-17-fs.png" crc="4280499691" ref="t-s---c-s"/>
+    <file name="u16022-17_2x.png" crc="4074802670" ref="t-s---c-s"/>
+    <file name="u16022-17-r_2x.png" crc="3808378376" ref="t-s---c-s"/>
+    <file name="u16022-17-m_2x.png" crc="3808378376" ref="t-s---c-s"/>
+    <file name="u16022-17-fs_2x.png" crc="3959359363" ref="t-s---c-s"/>
+    <file name="u15846-17.png" crc="3918900660" ref="t-s---c-s"/>
+    <file name="u15846-17-r.png" crc="531413436" ref="t-s---c-s"/>
+    <file name="u15846-17-m.png" crc="531413436" ref="t-s---c-s"/>
+    <file name="u15846-17-fs.png" crc="4235618929" ref="t-s---c-s"/>
+    <file name="u15846-17_2x.png" crc="505086812" ref="t-s---c-s"/>
+    <file name="u15846-17-r_2x.png" crc="452470973" ref="t-s---c-s"/>
+    <file name="u15846-17-m_2x.png" crc="452470973" ref="t-s---c-s"/>
+    <file name="u15846-17-fs_2x.png" crc="3964489758" ref="t-s---c-s"/>
+    <file name="portfolio03-crop-u16737.jpg" crc="4277357277" ref="work-single"/>
+    <file name="portfolio05-crop-u16800.jpg" crc="528495787" ref="work-single"/>
+    <file name="portfolio09-crop-u16809.jpg" crc="11674510" ref="work-single"/>
+    <file name="portfolio10-crop-u16818.jpg" crc="3767177314" ref="work-single"/>
   </folder>
-  <file name="index.html" crc="196110715" seo="true" mt="1461567258698" redirect="true"/>
-  <file name="download.html" crc="420304658" seo="true" mt="1461566660995" redirect="false"/>
-  <file name="how-it-works.html" crc="3924741425" seo="true" mt="1461566660995" redirect="false"/>
-  <file name="faq-s.html" crc="474752914" seo="true" mt="1461566660995" redirect="false"/>
-  <file name="contact-us.html" crc="3866157536" seo="true" mt="1461566660995" redirect="false"/>
+  <folder name="tablet">
+    <folder name="css">
+      <file name="master_header-footer.css" crc="32571213" ref="tablet>work-single:tablet>services:tablet>work:tablet>company:tablet>resources:tablet>contact"/>
+      <file name="master_navigation.css" crc="4122182896" ref="tablet>work-single:tablet>services:tablet>work:tablet>company:tablet>resources:tablet>index:tablet>contact"/>
+      <file name="work-single.css" crc="281356659" ref="tablet>work-single"/>
+      <file name="services.css" crc="4186004396" ref="tablet>services"/>
+      <file name="work.css" crc="113485046" ref="tablet>work"/>
+      <file name="company.css" crc="475821770" ref="tablet>company"/>
+      <file name="resources.css" crc="354673638" ref="tablet>resources"/>
+      <file name="index.css" crc="218077907" ref="tablet>index"/>
+      <file name="contact.css" crc="94811296" ref="tablet>contact"/>
+    </folder>
+    <file name="index.html" crc="4218384924" seo="true" mt="1467205912175" redirect="true"/>
+    <file name="company.html" crc="376826591" seo="true" mt="1467205915585" redirect="true"/>
+    <file name="services.html" crc="4113574542" seo="true" mt="1467205915585" redirect="true"/>
+    <file name="work.html" crc="4284978309" seo="true" mt="1467205915585" redirect="true"/>
+    <file name="work-single.html" crc="3789232413" seo="true" mt="1467205915585" redirect="true"/>
+    <file name="resources.html" crc="398186971" seo="true" mt="1467205915585" redirect="true"/>
+    <file name="contact.html" crc="323327165" seo="true" mt="1467205915585" redirect="true"/>
+  </folder>
+  <folder name="phone">
+    <folder name="css">
+      <file name="master_talent-headerfooter.css" crc="131381212" ref="phone>work-single:phone>home-talent:phone>how-it-work-talent:phone>how-it-works-employer:phone>download:phone>faq-s:phone>contact-us"/>
+      <file name="master_employer-header-footer.css" crc="3918159697" ref="phone>home-employer"/>
+      <file name="work-single.css" crc="4030156967" ref="phone>work-single"/>
+      <file name="iefonts_work-single.css" crc="507356161" ref="phone>work-single"/>
+      <file name="home-talent.css" crc="3933456613" ref="phone>home-talent"/>
+      <file name="iefonts_home-talent.css" crc="499779389" ref="phone>home-talent"/>
+      <file name="how-it-work-talent.css" crc="3937476693" ref="phone>how-it-work-talent"/>
+      <file name="iefonts_how-it-work-talent.css" crc="4223079189" ref="phone>how-it-work-talent"/>
+      <file name="home-employer.css" crc="4187104313" ref="phone>home-employer"/>
+      <file name="iefonts_home-employer.css" crc="4187010934" ref="phone>home-employer"/>
+      <file name="how-it-works-employer.css" crc="22851182" ref="phone>how-it-works-employer"/>
+      <file name="iefonts_how-it-works-employer.css" crc="312273411" ref="phone>how-it-works-employer"/>
+      <file name="download.css" crc="475112805" ref="phone>download"/>
+      <file name="iefonts_download.css" crc="4103346528" ref="phone>download"/>
+      <file name="faq-s.css" crc="4070997644" ref="phone>faq-s"/>
+      <file name="iefonts_faq-s.css" crc="312273411" ref="phone>faq-s"/>
+      <file name="index.css" crc="87709996" ref="phone>index"/>
+      <file name="iefonts_index.css" crc="3810562397" ref="phone>index"/>
+      <file name="contact-us.css" crc="379816066" ref="phone>contact-us"/>
+      <file name="iefonts_contact-us.css" crc="68188542" ref="phone>contact-us"/>
+    </folder>
+    <file name="index.html" crc="192169519" seo="true" mt="1467363999618" redirect="true"/>
+    <file name="download.html" crc="43903635" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="how-it-work-talent.html" crc="9653352" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="how-it-works-employer.html" crc="4007733742" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="work-single.html" crc="461787414" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="faq-s.html" crc="263695159" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="contact-us.html" crc="359437347" seo="true" mt="1467364658010" redirect="true"/>
+    <file name="home-talent.html" crc="133874412" seo="true" mt="1467364750164" redirect="true"/>
+    <file name="home-employer.html" crc="187701216" seo="true" mt="1467205931001" redirect="true"/>
+  </folder>
+  <file name="index.html" crc="399637743" seo="true" mt="1467640770229" redirect="true"/>
+  <file name="download.html" crc="355931413" seo="true" mt="1467205908463" redirect="true"/>
+  <file name="how-it-works.html" crc="285306572" seo="true" mt="1467205908517" redirect="true"/>
+  <file name="faq-s.html" crc="442038471" seo="true" mt="1467205910371" redirect="true"/>
+  <file name="t-s---c-s.html" crc="3835239852" seo="true" mt="1467205914556" redirect="true"/>
+  <file name="work-single.html" crc="404950079" seo="true" mt="1467205911590" redirect="true"/>
+  <file name="contact-us.html" crc="4129668053" seo="true" mt="1467205911514" redirect="true"/>
 </manifest>

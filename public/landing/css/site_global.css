@@ -98,26 +98,26 @@ body
 
 a:link
 {
-	color: #FFFFFF;
-	text-decoration: underline;
+	color: #757575;
+	text-decoration: inherit;
 }
 
 a:visited
 {
-	color: #800080;
-	text-decoration: underline;
+	color: #FFFFFF;
+	text-decoration: inherit;
 }
 
 a:hover
 {
-	color: #33B7CC;
-	text-decoration: underline;
+	color: #5F5F5F;
+	text-decoration: inherit;
 }
 
 a:active
 {
 	color: #EE0000;
-	text-decoration: underline;
+	text-decoration: inherit;
 }
 
 a.nontext /* used to override default properties of 'a' tag */
@@ -146,6 +146,71 @@ a.nontext /* used to override default properties of 'a' tag */
 	padding: 0px;
 }
 
+.p
+{
+	color: #7F7F7F;
+	font-family: '__Montserrat_5';
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 18px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h1
+{
+	color: #000000;
+	font-size: 48px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h2
+{
+	color: #000000;
+	font-size: 40px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h3
+{
+	color: #000000;
+	font-size: 34px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h4
+{
+	color: #000000;
+	font-size: 30px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h5
+{
+	color: #000000;
+	font-size: 24px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
+.h6
+{
+	color: #000000;
+	font-size: 18px;
+	letter-spacing: 0px;
+	text-align: left;
+	padding: 0px;
+}
+
 .quote---text
 {
 	color: #25C4AA;
@@ -166,22 +231,6 @@ a.nontext /* used to override default properties of 'a' tag */
 	padding: 0px;
 }
 
-.h3
-{
-	color: #000000;
-	font-size: 34px;
-	text-align: left;
-	padding: 0px;
-}
-
-.h5
-{
-	color: #000000;
-	font-size: 24px;
-	text-align: left;
-	padding: 0px;
-}
-
 .Headline
 {
 	color: #FFFFFF;
@@ -193,13 +242,28 @@ a.nontext /* used to override default properties of 'a' tag */
 	padding: 0px;
 }
 
-.Menu-Buttons
+.H1
 {
-	color: #383838;
-	font-family: dosis, sans-serif;
-	font-size: 16px;
-	font-weight: 300;
-	letter-spacing: 3px;
+	color: #333333;
+	font-family: pt-sans-narrow, sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.H2
+{
+	color: #666666;
+	font-family: pt-sans-narrow, sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+}
+
+.Body
+{
+	color: #333333;
+	font-family: arimo, sans-serif;
+	font-size: 13px;
+	font-weight: 400;
 }
 
 .list0 li:before
