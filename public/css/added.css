@@ -750,12 +750,17 @@ padding-top: 18px;
 
 }
 
+.applicantsTables tbody tr td:last-child button{
+
+    margin-top: -7px;
+}
+
 .applicantsTable tbody tr:nth-child(even) {
     background-color: white;
 }
 
 .applicantsTables{
-    background-color: transparent;
+
     border-radius: 8px;
 
 }
@@ -768,6 +773,7 @@ padding-top: 18px;
     border: none;
 }
 .applicantsTables tbody tr:last-child td:last-child {
+
     border-bottom-right-radius: 10px;
 }
 
@@ -775,11 +781,13 @@ padding-top: 18px;
     border-bottom-left-radius: 10px;
 }
 .applicantsTables tbody tr td {
+
     background-color: white;
-    padding-top: 10px;
+    padding-top: 11px;
+
 }
 .applicantsTables tbody tr td:last-child {
-    padding-top:8px;
+
     float: right;
 
 
@@ -810,7 +818,7 @@ padding-top: 18px;
 .applicantsTable tbody tr td:last-child {
     padding-top:8px;
     float: right;
-    border: none;
+
 
 }
 .table tbody tr td button {
