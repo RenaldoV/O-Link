@@ -18,11 +18,16 @@ body {
   color: #58666e;
   background-color: transparent;
 }
-
+.nav-container{
+  margin: 0;
+  padding: 0;
+}
 *:focus {
   outline: 0 !important;
 }
-
+.page{
+margin-right:20px;
+}
 .h1,
 .h2,
 .h3,
@@ -3710,7 +3715,8 @@ a.text-#000000:hover {
 }
 
 .wrapper-md {
-  padding: 20px;
+  padding-top:20px;
+  padding: 0;
 }
 
 .wrapper-lg {
@@ -5299,6 +5305,7 @@ span.fa-stack.fa-lg.blue{
     }
     div.page{
 
+
         display: inline-block;
         text-align: center;
 
@@ -5316,6 +5323,7 @@ span.fa-stack.fa-lg.blue{
       margin-bottom: 0px;
     }
     div.dashTops{
+
       margin-top: 20px;
     }
     div.jobsContainer{

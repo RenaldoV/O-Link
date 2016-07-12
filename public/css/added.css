@@ -693,7 +693,13 @@ padding-top: 18px;
 }
 
 .profileBox{
-    padding: 30px;
+    padding: 0;
+}
+.profileLeft{
+    padding-right: 10px;
+}
+.profileRight{
+    padding-left: 10px;
 }
 .timeSelect{
     margin: 5px;
