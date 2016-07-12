@@ -6,31 +6,41 @@
     <div class="jobContent blueBorder container">
 
         <h2><b>{{job.post.category}}</b></h2>
-        <hr>
-        <div class="wordwrap"> {{job.post.description}}
-        </div>
-
-        <hr>
-        <span class="jobSubHeader">For</span><br>
+        <span class="jobSubHeader">For</span><br><br>
         <div id="jobEmployer">
 
-            <a href="/profile?user={{job.employerID._id}}"><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse img-circle jobPp"></a>
+            <a href="/profile?user={{job.employerID._id}}"><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse img-circle jobPp"></a><br class="jobPPMobile">
             <div id="employerName">
             <h2 ng-if="job.employerID.employerType=='Company'">{{job.employerID.company.name}}</h2>
             <h2 ng-if="job.employerID.employerType=='Individual'">{{job.employerID.contact.name +" "+job.employerID.contact.surname}}</h2>
             </div>
         </div>
-        <ul class="list-group no-borders pull-in">
-<hr>
-       <span class="jobSubHeader">Requirements:</span>
-            </ul>
-
+        <hr>
         <div ng-if="job.post.interviewRequired" class="text-danger">Interview Required</div>
         <div ng-if="!job.post.interviewRequired" style="color: grey">Interview Not Required</div>
-        <br>
-
+        <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/job-details-green-new.png" class="heading-img img-responsive">
+            <div class="content-heading"><h4 class="form-section-label">Description </h4><br/></div>
+        </div>
+        <div class="wordwrap" > {{job.post.description}}
+        </div>
+        <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
+            <div class="content-heading"><h4 class="form-section-label">Pay </h4></div>
+        </div>
+        <div class="wordwrap" style="font-size: 16px;"><b> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></b></div>
+        <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
+            <div class="content-heading"><h4 class="form-section-label">Requirements </h4></div>
+        </div>
         <ul ng-if="job.post.requirements.length > 0 " class="jobpg list-group no-borders pull-in">
-            <b>Matric Results</b>
+            <div class="row">
+                <img src="../img/Icons/matric-results-green-NEW.png" class="sub-heading-img">
+                <div class="content-heading"><b class="form-section-label">Matric Results </b></div>
+            </div>
             <li   ng-repeat="res in job.post.requirements">
                 <div class="clear">
                     <div>{{res.name}}  {{res.symbol}}</div>
@@ -38,9 +48,11 @@
             </li>
 
         </ul>
-        <br>
         <ul ng-if="job.post.experience.length > 0 " class="jobpg list-group no-bg no-borders pull-in">
-           <b> Experience</b>
+            <div class="row">
+                <img src="../img/Icons/work-experience-green-NEW.png" class="sub-heading-img">
+                <div class="content-heading"><b class="form-section-label">Experience </b></div>
+            </div>
             <li   ng-repeat="res in job.post.experience">
                 <div class="clear">
                     <div>{{res.category}}</div>
@@ -49,43 +61,82 @@
 
         </ul>
         <ul class="jobpg list-group no-bg no-borders pull-in">
-                <div><b>Gender:</b> {{job.post.gender}}</div>
+            <div class="row">
+                <img src="../img/Icons/gender.png" class="sub-heading-img">
+                <div class="content-heading"><b class="form-section-label">Gender </b></div>
+            </div>
+            <li>
+                <div class="clear">
+                    <div>{{job.post.gender}}</div>
+                </div>
+            </li>
+        </ul>
+        <ul ng-if="job.post.transport || job.post.driversLicense"  class="jobpg list-group no-bg no-borders pull-in">
+            <div class="row">
+                <img src="../img/Icons/transport-green-NEW.png" class="sub-heading-img">
+                <div class="content-heading"><b class="form-section-label">Transport </b></div>
+            </div>
+
             <div ng-if="job.post.transport"><span >Own Transport</span></div>
             <div ng-if="job.post.driversLicense"><span >Driver's License</span></div>
         </ul>
 
-        <hr>
-        <span class="jobSubHeader">Location:</span>
-        <br/><iframe id="location"
-                              width="300"
-                              height="300"
-                              frameborder="0" style="border:0"
-                              allowfullscreen>
-    </iframe>
 
         <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/Location-Green-NEW.png" class="heading-img img-responsive">
+            <div class="content-heading"><h4 class="form-section-label">Location </h4></div>
+        </div>
+        <br/>
+        <iframe id="location"
+                     width="300"
+                     height="300"
+                     frameborder="0" style="border:0"
+                     allowfullscreen>
+        </iframe>
+
+        <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
+            <div ng-if="job.post.timePeriod == 'Once Off'" class="content-heading"><h4 class="form-section-label">Date </h4></div>
+            <div ng-if="job.post.timePeriod != 'Once Off'" class="content-heading"><h4 class="form-section-label">Dates </h4></div>
+        </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
-                <b>Pay:</b>  R{{job.post.pay}}
-                <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
-                <span ng-if="!job.post.timePeriod == 'Once Off'">/Hour</span>
+            <span >{{job.post.startingDate}}</span><span ng-if="job.post.endDate"> - {{job.post.startingDate}}</span>
+
 
         </ul>
+
+
+        <hr>
+        <div ng-if="job.post.timePeriod == 'Once Off'">
+            <div class="row" style="text-align: left;">
+                <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
+                <div  class="content-heading"><h4 class="form-section-label">Times </h4></div>
+            </div>
+            <ul class="jobpg list-group no-bg no-borders pull-in">
+
+                <span ng-if="job.post.hours"> {{job.post.hours.begin + " - " +job.post.hours.end}}</span>
+
+            </ul>
+
+
+            <hr>
+        </div>
+        <hr ng-if="job.post.timePeriod == !'Once Off'">
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/threshold2green-new.png" class="heading-img img-responsive">
+            <div  class="content-heading"><h4 class="form-section-label">Threshold </h4></div>
+        </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
-            <span ng-if="job.post.timePeriod == 'Once Off'"><b>Date:</b>  {{job.post.startingDate}}</span>
-            <span ng-if="job.post.endDate"><b>Starting Date:</b>  {{job.post.startingDate}}<br> <b> End Date:</b> {{job.post.startingDate}}</span><br>
-            <span ng-if="job.post.hours"> {{job.post.hours.begin + " - " +job.post.hours.end}}</span>
-
-        </ul>
-        <ul class="jobpg list-group no-bg no-borders pull-in">
-
-            <span>Positions available:  <b>{{job.post.spotsAvailable}}</b></span><br>
-            <span>Max applicants:  <b>{{job.post.spotsAvailable *job.post.threshold}}</b></span>
+            <span>Positions Available:  <b>{{job.post.spotsAvailable}}</b></span><br>
+            <span>Remaining Applicants:  <b>{{remaining}}</b></span>
 
 
         </ul>
-
+        <hr>
 
 
 

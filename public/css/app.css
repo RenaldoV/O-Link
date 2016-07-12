@@ -5127,6 +5127,15 @@ span.fa-stack.fa-lg.blue{
   .navbar-nav > li.noti {
     margin-top: 0px;
   }
+  div #jobEmployer{
+    display: inline-block;
+    text-align: center;
+    width:auto;
+    margin-left: 0px;
+  }
+  br.jobPPMobile{
+    display: unset;!important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -5405,6 +5414,15 @@ margin-top: 32px;
   .hash{
    visibility: visible;
   }
+  div #jobEmployer{
+    display: inline-block;
+    text-align: center;
+    width:auto;
+    margin-left: 0px;
+  }
+  br.jobPPMobile{
+    display: unset;!important;
+  }
 
 }
 
@@ -5438,8 +5456,11 @@ div.error-block{
   height:45px;!important;
   float:left;
   margin-left:15px;
-
   margin-right: 5px;
+}
+.sub-heading-img{
+  width: 30px;!important;
+  height:30px;!important;
 }
 .span4{
   vertical-align: middle;
