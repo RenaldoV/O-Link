@@ -309,10 +309,11 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	if(d){
 		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
 			new CronJob(new Date(Date.now() + 86400000), function() {
-				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},
+				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},{multi:true},
 						function(err,res) {
 
 							//expiry reset
+
 						});
 			});
 			db.applications.find({jobID:job._id} , function(err,rows){
