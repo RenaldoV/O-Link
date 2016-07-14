@@ -755,6 +755,11 @@ padding-top: 18px;
     margin-top: -7px;
 }
 
+.applicantsTables tbody tr td:last-child a{
+
+    margin-top: -7px;
+}
+
 .applicantsTable tbody tr:nth-child(even) {
     background-color: white;
 }
@@ -788,7 +793,7 @@ padding-top: 18px;
 }
 .applicantsTables tbody tr td:last-child {
 
-    float: right;
+    text-align: center;
 
 
 }
@@ -828,11 +833,8 @@ padding-top: 18px;
 
 
 }
-.applicantsTables thead th:last-child {
 
-    border: none;
 
-}
 
 
 
@@ -863,7 +865,7 @@ padding-top: 18px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
-    min-width: 230px;
+    min-width: 100%;
     height: 40px;
 
     background-color:  #33B6CC;
