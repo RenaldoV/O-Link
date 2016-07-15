@@ -12,22 +12,88 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     });
 
 
+    /*$( function() {
+        var dateFormat = "mm/dd/yy",
+            from =
+                .on( "change", function() {
+                    to.datepicker( "option", "minDate", getDate( this ));
+                    alert(getDate( this ));
+                }),
+
+                .on( "change", function() {
+                    from.datepicker( "option", "maxDate", getDate( this ) );
+                    alert(getDate( this ));
+                });
+
+        function getDate( element ) {
+            var date;
+            try {
+                date = $.datepicker.parseDate( dateFormat, element.value );
+            } catch( error ) {
+                date = null;
+            }
+
+            return date;
+        }
+    } );*/
+    $scope.changeTimePeriod = function(){
+        $scope.job.post.startingDate = "";
+        $scope.job.post.endDate = "";
+    };
+    function getFormattedDate(date) {
+        var year = date.getFullYear();
+        var month = (1 + date.getMonth()).toString();
+        month = month.length > 1 ? month : '0' + month;
+        var day = date.getDate().toString();
+        day = day.length > 1 ? day : '0' + day;
+        return month + '/' + day + '/' + year;
+    }
 
     $scope.startDate = {
+        dateFormat: "mm/dd/yy",
         changeMonth: true,
         changeYear: true,
         minDate: 0,
-        onSelect: function(selected){
-            $("#endDate").datepicker("option","minDate", selected);
-            $scope.job.post.startingDate = selected;
-        }
-    };
-    $scope.endDate = {
-        changeMonth: true,
-        changeYear: true,
-        minDate: 0,
-        onSelect: function(selected){
-            $scope.job.post.endDate = selected;
+        numberOfMonths: 1,
+        onSelect: function(selected) {
+            $scope.job.post.endDate = "";
+            var tmp = new Date(selected);
+            $scope.job.post.startingDate = getFormattedDate(tmp);
+            switch ($scope.job.post.timePeriod){
+                case 'Short Term':
+                {
+                    var date1 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate() + 8);
+                    var date2 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate() + 30);
+                    $scope.endDate = {
+                        dateFormat: "mm/dd/yy",
+                        changeMonth: true,
+                        changeYear: true,
+                        minDate : date1,
+                        maxDate : date2,
+                        onSelect: function(selected){
+                            var tmp = new Date(selected);
+                            $scope.job.post.endDate = getFormattedDate(tmp);
+                        }
+                    };
+                    break;
+                }
+                case 'Long Term':
+                {
+                    var date1 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate()+ 31);
+                    $scope.endDate = {
+                        dateFormat: "mm/dd/yy",
+                        changeMonth: true,
+                        changeYear: true,
+                        minDate : date1,
+                        maxDate: null,
+                        onSelect: function(selected){
+                            var tmp = new Date(selected);
+                            $scope.job.post.endDate = getFormattedDate(tmp);
+                        }
+                    };
+                    break;
+                }
+            }
         }
     };
 
@@ -41,7 +107,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         geocoder.geocode({'address': $scope.job.post.location.address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 $scope.job.post.location.geo = {type:"Point", coordinates:[results[0].geometry.location.lng(),results[0].geometry.location.lat()]};
-                console.log($scope.job.post.location.geo);
+                //console.log($scope.job.post.location.geo);
             } else {
                 console.log('Geocode was not successful for the following reason: ' + status);
             }
@@ -185,7 +251,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             var job = jQuery.extend(true, {}, $scope.job);
         if (!$scope.job.status) {
             $scope.job.employerID = user._id;
-
+            $scope.job.post.startingDate = getFormattedDate($scope.job.post.startingDate);
+            $scope.job.post.endDate = getFormattedDate($scope.job.post.endDate);
+            alert($scope.job.post.startingDate);
 
             job.status = 'active';
             $http({
