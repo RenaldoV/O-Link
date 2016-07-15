@@ -31,7 +31,7 @@
             <div class="content-heading"><h4 class="form-section-label">Pay </h4></div>
         </div>
         <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"><b> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></b></div>
-        <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"><b> Payed In {{job.post.tips = "individualTips" ? "Individual Tips" : "Shared Tips"}} </b></div>
+        <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"><b> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </b></div>
         <hr>
         <div class="row" style="text-align: left;">
             <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
