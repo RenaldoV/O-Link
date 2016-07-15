@@ -60,7 +60,8 @@
                 <tbody>
                 <tr  ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
                   <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
-                  <td>{{job.post.category}}</td>
+                  <td ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
+                  <td ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
                   <td ng-if="job.post.payPer == 'hour'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
                   <td ng-if="job.post.payPer == 'hourAndTips'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}} + {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
                   <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
