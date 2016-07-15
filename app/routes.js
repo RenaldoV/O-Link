@@ -268,6 +268,10 @@ if(temp.radius != null){
 	app.post('/jobPoster', function(req,res) {
 
 		var job = req.body;
+		job.post.startingDate = dateConvert(job.post.startingDate);
+		if(job.post.endDate){
+			job.post.endDate = dateConvert(job.post.endDate);
+		}
 
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
@@ -1446,3 +1450,12 @@ function test(){
 }
 test();
 */
+
+function dateConvert(inDate){
+	var year = inDate.substr(0,4);
+	var month =inDate.substr(5,2);
+	var day = inDate.substr(8,2);
+	var ret = month+"/"+day+"/"+year;
+	
+	return ret;
+}
