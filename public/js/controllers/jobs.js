@@ -252,6 +252,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         if (!$scope.job.status) {
             $scope.job.employerID = user._id;
             $scope.job.post.startingDate = getFormattedDate($scope.job.post.startingDate);
+            if($scope.job.post.endDate)
             $scope.job.post.endDate = getFormattedDate($scope.job.post.endDate);
             alert($scope.job.post.startingDate);
 
