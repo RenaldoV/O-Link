@@ -268,6 +268,10 @@ if(temp.radius != null){
 	app.post('/jobPoster', function(req,res) {
 
 		var job = req.body;
+		job.post.startingDate = dateConvert(job.post.startingDate);
+		if(job.post.endDate){
+			job.post.endDate = dateConvert(job.post.endDate);
+		}
 
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
@@ -309,10 +313,11 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	if(d){
 		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
 			new CronJob(new Date(Date.now() + 86400000), function() {
-				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},
+				db.applications.update({"_id" : tempUser._id, edited:true},{$set:{status: "Declined"}},{multi:true},
 						function(err,res) {
 
 							//expiry reset
+
 						});
 			});
 			db.applications.find({jobID:job._id} , function(err,rows){
@@ -792,7 +797,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			}
 			else date = job.startingDate;
 			db.users.findOne({_id:user}, function(err,us){
-
+				us = us.toObject();
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -859,6 +864,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 			db.users.findOne({_id:user}, function(err,us){
 
+				us = us.toObject();
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -1445,3 +1451,12 @@ function test(){
 }
 test();
 */
+
+function dateConvert(inDate){
+	var year = inDate.substr(0,4);
+	var month =inDate.substr(5,2);
+	var day = inDate.substr(8,2);
+	var ret = month+"/"+day+"/"+year;
+
+	return ret;
+}

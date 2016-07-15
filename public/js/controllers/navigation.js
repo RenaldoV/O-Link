@@ -47,10 +47,20 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             });
 
     } else {
-        var user = session.user;
-        $scope.browse = false;
-        $scope.type = session.user.type;
-        $(".appbg").addClass('dashBG');
+        if (authService.isAuthenticated()) {
+            var user = session.user;
+            $scope.browse = false;
+            $scope.type = session.user.type;
+            $(".appbg").addClass('dashBG');
+            headings();
+        }
+        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {
+            //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
+            $location.url("/signIn");
+
+        }
+
+
     }
 
 
@@ -264,15 +274,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
 
-        if (authService.isAuthenticated()) {
-            $(".appbg").addClass('dashBG');
-            headings();
-        }
-        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {
-            //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
-            $location.url("/signIn");
 
-        }
 
     $scope.$on('auth-login-success',function(){
         

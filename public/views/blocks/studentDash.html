@@ -60,8 +60,11 @@
                 <tbody>
                 <tr  ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
                   <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
-                  <td>{{job.post.category}}</td>
-                  <td>R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
+                  <td ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
+                  <td ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
+                  <td ng-if="job.post.payPer == 'hour'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
+                  <td ng-if="job.post.payPer == 'hourAndTips'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}} + {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
+                  <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
                   <td>{{job.post.location.address.split(',')[0]}}</td>
                 </tr>
                 </tbody>
@@ -95,7 +98,7 @@
             <div>
               <div class="row">
                 <div class="col-xs-2 col-centered" style="width:240px; margin-left:-45px;">
-                  <img src="../img/Icons/briefcase.svg" class="heading-img-browse-jobs img-responsive">
+                  <img src="../img/Icons/Times-Blue-New.png" class="heading-img-browse-jobs img-responsive">
                   <div class="browse-jobs-head"><h4 class="form-section-label-browse">Please Select a Time Period</h4><br/></div>
                 </div>
 
@@ -134,7 +137,7 @@
                 <br>
                 <div class="row">
                   <div class="col-xs-2 col-centered" style="width:240px; margin-left:-45px;">
-                    <img src="../img/Icons/briefcase.svg" class="heading-img-browse-jobs img-responsive">
+                    <img src="../img/Icons/select-a-catagory-Blue.png" class="heading-img-browse-jobs img-responsive">
                     <div class="browse-jobs-head"><h4 class="form-section-label-browse">Please Select a Category</h4><br/></div>
                   </div>
 

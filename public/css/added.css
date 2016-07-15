@@ -218,7 +218,7 @@ select{
 
 .btn-xlarge {
     padding: 18px 28px;
-    font-size: 30px; //change this to your desired size
+    font-size: 14px; //change this to your desired size
     line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -693,7 +693,13 @@ padding-top: 18px;
 }
 
 .profileBox{
-    padding: 30px;
+    padding: 0;
+}
+.profileLeft{
+    padding-right: 10px;
+}
+.profileRight{
+    padding-left: 10px;
 }
 .timeSelect{
     margin: 5px;
@@ -744,12 +750,22 @@ padding-top: 18px;
 
 }
 
+.applicantsTables tbody tr td:last-child button{
+
+    margin-top: -7px;
+}
+
+.applicantsTables tbody tr td:last-child a{
+
+    margin-top: -7px;
+}
+
 .applicantsTable tbody tr:nth-child(even) {
     background-color: white;
 }
 
 .applicantsTables{
-    background-color: transparent;
+
     border-radius: 8px;
 
 }
@@ -762,6 +778,7 @@ padding-top: 18px;
     border: none;
 }
 .applicantsTables tbody tr:last-child td:last-child {
+
     border-bottom-right-radius: 10px;
 }
 
@@ -769,12 +786,20 @@ padding-top: 18px;
     border-bottom-left-radius: 10px;
 }
 .applicantsTables tbody tr td {
+
     background-color: white;
-    padding-top: 10px;
+    padding-top: 11px;
+
 }
 .applicantsTables tbody tr td:last-child {
-    padding-top:8px;
-    float: right;
+
+    text-align: center;
+
+
+}
+.applicantsTable tbody tr td:last-child {
+
+
 
 
 }
@@ -782,6 +807,10 @@ padding-top: 18px;
     display: inline-block;
     text-align: center;
     width:auto;
+    margin-left: -72px;
+}
+.jobPPMobile{
+    display: none;
 }
 #employerName{
     display: inline-block;
@@ -799,8 +828,8 @@ padding-top: 18px;
 }
 .applicantsTable tbody tr td:last-child {
     padding-top:8px;
-    float: right;
-    border: none;
+    float: left;
+
 
 }
 .table tbody tr td button {
@@ -810,11 +839,8 @@ padding-top: 18px;
 
 
 }
-.applicantsTables thead th:last-child {
 
-    border: none;
 
-}
 
 
 
@@ -845,7 +871,7 @@ padding-top: 18px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
-    min-width: 230px;
+    min-width: 100%;
     height: 40px;
 
     background-color:  #33B6CC;

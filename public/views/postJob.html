@@ -9,7 +9,7 @@
     </div>
 
     <div class="row">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/job-details-green-new.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Job Details</h4><br/></div>
     </div>
     <div class="list-group list-group-sm form-group">
@@ -21,6 +21,13 @@
                 </select>
                 <div ng-show="jobForm.$submitted || jobForm.jobCat.$touched" class="error-block">
                     <p ng-show="jobForm.jobCat.$error.required" class="has-error">This field is required</p>
+                </div>
+            </div>
+            <div ng-if="job.post.category == 'Other'" class="list-group-item">
+                <input ng-if="job.post.category == 'Other'" type="text" name="otherCat" class="form-control no-border" placeholder="Please Enter Your Category"
+                       ng-model="job.post.OtherCategory" ng-required="job.post.category == 'Other'">
+                <div ng-show="jobForm.$submitted || jobForm.otherCat.$touched" class="error-block">
+                    <p ng-show="jobForm.otherCat.$error.required" class="has-error">This field is required</p>
                 </div>
             </div>
             <div class="list-group-item">
@@ -44,7 +51,7 @@
     </div>
 
     <div class="row">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Pay</h4><br/></div>
     </div>
     <div class="list-group list-group-sm form-group">
@@ -64,7 +71,7 @@
                 </div>
         </div>
         <div class="list-group-item">
-            <select id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
+            <select ng-change="changeTimePeriod()" id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
                 <option value="" selected disabled>Time Period</option>
                 <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
             </select>
@@ -94,26 +101,26 @@
     </div>
 
     <div class="row">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Dates</h4><br/></div>
     </div>
     <div class="list-group list-group-sm form-group">
         <div class="list-group-item">
-            <input ui-date="startDate"  id="startDate" name="startDate" type="text" class="controls form-control no-border"
-                   placeholder="Starting Date"  ng-model="startingDate" ng-required="true">
+            <input ng-disabled="!job.post.timePeriod" ui-date="startDate" id="startDate" name="startDate" type="text" class="controls form-control no-border"
+                   placeholder="Starting Date"  ng-model="job.post.startingDate" ng-required="true">
             <div ng-show="jobForm.$submitted || jobForm.startDate.$touched" class="error-block">
                 <p ng-show="jobForm.startDate.$error.required" class="has-error">This field is required</p>
             </div>
         </div>
-        <div ng-hide="job.post.timePeriod == 'Once Off'" class="list-group-item" hidden="hidden">
-            <input id="endDate" name="endDate" type="text" class="controls form-control no-border"
-                   ui-date="endDate" placeholder="End Date" ng-model="endDate" >
+        <div ng-hide="job.post.timePeriod == 'Once Off'" class="list-group-item">
+            <input ng-disabled="!job.post.startingDate" id="endDate" name="endDate" type="text" class="controls form-control no-border"
+                   ui-date="endDate" placeholder="End Date" ng-model="job.post.endDate" >
         </div>
     </div>
 
 
     <div class="row" ng-show="job.post.timePeriod == 'Once Off'">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Times</h4><br/></div>
     </div>
     <div class="list-group list-group-sm form-group" ng-show="job.post.timePeriod == 'Once Off'">
@@ -130,7 +137,7 @@
     </div>
 
     <div class="row">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Requirements</h4><br/></div>
     </div>
     <div class="list-group list-group-sm form-group">
@@ -227,7 +234,7 @@
 
     <br/>
     <div class="row">
-        <img src="../img/Icons/briefcase.svg" class="heading-img img-responsive">
+        <img src="../img/Icons/threshold2green-new.png" class="heading-img img-responsive">
         <div class="content-heading"><h4 class="form-section-label">Thresholds <span title="Click here to find out more." class="threshTooltip glyphicon glyphicon-question-sign"></span></h4><br/></div>
     </div>
 

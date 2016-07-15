@@ -67,6 +67,20 @@ new CronJob('00 00 * * * *', function() {
                 db.applications.remove({_id:rows[i]._id}, function(err, res){
                    console.log(res);
                 });
+                db.notifications.remove({jobID: rows[i].jobID, type:'jobEdited'},function(err,rs){
+
+                });
+                var noti = {
+                    userID: rows[i].studentID,
+                    jobID: rows[i].jobID,
+                    seen: false,
+                    status: 'Expired',
+                    type: 'expired'
+                };
+
+                db.notifications.create(noti,function(err, res){
+                    //expired
+                });
             }
         }
     });

@@ -18,11 +18,16 @@ body {
   color: #58666e;
   background-color: transparent;
 }
-
+.nav-container{
+  margin: 0;
+  padding: 0;
+}
 *:focus {
   outline: 0 !important;
 }
-
+.page{
+margin-right:20px;
+}
 .h1,
 .h2,
 .h3,
@@ -3710,7 +3715,8 @@ a.text-#000000:hover {
 }
 
 .wrapper-md {
-  padding: 20px;
+  padding-top:20px;
+  padding: 0;
 }
 
 .wrapper-lg {
@@ -5127,6 +5133,15 @@ span.fa-stack.fa-lg.blue{
   .navbar-nav > li.noti {
     margin-top: 0px;
   }
+  div #jobEmployer{
+    display: inline-block;
+    text-align: center;
+    width:auto;
+    margin-left: 0px;
+  }
+  br.jobPPMobile{
+    display: unset;!important;
+  }
 }
 
 @media (max-width: 767px) {
@@ -5290,6 +5305,7 @@ span.fa-stack.fa-lg.blue{
     }
     div.page{
 
+
         display: inline-block;
         text-align: center;
 
@@ -5307,6 +5323,7 @@ span.fa-stack.fa-lg.blue{
       margin-bottom: 0px;
     }
     div.dashTops{
+
       margin-top: 20px;
     }
     div.jobsContainer{
@@ -5355,6 +5372,23 @@ margin-top: 32px;
       margin-left: -5px;
       width: 100%;
     }
+
+  .jobApps {
+
+
+    transform: scale(0.7,0.7);
+    transform-origin: 0 0;
+    box-sizing: border-box;
+    
+  }
+  .applicantsTables tbody tr td:last-child button{
+
+    transform: scale(0.8,0.8);
+    transform-origin: 0 0;
+
+
+
+  }
     .applicantsTable thead{
       font-size: 18px;
     }
@@ -5379,11 +5413,11 @@ margin-top: 32px;
       margin-top: 32px;
     }
     div.empApplicants{
-      transform: scale(0.7,0.7);
-      padding: 0;
+
+
       margin-top: 32px;
       width: 100%;
-      margin-left: -42px;
+
     }
     table{
       text-align: left;
@@ -5404,6 +5438,15 @@ margin-top: 32px;
   }
   .hash{
    visibility: visible;
+  }
+  div #jobEmployer{
+    display: inline-block;
+    text-align: center;
+    width:auto;
+    margin-left: 0px;
+  }
+  br.jobPPMobile{
+    display: unset;!important;
   }
 
 }
@@ -5438,8 +5481,11 @@ div.error-block{
   height:45px;!important;
   float:left;
   margin-left:15px;
-
   margin-right: 5px;
+}
+.sub-heading-img{
+  width: 30px;!important;
+  height:30px;!important;
 }
 .span4{
   vertical-align: middle;
