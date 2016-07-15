@@ -797,7 +797,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			}
 			else date = job.startingDate;
 			db.users.findOne({_id:user}, function(err,us){
-
+				us = us.toObject();
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -864,6 +864,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 			db.users.findOne({_id:user}, function(err,us){
 
+				us = us.toObject();
 				var numRatings = 0;
 				if(us.numRatings){
 					numRatings = us.numRatings;
@@ -1456,6 +1457,6 @@ function dateConvert(inDate){
 	var month =inDate.substr(5,2);
 	var day = inDate.substr(8,2);
 	var ret = month+"/"+day+"/"+year;
-	
+
 	return ret;
 }

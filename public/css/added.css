@@ -797,6 +797,12 @@ padding-top: 18px;
 
 
 }
+.applicantsTable tbody tr td:last-child {
+
+
+
+
+}
 #jobEmployer{
     display: inline-block;
     text-align: center;
@@ -822,7 +828,7 @@ padding-top: 18px;
 }
 .applicantsTable tbody tr td:last-child {
     padding-top:8px;
-    float: right;
+    float: left;
 
 
 }
