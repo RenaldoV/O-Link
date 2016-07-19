@@ -496,10 +496,15 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         }
     };
 
+    if($scope.user.work)
+        var numWork = $scope.user.work.length;
 
-    var numWork = $scope.user.work.length;
-    var numReq = $scope.user.results.length;
-    var numCert = $scope.user.certifications.length;
+    if($scope.user.results)
+        var numReq = $scope.user.results.length;
+
+    if($scope.user.certifications)
+        var numCert = $scope.user.certifications.length;
+
     var workRadios = 3;
 
 

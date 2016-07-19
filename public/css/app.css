@@ -4960,17 +4960,18 @@ ul.jobpg {
   background-color: #00d488;!important;
   color:white;
 }
-.filterOptions > .row > .col-md-2
+.filterOptions > .row > .col-md-2.location
 {
-  margin-left: -50px;
+
 }
-span.fa-stack.fa-lg.green{
-  float: left;
-  margin-left: -30px;
+.filterOptions > .row > .col-md-2.sortBy
+{
+  margin-left: -20px;
 }
+
 span.fa-stack.fa-lg.blue{
   float: left;
-  margin-left: -30px;
+  margin-left: 30px;
 }
 @media (max-width: 990px) {
   div.buyInner{
@@ -5009,10 +5010,26 @@ span.fa-stack.fa-lg.blue{
   }
   .filterOptions > .row > .col-md-2 > h4
   {
+    margin-left: 60px;
     margin-bottom: 20px;
   }
   div.filterOptions.container{
     margin-top:50px;
+    width: 100%;
+
+  }
+  div.filterOptions.container > div.row > div.col-md-1 > button.btn-sm.greenBack {
+    margin-top: -3px;!important;
+  }
+  div.col-xs-3.location > h4{
+    margin-top: 0px;
+  }
+  div.col-xs-3.location > input.btn.btn-block{
+    margin-top: -6px;
+  }
+  div.col-xs-3.location{
+    width: 250px;
+    margin-bottom: 10px;
   }
   span.fa-stack.fa-lg.green{
     margin-top: -8px;!important;
@@ -5024,7 +5041,20 @@ span.fa-stack.fa-lg.blue{
   }
   .filterOptions > .row > .col-md-2
   {
+    margin-top: 20px;
     margin-left: 0px;
+  }
+  .filterOptions > .row > .col-md-9
+  {
+    margin-top: 30px;
+  }
+  div.jobsContainer{
+    padding: 0px;!important;
+    width: 100%;!important;
+  }
+  table.jobInfoBox{
+    margin-left: 0px;!important;
+    margin-bottom: 10px;
   }
   .profileBall{
     float: none;
@@ -5040,10 +5070,14 @@ span.fa-stack.fa-lg.blue{
     margin-top: 0px;
     width:50px;
     height:50px;
-  }
+    margin-left: 55px;
+
+  .dropdown-toggle.menu{
+  margin-left:100px;}
+}
   img.banner-pp{
     margin-top: -14px;
-    right: -20px;
+    right: -45px;
     position:absolute;
     width:50px;
     height:50px;
@@ -5131,6 +5165,7 @@ span.fa-stack.fa-lg.blue{
     margin-top: 0px;
   }
   .navbar-nav > li.noti {
+    margin-right: -20px;
     margin-top: 0px;
   }
   div #jobEmployer{
@@ -5188,6 +5223,7 @@ span.fa-stack.fa-lg.blue{
   }
   img.banner-logo.mobile{
     display:block;!important;
+    margin-left: 25px;
   }
   .banner-logo{
     margin-left: 10px;!important;
@@ -5195,6 +5231,7 @@ span.fa-stack.fa-lg.blue{
     height:50px;
   }
   img.banner-pp{
+    margin-right:50px;
     margin-top: -58px;
     right:0px;
     position:absolute;
@@ -5274,7 +5311,7 @@ span.fa-stack.fa-lg.blue{
   .dropdown-toggle.menu{
     width: 45px;
     margin-top: 15px;
-    margin-right: 100px;
+    margin-right: 115px;
 
   }
   .noti.ng-scope{
@@ -5563,8 +5600,7 @@ h4.form-section-label-browse{
   height:34px;
 }
 .rzslider{
-  width: 74%;
-  margin-left: 66px;
+margin-top: 18px;
 }
 .rzslider .rz-pointer{
   background-color: #00b488;!important;

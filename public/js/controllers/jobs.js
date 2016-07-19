@@ -189,7 +189,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     var now = new Date();
 
     var user = session.user;
-    console.log(user._id);
+   // console.log(user._id);
     $scope.job = {};
     $scope.job.post = {};
     $scope.job.post.requirements = [];
@@ -198,27 +198,27 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
     $scope.close = function(reqs){
 
-        console.log($scope.job.post.requirements.pop());
+       // console.log($scope.job.post.requirements.pop());
     };
     $scope.add = function(){
 
         if(!$scope.job.post.requirements){
             $scope.job.post.requirements = [{}];
-        }else
-        console.log($scope.job.post.requirements.push({}));
+        }//else
+       // console.log($scope.job.post.requirements.push({}));
 
     };
 
     $scope.closeExp = function(reqs){
 
-        console.log($scope.job.post.experience.pop());
+       // console.log($scope.job.post.experience.pop());
     };
     $scope.addExp = function(){
 
         if(!$scope.job.post.experience){
             $scope.job.post.experience = [{}];
-        }else
-            console.log($scope.job.post.experience.push({}));
+        }//else
+           // console.log($scope.job.post.experience.push({}));
 
     };
 
@@ -254,7 +254,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             $scope.job.post.startingDate = getFormattedDate($scope.job.post.startingDate);
             if($scope.job.post.endDate)
             $scope.job.post.endDate = getFormattedDate($scope.job.post.endDate);
-            alert($scope.job.post.startingDate);
 
             job.status = 'active';
             $http({
@@ -288,7 +287,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         }
         else if ($scope.job.status == 'active') {
 
-            console.log($scope.job);
+           // console.log($scope.job);
             swal({
                     title: "Are you sure?",
                     type: "input",
@@ -303,9 +302,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     $http
                         .post('/checkPassword', {email: user.contact.email, password: inputValue})
                         .then(function (res, err) {
-                            console.log(res.data);
+                           // console.log(res.data);
                             if (!res.data) {
-                                console.log("awww");
                                 swal.showInputError("Incorrect Password!");
                                 return false;
                             }
@@ -357,7 +355,9 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
 
-    var rad = 15;
+
+
+    var radius = 15;
     //=======================================================================
     //====================Filter box init
     //========================================================================
@@ -392,39 +392,32 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                 //=======================================================================
                 //====================Call apply filter here (range is 1km - "x"km)
                 //========================================================================
-            applyFilters(x);
+                radius = x;
+            applyFilters();
             }
         }
     };
 
     //Filter function
-    function applyFilters(radius,geo){
+    function applyFilters(geo){
         if(radius == 30)
-        radius = null;
+            radius = null;
+
         var data = {};
-        if(!$scope.jobCategory || $scope.jobCategory == 'all'){
-                data.categories = $scope.categories;
+        data.categories = [];
+        data.timePeriods = [];
+        for(var i = 0; i < $scope.catModel.length; i++){
+            data.categories.push($scope.catModel[i].id);
         }
-        else data.categories = [$scope.jobCategory];
-
-        if(!$scope.jobPeriod || $scope.jobPeriod == 'all'){
-            data.timePeriods = [];
-            for(var i = 0; i< $scope.timePeriods.length; i++){
-                data.timePeriods.push($scope.timePeriods[i].name);
-            }
-
+        for(var i = 0; i < $scope.timeModel.length; i++){
+            data.timePeriods.push($scope.timeModel[i].id);
         }
-        else {
-            data.timePeriods = [$scope.jobPeriod];
-        }
-
         if(radius){
             data.radius = radius;
         if(!geo)
                 data.userLocation = session.user.location.geo;
         else
             data.userLocation = geo;
-
         }
        getJobs(data);
     }
@@ -457,7 +450,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                         $http
                             .post('/checkPassword', {email: session.user.contact.email, password: inputValue})
                             .then(function (res, err) {
-                                console.log(res.data);
+                               // console.log(res.data);
                                 if (!res.data) {
                                     $scope.resAddress = session.user.location.address;
                                     $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
@@ -540,8 +533,62 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     {
         $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
     }
+
+    // Multi dropdown INIT
+    $scope.catModel = [];
+    $scope.catData = [];
+    $scope.timeModel = [];
+    $scope.timeData = [];
     $scope.categories = constants.categories;
     $scope.timePeriods = constants.timePeriods;
+    for(var i = 0; i < $scope.categories.length; i++){
+        $scope.catData.push({id: $scope.categories[i], label: $scope.categories[i]});
+    }
+    for(var i = 0; i < $scope.timePeriods.length; i++){
+        $scope.timeData.push({id: $scope.timePeriods[i].name, label: $scope.timePeriods[i].name + " (" + $scope.timePeriods[i].description + ")"});
+    }
+    $scope.dropSettingsCat = {
+        scrollableHeight: 'auto',
+        scrollable: true,
+        idProp: 'label',
+        buttonClasses: "btn btn-block form-control blueBack filterButtons",
+
+    };
+    $scope.dropSettingsTime = {
+        scrollableHeight: 'auto',
+        scrollable: true,
+        idProp: 'label',
+        buttonClasses: "btn btn-block form-control blueBack filterButtons"
+    };
+    $scope.catLabel = {buttonDefaultText: 'Categories',dynamicButtonTextSuffix: "Categories"};
+    $scope.timeLabel = {buttonDefaultText: 'Time Periods',dynamicButtonTextSuffix: "Time Periods"};
+    $scope.catSelectEvent = {
+        onItemSelect: function(){
+            applyFilters(null);
+        },
+        onItemDeselect: function(){
+            applyFilters(null);
+        },
+        onDeselectAll: function(){
+            applyFilters(null);
+        },
+        onDeselectAll: function(){
+            $scope.catModel = [];
+            applyFilters(null);
+        }
+    };
+    $scope.timeSelectEvent = {
+        onItemSelect: function(){
+            applyFilters(null);
+        },
+        onItemDeselect: function(){
+            applyFilters(null);
+        },
+        onDeselectAll: function(){
+            $scope.timeModel = [];
+            applyFilters(null);
+        }
+    };
     //=======================================================================
     //====================Filter box init
     //========================================================================
@@ -550,28 +597,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     //=======================================================================
     //====================Filter box filter functions
     //========================================================================
-    $scope.mostRecentFilter = function(){
-        //console.log("most recent");\
-        //=======================================================================
-        //Apply most recent filter here
-        //========================================================================
-        applyFilters(null);
-    };
-    $scope.categoryFilter = function(){
-        //console.log($scope.jobCategory);
-        //=======================================================================
-        //Apply category filter here with $scope.jobCategory
-        //========================================================================
-        applyFilters(null);
-    };
-    $scope.periodFilter = function(){
-        //console.log($scope.jobPeriod);
-        //=======================================================================
-        //Apply period filter here with $scope.jobPeriod
-        //========================================================================
-        applyFilters(null);
-    };
-
 
 
 //runtime work
@@ -583,8 +608,24 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     ob.radius = 15;
     ob.userLocation = session.user.location.geo;
     var region = '';
-    getJobs(ob);
+    //console.log(ob.timePeriods);
+    //================LOAD DROPDOWNS MODEL ON PAGE LOAD========================
+    for(var i = 0; i < ob.categories.length; i++){
+        for(var k = 0; k < $scope.categories.length; k++)
+        {
+            if(ob.categories[i] == $scope.categories[k])
+                $scope.catModel.push({id: $scope.categories[k]});
+        }
+    }
+    for(var i = 0; i < ob.timePeriods.length; i++){
+        for(var k = 0; k < $scope.timePeriods.length; k++)
+        {
+            if(ob.timePeriods[i] == $scope.timePeriods[k].name)
+                $scope.timeModel.push({id: $scope.timePeriods[i].name});
+        }
+    }
 
+    getJobs(ob);
     //get the jobs
     function getJobs(temp){
         //console.log(temp);
@@ -632,8 +673,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                     }
                     else return "/hr"
                 };
-
-
         });
 
     }
@@ -801,12 +840,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 
             if($scope.hasApplied){
-                console.log(user._id + " " +job._id);
+                //console.log(user._id + " " +job._id);
                 $http
                     .post('/loadApplication', {studentID: user._id, jobID: job._id})
                     .then(function (res, err) {
                         $scope.application = res.data;
-                        console.log($scope.application);
+                       // console.log($scope.application);
 
                     }
                     );
@@ -993,7 +1032,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         if(meets.length > 0){
 
         $.each(meets, function(key, value){
-            console.log(value);
+           // console.log(value);
             if(value == false)
             {
                 met = false;
@@ -1080,7 +1119,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
     })
         .then(function(res) {
             {
-                console.log(res.data);
+               // console.log(res.data);
                 $scope.jobs = res.data;
                 $.each($scope.jobs, function(key,value){
                     if(!value.applicants)

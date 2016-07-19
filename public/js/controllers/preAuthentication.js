@@ -434,9 +434,6 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                                         title: "User exists",
                                         text: 'The email you have entered already has an account associated with it.',
                                         type: "error"
-                                    },
-                                    function () {
-                                        location.reload();
                                     });
                             }
                             else if (res.data) {

@@ -2,66 +2,56 @@
     <div class="filterOptions container" style="margin-bottom: 14px; border-radius: 10px;">
 
         <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-2">
-                <span class="fa-stack fa-lg green" >
+            <div class="col-xs-3 location">
+                <span class="fa-stack fa-lg green" style="float:left;">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 ng-click="editLocation()" ng-hide="editLoc" style="margin-left:30px;">{{resAddress}}</h4>
+                <h4 ng-click="editLocation()" ng-hide="editLoc" >{{resAddress}}</h4>
                 <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
                        class="btn btn-block" placeholder="Location"
                        ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
-                       ng-blur="locFocusOut()" style="margin-top:5px;">
+                       ng-blur="locFocusOut()" >
             </div>
             <div class="col-md-1">
-                <button ng-click="editLocation()" class="btn btn-sm greenBack" style="margin-top:10px;">Edit</button>
+                <button ng-click="editLocation()" class="btn btn-sm greenBack" >Edit Address</button>
             </div>
-            <div class="col-md-8">
-                <div style="margin-top: -10px;">
-                    <h4 style="float: left; margin-top:25px;">Offers Between: </h4>
+            <div class="col-md-2">
+                <span class="fa-stack fa-lg blue"  style="float:left;">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="filterBy">Filter By:</h4>
+            </div>
+            <div class="col-md-3">
+                <div ng-dropdown-multiselect="" options="catData" selected-model="catModel"
+                     translation-texts="catLabel" extra-settings="dropSettings" events="catSelectEvent"></div>
+            </div>
+            <div class="col-md-3">
+                <div ng-dropdown-multiselect="" options="timeData" selected-model="timeModel"
+                     translation-texts="timeLabel" extra-settings="dropSettings" events="timeSelectEvent"></div>
+            </div>
+
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-3">
+                <span class="fa-stack fa-lg green" style="float:left;">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="offersBtw">Offers Between:</h4>
+            </div>
+            <div class="col-md-9">
+                <div >
                     <rzslider rz-slider-model="slider.minValue"
                               rz-slider-options="slider.options"></rzslider>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-2">
-                <span class="fa-stack fa-lg blue" >
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 style="margin-left:30px;">Sort By:</h4>
-            </div>
-            <div class="col-md-3">
-                <a class="btn btn-block blueBack filterButtons" href="#" ng-click="mostRecentFilter()"
-                   style="margin-top:5px;">Most Recent</a>
-            </div>
-            <div class="col-md-3">
-                <select name="jobCat" ng-change="categoryFilter()"
-                        class="btn btn-block form-control blueBack filterButtons" ng-model="jobCategory"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px; text-align: -webkit-center;">
-                    <option value="" selected disabled>Category</option>
-                    <option value="all">All Categories</option>
-                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
-                </select>
-            </div>
-            <div class="col-md-3">
-                <select ng-change="periodFilter()" name="period"
-                        class="btn btn-block form-control blueBack filterButtons" ng-model="jobPeriod"
-                        style="margin-top:5px; background-image: url('../img/down-arrow-white.png'); background-size: 20px 20px; text-align: -webkit-center;">
-                    <option value="" selected disabled>Time Period</option>
-                    <option value="all" >All Time Periods</option>
-                    <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}}
-                        ({{period.description}})
-                    </option>
-                </select>
-            </div>
-        </div>
     </div>
         <div class=" jobsContainer container">
-            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 10px; border-color:#33B6CC;">
+            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 10px; border-color:#33B6CC; background-color: white;">
 
 
             <div class="col-md-2">
@@ -75,7 +65,8 @@
             </div>
             <div class="col-md-10">
                 <div class="col-xs-5 jobsHead" style="margin-left: -10px">
-                    <h2 class="jobCategory">{{job.post.category}}</h2>
+                    <h2 class="jobCategory" ng-if="job.post.category != 'Other'">{{job.post.category}}</h2>
+                    <h2 class="jobCategory" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</h2>
                     <span class="jobTimePeriod">Posted on: {{job.post.postDate}}</span>
                 </div>
                 <div class="col-xs-7 jobsHead interviewDanger">
