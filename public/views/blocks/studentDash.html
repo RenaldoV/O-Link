@@ -54,18 +54,18 @@
             </div>
 
             <div ng-controller="jobFeed"  class="jobPosts">
-              <table class="table text-left">
+              <table class="table text-left latestJobsTable">
                 <thead><th></th><th>Category</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
-                <tr  ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
+                <tr class="jobRow" ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
                   <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
-                  <td ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
-                  <td ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
-                  <td ng-if="job.post.payPer == 'hour'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
-                  <td ng-if="job.post.payPer == 'hourAndTips'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}} + {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
-                  <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
-                  <td>{{job.post.location.address.split(',')[0]}}</td>
+                  <td class="fields" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
+                  <td class="fields" ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
+                  <td class="fields" ng-if="job.post.payPer == 'hour'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
+                  <td class="fields" ng-if="job.post.payPer == 'hourAndTips'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}} + {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
+                  <td class="fields" ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
+                  <td class="fields">{{job.post.location.address.split(',')[2]}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -116,7 +116,7 @@
                 /> {{period.name}}<br><small >({{period.description}})</small>
               </label>
 
-              <div class="btn-group-lg catSelect"><label class="btn btn-primary-outline categorySelect" id="allP" ng-click="selectAllP()">
+              <div style="font-weight: bold;" class="btn-group-lg catSelect"><label class="btn btn-primary-outline categorySelect" id="allP" ng-click="selectAllP()">
                 <input
                         id="selectAllP"
                         type="checkbox"
@@ -160,8 +160,8 @@
                   </div>
 
                 <div>
-                <div class="btn-group-lg " data-toggle="buttons">
-                <label class="btn btn-primary-outline  categorySelect" ng-click="selectAllC()">
+                <div  class="btn-group-lg " data-toggle="buttons">
+                <label style="font-weight: bold;" class="btn btn-primary-outline  categorySelect" ng-click="selectAllC()">
                   <input
                           id="selectAllC"
                           type="checkbox"

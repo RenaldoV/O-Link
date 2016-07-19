@@ -67,21 +67,23 @@ app.service('constants', function(){
         "University",
         "Other"];
 
-    this.categories = ["Coach",
-        "Tutor",
-        "Delivery Person",
-        "Retail Worker",
-        "Model",
-        "Waiter(res)",
-        "Host(ess)",
-        "Barman",
+    this.categories = [
+        "Assistant",
         "Aupair",
+        "Barman",
+        "Coach",
+        "Cook/Chef",
+        "Delivery Person",
+        "Engineer",
+        "Host(ess)",
+        "Internship",
+        "Model",
         "Photographer / Videographer",
         "Programmer/Developer",
-        "Engineer","Assistant",
-        "Cook/Chef",
-        "Internship",
         "Promoter",
+        "Retail Worker",
+        "Tutor",
+        "Waiter(res)",
         "Other"];
 
     this.timePeriods = [
