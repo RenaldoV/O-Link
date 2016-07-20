@@ -200,7 +200,7 @@ db.jobs.find({status: 'active'},function(err,rows){
                                 employerName: emp.contact.name,
                                 talentName: usr.name.name,
                                 employer: emp.contact.name + " " + emp.contact.surname,
-                                employer: usr.name.name + " " + usr.name.surname,
+                                talent: usr.name.name + " " + usr.name.surname,
                                 category: job.post.category,
                                 date: job.post.startingDate
 
