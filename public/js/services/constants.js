@@ -53,7 +53,6 @@ app.service('constants', function(){
 
     this.companyCategories = ["Bar",
         "Catering",
-        "Engineering",
         "Film and Media",
         "Financial",
         "Information Technology",
@@ -74,7 +73,6 @@ app.service('constants', function(){
         "Coach",
         "Cook/Chef",
         "Delivery Person",
-        "Engineer",
         "Host(ess)",
         "Internship",
         "Model",

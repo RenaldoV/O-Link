@@ -15,7 +15,7 @@
 
 
 	<ul id="formTabs" class="nav nav-pills" role="tablist" data-tabs="tabs" >
-		<li class="talentSelected"><a href="#talentPane" data-toggle="tab">Talent</a></li>
+		<li class="talentSelected"><a href="#talentPane" data-toggle="tab">Student</a></li>
 		<li class="employerSelected" ng-hide="next"><a href="#employerPane" data-toggle="tab">Employer</a></li>
 	</ul>
 	<div class="tab-content">
@@ -30,7 +30,7 @@
 				<div ng-hide="next">
 					<div class="row">
 						<img src="../img/Icons/talent-info-new.png" class="heading-img img-responsive">
-						<div class="content-heading"><h4 class="form-section-label">Talent Info</h4><br/></div>
+						<div class="content-heading"><h4 class="form-section-label">Student Info</h4><br/></div>
 					</div>
 					<div class="list-group list-group-sm form-group">
 						<fieldset class="form-group">
@@ -418,12 +418,7 @@
 
 						<div class="checkbox m-b-md m-t-none">
 							<label class="i-checks">
-								<input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license.
-							</label>
-						</div>
-						<div class="checkbox m-b-md m-t-none">
-							<label class="i-checks">
-								<input type="checkbox" ng-model="user.ownTransport"><i></i>I have my own vehicle.
+								<input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license and my own vehicle.
 							</label>
 						</div>
 					</div>
