@@ -217,8 +217,8 @@ select{
 }
 
 .btn-xlarge {
-    padding: 18px 28px;
-    font-size: 14px; //change this to your desired size
+    padding: 12px 22px;
+    font-size: 18px; //change this to your desired size
     line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -736,6 +736,10 @@ padding-top: 18px;
     width: 1137px;
 }
 
+span.jobDescription{
+    margin-left: -8px;
+}
+
 .appHeading{
     font-size: 20px;
     padding: 5px;
@@ -764,8 +768,11 @@ padding-top: 18px;
     margin-top: -7px;
 }
 
-.applicantsTable tbody tr:nth-child(even) {
+.applicantsTable tbody tr {
     background-color: white;
+}
+.applicantsTable tbody tr:hover {
+    background-color: #F8F8F8;
 }
 
 .applicantsTables{
@@ -919,12 +926,15 @@ border-bottom: 0;
 
 .jobInfoBox{
     padding: 0;
-    margin-left: 15px;
+    margin-left: 17.5px;
     min-width: 144px;
     height: 42px;
     border: 1px solid #33B6CC;
   display:inline-table;
 
+}
+.jobInfoBox.FirstBox{
+    margin-left: 1px;
 }
 table{
 
@@ -1058,7 +1068,7 @@ div.col-md-2 > h4.filterBy{
 .jobTimePeriod{
     display: block;
     font-size: 12px;
-    margin-left:2px;
+    margin-left:1px;
     margin-top:5px;
 
 }
@@ -1082,4 +1092,6 @@ margin-bottom: 0;
     overflow: hidden;!important;
 }
 
-
+.appStatRowStu:hover{
+    background-color: #F8F8F8;!important;
+}

@@ -1,31 +1,35 @@
-<div ng-controller="studentApplications" class="studentAppsPage"><table style="margin-top: 42px;" class="table tab applicantsTable">
-    <thead class="talentHistoryHead blueBack"><th>Category</th><th class="tableAdd">Pay</th><th class="tableAdd">Location</th><th>Status</th><th></th>
+<div ng-controller="studentApplications" class="studentAppsPage">
+
+    <table style="margin-top: 42px;" class="table tab applicantsTable">
+    <thead class="talentHistoryHead blueBack"><th><!--Company logo--></th><th>Employer</th><th>Category</th><th class="tableAdd">Date</th><th class="tableAdd">Location</th><th>Status</th><th></th>
     </thead>
     <tbody>
-    <tr ng-repeat="app in applications">
+    <tr ng-repeat="app in applications" ng-click="getJob(app.jobID._id)" style="cursor: pointer;" class="appStatRowStu">
+        <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+        <td ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
+        <td ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>
         <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td class="tableAdd">R{{app.jobID.post.pay }}
-            <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span>
-            <span ng-if="!job.post.timePeriod == 'Once Off'">/Hour</span></td>
-        <td class="tableAdd">{{app.jobID.post.location.address}}</td>
-        <td><div class="statusDiv"><span>{{app.status}}</span>
-            <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
-            <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
-            <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
-            <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
+        <td>{{app.jobID.post.startingDate}}</td>
 
-
-        </div></td>
+        <td class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
+        <td>
+            <div class="statusDiv"><span>{{app.status}}</span>
+                <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
+                <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
+                <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+                <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
+            </div>
+        </td>
         <td class="appBtns">
-        <span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID.post.category )">Accept</button></span>
-        <span ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link:{{app.jobID.post.category}}" target="_blank">Contact</a></span>
-        <span ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button></span>
-        <span ng-if="(app.status == 'Provisionally accepted') || (app.edited && app.status != 'Declined')"><button class="btn btn-danger" ng-click="decline(app)">Withdraw</button></span>
-
+            <span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID.post.category )">Accept</button></span>
+            <span ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link:{{app.jobID.post.category}}" target="_blank">Contact</a></span>
+            <span ng-if="app.edited && app.status != 'Declined'"><button class="btn greenBack" ng-click="acceptChanges(app._id)" >Accept Changes</button></span>
+            <span ng-if="(app.status == 'Provisionally accepted') || (app.edited && app.status != 'Declined')"><button class="btn btn-danger" ng-click="decline(app)">Withdraw</button></span>
         </td>
     </tr>
     </tbody>
 
 </table>
-    <div style="margin-left: 42px">{{message}}</div>
+
+    <div style="margin-left: 42px; color: white;">{{message}}</div>
 </div>

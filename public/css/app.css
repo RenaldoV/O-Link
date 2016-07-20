@@ -517,9 +517,12 @@ a.list-group-item.hover {
   border-color: #eaeff0;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td,
+
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #fafbfc;
+  background-color: #F8F8F8;
+}
+.table-striped > tbody > tr:nth-child(odd) > tr:hover
+  background-color: white;
 }
 
 .table-striped > thead > th {
@@ -5399,9 +5402,7 @@ margin-top: 32px;
     table{
       font-size: 12px;
     }
-    .tableAdd{
-      display: none;
-    }
+
     .applicantsTable{
       display: inline-table;
     text-align: left;

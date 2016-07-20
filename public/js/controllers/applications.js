@@ -3,12 +3,13 @@
  */
 
 
-app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope) {
+app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope, $window) {
 
     var user = cacheUser.user;
-    console.log(user);
     $scope.user = user;
-
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
     if(user == session.user) {
         $scope.getApps = function(){
             return "../views/blocks/studentApplication.html";
@@ -19,6 +20,15 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
             .then(function (res) {
 
                 $scope.applications = res.data;
+                //console.log($scope.applications[0].employerID);
+                $.each($scope.applications,function(i,app){
+                     $http
+                     .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                     .then(function (res) {
+
+                         app.image = res.data;
+                     });
+                 });
 
                 $rootScope.$broadcast('myApplications', 1);
 

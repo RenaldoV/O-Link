@@ -22,21 +22,48 @@
         <hr>
         <div class="row" style="text-align: left;">
             <img src="../img/Icons/job-details-green-new.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label">Description </h4><br/></div>
+            <div class="content-heading"><h4 class="form-section-label"><b>Description </b></h4><br/></div>
         </div>
         <div class="wordwrap" > {{job.post.description}}
         </div>
         <hr>
         <div class="row" style="text-align: left;">
             <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label">Pay </h4></div>
+            <div class="content-heading"><h4 class="form-section-label"><b>Pay </b></h4></div>
         </div>
-        <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"><b> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></b></div>
-        <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"><b> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </b></div>
+        <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></div>
+        <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </div>
+
         <hr>
         <div class="row" style="text-align: left;">
+            <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
+            <div ng-if="job.post.timePeriod == 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Date </b></h4></div>
+            <div ng-if="job.post.timePeriod != 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Dates </b></h4></div>
+        </div>
+        <ul class="jobpg list-group no-bg no-borders pull-in">
+
+            <span >{{job.post.startingDate}}</span><span ng-if="job.post.endDate"> - {{job.post.startingDate}}</span>
+
+
+        </ul>
+
+        <hr>
+        <div ng-if="job.post.timePeriod == 'Once Off'">
+            <div class="row" style="text-align: left;">
+                <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
+                <div  class="content-heading"><h4 class="form-section-label"><b>Times </b></h4></div>
+            </div>
+            <ul class="jobpg list-group no-bg no-borders pull-in">
+
+                <span ng-if="job.post.hours"> {{job.post.hours.begin + " - " +job.post.hours.end}}</span>
+
+            </ul>
+            <hr>
+        </div>
+        <hr ng-if="job.post.timePeriod == !'Once Off'">
+        <div class="row" style="text-align: left;">
             <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label">Requirements </h4></div>
+            <div class="content-heading"><h4 class="form-section-label"><b>Requirements </b></h4></div>
         </div>
         <ul ng-if="job.post.requirements.length > 0 " class="jobpg list-group no-borders pull-in">
             <div class="row">
@@ -86,50 +113,8 @@
 
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/Location-Green-NEW.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label">Location </h4></div>
-        </div>
-        <br/>
-        <iframe id="location"
-                     width="300"
-                     height="300"
-                     frameborder="0" style="border:0"
-                     allowfullscreen>
-        </iframe>
-
-        <hr>
-        <div class="row" style="text-align: left;">
-            <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
-            <div ng-if="job.post.timePeriod == 'Once Off'" class="content-heading"><h4 class="form-section-label">Date </h4></div>
-            <div ng-if="job.post.timePeriod != 'Once Off'" class="content-heading"><h4 class="form-section-label">Dates </h4></div>
-        </div>
-        <ul class="jobpg list-group no-bg no-borders pull-in">
-
-            <span >{{job.post.startingDate}}</span><span ng-if="job.post.endDate"> - {{job.post.startingDate}}</span>
-
-
-        </ul>
-
-
-        <hr>
-        <div ng-if="job.post.timePeriod == 'Once Off'">
-            <div class="row" style="text-align: left;">
-                <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
-                <div  class="content-heading"><h4 class="form-section-label">Times </h4></div>
-            </div>
-            <ul class="jobpg list-group no-bg no-borders pull-in">
-
-                <span ng-if="job.post.hours"> {{job.post.hours.begin + " - " +job.post.hours.end}}</span>
-
-            </ul>
-
-
-            <hr>
-        </div>
-        <hr ng-if="job.post.timePeriod == !'Once Off'">
-        <div class="row" style="text-align: left;">
             <img src="../img/Icons/threshold2green-new.png" class="heading-img img-responsive">
-            <div  class="content-heading"><h4 class="form-section-label">Threshold </h4></div>
+            <div  class="content-heading"><h4 class="form-section-label"><b>Threshold </b></h4></div>
         </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
@@ -138,7 +123,22 @@
 
 
         </ul>
+
         <hr>
+        <div class="row" style="text-align: left;">
+            <img src="../img/Icons/Location-Green-NEW.png" class="heading-img img-responsive">
+            <div class="content-heading"><h4 class="form-section-label"><b>Location </b></h4></div>
+        </div>
+        <br/>
+        <iframe id="location"
+                width="300"
+                height="300"
+                frameborder="0" style="border:0"
+                allowfullscreen>
+        </iframe>
+
+        <hr>
+
 
 
 
@@ -172,3 +172,5 @@
     </div>
     </div>
 </div>
+        <br/>
+        <br/>
