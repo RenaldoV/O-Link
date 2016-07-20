@@ -183,7 +183,7 @@ db.jobs.find({status: 'active'},function(err,rows){
          } else */
         if(hasFinished(row.post.startingDate))
         {
-
+var done = [];
             db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
                     db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
@@ -206,11 +206,15 @@ db.jobs.find({status: 'active'},function(err,rows){
 
                             };
 
+                            if(!done.indexOf(emp.contact.email) > -1){
                             if(emp.emailDisable == undefined || !emp.emailDisable) {
+
                                 args.email = emp.contact.email;
+                                done.push(args.email);
                                 mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
                                     console.log(rs);
                                 });
+                            }
                             }
 
                             if(usr.emailDisable == undefined || !usr.emailDisable) {
