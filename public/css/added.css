@@ -751,29 +751,27 @@ span.jobDescription{
 .tab{
     margin-bottom: 0;
 }
+
+
 .applicantsTable{
 
-    background-color: #cee0f6;
+    background-color: #f6f7ff;
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
     border-radius: 10px;
 
 }
 
-.applicantsTables tbody tr td:last-child button{
-
-    margin-top: -7px;
+.applicantsTables tbody tr:hover{
+    background-color: #e9f8ff;!important;
 }
-
 .applicantsTables tbody tr td:last-child a{
 
     margin-top: -7px;
 }
 
-.applicantsTable tbody tr {
-    background-color: white;
-}
-.applicantsTable tbody tr:hover {
-    background-color: #F8F8F8;
-}
+
+
 
 .applicantsTables{
 
@@ -808,12 +806,7 @@ span.jobDescription{
 
 
 }
-.applicantsTable tbody tr td:last-child {
 
-
-
-
-}
 #jobEmployer{
     display: inline-block;
     text-align: center;
@@ -968,6 +961,7 @@ width: 100%;
 
 .appBtns {
     height: 51px;
+    width: 100%;
 }
 
 .jobSubHeader{
@@ -1092,6 +1086,4 @@ margin-bottom: 0;
     overflow: hidden;!important;
 }
 
-.appStatRowStu:hover{
-    background-color: #F8F8F8;!important;
-}
+

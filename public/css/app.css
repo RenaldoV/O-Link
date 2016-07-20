@@ -521,7 +521,7 @@ a.list-group-item.hover {
 .table-striped > tbody > tr:nth-child(odd) > th {
   background-color: #F8F8F8;
 }
-.table-striped > tbody > tr:nth-child(odd) > tr:hover
+.table-striped > tbody > tr:nth-child(odd) > tr:hover{
   background-color: white;
 }
 
