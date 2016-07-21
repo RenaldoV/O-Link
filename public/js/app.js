@@ -61,6 +61,7 @@ app.controller('jobFeed', function($scope,$http, $window){
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
     };
+
 });
 
 //controller for all dashboards

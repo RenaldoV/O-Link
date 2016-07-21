@@ -5152,8 +5152,12 @@ span.fa-stack.fa-lg.blue{
     margin-top: 40px;
   }
   .page{
-      text-align: center;
+
       margin: 0;
+  }
+  .applicantsTable{
+    text-align: left;
+    width: 100%;
   }
   .ngdialog.ngdialog-theme-default .ngdialog-content {
     transform: scale(0.8,0.8);

@@ -5,6 +5,13 @@
 
 app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope, $window) {
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+
     var user = cacheUser.user;
     $scope.user = user;
     $scope.getJob = function(id){

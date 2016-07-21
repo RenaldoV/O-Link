@@ -778,8 +778,8 @@ span.jobDescription{
     border-radius: 8px;
 
 }
-.applicantsTables thead th{
-    background-color: #cee0f6;
+.applicantsTables thead tr{
+    background-color: #e9f8ff;
 }
 .applicantsTables tbody th:last-child {
 
@@ -787,7 +787,6 @@ span.jobDescription{
     border: none;
 }
 .applicantsTables tbody tr:last-child td:last-child {
-
     border-bottom-right-radius: 10px;
 }
 
@@ -795,10 +794,18 @@ span.jobDescription{
     border-bottom-left-radius: 10px;
 }
 .applicantsTables tbody tr td {
-
     background-color: white;
     padding-top: 11px;
 
+}
+td.hover {
+    background-color: white;
+}
+tr:last-child td.hover:last-child{
+    border-bottom-right-radius: 10px;
+}
+tr:last-child td.hover:first-child{
+    border-bottom-left-radius: 10px;
 }
 .applicantsTables tbody tr td:last-child {
 
@@ -934,12 +941,12 @@ table{
     border-collapse: separate;
 }
 .tab > thead th:first-child{
-    border-top-left-radius: 7px;
+    border-top-left-radius: 10px;
 
 }
 .tab thead th:last-child{
 
-    border-top-right-radius: 7px;
+    border-top-right-radius: 10px;
 }
 .infoBoxHead{
 
