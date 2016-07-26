@@ -841,6 +841,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	//done
 	//make changes to application
+	/*
 	app.post('/rateEmployer', function(req,res){
 
 		var app = req.body;
@@ -905,6 +906,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		} );
 
 	});
+	*/
 	//done
 
 	app.post('/loadApplication', function(req,res){

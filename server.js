@@ -188,6 +188,7 @@ var done = [];
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
                     db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
                         if (err) throw err;
+                        var emails = [];
                         aps.forEach(function (ap) {
 
 
@@ -206,22 +207,15 @@ var done = [];
 
                             };
 
-                            if(!done.indexOf(emp.contact.email) > -1){
-                            if(emp.emailDisable == undefined || !emp.emailDisable) {
 
-                                args.email = emp.contact.email;
-                                done.push(args.email);
-                                mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
-                                    console.log(rs);
-                                });
-                            }
-                            }
 
                             if(usr.emailDisable == undefined || !usr.emailDisable) {
                                 args.email = usr.contact.email;
-                                mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
-                                    console.log(rs);
-                                });
+                                if(emails.indexOf(usr.contact.email) > -1) {
+                                    mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
+                                        console.log(rs);
+                                    });
+                                }
                             }
                         });
                     });

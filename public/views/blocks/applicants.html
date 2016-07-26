@@ -29,6 +29,7 @@
                     <td class="tableAdd"><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
                     <td ng-if="!isProv(app.status)" width="100" height="42"><div class="estatusDiv">
                         {{app.status}}
+                        <span class="tableAdd"></span>
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                         <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                         <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>

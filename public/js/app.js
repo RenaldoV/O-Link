@@ -67,6 +67,8 @@ app.controller('jobFeed', function($scope,$http, $window){
 //controller for all dashboards
 app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
+    //student's rating stuff
+    /*
     function employerBoxes(arr, i){
 
             rate.makeEmployerBox(arr[i], function(res){
@@ -76,7 +78,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
                 }
             });
 
-    }
+    }*/
     function studentBoxes(arr, i){
 
         rate.makeStudentBox(arr[i], function(res){
@@ -95,14 +97,15 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
         var user = session.user;
         if(user.type == "student")
         {
-            $http
+            //student's rating stuff
+           /* $http
                 .post('/getRatingDataForStudent', {id: user._id})
                 .then(function (res) {
 
                     var notifications = res.data;
                     if(notifications.length>0)
                    employerBoxes(notifications,0);
-                });
+                });*/
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
             }}
