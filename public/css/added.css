@@ -358,9 +358,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     width : 100px;
     height:100px;
 }
-.statusDiv{
-    width: 160px;
-}
+
 .estatusDiv{
     max-width: 190px;
     min-width: 100px;
@@ -808,12 +806,7 @@ tr:last-child td.hover:last-child{
 tr:last-child td.hover:first-child{
     border-bottom-left-radius: 10px;
 }
-.applicantsTables tbody tr td:last-child {
 
-    text-align: center;
-
-
-}
 
 #jobEmployer{
     display: inline-block;
@@ -836,7 +829,7 @@ tr:last-child td.hover:first-child{
 }
 .applicantsTable tbody tr td {
 
-    padding-top: 12px;
+    padding-top: 8px;
 }
 .applicantsTable tbody tr td:last-child {
     padding-top:8px;

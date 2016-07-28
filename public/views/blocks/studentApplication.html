@@ -1,23 +1,23 @@
 <div ng-controller="studentApplications" class="studentAppsPage">
 
-    <table style="margin-top: 42px;" class="table tab applicantsTable">
-    <thead class="talentHistoryHead blueBack"><th><!--Company logo--></th><th>Employer</th><th>Category</th><th class="tableAdd">Date</th><th class="tableAdd">Location</th><th>Status</th><th></th>
+    <table style="margin-top: 42px;" class="table tab applicantsTable twoHid">
+    <thead class="talentHistoryHead blueBack"><th class="tableAdd"><!--Company logo--></th ><th class='tableAdd'>Employer</th><th>Category</th><th class="tableAdd">Date</th><th class="tableAdd">Location</th><th class="statusTd">Status</th><th></th>
     </thead>
     <tbody>
     <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in applications" ng-click="getJob(app.jobID._id)" style="cursor: pointer;" class="appStatRowStu">
-        <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
-        <td ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
-        <td ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>
+        <td class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+        <td class="tableAdd" ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
+        <td class="tableAdd" ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>
         <td><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td>{{app.jobID.post.startingDate}}</td>
+        <td class="tableAdd">{{app.jobID.post.startingDate}}</td>
 
         <td class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
         <td>
             <div class="statusDiv"><span>{{app.status}}</span>
-                <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
-                <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
-                <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
-                <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
+                <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall tableAdd"></div>
+                <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall tableAdd"></div>
+                <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall tableAdd"></div>
+                <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall tableAdd"></div>
             </div>
         </td>
         <td class="appBtns">

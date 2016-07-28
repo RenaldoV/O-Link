@@ -2,7 +2,7 @@
     <div ng-controller="myJobFeed">
         <div style="margin-top: 42px;" class="applicantsTable blueBack">
         <table class="table tab">
-            <thead  class="talentHistoryHead blueBack"><th  >Category</th><th><span class="tableAdd">Number of Applicants </span><span class="hash">#</span></th><th></th>
+            <thead  class="talentHistoryHead blueBack"><th  >Category</th><th><span class="tableAdd">Number of Applicants </span><span class="hash">#</span></th><th style="width:auto;"></th>
             </thead>
             <tbody style="color: #00000A">
 
@@ -12,10 +12,13 @@
 
                 <td>{{job.applicants.length}}</td>
 
-                <td><a class="btn blueBack"  ng-if="job.applicants.length > 0"  href="/applicants?jobID={{job._id}}">Assess Applicants</a>
-                    <span ng-if="!job.applicants || job.applicants.length <= 0">No Applicants Yet</span>
+                <td><a class="btn blueBack" href="/job?id={{job._id}}">View Job</a>
+                    <a class="btn blueBack"  ng-if="job.applicants.length > 0"  href="/applicants?jobID={{job._id}}">Assess Applicants</a>
+                </td>
 
-                    <a class="btn blueBack" href="/job?id={{job._id}}">View Job</a></td>
+
+
+
             </tr>
             </tbody>
         </table>

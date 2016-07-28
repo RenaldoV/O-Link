@@ -1,18 +1,18 @@
 <div ng-controller="jobHistory" class="jonHist">
 
-    <table style="margin-top: 42px; " class="table tab  applicantsTable">
+    <table style="margin-top: 42px; " class="table tab  applicantsTable oneHid">
 
-    <thead class="blueBack talentHistoryHead"><th></th><th>Employer</th><th>Date</th><th class="tableAdd">Category</th><th>Comment</th><th>Rating</th><th></th>
+    <thead class="blueBack talentHistoryHead"><th class="tableAdd"></th><th>Employer</th><th>Date</th><th class="tableAdd">Category</th><th class="tableAdd">Comment</th><th>Rating</th>
     </thead>
     <tbody>
     <tr class="historyTbl" ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-click="getJob(app.jobID._id)" style="cursor: pointer;" ng-repeat="app in applications">
-        <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+        <td class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
         <td>{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
         <td>{{app.jobID.post.startingDate}}</td>
         <td class="tableAdd"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
-        <td ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
-        <td><fieldset class="rating" style="float: left">
+        <td class="tableAdd" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
+        <td class="tableAdd" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
+        <td style="text-align: left;"><fieldset class="rating">
             <input type="radio" id="star5{{$index}}" name="rating{{$index}}" value=5 ng-model="app.studentRating"  disabled /><label class = "full" for="star5{{$index}}" title="Awesome - 5 stars"></label>
             <input type="radio" id="star4half{{$index}}" name="rating{{$index}}" value=4.5 ng-model="app.studentRating" disabled/><label class="half" for="star4half{{$index}}" title="Pretty good - 4.5 stars"></label>
             <input type="radio" id="star4{{$index}}" name="rating{{$index}}" value=4 ng-model="app.studentRating" disabled/><label class = "full" for="star4{{$index}}" title="Pretty good - 4 stars"></label>
@@ -24,7 +24,7 @@
             <input type="radio" id="star1{{$index}}" name="rating{{$index}}" value=1.5 ng-model="app.studentRating" disabled/><label class = "full" for="star1{{$index}}" title="Sucks big time - 1 star"></label>
             <input type="radio" id="starhalf{{$index}}" name="rating{{$index}}" value=0.5 ng-model="app.studentRating" disabled><label class="half" for="starhalf{{$index}}" title="Sucks big time - 0.5 stars"></label>
         </fieldset></td>
-        <td style="width:100%; height:56px;"></td>
+
     </tr>
     </tbody>
 

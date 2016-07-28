@@ -5191,6 +5191,18 @@ span.fa-stack.fa-lg.blue{
 }
 
 @media (max-width: 767px) {
+  .applicantsTables tbody tr td:last-child .btn{
+
+    width:50px;
+height:16px;
+    font-size: 8px;
+    padding: 2px;
+
+
+
+  }
+
+
   .buyInner{
     display: inline-block;!important;
     width: 230px;!important;
@@ -5428,18 +5440,19 @@ margin-top: 32px;
     
   }
 
-  .applicantsTables tbody tr td:last-child button{
 
-    transform: scale(0.6,0.6);
-    transform-origin: 0 0;
-
-
-
-
-  }
     .applicantsTable thead{
-      font-size: 18px;
+      font-size: 12px;
     }
+  .oneHid thead th:nth-child(2){
+    border-top-left-radius: 7px;
+  }
+  .twoHid thead th:nth-child(3){
+    border-top-left-radius: 7px;
+  }
+  .applicantsTable{
+    font-size: 9px;
+  }
     div.myApps{
       display: block;
       width: 100%;
@@ -5497,32 +5510,51 @@ margin-top: 32px;
     display: unset;!important;
   }
 
+  fieldset.rating{
+    transform: scale(0.5,0.5);
+    transform-origin: 0 12px;
+    display: inline-block;
+    width: 150%;
+    float: left;
+  }
+  .applicantsTable tbody tr td .btn{
+  height: 16px;
+    font-size: 7px;
+    padding: 2px;
+    padding-top: 4px;
+  }
+  .applicantsTable tbody tr td .btn:first-child{
+    width: 30px;
+
+
+  }
+  .postHistory tbody tr td:last-child .btn:first-child{
+
+    width:74px;
+    height:16px;
+    font-size: 8px;
+    padding: 2px;
+
+
+
+  }
+  .applicantsTable tbody tr td .btn:nth-child(2){
+    width: 60px;
+
+  }
+
+  .applicantsTable tbody tr td:last-child {
+width: 100%;
+    padding: 0;
+    margin:0;
+  }
+  .statusTd{
+    width: 70px;
+  }
 
 }
-@media (max-width: 360px) {
-  .applicantsTables{
-    transform: scale(0.95,0.95);
-    transform-origin: 0 0;
-  }
-}
-@media (max-width: 330px) {
-  .applicantsTables{
-    transform: scale(0.85,0.85);
-    transform-origin: 0 0;
-  }
-}
-@media (max-width: 310px) {
-  .applicantsTables{
-    transform: scale(0.78,0.78);
-    transform-origin: 0 0;
-  }
-}
-@media (max-width: 290px) {
-  .applicantsTables{
-    transform: scale(0.74,0.74);
-    transform-origin: 0 0;
-  }
-}
+
+
 
 .hash{
 
