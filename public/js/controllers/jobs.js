@@ -1134,7 +1134,17 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
         });
 });
 
-app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope, $window) {
+
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
 
     var user = cacheUser.user;
     if(!user){
@@ -1149,6 +1159,14 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
         .then(function (res) {
 
             $scope.applications = res.data;
+            $.each($scope.applications,function(i,app){
+                $http
+                    .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                    .then(function (res) {
+
+                        app.image = res.data;
+                    });
+            });
 
             if($scope.applications.length == 0)
             {

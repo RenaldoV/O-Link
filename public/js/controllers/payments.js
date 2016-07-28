@@ -120,7 +120,7 @@ app.controller('paymentCanceled',function($scope,$routeParams, authService, sess
             {
                 if (res.data && res.data!='error') {
                     swal({
-                     title: "Payment Canceled",
+                     title: "Payment Cancelled",
                      text: "",
                      type: "error"
                      },
@@ -133,7 +133,7 @@ app.controller('paymentCanceled',function($scope,$routeParams, authService, sess
                 else
                     swal({
                             title: "Error",
-                            text: "Payment couldn't be canceled.",
+                            text: "Payment couldn't be cancelled.",
                             type: "error"
                         },
                         function () {
