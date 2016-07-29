@@ -1,6 +1,6 @@
 <div><div ng-controller="employerApplicants" class="empApplicants">
 
-    <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
+    <div style="margin-top:42px;" ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
         <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
         <div class="appHeading">
             {{job.post.category}}
