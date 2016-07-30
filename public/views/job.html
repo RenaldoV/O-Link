@@ -42,7 +42,7 @@
         </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
-            <span >{{job.post.startingDate}}</span><span ng-if="job.post.endDate"> - {{job.post.startingDate}}</span>
+            <span >{{job.post.startingDate}}</span><span ng-if="job.post.endDate"> - {{job.post.endDate}}</span>
 
 
         </ul>
@@ -106,8 +106,7 @@
                 <div class="content-heading"><b class="form-section-label">Transport </b></div>
             </div>
 
-            <div ng-if="job.post.transport"><span >Own Transport</span></div>
-            <div ng-if="job.post.driversLicense"><span >Driver's License</span></div>
+            <div ng-if="job.post.driversLicense"><span >Driver's License And Own Transport</span></div>
         </ul>
 
 

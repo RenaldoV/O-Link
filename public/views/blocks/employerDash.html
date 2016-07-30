@@ -60,7 +60,9 @@
                 </thead>
                 <tbody>
                 <tr class="jobRow" ng-repeat="job in jobs"  ng-click="getJob(job._id)" ng-click="getJob(job._id)" style="cursor: pointer;"  >
-                  <td>{{job.post.category}}</td>
+                  <td ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
+                  <td ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
+
                   <td>{{job.post.startingDate}}</td>
                   <td>{{job.applicants.length}}</td>
 

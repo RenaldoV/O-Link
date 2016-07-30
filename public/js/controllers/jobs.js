@@ -214,7 +214,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
        // console.log($scope.job.post.experience.pop());
     };
     $scope.addExp = function(){
-
         if(!$scope.job.post.experience){
             $scope.job.post.experience = [{}];
         }//else
