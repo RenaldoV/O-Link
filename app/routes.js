@@ -268,7 +268,9 @@ if(temp.radius != null){
 	app.post('/jobPoster', function(req,res) {
 
 		var job = req.body;
+
 		job.post.startingDate = dateConvert(job.post.startingDate);
+
 		if(job.post.endDate){
 			job.post.endDate = dateConvert(job.post.endDate);
 		}
@@ -307,6 +309,10 @@ if(temp.radius != null){
 	app.post('/jobUpdate', function(req,res) {
 
 		var job = req.body.job;
+		job.post.startingDate = dateConvert(job.post.startingDate);
+		if(job.post.endDate){
+			job.post.endDate = dateConvert(job.post.endDate);
+		}
 var args = {};
 db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	args.category = job.post.category;
@@ -1394,7 +1400,7 @@ console.log(job.post);
 		db.users.findOne({_id: user.id}, function(err,usr){
 			if(!err){
 
-				res.send(usr.toObject().packages);
+				res.send(usr.toObject());
 			}
 			else
 				res.send(false);

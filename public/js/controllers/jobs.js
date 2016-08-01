@@ -11,31 +11,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
     });
 
-
-    /*$( function() {
-        var dateFormat = "mm/dd/yy",
-            from =
-                .on( "change", function() {
-                    to.datepicker( "option", "minDate", getDate( this ));
-                    alert(getDate( this ));
-                }),
-
-                .on( "change", function() {
-                    from.datepicker( "option", "maxDate", getDate( this ) );
-                    alert(getDate( this ));
-                });
-
-        function getDate( element ) {
-            var date;
-            try {
-                date = $.datepicker.parseDate( dateFormat, element.value );
-            } catch( error ) {
-                date = null;
-            }
-
-            return date;
-        }
-    } );*/
     $scope.changeTimePeriod = function(){
         $scope.job.post.startingDate = "";
         $scope.job.post.endDate = "";
@@ -73,6 +48,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         onSelect: function(selected){
                             var tmp = new Date(selected);
                             $scope.job.post.endDate = getFormattedDate(tmp);
+
                         }
                     };
                     break;
@@ -121,10 +97,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $window.location.href= '/';
 
     $rootScope.$broadcast('postJob', 1);
+    var categories = constants.categories.slice(0);
     $scope.timePeriods = constants.timePeriods;
     $scope.categories = constants.categories;
-    $scope.reqNames = constants.requirements;
-    $scope.expNames = constants.categories;
+    $scope.reqNames = constants.requirements.splice(0,constants.requirements.length-1);
+    $scope.expNames = categories.splice(0,categories.length-1);
 
 
 
@@ -198,26 +175,25 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
     $scope.close = function(reqs){
 
-       // console.log($scope.job.post.requirements.pop());
+       $scope.job.post.requirements.pop();
     };
     $scope.add = function(){
 
         if(!$scope.job.post.requirements){
             $scope.job.post.requirements = [{}];
-        }//else
-       // console.log($scope.job.post.requirements.push({}));
+        }else
+            $scope.job.post.requirements.push({});
 
     };
 
     $scope.closeExp = function(reqs){
-
-       // console.log($scope.job.post.experience.pop());
+       $scope.job.post.experience.pop();
     };
     $scope.addExp = function(){
         if(!$scope.job.post.experience){
             $scope.job.post.experience = [{}];
-        }//else
-           // console.log($scope.job.post.experience.push({}));
+        }else
+           $scope.job.post.experience.push({});
 
     };
 
@@ -236,9 +212,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 .then(function (res) {
 
                     $scope.job = res.data;
-
-
-
+                    $scope.job.post.startingDate = null;
+                    $scope.job.post.endDate = null;
                 });
         }
     }
@@ -271,6 +246,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
             delete job._id;
             delete job.applicants;
+
             job.status = 'active';
             $http({
                 method: 'POST',
@@ -284,8 +260,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     }
                 });
         }
-        else if ($scope.job.status == 'active') {
-
+        else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
            // console.log($scope.job);
             swal({
                     title: "Are you sure?",

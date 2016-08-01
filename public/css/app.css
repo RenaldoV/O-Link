@@ -1082,6 +1082,12 @@ body {
   }
 }
 
+@media (max-width: 360px) {
+  .tableAddSmall{
+    display:none;
+  }
+}
+
 @media (max-width: 767px) {
   h4.white{
     padding-left: 25px;
@@ -5498,7 +5504,7 @@ margin-top: 32px;
     font-size: 13px;
   }
   .hash{
-   visibility: visible;
+   display: block;
   }
   div #jobEmployer{
     display: inline-block;
@@ -5704,4 +5710,8 @@ margin-top: 18px;
 
 h2.confirmPay{
   margin-left: -34px;
+}
+
+.hash{
+  display: none;
 }

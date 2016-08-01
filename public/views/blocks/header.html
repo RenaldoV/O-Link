@@ -13,7 +13,7 @@
                     <span class='blue'>{{talent}}</span>
                 </p>
                 <p ng-if="studentProfile" class="profileHeader">{{cache.name.name + " " + cache.name.surname}}</p>
-                <p ng-if="studentProfile && !individualProfile && !companyProfile" class="appCount muted">{{numApps}} applications left</p>
+                <p ng-hide="disableNumApps" ng-if="studentProfile && !individualProfile && !companyProfile" class="appCount muted">{{numApps}} applications left</p>
                 <p ng-if="individualProfile" class="profileHeader">{{cache.contact.name + " " + cache.contact.surname}}</p>
                 <p ng-if="companyProfile" class="profileHeader">{{cache.company.name}}</p>
                 <p ng-if="companyProfile" class="appCount">{{cache.contact.name + " " + cache.contact.surname}}</p>
@@ -21,9 +21,9 @@
                 <p ng-if="jobHistory" class="profileHeader">Job History</p>
                 <p ng-if="myApplications" class="profileHeader">My Applications</p>
                 <p ng-if="myApplicants" class="profileHeader">My Applicants</p>
-                <p ng-if="myJobs" class="profileHeader">My Job Offers</p>
-                <p ng-if="myJobHistory" class="profileHeader">My Post History</p>
-                <p ng-if="empHistory" class="profileHeader">My Employment History</p>
+                <p ng-if="myJobs" class="profileHeader">Open Job Offers</p>
+                <p ng-if="myJobHistory" class="profileHeader">Past Job Offers</p>
+                <p ng-if="empHistory" class="profileHeader">Employment History</p>
                 <p ng-if="buyApplications" class="profileHeader">Buy Applications</p>
                 <p ng-if="empBuy" class="profileHeader">Buy</p>
                 <p ng-if="job" class="profileHeader">Job Offer</p>

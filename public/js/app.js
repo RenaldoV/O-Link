@@ -259,6 +259,13 @@ app.controller('myJobFeed', function($scope,$http, session, $window, $location, 
 
     var user = session.user;
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+
     if($location.path() == "/myJobPosts"){
         $rootScope.$broadcast('myJobs',user);
     }

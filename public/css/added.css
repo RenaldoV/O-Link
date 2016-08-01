@@ -761,7 +761,7 @@ span.jobDescription{
 }
 
 .applicantsTables tbody tr:hover{
-    background-color: #e9f8ff;!important;
+
 }
 .applicantsTables tbody tr td:last-child a{
 
@@ -795,6 +795,10 @@ span.jobDescription{
     background-color: white;
     padding-top: 11px;
 
+}
+
+.applicantsTables td.hover{
+    background-color: #e9f8ff;
 }
 
 td.hover {
@@ -847,11 +851,16 @@ tr:last-child td.hover:first-child{
 
 
 
-
+.applicantsDateHead{
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 .interviewReq{
     color: red;
-    margin-top: 13px;
+    margin-top: 10px;
     font-size: 15px;
     float:left;
 }
