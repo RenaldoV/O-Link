@@ -310,6 +310,7 @@ if(temp.radius != null){
 
 		var job = req.body.job;
 		job.post.startingDate = dateConvert(job.post.startingDate);
+
 		if(job.post.endDate){
 			job.post.endDate = dateConvert(job.post.endDate);
 		}
