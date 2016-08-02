@@ -264,7 +264,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.jobs = res.data;
 
 
-                console.log($scope.jobs);
+                //console.log($scope.jobs);
                 $.each($scope.jobs,function(i,job){
                     $.each(job.applications,function(i,app){
                         $http

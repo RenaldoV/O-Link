@@ -1079,12 +1079,22 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
 
     var user = session.user;
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+
     if($location.path() == "/pastJobPosts"){
         $rootScope.$broadcast('myJobHistory',user);
     }
 
     $scope.repost = function(id){
         $window.location.href= '/postJob?id='+id;
+    };
+    $scope.getEmployees = function(id){
+        $window.location.href= '/employmentHistory?id='+id;
     };
     $http({
         method  : 'POST',
@@ -1093,7 +1103,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
     })
         .then(function(res) {
             {
-               // console.log(res.data);
+                //console.log(res.data);
                 $scope.jobs = res.data;
                 $.each($scope.jobs, function(key,value){
                     if(!value.applicants)
@@ -1154,8 +1164,15 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
 });
 
 
-app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope, $location, $window) {
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+    var temp = $location.url();
     var user = cacheUser.user;
     if(!user){
         user = session.user;
@@ -1167,15 +1184,52 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
     $http
         .post('/loadJobHistory', {employerID : user._id})
         .then(function (res) {
+            $scope.applications = {};
+            $scope.jobs = res.data;
+            $.each($scope.jobs,function(i,job){
+                $.each(job.applications,function(i,app){
 
-            $scope.applications = res.data;
+                    $http
+                        .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                        .then(function (res) {
 
-            if($scope.applications.length == 0)
-            {
-                $scope.message = "No talent has been used, yet.";
+                            app.image = res.data;
+                        });
+                });
+            });
+
+            $scope.toggleApplicants = function(id){
+                $.each($scope.jobs, function(idx,job){
+                    if(job._id == id){
+                        if(job.show == undefined){
+                            job.show = true;
+                        }
+                        else job.show = !job.show;
+                    }
+                });
+            };
+            temp = temp.replace("/employmentHistory?id=", '');
+            if(temp != ''){
+                $scope.toggleApplicants(temp);
             }
+            $scope.getAge = function (dob) {
+                return getAge(dob);
+            };
 
+            $scope.isDisabled = function(status){
+                if(status != "Declined"){
+                    return false;
+                }
+                return true;
+            };
+            $scope.getApplicant = function(id) {
+                $window.location.href= '/profile?user='+id;
+            };
 
+            if($scope.jobs.length == 0)
+            {
+                $scope.message = "No jobs completed yet.";
+            }
 
         });
 

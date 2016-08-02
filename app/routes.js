@@ -1059,26 +1059,48 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//loads completed jobs for a employer to review and or repost
 	app.post('/loadJobHistory', function(req,res){
 
-		var student= req.body;
+		var user = req.body;
+		db.jobs.find(req.body).where('status').equals('Completed').sort('post.postDate').exec(function(err,rws) {
+			var rows = rws;
+			var ret = [];
+			var calls = [];
+			var ticks = [rows.count];
+			var  i = 0;
+			rows.forEach(function(j){
+				calls.push(function(callback){
+					var job = j.toObject();
+					db.applications.find({jobID: job._id, status: 'Completed'}).populate('studentID').sort({_id:1}).exec(function (err, docs) {
+						job.applications = docs;
+						ret.push(job);
+						i++;
+						callback(null, job);
+					});
+				});
+			});
+			async.parallel(calls, function(err, result) {
+				res.send(ret);
+				if (err)
+					return console.log(err);
 
-		db.applications.find(req.body).populate('jobID').populate('employerID').populate('studentID').where('status').equals('Completed').exec(function (err, docs) {
+			});
 
-			res.send(docs);
+
+
 		});
+
+
 
 	});
 	//done
 
 
-	app.post('/loadPostHistory', function(req,res){
+	app.post('/loadPostHistory', function(req,res) {
 
-		var student= req.body;
-
+		var user = req.body;
 		db.jobs.find(req.body).where('status').equals('Completed').exec(function (err, docs) {
 
 			res.send(docs);
 		});
-
 	});
 	//done
 

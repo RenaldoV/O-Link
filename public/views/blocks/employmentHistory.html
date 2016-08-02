@@ -1,19 +1,52 @@
-<div ng-controller="employmentHistory">
-<div style="margin-top: 42px;" >
-    <table class="table tab applicantsTable">
+<div><div ng-controller="employmentHistory" class="empApplicants">
+    <div ng-if="jobs.length == 0"><span>{{message}}</span></div>
+    <div style="margin-top:42px;" ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
+        <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
+            <div ng-if="job.post.category != 'Other'" class="appHeading">
+                {{job.post.category}}
+            </div>
+            <div ng-if="job.post.category == 'Other'" class="appHeading">
+                {{job.post.OtherCategory}}
+            </div>
+            <div class="applicantsDateHead tableAddSmall">{{job.post.startingDate}}</div>
 
-    <thead class="blueBack talentHistoryHead"><th>Talent</th></th><th class="tableAdd">Category</th><th style="padding-left: 0;">Date</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="app in applications track by $index">
-        <td>{{app.studentID.name.name + " " + app.studentID.name.surname}}</td>
-        <td class="tableAdd"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td ng-if="app.jobID.post.startingDate">{{app.jobID.post.startingDate}}</td>
+            <div class="pull-right cheviBox">
+                <span ng-if="job.show" class=" glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="!job.show" class=" glyphicon glyphicon-chevron-down"></span>
+            </div>
+        </div>
 
-    </tr>
-    </tbody>
 
-</table>
+        <div ng-if="job.show">
+            <table class="table applicantsTables">
+                <thead>
+                <th></th>
+                <th class="tableAddSmall"></th>
+                <th>Student</th>
+                <th class="tableAdd"></th>
+                <th class="tableAddSmall">Comment</th>
+                <th >Rating</th>
+                <td></td>
+
+                </thead>
+                <tbody>
+                <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in job.applications"  style="cursor: pointer;">
+                    <td ng-click="getApplicant(app.studentID._id)" class="lilPp"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall"></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="appName"><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAdd"></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall" ng-if="!app.commentToStudent">No Comment</td>
+                    <td ng-click="getApplicant(app.studentID._id)" ><span ng-if="app.studentID.rating">{{app.studentRating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
+                    <td ng-click="getApplicant(app.studentID._id)"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+
+
+
 </div>
-   <div style="margin-left: 42px">{{message}}</div>
 </div>

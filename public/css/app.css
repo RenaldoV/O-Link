@@ -1082,8 +1082,29 @@ body {
   }
 }
 
-@media (max-width: 360px) {
+@media (max-width: 390px) {
   .tableAddSmall{
+    display:none;
+  }
+  .empJobTableAddBtn2{
+    display:none;
+  }
+  .applicantsTables tbody tr:last-child td:nth-child(2) {
+    border-bottom-left-radius: 10px;
+  }
+}
+@media (max-width: 520px) {
+  .applicantsTableAddSmall{
+    display:none;
+  }
+}
+@media (max-width: 540px) {
+  .empJobTableAddDate{
+    display:none;
+  }
+}
+@media (max-width: 440px) {
+  .empJobTableAddBtn1{
     display:none;
   }
 }
@@ -1142,6 +1163,9 @@ body {
 
   .tableAdd{
     display: none;
+  }
+  tr:last-child td.hover:nth-child(4){
+    border-bottom-right-radius: 10px;
   }
 }
 
@@ -4987,6 +5011,12 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  div.profileRating{
+    margin-top: 32px;
+  }
+  thead.empJobsTableHead{
+    font-size: 14px;!important;
+  }
   div.buyInner{
     display: inline-block;!important;
     width: 230px;!important;
@@ -5165,6 +5195,12 @@ span.fa-stack.fa-lg.blue{
 
       margin: 0;
   }
+  div.profileLeft {
+    padding-right: 0px;
+  }
+  div.profileRight {
+    padding-left: 0px;
+  }
   .applicantsTable{
     text-align: left;
     width: 100%;
@@ -5198,14 +5234,10 @@ span.fa-stack.fa-lg.blue{
 
 @media (max-width: 767px) {
   .applicantsTables tbody tr td:last-child .btn{
-
-    width:50px;
-height:16px;
-    font-size: 8px;
-    padding: 2px;
-
-
-
+    width: 60px;
+    height: 24px;
+    font-size: 10px;
+    padding: 4px;
   }
 
 
@@ -5448,16 +5480,13 @@ margin-top: 32px;
 
 
     .applicantsTable thead{
-      font-size: 12px;
+      font-size: 15px;
     }
   .oneHid thead th:nth-child(2){
     border-top-left-radius: 7px;
   }
   .twoHid thead th:nth-child(3){
     border-top-left-radius: 7px;
-  }
-  .applicantsTable{
-    font-size: 9px;
   }
     div.myApps{
       display: block;
@@ -5503,9 +5532,6 @@ margin-top: 32px;
   div.interviewReq{
     font-size: 13px;
   }
-  .hash{
-   display: block;
-  }
   div #jobEmployer{
     display: inline-block;
     text-align: center;
@@ -5524,15 +5550,10 @@ margin-top: 32px;
     float: left;
   }
   .applicantsTable tbody tr td .btn{
-  height: 16px;
-    font-size: 7px;
-    padding: 2px;
-    padding-top: 4px;
-  }
-  .applicantsTable tbody tr td .btn:first-child{
-    width: 30px;
-
-
+    height: 20px;
+      font-size: 10px;
+      padding: 5px;
+      padding-top: 3px;
   }
   .postHistory tbody tr td:last-child .btn:first-child{
 
@@ -5544,13 +5565,9 @@ margin-top: 32px;
 
 
   }
-  .applicantsTable tbody tr td .btn:nth-child(2){
-    width: 60px;
-
-  }
 
   .applicantsTable tbody tr td:last-child {
-width: 100%;
+    width: 100%;
     padding: 0;
     margin:0;
   }
@@ -5562,9 +5579,6 @@ width: 100%;
 
 
 
-.hash{
-
-}
 
 .form-control[readonly]
 {
@@ -5710,8 +5724,4 @@ margin-top: 18px;
 
 h2.confirmPay{
   margin-left: -34px;
-}
-
-.hash{
-  display: none;
 }
