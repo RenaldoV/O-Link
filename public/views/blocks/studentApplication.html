@@ -1,15 +1,16 @@
 <div ng-controller="studentApplications" class="studentAppsPage">
 
     <table style="margin-top: 42px;" class="table tab applicantsTable twoHid">
-    <thead class="talentHistoryHead blueBack"><th class="tableAdd"><!--Company logo--></th ><th class='tableAdd'>Employer</th><th>Category</th><th class="tableAdd">Date</th><th class="tableAdd">Location</th><th class="statusTd">Status</th><th></th>
+    <thead class="talentHistoryHead blueBack"><th class="tableAdd"><!--Company logo--></th ><th class='tableAdd'>Employer</th><th>Category</th><th class="applicantsTableAddSmall">Date</th><th class="tableAdd">Location</th><th>Status</th><th class=""></th>
     </thead>
     <tbody>
     <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in applications"  style="cursor: pointer;" class="appStatRowStu">
         <td ng-click="getJob(app.jobID._id)" class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>
-        <td ng-click="getJob(app.jobID._id)"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td ng-click="getJob(app.jobID._id)" class="tableAdd">{{app.jobID.post.startingDate}}</td>
+        <td ng-click="getJob(app.jobID._id)" ng-if="app.jobID.post.category != 'Other'">{{app.jobID.post.category}}</td>
+        <td ng-click="getJob(app.jobID._id)" ng-if="app.jobID.post.category == 'Other'">{{app.jobID.post.OtherCategory}}</td>
+        <td ng-click="getJob(app.jobID._id)" class="applicantsTableAddSmall">{{app.jobID.post.startingDate}}</td>
 
         <td ng-click="getJob(app.jobID._id)" class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
         <td ng-click="getJob(app.jobID._id)">

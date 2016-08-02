@@ -5550,10 +5550,10 @@ margin-top: 32px;
     float: left;
   }
   .applicantsTable tbody tr td .btn{
-    height: 20px;
-      font-size: 10px;
-      padding: 5px;
-      padding-top: 3px;
+    height: 25px;
+    font-size: 12px;
+    padding: 5px;
+    padding-top: 1px;
   }
   .postHistory tbody tr td:last-child .btn:first-child{
 
