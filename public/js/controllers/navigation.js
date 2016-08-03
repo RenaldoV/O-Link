@@ -67,20 +67,25 @@ app.controller('navControl',function($scope, authService, session, $location, $w
     function headings() {
         var user = session.user;
         $scope.loggedIn = true;
-        $rootScope.$on('profile', function (re, data) {
 
+        $rootScope.$on('profile', function (re, data) {
+            if(cacheUser.user.type == 'student' && session.user.type == 'employer')
+            {
+                $scope.disableNumApps = true;
+            }
             disableHeadings();
 
             $timeout(function () {
                 $scope.cache = data;
                 if (cacheUser.user.type == 'student') {
                     $scope.studentProfile = true;
-                    var tempNum = user.freeApplications;
+
                     var unlim = false;
                     $http.post('/getNumApps', {id:cacheUser.user._id})
                         .then(function (res) {
-
-                            user.packages = res.data;
+                            var tempNum = res.data.freeApplications;
+                            console.log(res.data);
+                            user.packages = res.data.packages;
                             if(user.packages){
                                 for(var i = 0; i < user.packages.length; i++){
                                     if(user.packages[i].active){
@@ -89,6 +94,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                                         }
                                         else{
                                             tempNum += user.packages[i].remainingApplications;
+
                                         }
                                     }
                                 }
@@ -96,7 +102,8 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                             }
                             if(unlim){
                                 $scope.numApps = 'Unlimited';
-                            }else $scope.numApps = tempNum;
+                            }else
+                                $scope.numApps = tempNum;
 
                         });
 
@@ -107,6 +114,8 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                         $scope.individualProfile = true;
                     else if (cacheUser.user.employerType == 'Company')
                         $scope.companyProfile = true;
+
+
 
                 }
             });

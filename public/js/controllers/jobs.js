@@ -11,31 +11,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $('#endTime').timepicker({'minTime' : $(this).val(), 'step' : 15});
     });
 
-
-    /*$( function() {
-        var dateFormat = "mm/dd/yy",
-            from =
-                .on( "change", function() {
-                    to.datepicker( "option", "minDate", getDate( this ));
-                    alert(getDate( this ));
-                }),
-
-                .on( "change", function() {
-                    from.datepicker( "option", "maxDate", getDate( this ) );
-                    alert(getDate( this ));
-                });
-
-        function getDate( element ) {
-            var date;
-            try {
-                date = $.datepicker.parseDate( dateFormat, element.value );
-            } catch( error ) {
-                date = null;
-            }
-
-            return date;
-        }
-    } );*/
     $scope.changeTimePeriod = function(){
         $scope.job.post.startingDate = "";
         $scope.job.post.endDate = "";
@@ -73,6 +48,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         onSelect: function(selected){
                             var tmp = new Date(selected);
                             $scope.job.post.endDate = getFormattedDate(tmp);
+
                         }
                     };
                     break;
@@ -121,10 +97,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $window.location.href= '/';
 
     $rootScope.$broadcast('postJob', 1);
+    var categories = constants.categories.slice(0);
     $scope.timePeriods = constants.timePeriods;
     $scope.categories = constants.categories;
-    $scope.reqNames = constants.requirements;
-    $scope.expNames = constants.categories;
+    $scope.reqNames = constants.requirements.splice(0,constants.requirements.length-1);
+    $scope.expNames = categories.splice(0,categories.length-1);
 
 
 
@@ -198,27 +175,25 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
     $scope.close = function(reqs){
 
-       // console.log($scope.job.post.requirements.pop());
+       $scope.job.post.requirements.pop();
     };
     $scope.add = function(){
 
         if(!$scope.job.post.requirements){
             $scope.job.post.requirements = [{}];
-        }//else
-       // console.log($scope.job.post.requirements.push({}));
+        }else
+            $scope.job.post.requirements.push({});
 
     };
 
     $scope.closeExp = function(reqs){
-
-       // console.log($scope.job.post.experience.pop());
+       $scope.job.post.experience.pop();
     };
     $scope.addExp = function(){
-
         if(!$scope.job.post.experience){
             $scope.job.post.experience = [{}];
-        }//else
-           // console.log($scope.job.post.experience.push({}));
+        }else
+           $scope.job.post.experience.push({});
 
     };
 
@@ -237,9 +212,8 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 .then(function (res) {
 
                     $scope.job = res.data;
-
-
-
+                    $scope.job.post.startingDate = null;
+                    $scope.job.post.endDate = null;
                 });
         }
     }
@@ -272,6 +246,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
             delete job._id;
             delete job.applicants;
+
             job.status = 'active';
             $http({
                 method: 'POST',
@@ -285,8 +260,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     }
                 });
         }
-        else if ($scope.job.status == 'active') {
-
+        else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
            // console.log($scope.job);
             swal({
                     title: "Are you sure?",
@@ -1105,12 +1079,22 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
 
     var user = session.user;
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+
     if($location.path() == "/pastJobPosts"){
         $rootScope.$broadcast('myJobHistory',user);
     }
 
     $scope.repost = function(id){
         $window.location.href= '/postJob?id='+id;
+    };
+    $scope.getEmployees = function(id){
+        $window.location.href= '/employmentHistory?id='+id;
     };
     $http({
         method  : 'POST',
@@ -1119,7 +1103,7 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
     })
         .then(function(res) {
             {
-               // console.log(res.data);
+                //console.log(res.data);
                 $scope.jobs = res.data;
                 $.each($scope.jobs, function(key,value){
                     if(!value.applicants)
@@ -1134,7 +1118,17 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
         });
 });
 
-app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope, $window) {
+
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
 
     var user = cacheUser.user;
     if(!user){
@@ -1149,6 +1143,14 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
         .then(function (res) {
 
             $scope.applications = res.data;
+            $.each($scope.applications,function(i,app){
+                $http
+                    .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                    .then(function (res) {
+
+                        app.image = res.data;
+                    });
+            });
 
             if($scope.applications.length == 0)
             {
@@ -1162,8 +1164,15 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
 });
 
 
-app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope) {
+app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope, $location, $window) {
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
+    var temp = $location.url();
     var user = cacheUser.user;
     if(!user){
         user = session.user;
@@ -1175,15 +1184,52 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
     $http
         .post('/loadJobHistory', {employerID : user._id})
         .then(function (res) {
+            $scope.applications = {};
+            $scope.jobs = res.data;
+            $.each($scope.jobs,function(i,job){
+                $.each(job.applications,function(i,app){
 
-            $scope.applications = res.data;
+                    $http
+                        .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                        .then(function (res) {
 
-            if($scope.applications.length == 0)
-            {
-                $scope.message = "No talent has been used, yet.";
+                            app.image = res.data;
+                        });
+                });
+            });
+
+            $scope.toggleApplicants = function(id){
+                $.each($scope.jobs, function(idx,job){
+                    if(job._id == id){
+                        if(job.show == undefined){
+                            job.show = true;
+                        }
+                        else job.show = !job.show;
+                    }
+                });
+            };
+            temp = temp.replace("/employmentHistory?id=", '');
+            if(temp != ''){
+                $scope.toggleApplicants(temp);
             }
+            $scope.getAge = function (dob) {
+                return getAge(dob);
+            };
 
+            $scope.isDisabled = function(status){
+                if(status != "Declined"){
+                    return false;
+                }
+                return true;
+            };
+            $scope.getApplicant = function(id) {
+                $window.location.href= '/profile?user='+id;
+            };
 
+            if($scope.jobs.length == 0)
+            {
+                $scope.message = "No jobs completed yet.";
+            }
 
         });
 

@@ -1,11 +1,15 @@
 <div><div ng-controller="employerApplicants" class="empApplicants">
 
-    <div ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
+    <div style="margin-top:42px;" ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
         <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
-        <div class="appHeading">
+        <div ng-if="job.post.category != 'Other'" class="appHeading">
             {{job.post.category}}
         </div>
-            <div ng-if="job.post.interviewRequired" class="interviewReq">(Interview Required)
+            <div ng-if="job.post.category == 'Other'" class="appHeading">
+            {{job.post.OtherCategory}}
+        </div>
+            <div class="applicantsDateHead tableAdd">{{job.post.startingDate}}</div>
+            <div ng-if="job.post.interviewRequired" class="interviewReq tableAddSmall">(Interview Required)
             </div>
 
 
@@ -18,28 +22,29 @@
 
         <div ng-if="job.show">
             <table class="table applicantsTables">
-                <thead><th>Name</th><th class="tableAdd">Age</th><th class="tableAdd">Gender</th><th class="tableAdd">Rating</th><th>Status</th><th></th>
+                <thead><th class="tableAddSmall"></th><th>Name</th><th class="applicantsTableAddSmall">Age</th><th class="applicantsTableAddSmall">Gender</th><th class="tableAddSmall">Rating</th><th class="tableAdd">Status</th><th></th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="app in job.applications" >
-
-                    <td class="appName"><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
-                    <td class="tableAdd">{{getAge(app.studentID.dob);}}</td>
-                    <td class="tableAdd">{{app.studentID.gender}}</td>
-                    <td class="tableAdd"><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
-                    <td ng-if="!isProv(app.status)" width="100" height="42"><div class="estatusDiv">
+                <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in job.applications"  style="cursor: pointer;">
+                    <td ng-click="getApplicant(app.studentID._id)" class="lilPp tableAddSmall"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="appName"><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="applicantsTableAddSmall">{{getAge(app.studentID.dob);}}</td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="applicantsTableAddSmall">{{app.studentID.gender}}</td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall"><span ng-if="app.studentID.rating">{{app.studentID.rating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAdd" ng-if="!isProv(app.status)" width="100" height="42"><div class="estatusDiv">
                         {{app.status}}
+                        <span class="tableAdd"></span>
                         <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                         <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                         <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
                     </div>
                     </td>
-                    <td ng-if="isProv(app.status)" width="200" height="42"><div class="estatusDiv">
+                    <td ng-click="getApplicant(app.studentID._id)" ng-if="isProv(app.status)" width="200" height="42"><div class="estatusDiv">
                         {{app.status}}
                         <div style="background-color: lawngreen" class="statusBall"></div>
                     </div>
                     </td>
-                    <td width="250" height="42">
+                    <td>
 
                        <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.category)" class="btn greenBack">Make Offer</button>
                         <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>

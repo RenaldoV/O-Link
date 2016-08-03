@@ -209,16 +209,10 @@
                 <button ng-if="job.post.experience.length > 0" type="button" class="removeReq btn btn-default" ng-click="closeExp(job.post.experience)">Remove<span class="glyphicon glyphicon-minus"></span></button>
                 <button type="button"  class="btn btn-default" ng-click="addExp()">Add Work Experience Requirement <span class="glyphicon glyphicon-plus"></span></button>
             </div>
-            <br/>
-            <br/>
+            <hr>
             <div class="checkbox m-b-md m-t-none">
                 <label class="i-checks">
-                    <input type="checkbox" ng-model="job.post.driversLicense"><i></i>Drivers license required?
-                </label>
-            </div>
-            <div class="checkbox m-b-md m-t-none">
-                <label class="i-checks">
-                    <input type="checkbox" ng-model="job.post.transport"><i></i>Own transport required?
+                    <input type="checkbox" ng-model="job.post.driversLicense"><i></i>Drivers license and vehicle required?
                 </label>
             </div>
             <hr>
@@ -274,12 +268,14 @@
     <div id="postJobForm" class="list-group list-group-sm" >
         <button ng-if="!job.status" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Post Job</button>
         <button ng-if="job.status == 'Completed'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >RePost Job</button>
-        <button ng-if="job.status == 'active'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Edit Job</button>
+        <button ng-if="job.status == 'active' || job.status == 'filled'" type="submit"  class="post-job-btn btn btn-lg btn-primary btn-block" >Edit Job</button>
     </div>
 
 
     </form>
 </div>
+        <br>
+        <br>
 
 <script>
     $( ".threshTooltip" ).tooltip();

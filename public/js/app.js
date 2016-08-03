@@ -61,11 +61,14 @@ app.controller('jobFeed', function($scope,$http, $window){
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
     };
+
 });
 
 //controller for all dashboards
 app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
 
+    //student's rating stuff
+    /*
     function employerBoxes(arr, i){
 
             rate.makeEmployerBox(arr[i], function(res){
@@ -75,7 +78,7 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
                 }
             });
 
-    }
+    }*/
     function studentBoxes(arr, i){
 
         rate.makeStudentBox(arr[i], function(res){
@@ -94,14 +97,15 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
         var user = session.user;
         if(user.type == "student")
         {
-            $http
+            //student's rating stuff
+           /* $http
                 .post('/getRatingDataForStudent', {id: user._id})
                 .then(function (res) {
 
                     var notifications = res.data;
                     if(notifications.length>0)
                    employerBoxes(notifications,0);
-                });
+                });*/
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
             }}
@@ -254,6 +258,13 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
 app.controller('myJobFeed', function($scope,$http, session, $window, $location, $rootScope){
 
     var user = session.user;
+
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
 
     if($location.path() == "/myJobPosts"){
         $rootScope.$broadcast('myJobs',user);

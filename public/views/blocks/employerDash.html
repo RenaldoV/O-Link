@@ -42,16 +42,28 @@
           <div class="cards panel wrapper blueBorder text-center">
 
             <div class="card-header blueBack">
-              <h4 class="font-thin m-t-none m-b-none ">My Job Offers</h4>
+              <div class="row">
+                <div class="col-xs-2 col-centered" style="width:240px; ">
+                  <i class="fa fa-briefcase" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-2 col-centered" style="width:240px;">
+                  <h2 class="font-thin m-t-none m-b-none">My Job Offers</h2>
+                </div>
             </div>
+              </div>
             <br>
             <div ng-controller="myJobFeed"  class="jobPosts">
               <table class="table text-left">
-                <thead><th>Category</th><th>Number of Applicants</th>
+                <thead><th>Category</th><th>Date</th><th>Number of Applicants</th>
                 </thead>
                 <tbody>
-                <tr ng-repeat="job in jobs"  ng-click="getJob(job._id)"  style="cursor: pointer;" >
-                  <td>{{job.post.category}}</td>
+                <tr class="jobRow" ng-repeat="job in jobs"  ng-click="getJob(job._id)" ng-click="getJob(job._id)" style="cursor: pointer;"  >
+                  <td ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
+                  <td ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
+
+                  <td>{{job.post.startingDate}}</td>
                   <td>{{job.applicants.length}}</td>
 
                 </tr>

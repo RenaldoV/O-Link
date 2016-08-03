@@ -3,12 +3,20 @@
  */
 
 
-app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope) {
+app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope, $window) {
+
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
 
     var user = cacheUser.user;
-    console.log(user);
     $scope.user = user;
-
+    $scope.getJob = function(id){
+        $window.location.href= '/job?id='+id;
+    };
     if(user == session.user) {
         $scope.getApps = function(){
             return "../views/blocks/studentApplication.html";
@@ -19,6 +27,15 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
             .then(function (res) {
 
                 $scope.applications = res.data;
+                //console.log($scope.applications[0].employerID);
+                $.each($scope.applications,function(i,app){
+                     $http
+                     .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                     .then(function (res) {
+
+                         app.image = res.data;
+                     });
+                 });
 
                 $rootScope.$broadcast('myApplications', 1);
 
@@ -222,8 +239,14 @@ app.controller('myApplications', function ($scope,$http,cacheUser, session) {
 
 
 
-app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify, $rootScope) {
+app.controller('employerApplicants', function ($scope,$http,cacheUser, session, $location, notify, $rootScope,$window) {
 
+    $scope.highlightChildren = function(event){
+        angular.element(event.currentTarget).children().addClass("hover");
+    };
+    $scope.unhighlightChildren = function(event){
+        angular.element(event.currentTarget).children().removeClass("hover");
+    };
     var user = session.user;
     $scope.user = user;
 
@@ -239,7 +262,19 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.applications = {};
 
                 $scope.jobs = res.data;
-                console.log($scope.jobs);
+
+
+                //console.log($scope.jobs);
+                $.each($scope.jobs,function(i,job){
+                    $.each(job.applications,function(i,app){
+                        $http
+                            .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                            .then(function (res) {
+
+                                app.image = res.data;
+                            });
+                    });
+                });
 
 
                 $scope.toggleApplicants = function(id){
@@ -267,7 +302,9 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     }
                     return true;
                 };
-
+                $scope.getApplicant = function(id) {
+                    $window.location.href= '/profile?user='+id;
+                };
 
                 $scope.isDeclined = function(status){
                     if(status == "Declined"){

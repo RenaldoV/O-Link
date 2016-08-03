@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/services/constants.js" afterPath="$PROJECT_DIR$/public/js/services/constants.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/page_signup.html" afterPath="$PROJECT_DIR$/public/views/page_signup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/studentDash.html" afterPath="$PROJECT_DIR$/public/views/blocks/studentDash.html" />
-    </list>
+    <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="" />
     <ignored path="o-link.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,105 +15,68 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="DaemonCodeAnalyzer">
-    <disable_hints />
-  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="o-link" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1836" max-vertical-offset="95965">
-              <caret line="5056" column="10" selection-start-line="5056" selection-start-column="10" selection-end-line="5056" selection-end-column="10" />
+            <state vertical-scroll-proportion="-3.9272728">
+              <caret line="1096" column="26" selection-start-line="1096" selection-start-column="3" selection-end-line="1096" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="added.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="welcomeTalent.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/emails/views/welcomeTalent.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="email_body.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/emails/views/email_body.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3076923">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="template.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/emails/templates/template.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="header.hbs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/emails/partials/header.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="138" selection-start-line="0" selection-start-column="138" selection-end-line="0" selection-end-column="138" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="added.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/added.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.04" vertical-offset="3982" max-vertical-offset="18547">
-              <caret line="249" column="85" selection-start-line="249" selection-start-column="85" selection-end-line="249" selection-end-column="85" />
+            <state vertical-scroll-proportion="0.321513">
+              <caret line="813" column="0" selection-start-line="813" selection-start-column="0" selection-end-line="813" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1122">
-              <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="studentDash.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public/views/blocks/studentDash.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5062696" vertical-offset="2040" max-vertical-offset="3230">
-              <caret line="139" column="70" selection-start-line="139" selection-start-column="70" selection-end-line="139" selection-end-column="70" />
-              <folding>
-                <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page_signup.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.3333335" vertical-offset="6766" max-vertical-offset="11730">
-              <caret line="420" column="126" selection-start-line="420" selection-start-column="126" selection-end-line="420" selection-end-column="126" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#6;n#div#3;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="browseJobs.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/browseJobs.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="2567">
-              <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jobs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.76" vertical-offset="3370" max-vertical-offset="19618">
-              <caret line="219" column="11" selection-start-line="219" selection-start-column="11" selection-end-line="219" selection-end-column="11" />
-              <folding>
-                <element signature="e#14437#14493#0" expanded="false" />
-                <element signature="e#19081#19219#0" expanded="false" />
-                <element signature="e#19258#19499#0" expanded="false" />
-                <element signature="e#19536#19776#0" expanded="false" />
-                <element signature="e#19894#19970#0" expanded="false" />
-                <element signature="e#20250#20343#0" expanded="false" />
-                <element signature="e#20398#20553#0" expanded="false" />
-                <element signature="e#22669#22877#0" expanded="false" />
-                <element signature="e#22928#23151#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -145,20 +103,8 @@
         <option value="$PROJECT_DIR$/public/views/blocks/rateEmployer.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/rateStudent.html" />
         <option value="$PROJECT_DIR$/public/js/helper.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
-        <option value="$PROJECT_DIR$/public/views/blocks/header.html" />
         <option value="$PROJECT_DIR$/public/libs/bootstrap/dist/css/bootstrap.css" />
-        <option value="$PROJECT_DIR$/public/views/blocks/studentProfile.html" />
-        <option value="$PROJECT_DIR$/public/views/editProfile.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/applications.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/jobHistory.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/employerDash.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/applicants.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/postHistory.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/employerJobPosts.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/employmentHistory.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/employerProfile.html" />
         <option value="$PROJECT_DIR$/public/views/page_signin.html" />
         <option value="$PROJECT_DIR$/public/js/helpers/userForms.js" />
         <option value="$PROJECT_DIR$/emails/partials/header.hbs" />
@@ -168,30 +114,42 @@
         <option value="$PROJECT_DIR$/public/views/blocks/paymentSuccessful.html" />
         <option value="$PROJECT_DIR$/public/js/appRoutes.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/paymentCanceled.html" />
-        <option value="$PROJECT_DIR$/app/routes.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/payments.js" />
-        <option value="$PROJECT_DIR$/public/js/controllers/navigation.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/confirmPay.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/buy.html" />
         <option value="$PROJECT_DIR$/public/landing/index.html" />
-        <option value="$PROJECT_DIR$/public/views/postJob.html" />
-        <option value="$PROJECT_DIR$/public/views/job.html" />
-        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/preAuthentication.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentNav.html" />
-        <option value="$PROJECT_DIR$/public/views/blocks/employerNav.html" />
-        <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/libs/angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js" />
         <option value="$PROJECT_DIR$/public/js/helpers/myforce-angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js" />
-        <option value="$PROJECT_DIR$/public/views/browseJobs.html" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
-        <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
         <option value="$PROJECT_DIR$/bower.json" />
         <option value="$PROJECT_DIR$/public/js/services/constants.js" />
-        <option value="$PROJECT_DIR$/public/css/added.css" />
         <option value="$PROJECT_DIR$/public/views/page_signup.html" />
+        <option value="$PROJECT_DIR$/public/views/browseJobs.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/payments.js" />
+        <option value="$PROJECT_DIR$/public/views/editProfile.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/studentProfile.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/jobHistory.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/employerNav.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentDash.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/employerDash.html" />
+        <option value="$PROJECT_DIR$/public/views/job.html" />
+        <option value="$PROJECT_DIR$/public/views/postJob.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/navigation.js" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/public/views/blocks/header.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/public/views/blocks/employmentHistory.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/applicants.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
+        <option value="$PROJECT_DIR$/public/views/blocks/postHistory.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/employerJobPosts.html" />
+        <option value="$PROJECT_DIR$/public/views/blocks/employerProfile.html" />
+        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
+        <option value="$PROJECT_DIR$/public/css/app.css" />
+        <option value="$PROJECT_DIR$/public/css/added.css" />
+        <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
       </list>
     </option>
   </component>
@@ -201,10 +159,9 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-7" />
+    <option name="width" value="1370" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -227,8 +184,14 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,7 +220,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="emails" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -271,29 +234,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="emails" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -313,10 +258,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -358,29 +299,11 @@
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
       <method />
     </configuration>
-    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
-      <setting name="configLocationType" value="CONFIG_FILE" />
-      <setting name="settingsFile" value="" />
-      <setting name="serverType" value="INTERNAL" />
-      <setting name="preferredDebugBrowser" value="Chrome" />
-      <method />
-    </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" config-file="">
       <envs />
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-options />
-      <working-directory>$PROJECT_DIR$</working-directory>
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui>BDD</ui>
-      <extra-mocha-options />
-      <test-directory />
-      <recursive>false</recursive>
       <method />
     </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
@@ -396,11 +319,23 @@
       <node-options />
       <gulpfile />
       <tasks />
+      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
-    <list size="0" />
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
@@ -416,47 +351,47 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2391775" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19062665" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2791798" sideWeight="0.52342606" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33989072" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18980798" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2791798" sideWeight="0.52342606" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2368" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33989072" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2972973" sideWeight="0.4915254" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34002113" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3243824" sideWeight="0.5084746" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22872826" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3243824" sideWeight="0.5084746" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2972973" sideWeight="0.4915254" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22872826" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34002113" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -470,11 +405,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <option name="myTodoPanelSettings">
-      <TodoPanelSettings />
-    </option>
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="27" />
@@ -482,401 +412,391 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/notifications.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.5" vertical-offset="0" max-vertical-offset="0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/appDirectives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="126" column="145" selection-start-line="126" selection-start-column="145" selection-end-line="126" selection-end-column="145" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/jobHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8846154" vertical-offset="0" max-vertical-offset="0">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-79.76923" vertical-offset="0" max-vertical-offset="0">
-          <caret line="122" column="106" selection-start-line="122" selection-start-column="106" selection-end-line="122" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/applicants.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/applications.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="1" column="97" selection-start-line="1" selection-start-column="96" selection-end-line="1" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerJobPosts.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="3" column="146" selection-start-line="3" selection-start-column="146" selection-end-line="3" selection-end-column="146" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/postHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/employmentHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/helpers/userForms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="28" column="7" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/pictureUpload.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/logo/Logo_email.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/emails/partials/header.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="138" selection-start-line="0" selection-start-column="138" selection-end-line="0" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/emails/partials/footer.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.65384614" vertical-offset="0" max-vertical-offset="0">
+        <state vertical-scroll-proportion="-0.65384614">
           <caret line="1" column="44" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/emails/templates/template.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07254623" vertical-offset="0" max-vertical-offset="0">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/services/notifications.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.36" vertical-offset="0" max-vertical-offset="0">
+        <state vertical-scroll-proportion="-9.36">
           <caret line="121" column="121" selection-start-line="121" selection-start-column="120" selection-end-line="121" selection-end-column="121" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/KnownBugs.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/appRoutes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="90" column="4" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="23579" max-vertical-offset="24684">
-          <caret line="1387" column="0" selection-start-line="1387" selection-start-column="0" selection-end-line="1387" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/paymentSuccessful.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="39" selection-start-line="0" selection-start-column="39" selection-end-line="0" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/navigation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5423" max-vertical-offset="7531">
-          <caret line="321" column="34" selection-start-line="321" selection-start-column="34" selection-end-line="321" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/confirmPay.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="323">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/buy.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="680">
+        <state vertical-scroll-proportion="0.0">
           <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/landing/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5862069" vertical-offset="170" max-vertical-offset="76942">
+        <state vertical-scroll-proportion="0.5862069">
           <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/payments.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82981926" vertical-offset="1625" max-vertical-offset="2533">
-          <caret line="128" column="27" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/postJob.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3876" max-vertical-offset="5270">
-          <caret line="228" column="4" selection-start-line="228" selection-start-column="4" selection-end-line="231" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/job.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="3043">
-          <caret line="7" column="48" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7828656" vertical-offset="7528" max-vertical-offset="12614">
-          <caret line="474" column="107" selection-start-line="474" selection-start-column="107" selection-end-line="474" selection-end-column="107" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/preAuthentication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7039877" vertical-offset="7752" max-vertical-offset="9537">
+        <state vertical-scroll-proportion="0.7039877">
           <caret line="485" column="59" selection-start-line="485" selection-start-column="59" selection-end-line="485" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerDash.html">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentNav.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1513">
-          <caret line="0" column="50" selection-start-line="0" selection-start-column="50" selection-end-line="0" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.13322884">
+          <caret line="5" column="64" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
+    <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1122">
-          <caret line="36" column="35" selection-start-line="36" selection-start-column="35" selection-end-line="36" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.6006144">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/helpers/myforce-angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30722892">
+          <caret line="45" column="232" selection-start-line="45" selection-start-column="232" selection-end-line="45" selection-end-column="232" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8356375">
+          <caret line="56" column="120" selection-start-line="56" selection-start-column="120" selection-end-line="56" selection-end-column="120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/page_signin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22734255">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/browseJobs.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="62" selection-start-line="89" selection-start-column="32" selection-end-line="89" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/payments.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="93" column="73" selection-start-line="93" selection-start-column="73" selection-end-line="93" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentEditProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="38" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/appRoutes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="44" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="44" selection-end-column="10" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/employerNav.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45297804" vertical-offset="0" max-vertical-offset="638">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="38" selection-start-line="5" selection-start-column="38" selection-end-line="5" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentNav.html">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentDash.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13322884" vertical-offset="0" max-vertical-offset="638">
-          <caret line="5" column="64" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/browseJobs.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075" vertical-offset="0" max-vertical-offset="2567">
-          <caret line="11" column="67" selection-start-line="11" selection-start-column="67" selection-end-line="11" selection-end-column="67" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="33" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#div#3;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bower.json">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerDash.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6006144" vertical-offset="0" max-vertical-offset="651">
-          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        <state vertical-scroll-proportion="-19.846153">
+          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/helpers/myforce-angularjs-dropdown-multiselect/dist/angularjs-dropdown-multiselect.min.js">
+    <entry file="file://$PROJECT_DIR$/public/views/job.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30722892" vertical-offset="561" max-vertical-offset="3366">
-          <caret line="45" column="232" selection-start-line="45" selection-start-column="232" selection-end-line="45" selection-end-column="232" />
-          <folding>
-            <marker date="1468954992750" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1468954992750" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8356375" vertical-offset="408" max-vertical-offset="1734">
-          <caret line="56" column="120" selection-start-line="56" selection-start-column="120" selection-end-line="56" selection-end-column="120" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5168">
-          <caret line="9" column="57" selection-start-line="9" selection-start-column="57" selection-end-line="9" selection-end-column="57" />
-          <folding />
+        <state vertical-scroll-proportion="0.21596244">
+          <caret line="44" column="99" selection-start-line="44" selection-start-column="99" selection-end-line="44" selection-end-column="99" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/services/constants.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3559823" vertical-offset="0" max-vertical-offset="3315">
-          <caret line="54" column="19" selection-start-line="54" selection-start-column="19" selection-end-line="54" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="26" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/postJob.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.307693">
+          <caret line="270" column="43" selection-start-line="270" selection-start-column="43" selection-end-line="270" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/applications.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="51" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="73" column="37" selection-start-line="73" selection-start-column="23" selection-end-line="73" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.64">
+          <caret line="266" column="6" selection-start-line="266" selection-start-column="6" selection-end-line="266" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/jobHistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5054773">
+          <caret line="19" column="77" selection-start-line="19" selection-start-column="77" selection-end-line="19" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/o-link.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/mongoMockup.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/employmentHistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27113238">
+          <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/postHistory.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6257669">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerJobPosts.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5768322">
+          <caret line="16" column="65" selection-start-line="16" selection-start-column="65" selection-end-line="16" selection-end-column="65" />
+          <folding>
+            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/employerProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040189125">
+          <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040189125">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/applicants.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.040189125">
+          <caret line="28" column="93" selection-start-line="28" selection-start-column="93" selection-end-line="28" selection-end-column="93" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.76" vertical-offset="3370" max-vertical-offset="19618">
-          <caret line="219" column="11" selection-start-line="219" selection-start-column="11" selection-end-line="219" selection-end-column="11" />
-          <folding>
-            <element signature="e#14437#14493#0" expanded="false" />
-            <element signature="e#19081#19219#0" expanded="false" />
-            <element signature="e#19258#19499#0" expanded="false" />
-            <element signature="e#19536#19776#0" expanded="false" />
-            <element signature="e#19894#19970#0" expanded="false" />
-            <element signature="e#20250#20343#0" expanded="false" />
-            <element signature="e#20398#20553#0" expanded="false" />
-            <element signature="e#22669#22877#0" expanded="false" />
-            <element signature="e#22928#23151#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="85309" max-vertical-offset="95965">
-          <caret line="5056" column="10" selection-start-line="5056" selection-start-column="10" selection-end-line="5056" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1105" column="18" selection-start-line="1105" selection-start-column="18" selection-end-line="1105" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/added.css">
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.04" vertical-offset="3982" max-vertical-offset="18547">
-          <caret line="249" column="85" selection-start-line="249" selection-start-column="85" selection-end-line="249" selection-end-column="85" />
+        <state vertical-scroll-proportion="0.037861917">
+          <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/page_signin.html">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22734255" vertical-offset="5" max-vertical-offset="714">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.321513">
+          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.3333335" vertical-offset="6766" max-vertical-offset="11730">
-          <caret line="420" column="126" selection-start-line="420" selection-start-column="126" selection-end-line="420" selection-end-column="126" />
+        <state vertical-scroll-proportion="0.15602838">
+          <caret line="654" column="208" selection-start-line="654" selection-start-column="208" selection-end-line="654" selection-end-column="208" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.53571427">
+          <caret line="112" column="0" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27423167">
+          <caret line="109" column="60" selection-start-line="109" selection-start-column="60" selection-end-line="109" selection-end-column="60" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#6;n#div#3;n#div#1;n#form#0;n#div#0;n#div#2;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentDash.html">
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5062696" vertical-offset="2040" max-vertical-offset="3230">
-          <caret line="139" column="70" selection-start-line="139" selection-start-column="70" selection-end-line="139" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.037861917">
+          <caret line="1070" column="43" selection-start-line="1070" selection-start-column="43" selection-end-line="1070" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9272728">
+          <caret line="1096" column="26" selection-start-line="1096" selection-start-column="3" selection-end-line="1096" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/emails/views/welcomeTalent.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/emails/views/email_body.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.3076923">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/emails/templates/template.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="6" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/emails/partials/header.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="138" selection-start-line="0" selection-start-column="138" selection-end-line="0" selection-end-column="138" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/added.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.321513">
+          <caret line="813" column="0" selection-start-line="813" selection-start-column="0" selection-end-line="813" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,31 +1,52 @@
-<div ng-controller="employmentHistory">
-<div style="margin-top: 42px;" >
-    <table class="table tab applicantsTable">
+<div><div ng-controller="employmentHistory" class="empApplicants">
+    <div ng-if="jobs.length == 0"><span>{{message}}</span></div>
+    <div style="margin-top:42px;" ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
+        <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
+            <div ng-if="job.post.category != 'Other'" class="appHeading">
+                {{job.post.category}}
+            </div>
+            <div ng-if="job.post.category == 'Other'" class="appHeading">
+                {{job.post.OtherCategory}}
+            </div>
+            <div class="applicantsDateHead tableAddSmall">{{job.post.startingDate}}</div>
 
-    <thead class="blueBack talentHistoryHead"><th>Talent</th></th><th class="tableAdd">Category</th><th>Comment</th><th>Rating</th>
-    </thead>
-    <tbody>
-    <tr ng-repeat="app in applications track by $index">
-        <td>{{app.studentID.name.name + " " + app.studentID.name.surname}}</td>
-        <td class="tableAdd"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td ng-if="app.commentToEmployer">{{app.commentToEmployer}}</td>
-        <td ng-if="!app.commentToEmployer"><span class="text-danger">Not rated yet</span></td>
-        <td><fieldset class="rating" style="float: left">
-            <input type="radio" id="star5{{$index}}" name="rating{{$index}}" value=5 ng-model="app.employerRating"  disabled /><label class = "full" for="star5{{$index}}" title="Awesome - 5 stars"></label>
-            <input type="radio" id="star4half{{$index}}" name="rating{{$index}}" value=4.5 ng-model="app.employerRating" disabled/><label class="half" for="star4half{{$index}}" title="Pretty good - 4.5 stars"></label>
-            <input type="radio" id="star4{{$index}}" name="rating{{$index}}" value=4 ng-model="app.employerRating" disabled/><label class = "full" for="star4{{$index}}" title="Pretty good - 4 stars"></label>
-            <input type="radio" id="star3half{{$index}}" name="rating{{$index}}" value=3.5 ng-model="app.employerRating" disabled/><label class="half" for="star3half{{$index}}" title="Meh - 3.5 stars"></label>
-            <input type="radio" id="star3{{$index}}" name="rating{{$index}}" value=3 ng-model="app.employerRating" disabled/><label class = "full" for="star3{{$index}}" title="Meh - 3 stars"></label>
-            <input type="radio" id="star2half{{$index}}" name="rating{{$index}}" value=2.5 ng-model="app.employerRating" disabled /><label class="half" for="star2half{{$index}}" title="Kinda bad - 2.5 stars"></label>
-            <input type="radio" id="star2{{$index}}" name="rating{{$index}}" value=2 ng-model="app.employerRating" disabled/><label class = "full" for="star2{{$index}}" title="Kinda bad - 2 stars"></label>
-            <input type="radio" id="star1half{{$index}}" name="rating{{$index}}" value=1 ng-model="app.employerRating" disabled/><label class="half" for="star1half{{$index}}" title="Meh - 1.5 stars"></label>
-            <input type="radio" id="star1{{$index}}" name="rating{{$index}}" value=1.5 ng-model="app.employerRating" disabled/><label class = "full" for="star1{{$index}}" title="Sucks big time - 1 star"></label>
-            <input type="radio" id="starhalf{{$index}}" name="rating{{$index}}" value=0.5 ng-model="app.employerRating" disabled><label class="half" for="starhalf{{$index}}" title="Sucks big time - 0.5 stars"></label>
-        </fieldset></td>
-    </tr>
-    </tbody>
+            <div class="pull-right cheviBox">
+                <span ng-if="job.show" class=" glyphicon glyphicon-chevron-up"></span>
+                <span ng-if="!job.show" class=" glyphicon glyphicon-chevron-down"></span>
+            </div>
+        </div>
 
-</table>
+
+        <div ng-if="job.show">
+            <table class="table applicantsTables">
+                <thead>
+                <th></th>
+                <th class="tableAddSmall"></th>
+                <th>Student</th>
+                <th class="tableAdd"></th>
+                <th class="tableAddSmall">Comment</th>
+                <th >Rating</th>
+                <td></td>
+
+                </thead>
+                <tbody>
+                <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in job.applications"  style="cursor: pointer;">
+                    <td ng-click="getApplicant(app.studentID._id)" class="lilPp"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall"></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="appName"><a href="/profile?user={{app.studentID._id}}">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</a></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAdd"></td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
+                    <td ng-click="getApplicant(app.studentID._id)" class="tableAddSmall" ng-if="!app.commentToStudent">No Comment</td>
+                    <td ng-click="getApplicant(app.studentID._id)" ><span ng-if="app.studentID.rating">{{app.studentRating}}</span><span ng-if="!app.studentID.rating">N/A</span></td>
+                    <td ng-click="getApplicant(app.studentID._id)"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+
+
+
 </div>
-   <div style="margin-left: 42px">{{message}}</div>
 </div>

@@ -517,9 +517,12 @@ a.list-group-item.hover {
   border-color: #eaeff0;
 }
 
-.table-striped > tbody > tr:nth-child(odd) > td,
+
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #fafbfc;
+  background-color: #F8F8F8;
+}
+.table-striped > tbody > tr:nth-child(odd) > tr:hover{
+  background-color: white;
 }
 
 .table-striped > thead > th {
@@ -1079,6 +1082,33 @@ body {
   }
 }
 
+@media (max-width: 390px) {
+  .tableAddSmall{
+    display:none;
+  }
+  .empJobTableAddBtn2{
+    display:none;
+  }
+  .applicantsTables tbody tr:last-child td:nth-child(2) {
+    border-bottom-left-radius: 10px;
+  }
+}
+@media (max-width: 520px) {
+  .applicantsTableAddSmall{
+    display:none;
+  }
+}
+@media (max-width: 540px) {
+  .empJobTableAddDate{
+    display:none;
+  }
+}
+@media (max-width: 440px) {
+  .empJobTableAddBtn1{
+    display:none;
+  }
+}
+
 @media (max-width: 767px) {
   h4.white{
     padding-left: 25px;
@@ -1129,6 +1159,13 @@ body {
     white-space: -o-pre-wrap;   /* Opera 7 */
     word-wrap: break-word;      /* IE */
 
+  }
+
+  .tableAdd{
+    display: none;
+  }
+  tr:last-child td.hover:nth-child(4){
+    border-bottom-right-radius: 10px;
   }
 }
 
@@ -4974,6 +5011,12 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  div.profileRating{
+    margin-top: 32px;
+  }
+  thead.empJobsTableHead{
+    font-size: 14px;!important;
+  }
   div.buyInner{
     display: inline-block;!important;
     width: 230px;!important;
@@ -5149,8 +5192,18 @@ span.fa-stack.fa-lg.blue{
     margin-top: 40px;
   }
   .page{
-      text-align: center;
+
       margin: 0;
+  }
+  div.profileLeft {
+    padding-right: 0px;
+  }
+  div.profileRight {
+    padding-left: 0px;
+  }
+  .applicantsTable{
+    text-align: left;
+    width: 100%;
   }
   .ngdialog.ngdialog-theme-default .ngdialog-content {
     transform: scale(0.8,0.8);
@@ -5180,6 +5233,14 @@ span.fa-stack.fa-lg.blue{
 }
 
 @media (max-width: 767px) {
+  .applicantsTables tbody tr td:last-child .btn{
+    width: 60px;
+    height: 24px;
+    font-size: 10px;
+    padding: 4px;
+  }
+
+
   .buyInner{
     display: inline-block;!important;
     width: 230px;!important;
@@ -5399,36 +5460,34 @@ margin-top: 32px;
     table{
       font-size: 12px;
     }
-    .tableAdd{
-      display: none;
-    }
+
     .applicantsTable{
       display: inline-table;
     text-align: left;
-    transform: scale(0.8,0.8);
-      margin-left: -5px;
+
+      width: 100%;
+    }
+    .applicantsHead{
       width: 100%;
     }
 
   .jobApps {
 
 
-    transform: scale(0.7,0.7);
-    transform-origin: 0 0;
-    box-sizing: border-box;
+
     
   }
-  .applicantsTables tbody tr td:last-child button{
-
-    transform: scale(0.8,0.8);
-    transform-origin: 0 0;
 
 
-
-  }
     .applicantsTable thead{
-      font-size: 18px;
+      font-size: 15px;
     }
+  .oneHid thead th:nth-child(2){
+    border-top-left-radius: 7px;
+  }
+  .twoHid thead th:nth-child(3){
+    border-top-left-radius: 7px;
+  }
     div.myApps{
       display: block;
       width: 100%;
@@ -5473,9 +5532,6 @@ margin-top: 32px;
   div.interviewReq{
     font-size: 13px;
   }
-  .hash{
-   visibility: visible;
-  }
   div #jobEmployer{
     display: inline-block;
     text-align: center;
@@ -5486,11 +5542,43 @@ margin-top: 32px;
     display: unset;!important;
   }
 
+  fieldset.rating{
+    transform: scale(0.5,0.5);
+    transform-origin: 0 12px;
+    display: inline-block;
+    width: 150%;
+    float: left;
+  }
+  .applicantsTable tbody tr td .btn{
+    height: 25px;
+    font-size: 12px;
+    padding: 5px;
+    padding-top: 1px;
+  }
+  .postHistory tbody tr td:last-child .btn:first-child{
+
+    width:74px;
+    height:16px;
+    font-size: 8px;
+    padding: 2px;
+
+
+
+  }
+
+  .applicantsTable tbody tr td:last-child {
+    width: 100%;
+    padding: 0;
+    margin:0;
+  }
+  .statusTd{
+    width: 70px;
+  }
+
 }
 
-.hash{
 
-}
+
 
 .form-control[readonly]
 {

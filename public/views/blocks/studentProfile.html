@@ -39,44 +39,48 @@
                 <div class="card-header blueBack">
                     <h4 class="font-thin m-t-none m-b-none ">Required Info</h4>
                 </div>
-                <div class="wrapper cards" style="margin:30px">
+                <div class="wrapper cards" style="margin-top:20px">
 
 
-
+                    <h4 class="m-t-xs m-b-xs"><b>Contact Details</b></h4>
                         <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Contact Number</div>
+                                    <div><b>Contact Number</b></div>
                                     <small class="text-muted">{{user.contact.contactNo}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Email</div>
+                                    <div><b>Email</b></div>
                                     <small class="text-muted">{{user.contact.email}}</small>
                                 </div>
                             </li>
+                            </ul>
+                            <hr>
+                            <h4 class="m-t-xs m-b-xs"><b>Personal Details</b></h4>
+                            <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Gender</div>
+                                    <div><b>Gender</b></div>
                                     <small class="text-muted">{{user.gender}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>ID Number</div>
+                                    <div><b>ID Number</b></div>
                                     <small class="text-muted">{{user.IDnumber}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>Date Of Birth</div>
+                                    <div><b>Date Of Birth</b></div>
                                     <small class="text-muted">{{user.dob}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
                                 <div class="clear">
-                                    <div>About</div>
+                                    <div><b>About</b></div>
                                     <small class="text-muted">{{user.aboutme}}</small>
                                 </div>
                             </li>
@@ -95,56 +99,62 @@
 
                     <div class="wrapper" id="additional">
                         <div class="studies" ng-if="user.qualification">
-                            <h4 class="m-t-xs m-b-xs">Academia</h4>
+                            <h4 class="m-t-xs m-b-xs"><b>Academia</b></h4>
                             <ul class="list-group no-bg no-borders pull-in">
                                 <li class="list-group-item">
                                     <div class="clear">
-                                        <div>Institution Type</div>
+                                        <div><b>Institution Type</b></div>
                                         <small class="text-muted">{{user.institution.type}}</small>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="clear">
-                                        <div>Institution Name</div>
-                                        <small class="text-muted">{{user.institution.name}}</small>
+                                        <div><b>Institution Name</b></div>
+                                        <small ng-if="user.institution.name != 'Other'" class="text-muted">{{user.institution.name}}</small>
+                                        <small ng-if="user.institution.name == 'Other'" class="text-muted">{{user.institution.otherName}}</small>
                                     </div>
                                 </li>
                                 <li class="list-group-item" ng-if="user.qualification.name">
                                     <div class="clear">
-                                        <div>Qualification Name</div>
+                                        <div><b>Qualification Name</b></div>
                                         <small class="text-muted">{{user.qualification.name}}</small>
                                     </div>
                                 </li>
+                                <hr>
+                                <h4 class="m-t-xs m-b-xs"><b>Drivers License</b></h4>
                                 <li class="list-group-item" ng-if="user.qualification.name">
                                     <div class="clear">
                                         <small class="greenText" ng-if="user.driversLicence">Has License<br></small>
                                         <small class="text-danger" ng-if="!user.driversLicence">No License<br></small>
-                                        <small class=" greenText" ng-if="user.ownTransport">Has Transport<br></small>
-                                        <small class="text-danger" ng-if="!user.ownTransport">No Transport</small>
                                     </div>
                                 </li>
+                                <hr>
                             </ul>
                         </div>
+
                         <div class="matric" ng-if="user.results.length > 0">
-                            <h4 class="m-t-xs m-b-xs">Matric results</h4>
+                            <h4 class="m-t-xs m-b-xs"><b>Matric results</b></h4>
                             <ul class="list-group no-bg no-borders pull-in">
                                 <li  class="list-group-item">
                                     <div class="clear">
-                                        <small class="text-muted" ng-repeat="res in user.results">{{res.name + " "+res.symbol}}<br></small>
+                                        <small class="text-muted" ng-repeat="res in user.results">{{res.name + " "+res.symbol}}</b><br></small>
                                     </div>
                                 </li>
+                                <hr>
                             </ul>
                         </div>
                         <div class="expr" ng-if="user.work.length > 0">
-                            <h4 class="m-t-xs m-b-xs">Work Experience</h4>
+                            <h4 class="m-t-xs m-b-xs"><b>Work Experience</b></h4>
                             <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item" ng-repeat="work in user.work">
                                 <div class="clear">
-                                    <div>{{work.category}}</div>
-                                    <small class="text-muted">{{work.duration}}<br></small>
-                                    <small class="text-muted">{{work.contact.name}}<br></small>
-                                    <small class="text-muted">{{work.contact.email}}<br></small>
-                                    <small class="text-muted">{{work.contact.number}}</small>
+                                    <div ng-if="work.category != 'Other'"><b>{{work.category}}</b></div>
+                                    <div ng-if="work.category == 'Other'"><b>{{work.otherCategory}}</b></div>
+
+                                    <small class="text-muted">{{work.duration}}</b><br></small>
+                                    <small class="text-muted">{{work.contact.name}}</b><br></small>
+                                    <small class="text-muted">{{work.contact.email}}</b><br></small>
+                                    <small class="text-muted">{{work.contact.number}}</b></small>
                                 </div>
                             </li>
                                 </ul>

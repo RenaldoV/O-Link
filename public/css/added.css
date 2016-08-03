@@ -217,8 +217,8 @@ select{
 }
 
 .btn-xlarge {
-    padding: 18px 28px;
-    font-size: 14px; //change this to your desired size
+    padding: 12px 22px;
+    font-size: 18px; //change this to your desired size
     line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -358,9 +358,7 @@ h1 { font-size: 1.5em; margin: 10px; }
     width : 100px;
     height:100px;
 }
-.statusDiv{
-    width: 160px;
-}
+
 .estatusDiv{
     max-width: 190px;
     min-width: 100px;
@@ -736,6 +734,10 @@ padding-top: 18px;
     width: 1137px;
 }
 
+span.jobDescription{
+    margin-left: -8px;
+}
+
 .appHeading{
     font-size: 20px;
     padding: 5px;
@@ -747,34 +749,35 @@ padding-top: 18px;
 .tab{
     margin-bottom: 0;
 }
+
+
 .applicantsTable{
 
-    background-color: #cee0f6;
+    background-color: #f6f7ff;
+    *border-collapse: collapse; /* IE7 and lower */
+    border-spacing: 0;
     border-radius: 10px;
 
 }
 
-.applicantsTables tbody tr td:last-child button{
+.applicantsTables tbody tr:hover{
 
-    margin-top: -7px;
 }
-
 .applicantsTables tbody tr td:last-child a{
 
     margin-top: -7px;
 }
 
-.applicantsTable tbody tr:nth-child(even) {
-    background-color: white;
-}
+
+
 
 .applicantsTables{
 
     border-radius: 8px;
 
 }
-.applicantsTables thead th{
-    background-color: #cee0f6;
+.applicantsTables thead tr{
+    background-color: #e9f8ff;
 }
 .applicantsTables tbody th:last-child {
 
@@ -782,7 +785,6 @@ padding-top: 18px;
     border: none;
 }
 .applicantsTables tbody tr:last-child td:last-child {
-
     border-bottom-right-radius: 10px;
 }
 
@@ -790,23 +792,26 @@ padding-top: 18px;
     border-bottom-left-radius: 10px;
 }
 .applicantsTables tbody tr td {
-
     background-color: white;
     padding-top: 11px;
 
 }
-.applicantsTables tbody tr td:last-child {
 
-    text-align: center;
-
-
+.applicantsTables td.hover{
+    background-color: #e9f8ff;
 }
-.applicantsTable tbody tr td:last-child {
 
-
-
-
+td.hover {
+    background-color: white;
 }
+tr:last-child td.hover:last-child{
+    border-bottom-right-radius: 10px;
+}
+tr:last-child td.hover:first-child{
+    border-bottom-left-radius: 10px;
+}
+
+
 #jobEmployer{
     display: inline-block;
     text-align: center;
@@ -828,7 +833,7 @@ padding-top: 18px;
 }
 .applicantsTable tbody tr td {
 
-    padding-top: 12px;
+    padding-top: 8px;
 }
 .applicantsTable tbody tr td:last-child {
     padding-top:8px;
@@ -846,11 +851,16 @@ padding-top: 18px;
 
 
 
-
+.applicantsDateHead{
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 .interviewReq{
     color: red;
-    margin-top: 13px;
+    margin-top: 10px;
     font-size: 15px;
     float:left;
 }
@@ -919,24 +929,27 @@ border-bottom: 0;
 
 .jobInfoBox{
     padding: 0;
-    margin-left: 15px;
+    margin-left: 17.5px;
     min-width: 144px;
     height: 42px;
     border: 1px solid #33B6CC;
   display:inline-table;
 
 }
+.jobInfoBox.FirstBox{
+    margin-left: 1px;
+}
 table{
 
     border-collapse: separate;
 }
 .tab > thead th:first-child{
-    border-top-left-radius: 7px;
+    border-top-left-radius: 10px;
 
 }
 .tab thead th:last-child{
 
-    border-top-right-radius: 7px;
+    border-top-right-radius: 10px;
 }
 .infoBoxHead{
 
@@ -958,6 +971,7 @@ width: 100%;
 
 .appBtns {
     height: 51px;
+    width: 100%;
 }
 
 .jobSubHeader{
@@ -969,7 +983,7 @@ width: 100%;
 
 
 #additional{
-    height: 420px;
+    height: 500px;
     overflow-y: scroll;
 }
 
@@ -1058,7 +1072,7 @@ div.col-md-2 > h4.filterBy{
 .jobTimePeriod{
     display: block;
     font-size: 12px;
-    margin-left:2px;
+    margin-left:1px;
     margin-top:5px;
 
 }

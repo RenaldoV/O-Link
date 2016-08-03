@@ -183,11 +183,12 @@ db.jobs.find({status: 'active'},function(err,rows){
          } else */
         if(hasFinished(row.post.startingDate))
         {
-
+var done = [];
             db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
                     db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
                         if (err) throw err;
+                        var emails = [];
                         aps.forEach(function (ap) {
 
 
@@ -200,24 +201,21 @@ db.jobs.find({status: 'active'},function(err,rows){
                                 employerName: emp.contact.name,
                                 talentName: usr.name.name,
                                 employer: emp.contact.name + " " + emp.contact.surname,
-                                employer: usr.name.name + " " + usr.name.surname,
+                                talent: usr.name.name + " " + usr.name.surname,
                                 category: job.post.category,
                                 date: job.post.startingDate
 
                             };
 
-                            if(emp.emailDisable == undefined || !emp.emailDisable) {
-                                args.email = emp.contact.email;
-                                mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
-                                    console.log(rs);
-                                });
-                            }
+
 
                             if(usr.emailDisable == undefined || !usr.emailDisable) {
                                 args.email = usr.contact.email;
-                                mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
-                                    console.log(rs);
-                                });
+                                if(emails.indexOf(usr.contact.email) > -1) {
+                                    mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
+                                        console.log(rs);
+                                    });
+                                }
                             }
                         });
                     });
