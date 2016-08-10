@@ -67,7 +67,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         $scope.user.location.geo = {};
         $scope.user.dob = {};
         $scope.user.dob = undefined;
-        if($(this).text() == "Talent")
+        if($(this).text() == "Student")
             $scope.user.type = "student";
         else if($(this).text() == "Employer")
             $scope.user.type = "employer";
@@ -412,11 +412,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
             var user = $scope.user;
-            console.log(user);
-
-
-
-
+            //console.log(user);
 
            postIt();
             user.active = false;
