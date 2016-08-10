@@ -5133,7 +5133,7 @@ span.fa-stack.fa-lg.blue{
     display: none; !important;
   }
   nav.navbar.transparent.navbar-default{
-    z-index: 20;
+    z-index: 10000;
     position: fixed;
     top:auto;
     right:0px;!important;
@@ -5306,7 +5306,7 @@ span.fa-stack.fa-lg.blue{
   }
 
   nav.navbar.transparent.navbar-default{
-    z-index: 20;
+    z-index: 10000;
     position: fixed;
     top:auto;
     right:0px;!important;
