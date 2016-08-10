@@ -218,9 +218,9 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
         swal({
                 title: "Are you sure?",
                 type: "input",
-                text: "This update your profile. Please type your password to confirm",
+                text: "This updates your profile. Please type your password to confirm.",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },
@@ -313,9 +313,9 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
         swal({
                 title: "Are you sure?",
                 type: "input",
-                text: "This update your profile. Please type your password to confirm",
+                text: "This updates your profile. Please type your password to confirm.",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },
@@ -640,9 +640,9 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         swal({
                 title: "Are you sure?",
                 type: "input",
-                text: "This update your profile. Please type your password to confirm",
+                text: "This updates your profile. Please type your password to confirm.",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },
