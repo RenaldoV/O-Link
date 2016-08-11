@@ -879,6 +879,9 @@ tr:last-child td.hover:first-child{
 .btn.greenBack{
     color: white;
 }
+.makeOffer{
+    margin-right:20px;
+}
 .btn.greenBack:hover{
     color: white;
     background-color: #33B6CC;

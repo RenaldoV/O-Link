@@ -5012,6 +5012,12 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  button.makeOffer{
+    margin-right:0px;
+  }
+  .tableAddBig{
+    display:none;
+  }
   div.profileRating{
     margin-top: 32px;
   }
