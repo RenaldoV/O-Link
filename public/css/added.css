@@ -526,8 +526,8 @@ thead.blueBack th{
 }
 
 .blueBorder{
-    border: 1px solid #33B6CC;
-    border-radius: 10px;
+    border: 1px solid #33B6CC;!important;
+    border-radius: 10px;!important;
 }
 #selectAllP{
     display: none;
@@ -682,12 +682,13 @@ padding-top: 18px;
     background-color: #f0f3f4;
 }
 
-.jobContent{
+div.jobContent{
     background-color: white;
     width: 80%;
     max-width: 500px;
     min-width: 280px;
     padding-bottom: 30px;
+    left: -15px;
 }
 
 .jobPosts{
@@ -723,7 +724,9 @@ padding-top: 18px;
  width: 130px;
     margin: 10px;
 }
-
+.btn-plain:hover{
+    background-color: #d3d3d3;
+}
 .browseLogos{
     width: 140px;
     height: 140px;

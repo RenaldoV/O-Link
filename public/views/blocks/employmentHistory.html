@@ -1,5 +1,5 @@
 <div><div ng-controller="employmentHistory" class="empApplicants">
-    <div ng-if="jobs.length == 0"><span>{{message}}</span></div>
+    <div ng-if="jobs.length == 0" class="white"><span>{{message}}</span></div>
     <div style="margin-top:42px;" ng-if="job.applications.length > 0" ng-repeat="job in jobs" class="jobApps">
         <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
             <div ng-if="job.post.category != 'Other'" class="appHeading">
