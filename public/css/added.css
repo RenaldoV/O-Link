@@ -1101,5 +1101,6 @@ margin-bottom: 0;
 .multiselect-parent .dropdown-menu {
     overflow: hidden;!important;
 }
-
-
+.profileImage{
+    width:60px;
+}

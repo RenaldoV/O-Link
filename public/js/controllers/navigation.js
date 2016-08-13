@@ -84,7 +84,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                     $http.post('/getNumApps', {id:cacheUser.user._id})
                         .then(function (res) {
                             var tempNum = res.data.freeApplications;
-                            console.log(res.data);
+                            //console.log(res.data);
                             user.packages = res.data.packages;
                             if(user.packages){
                                 for(var i = 0; i < user.packages.length; i++){
