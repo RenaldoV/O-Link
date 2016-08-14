@@ -278,6 +278,10 @@ if(temp.radius != null){
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
 			var args = {};
+			if(args.category == 'Other')
+			{
+				args.category = jab.post.OtherCategory;
+			}else
 			args.category = jab.post.category;
 			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
 
@@ -668,11 +672,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 								var args = {};
 								if (usr.emailDisable == undefined || !usr.emailDisable) {
 									args.name = usr.name.name;
-									args.role = job.post.category;
+									args.category = job.post.category;
 									args.date = job.post.startingDate;
 									args.email = usr.contact.email;
 									args.subject = "Application has been Made for " + job.post.category;
-
+									if(!job.post.interviewRequired){
+										args.interview = false;
+									}else args.interview = true;
 
 
 									args.applicationsLeft = usr.freeApplications;

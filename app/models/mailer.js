@@ -39,13 +39,30 @@ mailer.sendMail({
     mailer.close();
 });
 }
+/*
+var args = {email:'sean.hill.t@gmail.com', subject:'sub', link:'www.google.com'};
+send('welcomeTalent',args, function(e,r){
+    console.log('test email sent');
+});
+*/
+
+function isVowel(string){
+  var vowels = ['a','e','o','i','u'];
+    for(var i = 0; i< vowels.length; i++){
+        if(string[0] == vowels[i] || string[0]== vowels[i].toUpperCase())
+        {
+            return true;
+        }
+    }
+    return false;
+};
 
 module.exports ={
 
     sendMail: function(template,userID,arg, cb){
 
         var args = arg;
-
+        args.email = 'sean.hill.t@gmail.com';
         switch(template){
             case 'welcomeTalent':{
 
@@ -85,6 +102,7 @@ module.exports ={
             case 'jobLive':{
 
                 args.subject = 'Job Offer Now Live';
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }
