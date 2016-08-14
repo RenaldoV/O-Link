@@ -40,8 +40,8 @@ mailer.sendMail({
 
 });
 }
-
-var args = {email:'sean.hill.t@gmail.com', subject:'sub', link:'www.google.com',
+/* tests
+var args = {email:'...', subject:'sub', link:'www.google.com',
     name: 'Sean',
     category: 'Android',
     applicantCount: 8,
@@ -76,7 +76,7 @@ send('welcomeTalent',args, function(e,r){
     });
 });
 
-
+*/
 function isVowel(string){
   var vowels = ['a','e','o','i','u'];
     for(var i = 0; i< vowels.length; i++){
