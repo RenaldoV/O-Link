@@ -123,6 +123,11 @@ module.exports ={
                 send(template,args,cb);
                 break;
             }
+            case 'applicationMadeEmployer':{
+
+                send(template,args,cb);
+                break;
+            }
             case 'offerMade':{
                 send(template,args,cb);
                 break;
