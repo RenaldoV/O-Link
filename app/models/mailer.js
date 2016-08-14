@@ -35,16 +35,47 @@ mailer.sendMail({
     context: args
 }, function (error, response) {
     if(error) console.log(error);
-    cb(error,response);
     mailer.close();
+    cb(error,response);
+
 });
 }
-/*
-var args = {email:'sean.hill.t@gmail.com', subject:'sub', link:'www.google.com'};
+
+var args = {email:'sean.hill.t@gmail.com', subject:'sub', link:'www.google.com',
+    name: 'Sean',
+    category: 'Android',
+    applicantCount: 8,
+interview: false,
+employerName: "John",
+applicationsLeft: 2,
+date: '2/3/12',
+employer: 'John Swanson',
+talent: 'Saan Hall',
+talentName: 'Saan'
+};
+args.vowel = isVowel(args.category);
 send('welcomeTalent',args, function(e,r){
-    console.log('test email sent');
+    console.log('test email sentwelcomeTalent');
+    send('welcomeEmployer',args, function(e,r){
+        console.log('test email sentwelcomeEmployer');
+        send('forgotPassword',args, function(e,r){
+            console.log('test email sentforgotPassword');
+            send('jobLive',args, function(e,r){
+                console.log('test email sentjobLive');
+                send('jobEditedEmployer',args, function(e,r){
+                    console.log('test email sentjobEditedEmployer');
+                    send('jobEditedTalent',args, function(e,r){
+                        console.log('test email sentjobEditedTalent');
+
+                    });
+                });
+            });
+
+        });
+
+    });
 });
-*/
+
 
 function isVowel(string){
   var vowels = ['a','e','o','i','u'];
@@ -146,21 +177,12 @@ module.exports ={
                 send(template,args,cb);
                 break;
             }
-            case 'rateTalent':{
-                args.subject = "Please Rate your Employee";
-                send(template,args,cb);
-                break;
-            }
             case 'rateStudents':{
                 args.subject = "Please Rate Your Past Employees";
                 send(template,args,cb);
                 break;
             }
             case 'ratedTalent':{
-                send(template,args,cb);
-                break;
-            }
-            case 'ratedEmployer':{
                 send(template,args,cb);
                 break;
             }
