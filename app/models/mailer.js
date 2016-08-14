@@ -151,8 +151,8 @@ module.exports ={
                 send(template,args,cb);
                 break;
             }
-            case 'rateEmployer':{
-                args.subject = "Please Rate your Employer";
+            case 'rateStudents':{
+                args.subject = "Please Rate Your Past Employees";
                 send(template,args,cb);
                 break;
             }
