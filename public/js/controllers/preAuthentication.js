@@ -127,12 +127,13 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     $scope.dateOptions = {
         changeMonth: true,
         changeYear: true,
+        dateFormat: "dd/mm/yy",
         minDate: new Date(1980, 1 - 1, 1),
         defaultDate: new Date(1990, 1 - 1, 1),
         onSelect: function(dob){
             $scope.user.dob = dob;
             $scope.idfill = false;
-            idfill = dob.substring(8,10) + dob.substring(0,2) + dob.substring(3,5);
+            idfill = dob.substring(8,10) + dob.substring(3,5)+ dob.substring(0,2);
             $scope.user.IDnumber = idfill;
         }
     }; // Autofill ID first 6 charaters
