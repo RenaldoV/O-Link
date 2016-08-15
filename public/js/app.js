@@ -282,6 +282,7 @@ app.controller('myJobFeed', function($scope,$http, session, $window, $location, 
                     {
                         value.applicants=[];
                     }
+                    value.post.startingDate = convertDateForDisplay(value.post.startingDate);
                 });
             }
         });

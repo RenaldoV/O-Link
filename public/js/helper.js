@@ -16,3 +16,13 @@ function getAge(dob){
 
     return temp;
 }
+
+function convertDateForDisplay(date){
+
+    var year = date.substr(6,4);
+    var day = date.substr(3,2);
+    var month = date.substr(0,2);
+    var ret = day+"/"+month+"/"+year;
+
+    return ret;
+}
