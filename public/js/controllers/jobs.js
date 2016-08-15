@@ -21,34 +21,35 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         month = month.length > 1 ? month : '0' + month;
         var day = date.getDate().toString();
         day = day.length > 1 ? day : '0' + day;
-        return month + '/' + day + '/' + year;
+        return day + '/' + month + '/' + year;
     }
 
     $scope.startDate = {
-        dateFormat: "mm/dd/yy",
+        dateFormat: "dd/mm/yy",
         changeMonth: true,
         changeYear: true,
         minDate: 0,
         numberOfMonths: 1,
         onSelect: function(selected) {
+
             $scope.job.post.endDate = "";
-            var tmp = new Date(selected);
-            $scope.job.post.startingDate = getFormattedDate(tmp);
+            var tmp = selected.split("/");
+            tmp = new Date(tmp[2],tmp[1] -1,tmp[0]);
+
             switch ($scope.job.post.timePeriod){
                 case 'Short Term':
                 {
                     var date1 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate() + 8);
                     var date2 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate() + 30);
                     $scope.endDate = {
-                        dateFormat: "mm/dd/yy",
+                        dateFormat: "dd/mm/yy",
                         changeMonth: true,
                         changeYear: true,
                         minDate : date1,
                         maxDate : date2,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
-                            $scope.job.post.endDate = getFormattedDate(tmp);
-
+                            //$scope.job.post.endDate = getFormattedDate(tmp);
                         }
                     };
                     break;
@@ -57,14 +58,14 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 {
                     var date1 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate()+ 31);
                     $scope.endDate = {
-                        dateFormat: "mm/dd/yy",
+                        dateFormat: "dd/mm/yy",
                         changeMonth: true,
                         changeYear: true,
                         minDate : date1,
                         maxDate: null,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
-                            $scope.job.post.endDate = getFormattedDate(tmp);
+                            //$scope.job.post.endDate = getFormattedDate(tmp);
                         }
                     };
                     break;
@@ -223,11 +224,14 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $scope.submitted = true;
         if ($scope.jobForm.$valid){
             var job = jQuery.extend(true, {}, $scope.job);
+        job.post.startingDate =  new Date(job.post.startingDate.getFullYear(), job.post.startingDate.getMonth(), job.post.startingDate.getDate() + 1);
+        if(job.post.endDate)
+            job.post.endDate =  new Date(job.post.endDate.getFullYear(), job.post.endDate.getMonth(), job.post.endDate.getDate() + 1);
+
         if (!$scope.job.status) {
             $scope.job.employerID = user._id;
-            $scope.job.post.startingDate = getFormattedDate($scope.job.post.startingDate);
-            if($scope.job.post.endDate)
-            $scope.job.post.endDate = getFormattedDate($scope.job.post.endDate);
+            console.log(job);
+
 
             job.status = 'active';
             $http({
@@ -621,6 +625,10 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
             angular.forEach($scope.jobs, function(job){
                 job.post.postDate = job.post.postDate.substr(0,10);
+                job.post.postDate = job.post.postDate.split("-");
+                job.post.postDate = job.post.postDate[2] + "/" + job.post.postDate[1] + "/" + job.post.postDate[0];
+
+                job.post.startingDate = convertDateForDisplay(job.post.startingDate);
 
                 var user = {};
                 user.profilePicture = job.employerID.profilePicture;
@@ -780,6 +788,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
+            console.log();
+            $scope.job.post.startingDate = convertDateForDisplay($scope.job.post.startingDate);
+            if($scope.job.post.endDate)
+            {
+                $scope.job.post.endDate = convertDateForDisplay($scope.job.post.endDate);
+            }
             if($scope.job.applicants)
                 $scope.remaining = $scope.job.post.spotsAvailable *$scope.job.post.threshold - $scope.job.applicants.length;
             else
@@ -1156,6 +1170,7 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
 
             $scope.applications = res.data;
             $.each($scope.applications,function(i,app){
+                app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                 $http
                     .post('/getPp', {profilePicture:app.employerID.profilePicture})
                     .then(function (res) {
@@ -1199,6 +1214,7 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
             $scope.applications = {};
             $scope.jobs = res.data;
             $.each($scope.jobs,function(i,job){
+                job.post.startingDate = convertDateForDisplay(job.post.startingDate);
                 $.each(job.applications,function(i,app){
 
                     $http

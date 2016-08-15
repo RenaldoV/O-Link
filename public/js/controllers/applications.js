@@ -29,6 +29,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $scope.applications = res.data;
                 //console.log($scope.applications[0].employerID);
                 $.each($scope.applications,function(i,app){
+                    app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                      $http
                      .post('/getPp', {profilePicture:app.employerID.profilePicture})
                      .then(function (res) {
@@ -266,6 +267,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
                 //console.log($scope.jobs);
                 $.each($scope.jobs,function(i,job){
+                    job.post.startingDate = convertDateForDisplay(job.post.startingDate);
                     $.each(job.applications,function(i,app){
                         $http
                             .post('/getPp', {profilePicture:app.studentID.profilePicture})
