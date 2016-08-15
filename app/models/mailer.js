@@ -35,17 +35,65 @@ mailer.sendMail({
     context: args
 }, function (error, response) {
     if(error) console.log(error);
-    cb(error,response);
     mailer.close();
+    cb(error,response);
+
 });
 }
+/* tests
+var args = {email:'...', subject:'sub', link:'www.google.com',
+    name: 'Sean',
+    category: 'Android',
+    applicantCount: 8,
+interview: false,
+employerName: "John",
+applicationsLeft: 2,
+date: '2/3/12',
+employer: 'John Swanson',
+talent: 'Saan Hall',
+talentName: 'Saan'
+};
+args.vowel = isVowel(args.category);
+send('welcomeTalent',args, function(e,r){
+    console.log('test email sentwelcomeTalent');
+    send('welcomeEmployer',args, function(e,r){
+        console.log('test email sentwelcomeEmployer');
+        send('forgotPassword',args, function(e,r){
+            console.log('test email sentforgotPassword');
+            send('jobLive',args, function(e,r){
+                console.log('test email sentjobLive');
+                send('jobEditedEmployer',args, function(e,r){
+                    console.log('test email sentjobEditedEmployer');
+                    send('jobEditedTalent',args, function(e,r){
+                        console.log('test email sentjobEditedTalent');
+
+                    });
+                });
+            });
+
+        });
+
+    });
+});
+
+*/
+function isVowel(string){
+  var vowels = ['a','e','o','i','u'];
+    for(var i = 0; i< vowels.length; i++){
+        if(string[0] == vowels[i] || string[0]== vowels[i].toUpperCase())
+        {
+            return true;
+        }
+    }
+    return false;
+};
 
 module.exports ={
 
     sendMail: function(template,userID,arg, cb){
 
         var args = arg;
-
+        args.email = 'sean.hill.t@gmail.com';
         switch(template){
             case 'welcomeTalent':{
 
@@ -85,6 +133,7 @@ module.exports ={
             case 'jobLive':{
 
                 args.subject = 'Job Offer Now Live';
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }
@@ -101,6 +150,11 @@ module.exports ={
                 break;
             }
             case 'applicationMade':{
+
+                send(template,args,cb);
+                break;
+            }
+            case 'applicationMadeEmployer':{
 
                 send(template,args,cb);
                 break;
@@ -123,21 +177,12 @@ module.exports ={
                 send(template,args,cb);
                 break;
             }
-            case 'rateTalent':{
-                args.subject = "Please Rate your Employee";
-                send(template,args,cb);
-                break;
-            }
-            case 'rateEmployer':{
-                args.subject = "Please Rate your Employer";
+            case 'rateStudents':{
+                args.subject = "Please Rate Your Past Employees";
                 send(template,args,cb);
                 break;
             }
             case 'ratedTalent':{
-                send(template,args,cb);
-                break;
-            }
-            case 'ratedEmployer':{
                 send(template,args,cb);
                 break;
             }

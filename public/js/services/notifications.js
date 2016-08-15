@@ -43,7 +43,7 @@ app.controller('notifications', function($scope,$http, session, cacheUser){
         return $http
             .post('/loadNotifications', {id: session.user._id})
             .then(function (res) {
-                console.log(res.data);
+                //console.log(res.data);
                 $scope.notifications = res.data;
 
 

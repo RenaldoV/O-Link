@@ -459,7 +459,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                                                     showConfirmButton: false
                                                 });
                                                 session.update(tmp, function(t){
-                                                    applyFilters($scope.slider.minValue, usr.location.geo);
+                                                    applyFilters(usr.location.geo);
                                                 });
                                                 //=======================================================================
                                                 //Call apply filter here with new location info if other filters have been applied
@@ -609,6 +609,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
             data.userLocation = temp.userLocation;
         }
         var locat = session.user.location.geo;
+        //console.log(data);
     $http({
         method  : 'POST',
         url     : '/jobBrowse',
@@ -954,6 +955,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     $scope.apply = function() {
 
         var meets = [];
+        var crit = [];
         if (typeof job.post.requirements == 'undefined'){
             job.post.requirements = [];
 
@@ -982,16 +984,20 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                         meets[key] = true;
                     }
                 }
+                if(meets[key] == false)
+                    crit.push("Matric Results");
             });
         });
 
         $.each(job.post.experience, function (key, value) {
             $.each(user.work, function (i, val) {
-
                 if(value.category == val.category){
-
-                        meets[key+job.post.requirements.length] = true;
-
+                    console.log(value.category +" == "+ val.category);
+                    meets[key+job.post.requirements.length] = true;
+                    console.log("Meets "+ key+job.post.requirements.length + "true");
+                }
+                else{
+                    crit.push("Work Experience");
                 }
             });
         });
@@ -1000,6 +1006,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         if((job.post.gender == "M" || job.post.gender == "F") && job.post.gender != user.gender)
         {
             meets.push(false);
+            crit.push("Gender");
         }
         var met = true;
 
@@ -1022,18 +1029,14 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             //console.log("user license: " + user.driversLicence);
 
             if(!user.driversLicence && job.post.driversLicense)
+            {
                 met = false;
-        }
-        if(job.post.transport != 'undefined')
-        {
+                crit.push("Transport");
+            }
 
-            //console.log("job trans: " + job.post.transport);
-            //console.log("user trans: " + user.ownTransport);
-            if(!user.ownTransport && job.post.transport)
-                met = false;
         }
         if(!met){
-            sweetAlert("Requirements not met", "", "error");
+            sweetAlert("You lack the following requirements: ", reduceArray(crit), "error");
 
         }
         else {
@@ -1071,6 +1074,15 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         }
 
     };
+
+    function reduceArray(a) {
+        console.log(a);
+        var seen = {};
+        return a.filter(function(item) {
+            return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+        });
+        //return a.toString();
+    }
 
 
 });

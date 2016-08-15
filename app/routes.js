@@ -278,6 +278,10 @@ if(temp.radius != null){
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
 			var args = {};
+			if(args.category == 'Other')
+			{
+				args.category = jab.post.OtherCategory;
+			}else
 			args.category = jab.post.category;
 			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
 
@@ -328,6 +332,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 						});
 			});
 			db.applications.find({jobID:job._id} , function(err,rows){
+				args.applicantCount = rows.length;
 			db.users.findOne({_id:job.employerID}).exec(function(err,user) {
 
 				if(!err){
@@ -668,11 +673,16 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 								var args = {};
 								if (usr.emailDisable == undefined || !usr.emailDisable) {
 									args.name = usr.name.name;
-									args.role = job.post.category;
+									if(job.post.category != 'Other')
+									args.category = job.post.category;
+									else
+										args.category = job.post.otherCategory;
 									args.date = job.post.startingDate;
 									args.email = usr.contact.email;
 									args.subject = "Application has been Made for " + job.post.category;
-
+									if(!job.post.interviewRequired){
+										args.interview = false;
+									}else args.interview = true;
 
 
 									args.applicationsLeft = usr.freeApplications;
@@ -696,6 +706,17 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 										mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
 											console.log(rs);
 
+										});
+										db.users.findOne({_id: job.employerID}, function (err, usre) {
+											var emp = usre.toObject();
+											args.email = emp.contact.email;
+											args.link = 'http://' + req.headers.host + '/applicants';
+											args.talentName = args.name;
+											args.name = emp.name;
+											mailer.sendMail('applicationMadeEmployer', usre._id, args, function (errr, rsss) {
+												console.log(rsss);
+
+											});
 										});
 									});
 

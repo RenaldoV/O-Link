@@ -4904,6 +4904,7 @@ div.signupBox {
   background-color: white;
   border-radius: 25px;
   position: relative;
+  left: -15px;
 }
 
 #threshInfo{
@@ -5011,6 +5012,12 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  button.makeOffer{
+    margin-right:0px;
+  }
+  .tableAddBig{
+    display:none;
+  }
   div.profileRating{
     margin-top: 32px;
   }
@@ -5186,10 +5193,11 @@ span.fa-stack.fa-lg.blue{
   .navbar-inverse .navbar-nav > .open > a{
     background-color: #00c999;!important;
   }
-  .signupBox{
+  div.signupBox{
       display: inline-block;
       margin:0;
-    margin-top: 40px;
+       margin-top: 40px;
+    left: 0px;!important;
   }
   .page{
 
@@ -5395,11 +5403,12 @@ span.fa-stack.fa-lg.blue{
  h4.form-section-label{
    margin-left:100px;!important;
  }
-    .signupBox{
+    div.signupBox{
         display: inline-block;
         margin: 0 -9999rem;
         margin-top: 40px;
         width:100%;!important;
+        left: 0px;!important;
     }
     div.page{
 

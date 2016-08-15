@@ -12,7 +12,7 @@ app.controller('profileControl',function($scope, authService, session, $location
         if(temp == '/myProfile'){
             var user = session.user;
             cacheUser.create(user);
-            console.log(user.type);
+            //console.log(user.type);
             $rootScope.$broadcast('profile',user);
             if (user.type == "student") {
                 $scope.getProfile = function () {
@@ -65,11 +65,13 @@ app.controller('profileControl',function($scope, authService, session, $location
                     $rootScope.$broadcast('profile',user);
                     if (user.type == "student") {
                         $scope.getProfile = function () {
+                            $scope.showProfilePic = true;
                             return "../views/blocks/studentProfile.html";
                         }
                     }
                     else if (user.type == "employer") {
                         $scope.getProfile = function () {
+                            $scope.showProfilePic = true;
                             return "../views/blocks/employerProfile.html";
                         }
                     }
@@ -108,7 +110,7 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
     if (user._id == session.user._id)
         $scope.myProfile = true;
 
-    console.log(cacheUser.user._id + " " +session.user._id);
+    //console.log(cacheUser.user._id + " " +session.user._id);
     $scope.user = user;
 
     $http
@@ -138,7 +140,14 @@ app.controller('employerProfileControl', function ($scope,$http,cacheUser, sessi
     $scope.myProfile = true;
 
     $scope.user = user;
+    $http
+        .post('/getPp', user)
+        .then(function (res) {
 
+            $scope.image=res.data;
+
+
+        });
     $http
         .post('/getOfferCount', user)
         .then(function (res) {

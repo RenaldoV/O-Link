@@ -22,7 +22,7 @@
 
         <div ng-if="job.show">
             <table class="table applicantsTables">
-                <thead><th class="tableAddSmall"></th><th>Name</th><th class="applicantsTableAddSmall">Age</th><th class="applicantsTableAddSmall">Gender</th><th class="tableAddSmall">Rating</th><th class="tableAdd">Status</th><th></th>
+                <thead><th class="tableAddSmall"></th><th>Name</th><th class="applicantsTableAddSmall">Age</th><th class="applicantsTableAddSmall">Gender</th><th class="tableAddSmall">Rating</th><th class="tableAdd">Status</th><th class="tableAddBig"></th><th class="tableAddBig"></th><th class="tableAddBig"></th><th></th>
                 </thead>
                 <tbody>
                 <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in job.applications"  style="cursor: pointer;">
@@ -44,9 +44,11 @@
                         <div style="background-color: lawngreen" class="statusBall"></div>
                     </div>
                     </td>
+                    <td class="tableAddBig"></td>
+                    <td class="tableAddBig"></td>
+                    <td class="tableAddBig"></td>
                     <td>
-
-                       <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.category)" class="btn greenBack">Make Offer</button>
+                       <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.category)" class="btn greenBack makeOffer">Make Offer</button>
                         <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
                         <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job.post.category)">Decline</button>
                     </td>
