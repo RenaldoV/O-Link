@@ -93,7 +93,6 @@ module.exports ={
     sendMail: function(template,userID,arg, cb){
 
         var args = arg;
-        args.email = 'sean.hill.t@gmail.com';
         switch(template){
             case 'welcomeTalent':{
 
