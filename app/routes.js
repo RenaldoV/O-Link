@@ -278,11 +278,11 @@ if(temp.radius != null){
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
 			var args = {};
-			if(args.category == 'Other')
+			if(jab.post.category == 'Other')
 			{
 				args.category = jab.post.OtherCategory;
 			}else
-			args.category = jab.post.category;
+				args.category = jab.post.category;
 			db.users.findOne({_id:jab.employerID}).exec(function(err,user){
 
 				if(!err){
@@ -320,7 +320,10 @@ if(temp.radius != null){
 		}
 var args = {};
 db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
-	args.category = job.post.category;
+	if(job.post.category == "Other")
+		args.category = job.post.OtherCategory;
+	else
+		args.category = job.post.category;
 	if(d){
 		db.applications.update({jobID:job._id},{$set:{edited:true, editTime: Date.now()}} , function(err,updated){
 			new CronJob(new Date(Date.now() + 86400000), function() {
@@ -676,10 +679,11 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 									if(job.post.category != 'Other')
 									args.category = job.post.category;
 									else
-										args.category = job.post.otherCategory;
-									args.date = job.post.startingDate;
+										args.category = job.post.OtherCategory;
+									args.date = convertDateForDisplay(job.post.startingDate);
+									console.log("DATE FOR EMAIL: " + args.date);
 									args.email = usr.contact.email;
-									args.subject = "Application has been Made for " + job.post.category;
+									args.subject = "Application has been Made for " + args.category;
 									if(!job.post.interviewRequired){
 										args.interview = false;
 									}else args.interview = true;
@@ -1509,6 +1513,16 @@ function dateConvert(inDate){
 	var month =inDate.substr(5,2);
 	var day = inDate.substr(8,2);
 	var ret = month+"/"+day+"/"+year;
+
+	return ret;
+}
+
+function convertDateForDisplay(date){
+
+	var year = date.substr(6,4);
+	var day = date.substr(3,2);
+	var month = date.substr(0,2);
+	var ret = day+"/"+month+"/"+year;
 
 	return ret;
 }
