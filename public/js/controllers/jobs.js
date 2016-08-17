@@ -989,31 +989,48 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             }
         }
 
-
         $.each(job.post.requirements, function (key, value) {
-            $.each(user.results, function (i, val) {
-               
-                if(value.name == val.name){
-                    if(val.symbol <= value.symbol){
-                        meets[key] = true;
+            if(user.results) {
+                $.each(user.results, function (i, val) {
+                    if (value.name == val.name) {
+                        if (val.symbol <= value.symbol) {
+                            meets[key] = true;
+                        }
                     }
-                }
-                if(meets[key] == false)
+                });
+                if (meets[key] == false)
                     crit.push("Matric Results");
-            });
+                /*console.log("Key: " + key);
+                console.log("Subject: " + value.name);
+                console.log("meets: " + meets[key]);
+                console.log("Crit: " + crit);*/
+            }
+            else
+            {
+                crit.push("Matric Results");
+                //console.log("Crit: no matric results" + crit);
+            }
         });
 
         $.each(job.post.experience, function (key, value) {
-            $.each(user.work, function (i, val) {
-                if(value.category == val.category){
-                    console.log(value.category +" == "+ val.category);
-                    meets[key+job.post.requirements.length] = true;
-                    console.log("Meets "+ key+job.post.requirements.length + "true");
-                }
-                else{
+            if(user.work) {
+                $.each(user.work, function (i, val) {
+                    if (value.category == val.category) {
+                        meets[key + job.post.requirements.length] = true;
+                    }
+                });
+                if(meets[key + job.post.requirements.length] == false){
                     crit.push("Work Experience");
                 }
-            });
+                /*console.log("Key: " + (key + job.post.requirements.length));
+                console.log("Exp: " + value.category);
+                console.log("meets: " + meets[key + job.post.requirements.length]);
+                console.log("Crit: " + crit);*/
+            }
+            else{
+                crit.push("Work Experience");
+                //console.log("Crit: no work exp" + crit);
+            }
         });
 
 
@@ -1090,7 +1107,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     };
 
     function reduceArray(a) {
-        console.log(a);
+        //console.log(a);
         var seen = {};
         return a.filter(function(item) {
             return seen.hasOwnProperty(item) ? false : (seen[item] = true);
