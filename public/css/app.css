@@ -5238,6 +5238,9 @@ span.fa-stack.fa-lg.blue{
   br.jobPPMobile{
     display: unset;!important;
   }
+div.dashTops{
+  margin-top: 35px;
+}
 }
 
 @media (max-width: 767px) {
@@ -5430,8 +5433,7 @@ span.fa-stack.fa-lg.blue{
       margin-bottom: 0px;
     }
     div.dashTops{
-
-      margin-top: 20px;
+      margin-top: 35px;
     }
     div.jobsContainer{
       width: 100%;
