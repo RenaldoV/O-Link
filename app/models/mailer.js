@@ -137,41 +137,58 @@ module.exports ={
                 break;
             }
             case 'jobEditedEmployer':{
-
+                args.vowel = isVowel(args.category);
                 args.subject = 'O-Link: Edited Job Offer is now Live';
                 send(template,args,cb);
                 break;
             }
             case 'jobEditedTalent':{
-
+                args.vowel = isVowel(args.category);
                 args.subject = 'O-Link: Edited Job Offer';
                 send(template,args,cb);
                 break;
             }
             case 'applicationMade':{
-
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }
             case 'applicationMadeEmployer':{
-
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }
             case 'offerMade':{
+                var article = "";
+                if(isVowel(args.subject))
+                    article = "an";
+                else
+                    article = "a";
+                args.subject = "Provisionally Accepted as " + article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
             case 'offerMadeInterview':{
+                var article = "";
+                if(isVowel(args.subject))
+                    article = "an";
+                else
+                    article = "a";
+                args.subject = "Provisionally Accepted as " + article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
             case 'applicationDenied':{
+                var article = "";
+                if(isVowel(args.subject))
+                    article = "an";
+                else
+                    article = "a";
+                args.subject = "Declined for a job as " +  article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
             case 'applicationWithdrawn':{
-
                 args.subject = "Withdrawn Application";
                 send(template,args,cb);
                 break;
@@ -186,13 +203,14 @@ module.exports ={
                 break;
             }
             case 'offerAccepted':{
+                args.vowel = isVowel(args.category);
                 args.subject = args.talentName +" has Accepted your Offer";
                 send(template,args,cb);
                 break;
             }
             case 'interviewAccepted':
             {
-
+                args.vowel = isVowel(args.category);
                 args.subject = args.talentName +" has Accepted your Offer";
                 send(template,args,cb);
                 break;

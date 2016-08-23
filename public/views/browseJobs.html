@@ -77,6 +77,10 @@
                 <br/>
                 <br/>
                 <br class="jobMobileSpace" />
+                <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpaceBig" />
+                <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpaceBig" />
+                <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpace" />
+                <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpace" />
 
 
 

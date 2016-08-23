@@ -688,7 +688,6 @@ div.jobContent{
     max-width: 500px;
     min-width: 280px;
     padding-bottom: 30px;
-    left: -15px;
 }
 
 .jobPosts{
@@ -1103,4 +1102,8 @@ margin-bottom: 0;
 }
 .profileImage{
     width:60px;
+}
+
+div.sweet-alert{
+    margin-left: -240px;
 }

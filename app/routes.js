@@ -757,7 +757,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				if (usr.emailDisable == undefined || !usr.emailDisable) {
 					var args = {};
 					args.name = usr.name.name;
-					args.date = job.post.startingDate;
+					args.date = convertDateForDisplay(job.post.startingDate);
 					args.role = job.post.category;
 					args.email = usr.contact.email;
 					if(emp.employerType == 'Company'){
@@ -767,11 +767,10 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 					if(app.status == "Provisionally accepted"){
-					args.subject = "Provisionally Accepted as a(n) " + args.role;
+					args.subject = args.role;
 					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
 
 						if(job.post.interviewRequired){
-							console.log("interwev");
 						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
 							console.log(rr);
 
@@ -785,7 +784,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					}
 					}
 					else if(app.status == "Declined"){
-						args.subject = "Declined for a job as a(n) " + args.role;
+						args.subject = args.role;
 						args.link = 'http://' + req.headers.host + '/browseJobs?categories=Coach%25Tutor%25Delivery_Person%25Retail_Worker%25Model%25Waiter(res)%25Host(ess)%25Barman%25Aupair%25Photographer_%2F_Videographer%25Programmer%2FDeveloper%25Engineer%25Assistant%25Cook%2FChef%25Internship%25Other&timePeriods=Once_Off%25Short_Term%25Long_Term';
 
 						db.jobs.findOneAndUpdate({_id : ap.jobID._id},  {$pull: { applicants: ap.studentID._id}}).exec(function(ers,ress){
