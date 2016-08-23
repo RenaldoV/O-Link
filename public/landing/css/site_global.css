@@ -96,9 +96,16 @@ body
 	font-feature-settings: 'liga';
 }
 
+a
+{
+	color: inherit;
+	text-decoration: inherit;
+}
+
 a:link
 {
-	color: #757575;
+	color: #FFFFFF;
+	font-weight: normal;
 	text-decoration: inherit;
 }
 

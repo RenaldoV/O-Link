@@ -2,14 +2,163 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emails/views/applicationMade.hbs" afterPath="$PROJECT_DIR$/emails/views/applicationMade.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/emails/views/applicationMadeEmployer.hbs" afterPath="$PROJECT_DIR$/emails/views/applicationMadeEmployer.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/browseJobs.html" afterPath="$PROJECT_DIR$/public/views/browseJobs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/mailer.js" afterPath="$PROJECT_DIR$/app/models/mailer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/postJob.html" afterPath="$PROJECT_DIR$/public/views/postJob.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\css\master_header-footer.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\Thumbs.db" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\apple-device-transparent.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\apple-device-transparent_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\mc_cities_lowres_016.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\mobile_4.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\mobile_4_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\multi device.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\multi device_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\noble-zero2.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\option3white56x56.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\option3white56x56_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\option3white99x99.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\option3white99x99_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\railtrack.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\recruitmentwordcloudfull-u25591-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\recruitmentwordcloudfull-u25591-fr_2x.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\recruitmentwordcloudfull-u25630-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\recruitmentwordcloudfull-u25630-fr_2x.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\retailer-u25588-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\retailer-u25629-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\samsung-galaxy-s7362x362.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\slips3-u25586-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\slips3-u25632-fr.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\switch-composite path.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\switch-composite path2.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\switch-composite path_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\switch-composite path_2x2.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\tunnel.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-fs.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-fs_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-m.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-m_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-r.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17-r_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u20687-17_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-fs.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-fs_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-m.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-m_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-r.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17-r_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21294-17_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21431-grad.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21441-grad.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21531-grad.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-fs.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-fs_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-m.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-m_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-r.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17-r_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u21664-17_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-fs.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-fs_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-m.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-m_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-r.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17-r_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\u36965-17_2x.png" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\images\watch.jpg" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\scripts\form-u20679.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\scripts\form-u21287.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\scripts\form-u21663.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\scripts\form-u36960.php" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\company.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\contact.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\company.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\contact.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\master_header-footer.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\master_navigation.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\resources.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\services.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\work-single.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\css\work.css" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\resources.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\services.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\work-single.html" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Ronnie\Desktop\O-Link\public\landing\tablet\work.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/butlers pizza.png" afterPath="$PROJECT_DIR$/public/landing/images/butlers pizza.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/geckobar-crop-u35704.png" afterPath="$PROJECT_DIR$/public/landing/images/geckobar-crop-u35704.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/geckobar.png" afterPath="$PROJECT_DIR$/public/landing/images/geckobar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/intuition.png" afterPath="$PROJECT_DIR$/public/landing/images/intuition.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/option3white.png" afterPath="$PROJECT_DIR$/public/landing/images/option3white.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/puer logo gold.png" afterPath="$PROJECT_DIR$/public/landing/images/puer logo gold.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/puer logo gold85x65.png" afterPath="$PROJECT_DIR$/public/landing/images/puer logo gold85x65.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/puer logo gold85x65_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/puer logo gold85x65_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/puer logo gold_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/puer logo gold_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/rondebosch boys.png" afterPath="$PROJECT_DIR$/public/landing/images/rondebosch boys.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/samsung-galaxy-s7.png" afterPath="$PROJECT_DIR$/public/landing/images/samsung-galaxy-s7.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/slug and lettuce.png" afterPath="$PROJECT_DIR$/public/landing/images/slug and lettuce.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/teachme2.png" afterPath="$PROJECT_DIR$/public/landing/images/teachme2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/the toad.png" afterPath="$PROJECT_DIR$/public/landing/images/the toad.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/tonic promotions.png" afterPath="$PROJECT_DIR$/public/landing/images/tonic promotions.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-fs.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-fs.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-fs_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-fs_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-m.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-m.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-m_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-m_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-r.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-r.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17-r_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17-r_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/images/u32966-17_2x.png" afterPath="$PROJECT_DIR$/public/landing/images/u32966-17_2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/contact-us.css" afterPath="$PROJECT_DIR$/public/landing/css/contact-us.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/contact-us.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/contact-us.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/contact-us.html" afterPath="$PROJECT_DIR$/public/landing/contact-us.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/contact-us.html" afterPath="$PROJECT_DIR$/public/landing/phone/contact-us.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/download.css" afterPath="$PROJECT_DIR$/public/landing/css/download.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/download.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/download.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/download.html" afterPath="$PROJECT_DIR$/public/landing/download.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/download.html" afterPath="$PROJECT_DIR$/public/landing/phone/download.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/faq-s.css" afterPath="$PROJECT_DIR$/public/landing/css/faq-s.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/faq-s.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/faq-s.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/faq-s.html" afterPath="$PROJECT_DIR$/public/landing/faq-s.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/faq-s.html" afterPath="$PROJECT_DIR$/public/landing/phone/faq-s.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/scripts/form-u25486.php" afterPath="$PROJECT_DIR$/public/landing/scripts/form-u25486.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/scripts/form-u35711.php" afterPath="$PROJECT_DIR$/public/landing/scripts/form-u35711.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/home-employer.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/home-employer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/home-employer.html" afterPath="$PROJECT_DIR$/public/landing/phone/home-employer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/home-talent.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/home-talent.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/home-talent.html" afterPath="$PROJECT_DIR$/public/landing/phone/home-talent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/how-it-work-talent.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/how-it-work-talent.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/how-it-work-talent.html" afterPath="$PROJECT_DIR$/public/landing/phone/how-it-work-talent.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/how-it-works-employer.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/how-it-works-employer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/how-it-works-employer.html" afterPath="$PROJECT_DIR$/public/landing/phone/how-it-works-employer.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/how-it-works.css" afterPath="$PROJECT_DIR$/public/landing/css/how-it-works.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/how-it-works.html" afterPath="$PROJECT_DIR$/public/landing/how-it-works.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_contact-us.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_contact-us.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_download.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_download.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_faq-s.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_faq-s.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_home-employer.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_home-employer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_home-talent.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_home-talent.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_how-it-work-talent.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_how-it-work-talent.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_how-it-works-employer.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_how-it-works-employer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/iefonts_index.css" afterPath="$PROJECT_DIR$/public/landing/css/iefonts_index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_index.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/iefonts_work-single.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/iefonts_work-single.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/index.css" afterPath="$PROJECT_DIR$/public/landing/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/index.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/tablet/css/index.css" afterPath="$PROJECT_DIR$/public/landing/tablet/css/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/index.html" afterPath="$PROJECT_DIR$/public/landing/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/index.html" afterPath="$PROJECT_DIR$/public/landing/phone/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/tablet/index.html" afterPath="$PROJECT_DIR$/public/landing/tablet/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/master_employer-header-footer.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/master_employer-header-footer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/master_talent-headerfooter.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/master_talent-headerfooter.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/muse_manifest.xml" afterPath="$PROJECT_DIR$/public/landing/muse_manifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/site_global.css" afterPath="$PROJECT_DIR$/public/landing/css/site_global.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/sitemap.xml" afterPath="$PROJECT_DIR$/public/landing/sitemap.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/t-s---c-s.css" afterPath="$PROJECT_DIR$/public/landing/css/t-s---c-s.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/t-s---c-s.html" afterPath="$PROJECT_DIR$/public/landing/t-s---c-s.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/css/work-single.css" afterPath="$PROJECT_DIR$/public/landing/css/work-single.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/css/work-single.css" afterPath="$PROJECT_DIR$/public/landing/phone/css/work-single.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/work-single.html" afterPath="$PROJECT_DIR$/public/landing/work-single.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/landing/phone/work-single.html" afterPath="$PROJECT_DIR$/public/landing/phone/work-single.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="o-link.iws" />
@@ -34,12 +183,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12345679" vertical-offset="12823" max-vertical-offset="26044">
+            <state vertical-scroll-proportion="0.0" vertical-offset="12823" max-vertical-offset="26044">
               <caret line="759" column="77" selection-start-line="759" selection-start-column="77" selection-end-line="759" selection-end-column="77" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/landing/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4695513" vertical-offset="2750" max-vertical-offset="27285">
+              <caret line="179" column="73" selection-start-line="179" selection-start-column="73" selection-end-line="179" selection-end-column="73" />
+              <folding>
+                <marker date="1471961935053" expanded="true" signature="178049:178085" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -47,7 +208,7 @@
       <file leaf-file-name="applicationMade.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/emails/views/applicationMade.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="391">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
               <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
               <folding />
             </state>
@@ -57,7 +218,7 @@
       <file leaf-file-name="jobLive.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/emails/views/jobLive.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="323">
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="323">
               <caret line="3" column="95" selection-start-line="3" selection-start-column="95" selection-end-line="3" selection-end-column="95" />
               <folding />
             </state>
@@ -77,7 +238,7 @@
       <file leaf-file-name="applicationMadeEmployer.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/emails/views/applicationMadeEmployer.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="391">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
               <caret line="0" column="17" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
               <folding />
             </state>
@@ -87,7 +248,7 @@
       <file leaf-file-name="applicants.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/blocks/applicants.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1190">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
               <caret line="0" column="43" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="43" />
               <folding />
             </state>
@@ -97,7 +258,7 @@
       <file leaf-file-name="applications.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="89.12" vertical-offset="6342" max-vertical-offset="7361">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6342" max-vertical-offset="7361">
               <caret line="242" column="25" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="25" />
               <folding />
             </state>
@@ -127,7 +288,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/js/services/constants.js" />
         <option value="$PROJECT_DIR$/public/js/controllers/payments.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/jobHistory.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/employerNav.html" />
@@ -178,6 +338,7 @@
         <option value="$PROJECT_DIR$/emails/views/applicationMadeEmployer.hbs" />
         <option value="$PROJECT_DIR$/app/models/mailer.js" />
         <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/public/landing/index.html" />
       </list>
     </option>
   </component>
@@ -264,151 +425,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blocks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="emails" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="emails" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="o-link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="O-Link" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="landing" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -431,6 +448,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="LayoutCode.rearrangeEntriesHTML" value="false" />
     <property name="LayoutCode.rearrangeEntriesJavaScript 1.5" value="false" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -519,23 +537,23 @@
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22943723" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22894168" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14481306" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2791798" sideWeight="0.52342606" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33989072" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -553,9 +571,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22872826" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -583,13 +601,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentEditProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -720,9 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8526646" vertical-offset="0" max-vertical-offset="799">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -730,9 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45297804" vertical-offset="0" max-vertical-offset="638">
           <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -740,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.053291537" vertical-offset="0" max-vertical-offset="638">
           <caret line="2" column="51" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -748,7 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="3230">
           <caret line="6" column="23" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,7 +759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44043887" vertical-offset="59" max-vertical-offset="697">
           <caret line="20" column="112" selection-start-line="20" selection-start-column="112" selection-end-line="20" selection-end-column="112" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -764,7 +766,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="153">
           <caret line="0" column="51" selection-start-line="0" selection-start-column="51" selection-end-line="0" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -772,7 +773,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4263323" vertical-offset="0" max-vertical-offset="638">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,7 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
           <caret line="0" column="14" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -788,7 +787,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="4403" max-vertical-offset="21862">
           <caret line="4" column="23" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -796,7 +794,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="425">
           <caret line="2" column="104" selection-start-line="2" selection-start-column="53" selection-end-line="2" selection-end-column="104" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -804,7 +801,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="391">
           <caret line="3" column="87" selection-start-line="3" selection-start-column="87" selection-end-line="3" selection-end-column="87" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -812,7 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.153846" vertical-offset="0" max-vertical-offset="476">
           <caret line="34" column="54" selection-start-line="34" selection-start-column="54" selection-end-line="34" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -820,7 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="677">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,7 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515" vertical-offset="0" max-vertical-offset="660">
           <caret line="2" column="42" selection-start-line="2" selection-start-column="42" selection-end-line="2" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -836,9 +829,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.30758017" vertical-offset="21396" max-vertical-offset="95863">
           <caret line="1271" column="1" selection-start-line="1271" selection-start-column="1" selection-end-line="1271" selection-end-column="1" />
-          <folding>
-            <element signature="e#77140#79419#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -846,9 +836,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21020092" vertical-offset="1224" max-vertical-offset="2839">
           <caret line="80" column="130" selection-start-line="80" selection-start-column="113" selection-end-line="80" selection-end-column="130" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -856,7 +843,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.26429674" vertical-offset="4402" max-vertical-offset="5202">
           <caret line="269" column="123" selection-start-line="269" selection-start-column="123" selection-end-line="269" selection-end-column="123" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,7 +850,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.92565596" vertical-offset="18184" max-vertical-offset="18938">
           <caret line="1107" column="24" selection-start-line="1107" selection-start-column="24" selection-end-line="1107" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +857,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515" vertical-offset="0" max-vertical-offset="660">
           <caret line="2" column="70" selection-start-line="2" selection-start-column="70" selection-end-line="2" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515" vertical-offset="0" max-vertical-offset="660">
           <caret line="2" column="85" selection-start-line="2" selection-start-column="85" selection-end-line="2" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,7 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515" vertical-offset="0" max-vertical-offset="660">
           <caret line="2" column="65" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46363637" vertical-offset="0" max-vertical-offset="660">
           <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2060606" vertical-offset="0" max-vertical-offset="660">
           <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05151515" vertical-offset="0" max-vertical-offset="660">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -920,7 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07727273" vertical-offset="0" max-vertical-offset="660">
           <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -934,7 +912,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="89.12" vertical-offset="6342" max-vertical-offset="7361">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6342" max-vertical-offset="7361">
           <caret line="242" column="25" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="25" />
           <folding />
         </state>
@@ -942,7 +920,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/emails/views/jobLive.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.9615384" vertical-offset="0" max-vertical-offset="323">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="323">
           <caret line="3" column="95" selection-start-line="3" selection-start-column="95" selection-end-line="3" selection-end-column="95" />
           <folding />
         </state>
@@ -974,9 +952,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/routes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12345679" vertical-offset="12823" max-vertical-offset="26044">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12823" max-vertical-offset="26044">
           <caret line="759" column="77" selection-start-line="759" selection-start-column="77" selection-end-line="759" selection-end-column="77" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/landing/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4695513" vertical-offset="2750" max-vertical-offset="27285">
+          <caret line="179" column="73" selection-start-line="179" selection-start-column="73" selection-end-line="179" selection-end-column="73" />
+          <folding>
+            <marker date="1471961935053" expanded="true" signature="178049:178085" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
