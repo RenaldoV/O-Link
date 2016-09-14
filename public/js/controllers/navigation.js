@@ -19,8 +19,13 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
 
     $scope.browse = false;
-    if(!session.user)
+    if(!session.user) {
         $scope.type = 'grey';
+        $scope.userType = 'guest';
+    }
+    else{
+        $scope.userType = session.user.type;
+    }
 
 // Set header message of signup $ login pages
 
@@ -51,6 +56,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             var user = session.user;
             $scope.browse = false;
             $scope.type = session.user.type;
+            $scope.userType = user.type;
             $(".appbg").addClass('dashBG');
             headings();
         }
@@ -66,6 +72,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     function headings() {
         var user = session.user;
+        $scope.userType = user.type;
         $scope.loggedIn = true;
 
         $rootScope.$on('profile', function (re, data) {
