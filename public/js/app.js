@@ -2,7 +2,7 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar']);
 //Starts when the app starts
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
@@ -213,11 +213,19 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
         // is currently selected
         if (idx > -1) {
             $scope.selectionP.splice(idx, 1);
+            if($scope.selectionP.length == $scope.timePeriods.length - 1 && $('#selectAllP').is(':checked')) {
+                angular.element('#selectAllP').trigger('click');
+                $scope.allPer = "Select All";
+            }
         }
 
         // is newly selected
         else {
             $scope.selectionP.push(category);
+            if($scope.selectionP.length == $scope.timePeriods.length && !$('#selectAllP').is(':checked')) {
+                angular.element('#selectAllP').trigger('click');
+                $scope.allPer = "Unselect All";
+            }
         }
     };
     $scope.toggleSelectionC = function(category) {
@@ -227,11 +235,20 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
         // is currently selected
         if (idx > -1) {
             $scope.selectionC.splice(idx, 1);
+            if($scope.selectionC.length == $scope.categories.length - 1 && $('#selectAllC').is(':checked')){
+                angular.element('#selectAllC').trigger('click');
+                $scope.allCat = "Select All";
+            }
+
         }
 
         // is newly selected
         else {
             $scope.selectionC.push(category);
+            if($scope.selectionC.length == $scope.categories.length && !$('#selectAllC').is(':checked')){
+                angular.element('#selectAllP').trigger('click');
+                $scope.allCat = "Unselect All";
+            }
         }
     };
 

@@ -82,7 +82,7 @@
 							</div>
 							<div class="list-group-item">
 								<input name="stuID" type="text" class="form-control no-border" placeholder="ID Number (first select a date of birth)" ng-model="user.IDnumber"
-									   ng-pattern="/[\d]{13,13}/" ng-required="true" ui-validate="{validStuID : 'validateStuID($value)'}" ng-maxlength="13" ng-disabled="idfill">
+									   ng-click="fillID()" ng-pattern="/[\d]{13,13}/" ng-required="true" ui-validate="{validStuID : 'validateStuID($value)'}" ng-maxlength="13" ng-disabled="idfill">
 								<div ng-show="studentForm.$submitted || studentForm.stuID.$touched" class="error-block">
 									<p ng-show="studentForm.stuID.$error.required" class="has-error">This field is required</p>
 									<p ng-show="studentForm.stuID.$error.pattern" class="has-error">Not a valid ID number</p>
@@ -243,6 +243,12 @@
 
 										<div ng-show="studentForm.$submitted || matricForm.mRes.$touched" class="error-block">
 											<p ng-show="matricForm.mRes.$error.required" class="has-error">This field is required</p>
+										</div>
+
+										<input id="otherSubject" name="otherSubject"  type="text" class="cluttered form-control no-border"
+											   placeholder="Subject Name" ng-model="req.otherName" ng-if="req.name == 'Other'" ng-required="req.name == 'Other'">
+										<div ng-show="studentForm.$submitted || matricForm.otherSubject.$touched" class="error-block">
+											<p ng-show="matricForm.otherSubject.$error.required" class="has-error">This field is required</p>
 										</div>
 
 										<select id="mSymbol" name="mSymbol" class="cluttered form-control no-border" ng-model="req.symbol" ng-required="next">
@@ -459,8 +465,8 @@
 					<p ng-show="studentForm.terms.$error.required" class="has-error">Agree to the terms and conditions</p>
 				</div>
 
-				<button ng-show="next" ng-hide="additional" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
-				<button type="submit" ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
+				<button ng-disabled="studentForm.$invalid" ng-show="next" ng-hide="additional" type="submit" class="sign-in-btn btn btn-lg btn-primary btn-block" >Sign Up</button>
+				<button ng-disabled="studentForm.$invalid"  type="submit" ng-show="additional && !next"  ng-click="nextForm()" class="sign-in-btn btn btn-lg btn-primary btn-block" >Next</button>
 			</form>
 		</div>
 
@@ -660,7 +666,7 @@
 				<div ng-show="employerForm.$submitted || employerForm.terms.$touched" class="error-block">
 					<p ng-show="employerForm.terms.$error.required" class="has-error">Agree to the terms and conditions</p>
 				</div>
-				<button type="submit" class="sign-in-btn-empl btn btn-lg btn-primary btn-block" >Sign Up</button>
+				<button ng-disabled="employerForm.$invalid" type="submit" class="sign-in-btn-empl btn btn-lg btn-primary btn-block" >Sign Up</button>
 			</form>
 		</div>
 
@@ -669,7 +675,7 @@
 
 	<div class="line line-dashed"></div>
 	<p class="text-center"><small>Already have an account?</small></p>
-	<a class="goto-signup-btn btn btn-lg btn-default btn-block" href="signIn">Sign In</a>
+	<button class="goto-signup-btn btn btn-lg btn-default btn-block" ng-click="checkFormState()">Log In</button>
     <div><p>{{message}}</p></div>
 
 

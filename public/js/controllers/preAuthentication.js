@@ -12,6 +12,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
     $scope.submitForm = function() {
         if($scope.form.$valid) {
+            $scope.user.email = $scope.user.email.toLowerCase();
             $http({
                 method: 'POST',
                 url: '/signin',
@@ -134,13 +135,38 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             $scope.user.dob = dob;
             $scope.idfill = false;
             idfill = dob.substring(8,10) + dob.substring(3,5)+ dob.substring(0,2);
-            $scope.user.IDnumber = idfill;
+
         }
     }; // Autofill ID first 6 charaters
+
+    $scope.fillID = function(){
+        $scope.user.IDnumber = idfill;
+    };
+    $scope.checkFormState = function(){
+        if($scope.employerForm.$pristine && $scope.studentForm.$pristine)
+            $location.url("/signIn");
+        else
+        {
+            swal({
+                    title: "Are you sure?",
+                    text: "You will lose all of your progress in the sign up form!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Go to log in",
+                    closeOnConfirm: false
+                },
+                function(isConfirm){
+                    if (isConfirm)
+                        $window.location = "/signIn"
+                });
+        }
+    };
 
     $scope.validateStuEmail = function(val) {
         if(val!=undefined)
         {
+            val = val.toLowerCase();
             var passed = false;
             var len = val.length;
 
@@ -413,6 +439,8 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         if($scope.studentForm.$valid || $scope.employerForm.$valid) {
 
             var user = $scope.user;
+            user.contact.email = user.contact.email.toLowerCase();
+
             //console.log(user);
 
            postIt();

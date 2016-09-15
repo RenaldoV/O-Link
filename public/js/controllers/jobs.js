@@ -622,6 +622,8 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
         .then(function(res) {
 
                 $scope.jobs = res.data;
+            if(!res.data)
+                $scope.message = "No Job Offers match your search criteria.";
 
             angular.forEach($scope.jobs, function(job){
                 job.post.postDate = job.post.postDate.substr(0,10);
