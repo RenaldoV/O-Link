@@ -246,7 +246,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
         else {
             $scope.selectionC.push(category);
             if($scope.selectionC.length == $scope.categories.length && !$('#selectAllC').is(':checked')){
-                angular.element('#selectAllP').trigger('click');
+                angular.element('#selectAllC').trigger('click');
                 $scope.allCat = "Unselect All";
             }
         }
