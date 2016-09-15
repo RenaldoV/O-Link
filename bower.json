@@ -21,6 +21,7 @@
     "angular-google-places-autocomplete": "^0.2.7",
     "angular-bootstrap": "^1.3.3",
     "components-font-awesome": "^4.6.3",
-    "angularjs-slider": "^4.0.2"
+    "angularjs-slider": "^4.0.2",
+    "angular-loading-bar": "^0.9.0"
   }
 }
