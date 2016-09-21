@@ -875,6 +875,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 
     };
+    $('.maps').click(function () {
+        $('.maps iframe').css("pointer-events", "auto");
+    });
+    $('.maps').mouseleave(function () {
+        $('.maps iframe').css("pointer-events", "none");
+    });
     $scope.acceptChanges = function(id){
         $http
             .post('/acceptChanges', {id: id})
@@ -890,7 +896,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 title: "Are you sure?",
                 text: "This will notify the user and that you have accepted",
                 showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
+                confirmButtonColor: "#00b488",
                 confirmButtonText: "Yes, I'm sure!",
                 closeOnConfirm: false
             },

@@ -1107,3 +1107,7 @@ margin-bottom: 0;
 div.sweet-alert{
     margin-left: -240px;
 }
+
+.maps iframe{
+    pointer-events: none;
+}

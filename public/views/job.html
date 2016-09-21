@@ -31,7 +31,7 @@
             <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
             <div class="content-heading"><h4 class="form-section-label"><b>Pay </b></h4></div>
         </div>
-        <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/Once Off</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></div>
+        <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/hour</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></div>
         <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </div>
 
         <hr>
@@ -129,12 +129,14 @@
             <div class="content-heading"><h4 class="form-section-label"><b>Location </b></h4></div>
         </div>
         <br/>
-        <iframe id="location"
-                width="300"
-                height="300"
-                frameborder="0" style="border:0"
-                allowfullscreen>
-        </iframe>
+        <div class='embed-container maps'>
+            <iframe id="location"
+                    width="300"
+                    height="300"
+                    frameborder="0" style="border:0"
+                    allowfullscreen>
+            </iframe>
+        </div>
 
         <hr>
 
