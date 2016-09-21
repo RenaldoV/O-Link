@@ -316,20 +316,23 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
         .then(function (res) {
             if(res){
                 $scope.emailNoti = !res.data.emailDisable;
+                if($scope.emailNoti)
+                    $scope.toggle = "fa-toggle-on blueText";
+                else
+                    $scope.toggle = "fa-toggle-off";
             }
         });
 
-    $scope.toggleClicked = function(){
-        $scope.emailNoti = !$scope.emailNoti;
-    };
 
     $scope.toggleEmail = function(){
         $scope.emailNoti = !$scope.emailNoti;
         var message;
         if($scope.emailNoti){
+            $scope.toggle = "fa-toggle-on blueText";
             message = "enabled";
         }
         if(!$scope.emailNoti){
+            $scope.toggle = "fa-toggle-off";
             message = "disabled";
         }
 
@@ -338,6 +341,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
             .then(function (res) {
                 if(res){
                     swal("Email Notifications Changed", "Your email notifications have been "+message+".", "success");
+
                 }
 
 
@@ -394,6 +398,10 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
         .then(function (res) {
             if(res){
                 $scope.emailNoti = !res.data.emailDisable;
+                if($scope.emailNoti)
+                    $scope.toggle = "fa-toggle-on blueText";
+                else
+                    $scope.toggle = "fa-toggle-off";
             }
         });
 
@@ -406,9 +414,11 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
         var message;
         if($scope.emailNoti){
             message = "enabled";
+            $scope.toggle = "fa-toggle-on blueText";
         }
         if(!$scope.emailNoti){
             message = "disabled";
+            $scope.toggle = "fa-toggle-off";
         }
 
         return $http

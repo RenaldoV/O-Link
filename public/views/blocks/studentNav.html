@@ -10,7 +10,7 @@
             <li><a href="/buy"><i class="fa fa-shopping-cart" aria-hidden="true"></i> &nbsp;&nbsp;Buy Applications</a></li>
             <li role="separator" class="divider"></li>
             <li ng-controller="notifications">
-                <a ng-click="toggleEmail()"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;Email Notifications &nbsp;&nbsp;<toggle-switch id="emailToggle" ng-change="toggleClicked()" ng-model="emailNoti" class="emailSwitch"></toggle-switch></a>
+                <a ng-click="toggleEmail()"><i class="fa fa-envelope" aria-hidden="true"></i> &nbsp;&nbsp;Email Notifications &nbsp;&nbsp;<i class="fa {{toggle}}" style="font-size: 15px;" aria-hidden="true"></i></a>
             </li>
             <li role="separator" class="divider"></li>
             <li><a href="#" ng-click="logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp;&nbsp;Log Out</a></li>
