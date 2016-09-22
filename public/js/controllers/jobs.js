@@ -622,10 +622,27 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
         .then(function(res) {
 
                 $scope.jobs = res.data;
-            if(!res.data)
+            if(!res.data) {
                 $scope.message = "No Job Offers match your search criteria.";
+            }
+            else{
+                $scope.message = "";
+            }
 
             angular.forEach($scope.jobs, function(job){
+                $http
+                    .post('/loadMyApplications', {"user" : session.user._id,"job":job._id})
+                    .then(function (res, err) {
+                        if(res.data.status == "Pending")
+                            job.appStat = "Application Pending";
+                        else if(res.data.status == "Provisionally accepted")
+                            job.appStat = "Provisional Acceptance";
+                        else if(res.data.status == "Confirmed")
+                            job.appStat = "Got The Job";
+                        else if(res.data.status == "Declined")
+                            job.appStat = res.data.status;
+
+                    });
                 job.post.postDate = job.post.postDate.substr(0,10);
                 job.post.postDate = job.post.postDate.split("-");
                 job.post.postDate = job.post.postDate[2] + "/" + job.post.postDate[1] + "/" + job.post.postDate[0];
@@ -654,7 +671,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
                 $scope.getPer = function(cat){
                     if(cat == "Once Off"){
-                        return "";
+                        return "/hr";
                     }
                     else return "/hr"
                 };

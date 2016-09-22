@@ -959,6 +959,14 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 	});
+	app.post('/loadMyApplications', function(req,res){
+
+		var userID = req.body.user;
+		var jobID = req.body.job;
+		db.applications.findOne({studentID: userID, jobID: jobID},{ _id: 0,status : 1 }).exec(function (err, docs) {
+			res.send(docs);
+		});
+	});
 	//done
 
 	//load applications by employer and populate job IDs
