@@ -5023,6 +5023,10 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  h2.jobCategory{
+    font-size: 20px;
+    font-weight: bold;
+  }
   button.makeOffer{
     margin-right:0px;
   }

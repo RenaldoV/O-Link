@@ -74,7 +74,7 @@
                         <span style="font-size: 16px;" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
                             class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
                 </div>
-                <div class="statusDiv col-xs-3">
+                <div class="statusDiv1 col-xs-3">
                     <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall1"></div>
                     <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall1"></div>
                     <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall1"></div>
@@ -82,6 +82,7 @@
                     <span>{{job.appStat}}</span>
                 </div>
 
+                <br/>
                 <br/>
                 <br/>
                 <br class="jobMobileSpace" />
