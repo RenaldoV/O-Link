@@ -638,10 +638,34 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                         else if(res.data.status == "Provisionally accepted")
                             job.appStat = "Provisional Acceptance";
                         else if(res.data.status == "Confirmed")
-                            job.appStat = "Got The Job";
+                            job.appStat = "Job Confirmed";
                         else if(res.data.status == "Declined")
                             job.appStat = res.data.status;
 
+                        $scope.isDeclined = function(status){
+                            if(status == "Declined"){
+                                return true;
+                            }
+                            return false;
+                        };
+                        $scope.isProv = function(status){
+                            if(status == "Provisional Acceptance"){
+                                return true;
+                            }
+                            return false;
+                        };
+                        $scope.isPending = function(status){
+                            if(status == "Application Pending"){
+                                return true;
+                            }
+                            return false;
+                        };
+                        $scope.isConfirmed = function(status){
+                            if(status == "Job Confirmed"){
+                                return true;
+                            }
+                            return false;
+                        };
                     });
                 job.post.postDate = job.post.postDate.substr(0,10);
                 job.post.postDate = job.post.postDate.split("-");

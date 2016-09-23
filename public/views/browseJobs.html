@@ -65,16 +65,21 @@
                 </div>
             </div>
             <div class="col-md-10">
-                <div class="col-xs-5 jobsHead" style="margin-left: -15px">
+                <div class="col-xs-6 jobsHead" style="margin-left: -15px">
                     <h2 class="jobCategory" ng-if="job.post.category != 'Other'">{{job.post.category}}</h2>
                     <h2 class="jobCategory" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</h2>
                     <span class="jobTimePeriod">Posted on: {{job.post.postDate}}</span>
                 </div>
-                <div class="col-xs-7 jobsHead interviewDanger">
-                    <span style="font-size: 16px;" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
+                <div class="col-xs-3 jobsHead interviewDanger">
+                        <span style="font-size: 16px;" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
                             class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
-                    <p>{{job.appStat}}</p>
-
+                </div>
+                <div class="statusDiv col-xs-3">
+                    <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall1"></div>
+                    <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall1"></div>
+                    <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall1"></div>
+                    <div ng-if="isConfirmed(job.appStat)" style="background-color: #286090" class="statusBall1"></div>
+                    <span>{{job.appStat}}</span>
                 </div>
 
                 <br/>

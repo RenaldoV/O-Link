@@ -371,6 +371,17 @@ h1 { font-size: 1.5em; margin: 10px; }
     height: 20px;
     background-color: #fcd621;
 }
+.statusDiv{
+    float:right;
+}
+.statusBall1 {
+    margin-left: 35px;
+    float:left;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #fcd621;
+}
 .comment{
     width: 420px;
 }
