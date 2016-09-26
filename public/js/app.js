@@ -27,8 +27,8 @@ app.controller('jobFeed', function($scope,$http, $window){
             {
 
                 var jobs = res.data;
-                console.log(jobs);
-                console.log(jobs.length);
+                //console.log(jobs);
+                //console.log(jobs.length);
                 var len = jobs.length;
                 $.each(jobs,function(i,job){
 
@@ -321,7 +321,7 @@ app.controller('stats', function($scope,$http, session, $location){
     $http
         .post('/getStats', temp)
         .then(function (res, err) {
-            console.log(res.data);
+            //console.log(res.data);
             $scope.stats = res.data;
         });
 

@@ -69,11 +69,45 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
     }
 
-
     function headings() {
         var user = session.user;
         $scope.userType = user.type;
         $scope.loggedIn = true;
+        if($scope.userType == 'employer')
+        {
+            $scope.disableNumApps = true;
+        }
+        else
+        {
+            var unlim = false;
+            $http.post('/getNumApps', {id:user._id})
+                .then(function (res) {
+                    var tempNum = res.data.freeApplications;
+                    //console.log(res.data);
+                    user.packages = res.data.packages;
+                    if(user.packages){
+                        for(var i = 0; i < user.packages.length; i++){
+                            if(user.packages[i].active){
+                                if(user.packages[i].remainingApplications == 'unlimited'){
+                                    unlim = true;
+                                }
+                                else{
+                                    tempNum += user.packages[i].remainingApplications;
+
+                                }
+                            }
+                        }
+
+                    }
+                    if(unlim){
+                        $scope.numApps = 'unlimited';
+                    }else
+                        $scope.numApps = tempNum;
+
+                });
+
+            var tempPack = user.packages;
+        }
 
         $rootScope.$on('profile', function (re, data) {
             if(cacheUser.user.type == 'student' && session.user.type == 'employer')
@@ -87,40 +121,13 @@ app.controller('navControl',function($scope, authService, session, $location, $w
                 if (cacheUser.user.type == 'student') {
                     $scope.studentProfile = true;
 
-                    var unlim = false;
-                    $http.post('/getNumApps', {id:cacheUser.user._id})
-                        .then(function (res) {
-                            var tempNum = res.data.freeApplications;
-                            //console.log(res.data);
-                            user.packages = res.data.packages;
-                            if(user.packages){
-                                for(var i = 0; i < user.packages.length; i++){
-                                    if(user.packages[i].active){
-                                        if(user.packages[i].remainingApplications == 'unlimited'){
-                                            unlim = true;
-                                        }
-                                        else{
-                                            tempNum += user.packages[i].remainingApplications;
-
-                                        }
-                                    }
-                                }
-
-                            }
-                            if(unlim){
-                                $scope.numApps = 'Unlimited';
-                            }else
-                                $scope.numApps = tempNum;
-
-                        });
-
-                    var tempPack = user.packages;
-
                 } else if (cacheUser.user.type == 'employer') {
-                    if (cacheUser.user.employerType == 'Individual')
+                    if (cacheUser.user.employerType == 'Individual') {
                         $scope.individualProfile = true;
-                    else if (cacheUser.user.employerType == 'Company')
+                    }
+                    else if (cacheUser.user.employerType == 'Company') {
                         $scope.companyProfile = true;
+                    }
 
 
 
@@ -145,6 +152,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             disableHeadings();
             $scope.buyApplications = true;
 
+
         });
         $rootScope.$on('empBuy', function () {
 
@@ -164,6 +172,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
             disableHeadings();
             $scope.myApplications = true;
+            $scope.disableNumApps = false;
 
         });
         $rootScope.$on('myJobs', function () {

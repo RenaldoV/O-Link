@@ -13,7 +13,6 @@
                     <span class='blue'>{{talent}}</span>
                 </p>
                 <p ng-if="studentProfile" class="profileHeader">{{cache.name.name + " " + cache.name.surname}}</p>
-                <p ng-hide="disableNumApps" ng-if="studentProfile && !individualProfile && !companyProfile" class="appCount muted">{{numApps}} application<span ng-if="numApps > 1">s</span> left</p>
                 <p ng-if="individualProfile" class="profileHeader">{{cache.contact.name + " " + cache.contact.surname}}</p>
                 <p ng-if="companyProfile" class="profileHeader">{{cache.company.name}}</p>
                 <p ng-if="companyProfile" class="appCount">{{cache.contact.name + " " + cache.contact.surname}}</p>
@@ -27,6 +26,7 @@
                 <p ng-if="buyApplications" class="profileHeader">Buy Applications</p>
                 <p ng-if="empBuy" class="profileHeader">Buy</p>
                 <p ng-if="job" class="profileHeader">Job Offer</p>
+                <p ng-hide="disableNumApps" class="appCount muted">Application<span ng-if="numApps > 1 || numApps == 'unlimited'">s</span> remaining: {{numApps}}</p>
             </h2>
 
 

@@ -1128,21 +1128,33 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 .then(function(res) {
 
                     if(res.data == 'noApps'){
-                        sweetAlert("You don't have any applications", "", "error");
+                        swal({
+                                title: "error",
+                                text: "You have no applications remaining today.",
+                                type: "error",
+                                showCancelButton: true,
+                                confirmButtonColor: "#DD6B55",
+                                confirmButtonText: "Buy Applications",
+                                closeOnConfirm: true
+                            },
+                            function(){
+                                $window.location.href = '/buy';
+                            });
                     }
                     else {
+                        $scope.hasApplied = true;
                         swal({
                             title: "Success",
                             text: 'Application Successful.',
                             type: "success"
                         }, function () {
-                            notify.go({
-                                type: 'application',
-                                jobID: job._id,
-                                userID: job.employerID._id,
-                                status: 'Made',
-                                title: job.post.category
-                            });
+                                notify.go({
+                                    type: 'application',
+                                    jobID: job._id,
+                                    userID: job.employerID._id,
+                                    status: 'Made',
+                                    title: job.post.category
+                                });
 
                             session.create(res.data);
                             $window.location.href="/dashboard";
