@@ -160,6 +160,18 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
     $scope.allCat = "Select All";
     $scope.allPer = "Select All";
 
+
+    $scope.toBrowser = function(){
+        var dat = {};
+        dat.timePeriods = [];
+        for(var i = 0; i < $scope.timePeriods.length; i++){
+            dat.timePeriods.push($scope.timePeriods[i].name);
+        }
+        dat.categories = $scope.categories;
+        var parm = $.param(dat);
+        $window.location.href = '/browseJobs?'+ parm;
+    };
+
     $scope.selectAllP = function(){
         if(!$('#selectAllP').is(':checked')){
             $timeout(function () {

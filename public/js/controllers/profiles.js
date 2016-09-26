@@ -176,11 +176,20 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
     $scope.user = session.user;
     $scope.reqNames = constants.requirements;
 
-
     $scope.close = function(reqs){
-
-        console.log($scope.user.results.pop());
-
+        swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to remove this result?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+            function(){
+                swal("Deleted!", "", "success");
+                console.log($scope.user.results.pop());
+            });
     };
     $scope.add = function(){
 
@@ -518,26 +527,58 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
 
     $scope.close = function(reqs){
-        numReq--;
-        $scope.user.results.pop();
-        if(numReq == 0)
-            $scope.user.results = false;
-
+        swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to delete this result?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: true
+            },
+            function(){
+                $scope.user.results.pop();
+                numReq--;
+                if(numReq == 0)
+                    $scope.user.results = false;
+                $scope.$apply();
+            });
     };
     $scope.closeCert = function(certs){
-        numCert--;
-        $scope.user.certifications.pop();
-        if(numCert == 0)
-            $scope.user.certifications = false;
+        swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to delete this certification?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!"
+            },
+            function(){
+                numCert--;
+                $scope.user.certifications.pop();
+                if(numCert == 0)
+                    $scope.user.certifications = false;
+                $scope.$apply();
+            });
 
     };
     $scope.closeWork = function(cats){
-        workRadios--;
-        numWork--;
-        $scope.user.work.pop();
-        if(numWork == 0)
-            $scope.user.work = false;
-
+        swal({
+                title: "Are you sure?",
+                text: "Are you sure you want to delete this work experience?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!"
+            },
+            function(){
+                workRadios--;
+                numWork--;
+                $scope.user.work.pop();
+                if(numWork == 0)
+                    $scope.user.work = false;
+                $scope.$apply();
+            });
     };
     $scope.add = function(){
 
