@@ -87,6 +87,7 @@ new CronJob('00 00 * * * *', function() {
     console.log('Hourly check');
 }, null, true);
 
+
 //function executes once a day
 new CronJob('00 00 00 * * *', function() {
 dailyCheck();
@@ -111,7 +112,7 @@ function hasFinished(date){
         }else if(now.getMonth() == datearr[0])
         {
 
-            if(now.getDate() > datearr[1])
+            if(now.getDate() >= datearr[1])
             {
 
                 return true;
@@ -183,7 +184,7 @@ db.jobs.find({status: 'active'},function(err,rows){
          } else */
         if(hasFinished(row.post.startingDate))
         {
-var done = [];
+            var done = [];
             db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
                     db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {

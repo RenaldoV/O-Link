@@ -184,8 +184,8 @@ app.service('constants', function(){
 
     this.studentPackages = [
         {name:'Basic', cost: 29, timeframe:'1 WEEK', description:'3 Further Applications'},
-        {name:'Classic', cost: 49, timeframe:'1 WEEK', description:'7 Further Applications'},
-        {name:'Ultimate', cost: 99, timeframe:'1 MONTH', description:'UNLIMITED Applications'}
+        {name:'Classic', cost: 39, timeframe:'1 WEEK', description:'7 Further Applications'},
+        {name:'Ultimate', cost: 49, timeframe:'1 MONTH', description:'UNLIMITED Applications'}
     ];
     this.employerPackages = [   ];
 
