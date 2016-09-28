@@ -61,28 +61,41 @@ var CronJob = require('cron').CronJob;
 //function happens once every hour
 new CronJob('00 00 * * * *', function() {
     //check for edited posts that weren't accepted
-    db.applications.find({edited:true}, function(err, rows){
-        for(var i =0; i < rows.length; i++){
-            if(rows[i].editTime + 86400000 >= Date.now() ){
-                db.applications.remove({_id:rows[i]._id}, function(err, res){
-                   console.log(res);
+    db.applications.find({edited:true}).populate('jobID').exec(function(err, rows){
+
+        rows.forEach(function(app){
+            var str = JSON.stringify(app);
+            var newApp = JSON.parse(str);
+            // Don't know why the doc has to be converted to string and back to obj... Weird
+            //console.log(app.editTime); gives undefined
+            var d = new Date();
+            //console.log(newApp.editTime + 86400000);
+            //console.log(d.getTime());
+            if(newApp.editTime + 86400000 <= d.getTime()){
+                console.log("removed notification");
+                db.applications.remove({_id:newApp._id}, function(err, res){
+                    console.log(err);
                 });
-                db.notifications.remove({jobID: rows[i].jobID, type:'jobEdited'},function(err,rs){
+                db.notifications.remove({jobID: newApp.jobID, type:'jobEdited'},function(err,rs){
 
                 });
+                db.jobs.update({_id:newApp.jobID},{$pull:{applicants: {$in : [newApp.studentID]}}}, function(err,rs){
+                   console.log(err);
+                });
                 var noti = {
-                    userID: rows[i].studentID,
-                    jobID: rows[i].jobID,
+                    userID: newApp.studentID,
+                    jobID: newApp.jobID,
                     seen: false,
                     status: 'Expired',
-                    type: 'expired'
+                    type: 'expired',
+                    title: newApp.jobID.post.category
                 };
 
                 db.notifications.create(noti,function(err, res){
                     //expired
                 });
             }
-        }
+        });
     });
     console.log('Hourly check');
 }, null, true);

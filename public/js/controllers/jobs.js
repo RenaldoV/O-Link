@@ -28,7 +28,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         dateFormat: "dd/mm/yy",
         changeMonth: true,
         changeYear: true,
-        minDate: 0,
+        minDate: 1,
         numberOfMonths: 1,
         onSelect: function(selected) {
 
@@ -63,6 +63,23 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         changeYear: true,
                         minDate : date1,
                         maxDate: null,
+                        onSelect: function(selected){
+                            var tmp = new Date(selected);
+                            //$scope.job.post.endDate = getFormattedDate(tmp);
+                        }
+                    };
+                    break;
+                }
+                case 'Once Off':
+                {
+                    var date1 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate());
+                    var date2 = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate() + 7);
+                    $scope.endDate = {
+                        dateFormat: "dd/mm/yy",
+                        changeMonth: true,
+                        changeYear: true,
+                        minDate : date1,
+                        maxDate: date2,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
                             //$scope.job.post.endDate = getFormattedDate(tmp);
@@ -825,13 +842,8 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         data : id
     })
         .then(function(res) {
-
-
-
-
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
-            console.log();
             $scope.job.post.startingDate = convertDateForDisplay($scope.job.post.startingDate);
             if($scope.job.post.endDate)
             {
