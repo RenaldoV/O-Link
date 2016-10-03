@@ -117,8 +117,8 @@
         </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
-            <span>Positions Available:  <b>{{job.post.threshold}}</b></span><br>
-            <span>Remaining Applicants:  <b>{{remaining}}</b></span>
+            <span>Positions Available:  <b>{{job.positionsLeft}}</b></span><br>
+            <span>Remaining Applications:  <b>{{job.applicationsLeft}}</b></span>
 
 
         </ul>
@@ -157,7 +157,7 @@
 
                 <button class="btn greenBack btn-xlarge" ng-click="accept(application._id, application.employerID, application.jobID, job.post.category )">Accept Offer</button>
 
-                <button class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job.post.category)">Decline</button>
+                <button class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job)">Decline</button>
             </span>
             <a ng-if="application.offered == 'accepted'" class="btn blueBack btn-xlarge" href="mailto:{{job.employerID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank">Contact</a>
 

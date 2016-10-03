@@ -336,17 +336,17 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
             });
 
 
-    $scope.decline = function(ap, category){
+    $scope.decline = function(ap, job){
         var app = jQuery.extend(true, {}, ap);
         app.status = "Declined";
         $scope.col = '#DD6B55';
-        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,category);
+        changeStatus(app, 'Pending', $scope,$http,notify,app.studentID._id,job);
     };
-    $scope.makeOffer = function(ap, category){
+    $scope.makeOffer = function(ap, job){
         var app = jQuery.extend(true, {}, ap);
         app.status = "Provisionally accepted";
         $scope.col = '#00b488';
-        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,category);
+        changeStatus(app,  'Pending', $scope, $http,notify, app.studentID._id,job);
     };
     $scope.offer = function(id, studentID, jobID, category){
         swal({
@@ -384,7 +384,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
-function changeStatus(app,oldstat, $scope, $http, notify, userID, category) {
+function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
     var check = false;
     if($scope.col){
         var col = $scope.col;
@@ -400,10 +400,10 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, category) {
             closeOnConfirm: false
         },
         function (isConfirm) {
-delete $scope.col;
+            delete $scope.col;
             if (isConfirm) {
                 $http
-                    .post('/updateApplication', {_id: app._id, status: app.status, jobID:app.jobID._id})
+                    .post('/updateApplication', {_id: app._id, status: app.status, jobID:job})
                     .then(function (err,res) {
 
                         console.log(res);
@@ -414,7 +414,7 @@ delete $scope.col;
                             jobID: app.jobID._id,
                             userID: userID,
                             status: app.status,
-                            title: category
+                            title: job.post.category
                         });
                         swal("Status updated.", "The user has been notified.", "success");
                         location.reload();

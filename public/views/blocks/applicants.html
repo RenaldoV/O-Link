@@ -48,9 +48,9 @@
                     <td class="tableAddBig"></td>
                     <td class="tableAddBig"></td>
                     <td>
-                       <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job.post.category)" class="btn greenBack makeOffer">Make Offer</button>
+                       <button ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
                         <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
-                        <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job.post.category)">Decline</button>
+                        <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
                     </td>
                 </tr>
                 </tbody>

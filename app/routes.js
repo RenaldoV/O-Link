@@ -274,7 +274,8 @@ if(temp.radius != null){
 		if(job.post.endDate){
 			job.post.endDate = dateConvert(job.post.endDate);
 		}
-
+		job.positionsLeft = job.post.spotsAvailable;
+		job.applicationsLeft = job.positionsLeft * job.post.threshold;
 		db.jobs.create(job,function(err, jobi){
 			var jab = jobi.toObject();
 			var args = {};
@@ -617,15 +618,11 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		var user = req.body.user;
 		var job = req.body.job;
+		job.applicationsLeft--;
 		if (!job.applicants) {
 			job.applicants = [];
 		}
 		job.applicants.push(user._id);
-
-
-		if(job.applicants.length >= (job.post.spotsAvailable * job.post.threshold)){
-			job.status = 'filled';
-		}
 
 		var application = {
 			studentID: user._id,
@@ -633,7 +630,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			employerID: job.employerID,
 			status: 'Pending',
 			date: Date.now()
-
 		};
 
 				db.users.findOne({_id: user._id}, function (err, usrr) {
@@ -746,6 +742,18 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var app = req.body;
 		var id = app._id;
 		delete  app._id;
+		var positions = app.jobID.positionsLeft;
+		positions--;
+		if(positions == 0){
+			db.jobs.update({_id:app.jobID._id}, {positionsLeft: positions, status: "filled"}, function(err,doc){
+				console.log(err);
+			});
+		}else{
+			db.jobs.update({_id:app.jobID._id}, {positionsLeft: positions}, function(err,doc){
+				console.log(err);
+			});
+		}
+
 
 		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
@@ -1283,7 +1291,20 @@ console.log(job.post);
 	app.post('/declineOffer', function(req,res) {
 
 
-		var app = req.body;
+		var app = req.body._id;
+		var job = req.body.job;
+		var positions = req.body.job.positionsLeft+1;
+		var thresh = req.body.job.applicationsLeft+1;
+		if(job.status == "filled"){
+			db.jobs.update({_id:job._id}, {positionsLeft:positions,applicationsLeft:thresh,status:"active"}, function(err,doc){
+				if (err) throw err;
+			});
+		}
+		else{
+			db.jobs.update({_id:job._id}, {positionsLeft:positions,applicationsLeft:thresh}, function(err,doc){
+				if (err) throw err;
+			});
+		}
 
 		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}, $unset:{edited:1, editTime:1}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
@@ -1300,12 +1321,12 @@ console.log(job.post);
 				};
 
 				mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
-					console.log(rss);
+					//console.log(rss);
 
 				});
 			}
 			db.jobs.findOneAndUpdate({_id : ap.jobID._id},  {$pull: { applicants: ap.studentID._id}}).exec(function(ers,ress){
-				console.log(ress);
+				//console.log(ress);
 				res.send(true);
 			});
 

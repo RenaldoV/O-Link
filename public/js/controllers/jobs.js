@@ -849,10 +849,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             {
                 $scope.job.post.endDate = convertDateForDisplay($scope.job.post.endDate);
             }
-            if($scope.job.applicants)
-                $scope.remaining = $scope.job.post.spotsAvailable *$scope.job.post.threshold - $scope.job.applicants.length;
-            else
-                $scope.remaining = $scope.job.post.spotsAvailable *$scope.job.post.threshold;
+
 
             var loc = $scope.job.post.location.address.split(' ').join('+');
             $("#location").prop('src',"https://www.google.com/maps/embed/v1/place?key=AIzaSyDXnlJCOOsZVSdd-iUvTejH13UcZ0-jN0o&q="+loc+"&zoom=13");
@@ -897,10 +894,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         });
 
-    $scope.decline = function(id, employerID, jobID, category){
+    $scope.decline = function(id, employerID, jobID, job){
+
         swal({
                 title: "Are you sure?",
-                text: "This will notify the user and that you have withdrawn",
+                text: "This will notify the user that you have withdrawn",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, I'm sure!",
@@ -910,14 +908,14 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
                 if (isConfirm) {
                     $http
-                        .post('/declineOffer', {_id: id})
+                        .post('/declineOffer', {_id: id,job:job})
                         .then(function (res, err) {
                             notify.go({
                                 type: 'withdrawn',
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'withdrawn',
-                                title: category
+                                title: job.post.category
                             });
                             swal("Offer declined.", "The user has been notified.", "success");
                             location.reload();
