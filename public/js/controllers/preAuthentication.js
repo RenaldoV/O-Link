@@ -8,6 +8,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
     if(authService.isAuthenticated())
         $location.url("/dashboard");
+
     $scope.user = {};
 
     $scope.submitForm = function() {
@@ -27,7 +28,6 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                             swal({title: "Welcome", type: "success", timer: 800, showConfirmButton: false});
 
                             authService.login($scope.user).then(function (user) {
-
 
                                 $scope.setCurrentUser(user);
                                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
