@@ -5259,6 +5259,9 @@ div.dashTops{
 }
 
 @media (max-width: 767px) {
+  div.sweet-alert.showSweetAlert{
+    margin-left: 0px;!important;
+  }
   .applicantsTables tbody tr td:last-child .btn{
     width: 60px;
     height: 24px;
