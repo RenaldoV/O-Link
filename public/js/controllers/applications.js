@@ -72,7 +72,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                             title: "Are you sure?",
                             text: "This will notify the user and that you have accepted",
                             showCancelButton: true,
-                            confirmButtonColor: "#DD6B55",
+                            confirmButtonColor: "#00b488",
                             confirmButtonText: "Yes, I'm sure!",
                             closeOnConfirm: false
                         },
@@ -263,12 +263,13 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.applications = {};
 
                 $scope.jobs = res.data;
-
-
+                $scope.hasApps = false;
                 //console.log($scope.jobs);
                 $.each($scope.jobs,function(i,job){
                     job.post.startingDate = convertDateForDisplay(job.post.startingDate);
                     $.each(job.applications,function(i,app){
+                        $scope.hasApps = true;
+                        console.log(app);
                         $http
                             .post('/getPp', {profilePicture:app.studentID.profilePicture})
                             .then(function (res) {
@@ -278,15 +279,19 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     });
                 });
 
-
+                if(!$scope.hasApps){
+                    $scope.message = "There are no applicants to display.";
+                }
                 $scope.toggleApplicants = function(id){
                     $.each($scope.jobs, function(idx,job){
                        if(job._id == id){
                            if(job.show == undefined){
-                               job.show = true;
+                                   job.show = true;
                            }
                            else job.show = !job.show;
-
+                       }
+                        else{
+                           job.show = true;
                        }
                     });
                 };
@@ -294,8 +299,36 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 if(temp != ''){
                     $scope.toggleApplicants(temp);
                 }
-                $scope.getAge = function (dob) {
-                    return getAge(dob);
+                $scope.getAge = function (d) {
+                    var today = new Date();
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth();
+                    var todayDate = today.getDate();
+                    var dob = new Date(d);
+                    var dobYear = dob.getFullYear();
+                    var dobMonth = dob.getMonth();
+                    var dobDate = dob.getDate();
+                    var yearsDiff = todayYear - dobYear ;
+                    var age;
+                    if ( todayMonth < dobMonth )
+                    {
+                        age = yearsDiff - 1;
+                    }
+                    else if ( todayMonth > dobMonth )
+                    {
+                        age = yearsDiff ;
+                    }
+                    else //if today month = dob month
+                    { if ( todayDate < dobDate )
+                    {
+                        age = yearsDiff - 1;
+                    }
+                    else
+                    {
+                        age = yearsDiff;
+                    }
+                    }
+                    return age;
                 };
 
                 $scope.isDisabled = function(status){

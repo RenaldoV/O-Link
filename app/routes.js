@@ -402,7 +402,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//done
 
 	//sign in to the app
-	app.post('/signin', function(req,res) {
+	app.post('/logIn', function(req,res) {
 		var user = {};
 
 		for(var key in req.body) {
@@ -583,6 +583,47 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		else {
 			var path = def;
 		}
+
+		fs.readFile(path, function(err,data){
+			if(err) {
+				fs.readFile(def, function(err,data){
+					if(err) {
+
+					}
+					var buf = new Buffer(data).toString('base64');
+					res.send(buf);
+				});
+			}else {
+				var buf = new Buffer(data).toString('base64');
+				res.send(buf);
+			}
+		});
+	});
+	app.post('/getMFile', function(req, res){
+
+		if(req.body.matricFile) {
+			var path = req.body.matricFile;
+			path = __dirname + path;
+		}
+
+		fs.readFile(path, function(err,data){
+			if(err) {
+				fs.readFile(def, function(err,data){
+					if(err) {
+
+					}
+					var buf = new Buffer(data).toString('base64');
+					res.send(buf);
+				});
+			}else {
+				var buf = new Buffer(data).toString('base64');
+				res.send(buf);
+			}
+		});
+	});
+	app.post('/getCFile', function(req, res){
+		var path = req.body.cert.file;
+		path = __dirname + path;
 
 		fs.readFile(path, function(err,data){
 			if(err) {

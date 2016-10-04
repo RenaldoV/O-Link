@@ -15,7 +15,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
             $scope.user.email = $scope.user.email.toLowerCase();
             $http({
                 method: 'POST',
-                url: '/signin',
+                url: '/logIn',
                 data: $scope.user,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
@@ -144,7 +144,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     };
     $scope.checkFormState = function(){
         if($scope.employerForm.$pristine && $scope.studentForm.$pristine)
-            $location.url("/signIn");
+            $location.url("/logIn");
         else
         {
             swal({
@@ -158,7 +158,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                 },
                 function(isConfirm){
                     if (isConfirm)
-                        $window.location = "/signIn"
+                        $window.location = "/logIn"
                 });
         }
     };

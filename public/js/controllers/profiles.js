@@ -83,7 +83,7 @@ app.controller('profileControl',function($scope, authService, session, $location
     if (authService.isAuthenticated()) {
         getUser();
 
-    }else window.location = '/signIn';
+    }else window.location = '/logIn';
 
     $scope.$on('auth-login-success', function () {
         getUser();
@@ -106,7 +106,6 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
     var user = cacheUser.user;
     $scope.myProfile = false;
-
     if (user._id == session.user._id)
         $scope.myProfile = true;
 
@@ -116,10 +115,24 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
     $http
         .post('/getPp', user)
         .then(function (res) {
-
         $scope.image=res.data;
-
-
+    });
+    if($scope.user.matricFile){
+        $http
+            .post('/getMFile', user)
+            .then(function (res) {
+                $scope.matricFile=res.data;
+            });
+    }
+    $.each($scope.user.certifications,function(i,cert){
+        if(cert.file)
+        {
+            $http
+                .post('/getCFile', {"_id" : user._id, "cert" : cert})
+                .then(function (res) {
+                    cert.file=res.data;
+                });
+        }
     });
 
 

@@ -53,12 +53,12 @@
               </div>
             </div>
 
-            <div ng-controller="jobFeed"  class="jobPosts">
+            <div ng-controller="jobFeed"  class="jobPosts" id="loading-bar-container">
               <table class="table text-left latestJobsTable">
                 <thead><th></th><th>Category</th><th>Pay</th><th>Location</th>
                 </thead>
                 <tbody>
-                <tr class="jobRow" ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;">
+                <tr class="jobRow" ng-repeat="job in jobs" ng-click="getJob(job._id)" style="cursor: pointer;" >
                   <td class="lilPp"><a ><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse lilPp img-circle"></a></td>
                   <td class="fields" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
                   <td class="fields" ng-if="job.post.category != 'Other'">{{job.post.category}}</td>

@@ -11,7 +11,7 @@ app.controller('logoClick', function(authService,$scope,$window){
     else
     {
         $scope.toDash = function () {
-            $window.location.href = "/signIn";
+            $window.location.href = "/logIn";
         };
     }
 });
@@ -30,7 +30,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 // Set header message of signup $ login pages
 
 
-    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/signIn" || $location.path() == "/forgot" || $location.path() == "/reset") {
+    if ($location.path() == "/signUp" || $location.path() == "/" || $location.path() == "/logIn" || $location.path() == "/forgot" || $location.path() == "/reset") {
         disableHeadings();
         $scope.slogan = true;
         $scope.slog = true;
@@ -60,13 +60,11 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $(".appbg").addClass('dashBG');
             headings();
         }
-        else if ($location.path() != "/" && $location.path() != "/signIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {
+        else if ($location.path() != "/" && $location.path() != "/logIn" && $location.path() != "/signUp" && $location.path() != "/activate" && $location.path().indexOf("/reset/") != 0&& $location.path() != "/guest" && $location.path() != "/forgot") {
             //swal({title: "Log in first", type: "error", timer: 2000, showConfirmButton: false});
-            $location.url("/signIn");
+            $location.url("/logIn");
 
         }
-
-
     }
 
     function headings() {
@@ -141,6 +139,12 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             $scope.empHistory = true;
 
         });
+        $rootScope.$on('dashboard', function () {
+            $scope.disableNumApps = false;
+            disableHeadings();
+            $scope.empHistory = true;
+
+        });
         $rootScope.$on('browse', function () {
 
             disableHeadings();
@@ -172,8 +176,6 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 
             disableHeadings();
             $scope.myApplications = true;
-            $scope.disableNumApps = false;
-
         });
         $rootScope.$on('myJobs', function () {
 

@@ -827,6 +827,9 @@ function getPp(user,cb){
 }
 app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
 
+    $scope.goBack = function(){
+        window.history.back();
+    };
     var temp = $location.url();
     var user = session.user;
     temp = temp.replace("/job?id=", '');
@@ -886,6 +889,8 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                     .post('/loadApplication', {studentID: user._id, jobID: job._id})
                     .then(function (res, err) {
                         $scope.application = res.data;
+                        if($scope.application.status == "Pending")
+                            $scope.application.status = "Application Pending";
                        // console.log($scope.application);
 
                     }
@@ -1026,7 +1031,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     };
 
     $scope.apply = function() {
-
+        $scope.clicked = true;
         var meets = [];
         var crit = [];
         if (typeof job.post.requirements == 'undefined'){
@@ -1143,7 +1148,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 text: "You have no applications remaining today.",
                                 type: "error",
                                 showCancelButton: true,
-                                confirmButtonColor: "#DD6B55",
+                                confirmButtonColor: "#00b488",
                                 confirmButtonText: "Buy Applications",
                                 closeOnConfirm: true
                             },
@@ -1158,18 +1163,15 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                             text: 'Application Successful.',
                             type: "success"
                         }, function () {
-                                notify.go({
-                                    type: 'application',
-                                    jobID: job._id,
-                                    userID: job.employerID._id,
-                                    status: 'Made',
-                                    title: job.post.category
-                                });
-
                             session.create(res.data);
                             $window.location.href="/dashboard";
-
-
+                        });
+                        notify.go({
+                            type: 'application',
+                            jobID: job._id,
+                            userID: job.employerID._id,
+                            status: 'Made',
+                            title: job.post.category
                         });
                     }
                 });

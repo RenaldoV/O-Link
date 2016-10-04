@@ -2,7 +2,10 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar']).config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+    cfpLoadingBarProvider.spinnerTemplate = ' <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw" style="color:#33B6CC"></i> <span class="sr-only">Loading...</span>';
+}]);
 //Starts when the app starts
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
@@ -47,7 +50,7 @@ app.controller('jobFeed', function($scope,$http, $window){
 
                 $scope.getPer = function(cat){
                 if(cat == "Once Off"){
-                    return cat;
+                    return "hr";
                 }
                     else return "hr"
             }
@@ -266,7 +269,7 @@ app.controller('goBrowse',function($scope, $location, constants, $timeout, $wind
 
     $scope.submit = function () {
         if($location.url() == '/guest'){
-            window.location = '/signIn';
+            window.location = '/logIn';
         }
 
         var dat = {};

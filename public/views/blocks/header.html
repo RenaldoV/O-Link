@@ -26,7 +26,7 @@
                 <p ng-if="buyApplications" class="profileHeader">Buy Applications</p>
                 <p ng-if="empBuy" class="profileHeader">Buy</p>
                 <p ng-if="job" class="profileHeader">Job Offer</p>
-                <p ng-hide="disableNumApps" class="appCount muted">Application<span ng-if="numApps > 1 || numApps == 'unlimited'">s</span> remaining: {{numApps}}</p>
+                <p ng-hide="disableNumApps" ng-if="loggedIn" class="appCount muted">Applications remaining: {{numApps}}</p>
             </h2>
 
 
