@@ -149,12 +149,24 @@ module.exports ={
                 break;
             }
             case 'applicationMade':{
+                var article;
                 args.vowel = isVowel(args.category);
+                if(args.vowel)
+                    article = "an";
+                else
+                    article = "a";
+                args.subject = 'Application has been made for '+article+" "+args.category;
                 send(template,args,cb);
                 break;
             }
             case 'applicationMadeEmployer':{
+                var article;
                 args.vowel = isVowel(args.category);
+                if(args.vowel)
+                    article = "an";
+                else
+                    article = "a";
+                args.subject = 'Application has been made for '+article+" "+args.category;
                 send(template,args,cb);
                 break;
             }

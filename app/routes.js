@@ -720,7 +720,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 									args.date = convertDateForDisplay(job.post.startingDate);
 									console.log("DATE FOR EMAIL: " + args.date);
 									args.email = usr.contact.email;
-									args.subject = "Application has been Made for " + args.category;
 									if(!job.post.interviewRequired){
 										args.interview = false;
 									}else args.interview = true;
