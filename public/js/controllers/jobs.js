@@ -15,14 +15,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $scope.job.post.startingDate = "";
         $scope.job.post.endDate = "";
     };
-    function getFormattedDate(date) {
-        var year = date.getFullYear();
-        var month = (1 + date.getMonth()).toString();
-        month = month.length > 1 ? month : '0' + month;
-        var day = date.getDate().toString();
-        day = day.length > 1 ? day : '0' + day;
-        return day + '/' + month + '/' + year;
-    }
 
     $scope.startDate = {
         dateFormat: "dd/mm/yy",
@@ -31,7 +23,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         minDate: 1,
         numberOfMonths: 1,
         onSelect: function(selected) {
-
             $scope.job.post.endDate = "";
             var tmp = selected.split("/");
             tmp = new Date(tmp[2],tmp[1] -1,tmp[0]);
@@ -49,7 +40,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         maxDate : date2,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
-                            //$scope.job.post.endDate = getFormattedDate(tmp);
                         }
                     };
                     break;
@@ -65,7 +55,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         maxDate: null,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
-                            //$scope.job.post.endDate = getFormattedDate(tmp);
+
                         }
                     };
                     break;
@@ -82,7 +72,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         maxDate: date2,
                         onSelect: function(selected){
                             var tmp = new Date(selected);
-                            //$scope.job.post.endDate = getFormattedDate(tmp);
+
                         }
                     };
                     break;
@@ -236,113 +226,116 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         }
     }
 
-    $scope.submitForm = function() {
+    $scope.submitForm = function () {
 
         $scope.submitted = true;
-        if ($scope.jobForm.$valid){
+        if ($scope.jobForm.$valid) {
             var job = jQuery.extend(true, {}, $scope.job);
-        job.post.startingDate =  new Date(job.post.startingDate.getFullYear(), job.post.startingDate.getMonth(), job.post.startingDate.getDate() + 1);
-        if(job.post.endDate)
-            job.post.endDate =  new Date(job.post.endDate.getFullYear(), job.post.endDate.getMonth(), job.post.endDate.getDate() + 1);
+            job.post.startingDate = new Date(job.post.startingDate.getFullYear(), job.post.startingDate.getMonth(), job.post.startingDate.getDate() + 1);
 
-        if (!$scope.job.status) {
-            $scope.job.employerID = user._id;
-            console.log(job);
+            if (job.post.endDate)
+                job.post.endDate = new Date(job.post.endDate.getFullYear(), job.post.endDate.getMonth(), job.post.endDate.getDate() + 1);
 
 
-            job.status = 'active';
-            $http({
-                method: 'POST',
-                url: '/jobPoster',
-                data: job
-            })
-                .then(function (response) {
-                    {
-                        swal({title: "Posted", type: "success", timer: 2000, showConfirmButton: false});
-                        $location.url("/dashboard");
-                    }
-                });
-        }
-        else if ($scope.job.status == 'inactive' || $scope.job.status == 'Completed') {
+            if (!$scope.job.status) {
+                $scope.job.employerID = user._id;
+                console.log(job);
 
-            delete job._id;
-            delete job.applicants;
+            job.post.spotsAvailable = Number(job.post.spotsAvailable);
+            job.post.threshold = Number(job.post.threshold);
+                job.status = 'active';
+                $http({
+                    method: 'POST',
+                    url: '/jobPoster',
+                    data: job
+                })
+                    .then(function (response) {
+                        {
+                            swal({title: "Posted", type: "success", timer: 2000, showConfirmButton: false});
+                            $location.url("/dashboard");
+                        }
+                    });
+            }
+            else if ($scope.job.status == 'inactive' || $scope.job.status == 'Completed') {
 
-            job.status = 'active';
-            $http({
-                method: 'POST',
-                url: '/jobPoster',
-                data: job
-            })
-                .then(function (response) {
-                    {
-                        swal({title: "Reposted", type: "success", timer: 2000, showConfirmButton: false});
-                        $location.url("/myJobPosts");
-                    }
-                });
-        }
-        else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
-           // console.log($scope.job);
-            swal({
-                    title: "Are you sure?",
-                    type: "input",
-                    text: "This update your post and notify all applicants. Please type your password to confirm",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, I'm sure!",
-                    closeOnConfirm: false
-                },
-                function (inputValue) {
+                delete job._id;
+                delete job.applicants;
 
-                    $http
-                        .post('/checkPassword', {email: user.contact.email, password: inputValue})
-                        .then(function (res, err) {
-                           // console.log(res.data);
-                            if (!res.data) {
-                                swal.showInputError("Incorrect Password!");
-                                return false;
-                            }
-                            else {
-                                var applicants = $scope.job.applicants;
-                                delete job.applicants;
-                                job.status = 'active';
+                job.status = 'active';
+                $http({
+                    method: 'POST',
+                    url: '/jobPoster',
+                    data: job
+                })
+                    .then(function (response) {
+                        {
+                            swal({title: "Reposted", type: "success", timer: 2000, showConfirmButton: false});
+                            $location.url("/myJobPosts");
+                        }
+                    });
+            }
+            else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
+                // console.log($scope.job);
+                swal({
+                        title: "Are you sure?",
+                        type: "input",
+                        text: "This update your post and notify all applicants. Please type your password to confirm",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, I'm sure!",
+                        closeOnConfirm: false
+                    },
+                    function (inputValue) {
+
+                        $http
+                            .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                            .then(function (res, err) {
+                                // console.log(res.data);
+                                if (!res.data) {
+                                    swal.showInputError("Incorrect Password!");
+                                    return false;
+                                }
+                                else {
+                                    var applicants = $scope.job.applicants;
+                                    delete job.applicants;
+                                    job.status = 'active';
 
 
-                                $http({
-                                    method: 'POST',
-                                    url: '/jobUpdate',
-                                    data: {job: job}
-                                })
-                                    .then(function (response) {
-                                        {
-                                            swal({
-                                                title: "Edited",
-                                                type: "success",
-                                                timer: 2000,
-                                                showConfirmButton: false
-                                            });
+                                    $http({
+                                        method: 'POST',
+                                        url: '/jobUpdate',
+                                        data: {job: job}
+                                    })
+                                        .then(function (response) {
+                                            {
+                                                swal({
+                                                    title: "Edited",
+                                                    type: "success",
+                                                    timer: 2000,
+                                                    showConfirmButton: false
+                                                });
 
-                                            if (applicants) {
-                                                for (var i = 0; i < applicants.length; i++) {
-                                                    notify.go({
-                                                        type: 'jobEdited',
-                                                        jobID: $scope.job._id,
-                                                        userID: applicants[i],
-                                                        status: 'edited',
-                                                        title: $scope.job.post.category
-                                                    });
+                                                if (applicants) {
+                                                    for (var i = 0; i < applicants.length; i++) {
+                                                        notify.go({
+                                                            type: 'jobEdited',
+                                                            jobID: $scope.job._id,
+                                                            userID: applicants[i],
+                                                            status: 'edited',
+                                                            title: $scope.job.post.category
+                                                        });
+                                                    }
                                                 }
+                                                $location.url("/myJobPosts");
                                             }
-                                            $location.url("/myJobPosts");
-                                        }
-                                    });
+                                        });
 
-                            }
+                                }
 
-                        });
-                });
+                            });
+                    });
+            }
         }
-    }
     };
 
 
@@ -947,7 +940,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
             });
     };
-    $scope.accept = function(id, employerID, jobID, category){
+    $scope.accept = function(id, employerID, jobID, job){
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and that you have accepted",
@@ -967,16 +960,32 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'accepted',
-                                title: category
+                                title: job.post.category
                             });
                             swal("Offer accepted.", "The user has been notified.", "success");
-                            location.reload();
-
                         });
+                    if(--job.positionsLeft == 0){
+                        //alert();
+                        //console.log("declining all other applicants");
+                        //Decline all other applicants not Confirmed
+                        //get all applicants not confirmed or already declined
+                        $http
+                            .post('/getAllApplicantsOfJob' , {jobID: job._id})
+                            .then(function (res,er) {
+                                var apps = res.data;
+                                $.each(apps,function(i,app){
+                                    declineAll(app._id,$http,notify,app.studentID,job);
+                                });
+                                $timeout(function(){
+                                    location.reload();
+                                },1000);
+                            });
+                    }else
+                        location.reload();
+
                 }
 
             });
-
     };
 
     $scope.delete = function(){
@@ -1135,6 +1144,9 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         }
         else {
+            job.post.startingDate = convertDateForDisplay(job.post.startingDate);
+            if(job.post.endDate)
+                job.post.endDate = convertDateForDisplay(job.post.endDate);
             $http({
                 method  : 'POST',
                 url     : '/apply',

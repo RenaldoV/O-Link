@@ -10,6 +10,7 @@ var mailer = require('./app/models/mailer.js');
 
 
 
+
 // configuration ===========================================
 
 
@@ -59,7 +60,7 @@ io.on('connection', function(socket){
 var CronJob = require('cron').CronJob;
 
 //function happens once every hour
-new CronJob('00 00 * * * *', function() {
+new CronJob('00 * * * * *', function() {
     //check for edited posts that weren't accepted
     db.applications.find({edited:true}).populate('jobID').exec(function(err, rows){
 
@@ -76,7 +77,7 @@ new CronJob('00 00 * * * *', function() {
                 db.applications.remove({_id:newApp._id}, function(err, res){
                     console.log(err);
                 });
-                db.notifications.remove({jobID: newApp.jobID, type:'jobEdited'},function(err,rs){
+                db.notifications.remove({jobID: newApp.jobID, type:'jobEdited',userID : app.studentID},function(err,rs){
 
                 });
                 db.jobs.update({_id:newApp.jobID},{$pull:{applicants: {$in : [newApp.studentID]}}}, function(err,rs){
@@ -95,6 +96,74 @@ new CronJob('00 00 * * * *', function() {
                     //expired
                 });
             }
+        });
+    });
+
+    //remove all seen notifications
+    db.notifications.remove({seen: true}, function(err,rs){
+        if(err) throw err;
+    });
+
+    //remove all applications of offers not accepted in time
+    db.applications.find({status:"Provisionally accepted"}).exec(function(err, rows){
+        rows.forEach(function(app){
+            app = app.toObject();
+
+           if(app.offerDate + 86400000 <= Date.now())
+           {
+               db.applications.findOneAndUpdate({_id: app._id}, {
+                   $set: {status: "Provisionally accepted"}
+               }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, ap) {
+                   if (err) throw err;
+
+                   var usr = ap.studentID.toObject();
+                   var emp = ap.employerID.toObject();
+                   var job = ap.jobID.toObject();
+
+
+                   db.jobs.update({_id: job._id}, {$pull: {'applicants': ap.studentID._id}}).exec(function (ers, res) {
+                       if (err) throw err;
+                       //console.log("Pull applicants: " + res);
+                   });
+                   db.notifications.remove({
+                       'jobID': ap.jobID._id,
+                       'userID': ap.studentID._id,
+                       'status': "Provisionally accepted"
+                   }, function (err, rs) {
+                       if (err) throw err;
+                        console.log("Remove Notis: " + rs);
+                   });
+                   var noti = {
+                       userID: ap.studentID._id,
+                       jobID: ap.jobID._id,
+                       seen: false,
+                       status: 'Declined',
+                       type: 'status change',
+                       title: ap.jobID.post.category
+                   };
+                   db.notifications.create(noti,function(err, res){
+                       //expired
+                   });
+
+                   if (ap.studentID.emailDisable == undefined || !ap.studentID.emailDisable) {
+                       var args = {};
+                       args.name = usr.name.name;
+                       args.date = convertDateForDisplay(job.post.startingDate);
+                       if (job.post.OtherCategory)
+                           args.role = job.post.OtherCategory;
+                       else
+                           args.role = job.post.category;
+                       args.email = usr.contact.email;
+
+                       args.subject = args.role;
+                       args.link = 'http://' + "localhost:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+
+                       mailer.sendMail('applicationDenied', ap.studentID._id, args, function (err, rr) {
+                           console.log("Send email: " + rr);
+                       });
+                   }
+               });
+           }
         });
     });
     console.log('Hourly check');
@@ -244,3 +313,13 @@ db.jobs.find({status: 'active'},function(err,rows){
     console.log('Daily check');
 }
 dailyCheck();
+
+function convertDateForDisplay(date){
+
+    var year = date.substr(6,4);
+    var day = date.substr(3,2);
+    var month = date.substr(0,2);
+    var ret = day+"/"+month+"/"+year;
+
+    return ret;
+}

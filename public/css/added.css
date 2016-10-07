@@ -1122,9 +1122,3 @@ div.sweet-alert{
 .maps iframe{
     pointer-events: none;
 }
-div #loading-bar-spinner .spinner-icon {
-    position: relative;!important;
-    width: 40px;!important;
-    height: 40px;!important;
-    color: #33B6CC;
-}

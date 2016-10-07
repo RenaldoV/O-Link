@@ -193,7 +193,7 @@ module.exports = function(app) {
 	//Returns the 10 latest job posts for students
 	app.post('/jobFeeder', function(req,res){
 
-		db.jobs.find({status:'active'}).limit(10).populate('employerID').sort('-post.postDate').exec(function(err,rows){
+		db.jobs.find({status:'active','applicationsLeft': { $gt: 0}, 'positionsLeft': {$gt : 0}}).limit(10).populate('employerID').sort('-post.postDate').exec(function(err,rows){
 			if(err){
 
 			}
@@ -224,42 +224,58 @@ module.exports = function(app) {
 	app.post('/jobBrowse', function(req,res){
 
 		var temp = req.body;
-		if(temp.region == null){
-			temp.region='';
+		if (temp.region == null) {
+			temp.region = '';
 		}
-console.log(temp);
-if(temp.radius != null){
+		console.log(temp);
+		if (temp.radius != null) {
 
-	db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}, 'post.location.geo':{$near:{coordinates:[ temp.userLocation.lng, temp.userLocation.lat ], type:"Point"}, $maxDistance: temp.radius*1000}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
-		if(err) throw err;
-		else{
+			db.jobs.find({
+				status: 'active',
+				'applicationsLeft': {$gt: 0},
+				'positionsLeft': {$gt: 0},
+				'post.location.address': {$regex: temp.region},
+				'post.location.geo': {
+					$near: {
+						coordinates: [temp.userLocation.lng, temp.userLocation.lat],
+						type: "Point"
+					}, $maxDistance: temp.radius * 1000
+				}
+			}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function (err, rows) {
+				if (err) throw err;
+				else {
 
-			console.log(1);
-		if(rows.length == 0){
+					console.log(1);
+					if (rows.length == 0) {
 
-			res.send(false);
+						res.send(false);
+					}
+
+					else {
+
+						res.send(rows);
+					}
+
+				}
+			});
+		} else {
+			db.jobs.find({
+				status: 'active',
+				'post.location.address': {$regex: temp.region},
+				'applicationsLeft': {$gt: 0},
+				'positionsLeft': {$gt: 0}
+			}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function (err, rows) {
+				if (err) throw err;
+				else {
+					console.log(2);
+
+					if (rows.length == 0)
+						res.send(false);
+					else
+						res.send(rows);
+				}
+			});
 		}
-
-		else{
-
-			res.send(rows);
-		}
-
-		}
-	});
-}else{
-		db.jobs.find({status:'active', 'post.location.address':{$regex: temp.region}}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function(err,rows){
-			if(err) throw err;
-			else{
-			console.log(2);
-
-			if(rows.length == 0)
-			res.send(false);
-			else
-			res.send(rows);
-			}
-		});
-	}
 	});
 	//done
 
@@ -270,10 +286,13 @@ if(temp.radius != null){
 		var job = req.body;
 
 		job.post.startingDate = dateConvert(job.post.startingDate);
+		console.log(job.post.startingDate);
 
 		if(job.post.endDate){
 			job.post.endDate = dateConvert(job.post.endDate);
+			console.log(job.post.endDate);
 		}
+		job.provisionalLeft = job.post.spotsAvailable;
 		job.positionsLeft = job.post.spotsAvailable;
 		job.applicationsLeft = job.positionsLeft * job.post.threshold;
 		db.jobs.create(job,function(err, jobi){
@@ -777,80 +796,72 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//done
 
 	//make changes to application
-	app.post('/updateApplication', function(req,res){
+	app.post('/updateApplication', function (req, res) {
 
 		var app = req.body;
+		app.offerDate = Date.now();
 		var id = app._id;
 		delete  app._id;
-		var positions = app.jobID.positionsLeft;
-		positions--;
-		if(positions == 0){
-			db.jobs.update({_id:app.jobID._id}, {positionsLeft: positions, status: "filled"}, function(err,doc){
-				console.log(err);
-			});
-		}else{
-			db.jobs.update({_id:app.jobID._id}, {positionsLeft: positions}, function(err,doc){
-				console.log(err);
-			});
-		}
 
-
-		db.applications.findOneAndUpdate({_id : id},{$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
+		db.applications.findOneAndUpdate({_id: id}, {$set: app}).populate('studentID').populate('employerID').populate('jobID').exec(function (err, ap) {
 			if (err) throw err;
 
 			var usr = ap.studentID.toObject();
 			var emp = ap.employerID.toObject();
 			var job = ap.jobID.toObject();
 
-				if (usr.emailDisable == undefined || !usr.emailDisable) {
-					var args = {};
-					args.name = usr.name.name;
-					args.date = convertDateForDisplay(job.post.startingDate);
+			if(app.status == "Provisionally accepted"){
+					job.provisionalLeft--;
+					db.jobs.update({_id:job._id}, {provisionalLeft: job.provisionalLeft}, function(err,doc){
+						if(err) throw err;
+					});
+			}
+
+			if (usr.emailDisable == undefined || !usr.emailDisable) {
+				var args = {};
+				args.name = usr.name.name;
+				args.date = convertDateForDisplay(job.post.startingDate);
+				if(job.post.OtherCategory)
+					args.role = job.post.OtherCategory;
+				else
 					args.role = job.post.category;
-					args.email = usr.contact.email;
-					if(emp.employerType == 'Company'){
-						args.employer = emp.company.name;
-					}else
-						args.employer = emp.contact.name + " "+ emp.contact.surname;
+				args.email = usr.contact.email;
+				if (emp.employerType == 'Company') {
+					args.employer = emp.company.name;
+				} else
+					args.employer = emp.contact.name + " " + emp.contact.surname;
 
 
-					if(app.status == "Provisionally accepted"){
+				if (app.status == "Provisionally accepted") {
 					args.subject = args.role;
 					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
 
-						if(job.post.interviewRequired){
-						mailer.sendMail('offerMadeInterview',usr._id,args,function(err,rr){
+					if (job.post.interviewRequired) {
+						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
 							console.log(rr);
-
 						});
 					}
 					else {
-						mailer.sendMail('offerMade',usr._id,args,function(err,rr){
+						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
 							console.log(rr);
-
 						});
-					}
-					}
-					else if(app.status == "Declined"){
-						args.subject = args.role;
-						args.link = 'http://' + req.headers.host + '/browseJobs?categories=Coach%25Tutor%25Delivery_Person%25Retail_Worker%25Model%25Waiter(res)%25Host(ess)%25Barman%25Aupair%25Photographer_%2F_Videographer%25Programmer%2FDeveloper%25Engineer%25Assistant%25Cook%2FChef%25Internship%25Other&timePeriods=Once_Off%25Short_Term%25Long_Term';
-
-						db.jobs.findOneAndUpdate({_id : ap.jobID._id},  {$pull: { applicants: ap.studentID._id}}).exec(function(ers,ress){
-							console.log(ress);
-
-						});
-
-						mailer.sendMail('applicationDenied',usr._id,args,function(err,rr){
-							console.log(rr);
-
-						});
-
 					}
 				}
+				else if (app.status == "Declined") {
+					args.subject = args.role;
+					args.link = 'http://' + req.headers.host + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+
+					db.jobs.findOneAndUpdate({_id: ap.jobID._id}, {$pull: {applicants: ap.studentID._id}}).exec(function (ers, ress) {
+						console.log(ress);
+					});
+
+					mailer.sendMail('applicationDenied', usr._id, args, function (err, rr) {
+						console.log(rr);
+					});
+				}
+			}
 			res.send(true);
-
-
-		} );
+		});
 
 	});
 	//done
@@ -1281,41 +1292,58 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	});
 	//done
 
+	//get all applicants who should be declined when all positions of job are filled
+	app.post('/getAllApplicantsOfJob',function(req,res) {
+		var jobID = req.body.jobID;
+		db.applications.find({jobID: jobID, status: "Pending"}).exec(function (err, rows) {
+			if(err) throw (err);
+			res.send(rows);
+		});
+	});
+
 	//accept offer functionality
 	app.post('/acceptOffer', function(req,res) {
 
 
 		var app = req.body;
-console.log(app);
+
 		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
 			var usr = ap.studentID.toObject();
 			var emp = ap.employerID.toObject();
 			var job = ap.jobID.toObject();
+
+			job.positionsLeft--;
+			db.jobs.update({_id:job._id}, {positionsLeft: job.positionsLeft}, function(err,doc){
+				if(err) throw err;
+			});
+
 			if(emp.emailDisable == undefined || !emp.emailDisable) {
+
 				var args = {
 					name: emp.contact.name,
 					talent: usr.name.name + " " + usr.name.surname,
 					talentName: usr.name.name,
 					talentEmail: usr.contact.email,
 					email: emp.contact.email,
-					category: job.post.category,
 					date: job.post.startingDate,
 					link: 'http://' + req.headers.host + '/applicants'
 				};
-console.log(job.post);
+				if(job.post.OtherCategory)
+					args.category = job.post.OtherCategory;
+				else
+					args.category = job.post.category;
+
 				if(job.post.interviewRequired){
-					console.log("inteview");
+
 					mailer.sendMail('interviewAccepted', emp._id, args, function (er, rss) {
 						console.log(rss);
-
 					});
 				}
 				else{
 					mailer.sendMail('offerAccepted', emp._id, args, function (er, rss) {
 						console.log(rss);
-
 					});
 				}
 
@@ -1329,22 +1357,14 @@ console.log(job.post);
 
 	//decline offer functionality
 	app.post('/declineOffer', function(req,res) {
-
-
 		var app = req.body._id;
 		var job = req.body.job;
-		var positions = req.body.job.positionsLeft+1;
-		var thresh = req.body.job.applicationsLeft+1;
-		if(job.status == "filled"){
-			db.jobs.update({_id:job._id}, {positionsLeft:positions,applicationsLeft:thresh,status:"active"}, function(err,doc){
-				if (err) throw err;
-			});
-		}
-		else{
-			db.jobs.update({_id:job._id}, {positionsLeft:positions,applicationsLeft:thresh}, function(err,doc){
-				if (err) throw err;
-			});
-		}
+
+		job.provisionalLeft++;
+		db.jobs.update({_id:job._id}, {provisionalLeft:job.provisionalLeft}, function(err,doc){
+			if (err) throw err;
+		});
+
 
 		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}, $unset:{edited:1, editTime:1}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;

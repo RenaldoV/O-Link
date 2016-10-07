@@ -1,6 +1,7 @@
 
     <div ng-controller="myJobFeed">
-        <div style="margin-top: 42px;" class="applicantsTable blueBack">
+        <h4 ng-if="jobs.length == 0" class="white" style="text-align: center"><b>{{message}}</b></h4>
+        <div ng-if="jobs.length > 0" style="margin-top: 42px;" class="applicantsTable blueBack">
         <table class="table tab">
             <thead  class="talentHistoryHead empJobsTableHead blueBack"><th>Category</th><th class="empJobTableAddDate">Start Date</th><th><span><span class="tableAdd">Number of</span> Applicants</span></th><th class="tableAdd"></th><th ></th>
             </thead>

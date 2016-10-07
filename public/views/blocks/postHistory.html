@@ -1,5 +1,6 @@
 <div ng-controller="pastJobFeed">
-    <div style="margin-top: 42px; padding-bottom: 0;">
+    <h4 ng-if="jobs.length == 0" class="white" style="text-align: center"><b>{{message}}</b></h4>
+    <div ng-if="jobs.length > 0" style="margin-top: 42px; padding-bottom: 0;">
     <table class="table tab applicantsTable postHistory">
         <thead class="talentHistoryHead blueBack"><th>Category</th><th class="applicantsTableAddSmall">Date</th><th class="tableAdd"></th><th></th><th></th><th></th>
         </thead>
@@ -20,6 +21,6 @@
         </tr>
         </tbody>
     </table>
-    <div style="color: white; margin-left: 42px">{{message}}</div>
+
 </div>
 </div>

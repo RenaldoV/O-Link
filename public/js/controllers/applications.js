@@ -3,7 +3,7 @@
  */
 
 
-app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope, $window) {
+app.controller('studentApplications', function ($scope,$http,cacheUser, session, notify,$rootScope, $window,$timeout) {
 
     $scope.highlightChildren = function(event){
         angular.element(event.currentTarget).children().addClass("hover");
@@ -67,7 +67,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                     return false;
                 };
 
-                $scope.accept = function(id, employerID, jobID, category){
+                $scope.accept = function(id, employerID, jobID, job){
                     swal({
                             title: "Are you sure?",
                             text: "This will notify the user and that you have accepted",
@@ -87,18 +87,36 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'accepted',
-                                            title: category
+                                            title: job.post.category
                                         });
                                         swal("Offer accepted.", "The user has been notified.", "success");
-                                        location.reload();
 
                                     });
+                                if(--job.positionsLeft == 0) {
+                                    //Decline all other applicants not Confirmed
+                                    //get all applicants not confirmed or already declined
+                                    //console.log("declining all other applicants");
+                                    $http
+                                        .post('/getAllApplicantsOfJob', {jobID: job._id})
+                                        .then(function (res, er) {
+                                            var apps = res.data;
+                                            $.each(apps, function (i, app) {
+                                                declineAll(app._id, $http, notify, app.studentID, job);
+                                            });
+                                            $timeout(function(){
+                                                location.reload();
+                                            },1000);
+
+                                        });
+
+                                }else
+                                    location.reload();
                             }
                         });
 
                 };
 
-                $scope.decline = function(id, employerID, jobID, category){
+                $scope.decline = function(id, employerID, jobID, job){
                     swal({
                             title: "Are you sure?",
                             text: "This will notify the user and that you have withdrawn",
@@ -111,14 +129,14 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                             if (isConfirm) {
                                 $http
-                                    .post('/declineOffer', {_id: id})
+                                    .post('/declineOffer', {_id: id,job:job})
                                     .then(function (res, err) {
                                         notify.go({
                                             type: 'withdrawn',
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'withdrawn',
-                                            title: category
+                                            title: job.post.category
                                         });
                                         swal("Offer declined.", "The user has been notified.", "success");
                                         location.reload();
@@ -415,7 +433,22 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
 
+function declineAll(appID, $http, notify, studentID, job){
+    $http
+        .post('/updateApplication', {_id: appID, status: "Declined", jobID: job._id})
+        .then(function (err, res) {
 
+            notify.go({
+                type: 'status change',
+                jobID: job._id,
+                userID: studentID,
+                status: "Declined",
+                title: job.post.category
+            });
+
+
+        });
+}
 
 function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
     var check = false;
@@ -424,38 +457,41 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
     }
     else var col = "#00b488";
 
-    swal({
-            title: "Are you sure?",
-            text: "This will change the status of this application from " + oldstat + " to " + app.status,
-            showCancelButton: true,
-            confirmButtonColor: col,
-            confirmButtonText: "Yes, I'm sure!",
-            closeOnConfirm: false
-        },
-        function (isConfirm) {
-            delete $scope.col;
-            if (isConfirm) {
-                $http
-                    .post('/updateApplication', {_id: app._id, status: app.status, jobID:job})
-                    .then(function (err,res) {
+    if(app.status == "Provisionally accepted" && job.provisionalLeft == 0){
+        swal("Can't accept more Students", "You can't make more offers than positions available.", "error");
+        $scope.disableMakeOffer = true;
+    }else {
+        swal({
+                title: "Are you sure?",
+                text: "This will change the status of this application from " + oldstat + " to " + app.status,
+                showCancelButton: true,
+                confirmButtonColor: col,
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: true
+            },
+            function (isConfirm) {
 
-                        console.log(res);
+                delete $scope.col;
+                if (isConfirm) {
+                    $http
+                        .post('/updateApplication', {_id: app._id, status: app.status, jobID: job._id})
+                        .then(function (err, res) {
 
+                            notify.go({
+                                type: 'status change',
+                                jobID: app.jobID._id,
+                                userID: userID,
+                                status: app.status,
+                                title: job.post.category
+                            });
+                            swal("Status updated.", "The user has been notified.", "success");
+                            location.reload();
 
-                        notify.go({
-                            type: 'status change',
-                            jobID: app.jobID._id,
-                            userID: userID,
-                            status: app.status,
-                            title: job.post.category
                         });
-                        swal("Status updated.", "The user has been notified.", "success");
-                        location.reload();
 
-                    });
+                }
 
             }
-
-        }
-    );
+        );
+    }
 }
