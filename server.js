@@ -60,7 +60,7 @@ io.on('connection', function(socket){
 var CronJob = require('cron').CronJob;
 
 //function happens once every hour
-new CronJob('00 * * * * *', function() {
+new CronJob('00 00 * * * *', function() {
     //check for edited posts that weren't accepted
     db.applications.find({edited:true}).populate('jobID').exec(function(err, rows){
 
@@ -156,7 +156,7 @@ new CronJob('00 * * * * *', function() {
                        args.email = usr.contact.email;
 
                        args.subject = args.role;
-                       args.link = 'http://' + "localhost:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                       args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
 
                        mailer.sendMail('applicationDenied', ap.studentID._id, args, function (err, rr) {
                            console.log("Send email: " + rr);
