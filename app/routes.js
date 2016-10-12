@@ -1011,7 +1011,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
-		db.applications.find({studentID: user._id}).where('status').ne('Completed').populate('jobID').populate('employerID').populate('studentID').exec(function (err, docs) {
+		db.applications.find({studentID: user._id}).where('status').ne('Completed').populate('jobID').populate('employerID').populate('studentID').sort('-date').exec(function (err, docs) {
 
 			res.send(docs);
 		});

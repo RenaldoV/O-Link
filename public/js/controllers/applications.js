@@ -304,18 +304,26 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     $.each($scope.jobs, function(idx,job){
                        if(job._id == id){
                            if(job.show == undefined){
-                                   job.show = true;
+                               job.show = true;
                            }
                            else job.show = !job.show;
                        }
-                        else{
-                           job.show = true;
-                       }
                     });
                 };
+                function toggleAll(){
+                    $.each($scope.jobs, function(idx,job){
+                        if(job.show == undefined){
+                            job.show = true;
+                        }
+                        else job.show = !job.show;
+                    });
+                }
                 temp = temp.replace("/applicants?jobID=", '');
-                if(temp != ''){
+                if(temp != '/applicants'){
                     $scope.toggleApplicants(temp);
+                }
+                else {
+                    toggleAll();
                 }
                 $scope.getAge = function (d) {
                     var today = new Date();
