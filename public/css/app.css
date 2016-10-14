@@ -5692,7 +5692,9 @@ div.error-block{
 .signupGoBack{
   color: #33C6DD;
 }
-
+.jobGoBack{
+  color: #7266ba;
+}
 .goBackPil{
   position:absolute;
   left:0;
