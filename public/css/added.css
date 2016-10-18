@@ -1114,6 +1114,15 @@ margin-bottom: 0;
 .latestJobsTable > tbody > tr > td.fields{
     width: 30%;
 }
+td.histPmed{
+    width:25%;
+}
+td.histPbig{
+    width:40%;
+}
+td.histPsm{
+    width:10%;
+}
 td.applicantsPsmall{
     width: 2%;
 }

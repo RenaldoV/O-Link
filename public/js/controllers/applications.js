@@ -293,32 +293,28 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
 
 
         $http
-            .post('/loadApplicants', user)
+            .post('/loadApplicantsJobs', user)
             .then(function (res) {
-
-                $scope.applications = {};
-
                 $scope.jobs = res.data;
-                console.log($scope.jobs);
+                $scope.applications = {};
                 $scope.hasApps = false;
-                //console.log($scope.jobs);
-                $.each($scope.jobs,function(i,job){
+                $scope.jobs.forEach(function(job){
                     job.post.startingDate = convertDateForDisplay(job.post.startingDate);
-                    $.each(job.applications,function(i,app){
-                        $scope.hasApps = true;
-
-                        $http
-                            .post('/getPp', {profilePicture:app.studentID.profilePicture})
-                            .then(function (res) {
-
-                                app.image = res.data;
+                    $http
+                        .post('/loadApplicants', {jobID : job._id})
+                        .then(function(res) {
+                            job.applications = res.data;
+                            job.applications.forEach(function(app){
+                                $scope.hasApps = true;
+                                $http
+                                    .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                                    .then(function (res) {
+                                        app.image = res.data;
+                                    });
                             });
-                    });
+                        });
                 });
-
-
                 $scope.message = "There are no applicants to display.";
-
                 $scope.toggleApplicants = function(id){
                     $.each($scope.jobs, function(idx,job){
                        if(job._id == id){
@@ -410,7 +406,6 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     }
                     return false;
                 };
-
             });
 
 

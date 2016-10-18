@@ -1010,7 +1010,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/loadApplications', function(req,res){
 
 		var user = req.body;
-		db.applications.find({studentID: user._id}).where('status').ne('Completed').populate('jobID').populate('employerID').populate('studentID').sort('-date').exec(function (err, docs) {
+		db.applications.find({studentID: user._id}).populate('jobID').populate('employerID').populate('studentID').sort('-date').exec(function (err, docs) {
 
 			res.send(docs);
 		});
@@ -1040,46 +1040,41 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	});
 	//done
 
-	//load applications by employer and populate job and student IDs
+	//load applicants for applicants page
 	app.post('/loadApplicants', function(req,res){
+		var jobID = req.body.jobID;
+		db.applications.find({jobID: jobID}).where('status').ne('Completed').where('status').ne('Declined').sort({date: -1}).populate('studentID').exec(function (err, docs) {
+			res.send(docs);
+		});
+	});
+
+	//load jobs for applicants page
+	app.post('/loadApplicantsJobs', function(req,res){
 
 
 		var user = req.body;
+
 		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort({'post.postDate' : -1}).exec(function(err,rws) {
 			if(err) throw err;
-			var rows = rws;
-			var jobs = [];
-			rows.forEach(function(j){
-				var job = j.toObject();
-				job.applications = [];
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
-					if(err) throw err;
-					docs.forEach(function(a){
-						var app = a.toObject();
-						job.applications.push(app);
-					});
-				});
-				console.log(job);
-				jobs.push(job);
-			});
-			//console.log(jobs);
-			res.send(jobs);
+			res.send(rws);
 			/*var ret = [];
 			var calls = [];
 			var ticks = [rows.count];
 			var  i = 0;
+
+			res.send(rows);
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
-					job.applications = docs;
+					db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').sort({date:-1}).populate('studentID').exec(function (err, docs) {
+						console.log(job.post.OtherCategory);
+						job.applications = docs;
+						//ret.splice(ret.length,0,job);
+						ret.push(job);
+						i++;
 
-
-					ret.push(job);
-
-					i++;
-					callback(null, job);
-				});
+						callback(null, job);
+					});
 				});
 			});
 			async.parallel(calls, function(err, result) {
@@ -1167,7 +1162,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/loadJobHistory', function(req,res){
 
 		var user = req.body;
-		db.jobs.find(req.body).where('status').equals('Completed').sort('post.postDate').exec(function(err,rws) {
+		db.jobs.find(req.body).where('status').equals('Completed').sort('-post.postDate').exec(function(err,rws) {
 			var rows = rws;
 			var ret = [];
 			var calls = [];
@@ -1176,7 +1171,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-					db.applications.find({jobID: job._id, status: 'Completed'}).populate('studentID').sort({_id:1}).exec(function (err, docs) {
+					db.applications.find({jobID: job._id, status: 'Completed'}).populate('studentID').sort({_id:-1}).exec(function (err, docs) {
 						job.applications = docs;
 						ret.push(job);
 						i++;
@@ -1382,7 +1377,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		});
 
 
-		db.applications.findOneAndUpdate(app,{$set: {offered:"declined", status:"Declined"}, $unset:{edited:1, editTime:1}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
+		db.applications.findOneAndUpdate({_id:app},{$set: {offered:"declined", status:"Declined"}, $unset:{edited:1, editTime:1}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
 			var usr = ap.studentID.toObject();
