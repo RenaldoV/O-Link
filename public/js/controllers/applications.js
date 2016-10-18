@@ -67,6 +67,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 };
 
                 $scope.accept = function(id, employerID, jobID, job){
+
                     swal({
                             title: "Are you sure?",
                             text: "This will notify the user and that you have accepted",
@@ -84,7 +85,6 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             var Cat = job.post.OtherCategory;
                                         else
                                             var Cat = job.post.category;
-
                                         notify.go({
                                             type: 'accepted',
                                             jobID: jobID,
@@ -107,13 +107,15 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             });
                                             $timeout(function(){
                                                 location.reload();
-                                            },1000);
+                                            },2000);
 
                                         });
 
                                 }
                                 else{
-                                    location.reload();
+                                    $timeout(function(){
+                                        location.reload();
+                                    },2000);
                                 }
                             }
                         });
@@ -140,6 +142,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                         else
                                             var Cat = job.post.category;
 
+
                                         notify.go({
                                             type: 'withdrawn',
                                             jobID: jobID,
@@ -147,9 +150,15 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             status: 'withdrawn',
                                             title: Cat
                                         });
-                                        swal("Offer declined.", "The user has been notified.", "success");
-                                        location.reload();
-
+                                        swal({
+                                                title: "Offer declined.",
+                                                text: "The user has been notified."
+                                            },
+                                            function(){
+                                                setTimeout(function(){
+                                                    location.reload();
+                                                }, 2000);
+                                            });
                                     });
                             }
                         });
@@ -290,7 +299,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.applications = {};
 
                 $scope.jobs = res.data;
-
+                console.log($scope.jobs);
                 $scope.hasApps = false;
                 //console.log($scope.jobs);
                 $.each($scope.jobs,function(i,job){

@@ -1045,16 +1045,33 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		var user = req.body;
-		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort('-post.postDate').exec(function(err,rws) {
+		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort({'post.postDate' : -1}).exec(function(err,rws) {
+			if(err) throw err;
 			var rows = rws;
-			var ret = [];
+			var jobs = [];
+			rows.forEach(function(j){
+				var job = j.toObject();
+				job.applications = [];
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
+					if(err) throw err;
+					docs.forEach(function(a){
+						var app = a.toObject();
+						job.applications.push(app);
+					});
+				});
+				console.log(job);
+				jobs.push(job);
+			});
+			//console.log(jobs);
+			res.send(jobs);
+			/*var ret = [];
 			var calls = [];
 			var ticks = [rows.count];
 			var  i = 0;
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({date:-1}).exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').exec(function (err, docs) {
 					job.applications = docs;
 
 
@@ -1070,7 +1087,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				if (err)
 					return console.log(err);
 
-			});
+			});*/
 
 
 
@@ -1385,12 +1402,9 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 				});
 			}
 			db.jobs.findOneAndUpdate({_id : ap.jobID._id},  {$pull: { applicants: ap.studentID._id}}).exec(function(ers,ress){
-				//console.log(ress);
+				if(ers) throw ers;
 				res.send(true);
 			});
-
-
-
 
 		});
 
