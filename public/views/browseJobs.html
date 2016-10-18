@@ -7,7 +7,7 @@
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
                 </span>
-                <h4 ng-click="editLocation()" ng-hide="editLoc" >{{resAddress}}</h4>
+                <h4 ng-hide="editLoc" >{{resAddress}}</h4>
                 <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
                        class="btn btn-block" placeholder="Location"
                        ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
@@ -102,6 +102,24 @@
 
                     <div class="row text-center job-info-boxes">
 
+                        <table class="col-md-3 jobInfoBox statusBoxTable" title="Application Status">
+                            <thead class="blueBack">
+                            <th class="infoBoxHead glyphicon glyphicon-hourglass"></th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <div class="statusDiv2" style="width:50%; margin-left: 25%">
+                                        <span>{{job.appStat}}</span>
+                                        <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall2"></div>
+                                        <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall2"></div>
+                                        <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall2"></div>
+                                        <div ng-if="isConfirmed(job.appStat)" style="background-color: #286090" class="statusBall2"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
                         <table class="col-md-3 jobInfoBox FirstBox" title="Job Location">
                             <thead class="blueBack">
                             <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>

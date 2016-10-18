@@ -1305,7 +1305,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		var app = req.body;
-
+		console.log(app);
 		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
@@ -1326,7 +1326,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 					talentName: usr.name.name,
 					talentEmail: usr.contact.email,
 					email: emp.contact.email,
-					date: job.post.startingDate,
+					date: convertDateForDisplay(job.post.startingDate),
 					link: 'http://' + req.headers.host + '/applicants'
 				};
 				if(job.post.OtherCategory)

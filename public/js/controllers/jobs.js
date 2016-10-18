@@ -318,12 +318,17 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
                                                 if (applicants) {
                                                     for (var i = 0; i < applicants.length; i++) {
+                                                        if($scope.job.post.OtherCategory)
+                                                            var Cat = $scope.job.post.OtherCategory;
+                                                        else
+                                                            var Cat = $scope.job.post.category;
+
                                                         notify.go({
                                                             type: 'jobEdited',
                                                             jobID: $scope.job._id,
                                                             userID: applicants[i],
                                                             status: 'edited',
-                                                            title: $scope.job.post.category
+                                                            title: Cat
                                                         });
                                                     }
                                                 }
@@ -430,7 +435,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                         type: "input",
                         text: "This will change your residential address. Please type your password to confirm.",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#00b488",
                         confirmButtonText: "Yes, I'm sure!",
                         closeOnConfirm: false
                     },
@@ -502,12 +507,8 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     $scope.editLocation = function(){
         $scope.editLoc = true;
         $scope.resAddress = session.user.location.address;
-        $timeout(function() {
-            $("#searchTextField").trigger('click');
-            $("#searchTextField").focus();
-
-        }, 100);
-
+        $("#searchTextField").trigger('click');
+        $("#searchTextField").focus();
     };
     $scope.locFocusOut = function(){
         $scope.editLoc = false;
@@ -909,12 +910,16 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                     $http
                         .post('/declineOffer', {_id: id,job:job})
                         .then(function (res, err) {
+                            if(job.post.OtherCategory)
+                                var Cat = job.post.OtherCategory;
+                            else
+                                var Cat = job.post.category;
                             notify.go({
                                 type: 'withdrawn',
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'withdrawn',
-                                title: job.post.category
+                                title: Cat
                             });
                             swal("Offer declined.", "The user has been notified.", "success");
                             location.reload();
@@ -956,12 +961,17 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                     $http
                         .post('/acceptOffer', {_id: id})
                         .then(function (res, err) {
+                            if(job.post.OtherCategory)
+                                var Cat = job.post.OtherCategory;
+                            else
+                                var Cat = job.post.category;
+
                             notify.go({
                                 type: 'accepted',
                                 jobID: jobID,
                                 userID: employerID,
                                 status: 'accepted',
-                                title: job.post.category
+                                title: Cat
                             });
                             swal("Offer accepted.", "The user has been notified.", "success");
                         });
@@ -1020,12 +1030,18 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                     sweetAlert("Job has beed deleted", "", "success");
                                     if(job.applicants) {
                                         for (var i = 0; i < job.applicants.length; i++) {
+
+                                            if(job.post.OtherCategory)
+                                                var Cat = job.post.OtherCategory;
+                                            else
+                                                var Cat = job.post.category;
+
                                             notify.go({
                                                 type: 'jobDeleted',
                                                 jobID: job._id,
                                                 userID: job.applicants[i],
                                                 status: 'deleted',
-                                                title: job.post.category
+                                                title: Cat
                                             });
                                         }
                                     }
@@ -1179,12 +1195,18 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                             session.create(res.data);
                             $window.location.href="/dashboard";
                         });
+
+                        if(job.post.OtherCategory)
+                            var Cat = job.post.OtherCategory;
+                        else
+                            var Cat = job.post.category;
+
                         notify.go({
                             type: 'application',
                             jobID: job._id,
                             userID: job.employerID._id,
                             status: 'Made',
-                            title: job.post.category
+                            title: Cat
                         });
                     }
                 });

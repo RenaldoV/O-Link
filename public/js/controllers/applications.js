@@ -27,7 +27,6 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
             .then(function (res) {
 
                 $scope.applications = res.data;
-                //console.log($scope.applications[0].employerID);
                 $.each($scope.applications,function(i,app){
                     app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                      $http
@@ -77,20 +76,23 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                             closeOnConfirm: false
                         },
                         function (isConfirm) {
-
                             if (isConfirm) {
                                 $http
                                     .post('/acceptOffer', {_id: id})
                                     .then(function (res, err) {
+                                        if(job.post.OtherCategory)
+                                            var Cat = job.post.OtherCategory;
+                                        else
+                                            var Cat = job.post.category;
+
                                         notify.go({
                                             type: 'accepted',
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'accepted',
-                                            title: job.post.category
+                                            title: Cat
                                         });
                                         swal("Offer accepted.", "The user has been notified.", "success");
-
                                     });
                                 if(--job.positionsLeft == 0) {
                                     //Decline all other applicants not Confirmed
@@ -109,8 +111,10 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                                         });
 
-                                }else
+                                }
+                                else{
                                     location.reload();
+                                }
                             }
                         });
 
@@ -131,12 +135,17 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                 $http
                                     .post('/declineOffer', {_id: id,job:job})
                                     .then(function (res, err) {
+                                        if(job.post.OtherCategory)
+                                            var Cat = job.post.OtherCategory;
+                                        else
+                                            var Cat = job.post.category;
+
                                         notify.go({
                                             type: 'withdrawn',
                                             jobID: jobID,
                                             userID: employerID,
                                             status: 'withdrawn',
-                                            title: job.post.category
+                                            title: Cat
                                         });
                                         swal("Offer declined.", "The user has been notified.", "success");
                                         location.reload();
@@ -298,9 +307,9 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                     });
                 });
 
-                if(!$scope.hasApps){
-                    $scope.message = "There are no applicants to display.";
-                }
+
+                $scope.message = "There are no applicants to display.";
+
                 $scope.toggleApplicants = function(id){
                     $.each($scope.jobs, function(idx,job){
                        if(job._id == id){
@@ -446,13 +455,17 @@ function declineAll(appID, $http, notify, studentID, job){
     $http
         .post('/updateApplication', {_id: appID, status: "Declined", jobID: job._id})
         .then(function (err, res) {
+            if(job.post.OtherCategory)
+                var Cat = job.post.OtherCategory;
+            else
+                var Cat = job.post.category;
 
             notify.go({
                 type: 'status change',
                 jobID: job._id,
                 userID: studentID,
                 status: "Declined",
-                title: job.post.category
+                title: Cat
             });
 
 
@@ -466,40 +479,48 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
     }
     else var col = "#00b488";
 
-    if(app.status == "Provisionally accepted" && job.provisionalLeft == 0){
-        swal("Can't accept more Students", "You can't make more offers than positions available.", "error");
-    }else {
-        swal({
-                title: "Are you sure?",
-                text: "This will change the status of this application from " + oldstat + " to " + app.status,
-                showCancelButton: true,
-                confirmButtonColor: col,
-                confirmButtonText: "Yes, I'm sure!",
-                closeOnConfirm: true
-            },
-            function (isConfirm) {
+    if(app.status == "Provisionally accepted" && job.provisionalLeft == 1){
+        var text = "This will change the status of this application from " + oldstat + " to " + app.status + ". After making this offer you will not be allowed to make any more offers for this job.";
+        var title = "Warning!";
+    }
+    else{
+        var text = "This will change the status of this application from " + oldstat + " to " + app.status;
+        var title = "Are you sure?";
+    }
+    swal({
+            title: title,
+            text: text,
+            showCancelButton: true,
+            confirmButtonColor: col,
+            confirmButtonText: "Yes, I'm sure!",
+            closeOnConfirm: true
+        },
+        function (isConfirm) {
 
-                delete $scope.col;
-                if (isConfirm) {
-                    $http
-                        .post('/updateApplication', {_id: app._id, status: app.status, jobID: job._id})
-                        .then(function (err, res) {
+            delete $scope.col;
+            if (isConfirm) {
+                $http
+                    .post('/updateApplication', {_id: app._id, status: app.status, jobID: job._id})
+                    .then(function (err, res) {
+                        if(job.post.OtherCategory)
+                            var Cat = job.post.OtherCategory;
+                        else
+                            var Cat = job.post.category;
 
-                            notify.go({
-                                type: 'status change',
-                                jobID: app.jobID._id,
-                                userID: userID,
-                                status: app.status,
-                                title: job.post.category
-                            });
-                            swal("Status updated.", "The user has been notified.", "success");
-                            location.reload();
-
+                        notify.go({
+                            type: 'status change',
+                            jobID: app.jobID._id,
+                            userID: userID,
+                            status: app.status,
+                            title: Cat
                         });
+                        swal("Status updated.", "The user has been notified.", "success");
+                        location.reload();
 
-                }
+                    });
 
             }
-        );
-    }
+
+        }
+    );
 }

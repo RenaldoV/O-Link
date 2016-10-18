@@ -83,13 +83,17 @@ new CronJob('00 00 * * * *', function() {
                 db.jobs.update({_id:newApp.jobID},{$pull:{applicants: {$in : [newApp.studentID]}}}, function(err,rs){
                    console.log(err);
                 });
+                if(newApp.jobID.post.OtherCategory)
+                    var Cat = newApp.jobID.post.OtherCategory;
+                else
+                    var Cat = newApp.jobID.post.category;
                 var noti = {
                     userID: newApp.studentID,
                     jobID: newApp.jobID,
                     seen: false,
                     status: 'Expired',
                     type: 'expired',
-                    title: newApp.jobID.post.category
+                    title: Cat
                 };
 
                 db.notifications.create(noti,function(err, res){
@@ -133,13 +137,19 @@ new CronJob('00 00 * * * *', function() {
                        if (err) throw err;
                         console.log("Remove Notis: " + rs);
                    });
+
+                   if(ap.jobID.post.OtherCategory)
+                       var Cat = ap.jobID.post.OtherCategory;
+                   else
+                       var Cat = ap.jobID.post.category;
+
                    var noti = {
                        userID: ap.studentID._id,
                        jobID: ap.jobID._id,
                        seen: false,
                        status: 'Declined',
                        type: 'status change',
-                       title: ap.jobID.post.category
+                       title: Cat
                    };
                    db.notifications.create(noti,function(err, res){
                        //expired
@@ -267,11 +277,11 @@ db.jobs.find({status: 'active'},function(err,rows){
         if(hasFinished(row.post.startingDate))
         {
             var done = [];
-            db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'active'}}, function(err, dox){
+            db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
                     if(err) throw err;
                     console.log(res);
-                    /*db.applications.find({
+                    db.applications.find({
                         jobID: dox._id,
                         status: 'Confirmed'
                     }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, aps) {
@@ -305,7 +315,7 @@ db.jobs.find({status: 'active'},function(err,rows){
                                 }
                             }
                         });
-                    });*/
+                    });
                 });
             });
 

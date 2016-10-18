@@ -933,6 +933,7 @@ body {
 }
 
 @media (min-width: 768px) {
+
   h4.white{
     padding-left: 25px;
     padding-right: 25px;
@@ -1283,6 +1284,9 @@ html.bg {
 }
 
 @media (min-width: 768px) {
+  table.jobInfoBox.statusBoxTable{
+    display: none;
+  }
   .jobMobileSpaceBig{
     display: none;
   }
@@ -5270,6 +5274,9 @@ div.dashTops{
 }
 
 @media (max-width: 767px) {
+  div.statusDiv1{
+    display: none;
+  }
   div.sweet-alert.showSweetAlert{
     margin-left: 0px;!important;
   }

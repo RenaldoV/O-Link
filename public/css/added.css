@@ -374,9 +374,20 @@ h1 { font-size: 1.5em; margin: 10px; }
 .statusDiv1{
     float:right;
 }
+.statusDiv2{
+    text-align: center;
+}
 .statusBall1 {
     margin-left: 35px;
     float:left;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #fcd621;
+}
+.statusBall2 {
+    float: left;
+    right: 100px;
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -807,7 +818,6 @@ span.jobDescription{
 .applicantsTables tbody tr td {
     background-color: white;
     padding-top: 11px;
-
 }
 
 .applicantsTables td.hover{
@@ -1103,6 +1113,15 @@ margin-bottom: 0;
 
 .latestJobsTable > tbody > tr > td.fields{
     width: 30%;
+}
+td.applicantsPsmall{
+    width: 2%;
+}
+td.applicantsPmed{
+    width: 18%;
+}
+td.applicantsP{
+    width: 22%;
 }
 .jobRow:hover{
     background-color: #F8F8F8;
