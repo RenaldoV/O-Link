@@ -215,11 +215,17 @@
                                     <button ng-if="user.results" type="button" class="removeReq btn btn-default" ng-click="close(user.results); changeSub()">Remove<span class="glyphicon glyphicon-minus"></span></button>
                                     <button ng-if="user.institution.matricType" type="button" id="addReq" class="btn btn-default" ng-click="add()">Add Matric Result <span class="glyphicon glyphicon-plus"></span></button>
                                 </div><br/><br/>
-                                <div class="inputWrapper btn" ng-if="user.results">
+                                <div ng-if="!user.matricFile" class="inputWrapper btn" ng-if="user.results">
                                     <input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,'matric')"
                                            accept="image/*, application/pdf" ngf-max-size="5MB"
-                                           ngf-model-invalid="errorFile">Upload Matric Results
+                                           ngf-model-invalid="errorFile">Upload Matric Certificate
                                 </div>
+                                <div ng-if="user.matricFile" class="inputWrapper btn" ng-if="user.results">
+                                    <input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,'matric')"
+                                           accept="application/pdf" ngf-max-size="5MB"
+                                           ngf-model-invalid="errorFile">Change Matric Certificate
+                                </div><br/>
+                                <small ng-if="user.results" style="color: grey">Only PDF's accepted</small>
                                 <div style="font-size:15px;" class="greenText" ng-if="user.matricFile">File Uploaded</div>
                             </div>
 
@@ -344,11 +350,17 @@
                                                 <p ng-show="certificationForm.certDesc.$error.minlength" class="has-error">Minimum length is 20</p>
                                                 <p ng-show="certificationForm.certDesc.$error.maxlength" class="has-error">Maximum length is 500</p>
                                             </div>
-                                            <div class="inputWrapper btn">
+                                            <div ng-if="!cert.file" class="inputWrapper btn">
                                                 <input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,$index)"
                                                        accept="image/*, application/pdf" ngf-max-size="5MB"
                                                        ngf-model-invalid="errorFile">Upload Certificate / Proof of Qualification
                                             </div>
+                                            <div ng-if="cert.file" class="inputWrapper btn">
+                                                <input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,$index)"
+                                                       accept="application/pdf" ngf-max-size="5MB"
+                                                       ngf-model-invalid="errorFile">Change Certificate / Proof of Qualification
+                                            </div><br/>
+                                            <small style="color: grey">Only PDF's accepted</small>
                                             <div style="font-size:15px;" class="greenText" ng-if="cert.file">File Uploaded</div>
                                         </ng-form>
                                         <hr>
@@ -366,12 +378,7 @@
 
                         <div class="checkbox m-b-md m-t-none">
                             <label class="i-checks">
-                                <input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license.
-                            </label>
-                        </div>
-                        <div class="checkbox m-b-md m-t-none">
-                            <label class="i-checks">
-                                <input type="checkbox" ng-model="user.ownTransport"><i></i>I have my own vehicle.
+                                <input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license and my own vehicle.
                             </label>
                         </div>
                     </div>

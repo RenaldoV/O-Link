@@ -286,11 +286,8 @@ module.exports = function(app) {
 		var job = req.body;
 
 		job.post.startingDate = dateConvert(job.post.startingDate);
-		console.log(job.post.startingDate);
-
 		if(job.post.endDate){
 			job.post.endDate = dateConvert(job.post.endDate);
-			console.log(job.post.endDate);
 		}
 		job.provisionalLeft = job.post.spotsAvailable;
 		job.positionsLeft = job.post.spotsAvailable;
@@ -1100,7 +1097,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//load notifications by user
 	app.post('/loadNotifications', function(req,res){
 
-		db.notifications.find({userID: req.body.id, seen: false}, function(err, rows){
+		db.notifications.find({userID: req.body.id, seen: false}).sort({dateTime: -1}).exec(function(err, rows){
 			res.send(rows);
 		});
 	});

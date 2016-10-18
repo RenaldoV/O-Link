@@ -274,9 +274,10 @@
 							</div><br/><br/>
 							<div class="inputWrapper btn" ng-if="user.results">
 								<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,'matric')"
-									   accept="image/*, application/pdf" ngf-max-size="5MB"
+									   accept="application/pdf" ngf-max-size="5MB"
 									   ngf-model-invalid="errorFile">Upload Matric Results
-							</div>
+							</div><br/>
+							<small ng-if="user.results" style="color: grey">Only PDF's accepted</small>
 							<div style="font-size:15px;" class="greenText" ng-if="user.matricFile">File Uploaded</div>
 						</div>
 
@@ -404,9 +405,10 @@
 											</div>
 											<div class="inputWrapper btn">
 												<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="upload($file,$index)"
-													 accept="image/*, application/pdf" ngf-max-size="5MB"
+													 accept="application/pdf" ngf-max-size="5MB"
 													 ngf-model-invalid="errorFile">Upload Certificate / Proof of Qualification
-											</div>
+											</div><br/>
+											<small style="color: grey">Only PDF's accepted</small>
 											<div style="font-size:15px;" class="greenText" ng-if="cert.file">File Uploaded</div>
 										</ng-form>
 										<hr>

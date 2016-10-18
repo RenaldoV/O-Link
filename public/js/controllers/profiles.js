@@ -671,25 +671,42 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
 
     $scope.upload = function (file, to) {
-        console.log(file);
-        Upload.upload({
-            url: '/uploadFile',
-            data: {file: file}
-        }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name);
-            if(to == 'matric'){
-                $scope.user.matricFile = resp.data;
-            }
-            else{
-                $scope.user.certifications[to].file = resp.data;
-            }
-            to =  resp.data;
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        });
+        //get file ext.
+        var f = file.name.split(".");
+        console.log(f[f.length-1]);
+        if(f[f.length-1].toLowerCase() == "pdf"){
+            Upload.upload({
+                url: '/uploadFile',
+                data: {file: file}
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name);
+                if(to == 'matric'){
+                    $scope.user.matricFile = resp.data;
+                    $scope.matricFile = file.name;
+                }
+                else{
+                    $scope.user.certifications[to].file = resp.data;
+                }
+                to =  resp.data;
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                swal({
+                    title: "Success",
+                    text: file.name + ' uploaded successfully.',
+                    type: "success"
+                });
+            });
+        }
+        else{
+            swal({
+                title: "Only PDF's accepted",
+                text: 'The system only accepts pdf files.',
+                type: "error"
+            });
+        }
     };
     $scope.uploadPp = function(){
         photoUpload.makeUploadBox();
