@@ -281,13 +281,14 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                 $scope.applications = {};
 
                 $scope.jobs = res.data;
+
                 $scope.hasApps = false;
                 //console.log($scope.jobs);
                 $.each($scope.jobs,function(i,job){
                     job.post.startingDate = convertDateForDisplay(job.post.startingDate);
                     $.each(job.applications,function(i,app){
                         $scope.hasApps = true;
-                        console.log(app);
+
                         $http
                             .post('/getPp', {profilePicture:app.studentID.profilePicture})
                             .then(function (res) {
@@ -467,7 +468,6 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
 
     if(app.status == "Provisionally accepted" && job.provisionalLeft == 0){
         swal("Can't accept more Students", "You can't make more offers than positions available.", "error");
-        $scope.disableMakeOffer = true;
     }else {
         swal({
                 title: "Are you sure?",

@@ -329,6 +329,7 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rating > label {
     color: #ddd;
     float: right;
+    font-size: 30px;
 }
 
 /***** CSS Magic to Highlight Stars on Hover *****/
@@ -350,7 +351,6 @@ h1 { font-size: 1.5em; margin: 10px; }
 .rater{
     display: inline-block;
     text-align: center;
-    width: 100%;
 }
 
 

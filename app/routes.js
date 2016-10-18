@@ -882,10 +882,12 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			var emp = ap.employerID.toObject();
 			var job = ap.jobID.toObject();
 			var date;
-			if(job.endDate){
-				date = job.endDate;
-			}
-			else date = job.startingDate;
+            var Catergory;
+            if(job.post.OtherCategory)
+                Catergory = job.post.OtherCategory;
+            else
+                Catergory = job.post.category
+			date = convertDateForDisplay(job.post.startingDate);
 			db.users.findOne({_id:user}, function(err,us){
 				us = us.toObject();
 				var numRatings = 0;
@@ -908,7 +910,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							link:'http://' + req.headers.host + '/myJobHistory',
 								name: usr.name.name,
 								employerName: emp.contact.name,
-								category : job.post.category,
+								category : Catergory,
 								date: date,
 								email: usr.contact.email,
 								subject: "You have Received a Rating from " + emp.contact.name
@@ -1046,7 +1048,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 
 		var user = req.body;
-		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort('post.postDate').exec(function(err,rws) {
+		db.jobs.find({employerID: user._id, status: {$ne: "inactive", $ne:"Completed"}}).sort('-post.postDate').exec(function(err,rws) {
 			var rows = rws;
 			var ret = [];
 			var calls = [];
@@ -1055,7 +1057,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			rows.forEach(function(j){
 				calls.push(function(callback){
 					var job = j.toObject();
-				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({_id:1}).exec(function (err, docs) {
+				db.applications.find({jobID: job._id}).where('status').ne('Completed').where('status').ne('Declined').populate('studentID').sort({date:-1}).exec(function (err, docs) {
 					job.applications = docs;
 
 

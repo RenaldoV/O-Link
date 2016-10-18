@@ -218,6 +218,7 @@ db.users.update({type:'student'},{$pull:{packages:{ expiryDate:{$lt:Date.now()}}
 db.jobs.find({status: 'active'},function(err,rows){
     rows.forEach(function(ro){
         var row = ro.toObject();
+        console.log(row.post.startingDate);
         /* if (row.post.endDate) {
          if(hasFinished(row.post.endDate))
          {
@@ -267,9 +268,14 @@ db.jobs.find({status: 'active'},function(err,rows){
         if(hasFinished(row.post.startingDate))
         {
             var done = [];
-            db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
+            db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'active'}}, function(err, dox){
                 db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
-                    db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
+                    if(err) throw err;
+                    console.log(res);
+                    /*db.applications.find({
+                        jobID: dox._id,
+                        status: 'Confirmed'
+                    }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, aps) {
                         if (err) throw err;
                         var emails = [];
                         aps.forEach(function (ap) {
@@ -291,17 +297,16 @@ db.jobs.find({status: 'active'},function(err,rows){
                             };
 
 
-
-                            if(usr.emailDisable == undefined || !usr.emailDisable) {
+                            if (usr.emailDisable == undefined || !usr.emailDisable) {
                                 args.email = usr.contact.email;
-                                if(emails.indexOf(usr.contact.email) > -1) {
+                                if (emails.indexOf(usr.contact.email) > -1) {
                                     mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
                                         console.log(rs);
                                     });
                                 }
                             }
                         });
-                    });
+                    });*/
                 });
             });
 

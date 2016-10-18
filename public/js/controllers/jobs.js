@@ -227,6 +227,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     }
 
     $scope.submitForm = function () {
+        $scope.disableBtns = true;
 
         $scope.submitted = true;
         if ($scope.jobForm.$valid) {
@@ -281,7 +282,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         type: "input",
                         text: "This update your post and notify all applicants. Please type your password to confirm",
                         showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
+                        confirmButtonColor: "#00b488",
                         confirmButtonText: "Yes, I'm sure!",
                         closeOnConfirm: false
                     },
@@ -1156,7 +1157,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
                     if(res.data == 'noApps'){
                         swal({
-                                title: "error",
+                                title: "Error",
                                 text: "You have no applications remaining today.",
                                 type: "error",
                                 showCancelButton: true,
@@ -1271,6 +1272,7 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
         .then(function (res) {
 
             $scope.applications = res.data;
+            console.log(res.data);
             $.each($scope.applications,function(i,app){
                 app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                 $http
@@ -1338,9 +1340,20 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
                     }
                 });
             };
+            function toggleAll(){
+                $.each($scope.jobs, function(idx,job){
+                    if(job.show == undefined){
+                        job.show = true;
+                    }
+                    else job.show = !job.show;
+                });
+            }
             temp = temp.replace("/employmentHistory?id=", '');
-            if(temp != ''){
+            if(temp != '/employmentHistory'){
                 $scope.toggleApplicants(temp);
+            }
+            else {
+                toggleAll();
             }
             $scope.getAge = function (dob) {
                 return getAge(dob);
