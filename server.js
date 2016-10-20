@@ -129,7 +129,7 @@ new CronJob('00 00 * * * *', function() {
                        if (err) throw err;
                        //console.log("Pull applicants: " + res);
                    });
-                   db.notifications.remove({
+                   /*db.notifications.remove({
                        'jobID': ap.jobID._id,
                        'userID': ap.studentID._id,
                        'status': "Provisionally accepted"
@@ -171,7 +171,7 @@ new CronJob('00 00 * * * *', function() {
                        mailer.sendMail('applicationDenied', ap.studentID._id, args, function (err, rr) {
                            console.log("Send email: " + rr);
                        });
-                   }
+                   }*/
                });
            }
         });
