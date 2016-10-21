@@ -4,7 +4,7 @@
     <thead class="talentHistoryHead blueBack"><th class="tableAdd"><!--Company logo--></th ><th class='tableAdd'>Employer</th><th>Category</th><th class="applicantsTableAddSmall">Date</th><th class="tableAdd">Location</th><th>Status</th><th class=""></th>
     </thead>
     <tbody>
-    <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in applications"  style="cursor: pointer;" class="appStatRowStu">
+    <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in applications"  style="cursor: pointer;" class="appStatRowStu" ng-if="app.status != 'Completed'">
         <td ng-click="getJob(app.jobID._id)" class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>

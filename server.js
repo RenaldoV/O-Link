@@ -61,6 +61,7 @@ var CronJob = require('cron').CronJob;
 
 //function happens once every hour
 new CronJob('00 00 * * * *', function() {
+
     //check for edited posts that weren't accepted
     db.applications.find({edited:true}).populate('jobID').exec(function(err, rows){
 
@@ -108,7 +109,7 @@ new CronJob('00 00 * * * *', function() {
         if(err) throw err;
     });
 
-    //remove all applications of offers not accepted in time
+    //remove all applications of offers not accepted by students in time
     db.applications.find({status:"Provisionally accepted"}).exec(function(err, rows){
         rows.forEach(function(app){
             app = app.toObject();
@@ -116,7 +117,7 @@ new CronJob('00 00 * * * *', function() {
            if(app.offerDate + 86400000 <= Date.now())
            {
                db.applications.findOneAndUpdate({_id: app._id}, {
-                   $set: {status: "Provisionally accepted"}
+                   $set: {status: "Declined"}, $unset:{offerDate:1}
                }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, ap) {
                    if (err) throw err;
 
@@ -124,40 +125,50 @@ new CronJob('00 00 * * * *', function() {
                    var emp = ap.employerID.toObject();
                    var job = ap.jobID.toObject();
 
-
-                   db.jobs.update({_id: job._id}, {$pull: {'applicants': ap.studentID._id}}).exec(function (ers, res) {
-                       if (err) throw err;
-                       //console.log("Pull applicants: " + res);
+                   db.jobs.update({_id: job._id}, {$pull: {applicants: usr._id.toString()}}).exec(function (ers, res) {
+                       if (ers) throw ers;
                    });
-                   /*db.notifications.remove({
+                   db.notifications.remove({
                        'jobID': ap.jobID._id,
-                       'userID': ap.studentID._id,
+                       'userID': ap.studentID._id.toString(),
                        'status': "Provisionally accepted"
                    }, function (err, rs) {
                        if (err) throw err;
-                        console.log("Remove Notis: " + rs);
                    });
 
-                   if(ap.jobID.post.OtherCategory)
+                   if(job.post.OtherCategory)
                        var Cat = ap.jobID.post.OtherCategory;
                    else
                        var Cat = ap.jobID.post.category;
 
-                   var noti = {
-                       userID: ap.studentID._id,
+                   var notiStud = {
+                       userID: ap.studentID._id.toString(),
                        jobID: ap.jobID._id,
                        seen: false,
                        status: 'Declined',
                        type: 'status change',
                        title: Cat
                    };
-                   db.notifications.create(noti,function(err, res){
-                       //expired
+                   db.notifications.create(notiStud,function(err, res){
+
+                   });
+                   var notiEmploy = {
+                       userID: ap.employerID._id.toString(),
+                       jobID: ap.jobID._id,
+                       seen: false,
+                       status: 'Withdrawn',
+                       type: 'withdrawn',
+                       title: Cat
+                   };
+                   db.notifications.create(notiEmploy,function(err, res){
+
                    });
 
-                   if (ap.studentID.emailDisable == undefined || !ap.studentID.emailDisable) {
+                   // send email to students and employers
+                   if (usr.emailDisable == undefined || !usr.emailDisable) {
                        var args = {};
                        args.name = usr.name.name;
+                       args.employer = emp.contact.name;
                        args.date = convertDateForDisplay(job.post.startingDate);
                        if (job.post.OtherCategory)
                            args.role = job.post.OtherCategory;
@@ -169,13 +180,26 @@ new CronJob('00 00 * * * *', function() {
                        args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
 
                        mailer.sendMail('applicationDenied', ap.studentID._id, args, function (err, rr) {
-                           console.log("Send email: " + rr);
+                           //console.log("Send email: " + rr);
                        });
-                   }*/
+                   }
+                   if (emp.emailDisable == undefined || !emp.emailDisable) {
+                       var args = {
+                           name: emp.contact.name,
+                           talent: usr.name.name + " " + usr.name.surname,
+                           email: emp.contact.email,
+                           link: 'http://154.66.197.62:8080/applicants'
+                       };
+
+                       mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
+                           //console.log(rss);
+                       });
+                   }
                });
            }
         });
     });
+
     console.log('Hourly check');
 }, null, true);
 
@@ -216,6 +240,7 @@ function hasFinished(date){
 }
 
 function dailyCheck(){
+
 db.users.update({type:'student'},{$set:{freeApplications:2}}, {multi:true}).exec(function(err,res){
     console.log(res);
 });
@@ -226,6 +251,8 @@ db.users.update({type:'student'},{$pull:{packages:{ expiryDate:{$lt:Date.now()}}
 //check for edited posts that weren't accepted
 
 db.jobs.find({status: 'active'},function(err,rows){
+    if(err) throw err;
+
     rows.forEach(function(ro){
         var row = ro.toObject();
         /* if (row.post.endDate) {
@@ -278,9 +305,10 @@ db.jobs.find({status: 'active'},function(err,rows){
         {
             var done = [];
             db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
-                db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}).exec(function(err,res){
-                    if(err) throw err;
-                    console.log(res);
+
+                db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}},{multi:true}).exec(function(errs,res){
+                    if(errs) throw err;
+
                     db.applications.find({
                         jobID: dox._id,
                         status: 'Confirmed'
@@ -288,7 +316,6 @@ db.jobs.find({status: 'active'},function(err,rows){
                         if (err) throw err;
                         var emails = [];
                         aps.forEach(function (ap) {
-
 
                             var usr = ap.studentID.toObject();
                             var emp = ap.employerID.toObject();
@@ -302,7 +329,6 @@ db.jobs.find({status: 'active'},function(err,rows){
                                 talent: usr.name.name + " " + usr.name.surname,
                                 category: job.post.category,
                                 date: job.post.startingDate
-
                             };
 
 

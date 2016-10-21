@@ -16,4 +16,5 @@ node_modules
 
 public/libs
 .idea/workspace.xml
-.idea/workspace.xml
+app/uploads
+tmp

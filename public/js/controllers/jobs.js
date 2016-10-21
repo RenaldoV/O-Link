@@ -1290,11 +1290,11 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
     $rootScope.$broadcast('jobHistory', 1);
 
     $http
-        .post('/loadJobHistory', {studentID : user._id})
+        .post('/JobHistory', {studentID : user._id})
         .then(function (res) {
 
             $scope.applications = res.data;
-            console.log(res.data);
+
             $.each($scope.applications,function(i,app){
                 app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                 $http
@@ -1333,6 +1333,10 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
     $scope.user = user;
 
     $rootScope.$broadcast('empHistory', 1);
+    var numbers = [];
+    for(var i = 0.5; i < 5.5; i+=0.5){
+        numbers.push(i);
+    }
 
     $http
         .post('/loadJobHistory', {employerID : user._id})
@@ -1343,6 +1347,15 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
                 job.post.startingDate = convertDateForDisplay(job.post.startingDate);
                 $.each(job.applications,function(i,app){
 
+                    app.filled = [];
+                    for(var k = 0; k <= numbers.length; k++)
+                    {
+                        if(app.studentRating >= numbers[k])
+                            app.filled[k] = "filled";
+                        else
+                            app.filled[k] = "";
+                    }
+
                     $http
                         .post('/getPp', {profilePicture:app.studentID.profilePicture})
                         .then(function (res) {
@@ -1351,6 +1364,7 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
                         });
                 });
             });
+
 
             $scope.toggleApplicants = function(id){
                 $.each($scope.jobs, function(idx,job){

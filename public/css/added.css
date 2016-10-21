@@ -640,8 +640,6 @@ thead.blueBack th{
 
 .profileStars {
     border: none;
-
-    align-content: center;
     margin-right:22px;
 }
 
@@ -665,29 +663,45 @@ thead.blueBack th{
 }
 .profileStars > input:checked ~ label /* show gold star when clicked */
 { color: #FFD700;  }
+
+.jobHistStars {
+    border: none;
+    margin-top: -5px;
+    float:left;
+}
+
+.jobHistStars > input { display: none; }
+.jobHistStars > label:before {
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.jobHistStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.jobHistStars > label {
+    color: #ddd;
+    float: right;
+}
+.jobHistStars > label.filled{
+    color: #FFD700;
+}
+.jobHistStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700;  }
 .numberRating{
 
-text-align: center;
-    margin-bottom: -10px;
-
-    font-size: 70px;
-}
-.numberRat{
-
-padding-top: 18px;
-
     text-align: center;
-
     font-size: 70px;
 }
 
 .col-centered {
     display:inline-block;
     float:none;
-
-
-
-
 }
 .center-col{
     width: 100%;
@@ -1117,8 +1131,11 @@ margin-bottom: 0;
 td.histPmed{
     width:25%;
 }
+td.histPrating{
+    width:25%;
+}
 td.histPbig{
-    width:40%;
+    width:30%;
 }
 td.histPsm{
     width:10%;
@@ -1131,6 +1148,15 @@ td.applicantsPmed{
 }
 td.applicantsP{
     width: 22%;
+}
+td.jobHistPsmall{
+    width: 12%
+}
+td.jobHistPBig{
+    width: 40%;
+}
+td.jobHistPMed{
+    width: 100%;
 }
 .jobRow:hover{
     background-color: #F8F8F8;

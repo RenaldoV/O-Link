@@ -1066,6 +1066,10 @@ body {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+
+  tr > td.jobHistPBig{
+    width: 25%;!important;
+  }
   div#loading-bar-spinner .spinner-icon {
     margin-left:49px;!important;
     margin-top: -6px;!important;
@@ -1100,6 +1104,19 @@ body {
   .applicantsTableAddSmall{
     display:none;
   }
+  .jobHistStars{
+    display: none;
+  }
+}
+@media (max-width: 460px) {
+  .jobHistSmall{
+    display:none;
+  }
+}
+@media (min-width: 521px) {
+  .jobHistNumRating{
+    display:none;
+  }
 }
 @media (max-width: 540px) {
   .empJobTableAddDate{
@@ -1118,6 +1135,29 @@ body {
 @media (min-width: 441px) {
   .jobMobileSpace {
     display: none;
+  }
+}
+@media (max-width: 680px) {
+  tr > td.histPsm{
+    width: 3%;
+  }
+  tr > td.jobHistPBig{
+    width: 20%;
+  }
+  tr > td.histPbig{
+    width: 35%;
+  }
+  tr > td.histPmed{
+    width: 15%;
+  }
+  tr > td.histPrating{
+    width: 40%;
+  }
+  td.tableAddSmallEmpHist{
+    display:none;
+  }
+  th.tableAddSmallEmpHist{
+    display:none;
   }
 }
 

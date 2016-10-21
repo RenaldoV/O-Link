@@ -2,17 +2,19 @@
 
     <table style="margin-top: 42px; " class="table tab  applicantsTable oneHid">
 
-    <thead class="blueBack talentHistoryHead"><th class="tableAdd"></th><th>Employer</th><th>Date</th><th class="tableAdd">Category</th><th class="tableAdd">Comment</th><th>Rating</th>
+    <thead class="blueBack talentHistoryHead"><th class="tableAdd"></th><th>Employer</th><th class="jobHistSmall">Date</th><th>Category</th><th class="jobHistSmall">Comment</th><th>Rating</th>
     </thead>
     <tbody>
-    <tr class="historyTbl" ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-click="getJob(app.jobID._id)" style="cursor: pointer;" ng-repeat="app in applications">
-        <td class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
-        <td>{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
-        <td>{{app.jobID.post.startingDate}}</td>
-        <td class="tableAdd"><a href="/job?id={{app.jobID._id}}">{{app.jobID.post.category}}</a></td>
-        <td class="tableAdd" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
-        <td class="tableAdd" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
-        <td style="text-align: left;"><fieldset class="rating">
+    <tr class="historyTbl" ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-click="getJob(app.jobID._id)" style="cursor: pointer; width:100%" ng-repeat="app in applications">
+        <td style="width:5%" class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
+        <td class="jobHistPsmall">{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
+        <td class="jobHistPsmall jobHistSmall">{{app.jobID.post.startingDate}}</td>
+        <td ng-if="app.jobID.post.OtherCategory" class=" jobHistPsmall">{{app.jobID.post.OtherCategory}}</td>
+        <td ng-if="!app.jobID.post.OtherCategory" class=" jobHistPsmall">{{app.jobID.post.category}}</td>
+        <td class=" jobHistPBig jobHistSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
+        <td class=" jobHistPMed jobHistSmall" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
+        <td class="jobHistNumRating">{{app.studentRating}}</td>
+        <td style="text-align: left;" class="jobHistPMed"><fieldset class="jobHistStars">
             <input type="radio" id="star5{{$index}}" name="rating{{$index}}" value=5 ng-model="app.studentRating"  disabled /><label class = "full" for="star5{{$index}}" title="Awesome - 5 stars"></label>
             <input type="radio" id="star4half{{$index}}" name="rating{{$index}}" value=4.5 ng-model="app.studentRating" disabled/><label class="half" for="star4half{{$index}}" title="Pretty good - 4.5 stars"></label>
             <input type="radio" id="star4{{$index}}" name="rating{{$index}}" value=4 ng-model="app.studentRating" disabled/><label class = "full" for="star4{{$index}}" title="Pretty good - 4 stars"></label>
@@ -23,7 +25,8 @@
             <input type="radio" id="star1half{{$index}}" name="rating{{$index}}" value=1 ng-model="app.studentRating" disabled/><label class="half" for="star1half{{$index}}" title="Meh - 1.5 stars"></label>
             <input type="radio" id="star1{{$index}}" name="rating{{$index}}" value=1.5 ng-model="app.studentRating" disabled/><label class = "full" for="star1{{$index}}" title="Sucks big time - 1 star"></label>
             <input type="radio" id="starhalf{{$index}}" name="rating{{$index}}" value=0.5 ng-model="app.studentRating" disabled><label class="half" for="starhalf{{$index}}" title="Sucks big time - 0.5 stars"></label>
-        </fieldset></td>
+        </fieldset>
+        </td>
 
     </tr>
     </tbody>

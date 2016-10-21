@@ -1157,6 +1157,20 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	});
 	//done
+	app.post('/getRatings', function(req,res){
+		var id = req.body.id;
+		db.users.find({_id: id},{numRatings:true,rating:true},function(err,doc){
+			res.send(doc);
+		});
+	});
+	//loads a list of completed jobs for students
+	app.post('/JobHistory', function(req,res){
+		var user = req.body;
+		db.applications.find({studentID: user.studentID, status: 'Completed'}).populate('studentID').populate('employerID').populate('jobID').sort({_id:-1}).exec(function (errs, docs) {
+			if(errs) throw errs;
+			res.send(docs);
+		});
+	});
 
 	//loads completed jobs for a employer to review and or repost
 	app.post('/loadJobHistory', function(req,res){

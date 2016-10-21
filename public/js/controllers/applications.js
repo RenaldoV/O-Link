@@ -513,7 +513,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
 
                         notify.go({
                             type: 'status change',
-                            jobID: app.jobID._id,
+                            jobID: job._id,
                             userID: userID,
                             status: app.status,
                             title: Cat

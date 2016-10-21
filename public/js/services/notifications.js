@@ -57,7 +57,7 @@ app.service('notify', function(){
 
 
     this.go = function(data){
-        console.log(data);
+
         var notification = data;
         notification.seen = false;
 

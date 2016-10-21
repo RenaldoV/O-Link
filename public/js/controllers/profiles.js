@@ -111,7 +111,13 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
     //console.log(cacheUser.user._id + " " +session.user._id);
     $scope.user = user;
-
+    $http
+        .post('/getRatings', {id : user._id})
+        .then(function(res){
+            console.log(res.data[0].rating);
+            $scope.user.numRatings = res.data[0].numRatings;
+            $scope.user.rating = res.data[0].rating;
+        });
     $http
         .post('/getPp', user)
         .then(function (res) {
