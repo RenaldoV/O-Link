@@ -698,6 +698,11 @@ thead.blueBack th{
     text-align: center;
     font-size: 70px;
 }
+.numberRat{
+    padding-top: 18px;
+    text-align: center;
+    font-size: 70px;
+}
 
 .col-centered {
     display:inline-block;

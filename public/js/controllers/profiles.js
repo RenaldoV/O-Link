@@ -114,7 +114,6 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
     $http
         .post('/getRatings', {id : user._id})
         .then(function(res){
-            console.log(res.data[0].rating);
             $scope.user.numRatings = res.data[0].numRatings;
             $scope.user.rating = res.data[0].rating;
         });
@@ -130,6 +129,11 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
                 $scope.matricFile=res.data;
             });
     }
+    $http
+        .post('/getCertifications',{_id:user._id})
+        .then(function(res){
+            $scope.user.certifications = res.data;
+        });
     $.each($scope.user.certifications,function(i,cert){
         if(cert.file)
         {
@@ -145,8 +149,6 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
     $scope.uploadPp = function() {
         photoUpload.makeUploadBox();
     };
-
-
 
 });
 
@@ -678,40 +680,41 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
     $scope.upload = function (file, to) {
         //get file ext.
-        var f = file.name.split(".");
-        console.log(f[f.length-1]);
-        if(f[f.length-1].toLowerCase() == "pdf"){
-            Upload.upload({
-                url: '/uploadFile',
-                data: {file: file}
-            }).then(function (resp) {
-                console.log('Success ' + resp.config.data.file.name);
-                if(to == 'matric'){
-                    $scope.user.matricFile = resp.data;
-                    $scope.matricFile = file.name;
-                }
-                else{
-                    $scope.user.certifications[to].file = resp.data;
-                }
-                to =  resp.data;
-            }, function (resp) {
-                console.log('Error status: ' + resp.status);
-            }, function (evt) {
-                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                swal({
-                    title: "Success",
-                    text: file.name + ' uploaded successfully.',
-                    type: "success"
+        if(file){
+            var f = file.name.split(".");
+            if(f[f.length-1].toLowerCase() == "pdf"){
+                Upload.upload({
+                    url: '/uploadFile',
+                    data: {file: file}
+                }).then(function (resp) {
+                    console.log('Success ' + resp.config.data.file.name);
+                    if(to == 'matric'){
+                        $scope.user.matricFile = resp.data;
+                        $scope.matricFile = file.name;
+                    }
+                    else{
+                        $scope.user.certifications[to].file = resp.data;
+                    }
+                    to =  resp.data;
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
+                }, function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+                    swal({
+                        title: "Success",
+                        text: file.name + ' uploaded successfully.',
+                        type: "success"
+                    });
                 });
-            });
-        }
-        else{
-            swal({
-                title: "Only PDF's accepted",
-                text: 'The system only accepts pdf files.',
-                type: "error"
-            });
+            }
+            else{
+                swal({
+                    title: "Only PDF's accepted",
+                    text: 'The system only accepts pdf files.',
+                    type: "error"
+                });
+            }
         }
     };
     $scope.uploadPp = function(){

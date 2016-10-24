@@ -233,13 +233,9 @@ app.controller('navControl',function($scope, authService, session, $location, $w
             });
         });
 
-
         $http.post('/getPp', user)
             .then(function (res) {
-
                 $scope.image = res.data;
-
-
             });
 
         $scope.myProfile = function () {

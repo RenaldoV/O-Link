@@ -546,11 +546,26 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			temp = temp +".png";
 			var newPath = __dirname + temp;
 
+			//remove old profile pic
+			if(id) {
+				db.users.findOne({_id:id},function(err, doc){
+					var ppFile = doc.toObject().profilePicture;
+
+					if(ppFile){
+						var oldFile = __dirname + ppFile;
+						fs.unlink(oldFile,function(e){
+							if(e) throw e;
+						});
+					}
+				});
+			}
+
+
 			fs.writeFile(newPath, data, function (err) {
 				if(err) throw err;
 
-
 				if(id){
+					//console.log(newPath);
 					db.users.update({_id:id}, {$set: {profilePicture: temp}}, function(err,result){
 						if (err) throw err;
 						fs.unlink(file.path, function(e){
@@ -558,8 +573,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 								res.send(true);
 							}
 						});
-
-					} );
+					});
 				}
 				else{
 					fs.unlink(file.path, function(e){
@@ -567,11 +581,8 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							res.send(temp);
 						}
 					});
-
 				}
-
 			});
-
 		});
 
 	});
@@ -590,53 +601,74 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	//get profile picture data
 	app.post('/getPp', function(req, res){
-
 		var def = __dirname + "\\uploads\\default.png";
-		if(req.body.profilePicture) {
-			var path = req.body.profilePicture;
-			path = __dirname + path;
-		}
-		else {
-			var path = def;
-		}
+		var path = "";
+		db.users.findOne({_id:req.body._id},{profilePicture:1},function(err,pp){
+			if(pp){
+				if(path = pp.toObject().profilePicture){
+					path = pp.toObject().profilePicture.toString();
+					path = __dirname + path;
+					fs.readFile(path, function(err,data){
+						if(err) {
+							console.log(err);
+							fs.readFile(def, function(err,data){
+								if(err) {
 
-		fs.readFile(path, function(err,data){
-			if(err) {
-				fs.readFile(def, function(err,data){
-					if(err) {
+								}
+								var buf = new Buffer(data).toString('base64');
+								res.send(buf);
+							});
+						}else {
+							var buf = new Buffer(data).toString('base64');
+							res.send(buf);
+						}
+					});
+				}
+				else{
+					path = def;
+					fs.readFile(path, function(err,data){
+						if(err) {
+							console.log(err);
+							fs.readFile(def, function(err,data){
+								if(err) {
 
-					}
-					var buf = new Buffer(data).toString('base64');
-					res.send(buf);
-				});
-			}else {
-				var buf = new Buffer(data).toString('base64');
-				res.send(buf);
+								}
+								var buf = new Buffer(data).toString('base64');
+								res.send(buf);
+							});
+						}else {
+							var buf = new Buffer(data).toString('base64');
+							res.send(buf);
+						}
+					});
+				}
+			}
+			else{
+				res.send(false);
 			}
 		});
 	});
+
 	app.post('/getMFile', function(req, res){
 
-		if(req.body.matricFile) {
-			var path = req.body.matricFile;
-			path = __dirname + path;
-		}
-
-		fs.readFile(path, function(err,data){
-			if(err) {
-				fs.readFile(def, function(err,data){
-					if(err) {
-
+		db.users.findOne({_id:req.body._id},{matricFile:1},function(err,mf){
+			var file = mf.toObject().matricFile;
+			if(file){
+				var path = __dirname + file;
+				fs.readFile(path, function(err,data){
+					if(err) throw err;
+					else{
+						var buf = new Buffer(data).toString('base64');
+						res.send(buf);
 					}
-					var buf = new Buffer(data).toString('base64');
-					res.send(buf);
 				});
-			}else {
-				var buf = new Buffer(data).toString('base64');
-				res.send(buf);
+			}
+			else{
+				res.send(false);
 			}
 		});
 	});
+
 	app.post('/getCFile', function(req, res){
 		var path = req.body.cert.file;
 		path = __dirname + path;
@@ -657,6 +689,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		});
 	});
 	//done
+	app.post('/getCertifications', function(req,res){
+		db.users.findOne({_id: req.body._id},{certifications:1},function(err,doc){
+			if(err) throw err;
+			else
+				res.send(doc.toObject().certifications);
+		});
+	});
 
 	//update a user
 	app.post('/updateUser', function(req,res){
@@ -1002,7 +1041,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var data = req.body;
 
 		db.applications.findOne({studentID: data.studentID, jobID: data.jobID}). exec(function(e,doc){
-			console.log(doc);
 			res.send(doc);
 		});
 	});
