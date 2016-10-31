@@ -382,6 +382,34 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
             });
         }
     };
+    $scope.uploadDrivers = function (file, to) {
+        //get file ext.
+        var f = file.name.split(".");
+        console.log(f[f.length-1]);
+        if(f[f.length-1].toLowerCase() == "pdf"){
+            Upload.upload({
+                url: '/uploadFile',
+                data: {file: file}
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name);
+                $scope.driversFile = res.data;
+                to =  resp.data;
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        }
+        else{
+            swal({
+                title: "Only PDF's accepted",
+                text: 'The system only accepts pdf files.',
+                type: "error"
+            });
+        }
+    };
+
     $scope.goBack = function(){
 
       $scope.next = false;

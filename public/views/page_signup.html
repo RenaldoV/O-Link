@@ -429,6 +429,15 @@
 								<input type="checkbox" ng-model="user.driversLicence"><i></i>I have a driver’s license and my own vehicle.
 							</label>
 						</div>
+						<div ng-if="user.driversLicence" style="width:100%; text-align: center">
+							<div class="inputWrapper btn">
+								<input type="file" style="width: 100%" class="fileInput btn blueBack" ngf-select="uploadDrivers($file,'drivers')"
+									   accept="application/pdf" ngf-max-size="5MB"
+									   ngf-model-invalid="errorFile">Copy of driver's license
+							</div><br/>
+							<small style="color: grey">Only PDF's accepted</small>
+							<div style="font-size:15px;" class="greenText" ng-if="user.driversFile">File Uploaded</div>
+						</div><br/>
 					</div>
 				</div>
 
