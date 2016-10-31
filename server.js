@@ -211,35 +211,6 @@ dailyCheck();
 
 }, null, true);
 
-
-function hasFinished(date){
-    if(!date) return false;
-    var dateTemp = date.split('/');
-    var datearr = [parseInt(dateTemp[0] -1),parseInt(dateTemp[1]),parseInt(dateTemp[2])];
-    var now = new Date();
-
-    if(now.getFullYear() > datearr[2]){
-        return true;
-    }
-    if(now.getFullYear() == datearr[2]){
-
-        if(now.getMonth() > datearr[0])
-        {
-            return true;
-        }else if(now.getMonth() == datearr[0])
-        {
-
-            if(now.getDate() >= datearr[1])
-            {
-
-                return true;
-            }
-        }
-    }
-        return false;
-
-}
-
 function dailyCheck(){
 
     db.users.update({type:'student'},{$set:{freeApplications:2}}, {multi:true}).exec(function(err,res){
@@ -250,106 +221,95 @@ function dailyCheck(){
         console.log(res);
     });
 
-    //check for jobs that started
+    //check for jobs that starts today
     db.jobs.find({status: 'active'},function(err,rows){
         if(err) throw err;
-
         rows.forEach(function(ro){
             var row = ro.toObject();
-            /* if (row.post.endDate) {
-             if(hasFinished(row.post.endDate))
-             {
-             db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
-
-             db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}}, {multi:true}, function(err,don){
-             db.applications.find({jobID:dox._id, status:'Confirmed'}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, aps) {
-             if (err) throw err;
-             aps.forEach(function (ap) {
-
-
-             var usr = ap.studentID.toObject();
-             var emp = ap.employerID.toObject();
-             var job = ap.jobID.toObject();
-
-             var args = {
-             link: 'http://localhost:8080/dashboard/',
-             employerName: emp.contact.name,
-             talentName: usr.name.name,
-             employer: emp.contact.name + " " + emp.contact.surname,
-             employer: usr.name.name + " " + usr.name.surname,
-             category: job.post.category,
-             date: job.post.endDate
-
-             };
-
-             if(emp.emailDisable == undefined || !emp.emailDisable) {
-             args.email = emp.contact.email;
-             mailer.sendMail('rateEmployer', emp._id, args, function (err, rs) {
-             console.log(rs);
-             });
-             }
-
-             if(usr.emailDisable == undefined || !usr.emailDisable) {
-             args.email = usr.contact.email;
-             mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
-             console.log(rs);
-             });
-             }
-             });
-             });
-             });
-             });
-             }
-
-             } else */
-            if(hasFinished(row.post.startingDate))
+            if(hasStarted(row.post.startingDate))
             {
-                var done = [];
-                db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Completed'}}, function(err, dox){
-
-                    db.applications.update({jobID: dox._id, status:'Confirmed'}, {$set:{status:"Completed"}},{multi:true}).exec(function(errs,res){
-                        if(errs) throw err;
-
-                        db.applications.find({
-                            jobID: dox._id,
-                            status: 'Confirmed'
-                        }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, aps) {
-                            if (err) throw err;
-                            var emails = [];
-                            aps.forEach(function (ap) {
-
-                                var usr = ap.studentID.toObject();
-                                var emp = ap.employerID.toObject();
-                                var job = ap.jobID.toObject();
-
-                                var args = {
-                                    link: 'http://localhost:8080/dashboard/',
-                                    employerName: emp.contact.name,
-                                    talentName: usr.name.name,
-                                    employer: emp.contact.name + " " + emp.contact.surname,
-                                    talent: usr.name.name + " " + usr.name.surname,
-                                    category: job.post.category,
-                                    date: job.post.startingDate
-                                };
-
-
-                                if (usr.emailDisable == undefined || !usr.emailDisable) {
-                                    args.email = usr.contact.email;
-                                    if (emails.indexOf(usr.contact.email) > -1) {
-                                        mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
-                                            console.log(rs);
-                                        });
-                                    }
-                                }
-                            });
-                        });
-                    });
+                db.jobs.findOneAndUpdate({_id:row._id}, {$set:{status: 'Started'}}, function(err, dox){
+                    if(err) throw err;
                 });
-
-
             }
         });
+    });
 
+
+    db.jobs.find({status:"Started"},function(err,jobs){
+        jobs.forEach(function(row){
+            row = row.toObject();
+            // Check for jobs at the end of their first day to decline all their applicants
+            if(hasFinished(row.post.startingDate)) {
+                var done = [];
+                // Decline all unconfirmed applicants
+                if(row.applicants){
+                    row.applicants.forEach(function(applicant){
+                        db.applications.findOneAndUpdate({studentID: applicant,jobID:row._id, $and : [{status:{$ne:"Confirmed"}},{status:{$ne:"Completed"}},{status:{$ne:"Declined"}}]},
+                            {$set:{status:"Declined"}}).populate('studentID').populate('employerID').exec(function(err,app){
+                            if(err) throw err;
+
+                            if(app){
+                                var usr = app.studentID.toObject();
+                                var emp = app.employerID.toObject();
+                                if (usr.emailDisable == undefined || !usr.emailDisable) {
+                                    var args = {};
+                                    args.name = usr.name.name;
+                                    args.date = convertDateForDisplay(row.post.startingDate);
+                                    if(row.post.OtherCategory)
+                                        args.role = row.post.OtherCategory;
+                                    else
+                                        args.role = row.post.category;
+                                    args.email = usr.contact.email;
+                                    if (emp.employerType == 'Company') {
+                                        args.employer = emp.company.name;
+                                    } else
+                                        args.employer = emp.contact.name + " " + emp.contact.surname;
+
+                                    args.subject = args.role;
+                                    args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                                    console.log("mailer args " + args + " " + applicant);
+                                    mailer.sendMail('applicationDenied', applicant, args, function (err, rr) {
+                                        //console.log("Send email: " + rr);
+                                    });
+                                }
+
+                                db.jobs.update({_id: app.jobID}, {$pull: {applicants: applicant}}).exec(function (ers, res) {
+                                    if (ers) throw ers;
+                                });
+
+                                if(row.post.OtherCategory)
+                                    var Cat = row.post.OtherCategory;
+                                else
+                                    var Cat = row.post.category;
+
+                                var noti = {
+                                    type: 'status change',
+                                    jobID: app.jobID,
+                                    userID: applicant,
+                                    status: "Declined",
+                                    title: Cat,
+                                    seen: false
+                                };
+                                db.notifications.create(noti,function(err, res){
+                                    //expired
+                                });
+                                db.applications.update({_id:app._id},{$set:{status:"Declined"}}, function(err,doc){
+                                    if(err) throw err;
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+            // Check for jobs that have been completed
+            if (!row.post.endDate) {
+                completeJob(row);
+            }
+            else if (hasFinished(row.post.endDate)){
+                completeJob(row);
+            }
+        });
     });
 
     //Make list of files in use and delete all unused files
@@ -406,4 +366,101 @@ function convertDateForDisplay(date){
     var ret = day+"/"+month+"/"+year;
 
     return ret;
+}
+
+function completeJob(job) {
+    db.jobs.update({_id:job._id}, {$set:{status: 'Completed'}}, function(err, dox){
+        if(err) throw err;
+    });
+    db.applications.update({
+        jobID: job._id,
+        status: 'Confirmed'
+    }, {$set: {status: "Completed"}}, {multi: true}).exec(function (errs, res) {
+        if (errs) throw err;
+
+        db.applications.find({
+            jobID: job._id,
+            status: 'Completed'
+        }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, aps) {
+            if (err) throw err;
+            var emails = [];
+            aps.forEach(function (ap) {
+
+                var usr = ap.studentID.toObject();
+                var emp = ap.employerID.toObject();
+                var job = ap.jobID.toObject();
+
+                var args = {
+                    link: 'http://localhost:8080/dashboard/',
+                    employerName: emp.contact.name,
+                    talentName: usr.name.name,
+                    employer: emp.contact.name + " " + emp.contact.surname,
+                    talent: usr.name.name + " " + usr.name.surname,
+                    category: job.post.category,
+                    date: job.post.startingDate
+                };
+                if (usr.emailDisable == undefined || !usr.emailDisable) {
+                    args.email = usr.contact.email;
+                    if (emails.indexOf(usr.contact.email) > -1) {
+                        mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
+                            console.log(rs);
+                        });
+                    }
+                }
+            });
+        });
+    });
+}
+
+function hasFinished(date){
+    if(!date) return false;
+    var dateTemp = date.split('/');
+    var datearr = [parseInt(dateTemp[0] -1),parseInt(dateTemp[1]),parseInt(dateTemp[2])];
+    var now = new Date();
+
+    if(now.getFullYear() > datearr[2]){
+        return true;
+    }
+    if(now.getFullYear() == datearr[2]){
+
+        if(now.getMonth() > datearr[0])
+        {
+            return true;
+        }else if(now.getMonth() == datearr[0])
+        {
+
+            if(now.getDate() >= datearr[1]+1)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+
+}
+function hasStarted(date){
+    if(!date) return false;
+    var dateTemp = date.split('/');
+    var datearr = [parseInt(dateTemp[0] -1),parseInt(dateTemp[1]),parseInt(dateTemp[2])];
+    var now = new Date();
+
+    if(now.getFullYear() > datearr[2]){
+        return true;
+    }
+    if(now.getFullYear() == datearr[2]){
+
+        if(now.getMonth() > datearr[0])
+        {
+            return true;
+        }else if(now.getMonth() == datearr[0])
+        {
+
+            if(now.getDate() >= datearr[1])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+
 }

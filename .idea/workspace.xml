@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/public/js/controllers/jobs.js" line="1012" />
+    <bookmark url="file://$PROJECT_DIR$/public/js/controllers/jobs.js" line="1010" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
@@ -62,29 +62,12 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/uploads/wRZlgk7t9sEFHPKZEztJOjMe.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/uploads/yImzwM3RBtWzXmShkbGAPWBb.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/app/uploads/yU0ZuYwByTBxs_fxNRkDqW5c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/36sqMBFTpLtMcoWkpRxHxwSe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/8CWZbQ_mk_aR_OBcwn999Woe.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/CPaA8UVHWvqRuqwBoL8Kx0q0" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/Df7P2aNftWUYwYPNUFAH0rRL" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/GXgTdwW5bulgG9B3mBOF1Vt2.JPG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/R4njr-C8MINzB0lhlvFXAd-_" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/RLBZ1nYt6dZdTVhPcQ-1HoWD" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/RXJBOrn5ZBbN3K3mcmW3KKhQ" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/RqeQ8EgRtZszaV5JTTXpWNX3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/V7otMYxJBNuVO-wNPzwh8sRh.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/WFy4GKpWj6lS3nMsU11pDeSD.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/_LmupsOENZuYwxlS8y9Hn_Zy.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/eRE-2hKAKYFpZ-6vAMEVlYLu.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/lKdij9QY4LNnHNtr-yT48ClB.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/llygNLf7_xC0OsznIN2SqhEy" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/t4Bq5w0ZmL7o2g2bk2r6YyTS" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tmp/yFd_awB0REXXRxoqLwWOBW0B.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Timeline_Of_Changes_Olink_13-10-16.pdf" afterPath="$PROJECT_DIR$/Timeline_Of_Changes_Olink_13-10-16.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/routes.js" afterPath="$PROJECT_DIR$/app/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/navigation.js" afterPath="$PROJECT_DIR$/public/js/controllers/navigation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/applications.js" afterPath="$PROJECT_DIR$/public/js/controllers/applications.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/jobs.js" afterPath="$PROJECT_DIR$/public/js/controllers/jobs.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/profiles.js" afterPath="$PROJECT_DIR$/public/js/controllers/profiles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/editProfile.html" afterPath="$PROJECT_DIR$/public/views/editProfile.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="o-link.iws" />
@@ -108,14 +91,11 @@
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="647" column="13" selection-start-line="647" selection-start-column="13" selection-end-line="647" selection-end-column="13" />
+            <state relative-caret-position="432">
+              <caret line="527" column="27" selection-start-line="527" selection-start-column="15" selection-end-line="527" selection-end-column="27" />
               <folding>
+                <element signature="e#12865#13855#0" expanded="false" />
                 <element signature="e#14327#14770#0" expanded="false" />
-                <element signature="e#14779#15156#0" expanded="false" />
-                <element signature="e#15250#15624#0" expanded="false" />
-                <element signature="e#15669#16023#0" expanded="false" />
-                <element signature="e#16083#16245#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -124,66 +104,48 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1853">
-              <caret line="370" column="0" selection-start-line="370" selection-start-column="0" selection-end-line="370" selection-end-column="0" />
+            <state relative-caret-position="89">
+              <caret line="373" column="7" selection-start-line="373" selection-start-column="7" selection-end-line="373" selection-end-column="7" />
               <folding>
+                <element signature="e#1884#2128#0" expanded="false" />
+                <element signature="e#2247#8485#0" expanded="false" />
                 <element signature="e#2383#3964#0" expanded="false" />
                 <element signature="e#4062#4096#0" expanded="false" />
                 <element signature="e#4257#8447#0" expanded="false" />
                 <element signature="e#8574#8592#0" expanded="false" />
+                <element signature="n#!!block;n#dailyCheck#0" expanded="false" />
+                <element signature="e#8734#8767#0" expanded="false" />
+                <element signature="e#8924#8957#0" expanded="false" />
+                <element signature="e#9054#9413#0" expanded="false" />
+                <element signature="e#9472#13893#0" expanded="false" />
+                <element signature="n#!!block;n#convertDateForDisplay#0" expanded="false" />
                 <element signature="n#!!block;n#hasFinished#0" expanded="false" />
-                <element signature="e#9330#9363#0" expanded="false" />
-                <element signature="e#9520#9553#0" expanded="false" />
-                <element signature="e#9645#13740#0" expanded="false" />
-                <element signature="e#9759#11481#0" expanded="false" />
+                <element signature="n#!!block;n#hasStarted#0" expanded="false" />
+                <marker date="1477398329170" expanded="false" signature="14052:15442" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="applications.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="employmentHistory.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/blocks/employmentHistory.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="39" column="85" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="85" />
+            <state relative-caret-position="275">
+              <caret line="313" column="31" selection-start-line="313" selection-start-column="31" selection-end-line="313" selection-end-column="31" />
               <folding>
-                <element signature="n#style#0;n#label#9;n#fieldset#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#2239#5123#0" expanded="false" />
+                <element signature="e#5195#7231#0" expanded="false" />
+                <element signature="e#9842#10364#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jobs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
+      <file leaf-file-name="profiles.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="883" column="43" selection-start-line="883" selection-start-column="28" selection-end-line="883" selection-end-column="43" />
-              <folding>
-                <element signature="e#596#684#0" expanded="false" />
-                <element signature="e#710#3112#0" expanded="false" />
-                <element signature="e#3148#3204#0" expanded="false" />
-                <element signature="e#3324#3948#0" expanded="false" />
-                <element signature="e#47040#49999#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="added.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/added.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="701" column="22" selection-start-line="701" selection-start-column="22" selection-end-line="701" selection-end-column="22" />
+            <state relative-caret-position="544">
+              <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -238,7 +200,6 @@
         <option value="$PROJECT_DIR$/public/views/blocks/employerJobPosts.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/postHistory.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentDash.html" />
-        <option value="$PROJECT_DIR$/public/js/app.js" />
         <option value="$PROJECT_DIR$/public/libs/angular-loading-bar/build/loading-bar.min.css" />
         <option value="$PROJECT_DIR$/public/views/job.html" />
         <option value="$PROJECT_DIR$/public/views/postJob.html" />
@@ -251,18 +212,19 @@
         <option value="$PROJECT_DIR$/public/views/browseJobs.html" />
         <option value="$PROJECT_DIR$/public/js/services/notifications.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/jobHistory.html" />
-        <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/employmentHistory.html" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/js/controllers/navigation.js" />
         <option value="$PROJECT_DIR$/public/views/editProfile.html" />
-        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
-        <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/public/css/added.css" />
+        <option value="$PROJECT_DIR$/public/js/app.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
         <option value="$PROJECT_DIR$/server.js" />
+        <option value="$PROJECT_DIR$/app/routes.js" />
+        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
       </list>
     </option>
   </component>
@@ -355,6 +317,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -396,6 +398,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="emails" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -547,7 +563,7 @@
       <workItem from="1476826934946" duration="1659000" />
       <workItem from="1476973981355" duration="14356000" />
       <workItem from="1477054263279" duration="12364000" />
-      <workItem from="1477303356097" duration="15658000" />
+      <workItem from="1477303356097" duration="46624000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -560,19 +576,20 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81042000" />
+    <option name="totallyTimeSpent" value="112008000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31717598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2791798" sideWeight="0.52342606" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29469123" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.299187" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960506" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30119178" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3066089" sideWeight="0.47657394" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -582,7 +599,6 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29469123" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -603,7 +619,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="33" />
+      <option name="time" value="34" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -678,13 +694,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentEditProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="3" column="97" selection-start-line="3" selection-start-column="97" selection-end-line="3" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/rateStudent.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -752,14 +761,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="313" column="93" selection-start-line="313" selection-start-column="93" selection-end-line="313" selection-end-column="93" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,26 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1156">
-          <caret line="68" column="51" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="51" />
-          <folding>
-            <element signature="e#2261#5145#0" expanded="false" />
-            <element signature="e#5217#7253#0" expanded="false" />
-            <element signature="e#9864#10386#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/jobHistory.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -911,52 +892,12 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="219" column="86" selection-start-line="219" selection-start-column="86" selection-end-line="219" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="684" column="53" selection-start-line="684" selection-start-column="53" selection-end-line="684" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="883" column="43" selection-start-line="883" selection-start-column="28" selection-end-line="883" selection-end-column="43" />
-          <folding>
-            <element signature="e#596#684#0" expanded="false" />
-            <element signature="e#710#3112#0" expanded="false" />
-            <element signature="e#3148#3204#0" expanded="false" />
-            <element signature="e#3324#3948#0" expanded="false" />
-            <element signature="e#47040#49999#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/employmentHistory.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="39" column="85" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="85" />
-          <folding>
-            <element signature="n#style#0;n#label#9;n#fieldset#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/navigation.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="762">
           <caret line="311" column="0" selection-start-line="311" selection-start-column="0" selection-end-line="311" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
             <element signature="e#3659#4439#0" expanded="false" />
             <element signature="e#4492#4574#0" expanded="false" />
             <element signature="e#4625#4749#0" expanded="false" />
@@ -982,17 +923,27 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="647" column="13" selection-start-line="647" selection-start-column="13" selection-end-line="647" selection-end-column="13" />
-          <folding>
-            <element signature="e#14327#14770#0" expanded="false" />
-            <element signature="e#14779#15156#0" expanded="false" />
-            <element signature="e#15250#15624#0" expanded="false" />
-            <element signature="e#15669#16023#0" expanded="false" />
-            <element signature="e#16083#16245#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentEditProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" column="97" selection-start-line="3" selection-start-column="97" selection-end-line="3" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="367" column="38" selection-start-line="367" selection-start-column="38" selection-end-line="367" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1004,28 +955,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server.js">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1853">
-          <caret line="370" column="0" selection-start-line="370" selection-start-column="0" selection-end-line="370" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="186" column="130" selection-start-line="186" selection-start-column="119" selection-end-line="186" selection-end-column="130" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="1357" column="64" selection-start-line="1357" selection-start-column="64" selection-end-line="1357" selection-end-column="64" />
           <folding>
-            <element signature="e#2383#3964#0" expanded="false" />
-            <element signature="e#4062#4096#0" expanded="false" />
-            <element signature="e#4257#8447#0" expanded="false" />
-            <element signature="e#8574#8592#0" expanded="false" />
-            <element signature="n#!!block;n#hasFinished#0" expanded="false" />
-            <element signature="e#9330#9363#0" expanded="false" />
-            <element signature="e#9520#9553#0" expanded="false" />
-            <element signature="e#9645#13740#0" expanded="false" />
-            <element signature="e#9759#11481#0" expanded="false" />
+            <element signature="e#596#684#0" expanded="false" />
+            <element signature="e#710#3112#0" expanded="false" />
+            <element signature="e#3148#3204#0" expanded="false" />
+            <element signature="e#3324#3948#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/employmentHistory.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="39" column="85" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="85" />
+          <folding>
+            <element signature="n#style#0;n#label#9;n#fieldset#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="313" column="31" selection-start-line="313" selection-start-column="31" selection-end-line="313" selection-end-column="31" />
+          <folding>
+            <element signature="e#2239#5123#0" expanded="false" />
+            <element signature="e#5195#7231#0" expanded="false" />
+            <element signature="e#9842#10364#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="527" column="27" selection-start-line="527" selection-start-column="15" selection-end-line="527" selection-end-column="27" />
+          <folding>
+            <element signature="e#12865#13855#0" expanded="false" />
+            <element signature="e#14327#14770#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="373" column="7" selection-start-line="373" selection-start-column="7" selection-end-line="373" selection-end-column="7" />
+          <folding>
+            <element signature="e#1884#2128#0" expanded="false" />
+            <element signature="e#2247#8485#0" expanded="false" />
+            <element signature="e#2383#3964#0" expanded="false" />
+            <element signature="e#4062#4096#0" expanded="false" />
+            <element signature="e#4257#8447#0" expanded="false" />
+            <element signature="e#8574#8592#0" expanded="false" />
+            <element signature="n#!!block;n#dailyCheck#0" expanded="false" />
+            <element signature="e#8734#8767#0" expanded="false" />
+            <element signature="e#8924#8957#0" expanded="false" />
+            <element signature="e#9054#9413#0" expanded="false" />
+            <element signature="e#9472#13893#0" expanded="false" />
+            <element signature="n#!!block;n#convertDateForDisplay#0" expanded="false" />
+            <element signature="n#!!block;n#hasFinished#0" expanded="false" />
+            <element signature="n#!!block;n#hasStarted#0" expanded="false" />
+            <marker date="1477398329170" expanded="false" signature="14052:15442" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="137" column="5" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
           <folding />
         </state>
       </provider>

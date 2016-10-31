@@ -227,10 +227,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
     }
 
     $scope.submitForm = function () {
-        $scope.disableBtns = true;
+
 
         $scope.submitted = true;
         if ($scope.jobForm.$valid) {
+            $scope.disableBtns = true;
             var job = jQuery.extend(true, {}, $scope.job);
             job.post.startingDate = new Date(job.post.startingDate.getFullYear(), job.post.startingDate.getMonth(), job.post.startingDate.getDate() + 1);
 
@@ -856,12 +857,9 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             cacheUser.create(res.data.employerID);
 //get profile Picture
             $http
-                .post('/getPp', {profilePicture:job.employerID.profilePicture})
+                .post('/getPp', {_id:job.employerID._id})
                 .then(function (res) {
-
                     job.image = res.data;
-
-
                 });
 
             if($.inArray(user._id, job.applicants) != -1)
@@ -1298,7 +1296,7 @@ app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootSco
             $.each($scope.applications,function(i,app){
                 app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                 $http
-                    .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                    .post('/getPp', {_id:app.employerID._id})
                     .then(function (res) {
 
                         app.image = res.data;
@@ -1357,7 +1355,7 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
                     }
 
                     $http
-                        .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                        .post('/getPp', {_id:app.studentID._id})
                         .then(function (res) {
 
                             app.image = res.data;

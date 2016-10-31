@@ -30,7 +30,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $.each($scope.applications,function(i,app){
                     app.jobID.post.startingDate = convertDateForDisplay(app.jobID.post.startingDate);
                      $http
-                     .post('/getPp', {profilePicture:app.employerID.profilePicture})
+                     .post('/getPp', {_id:app.employerID._id})
                      .then(function (res) {
 
                          app.image = res.data;
@@ -307,7 +307,7 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                             job.applications.forEach(function(app){
                                 $scope.hasApps = true;
                                 $http
-                                    .post('/getPp', {profilePicture:app.studentID.profilePicture})
+                                    .post('/getPp', {_id:app.studentID._id})
                                     .then(function (res) {
                                         app.image = res.data;
                                     });

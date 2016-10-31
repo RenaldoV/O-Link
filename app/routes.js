@@ -675,13 +675,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		fs.readFile(path, function(err,data){
 			if(err) {
-				fs.readFile(def, function(err,data){
-					if(err) {
-
-					}
-					var buf = new Buffer(data).toString('base64');
-					res.send(buf);
-				});
+				res.send(false);
 			}else {
 				var buf = new Buffer(data).toString('base64');
 				res.send(buf);
@@ -689,13 +683,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		});
 	});
 	//done
-	app.post('/getCertifications', function(req,res){
-		db.users.findOne({_id: req.body._id},{certifications:1},function(err,doc){
-			if(err) throw err;
-			else
-				res.send(doc.toObject().certifications);
-		});
-	});
+
 
 	//update a user
 	app.post('/updateUser', function(req,res){
@@ -1594,8 +1582,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 		var user = req.body;
 
 		db.users.findOne({_id: user.id}, function(err,usr){
-			if(!err){
-
+			if(!err && usr){
 				res.send(usr.toObject());
 			}
 			else

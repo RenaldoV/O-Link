@@ -34,7 +34,7 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 
                     $http
-                        .post('/getPp', {profilePicture:job.employerID.profilePicture})
+                        .post('/getPp', {_id:job.employerID._id})
                         .then(function (res) {
 
                             job.image = res.data;

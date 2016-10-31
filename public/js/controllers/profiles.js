@@ -106,11 +106,37 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
     var user = cacheUser.user;
     $scope.myProfile = false;
-    if (user._id == session.user._id)
-        $scope.myProfile = true;
-
-    //console.log(cacheUser.user._id + " " +session.user._id);
     $scope.user = user;
+    var certifications = [];
+    if(user._id == session.user._id)
+    {
+        $scope.myProfile = true;
+        $http
+            .post('/loadUserById', {id:user._id})
+            .then(function(res){
+                $scope.user = res.data;
+                if($scope.user.certifications)
+                {
+                    $scope.user.certifications.forEach(function(cert,index,array){
+                        $http
+                            .post("/getCFile",{cert: cert})
+                            .then(function(res){
+                                array[index].file = res.data;
+                            });
+                    });
+                }
+            });
+    }
+    if($scope.user.certifications) {
+        $scope.user.certifications.forEach(function (cert, index, array) {
+            $http
+                .post("/getCFile", {cert: cert})
+                .then(function (res) {
+                    array[index].file = res.data;
+                });
+        });
+    }
+    //console.log(cacheUser.user._id + " " +session.user._id);
     $http
         .post('/getRatings', {id : user._id})
         .then(function(res){
@@ -127,24 +153,9 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
             .post('/getMFile', user)
             .then(function (res) {
                 $scope.matricFile=res.data;
+
             });
     }
-    $http
-        .post('/getCertifications',{_id:user._id})
-        .then(function(res){
-            $scope.user.certifications = res.data;
-        });
-    $.each($scope.user.certifications,function(i,cert){
-        if(cert.file)
-        {
-            $http
-                .post('/getCFile', {"_id" : user._id, "cert" : cert})
-                .then(function (res) {
-                    cert.file=res.data;
-                });
-        }
-    });
-
 
     $scope.uploadPp = function() {
         photoUpload.makeUploadBox();
@@ -281,7 +292,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
                                 .post('/updateUser', $scope.user)
                                 .then(function (res, err) {
 
-                                    session.create(user);
+                                    session.create($scope.user);
                                     swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
                                     $window.location.href="/myProfile";
 
@@ -482,7 +493,13 @@ app.controller('signUpPhotoUploadControl', function($scope,Upload,$timeout, $roo
 
 app.controller('editProfile', function($scope,session, photoUpload, $http, $window, constants, $location, Upload){
 
-    $scope.user = session.user;
+    $scope.user = {};
+    $http
+        .post('/loadUserById', {id:session.user._id})
+        .then(function(res){
+           $scope.user = res.data;
+        });
+
     $scope.reqNames = constants.requirements;
     $scope.compCat = constants.companyCategories;
     $scope.timePeriods = constants.timePeriods;
