@@ -859,7 +859,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             $http
                 .post('/getPp', {_id:job.employerID._id})
                 .then(function (res) {
-                    job.image = res.data;
+                    $scope.image = res.data;
                 });
 
             if($.inArray(user._id, job.applicants) != -1)

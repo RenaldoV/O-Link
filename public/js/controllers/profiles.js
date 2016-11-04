@@ -156,6 +156,13 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
             });
     }
+    if($scope.user.driversFile){
+        $http
+            .post('/getDFile', user)
+            .then(function (res) {
+                $scope.driversFile = res.data;
+            });
+    }
 
     $scope.uploadPp = function() {
         photoUpload.makeUploadBox();
@@ -260,6 +267,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
     $scope.showUpload = function(){
         $('#ppUpload').toggle();
     };
+
 
     $scope.updateUser = function()
     {
@@ -546,6 +554,34 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         }
     };
 
+    $scope.uploadDrivers = function (file, to) {
+        //get file ext.
+        var f = file.name.split(".");
+        console.log(f[f.length-1]);
+        if(f[f.length-1].toLowerCase() == "pdf"){
+            Upload.upload({
+                url: '/uploadFile',
+                data: {file: file}
+            }).then(function (resp) {
+                console.log('Success ' + resp.config.data.file.name);
+                $scope.user.driversFile = resp.data;
+                to =  resp.data;
+            }, function (resp) {
+                console.log('Error status: ' + resp.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            });
+        }
+        else{
+            swal({
+                title: "Only PDF's accepted",
+                text: 'The system only accepts pdf files.',
+                type: "error"
+            });
+        }
+    };
+
     $scope.validateempPassw = function(pass){
         if(pass != undefined && $scope.user.passwordHash != undefined){
             return pass == $scope.user.passwordHash
@@ -789,6 +825,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
     };
 });
+
 app.service('photoUpload', function(ngDialog) {
 
 
@@ -805,6 +842,7 @@ app.service('photoUpload', function(ngDialog) {
 
     };
 });
+
 app.service('signUpPhotoUpload', function(ngDialog) {
 
 

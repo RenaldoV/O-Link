@@ -136,11 +136,12 @@
                                 </li>
                                 <hr>
                                 <h4 class="m-t-xs m-b-xs"><b>Drivers License</b></h4>
-                                <li class="list-group-item" ng-if="user.qualification.name">
+                                <li class="list-group-item">
                                     <div class="clear">
                                         <small class="greenText" ng-if="user.driversLicence">Has License<br></small>
                                         <small class="text-danger" ng-if="!user.driversLicence">No License<br></small>
                                     </div>
+                                    <a ng-if="user.driversLicence" class="btn btn-sm blueBack" target="_blank" ng-href="data:application/pdf;base64,{{driversFile}}">View Driver's License</a>
                                 </li>
                                 <hr>
                             </ul>

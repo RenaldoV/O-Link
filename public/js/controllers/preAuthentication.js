@@ -392,7 +392,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                 data: {file: file}
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name);
-                $scope.driversFile = res.data;
+                $scope.user.driversFile = resp.data;
                 to =  resp.data;
             }, function (resp) {
                 console.log('Error status: ' + resp.status);

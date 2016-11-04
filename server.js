@@ -213,9 +213,53 @@ dailyCheck();
 
 function dailyCheck(){
 
+    //Make list of files in use and delete all unused files
+    db.users.find({},{_id:0,matricFile:1,profilePicture:1,certifications:1,driversFile:1}, function(err,docs){
+        var result = [];
+        docs.forEach(function(usr){
+            var usrFiles = usr.toObject();
+
+            if(usrFiles.driversFile)
+                result.push(usrFiles.driversFile);
+            if(usrFiles.profilePicture)
+                result.push(usrFiles.profilePicture);
+            if(usrFiles.matricFile)
+                result.push(usrFiles.matricFile);
+            if(usrFiles.certifications)
+                usrFiles.certifications.forEach(function(cert){
+                    if(cert.file)
+                        result.push(cert.file);
+                });
+        });
+
+        fs.readdir(__dirname + '/app/uploads', function(err,files){
+            if(err) console.log(err);
+            else{
+                files.forEach(function(file){
+                    if(file != "default.png")
+                    {
+                        var used = false;
+                        result.forEach(function(res){
+                            res = res.replace("\\uploads\\","");
+                            if(res == file)
+                                used = true;
+                        });
+                        if(!used){
+                            // file not used by anyone, delete
+                            fs.unlink(__dirname + "\\app\\uploads\\"+file, function(e){
+                                if(err) throw err;
+                            })
+                        }
+                    }
+                });
+            }
+        });
+    });
+
     db.users.update({type:'student'},{$set:{freeApplications:2}}, {multi:true}).exec(function(err,res){
         console.log(res);
     });
+
     //remove expired packages
     db.users.update({type:'student'},{$pull:{packages:{ expiryDate:{$lt:Date.now()}}}}, {multi:true}).exec(function(err,res){
         console.log(res);
@@ -235,7 +279,6 @@ function dailyCheck(){
         });
     });
 
-
     db.jobs.find({status:"Started"},function(err,jobs){
         jobs.forEach(function(row){
             row = row.toObject();
@@ -250,8 +293,11 @@ function dailyCheck(){
                             if(err) throw err;
 
                             if(app){
+
                                 var usr = app.studentID.toObject();
                                 var emp = app.employerID.toObject();
+                                console.log(usr.name.name);
+
                                 if (usr.emailDisable == undefined || !usr.emailDisable) {
                                     var args = {};
                                     args.name = usr.name.name;
@@ -303,53 +349,12 @@ function dailyCheck(){
                 }
             }
             // Check for jobs that have been completed
+
             if (!row.post.endDate) {
                 completeJob(row);
             }
             else if (hasFinished(row.post.endDate)){
                 completeJob(row);
-            }
-        });
-    });
-
-    //Make list of files in use and delete all unused files
-    db.users.find({},{_id:0,matricFile:1,profilePicture:1,certifications:1}, function(err,docs){
-        var result = [];
-        docs.forEach(function(usr){
-            var usrFiles = usr.toObject();
-
-            if(usrFiles.profilePicture)
-                result.push(usrFiles.profilePicture);
-            if(usrFiles.matricFile)
-                result.push(usrFiles.matricFile);
-            if(usrFiles.certifications)
-                usrFiles.certifications.forEach(function(cert){
-                    if(cert.file)
-                        result.push(cert.file);
-                });
-        });
-
-        fs.readdir(__dirname + '/app/uploads', function(err,files){
-            if(err) console.log(err);
-            else{
-                files.forEach(function(file){
-                    if(file != "default.png")
-                    {
-                        var used = false;
-                        result.forEach(function(res){
-                            res = res.replace("\\uploads\\","");
-                            if(res == file)
-                                used = true;
-                        });
-                        if(!used){
-                            // file not used by anyone, delete
-
-                            fs.unlink(__dirname + "\\app\\uploads\\"+file, function(e){
-                                if(err) throw err;
-                            })
-                        }
-                    }
-                });
             }
         });
     });
@@ -369,6 +374,7 @@ function convertDateForDisplay(date){
 }
 
 function completeJob(job) {
+    console.log(job.post.OtherCategory + " completed");
     db.jobs.update({_id:job._id}, {$set:{status: 'Completed'}}, function(err, dox){
         if(err) throw err;
     });

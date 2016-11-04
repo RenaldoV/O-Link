@@ -591,7 +591,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	//upload profile picture
 	app.post('/uploadFile', multipartyMiddleware, function(req, res){
 		var file = req.files.file;
-
 		saveFile(file, function(rslt){
 			res.send(rslt);
 		});
@@ -653,6 +652,25 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 		db.users.findOne({_id:req.body._id},{matricFile:1},function(err,mf){
 			var file = mf.toObject().matricFile;
+			if(file){
+				var path = __dirname + file;
+				fs.readFile(path, function(err,data){
+					if(err) throw err;
+					else{
+						var buf = new Buffer(data).toString('base64');
+						res.send(buf);
+					}
+				});
+			}
+			else{
+				res.send(false);
+			}
+		});
+	});
+    app.post('/getDFile', function(req, res){
+
+		db.users.findOne({_id:req.body._id},{driversFile:1},function(err,mf){
+			var file = mf.toObject().driversFile;
 			if(file){
 				var path = __dirname + file;
 				fs.readFile(path, function(err,data){
@@ -754,6 +772,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 							db.jobs.update({_id: job._id}, {$set: job}, function (err, docs) {
 
 								var args = {};
+								//send student email
 								if (usr.emailDisable == undefined || !usr.emailDisable) {
 									args.name = usr.name.name;
 									if(job.post.category != 'Other')
@@ -761,7 +780,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 									else
 										args.category = job.post.OtherCategory;
 									args.date = convertDateForDisplay(job.post.startingDate);
-									console.log("DATE FOR EMAIL: " + args.date);
+
 									args.email = usr.contact.email;
 									if(!job.post.interviewRequired){
 										args.interview = false;
@@ -781,7 +800,6 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 										}
 									}
 
-
 									db.users.findOne({_id: job.employerID}, function (err, em) {
 										if (err) console.log(err);
 										var emp = em.toObject();
@@ -790,23 +808,27 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 											console.log(rs);
 
 										});
-										db.users.findOne({_id: job.employerID}, function (err, usre) {
-											var emp = usre.toObject();
-											args.email = emp.contact.email;
-											args.link = 'http://' + req.headers.host + '/applicants';
-											args.talentName = args.name;
-											args.name = emp.name;
-											mailer.sendMail('applicationMadeEmployer', usre._id, args, function (errr, rsss) {
-												console.log(rsss);
-
-											});
-										});
 									});
-
-
 								}
+								//send employer email
+								db.users.findOne({_id: job.employerID}, function (err, usre) {
+									var emp = usre.toObject();
+									if(emp.emailDisable == undefined || !emp.emailDisable){
+										args.date = convertDateForDisplay(job.post.startingDate);
+										if(job.post.category != 'Other')
+											args.category = job.post.category;
+										else
+											args.category = job.post.OtherCategory;
+										args.email = emp.contact.email;
+										args.link = 'http://' + req.headers.host + '/applicants';
+										args.talentName = usr.name.name;
+										args.name = emp.contact.name + " " + emp.contact.surname;
+										mailer.sendMail('applicationMadeEmployer', usre._id, args, function (errr, rsss) {
+											console.log(rsss);
+										});
+									}
+								});
 								res.send(usr);
-
 							});
 
 						});

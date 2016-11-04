@@ -10,7 +10,7 @@
         <span class="jobSubHeader">For</span><br><br>
         <div id="jobEmployer">
 
-            <a href="/profile?user={{job.employerID._id}}"><img ng-src="data:image/png;base64,{{job.image}}"  class="animated pulse img-circle jobPp"></a><br class="jobPPMobile">
+            <a href="/profile?user={{job.employerID._id}}"><img ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle jobPp"></a><br class="jobPPMobile">
             <div id="employerName">
             <h2 ng-if="job.employerID.employerType=='Company'">{{job.employerID.company.name}}</h2>
             <h2 ng-if="job.employerID.employerType=='Individual'">{{job.employerID.contact.name +" "+job.employerID.contact.surname}}</h2>
