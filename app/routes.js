@@ -513,6 +513,38 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 
 	});
 	//done
+
+	//add job to student work experience
+	app.post('/addToWorkExp',function(req,res){
+		var data = req.body;
+		var studentID = data.studentID;
+		var job = data.job;
+		var employer = data.employer;
+		var workExp = {};
+		workExp.contact = {name: employer.contact.name, number: employer.contact.contactNo,email: employer.contact.email};
+		workExp.jobID = job._id;
+		if(data.employer.company.name) {
+			workExp.employerType = "Company";
+			workExp.contact.company = employer.company.name;
+		}
+		else {
+			workExp.employerType = "Individual";
+		}
+		workExp.category = job.jobName;
+		workExp.roleDescription = job.description;
+		workExp.duration = job.duration;
+
+		db.users.update({_id:studentID, 'work.jobID' : {$nin : [job._id]}},{$push:{work:workExp}},function(err,doc){
+			if(err) throw err;
+			if(doc.nModified == 0)
+				res.send("You cannot add the same job twice.");
+			else if(err)
+				res.send(err);
+			else
+				res.send(true);
+		});
+	});
+
 	//get job by id
 	app.post('/getJob', function(req,res) {
 
@@ -521,6 +553,13 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 			res.send(rows);
 		});
 
+	});
+	app.post('/getJobName', function(req,res) {
+
+		var id = req.body;
+		db.jobs.findOne({_id: id._id},{'post.category': 1,'post.OtherCategory':1,employerID :1,'post.timePeriod':1,'post.description':1}).populate('employerID').exec(function(err,rows){
+			res.send(rows);
+		});
 	});
 	//done
 

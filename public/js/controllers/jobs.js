@@ -1267,8 +1267,52 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
         });
 });
 
-app.controller('jobHistory', function ($scope,$http,cacheUser, session, $rootScope, $window) {
+app.controller('jobHistory', function ($scope,$http,$location,cacheUser, session, $rootScope, $window) {
 
+    var temp = $location.url();
+    if(temp.includes("?id=")){
+        temp = temp.replace("/myJobHistory?id=", '');
+        var id = {_id: temp};
+        if(temp){
+            $http
+                .post('/getJobName',id)
+                .then(function(res){
+                   var job = res.data;
+                    var jobName = "";
+                    var empName = job.employerID.contact.name;
+                    if(job.post.OtherCategory)
+                        jobName = job.post.OtherCategory;
+                    else
+                        jobName = job.post.category;
+
+                    swal({
+                            title: "Add "+jobName+" to work experience?",
+                            text: "Do you want to add "+empName+"'s job, "+ jobName + " to your work experience on your profile?",
+                            type: "info",
+                            showCancelButton: true,
+                            confirmButtonColor: "#00b488",
+                            closeOnConfirm: false,
+                            showLoaderOnConfirm: true
+                        },
+                        function(){
+                            $http
+                                .post('/addToWorkExp',{     studentID : session.user._id,
+                                                            job : {_id:job._id,jobName:jobName,description:job.post.description, duration: job.post.timePeriod},
+                                                            employer : {contact : job.employerID.contact, company : job.employerID.company}})
+                                .then(function(res){
+                                    if(res.data == true) {
+                                        swal("Successfully added job to your profile.");
+                                        $location.url("/myProfile");
+                                    }
+                                    else {
+                                        swal(res.data);
+                                        $location.url("/myJobHistory");
+                                    }
+                                });
+                        });
+                });
+        }
+    }
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
     };
