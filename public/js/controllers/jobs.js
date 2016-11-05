@@ -655,6 +655,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                         else if(res.data.status == "Declined")
                             job.appStat = res.data.status;
 
+                        console.log(job.appStat);
                         $scope.isDeclined = function(status){
                             if(status == "Declined"){
                                 return true;
@@ -686,13 +687,10 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
                 job.post.startingDate = convertDateForDisplay(job.post.startingDate);
 
-                var user = {};
-                user.profilePicture = job.employerID.profilePicture;
+                var user = {_id:job.employerID._id};
 
                 $http.post('/getPp', user)
                     .then(function (res) {
-
-
                         job.logo =  res.data;
                     });
 

@@ -641,6 +641,7 @@ db.jobs.findOneAndUpdate({_id:job._id}, {$set:job}, function(err,d){
 	app.post('/getPp', function(req, res){
 		var def = __dirname + "\\uploads\\default.png";
 		var path = "";
+		console.log(req.body);
 		db.users.findOne({_id:req.body._id},{profilePicture:1},function(err,pp){
 			if(pp){
 				if(path = pp.toObject().profilePicture){
