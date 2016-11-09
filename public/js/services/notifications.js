@@ -22,8 +22,6 @@ app.controller('notifications', function($scope,$http, session, cacheUser){
     $scope.$on('auth-login-success',function(){
 
         $scope.userType = session.user.type;
-        console.log('here');
-        console.log(session.user);
         loadNotifications();
     });
 
@@ -123,7 +121,6 @@ var app = $scope.ngDialogData;
             .post('/rateEmployer', {_id: app._id, status: app.status, employerRating: parseFloat($scope.rating), commentToEmployer: $scope.comment,id: app.employerID._id})
             .then(function (res, err) {
 
-                console.log(res);
 
                 if(app.jobID.post.OtherCategory)
                     var Cat = app.jobID.post.OtherCategory;
@@ -151,8 +148,6 @@ var app = $scope.ngDialogData;
         $http
             .post('/rateStudent', {_id: app._id, status: app.status, studentRating: parseFloat($scope.rating), commentToStudent: $scope.comment, id: app.studentID._id})
             .then(function (res, err) {
-
-                console.log(res);
 
                 if(app.jobID.post.OtherCategory)
                     var Cat = app.jobID.post.OtherCategory;

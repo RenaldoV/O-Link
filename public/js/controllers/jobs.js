@@ -277,7 +277,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                     });
             }
             else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
-                // console.log($scope.job);
+
                 swal({
                         title: "Are you sure?",
                         type: "input",
@@ -292,7 +292,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                         $http
                             .post('/checkPassword', {email: user.contact.email, password: inputValue})
                             .then(function (res, err) {
-                                // console.log(res.data);
+
                                 if (!res.data) {
                                     swal.showInputError("Incorrect Password!");
                                     return false;

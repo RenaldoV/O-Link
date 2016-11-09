@@ -1,10 +1,9 @@
-Hi <b>{{name}}</b><br>
+Hi <b>{{student}}</b><br>
 <br>
-The job to be {{#if vowel}}an{{else}}a{{/if}} <b>{{category}}</b>, which you had applied to has been
-edited.
+<b>{{category}}</b> on <b>{{date}}</b> was edited by <b>{{employer}}</b>. {{confirmed}}{{prov}}{{pending}}
 <br>
 <br>
-To view the changes, please click the button below.
+To respond to the changes, click the button below:
 <br>
 <br>
 <a href="{{link}}" style="display: inline-block;
@@ -27,7 +26,7 @@ To view the changes, please click the button below.
   border: 1px solid transparent;
   border-radius: 4px; color: white;
   text-decoration: none;
-    background-color: #33B6CC;">View Changes</a>
+    background-color: #33B6CC;">{{category}} starting {{date}}</a>
 <br>
 <br>
 If you need any assistance, email <a href="mailto:help@o-link.co.za?Subject=Talent%20Job%20Edited%20Help">help@o-link.co.za</a>.

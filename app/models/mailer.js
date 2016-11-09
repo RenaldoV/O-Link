@@ -36,7 +36,7 @@ mailer.sendMail({
 }, function (error, response) {
     if(error) console.log(error);
     mailer.close();
-    cb(error,response);
+    //cb(error,response);
 
 });
 }
@@ -93,6 +93,7 @@ module.exports ={
     sendMail: function(template,userID,arg, cb){
 
         var args = arg;
+
         switch(template){
             case 'welcomeTalent':{
 
@@ -143,8 +144,6 @@ module.exports ={
                 break;
             }
             case 'jobEditedTalent':{
-                args.vowel = isVowel(args.category);
-                args.subject = 'O-Link: Edited Job Offer';
                 send(template,args,cb);
                 break;
             }
