@@ -36,7 +36,7 @@ mailer.sendMail({
 }, function (error, response) {
     if(error) console.log(error);
     mailer.close();
-    //cb(error,response);
+    cb(error,response);
 
 });
 }
@@ -144,6 +144,7 @@ module.exports ={
                 break;
             }
             case 'jobEditedTalent':{
+                console.log(args);
                 send(template,args,cb);
                 break;
             }

@@ -889,6 +889,38 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
             }
 
         });
+    $scope.withdraw = function(app, job){
+        swal({
+                title: "Are you sure?",
+                text: "This will pull your application from the system",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, I'm sure!",
+                closeOnConfirm: false
+            },
+            function (isConfirm) {
+
+                if (isConfirm) {
+                    $http
+                        .post('/withdrawChanges', {app: app,job:job})
+                        .then(function (res, err) {
+                            if(job.post.OtherCategory)
+                                var Cat = job.post.OtherCategory;
+                            else
+                                var Cat = job.post.category;
+                            notify.go({
+                                type: 'withdrawn',
+                                jobID: job._id,
+                                userID: app.employerID,
+                                status: 'withdrawn',
+                                title: Cat
+                            });
+                            swal("Offer withdrawn.", "", "success");
+                            location.reload();
+                        });
+                }
+            });
+    };
 
     $scope.decline = function(id, employerID, jobID, job){
 
@@ -926,23 +958,25 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 
     };
+
     $('.maps').click(function () {
         $('.maps iframe').css("pointer-events", "auto");
     });
     $('.maps').mouseleave(function () {
         $('.maps iframe').css("pointer-events", "none");
     });
-    $scope.acceptChanges = function(id){
+    $scope.acceptChanges = function(app){
         $http
-            .post('/acceptChanges', {id: id})
+            .post('/acceptChanges', {app: app})
             .then(function (res, err) {
 
-                swal("Changes accepted.", "The employer has been notified.", "success");
+                swal("Changes accepted.", "", "success");
                 location.reload();
 
             });
     };
     $scope.accept = function(id, employerID, jobID, job){
+
         swal({
                 title: "Are you sure?",
                 text: "This will notify the user and that you have accepted",

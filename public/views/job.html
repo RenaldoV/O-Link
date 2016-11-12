@@ -148,9 +148,16 @@
 
     <div class="center">
         <a ng-click="goBack()"><span class="jobGoBack glyphicon glyphicon-arrow-left"></span></a>
-        <button ng-if="application.edited" class="btn greenBack btn-xlarge" ng-click="acceptChanges(application._id)">Accept Changes</button>
-        <button ng-if="application.edited" class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job.post.category)">Withdraw</button>
+        <button ng-if="application.edited && application.status !='Declined'" class="btn greenBack btn-xlarge" ng-click="acceptChanges(application)">
+            <span ng-if="application.status =='Application Pending' || application.status =='Confirmed'">Accept Changes</span>
+            <span ng-if="application.status =='Provisionally accepted'">Commit to Job</span>
+        </button>
+        <button ng-if="application.edited && application.status !='Declined'" class="btn btn-danger btn-xlarge" ng-click="withdraw(application, job)">
+            <span ng-if="application.status =='Application Pending' || application.status =='Provisionally accepted'">Withdraw Application</span>
+            <span ng-if="application.status =='Confirmed'">Withdraw Commitment</span>
+        </button>
 
+        <button ng-if="application.edited && application.status == 'Declined'" class="btn btn-danger btn-xlarge" disabled>Declined</button>
 
         <span ng-if="!application.edited">
             <span ng-if="application.status == 'Provisionally accepted'" >

@@ -349,7 +349,8 @@ module.exports = function(app) {
                         edited: true,
                         editTime: Date.now()
                     }
-                }, function (err, updated) {
+                }, {multi: true},
+					function (err, updated) {
                     new CronJob(new Date(Date.now() + 86400000), function () {
                         db.applications.update({
                                 "_id": tempUser._id,
@@ -368,7 +369,7 @@ module.exports = function(app) {
                             if (!err) {
 
                                 var usr = user.toObject();
-                                args.employer = usr.contact.name + " " + usr.contact.surname;
+								args.employer = usr.contact.name + " " + usr.contact.surname;
                                 if (usr.emailDisable == undefined || !usr.emailDisable) {
                                     args.name = usr.contact.name;
                                     args.count = rows.length;
@@ -396,21 +397,25 @@ module.exports = function(app) {
                                         //set applicant's name parameter
                                         args.student = usr.name.name;
                                         switch (temp.status){
-                                            case "Pending":
-                                                args.pending = "You have 24 hours to either accept the changes or withdraw your application.";
-                                                break;
-                                            case "Confirmed":
-                                                args.confirmed = "You have 24 hours to either accept the changes or withdraw your commitment.";
-                                                break;
-                                            case "Provisionally accepted":
-                                                args.prov = "You now have 24 hours to either commit to the job or withdraw your application.";
-                                                break;
+                                            case "Pending":{
+												args.pending = "You have 24 hours to either accept the changes or withdraw your application.";
+												break;
+											}
+                                            case "Confirmed":{
+												args.confirmed = "You have 24 hours to either accept the changes or withdraw your commitment.";
+												break;
+											}
+                                            case "Provisionally accepted":{
+												args.prov = "You now have 24 hours to either commit to the job or withdraw your application.";
+												break;
+											}
                                         }
                                         args.subject = args.category + " Edited - You have 24 hours to respond to the changes";
                                         args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
                                         args.email = usr.contact.email;
 
                                         mailer.sendMail("jobEditedTalent", usr._id, args, function (errr, rs) {
+                                        	args = {};
                                             //console.log(rs);
                                         });
                                     }
@@ -431,17 +436,54 @@ module.exports = function(app) {
 	//user accepts changes to job
 	app.post('/acceptChanges', function(req,res) {
 
-		var app = req.body;
+		var app = req.body.app;
+		//console.log(app.status);
+		if(app.status == "Provisionally accepted"){
 
+			db.applications.findOneAndUpdate({_id:app._id},{$unset:{edited:1, editTime: 1}}).populate('jobID').populate('studentID').populate('employerID').exec(function(err,doc){
+				if(err) throw err;
 
+				var docs = doc.toObject();
+				var emp = docs.employerID;
+				var usr = docs.studentID;
+				var job = docs.jobID;
 
-		db.applications.update({_id:app.id},{$unset:{edited:1, editTime: 1}} , function(err,rows){
+				if (usr.emailDisable == undefined || !usr.emailDisable) {
+					var args = {};
+					args.name = usr.name.name;
+					args.date = convertDateForDisplay(job.post.startingDate);
+					if (job.post.OtherCategory)
+						args.role = job.post.OtherCategory;
+					else
+						args.role = job.post.category;
+					args.email = usr.contact.email;
+					if (emp.employerType == 'Company') {
+						args.employer = emp.company.name;
+					} else
+						args.employer = emp.contact.name + " " + emp.contact.surname;
 
-			res.send(true);
-		});
+					args.subject = args.role;
+					args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
 
-
-
+					if (job.post.interviewRequired) {
+						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
+							console.log(rr);
+						});
+					}
+					else {
+						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
+							console.log(rr);
+						});
+					}
+				}
+				res.send(true);
+			});
+		}
+		else{
+			db.applications.update({_id:app._id},{$unset:{edited:1, editTime: 1}} , function(err,rows){
+				res.send(true);
+			});
+		}
 	});
 	//done
 
@@ -1492,6 +1534,47 @@ module.exports = function(app) {
 			res.send(true);
 
 		});
+
+	});
+//done
+
+	//withdraw application from edited job
+	app.post('/withdrawChanges', function(req,res) {
+
+			var app = req.body.app;
+			var job = req.body.job;
+
+			db.applications.remove({_id:app._id},function(err,doc){
+				if(err) throw err;
+			});
+			var jobQry = {};
+			switch(app.status){
+				case "Application Pending":{
+					job.applicationsLeft++;
+					break;
+				}
+				case "Confirmed":{
+					job.positionsLeft++;
+					job.applicationsLeft++;
+					job.provisionalLeft++;
+					break;
+				}
+				case "Provisionally accepted":{
+					job.provisionalLeft++;
+					job.applicationsLeft++;
+					break;
+				}
+			}
+
+			db.jobs.update({_id: job._id}, {
+				positionsLeft: job.positionsLeft,
+				applicationsLeft: job.applicationsLeft,
+				provisionalLeft: job.provisionalLeft,
+				$pull: {applicants: {$in: [app.studentID]}}
+			}, function (err, doc) {
+				if (err) throw err;
+				res.send(true);
+			});
 
 	});
 	//done
