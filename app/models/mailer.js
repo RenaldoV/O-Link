@@ -148,6 +148,11 @@ module.exports ={
                 send(template,args,cb);
                 break;
             }
+            case 'offerExpiry':{
+                args.vowel = isVowel(args.category);
+                send(template,args,cb);
+                break;
+            }
             case 'jobEditedTimeUp':{
                 args.vowel = isVowel(args.category);
                 send(template,args,cb);

@@ -325,6 +325,20 @@ module.exports = function(app) {
 	});
 	//done
 
+	// send email from client side
+	app.post('/sendEmail', function(req,res){
+		var args = req.body.args;
+		var template = req.body.template;
+		var id = req.body.id;
+		console.log(args);
+		console.log(template);
+		console.log(id);
+		mailer.sendMail(template, id, args, function (err, rs) {
+			if(err) throw err;
+			//console.log(rs);
+			res.send(true);
+		});
+	});
 
 	//update job in database
     app.post('/jobUpdate', function (req, res) {
@@ -362,7 +376,7 @@ module.exports = function(app) {
 
                             });
                     });
-                    db.applications.find({jobID: job._id, status: { $ne: "Declined" }}, function (err, rows) {
+                    db.applications.find({jobID: job._id, status: { $ne: "Declined" }}).populate('jobID').populate('studentID').populate('employerID').exec(function (err, rows) {
                         args.applicantCount = rows.length;
                         db.users.findOne({_id: job.employerID}).exec(function (err, user) {
 
@@ -380,52 +394,8 @@ module.exports = function(app) {
                                 }
                             }
                         });
-
-                        rows.forEach(function (app) {
-
-                            var temp = app.toObject();
-                            //search all applicants
-                            db.users.findOne({_id: temp.studentID}).exec(function (err, user) {
-
-                                if (!err) {
-                                    var usr = user.toObject();
-                                    //check if applicant's mail notifications is turned on
-                                    if (usr.emailDisable == undefined || !usr.emailDisable) {
-                                        //console.log("sending student mail...");
-                                        //console.log("Status: " + temp.status);
-                                        var mail = "";
-                                        //set applicant's name parameter
-                                        args.student = usr.name.name;
-                                        switch (temp.status){
-                                            case "Pending":{
-												args.pending = "You have 24 hours to either accept the changes or withdraw your application.";
-												break;
-											}
-                                            case "Confirmed":{
-												args.confirmed = "You have 24 hours to either accept the changes or withdraw your commitment.";
-												break;
-											}
-                                            case "Provisionally accepted":{
-												args.prov = "You now have 24 hours to either commit to the job or withdraw your application.";
-												break;
-											}
-                                        }
-                                        args.subject = args.category + " Edited - You have 24 hours to respond to the changes";
-                                        args.link = 'http://' + req.headers.host + '/job?id=' + job._id;
-                                        args.email = usr.contact.email;
-
-                                        mailer.sendMail("jobEditedTalent", usr._id, args, function (errr, rs) {
-                                        	args = {};
-                                            //console.log(rs);
-                                        });
-                                    }
-                                }
-                            });
-
-                        });
+						res.send(rows);
                     });
-
-                    res.send(true);
                 });
             }
         });

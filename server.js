@@ -61,12 +61,55 @@ io.on('connection', function(socket){
 var CronJob = require('cron').CronJob;
 
 //function happens once every hour
-new CronJob('00 * * * * *', function() {
+new CronJob('00 00 * * * *', function() {
 
-    //remove all applications of offers not accepted by students in time
+    //remove all applications of offers not accepted by students in time // warn provisionally accepted applicants about expiry in 2 hours
     db.applications.find({status:"Provisionally accepted"}).exec(function(err, rows){
         rows.forEach(function(app){
             app = app.toObject();
+
+            // 2 hours left to accept provisional acceptance
+            if(app.offerDate + 79200000 <= Date.now() && Date.now() <= app.offerDate + 82800000) {
+                //console.log("2 hours left to accept offer");
+                db.applications.findOne({_id: app._id}).populate('studentID').populate('jobID').exec(function (err, ap) {
+                    var usr = ap.studentID.toObject();
+                    var job = ap.jobID.toObject();
+
+                    if(job.post.OtherCategory)
+                        var Cat = job.post.OtherCategory;
+                    else
+                        var Cat = job.post.category;
+
+                    var notiStud = {
+                        userID: ap.studentID._id.toString(),
+                        jobID: ap.jobID._id,
+                        seen: false,
+                        status: '',
+                        type: 'offer expiry',
+                        title: Cat
+                    };
+                    db.notifications.create(notiStud,function(err, res){
+
+                    });
+                    if (usr.emailDisable == undefined || !usr.emailDisable) {
+                        var args = {};
+                        args.name = usr.name.name;
+                        args.date = convertDateForDisplay(job.post.startingDate);
+                        if (job.post.OtherCategory)
+                            args.category = job.post.OtherCategory;
+                        else
+                            args.category = job.post.category;
+                        args.email = usr.contact.email;
+
+                        args.subject = args.category + " will automatically decline in 2 hours!";
+                        args.link = 'http://' + "154.66.197.62:8080" + '/applications';
+                        mailer.sendMail('offerExpiry', ap.studentID._id, args, function (err, rr) {
+                            //console.log("Send email: " + rr);
+                        });
+                    }
+                });
+
+            }
 
             if(app.offerDate + 86400000 <= Date.now())
             {
@@ -92,9 +135,9 @@ new CronJob('00 * * * * *', function() {
                     });
 
                     if(job.post.OtherCategory)
-                        var Cat = ap.jobID.post.OtherCategory;
+                        var Cat = job.post.OtherCategory;
                     else
-                        var Cat = ap.jobID.post.category;
+                        var Cat = job.post.category;
 
                     var notiStud = {
                         userID: ap.studentID._id.toString(),
@@ -146,7 +189,7 @@ new CronJob('00 * * * * *', function() {
                         };
 
                         mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
-                            //console.log(rss);
+                            console.log(rss);
                         });
                     }
                 });

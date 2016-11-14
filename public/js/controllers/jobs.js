@@ -241,7 +241,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
             if (!$scope.job.status) {
                 $scope.job.employerID = user._id;
-                console.log(job);
+                //console.log(job);
 
             job.post.spotsAvailable = Number(job.post.spotsAvailable);
             job.post.threshold = Number(job.post.threshold);
@@ -307,32 +307,65 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                         method: 'POST',
                                         url: '/jobUpdate',
                                         data: {job: job}
-                                    })
+                                    })// send mails to all applicants
                                         .then(function (response) {
                                             {
+                                                var apps = response.data;
+                                                apps.forEach(function(app){
+                                                    var usr = app.studentID;
+                                                    var emp = app.employerID;
+                                                    var args = {};
+                                                    if($scope.job.post.OtherCategory)
+                                                        args.category = $scope.job.post.OtherCategory;
+                                                    else
+                                                        args.category = $scope.job.post.category;
+
+                                                    notify.go({
+                                                        type: 'jobEdited',
+                                                        jobID: $scope.job._id,
+                                                        userID: app.studentID._id,
+                                                        status: 'edited',
+                                                        title: args.category
+                                                    });
+
+                                                    if (usr.emailDisable == undefined || !usr.emailDisable) {
+                                                        var mail = "";
+                                                        //set applicant's name parameter
+                                                        args.student = usr.name.name;
+                                                        switch (temp.status){
+                                                            case "Pending":{
+                                                                args.pending = "You have 24 hours to either accept the changes or withdraw your application.";
+                                                                break;
+                                                            }
+                                                            case "Confirmed":{
+                                                                args.confirmed = "You have 24 hours to either accept the changes or withdraw your commitment.";
+                                                                break;
+                                                            }
+                                                            case "Provisionally accepted":{
+                                                                args.prov = "You now have 24 hours to either commit to the job or withdraw your application.";
+                                                                break;
+                                                            }
+                                                        }
+                                                        args.subject = args.category + " Edited - You have 24 hours to respond to the changes";
+                                                        args.link = 'http://' + location.host + '/job?id=' + job._id;
+                                                        args.email = usr.contact.email;
+                                                        args.employer = emp.contact.name + " " + emp.contact.surname;
+                                                        args.date = convertDateForDisplay(app.jobID.post.startingDate);
+
+                                                        $http
+                                                            .post('/sendEmail', {args : args, template : 'jobEditedTalent', id : usr._id})
+                                                            .then(function(res){
+                                                                //console.log("sent to : " + args.student);
+                                                            });
+                                                    }
+
+                                                });
                                                 swal({
                                                     title: "Edited",
                                                     type: "success",
                                                     timer: 2000,
                                                     showConfirmButton: false
                                                 });
-
-                                                if (applicants) {
-                                                    for (var i = 0; i < applicants.length; i++) {
-                                                        if($scope.job.post.OtherCategory)
-                                                            var Cat = $scope.job.post.OtherCategory;
-                                                        else
-                                                            var Cat = $scope.job.post.category;
-
-                                                        notify.go({
-                                                            type: 'jobEdited',
-                                                            jobID: $scope.job._id,
-                                                            userID: applicants[i],
-                                                            status: 'edited',
-                                                            title: Cat
-                                                        });
-                                                    }
-                                                }
                                                 $location.url("/myJobPosts");
                                             }
                                         });

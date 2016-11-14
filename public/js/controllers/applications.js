@@ -165,13 +165,46 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 };
 
+                $scope.withdraw = function(app, job){
+                    swal({
+                            title: "Are you sure?",
+                            text: "This will pull your application from the system",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "Yes, I'm sure!",
+                            closeOnConfirm: false
+                        },
+                        function (isConfirm) {
 
-                $scope.acceptChanges = function(id){
+                            if (isConfirm) {
+                                $http
+                                    .post('/withdrawChanges', {app: app,job:job})
+                                    .then(function (res, err) {
+                                        if(job.post.OtherCategory)
+                                            var Cat = job.post.OtherCategory;
+                                        else
+                                            var Cat = job.post.category;
+                                        notify.go({
+                                            type: 'withdrawn',
+                                            jobID: job._id,
+                                            userID: app.employerID,
+                                            status: 'withdrawn',
+                                            title: Cat
+                                        });
+                                        swal("Offer withdrawn.", "", "success");
+                                        location.reload();
+                                    });
+                            }
+                        });
+                };
+
+                $scope.acceptChanges = function(app){
+                    alert(app);
                     $http
-                        .post('/acceptChanges', {id: id})
+                        .post('/acceptChanges', {app: app})
                         .then(function (res, err) {
 
-                            swal("Changes accepted.", "The employer has been notified.", "success");
+                            swal("Changes accepted.", "", "success");
                             location.reload();
 
                         });
