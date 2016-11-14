@@ -61,10 +61,101 @@ io.on('connection', function(socket){
 var CronJob = require('cron').CronJob;
 
 //function happens once every hour
-new CronJob('00 00 * * * *', function() {
+new CronJob('00 * * * * *', function() {
+
+    //remove all applications of offers not accepted by students in time
+    db.applications.find({status:"Provisionally accepted"}).exec(function(err, rows){
+        rows.forEach(function(app){
+            app = app.toObject();
+
+            if(app.offerDate + 86400000 <= Date.now())
+            {
+                db.applications.findOne({_id: app._id}).populate('studentID').populate('employerID').populate('jobID').exec(function (err, ap) {
+                    if (err) throw err;
+                    db.applications.remove({_id: app._id},function(err,res){
+                       if(err) throw err;
+                    });
+
+                    var usr = ap.studentID.toObject();
+                    var emp = ap.employerID.toObject();
+                    var job = ap.jobID.toObject();
+
+                    db.jobs.update({_id: job._id}, {$pull: {applicants: usr._id.toString()}}).exec(function (ers, res) {
+                        if (ers) throw ers;
+                    });
+                    db.notifications.remove({
+                        'jobID': ap.jobID._id,
+                        'userID': ap.studentID._id.toString(),
+                        'status': "Provisionally accepted"
+                    }, function (err, rs) {
+                        if (err) throw err;
+                    });
+
+                    if(job.post.OtherCategory)
+                        var Cat = ap.jobID.post.OtherCategory;
+                    else
+                        var Cat = ap.jobID.post.category;
+
+                    var notiStud = {
+                        userID: ap.studentID._id.toString(),
+                        jobID: ap.jobID._id,
+                        seen: false,
+                        status: 'Declined',
+                        type: 'status change',
+                        title: Cat
+                    };
+                    db.notifications.create(notiStud,function(err, res){
+
+                    });
+                    var notiEmploy = {
+                        userID: ap.employerID._id.toString(),
+                        jobID: ap.jobID._id,
+                        seen: false,
+                        status: 'Withdrawn',
+                        type: 'withdrawn',
+                        title: Cat
+                    };
+                    db.notifications.create(notiEmploy,function(err, res){
+
+                    });
+
+                    // send email to students and employers
+                    if (usr.emailDisable == undefined || !usr.emailDisable) {
+                        var args = {};
+                        args.name = usr.name.name;
+                        args.date = convertDateForDisplay(job.post.startingDate);
+                        if (job.post.OtherCategory)
+                            args.category = job.post.OtherCategory;
+                        else
+                            args.category = job.post.category;
+                        args.email = usr.contact.email;
+
+                        args.subject = args.category + " Automatically Declined – Missed Response Deadline";
+                        args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+
+                        mailer.sendMail('offerTimeUp', ap.studentID._id, args, function (err, rr) {
+                            //console.log("Send email: " + rr);
+                        });
+                    }
+                    if (emp.emailDisable == undefined || !emp.emailDisable) {
+                        var args = {
+                            name: emp.contact.name,
+                            talent: usr.name.name + " " + usr.name.surname,
+                            email: emp.contact.email,
+                            link: 'http://154.66.197.62:8080/applicants'
+                        };
+
+                        mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
+                            //console.log(rss);
+                        });
+                    }
+                });
+            }
+        });
+    });
 
     //check for edited posts that weren't accepted
-    db.applications.find({edited:true}).populate('jobID').exec(function(err, rows){
+    db.applications.find({edited:true}).populate('employerID').populate('studentID').populate('jobID').exec(function(err, rows){
 
         rows.forEach(function(app){
             var str = JSON.stringify(app);
@@ -72,18 +163,18 @@ new CronJob('00 00 * * * *', function() {
             // Don't know why the doc has to be converted to string and back to obj... Weird
             //console.log(app.editTime); gives undefined
             var d = new Date();
-            //console.log(newApp.editTime + 86400000);
-            //console.log(d.getTime());
             if(newApp.editTime + 86400000 <= d.getTime()){
-                console.log("removed notification");
                 db.applications.remove({_id:newApp._id}, function(err, res){
-                    console.log(err);
+                    if(err) throw err;
+                    console.log("apps removed " + res);
                 });
                 db.notifications.remove({jobID: newApp.jobID, type:'jobEdited',userID : app.studentID},function(err,rs){
-
+                    if(err) throw err;
+                    console.log("notis removed " + rs);
                 });
                 db.jobs.update({_id:newApp.jobID},{$pull:{applicants: {$in : [newApp.studentID]}}}, function(err,rs){
-                   console.log(err);
+                   if(err) throw err;
+                    console.log("Pulled apps from job " + rs);
                 });
                 if(newApp.jobID.post.OtherCategory)
                     var Cat = newApp.jobID.post.OtherCategory;
@@ -99,8 +190,35 @@ new CronJob('00 00 * * * *', function() {
                 };
 
                 db.notifications.create(noti,function(err, res){
-                    //expired
+                    if(err) throw err;
+                    console.log("Notis created " + res);
                 });
+
+                // send email to students and employers
+                var usr = newApp.studentID;
+                var emp = newApp.employerID;
+
+                if (usr.emailDisable == undefined || !usr.emailDisable) {
+                    var args = {};
+                    args.name = usr.name.name;
+                    args.date = convertDateForDisplay(newApp.jobID.post.startingDate);
+                    if (newApp.jobID.post.OtherCategory)
+                        args.category = newApp.jobID.post.OtherCategory;
+                    else
+                        args.category = newApp.jobID.post.category;
+                    args.email = usr.contact.email;
+                    args.subject = args.category + " Application Automatically Withdrawn – Missed Response Deadline";
+                    args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                    if(newApp.status == "Pending"){
+                        args.message = " your application has been automatically withdrawn.";
+                    }
+                    else if(newApp.status == "Confirmed"){
+                        args.message = " you are no longer committed to working for " + emp.contact.name + " " + emp.contact.surname;
+                    }
+                    mailer.sendMail('jobEditedTimeUp', usr._id, args, function (err, rr) {
+                        console.log("Send email: " + rr);
+                    });
+                }
             }
         });
     });
@@ -108,97 +226,6 @@ new CronJob('00 00 * * * *', function() {
     //remove all seen notifications
     db.notifications.remove({seen: true}, function(err,rs){
         if(err) throw err;
-    });
-
-    //remove all applications of offers not accepted by students in time
-    db.applications.find({status:"Provisionally accepted"}).exec(function(err, rows){
-        rows.forEach(function(app){
-            app = app.toObject();
-
-           if(app.offerDate + 86400000 <= Date.now())
-           {
-               db.applications.findOneAndUpdate({_id: app._id}, {
-                   $set: {status: "Declined"}, $unset:{offerDate:1}
-               }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, ap) {
-                   if (err) throw err;
-
-                   var usr = ap.studentID.toObject();
-                   var emp = ap.employerID.toObject();
-                   var job = ap.jobID.toObject();
-
-                   db.jobs.update({_id: job._id}, {$pull: {applicants: usr._id.toString()}}).exec(function (ers, res) {
-                       if (ers) throw ers;
-                   });
-                   db.notifications.remove({
-                       'jobID': ap.jobID._id,
-                       'userID': ap.studentID._id.toString(),
-                       'status': "Provisionally accepted"
-                   }, function (err, rs) {
-                       if (err) throw err;
-                   });
-
-                   if(job.post.OtherCategory)
-                       var Cat = ap.jobID.post.OtherCategory;
-                   else
-                       var Cat = ap.jobID.post.category;
-
-                   var notiStud = {
-                       userID: ap.studentID._id.toString(),
-                       jobID: ap.jobID._id,
-                       seen: false,
-                       status: 'Declined',
-                       type: 'status change',
-                       title: Cat
-                   };
-                   db.notifications.create(notiStud,function(err, res){
-
-                   });
-                   var notiEmploy = {
-                       userID: ap.employerID._id.toString(),
-                       jobID: ap.jobID._id,
-                       seen: false,
-                       status: 'Withdrawn',
-                       type: 'withdrawn',
-                       title: Cat
-                   };
-                   db.notifications.create(notiEmploy,function(err, res){
-
-                   });
-
-                   // send email to students and employers
-                   if (usr.emailDisable == undefined || !usr.emailDisable) {
-                       var args = {};
-                       args.name = usr.name.name;
-                       args.employer = emp.contact.name;
-                       args.date = convertDateForDisplay(job.post.startingDate);
-                       if (job.post.OtherCategory)
-                           args.role = job.post.OtherCategory;
-                       else
-                           args.role = job.post.category;
-                       args.email = usr.contact.email;
-
-                       args.subject = args.role;
-                       args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
-
-                       mailer.sendMail('applicationDenied', ap.studentID._id, args, function (err, rr) {
-                           //console.log("Send email: " + rr);
-                       });
-                   }
-                   if (emp.emailDisable == undefined || !emp.emailDisable) {
-                       var args = {
-                           name: emp.contact.name,
-                           talent: usr.name.name + " " + usr.name.surname,
-                           email: emp.contact.email,
-                           link: 'http://154.66.197.62:8080/applicants'
-                       };
-
-                       mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
-                           //console.log(rss);
-                       });
-                   }
-               });
-           }
-        });
     });
 
     console.log('Hourly check');

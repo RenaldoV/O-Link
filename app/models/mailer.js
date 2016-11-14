@@ -144,7 +144,17 @@ module.exports ={
                 break;
             }
             case 'jobEditedTalent':{
-                console.log(args);
+                //console.log(args);
+                send(template,args,cb);
+                break;
+            }
+            case 'jobEditedTimeUp':{
+                args.vowel = isVowel(args.category);
+                send(template,args,cb);
+                break;
+            }
+            case 'offerTimeUp':{
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }

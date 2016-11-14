@@ -439,8 +439,8 @@ module.exports = function(app) {
 		var app = req.body.app;
 		//console.log(app.status);
 		if(app.status == "Provisionally accepted"){
-
-			db.applications.findOneAndUpdate({_id:app._id},{$unset:{edited:1, editTime: 1}}).populate('jobID').populate('studentID').populate('employerID').exec(function(err,doc){
+			var dat = Date.now();
+			db.applications.findOneAndUpdate({_id:app._id},{$unset:{edited:1, editTime: 1},$set:{offerDate:dat}}).populate('jobID').populate('studentID').populate('employerID').exec(function(err,doc){
 				if(err) throw err;
 
 				var docs = doc.toObject();
