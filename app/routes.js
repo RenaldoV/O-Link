@@ -155,7 +155,6 @@ module.exports = function(app) {
 
 
 				mailer.sendMail('forgotPassword',tempUser._id,args, function(err,res){
-					console.log(res);
 					done(err, 'done');
 				});
 
@@ -227,7 +226,7 @@ module.exports = function(app) {
 		if (temp.region == null) {
 			temp.region = '';
 		}
-		console.log(temp);
+		//console.log(temp);
 		if (temp.radius != null) {
 
 			db.jobs.find({
@@ -245,7 +244,7 @@ module.exports = function(app) {
 				if (err) throw err;
 				else {
 
-					console.log(1);
+					//console.log(1);
 					if (rows.length == 0) {
 
 						res.send(false);
@@ -267,7 +266,7 @@ module.exports = function(app) {
 			}).where('post.category').in(temp.categories).where('post.timePeriod').in(temp.periods).sort('-post.postDate').populate('employerID').exec(function (err, rows) {
 				if (err) throw err;
 				else {
-					console.log(2);
+					//console.log(2);
 
 					if (rows.length == 0)
 						res.send(false);
@@ -309,7 +308,7 @@ module.exports = function(app) {
 						args.email = usr.contact.email;
 
 						mailer.sendMail('jobLive',jab.employerID,args, function(err,rss){
-							console.log(rss);
+							console.log("mail sent: " + args.email);
 
 						});
 					}
@@ -330,9 +329,9 @@ module.exports = function(app) {
 		var args = req.body.args;
 		var template = req.body.template;
 		var id = req.body.id;
-		console.log(args);
-		console.log(template);
-		console.log(id);
+		//console.log(args);
+		//console.log(template);
+		//console.log(id);
 		mailer.sendMail(template, id, args, function (err, rs) {
 			if(err) throw err;
 			//console.log(rs);
@@ -437,12 +436,12 @@ module.exports = function(app) {
 
 					if (job.post.interviewRequired) {
 						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
-							console.log(rr);
+							console.log("mail sent: " + args.email);
 						});
 					}
 					else {
 						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
-							console.log(rr);
+							console.log("mail sent: " + args.email);
 						});
 					}
 				}
@@ -514,14 +513,14 @@ module.exports = function(app) {
 							mailer.sendMail('welcomeTalent',usr._id,args, function(err,rrs){
 								if(!err)
 								res.send(result);
-								console.log(rrs);
+								//console.log(rrs);
 							});
 						}else if(usr.type = 'employer'){
 							args.name = usr.contact.name;
 							mailer.sendMail('welcomeEmployer',usr._id,args, function(err,rrs){
 								if(!err)
 									res.send(result);
-								console.log(rrs);
+								//console.log(rrs);
 							});
 						}
 
@@ -681,7 +680,7 @@ module.exports = function(app) {
 	app.post('/getPp', function(req, res){
 		var def = __dirname + "\\uploads\\default.png";
 		var path = "";
-		console.log(req.body);
+		//console.log(req.body);
 		db.users.findOne({_id:req.body._id},{profilePicture:1},function(err,pp){
 			if(pp){
 				if(path = pp.toObject().profilePicture){
@@ -689,7 +688,7 @@ module.exports = function(app) {
 					path = __dirname + path;
 					fs.readFile(path, function(err,data){
 						if(err) {
-							console.log(err);
+							//console.log(err);
 							fs.readFile(def, function(err,data){
 								if(err) {
 
@@ -707,7 +706,7 @@ module.exports = function(app) {
 					path = def;
 					fs.readFile(path, function(err,data){
 						if(err) {
-							console.log(err);
+							//console.log(err);
 							fs.readFile(def, function(err,data){
 								if(err) {
 
@@ -815,7 +814,7 @@ module.exports = function(app) {
 		};
 
 				db.users.findOne({_id: user._id}, function (err, usrr) {
-					if (err) console.log(err);
+					if (err) throw err;
 					var tempPackages = [];
 					var usr = usrr.toObject();
 					//application stuff
@@ -840,7 +839,7 @@ module.exports = function(app) {
 									break;
 								}
 							}usr.packages = tempPackages;
-							console.log(tempPackages);
+							//console.log(tempPackages);
 						}
 					}
 					if(!flag){
@@ -881,11 +880,11 @@ module.exports = function(app) {
 									}
 
 									db.users.findOne({_id: job.employerID}, function (err, em) {
-										if (err) console.log(err);
+										if (err) throw err;
 										var emp = em.toObject();
 										args.employerName = emp.contact.name + " " + emp.contact.surname;
 										mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
-											console.log(rs);
+											console.log("mail sent: " + args.email);
 
 										});
 									});
@@ -904,7 +903,7 @@ module.exports = function(app) {
 										args.talentName = usr.name.name;
 										args.name = emp.contact.name + " " + emp.contact.surname;
 										mailer.sendMail('applicationMadeEmployer', usre._id, args, function (errr, rsss) {
-											console.log(rsss);
+											console.log("mail sent: " + args.email);
 										});
 									}
 								});
@@ -964,12 +963,12 @@ module.exports = function(app) {
 
 					if (job.post.interviewRequired) {
 						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
-							console.log(rr);
+							console.log("mail sent: " + args.email);
 						});
 					}
 					else {
 						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
-							console.log(rr);
+							console.log("mail sent: " + args.email);
 						});
 					}
 				}
@@ -978,11 +977,11 @@ module.exports = function(app) {
 					args.link = 'http://' + req.headers.host + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
 
 					db.jobs.findOneAndUpdate({_id: ap.jobID._id}, {$pull: {applicants: ap.studentID._id}}).exec(function (ers, ress) {
-						console.log(ress);
+						//console.log(ress);
 					});
 
 					mailer.sendMail('applicationDenied', usr._id, args, function (err, rr) {
-						console.log(rr);
+						//console.log(rr);
 					});
 				}
 			}
@@ -1044,7 +1043,7 @@ module.exports = function(app) {
 
 					mailer.sendMail('ratedTalent', rr._id,args,function(err, r){
 
-						console.log(r);
+						console.log("mail sent: " + args.email);
 
 					});
 					}
@@ -1351,9 +1350,9 @@ module.exports = function(app) {
 	//activate a new user
 	app.post('/activateUser', function(req,res){
 		var user = req.body;
-		console.log(user);
+		//console.log(user);
 		db.users.findOneAndUpdate({activateToken: user.token},{$set:{active: true},$unset: {activateToken:""}}, function(err,doc){
-			if(err) console.log(err);
+			if(err) throw err;
 			res.send(doc);
 		} );
 	});
@@ -1459,7 +1458,7 @@ module.exports = function(app) {
 
 
 		var app = req.body;
-		console.log(app);
+		//console.log(app);
 		db.applications.findOneAndUpdate(app,{$set: {offered:"accepted", status:"Confirmed"}}).populate('studentID').populate('employerID').populate('jobID').exec(function(err, ap){
 			if (err) throw err;
 
@@ -1491,12 +1490,12 @@ module.exports = function(app) {
 				if(job.post.interviewRequired){
 
 					mailer.sendMail('interviewAccepted', emp._id, args, function (er, rss) {
-						console.log(rss);
+						console.log("mail sent: " + args.email);
 					});
 				}
 				else{
 					mailer.sendMail('offerAccepted', emp._id, args, function (er, rss) {
-						console.log(rss);
+						console.log("mail sent: " + args.email);
 					});
 				}
 
@@ -1594,10 +1593,10 @@ module.exports = function(app) {
 	app.post('/getOfferCount', function(req, res){
 
 		var user = req.body._id;
-		console.log(user);
+		//console.log(user);
 
 		db.jobs.count({employerID: user,status:'active'}, function(err, count){
-			console.log(count);
+			//console.log(count);
 			res.send({count:count});
 		});
 
@@ -1687,8 +1686,7 @@ module.exports = function(app) {
 								}
 
 								mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
-									console.log(rss);
-
+									console.log("mail sent: " + args.email);
 								});
 							}
 							res.send(doc);
@@ -1708,12 +1706,12 @@ module.exports = function(app) {
 		db.users.update({_id:user._id},
 				{$pull:{packages:{'paymentToken' : user.paymentToken}}}, function(err,doc){
 					if(!err) {
-						console.log(doc);
+						//console.log(doc);
 						res.send(doc);
 						}
 					else
 					{
-						console.log(err);
+						//console.log(err);
 						res.send("error");
 					}
 				});
@@ -1762,7 +1760,7 @@ var path = require('path');
 			if(err) throw err;
 
 			else{
-				console.log(temp);
+				//console.log(temp);
 				cb(temp);
 			}
 
