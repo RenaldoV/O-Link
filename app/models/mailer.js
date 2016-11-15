@@ -15,8 +15,8 @@ var options = {
 
 var mailer = nodemailer.createTransport(smtpttransport({
     host: "mail.o-link.co.za",
-    secureConnection: false,
-    port: 25,
+    secureConnection: true,
+    port: 465,
     auth: {
         user: "no-reply@o-link.co.za",
         pass: "Olink@Noreply2016"
