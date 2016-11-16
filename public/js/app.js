@@ -2,7 +2,7 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar','mgo-angular-wizard','angularModalService']);
 //Starts when the app starts
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
@@ -64,8 +64,17 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 });
 
+app.controller('worksControl',function($scope,close){
+
+    $scope.dismissModal = function(result) {
+        close(result, 200); // close, but give 200ms for bootstrap to animate
+    };
+
+});
+
+
 //controller for all dashboards
-app.controller('dashControl',function($scope, authService, session, rate, $http, $window){
+app.controller('dashControl',function($scope,ModalService, authService, session, rate, $http, $window){
 
     //student's rating stuff
     /*
@@ -79,6 +88,27 @@ app.controller('dashControl',function($scope, authService, session, rate, $http,
             });
 
     }*/
+
+    $scope.showAModal = function() {
+
+        // Just provide a template url, a controller and call 'showModal'.
+        ModalService.showModal({
+            templateUrl: "../views/blocks/works.html",
+            controller: "worksControl"
+        }).then(function(modal) {
+            // The modal object has the element built, if this is a bootstrap modal
+            // you can call 'modal' to show it, if it's a custom modal just show or hide
+            // it as you need to.
+            modal.element.modal();
+            modal.close.then(function(result) {
+                alert();
+            });
+        });
+
+    };
+
+    $scope.showAModal();
+
     function studentBoxes(arr, i){
 
         rate.makeStudentBox(arr[i], function(res){

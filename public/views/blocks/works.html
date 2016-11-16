@@ -1,0 +1,29 @@
+<div class="modal fade" style="top:200px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <wizard on-finish="finishedWizard()">
+                    <wz-step wz-title="Download">
+                        <h1 class="blueText">First step</h1>
+                        <p>&nbsp;&nbsp;&nbsp; This is the first step</p>
+                        &nbsp;&nbsp;&nbsp;<input type="submit" wz-next value="Next" class="btn btn-sm blueBack"/>
+                    </wz-step>
+                    <wz-step wz-title="Sign Up">
+                        <h1 class="blueText">Second Step</h1>
+                        <p>This is the second step</p>
+                        <input type="submit" wz-next value="Next" class="btn btn-sm blueBack"/>
+                    </wz-step>
+                    <wz-step wz-title="Enjoy">
+                        <h1 class="blueText">Third Step</h1>
+                        <p>This is the third step</p>
+                        <input type="submit"  value="Next" class="btn btn-sm blueBack"/>
+                    </wz-step>
+                </wizard>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Done</button>
+            </div>
+        </div>
+    </div>
+</div>
