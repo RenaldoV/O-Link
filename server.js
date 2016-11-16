@@ -384,7 +384,7 @@ function dailyCheck(){
 
                                     args.subject = args.role;
                                     args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
-                                    console.log("mailer args " + args + " " + applicant);
+                                    //console.log("mailer args " + args + " " + applicant);
                                     mailer.sendMail('applicationDenied', applicant, args, function (err, rr) {
                                         //console.log("Send email: " + rr);
                                     });
@@ -444,7 +444,7 @@ function convertDateForDisplay(date){
 }
 
 function completeJob(job) {
-    console.log(job.post.OtherCategory + " completed");
+
     db.jobs.update({_id:job._id}, {$set:{status: 'Completed'}}, function(err, dox){
         if(err) throw err;
     });
@@ -459,31 +459,28 @@ function completeJob(job) {
             status: 'Completed'
         }).populate('studentID').populate('employerID').populate('jobID').exec(function (err, aps) {
             if (err) throw err;
-            var emails = [];
-            aps.forEach(function (ap) {
+            if(aps.length > 0){
+                var usr = aps[0].studentID.toObject();
+                var emp = aps[0].employerID.toObject();
+                var job = aps[0].jobID.toObject();
 
-                var usr = ap.studentID.toObject();
-                var emp = ap.employerID.toObject();
-                var job = ap.jobID.toObject();
-
+                if(job.post.OtherCategory)
+                    var Cat = job.post.OtherCategory;
+                else
+                    var Cat = job.post.category
                 var args = {
                     link: 'http://localhost:8080/dashboard/',
                     employerName: emp.contact.name,
-                    talentName: usr.name.name,
-                    employer: emp.contact.name + " " + emp.contact.surname,
-                    talent: usr.name.name + " " + usr.name.surname,
-                    category: job.post.category,
-                    date: job.post.startingDate
+                    category: Cat,
+                    date: convertDateForDisplay(job.post.startingDate)
                 };
-                if (usr.emailDisable == undefined || !usr.emailDisable) {
-                    args.email = usr.contact.email;
-                    if (emails.indexOf(usr.contact.email) > -1) {
-                        mailer.sendMail('rateTalent', usr._id, args, function (err, rs) {
-                            console.log(rs);
-                        });
-                    }
+                if (emp.emailDisable == undefined || !emp.emailDisable) {
+                    args.email = emp.contact.email;
+                    mailer.sendMail('rateStudents', emp._id, args, function (err, rs) {
+                        //console.log(rs);
+                    });
                 }
-            });
+            }
         });
     });
 }

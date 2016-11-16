@@ -308,7 +308,7 @@ module.exports = function(app) {
 						args.email = usr.contact.email;
 
 						mailer.sendMail('jobLive',jab.employerID,args, function(err,rss){
-							console.log("mail sent: " + args.email);
+							//console.log("mail sent: " + args.email);
 
 						});
 					}
@@ -436,12 +436,12 @@ module.exports = function(app) {
 
 					if (job.post.interviewRequired) {
 						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
-							console.log("mail sent: " + args.email);
+							//console.log("mail sent: " + args.email);
 						});
 					}
 					else {
 						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
-							console.log("mail sent: " + args.email);
+							//console.log("mail sent: " + args.email);
 						});
 					}
 				}
@@ -884,8 +884,7 @@ module.exports = function(app) {
 										var emp = em.toObject();
 										args.employerName = emp.contact.name + " " + emp.contact.surname;
 										mailer.sendMail('applicationMade', usr._id, args, function (errr, rs) {
-											console.log("mail sent: " + args.email);
-
+											//console.log("mail sent: " + args.email);
 										});
 									});
 								}
@@ -903,7 +902,7 @@ module.exports = function(app) {
 										args.talentName = usr.name.name;
 										args.name = emp.contact.name + " " + emp.contact.surname;
 										mailer.sendMail('applicationMadeEmployer', usre._id, args, function (errr, rsss) {
-											console.log("mail sent: " + args.email);
+											//console.log("mail sent: " + args.email);
 										});
 									}
 								});
@@ -963,12 +962,12 @@ module.exports = function(app) {
 
 					if (job.post.interviewRequired) {
 						mailer.sendMail('offerMadeInterview', usr._id, args, function (err, rr) {
-							console.log("mail sent: " + args.email);
+							//console.log("mail sent: " + args.email);
 						});
 					}
 					else {
 						mailer.sendMail('offerMade', usr._id, args, function (err, rr) {
-							console.log("mail sent: " + args.email);
+							//console.log("mail sent: " + args.email);
 						});
 					}
 				}
@@ -1043,7 +1042,7 @@ module.exports = function(app) {
 
 					mailer.sendMail('ratedTalent', rr._id,args,function(err, r){
 
-						console.log("mail sent: " + args.email);
+						//console.log("mail sent: " + args.email);
 
 					});
 					}
@@ -1490,12 +1489,12 @@ module.exports = function(app) {
 				if(job.post.interviewRequired){
 
 					mailer.sendMail('interviewAccepted', emp._id, args, function (er, rss) {
-						console.log("mail sent: " + args.email);
+						//console.log("mail sent: " + args.email);
 					});
 				}
 				else{
 					mailer.sendMail('offerAccepted', emp._id, args, function (er, rss) {
-						console.log("mail sent: " + args.email);
+						//console.log("mail sent: " + args.email);
 					});
 				}
 
@@ -1686,7 +1685,7 @@ module.exports = function(app) {
 								}
 
 								mailer.sendMail('paymentReceived', user._id, args, function (err, rss) {
-									console.log("mail sent: " + args.email);
+									//console.log("mail sent: " + args.email);
 								});
 							}
 							res.send(doc);

@@ -3,7 +3,7 @@
  */
 var socket = io();
 
-app.controller('notifications', function($scope,$http, session, cacheUser){
+app.controller('notifications', function($scope,$http,$interval, session, cacheUser){
 
 
     $scope.notifications = {};
@@ -39,15 +39,17 @@ app.controller('notifications', function($scope,$http, session, cacheUser){
 
     function loadNotifications() {
         return $http
-            .post('/loadNotifications', {id: session.user._id})
+            .post('/loadNotifications', {id: session.user._id, ignoreLoadingBar:true})
             .then(function (res) {
                 //console.log(res.data);
                 $scope.notifications = res.data;
 
-
-
             });
     }
+
+    var theInterval = $interval(function(){
+        loadNotifications();
+    }.bind(this), 10000);
 
 });
 
