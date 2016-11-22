@@ -437,7 +437,7 @@ app.controller('activateProfileControl', function ($scope,$http,$location, authS
 
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                     $scope.setCurrentUser(user);
-                    $location.url("/dashboard");
+                    $location.url("/dashboard?tutorial=true");
 
 
                 }, function () {

@@ -3,26 +3,105 @@
         <div class="modal-content">
             <div class="modal-body">
                 <wizard on-finish="finishedWizard()">
-                    <wz-step wz-title="Download">
-                        <h1 class="blueText">First step</h1>
-                        <p>&nbsp;&nbsp;&nbsp; This is the first step</p>
-                        &nbsp;&nbsp;&nbsp;<input type="submit" wz-next value="Next" class="btn btn-sm blueBack"/>
+                    <wz-step wz-title="Create Simple CV">
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Create Simple CV</h1></div>
+                            <div class="col-xs-2" style="text-align: right; margin-top:8px">
+                                <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-xs-4" style="margin-top: 20px;">
+                            </div>
+                            <div class="col-xs-4" style="text-align: center">
+                                <span class="fa-stack fa-3x blueText">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-address-card fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
+                                <a style="float:right; right:0px;" ng-click="goNext()" href=""><i class="fa fa-angle-right fa-3x blueText" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>One CV is used for applications to all O-Link job
+                                    offers. To improve your chances of being hired,
+                                    include as much detail you can about yourself,
+                                    your qualifications, certification and work
+                                    experience.</p>
+                            </div>
+
+                        </div>
                     </wz-step>
-                    <wz-step wz-title="Sign Up">
-                        <h1 class="blueText">Second Step</h1>
-                        <p>This is the second step</p>
-                        <input type="submit" wz-next value="Next" class="btn btn-sm blueBack"/>
+                    <wz-step wz-title="Apply to jobs">
+                        <div class="row">
+                            <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Apply to jobs</h1></div>
+                            <div class="col-xs-2" style="text-align: right; margin-top:8px">
+                                <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-xs-4" style="margin-top: 20px;">
+                                <a ng-click="goBack()" href=""><i class="fa fa-angle-left fa-3x blueText" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-xs-4" style="text-align: center">
+                                <span class="fa-stack fa-3x blueText">
+                                  <i class="fa fa-circle fa-stack-2x"></i>
+                                  <i class="fa fa-suitcase fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </div>
+                            <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
+                                <a style="float:right; right:0px;" ng-click="goNext()" href=""><i class="fa fa-angle-right fa-3x blueText" aria-hidden="true"></i></a>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>Apply for the jobs that are most suited to your
+                                    needs and constraints (remember you can only
+                                    apply to two jobs per day unless you purchase
+                                    further applications).</p>
+                            </div>
+                        </div>
                     </wz-step>
-                    <wz-step wz-title="Enjoy">
-                        <h1 class="blueText">Third Step</h1>
+                    <wz-step wz-title="Check Application Status">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-4"><h1>Check Application Status</h1></div>
+                            <div class="col-xs-2">
+                                <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px; float:left" class="btn btn-sm">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <span class="fa-stack fa-3x blueText">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-clock-o fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <p>Our
+                            colour
+                            progress system lets you keep track of
+                            your application progress.</p>
+                        <p>- Your application has been declined.</p>
+                        <p>- Your application is pending.</p>
+                        <p>- Your application has been provisionally accepted.</p>
+                        <p>- You have accepted an offer from your employer.</p>
+                        <input type="submit" wz-next  value="Next" class="btn btn-sm blueBack"/>
+                    </wz-step>
+                    <wz-step wz-title="Enjoy Platform">
+                        <div class="row">
+                            <div class="col-xs-6 col-xs-offset-4"><h1>Enjoy Platform</h1></div>
+                            <div class="col-xs-2">
+                                <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px; float:left" class="btn btn-sm">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-1"><a ng-click="" href=""><i class="fa fa-angle-right-3x blueText" aria-hidden="true"></i></a></div>
+                        </div>
+                        <span class="fa-stack fa-3x blueText">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                        </span>
                         <p>This is the third step</p>
-                        <input type="submit"  value="Next" class="btn btn-sm blueBack"/>
+                        <input type="submit" wz-next  value="Next" class="btn btn-sm blueBack"/>
                     </wz-step>
                 </wizard>
                 <br>
-            </div>
-            <div class="modal-footer">
-                <button type="button" ng-click="close()" class="btn btn-default" data-dismiss="modal">Done</button>
             </div>
         </div>
     </div>

@@ -1101,6 +1101,9 @@ body {
   }
 }
 @media (max-width: 520px) {
+  ul.steps-indicator.steps-4 li a{
+    color:transparent;
+  }
   .applicantsTableAddSmall{
     display:none;
   }
