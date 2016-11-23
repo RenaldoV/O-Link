@@ -330,7 +330,9 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
             }
         });
 
-
+    $scope.gooiHIT = function(){
+        $window.location.href="/dashboard?tutorial=true";
+    };
     $scope.toggleEmail = function(){
         $scope.emailNoti = !$scope.emailNoti;
         var message;

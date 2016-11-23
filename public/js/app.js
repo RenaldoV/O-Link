@@ -64,11 +64,12 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 });
 
-app.controller('worksControl',function($scope,$element,close,WizardHandler){
+app.controller('worksControl',function($scope,$element,close,WizardHandler,$window){
 
     $scope.dismissModal = function() {
         $element.modal('hide');
         close(null,200); // close, but give 200ms for bootstrap to animate
+        $window.location = "/dashboard"
     };
 
     $scope.goNext = function(){

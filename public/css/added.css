@@ -371,6 +371,15 @@ h1 { font-size: 1.5em; margin: 10px; }
     height: 20px;
     background-color: #fcd621;
 }
+span.statusBall {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: #fcd621;
+    float:left;
+    margin-right: 5px;
+    margin-left: 20px;
+}
 .statusDiv1{
     float:right;
 }
