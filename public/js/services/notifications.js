@@ -47,9 +47,9 @@ app.controller('notifications', function($scope,$http,$interval, session, cacheU
             });
     }
 
-    var theInterval = $interval(function(){
+    /*var theInterval = $interval(function(){
         loadNotifications();
-    }.bind(this), 10000);
+    }.bind(this), 10000);*/
 
 });
 
