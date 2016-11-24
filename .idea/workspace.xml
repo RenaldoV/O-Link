@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="small changes">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/public/views/blocks/works.html" afterPath="$PROJECT_DIR$/public/views/blocks/studentWorks.html" />
+    <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/app.js" afterPath="$PROJECT_DIR$/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/navigation.js" afterPath="$PROJECT_DIR$/public/js/controllers/navigation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/employerNav.html" afterPath="$PROJECT_DIR$/public/views/blocks/employerNav.html" />
     </list>
     <ignored path="o-link.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -485,7 +479,7 @@
       <workItem from="1479724979818" duration="15194000" />
       <workItem from="1479893052318" duration="1119000" />
       <workItem from="1479895883512" duration="3429000" />
-      <workItem from="1479984607889" duration="4199000" />
+      <workItem from="1479984607889" duration="4351000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -522,11 +516,18 @@
       <option name="project" value="LOCAL" />
       <updated>1479898135433</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added employer how it works">
+      <created>1479988825933</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1479988825933</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="222467000" />
+    <option name="totallyTimeSpent" value="222619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -588,7 +589,8 @@
     <MESSAGE value="removed console logs from server" />
     <MESSAGE value="added to bower" />
     <MESSAGE value="removed auto notification update" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed auto notification update" />
+    <MESSAGE value="Added employer how it works" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added employer how it works" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
