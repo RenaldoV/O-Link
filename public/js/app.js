@@ -64,20 +64,22 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 });
 
-app.controller('worksControl',function($scope,$element,close,WizardHandler,$window){
+app.controller('worksControl',function($scope,$element,close,WizardHandler,$window,$location){
 
     $scope.dismissModal = function() {
         $element.modal('hide');
         close(null,200); // close, but give 200ms for bootstrap to animate
-        $window.location = "/dashboard"
+        if($location.url().replace("/dashboard", '') == "?tutorial=true"){
+            $window.location = "/dashboard";
+        }
     };
 
     $scope.goNext = function(){
         WizardHandler.wizard().next();
-    }
+    };
     $scope.goBack = function(){
         WizardHandler.wizard().previous();
-    }
+    };
 
 });
 
@@ -85,39 +87,9 @@ app.controller('worksControl',function($scope,$element,close,WizardHandler,$wind
 //controller for all dashboards
 app.controller('dashControl',function($scope,ModalService, authService, session, rate, $http, $window,$location){
 
-    //student's rating stuff
-    /*
-    function employerBoxes(arr, i){
-
-            rate.makeEmployerBox(arr[i], function(res){
-                if(i < arr.length -1)
-                {
-                    employerBoxes(arr, ++i);
-                }
-            });
-
-    }*/
     var temp = $location.url();
-
     temp = temp.replace("/dashboard", '');
-    if(temp == "?tutorial=true"){
-        $scope.showAModal = function() {
 
-            // Just provide a template url, a controller and call 'showModal'.
-            ModalService.showModal({
-                templateUrl: "../views/blocks/works.html",
-                controller: "worksControl"
-            }).then(function(modal) {
-                // The modal object has the element built, if this is a bootstrap modal
-                // you can call 'modal' to show it, if it's a custom modal just show or hide
-                // it as you need to.
-                modal.element.modal();
-            });
-
-        };
-
-        $scope.showAModal();
-    }
 
     function studentBoxes(arr, i){
 
@@ -137,19 +109,44 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
         var user = session.user;
         if(user.type == "student")
         {
-            //student's rating stuff
-           /* $http
-                .post('/getRatingDataForStudent', {id: user._id})
-                .then(function (res) {
+            if(temp == "?tutorial=true"){
+                $scope.showAModal = function() {
 
-                    var notifications = res.data;
-                    if(notifications.length>0)
-                   employerBoxes(notifications,0);
-                });*/
+                    // Just provide a template url, a controller and call 'showModal'.
+                    ModalService.showModal({
+                        templateUrl: "../views/blocks/studentWorks.html",
+                        controller: "worksControl"
+                    }).then(function(modal) {
+                        // The modal object has the element built, if this is a bootstrap modal
+                        // you can call 'modal' to show it, if it's a custom modal just show or hide
+                        // it as you need to.
+                        modal.element.modal();
+                    });
+                };
+
+                $scope.showAModal();
+            }
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
             }}
         else if(user.type == "employer"){
+            if(temp == "?tutorial=true"){
+                $scope.showAModal = function() {
+
+                    // Just provide a template url, a controller and call 'showModal'.
+                    ModalService.showModal({
+                        templateUrl: "../views/blocks/employerWorks.html",
+                        controller: "worksControl"
+                    }).then(function(modal) {
+                        // The modal object has the element built, if this is a bootstrap modal
+                        // you can call 'modal' to show it, if it's a custom modal just show or hide
+                        // it as you need to.
+                        modal.element.modal();
+                    });
+                };
+
+                $scope.showAModal();
+            }
             $http
                 .post('/getRatingDataForEmployer', {id: user._id})
                 .then(function (res) {

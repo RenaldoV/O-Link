@@ -1200,6 +1200,14 @@ div.modal-content {
     border-radius: 30px;
     border-width: 1px;
     border-color: #33B6CC;
+    padding-bottom:20px;
+}
+
+div.modal-content.employerModal {
+    border-radius: 30px;
+    border-width: 1px;
+    border-color: #00b488;
+    padding-bottom:20px;
 }
 
 ul.steps-indicator li a{
@@ -1225,4 +1233,22 @@ ul.steps-indicator li.editing a:before {
 ul.steps-indicator li.editing a{
     font-weight: bold;
      color:#33B6CC;
+}
+
+div.employerModal ul.steps-indicator li.current a{
+    font-weight: bold;
+    color:#00b488;
+}
+div.employerModal ul.steps-indicator li.current a:before {
+    background-color: #00b488;
+}
+div.employerModal ul.steps-indicator li.done a:before {
+    background-color: #33B6CC;
+}
+div.employerModal ul.steps-indicator li.editing a:before {
+    background-color: #808080;
+}
+div.employerModal ul.steps-indicator li.editing a{
+    font-weight: bold;
+    color:#00b488;
 }

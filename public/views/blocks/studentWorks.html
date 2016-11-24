@@ -4,14 +4,15 @@
             <div class="modal-body">
                 <wizard on-finish="finishedWizard()">
                     <wz-step wz-title="Create Simple CV">
-                        <div class="row">
+                        <div class="hitRow row">
                             <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Create Simple CV</h1></div>
                             <div class="col-xs-2" style="text-align: right; margin-top:8px">
                                 <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
-
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-4" style="margin-top: 20px;">
                             </div>
                             <div class="col-xs-4" style="text-align: center">
@@ -23,6 +24,8 @@
                             <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
                                 <a style="float:right; right:0px;" ng-click="goNext()" href=""><i class="fa fa-angle-right fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px; text-align: center;">
                                 <p>One CV is used for applications to all O-Link job
                                     offers. To improve your chances of being hired,
@@ -33,13 +36,15 @@
                         </div>
                     </wz-step>
                     <wz-step wz-title="Apply To Jobs">
-                        <div class="row">
+                        <div class="hitRow row">
                             <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Apply To Jobs</h1></div>
                             <div class="col-xs-2" style="text-align: right; margin-top:8px">
                                 <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-4" style="margin-top: 20px;">
                                 <a ng-click="goBack()" href=""><i class="fa fa-angle-left fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
@@ -52,6 +57,8 @@
                             <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
                                 <a style="float:right; right:0px;" ng-click="goNext()" href=""><i class="fa fa-angle-right fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px; text-align: center;">
                                 <p>Apply for the jobs that are most suited to your
                                     needs and constraints (remember you can only
@@ -61,13 +68,15 @@
                         </div>
                     </wz-step>
                     <wz-step wz-title="Check Application Status">
-                        <div class="row">
+                        <div class="hitRow row">
                             <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Check Application Status</h1></div>
                             <div class="col-xs-2" style="text-align: right; margin-top:8px">
                                 <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-4" style="margin-top: 20px;">
                                 <a ng-click="goBack()" href=""><i class="fa fa-angle-left fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
@@ -80,7 +89,9 @@
                             <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
                                 <a style="float:right; right:0px;" ng-click="goNext()" href=""><i class="fa fa-angle-right fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
-                            <div class="col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px;">
+                        </div>
+                        <div class="hitRow row">
+                            <div class="hitStatusDesktop col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px;">
                                 <p>Our
                                     colour
                                     progress system lets you keep track of
@@ -90,16 +101,28 @@
                                 <p><span style="background-color: lawngreen" class="statusBall"></span>- Your application has been provisionally accepted.</p>
                                 <p><span style="background-color: #286090" class="statusBall"></span>- You have accepted an offer from your employer.</p>
                             </div>
+                            <div class="hitStatusMobile col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px;">
+                                <p>Our
+                                    colour
+                                    progress system lets you keep track of
+                                    your application progress.</p>
+                                <p><span style="background-color: red" class="statusBall"></span> - Declined</p>
+                                <p><span style="background-color: orange" class="statusBall"></span>- Pending</p>
+                                <p><span style="background-color: lawngreen" class="statusBall"></span>- Provisionally Accepted</p>
+                                <p><span style="background-color: #286090" class="statusBall"></span>- Accepted Offer</p>
+                            </div>
                         </div>
                     </wz-step>
                     <wz-step wz-title="Enjoy Platform">
-                        <div class="row">
+                        <div class="hitRow row">
                             <div class="col-xs-8 col-xs-offset-2" style="text-align: center"><h1>Enjoy Platform</h1></div>
                             <div class="col-xs-2" style="text-align: right; margin-top:8px">
                                 <a ng-click="dismissModal()" style="border:1px solid black; border-radius: 4px;" class="btn btn-sm">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-4" style="margin-top: 20px;">
                                 <a ng-click="goBack()" href=""><i class="fa fa-angle-left fa-3x blueText" aria-hidden="true"></i></a>
                             </div>
@@ -112,6 +135,8 @@
                             <div class="col-xs-4" style="float:right; right:0px; margin-top: 20px;">
 
                             </div>
+                        </div>
+                        <div class="hitRow row">
                             <div class="col-xs-10 col-xs-offset-1" style="padding-left: 25px; padding-right: 25px; text-align: center;">
                                 <p>Carry out your work and receive an O-Link Rating
                                     and Comment from your employer based on

@@ -934,6 +934,10 @@ body {
 
 @media (min-width: 768px) {
 
+  .hitRow{
+    padding-bottom: 20px;
+  }
+
   h4.white{
     padding-left: 25px;
     padding-right: 25px;
@@ -1110,6 +1114,9 @@ body {
   .jobHistStars{
     display: none;
   }
+  div.hitStatusDesktop{
+    display: none;
+  }
 }
 @media (max-width: 460px) {
   .jobHistSmall{
@@ -1119,6 +1126,9 @@ body {
 @media (min-width: 521px) {
   .jobHistNumRating{
     display:none;
+  }
+  div.hitStatusMobile{
+    display: none;
   }
 }
 @media (max-width: 540px) {
@@ -1139,7 +1149,9 @@ body {
   .jobMobileSpace {
     display: none;
   }
+
 }
+
 @media (max-width: 680px) {
   tr > td.histPsm{
     width: 3%;

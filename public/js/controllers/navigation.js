@@ -313,7 +313,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
 });
 
 
-app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http, $location, $timeout){
+app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http, $location, $timeout,ModalService){
 
     var user = session.user;
     $scope.user = user;
@@ -331,7 +331,15 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
         });
 
     $scope.gooiHIT = function(){
-        $window.location.href="/dashboard?tutorial=true";
+        ModalService.showModal({
+            templateUrl: "../views/blocks/studentWorks.html",
+            controller: "worksControl"
+        }).then(function(modal) {
+            // The modal object has the element built, if this is a bootstrap modal
+            // you can call 'modal' to show it, if it's a custom modal just show or hide
+            // it as you need to.
+            modal.element.modal();
+        });
     };
     $scope.toggleEmail = function(){
         $scope.emailNoti = !$scope.emailNoti;
@@ -397,7 +405,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
 
 });
 
-app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http,$timeout){
+app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http,$timeout,ModalService){
 
     var user = session.user;
     $scope.user = user;
@@ -413,6 +421,18 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
                     $scope.toggle = "fa-toggle-off";
             }
         });
+
+    $scope.gooiHIT = function(){
+        ModalService.showModal({
+            templateUrl: "../views/blocks/employerWorks.html",
+            controller: "worksControl"
+        }).then(function(modal) {
+            // The modal object has the element built, if this is a bootstrap modal
+            // you can call 'modal' to show it, if it's a custom modal just show or hide
+            // it as you need to.
+            modal.element.modal();
+        });
+    };
 
     $scope.toggleClicked = function(){
         $scope.emailNoti = !$scope.emailNoti;
