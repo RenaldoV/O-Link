@@ -874,6 +874,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         .then(function(res) {
             $rootScope.$broadcast('job', cacheUser.user);
             $scope.job = res.data;
+            
             $scope.job.post.startingDate = convertDateForDisplay($scope.job.post.startingDate);
             if($scope.job.post.endDate)
             {
@@ -1121,6 +1122,8 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
     $scope.apply = function() {
         $scope.clicked = true;
+        job = $scope.job;
+
         var meets = [];
         var crit = [];
         if (typeof job.post.requirements == 'undefined'){
