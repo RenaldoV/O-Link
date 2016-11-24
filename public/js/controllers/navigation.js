@@ -330,7 +330,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
             }
         });
 
-    $scope.gooiHIT = function(){
+    $scope.gooiHITStudent = function(){
         ModalService.showModal({
             templateUrl: "../views/blocks/studentWorks.html",
             controller: "worksControl"
@@ -422,7 +422,7 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
             }
         });
 
-    $scope.gooiHIT = function(){
+    $scope.gooiHITemployer = function(){
         ModalService.showModal({
             templateUrl: "../views/blocks/employerWorks.html",
             controller: "worksControl"

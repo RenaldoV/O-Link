@@ -110,8 +110,6 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
         if(user.type == "student")
         {
             if(temp == "?tutorial=true"){
-                $scope.showAModal = function() {
-
                     // Just provide a template url, a controller and call 'showModal'.
                     ModalService.showModal({
                         templateUrl: "../views/blocks/studentWorks.html",
@@ -122,17 +120,13 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
                         // it as you need to.
                         modal.element.modal();
                     });
-                };
-
-                $scope.showAModal();
             }
             $scope.getDash= function() {
                 return "../views/blocks/studentDash.html";
-            }}
+            }
+        }
         else if(user.type == "employer"){
             if(temp == "?tutorial=true"){
-                $scope.showAModal = function() {
-
                     // Just provide a template url, a controller and call 'showModal'.
                     ModalService.showModal({
                         templateUrl: "../views/blocks/employerWorks.html",
@@ -143,9 +137,6 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
                         // it as you need to.
                         modal.element.modal();
                     });
-                };
-
-                $scope.showAModal();
             }
             $http
                 .post('/getRatingDataForEmployer', {id: user._id})
