@@ -1201,6 +1201,8 @@ div.modal-content {
     border-width: 1px;
     border-color: #33B6CC;
     padding-bottom:20px;
+    position:relative;
+    height: 409.1px;
 }
 
 div.modal-content.employerModal {
@@ -1208,8 +1210,12 @@ div.modal-content.employerModal {
     border-width: 1px;
     border-color: #00b488;
     padding-bottom:20px;
+    position:relative;
 }
-
+ul.steps-indicator{
+    position: fixed;
+    bottom: 40px;
+}
 ul.steps-indicator li a{
     text-transform: none;
     font-weight: 100;

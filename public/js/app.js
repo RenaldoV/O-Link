@@ -2,8 +2,19 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar','mgo-angular-wizard','angularModalService']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar','mgo-angular-wizard','angularModalService','thatisuday.ng-image-gallery']);
 //Starts when the app starts
+
+app.config(function(ngImageGalleryOptsProvider){
+    ngImageGalleryOptsProvider.setOpts({
+        thumbnails  :   true,
+        inline      :   false,
+        imgBubbles  :   false,
+        bgClose     :   true,
+        bubbles     :   true,
+        imgAnim     :   'fade'
+    });
+});
 app.run(function($cookies,$rootScope, session, authService, AUTH_EVENTS, rate){
 
     if ($cookies.get("user")){
@@ -64,6 +75,30 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 });
 
+app.controller('galleryControll', function($scope,$http, $window,session){
+
+        .post('/getPp', {_id:"580defccf2385c8c13221527"})
+        .then(function (res) {
+
+            $scope.image = res.data;
+
+            alert($scope.image);
+
+        });
+
+    $scope.images = [
+        {
+            title : 'This is amazing photo of nature',
+            alt : 'amazing nature photo',
+            url : "..\\..\\..\\app\\uploads\\" + session.user.profilePicture
+        }
+    ];
+
+    $scope.dismissModal = function() {
+        $element.modal('hide');
+        close(null,200); // close, but give 200ms for bootstrap to animate
+});
+
 app.controller('worksControl',function($scope,$element,close,WizardHandler,$window,$location){
 
     $scope.dismissModal = function() {
@@ -89,6 +124,15 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
 
     var temp = $location.url();
     temp = temp.replace("/dashboard", '');
+
+
+        templateUrl: "../views/blocks/gallery.html",
+        controller: "galleryControll"
+    }).then(function(modal) {
+        // The modal object has the element built, if this is a bootstrap modal
+        // you can call 'modal' to show it, if it's a custom modal just show or hide
+        // it as you need to.
+        modal.element.modal();
 
 
     function studentBoxes(arr, i){
