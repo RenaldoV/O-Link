@@ -77,6 +77,7 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 app.controller('galleryControll', function($scope,$http, $window,session){
 
+    /*$http
         .post('/getPp', {_id:"580defccf2385c8c13221527"})
         .then(function (res) {
 
@@ -97,6 +98,7 @@ app.controller('galleryControll', function($scope,$http, $window,session){
     $scope.dismissModal = function() {
         $element.modal('hide');
         close(null,200); // close, but give 200ms for bootstrap to animate
+    };*/
 });
 
 app.controller('worksControl',function($scope,$element,close,WizardHandler,$window,$location){
@@ -126,6 +128,7 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
     temp = temp.replace("/dashboard", '');
 
 
+    /*ModalService.showModal({
         templateUrl: "../views/blocks/gallery.html",
         controller: "galleryControll"
     }).then(function(modal) {
@@ -133,6 +136,7 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
         // you can call 'modal' to show it, if it's a custom modal just show or hide
         // it as you need to.
         modal.element.modal();
+    });*/
 
 
     function studentBoxes(arr, i){
