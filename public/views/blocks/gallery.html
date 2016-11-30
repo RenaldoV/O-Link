@@ -1,4 +1,6 @@
-<ng-image-gallery
+
+<div ng-controller="galleryControll">
+    <ng-image-gallery
         images="images"
         methods="methods"
         thumbnails="true"
@@ -8,6 +10,5 @@
         bubbles="true"
         img-anim="fade"
         conf="conf"
-        on-open="opened();"
-        on-close="closed();"
 ></ng-image-gallery>
+    </div>

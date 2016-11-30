@@ -1122,6 +1122,9 @@ body {
   div div.modal-content{
     height:450px;!important;
   }
+  div div.modal-content.employerModal{
+    height:420px;!important;
+  }
   .jobHistSmall{
     display:none;
   }

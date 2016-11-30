@@ -753,7 +753,7 @@ module.exports = function(app) {
 			if(file){
 				var path = __dirname + file;
 				fs.readFile(path, function(err,data){
-					if(err) throw err;
+					if(err) console.log(err);
 					else{
 						var buf = new Buffer(data).toString('base64');
 						res.send(buf);

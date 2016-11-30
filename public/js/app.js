@@ -77,28 +77,26 @@ app.controller('jobFeed', function($scope,$http, $window){
 
 app.controller('galleryControll', function($scope,$http, $window,session){
 
-    /*$http
+    $http
         .post('/getPp', {_id:"580defccf2385c8c13221527"})
         .then(function (res) {
-
-            $scope.image = res.data;
-
-            alert($scope.image);
-
+            $scope.image = res.data
+            $scope.images = [
+                {
+                    url : "data:image/png;base64,"+$scope.image
+                },
+                {
+                    url : 'https://pixabay.com/static/uploads/photo/2016/06/10/22/25/ortler-1449018_960_720.jpg'
+                },
+                {
+                    thumbUrl : 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701__340.jpg',
+                    url : 'https://pixabay.com/static/uploads/photo/2016/04/11/18/53/aviator-1322701_960_720.jpg'
+                }
+            ];
+            console.log($scope.images);
         });
 
-    $scope.images = [
-        {
-            title : 'This is amazing photo of nature',
-            alt : 'amazing nature photo',
-            url : "..\\..\\..\\app\\uploads\\" + session.user.profilePicture
-        }
-    ];
 
-    $scope.dismissModal = function() {
-        $element.modal('hide');
-        close(null,200); // close, but give 200ms for bootstrap to animate
-    };*/
 });
 
 app.controller('worksControl',function($scope,$element,close,WizardHandler,$window,$location){
@@ -126,18 +124,6 @@ app.controller('dashControl',function($scope,ModalService, authService, session,
 
     var temp = $location.url();
     temp = temp.replace("/dashboard", '');
-
-
-    /*ModalService.showModal({
-        templateUrl: "../views/blocks/gallery.html",
-        controller: "galleryControll"
-    }).then(function(modal) {
-        // The modal object has the element built, if this is a bootstrap modal
-        // you can call 'modal' to show it, if it's a custom modal just show or hide
-        // it as you need to.
-        modal.element.modal();
-    });*/
-
 
     function studentBoxes(arr, i){
 

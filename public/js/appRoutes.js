@@ -82,7 +82,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 			})
 			.when('/paymentCanceled', {
 				templateUrl: 'views/blocks/paymentCanceled.html'
-			});
+			})
+	.when('/gallery',{
+		templateUrl: 'views/blocks/gallery.html'
+	});
 
 
 
