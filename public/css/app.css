@@ -1119,6 +1119,9 @@ body {
   }
 }
 @media (max-width: 460px) {
+  div div.modal-content{
+    height:450px;!important;
+  }
   .jobHistSmall{
     display:none;
   }
