@@ -1177,6 +1177,9 @@ body {
 }
 
 @media (max-width: 767px) {
+  ul.navbar-nav .open .dropdown-menu{
+    position: fixed;
+  }
   div#loading-bar-spinner .spinner-icon {
     margin-left:4px;!important;
     margin-top: -6px;!important;
