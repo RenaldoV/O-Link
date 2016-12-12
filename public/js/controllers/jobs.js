@@ -302,7 +302,6 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                     delete job.applicants;
                                     job.status = 'active';
 
-
                                     $http({
                                         method: 'POST',
                                         url: '/jobUpdate',
@@ -327,12 +326,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                                         status: 'edited',
                                                         title: args.category
                                                     });
-
                                                     if (usr.emailDisable == undefined || !usr.emailDisable) {
                                                         var mail = "";
                                                         //set applicant's name parameter
                                                         args.student = usr.name.name;
-                                                        switch (temp.status){
+                                                        switch (app.status){
                                                             case "Pending":{
                                                                 args.pending = "You have 24 hours to either accept the changes or withdraw your application.";
                                                                 break;
@@ -346,7 +344,11 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                                                                 break;
                                                             }
                                                         }
-                                                        args.subject = args.category + " Edited - You have 24 hours to respond to the changes";
+                                                        if(isVowel(args.category))
+                                                            var article = "an ";
+                                                        else
+                                                            var article = "a ";
+                                                        args.subject = "Job Offer to Work as " + article + args.category + " has been Edited - You have 24 hours to respond to the changes";
                                                         args.link = 'http://' + location.host + '/job?id=' + job._id;
                                                         args.email = usr.contact.email;
                                                         args.employer = emp.contact.name + " " + emp.contact.surname;
@@ -1524,3 +1526,13 @@ app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $
 
 });
 
+function isVowel(string){
+    var vowels = ['a','e','o','i','u'];
+    for(var i = 0; i< vowels.length; i++){
+        if(string[0] == vowels[i] || string[0]== vowels[i].toUpperCase())
+        {
+            return true;
+        }
+    }
+    return false;
+};

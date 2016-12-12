@@ -97,14 +97,14 @@ module.exports ={
         switch(template){
             case 'welcomeTalent':{
 
-                args.subject = 'Welcome to O-Link';
+                args.subject = 'Welcome To O-Link';
                 send(template,args,cb);
                 console.log(userID + ", "+arg);
                 break;
             }
             case 'welcomeEmployer':{
 
-                args.subject = 'Welcome to O-Link';
+                args.subject = 'Welcome To O-Link';
                 send(template,args,cb);
                 console.log(userID + ", "+arg);
                 break;
@@ -139,12 +139,12 @@ module.exports ={
             }
             case 'jobEditedEmployer':{
                 args.vowel = isVowel(args.category);
-                args.subject = 'O-Link: Edited Job Offer is now Live';
+                args.subject = 'O-Link: Edited Job Offer Is Now Live';
                 send(template,args,cb);
                 break;
             }
             case 'jobEditedTalent':{
-                //console.log(args);
+                args.vowel = isVowel(args.category);
                 send(template,args,cb);
                 break;
             }
@@ -170,7 +170,7 @@ module.exports ={
                     article = "an";
                 else
                     article = "a";
-                args.subject = 'Application has been made for '+article+" "+args.category;
+                args.subject = 'Application Has Been Made For '+article+" "+args.category;
                 send(template,args,cb);
                 break;
             }
@@ -181,7 +181,7 @@ module.exports ={
                     article = "an";
                 else
                     article = "a";
-                args.subject = 'Application has been made for '+article+" "+args.category;
+                args.subject = 'Application Has Been Made For '+article+" "+args.category;
                 send(template,args,cb);
                 break;
             }
@@ -191,7 +191,7 @@ module.exports ={
                     article = "an";
                 else
                     article = "a";
-                args.subject = "Provisionally Accepted as " + article + " " + args.subject;
+                args.subject = "Provisionally Accepted As " + article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
@@ -201,7 +201,7 @@ module.exports ={
                     article = "an";
                 else
                     article = "a";
-                args.subject = "Provisionally Accepted as " + article + " " + args.subject;
+                args.subject = "Provisionally Accepted As " + article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
@@ -211,7 +211,7 @@ module.exports ={
                     article = "an";
                 else
                     article = "a";
-                args.subject = "Declined for a job as " +  article + " " + args.subject;
+                args.subject = "Declined For a Job As " +  article + " " + args.subject;
                 send(template,args,cb);
                 break;
             }
@@ -231,19 +231,19 @@ module.exports ={
             }
             case 'offerAccepted':{
                 args.vowel = isVowel(args.category);
-                args.subject = args.talentName +" has Accepted your Offer";
+                args.subject = args.talentName +" Has Accepted Your Offer";
                 send(template,args,cb);
                 break;
             }
             case 'interviewAccepted':
             {
                 args.vowel = isVowel(args.category);
-                args.subject = args.talentName +" has Accepted your Offer";
+                args.subject = args.talentName +" Has Accepted Your Offer";
                 send(template,args,cb);
                 break;
             }
             case 'paymentReceived':{
-                args.subject = args.package + " Purchased"
+                args.subject = args.package + " Package Purchased";
                 send(template,args,cb);
                 break;
             }

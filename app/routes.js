@@ -1568,6 +1568,7 @@ module.exports = function(app) {
 				var args = {
 					name: emp.contact.name,
 					talent: usr.name.name + " " + usr.name.surname,
+                    gender: usr.gender == 'M' ? "his" : "her",
 					email: emp.contact.email,
 					link: 'http://' + req.headers.host + '/applicants'
 				};
@@ -1670,7 +1671,7 @@ module.exports = function(app) {
 								var args = {};
 
 								args.name = usr.name.name;
-								args.package = user.packageType;
+								args.package = user.packageType.replace("_", " ");
 								args.email = usr.contact.email;
 								args.applicationsLeft = usr.freeApplications;
 								var tempPackages = usr.packages;

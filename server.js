@@ -173,7 +173,11 @@ new CronJob('00 00 * * * *', function() {
                             args.category = job.post.category;
                         args.email = usr.contact.email;
 
-                        args.subject = args.category + " Automatically Declined – Missed Response Deadline";
+                        if (isVowel(args.category))
+                            var article = "an ";
+                        else
+                            var article = "a ";
+                        args.subject = "Automatically Declined Provisional Acceptance / Job Commitment to Work as "+ article + args.category + " – Missed Response Deadline";
                         args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
 
                         mailer.sendMail('offerTimeUp', ap.studentID._id, args, function (err, rr) {
@@ -250,14 +254,12 @@ new CronJob('00 00 * * * *', function() {
                     else
                         args.category = newApp.jobID.post.category;
                     args.email = usr.contact.email;
-                    args.subject = args.category + " Application Automatically Withdrawn – Missed Response Deadline";
+                    if(isVowel(args.category))
+                        var article = "an ";
+                    else
+                        var article = "a ";
+                    args.subject =  "Automatically Withdrawn Application to Work as "+ article + args.category +" – Missed Response Deadline";
                     args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
-                    if(newApp.status == "Pending"){
-                        args.message = " your application has been automatically withdrawn.";
-                    }
-                    else if(newApp.status == "Confirmed"){
-                        args.message = " you are no longer committed to working for " + emp.contact.name + " " + emp.contact.surname;
-                    }
                     mailer.sendMail('jobEditedTimeUp', usr._id, args, function (err, rr) {
                         console.log("Send email: " + rr);
                     });
@@ -537,3 +539,13 @@ function hasStarted(date){
     return false;
 
 }
+function isVowel(string){
+    var vowels = ['a','e','o','i','u'];
+    for(var i = 0; i< vowels.length; i++){
+        if(string[0] == vowels[i] || string[0]== vowels[i].toUpperCase())
+        {
+            return true;
+        }
+    }
+    return false;
+};
