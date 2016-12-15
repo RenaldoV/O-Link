@@ -18,3 +18,4 @@ public/libs
 .idea/workspace.xml
 app/uploads
 .idea/
+tmp/
