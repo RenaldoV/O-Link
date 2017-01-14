@@ -150,6 +150,10 @@
                                 <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + getPer(job.post.timePeriod) }}</td>
                                 <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'individualTips' ? "Individual Tips" : "Shared Tips"}}</td>
                                 <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + getPer(job.post.timePeriod) + " + Tips" }}</td>
+                                <td ng-if="job.post.payPer == 'commission'">
+                                    <span ng-if="job.post.commission.type == 'percentage'">{{job.post.commission.percentage}}% per {{job.post.commission.per}}</span>
+                                    <span ng-if="job.post.commission.type == 'rand'">R{{job.post.commission.amount}} per {{job.post.commission.per}}</span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

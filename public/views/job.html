@@ -33,7 +33,10 @@
         </div>
         <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/hour</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></div>
         <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </div>
-
+        <div ng-if="job.post.payPer == 'commission'" style="font-size: 16px;">
+            <span ng-if="job.post.commission.type == 'percentage'">{{job.post.commission.percentage}}% per {{job.post.commission.per}}</span>
+            <span ng-if="job.post.commission.type == 'rand'">R{{job.post.commission.amount}} per {{job.post.commission.per}}</span>
+        </div>
         <hr>
         <div class="row" style="text-align: left;">
             <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">

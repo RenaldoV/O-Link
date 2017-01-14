@@ -65,9 +65,23 @@
                 </label><br/>
                 <label class="radio-inline">
                     <input name="payPer" type="radio" ng-model="job.post.payPer" value="hourAndTips" ng-required="true">Payed per Hour & Tips
+                </label><br/>
+                <label class="radio-inline">
+                    <input name="payPer" type="radio" ng-model="job.post.payPer" value="commission" ng-required="true">Payed in Commission
                 </label>
                 <div ng-show="jobForm.$submitted" class="error-block">
                     <p ng-show="job.post.payPer == undefined" class="has-error">This field is required</p>
+                </div>
+        </div>
+        <div class="list-group-item" ng-if="job.post.payPer == 'commission'">
+                <label class="radio-inline">
+                    <input name="commType" type="radio" ng-model="job.post.commission.type" value="percentage" ng-required="job.post.payPer == 'commission'">% Based
+                </label><br/>
+                <label class="radio-inline">
+                    <input name="commType" type="radio" ng-model="job.post.commission.type" value="rand" ng-required="job.post.payPer == 'commission'">Rand Based
+                </label><br/>
+                <div ng-show="jobForm.$submitted" class="error-block">
+                    <p ng-show="job.post.commission.type == undefined" class="has-error">This field is required</p>
                 </div>
         </div>
         <div class="list-group-item">
@@ -96,6 +110,36 @@
             <div ng-show="jobForm.$submitted || jobForm.amount.$touched" class="error-block">
                 <p ng-show="jobForm.amount.$error.required" class="has-error">This field is required</p>
                 <p ng-show="jobForm.amount.$error.number" class="has-error">Not a valid amount</p>
+            </div>
+        </div>
+        <div class="list-group-item" ng-show="job.post.commission.type == 'percentage'">
+            <input id="comPercentage" name="comPercentage"  type="number" step="any" class="controls form-control no-border"
+                   width="50px" placeholder="Percentage earned on" ng-model="job.post.commission.percentage" min="1" max="100"  ng-required="job.post.commission.type == 'percentage'">
+            <div ng-show="jobForm.$submitted || jobForm.comPercentage.$touched" class="error-block">
+                <p ng-show="jobForm.comPercentage.$error.required" class="has-error">This field is required</p>
+                <p ng-show="jobForm.comPercentage.$error.number" class="has-error">Not a valid percentage</p>
+                <p ng-show="jobForm.comPercentage.$error.min" class="has-error">Percentage cannot be less than 1</p>
+                <p ng-show="jobForm.comPercentage.$error.max" class="has-error">Percentage cannot be more than 100</p>
+            </div>
+        </div>
+        <div class="list-group-item" ng-show="job.post.commission.type == 'rand'">
+            <input id="comAmount" name="comAmount"  type="number" step="any" class="controls form-control no-border"
+                   width="50px" placeholder="Amount earned" ng-model="job.post.commission.amount" min="1"  ng-required="job.post.commission.type == 'rand'">
+            <div ng-show="jobForm.$submitted || jobForm.comAmount.$touched" class="error-block">
+                <p ng-show="jobForm.comAmount.$error.required" class="has-error">This field is required</p>
+                <p ng-show="jobForm.comAmount.$error.number" class="has-error">Not a valid percentage</p>
+                <p ng-show="jobForm.comAmount.$error.min" class="has-error">Percentage cannot be less than 1</p>
+            </div>
+        </div>
+        <div class="list-group-item" ng-show="job.post.payPer == 'commission'">
+            <select id="commPer" name="commPer" class="form-control no-border" ng-model="job.post.commission.per" ng-required="job.post.payPer == 'commission'">
+                <option value="" selected disabled>per every</option>
+                <option value="sale">Sale</option>
+                <option value="onboarding">Onboarding</option>
+                <option value="placement">Placement</option>
+            </select>
+            <div ng-show="jobForm.$submitted || jobForm.commPer.$touched" class="error-block">
+                <p ng-show="jobForm.commPer.$error.required" class="has-error">This field is required</p>
             </div>
         </div>
     </div>

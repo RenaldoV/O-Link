@@ -65,6 +65,10 @@
                   <td class="fields" ng-if="job.post.payPer == 'hour'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}}</td>
                   <td class="fields" ng-if="job.post.payPer == 'hourAndTips'">R{{job.post.pay + "/" + getPer(job.post.timePeriod)}} + {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
                   <td class="fields" ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}}</td>
+                  <td class="fields" ng-if="job.post.payPer == 'commission'">
+                    <span ng-if="job.post.commission.type == 'percentage'">{{job.post.commission.percentage}}% per {{job.post.commission.per}}</span>
+                    <span ng-if="job.post.commission.type == 'rand'">R{{job.post.commission.amount}} per {{job.post.commission.per}}</span>
+                  </td>
                   <td class="fields">{{job.post.location.address.split(',')[1]}}</td>
                 </tr>
                 </tbody>

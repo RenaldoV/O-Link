@@ -15,6 +15,12 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
         $scope.job.post.startingDate = "";
         $scope.job.post.endDate = "";
     };
+    $scope.clickCommPer = function(){
+        $scope.job.post.comPer = "Per ";
+    };
+    $scope.blurCommPer = function(){
+            $scope.job.post.comPer = "";
+    };
 
     $scope.startDate = {
         dateFormat: "dd/mm/yy",
@@ -690,7 +696,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                         else if(res.data.status == "Declined")
                             job.appStat = res.data.status;
 
-                        console.log(job.appStat);
                         $scope.isDeclined = function(status){
                             if(status == "Declined"){
                                 return true;
