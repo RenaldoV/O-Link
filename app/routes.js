@@ -343,6 +343,7 @@ module.exports = function(app) {
     app.post('/jobUpdate', function (req, res) {
 
         var job = req.body.job;
+		console.log(job);
         job.post.startingDate = dateConvert(job.post.startingDate);
 
         if (job.post.endDate) {

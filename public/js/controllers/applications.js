@@ -344,6 +344,10 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                                     .then(function (res) {
                                         app.image = res.data;
                                     });
+                                $scope.gotoProfile = function(){
+                                    $location.url("/profile?user="+app.studentID._id);
+                                };
+                                app.distance = distance(app.studentID.location.geo.lat,app.studentID.location.geo.lng,job.post.location.geo.coordinates[1],job.post.location.geo.coordinates[0]);
                             });
                         });
                 });
@@ -365,6 +369,19 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                         }
                         else job.show = !job.show;
                     });
+                }
+                function distance(lat1, lon1, lat2, lon2) {
+                    var radlat1 = Math.PI * lat1/180;
+                    var radlat2 = Math.PI * lat2/180;
+                    var theta = lon1-lon2;
+                    var radtheta = Math.PI * theta/180;
+                    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+                    dist = Math.acos(dist);
+                    dist = dist * 180/Math.PI;
+                    dist = dist * 60 * 1.1515;
+                    dist = dist * 1.609344;
+
+                    return Math.round( dist * 10 ) / 10;
                 }
                 temp = temp.replace("/applicants?jobID=", '');
                 if(temp != '/applicants'){

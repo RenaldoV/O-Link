@@ -252,13 +252,19 @@ div.feature:hover {
 }
 .jobBox{
     display: inline-block;
-
-
-
     background-color: white;
-
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+div.jobBox.studentBox:first-child{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+.jobBox.studentBox{
+    border-radius: 10px;
 }
 
 .cropArea {
@@ -382,6 +388,9 @@ span.statusBall {
 }
 .statusDiv1{
     float:right;
+}
+.applicantsBtns{
+    text-align:right;
 }
 .statusDiv2{
     text-align: center;
@@ -678,6 +687,36 @@ thead.blueBack th{
     margin-top: -5px;
     float:left;
 }
+.applicantStars{
+    border: none;
+    text-align: center;
+    width:90px;
+    margin:auto;
+}
+
+.applicantStars > input { display: none; }
+.applicantStars > label:before {
+    margin-left:5px;
+    font-size: 14px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.applicantStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.applicantStars > label {
+    color: #ddd;
+    float: right;
+}
+.applicantStars > label.filled{
+    color: #FFD700;
+}
+.applicantStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700;  }
 
 .jobHistStars > input { display: none; }
 .jobHistStars > label:before {
@@ -784,6 +823,9 @@ div.jobContent{
     text-align: center;
     display: inline-block;
     width: 1137px;
+}
+.jobsContainer.studentContainer{
+    width:auto;
 }
 
 span.jobDescription{
