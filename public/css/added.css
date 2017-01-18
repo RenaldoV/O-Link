@@ -265,6 +265,13 @@ div.jobBox.studentBox:first-child{
 }
 .jobBox.studentBox{
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.ppRating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cropArea {
@@ -391,6 +398,16 @@ span.statusBall {
 }
 .applicantsBtns{
     text-align:right;
+}
+.applicantsBtns > button{
+    width: 100px;
+}
+.applicantsBtns > a{
+    width: 100px;
+}
+.aplHeadingRow{
+    padding-right:15px;
+    padding-left:15px;
 }
 .statusDiv2{
     text-align: center;
@@ -690,14 +707,14 @@ thead.blueBack th{
 .applicantStars{
     border: none;
     text-align: center;
-    width:90px;
+    width:109px;
     margin:auto;
 }
 
 .applicantStars > input { display: none; }
 .applicantStars > label:before {
     margin-left:5px;
-    font-size: 14px;
+    font-size: 18px;
     font-family: FontAwesome;
     display: inline-block;
     content: "\f005";
@@ -838,7 +855,7 @@ span.jobDescription{
     font-weight: bold;
     color: white;
     float: left;
-
+    margin-left: 30px;
 }
 .tab{
     margin-bottom: 0;
@@ -1022,19 +1039,35 @@ border-bottom: 0;
     text-align: left;
     margin-top: -22px;
 }
+.applHead{
+    text-align: left;
+    margin-top: 0px;
+    padding-left: 0px;
+}
 
 .jobInfoBox{
     padding: 0;
-    margin-left: 17.5px;
+    margin-left: 19px;
     min-width: 144px;
     height: 42px;
     border: 1px solid #33B6CC;
-  display:inline-table;
-
+    display:inline-table;
 }
 .jobInfoBox.FirstBox{
     margin-left: 1px;
 }
+.appInfoBox{
+    width:20%;
+    padding: 0;
+    height: 42px;
+    border: 1px solid #33B6CC;
+    display:inline-table;
+    margin-right:6.2%;
+}
+.appInfoBox:last-of-type{
+    margin-right:0;
+}
+
 table{
 
     border-collapse: separate;
@@ -1172,9 +1205,19 @@ div.col-md-2 > h4.filterBy{
     margin-top:5px;
 
 }
+.jobTimePeriod{
+    display: block;
+    font-size: 18px;
+    margin-top:5px;
+    color: lightgrey;
+}
 
 .jobCategory{
 margin-bottom: 0;
+}
+.applName{
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .applyFilter{
