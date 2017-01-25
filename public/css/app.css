@@ -933,7 +933,9 @@ body {
 }
 
 @media (min-width: 768px) {
-
+  .job-info-boxes-mobi{
+    display:none;
+  }
   .hitRow{
     padding-bottom: 20px;
   }
@@ -1091,6 +1093,11 @@ body {
   .hbox-auto-sm > .col.show {
     display: block !important;
   }
+
+  div.jobsContainer.studentContainer{
+    padding-right: 15px;
+    padding-left: 15px;
+  }
 }
 
 @media (max-width: 390px) {
@@ -1183,6 +1190,13 @@ body {
 }
 
 @media (max-width: 767px) {
+  .job-info-boxes-mobi > table.appInfoBox{
+    width:30%;
+    margin-right:2%;
+  }
+  .job-info-boxes{
+    display:none;
+  }
   ul.navbar-nav .open .dropdown-menu{
     position: fixed;
   }

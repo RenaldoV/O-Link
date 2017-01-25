@@ -1,7 +1,7 @@
 <div><div ng-controller="employerApplicants" class="empApplicants">
-
+    <h4 ng-if="jobs.length == 0" class="white" style="text-align: center"><b>You have no open job offers to display.</b></h4>
     <div style="margin-top:42px;"  ng-repeat="job in jobs" class="jobApps">
-        <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)">
+        <div class="applicantsHead blueBack" ng-click="toggleApplicants(job._id)" style="cursor: pointer;">
         <div ng-if="job.post.category != 'Other'" class="appHeading">
              {{job.post.category}}
         </div>
@@ -22,10 +22,10 @@
 
         <div ng-if="job.show" >
             <div class="jobsContainer studentContainer container">
-                <div class="row jobBox feature blueTop studentBox" ng-repeat="app in job.applications" style="margin-bottom:10px; border:1px solid; border-color:#33B6CC; background-color: white;" >
+                <div class="row jobBox feature blueTop studentBox" ng-repeat="app in job.applications" style="margin-bottom:10px; border:1px solid; border-color:#33B6CC; background-color: white; cursor: pointer;" >
                     <div class="col-md-2 ppRating">
                         <div>
-                            <img style="cursor: pointer;" ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle browseLogos"><br>
+                            <img  ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle browseLogos"><br>
                             <div style="margin-left:-5px;">
                                 <fieldset class="applicantStars">
                                     <input type="radio" id="star5{{$index}}" name="rating{{$index}}" value=5 ng-model="app.studentID.rating"  disabled /><label class = "full" for="star5{{$index}}" title="Awesome - 5 stars"></label>
@@ -48,7 +48,7 @@
                             <h2 class="applName">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</h2>
                             <span class="applicantInfo">{{app.studentID.gender}} - {{getAge(app.studentID.dob);}}</span>
                         </div>
-                            <div class="applicantsBtns col-xs-6">
+                            <div class="applicantsBtns col-xs-6" style="z-index: 100">
                             <button ng-disabled="job.provisionalLeft == 0" ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
                             <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
                             <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
@@ -71,7 +71,7 @@
                             </div>
 
                             <div class="row text-center job-info-boxes">
-                                <table  class="col-md-2 appInfoBox FirstBox" title="Student Rating">
+                                <table  class="col-xs-2 appInfoBox FirstBox" title="Student Rating">
                                     <thead class="blueBack">
                                     <th class="glyphicon glyphicon-send infoBoxHead"></th>
                                     </thead>
@@ -81,27 +81,60 @@
                                     </tr>
                                     </tbody>
                                 </table>
-                                <table  class="col-md-2 appInfoBox">
+                                <table  class="col-xs-2 appInfoBox">
                                     <thead class="blueBack">
                                     <th class="glyphicon glyphicon-ok infoBoxHead "></th>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>{{app.studentID.numRatings}} job<span ng-if="app.studentID.numRatings > 1">s</span></td>
+                                        <td>{{app.studentID.numRatings}}<span ng-if="!app.studentID.numRatings">0</span> job<span ng-if="app.studentID.numRatings > 1 || !app.studentID.numRatings">s</span></td>
                                     </tr>
                                     </tbody>
                                 </table>
-                                <table  class="col-md-2 appInfoBox">
+                                <table  class="col-xs-2 appInfoBox">
                                     <thead class="blueBack">
                                     <th class="glyphicon glyphicon-home infoBoxHead "></th>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>{{app.studentID.institution.name}}</td>
+                                        <td class="institutionBox">{{app.studentID.institution.name}}</td>
                                     </tr>
                                     </tbody>
                                 </table>
-                                <table  class="col-md-2 appInfoBox">
+                                <table  class="col-xs-2 appInfoBox">
+                                    <thead class="blueBack">
+                                    <th class="glyphicon glyphicon-education infoBoxHead "></th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td ng-if="app.studentID.institution.type == 'Tertiary'">{{app.studentID.qualification.name}}</td>
+                                        <td ng-if="app.studentID.institution.type == 'Secondary'">Matric</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row text-center job-info-boxes-mobi">
+                                <table  class="col-xs-4 appInfoBox FirstBox" title="Student Rating">
+                                    <thead class="blueBack">
+                                    <th class="glyphicon glyphicon-send infoBoxHead"></th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{app.distance}}km</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table  class="col-xs-4 appInfoBox">
+                                    <thead class="blueBack">
+                                    <th class="glyphicon glyphicon-home infoBoxHead "></th>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="institutionBox">{{app.studentID.institution.name}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table  class="col-xs-4 appInfoBox">
                                     <thead class="blueBack">
                                     <th class="glyphicon glyphicon-education infoBoxHead "></th>
                                     </thead>
@@ -115,7 +148,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <a class="jobLink" href="/profile?user={{app.studentID._id}}"> </a>
 
                     <br>
                 </div>

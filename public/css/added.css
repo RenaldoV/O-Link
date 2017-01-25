@@ -842,7 +842,7 @@ div.jobContent{
     width: 1137px;
 }
 .jobsContainer.studentContainer{
-    width:auto;
+    width:100%;
 }
 
 span.jobDescription{
@@ -1057,15 +1057,23 @@ border-bottom: 0;
     margin-left: 1px;
 }
 .appInfoBox{
-    width:20%;
+    text-align: center;
+    width:23%;
     padding: 0;
     height: 42px;
     border: 1px solid #33B6CC;
     display:inline-table;
-    margin-right:6.2%;
+    margin-right:2.1%;
 }
 .appInfoBox:last-of-type{
     margin-right:0;
+}
+
+.institutionBox{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:50px;
 }
 
 table{
