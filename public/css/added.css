@@ -672,37 +672,25 @@ thead.blueBack th{
     border-radius: 100%;
     background-color: white;
 }
-
-.profileStars {
-    border: none;
-    margin-right:22px;
+div > .profileStars .button .material-icons {
+    font-size: 25px;!important;
 }
+div > .profileStars .star-button.star-on .material-icons
+{ color: #FFD700;!important;  }
 
-.profileStars > input { display: none; }
-.profileStars > label:before {
-    margin: 5px;
-    font-size: 1.25em;
-    font-family: FontAwesome;
-    display: inline-block;
-    content: "\f005";
+td.jobHistPMed{
+    height:100%;
 }
-
-.profileStars > .half:before {
-    content: "\f089";
-    position: absolute;
-}
-
-.profileStars > label {
-    color: #ddd;
-    float: right;
-}
-.profileStars > input:checked ~ label /* show gold star when clicked */
-{ color: #FFD700;  }
-
-.jobHistStars {
-    border: none;
-    margin-top: -5px;
+.jobHistoryStars {
+    margin-top: 8px;
     float:left;
+    margin-bottom: 8px;
+}
+td > .jobHistoryStars .button .material-icons {
+    font-size: 20px;!important;
+}
+td > .jobHistoryStars .star-button.star-on .material-icons {
+    color: #FFD700;!important;
 }
 .applicantStars{
     border: none;
