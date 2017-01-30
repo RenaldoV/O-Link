@@ -142,6 +142,7 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
         .then(function(res){
             $scope.user.numRatings = res.data[0].numRatings;
             $scope.user.rating = res.data[0].rating;
+            console.log($scope.user.rating);
         });
     $http
         .post('/getPp', user)

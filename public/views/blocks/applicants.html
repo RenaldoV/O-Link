@@ -25,7 +25,7 @@
                 <div class="row jobBox feature blueTop studentBox" ng-repeat="app in job.applications" style="margin-bottom:10px; border:1px solid; border-color:#33B6CC; background-color: white; cursor: pointer;" >
                     <div class="col-md-2 ppRating">
                         <div>
-                            <img  ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle browseLogos"><br>
+                            <img  ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle applicantsLogos"><br>
                             <div style="margin-left:-5px;">
                                 <fieldset class="applicantStars">
                                     <input type="radio" id="star5{{$index}}" name="rating{{$index}}" value=5 ng-model="app.studentID.rating"  disabled /><label class = "full" for="star5{{$index}}" title="Awesome - 5 stars"></label>
@@ -44,28 +44,24 @@
                     </div>
                     <div class="col-md-10">
                         <div class="row aplHeadingRow">
-                            <div class="col-xs-6 applHead">
-                            <h2 class="applName">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</h2>
-                            <span class="applicantInfo">{{app.studentID.gender}} - {{getAge(app.studentID.dob);}}</span>
+                            <div class="col-xs-5 applHead">
+                                <h2 class="applName">{{app.studentID.name.name + " "+ app.studentID.name.surname}}</h2>
+                                <span class="applicantInfo">{{app.studentID.gender}} - {{getAge(app.studentID.dob);}}</span>
+                            </div>
+                            <div class="applicantsBtns col-xs-7" style="z-index: 100">
+                                <button ng-disabled="job.provisionalLeft == 0" ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
+                                <a style="width:70px" ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
+                                <button  ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
+                                <button ng-if="app.status == 'Provisionally accepted'" style="background-color: lawngreen; color:white; width:70px;" class="btn" disabled>Accepted</button>
+                            </div>
                         </div>
-                            <div class="applicantsBtns col-xs-6" style="z-index: 100">
-                            <button ng-disabled="job.provisionalLeft == 0" ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
-                            <a ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
-                            <button ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
-                            <button ng-if="app.status == 'Provisionally accepted'" style="background-color: lawngreen; color:white;" class="btn" disabled>Accepted</button>
-                        </div>
-                        </div>
-                        <br class="jobMobileSpace" />
-                        <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpaceBig" />
-                        <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpaceBig" />
-                        <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpace" />
-                        <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpace" />
-
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12" style="text-align:left; padding-left:0px;">
                                     <hr style="text-align: left;">
-                                    <span>{{app.studentID.aboutme}}</span>
+                                    <div class="applicantDesc">
+                                        <span>{{app.studentID.aboutme}}</span>
+                                    </div>
                                     <hr style="text-align: left;">
                                 </div>
                             </div>
@@ -150,7 +146,6 @@
                     </div>
                     <a class="jobLink" href="/profile?user={{app.studentID._id}}"> </a>
 
-                    <br>
                 </div>
             </div>
 

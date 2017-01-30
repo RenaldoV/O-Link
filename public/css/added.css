@@ -836,6 +836,10 @@ div.jobContent{
     width: 140px;
     height: 140px;
 }
+.applicantsLogos{
+    width: 140px;
+    height: 140px;
+}
 .jobsContainer{
     text-align: center;
     display: inline-block;

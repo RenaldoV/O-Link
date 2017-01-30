@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/pictureUpload.html" afterPath="$PROJECT_DIR$/public/views/blocks/pictureUpload.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/profiles.js" afterPath="$PROJECT_DIR$/public/js/controllers/profiles.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/applicants.html" afterPath="$PROJECT_DIR$/public/views/blocks/applicants.html" />
     </list>
     <ignored path="o-link.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,28 +29,38 @@
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/routes.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
+            <state relative-caret-position="17">
               <caret line="627" column="20" selection-start-line="627" selection-start-column="20" selection-end-line="627" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TEMP_FILE" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tmp/TEMP_FILE">
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/views/profile.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="92" selection-start-line="0" selection-start-column="92" selection-end-line="0" selection-end-column="92" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="studentProfile.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+            <state relative-caret-position="272">
+              <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="added.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/css/added.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="534">
+              <caret line="699" column="20" selection-start-line="699" selection-start-column="20" selection-end-line="699" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -57,76 +69,8 @@
       <file leaf-file-name="profiles.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="734" column="16" selection-start-line="734" selection-start-column="16" selection-end-line="734" selection-end-column="16" />
-              <folding>
-                <marker date="1481822783942" expanded="true" signature="12557:12850" ph="{...}" />
-                <marker date="1481822783942" expanded="true" signature="12628:12850" ph="{...}" />
-                <marker date="1481822783942" expanded="true" signature="12652:12809" ph="{&quot;url&quot;: '/upload'...}" />
-                <marker date="1481822783942" expanded="true" signature="12700:12799" ph="{&quot;user&quot;: user._id...}" />
-                <marker date="1481822783942" expanded="true" signature="12836:12850" ph="{...}" />
-                <marker date="1481822783942" expanded="true" signature="21740:23219" ph="{...}" />
-                <marker date="1481822783942" expanded="true" signature="21740:24919" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editProfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/editProfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="114" selection-start-line="16" selection-start-column="106" selection-end-line="16" selection-end-column="114" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="studentEditProfile.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/blocks/studentEditProfile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="38" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="38" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pictureUpload.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/views/blocks/pictureUpload.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="65" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="65" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jobs.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/controllers/jobs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5831">
-              <caret line="345" column="57" selection-start-line="345" selection-start-column="57" selection-end-line="345" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/app.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19125">
-              <caret line="1125" column="28" selection-start-line="1125" selection-start-column="28" selection-end-line="1125" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mailer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/mailer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
+            <state relative-caret-position="475">
+              <caret line="144" column="44" selection-start-line="144" selection-start-column="44" selection-end-line="144" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -171,7 +115,6 @@
         <option value="$PROJECT_DIR$/public/views/blocks/notifications.html" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
         <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
-        <option value="$PROJECT_DIR$/public/views/blocks/studentProfile.html" />
         <option value="$PROJECT_DIR$/emails/views/rateStudents.hbs" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentDash.html" />
         <option value="$PROJECT_DIR$/bower.json" />
@@ -188,7 +131,6 @@
         <option value="$PROJECT_DIR$/public/js/appRoutes.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/gallery.html" />
         <option value="$PROJECT_DIR$/public/js/app.js" />
-        <option value="$PROJECT_DIR$/public/css/added.css" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/emails/views/applicationMadeEmployer.hbs" />
         <option value="$PROJECT_DIR$/emails/views/jobLive.hbs" />
@@ -202,10 +144,12 @@
         <option value="$PROJECT_DIR$/server.js" />
         <option value="$PROJECT_DIR$/emails/views/jobEditedTimeUp.hbs" />
         <option value="$PROJECT_DIR$/public/views/blocks/pictureUpload.html" />
-        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
         <option value="$PROJECT_DIR$/app/routes.js" />
         <option value="$PROJECT_DIR$/tmp/TEMP_FILE" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/public/js/controllers/profiles.js" />
+        <option value="$PROJECT_DIR$/public/views/blocks/studentProfile.html" />
+        <option value="$PROJECT_DIR$/public/css/added.css" />
       </list>
     </option>
   </component>
@@ -249,6 +193,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -281,12 +229,120 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blocks" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="o-link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="O-Link" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
-      </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -307,18 +363,18 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Ronnie\Desktop\O-Link\public\views\blocks" />
-      <recent name="C:\Users\Ronnie\Desktop\O-Link\emails\views" />
-      <recent name="C:\Users\Desktop\Documents\GitHub\O-Link\emails\views" />
-      <recent name="C:\Users\Desktop\Documents\GitHub\O-Link\public" />
-      <recent name="C:\Users\Sean\Documents\GitHub\O-Link\public\views\blocks" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Ronnie\Desktop\O-Link\public\js\helpers" />
       <recent name="C:\Users\Desktop\Documents\GitHub\O-Link\emails\partials" />
       <recent name="C:\Users\Sean\Documents\GitHub\O-Link\public\js\controllers" />
       <recent name="C:\Users\Sean\Documents\GitHub\O-Link\public\views" />
+      <recent name="C:\Users\Sean\Documents\GitHub\O-Link\public\views\blocks" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ronnie\Desktop\O-Link\public\views\blocks" />
+      <recent name="C:\Users\Ronnie\Desktop\O-Link\emails\views" />
+      <recent name="C:\Users\Desktop\Documents\GitHub\O-Link\emails\views" />
+      <recent name="C:\Users\Desktop\Documents\GitHub\O-Link\public" />
       <recent name="C:\Users\Sean\Documents\GitHub\O-Link\public\views\blocks" />
     </key>
   </component>
@@ -419,6 +475,7 @@
       <workItem from="1480502103271" duration="12108000" />
       <workItem from="1481533438143" duration="3886000" />
       <workItem from="1481819688750" duration="2917000" />
+      <workItem from="1485758598944" duration="2720000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -473,10 +530,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248740000" />
+    <option name="totallyTimeSpent" value="251460000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15015806" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -546,20 +603,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/emails/views/rateStudents.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="28" column="58" selection-start-line="28" selection-start-column="58" selection-end-line="28" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentDash.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="182" column="6" selection-start-line="182" selection-start-column="6" selection-end-line="182" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -704,7 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,14 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="85" column="63" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#1170#2122#0" expanded="false" />
-            <element signature="e#3052#3501#0" expanded="false" />
-            <element signature="e#6713#10724#0" expanded="false" />
-            <element signature="e#10864#11930#0" expanded="false" />
-            <element signature="e#12031#12389#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -727,24 +761,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="59" selection-start-line="9" selection-start-column="59" selection-end-line="9" selection-end-column="59" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/added.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20519">
-          <caret line="1207" column="31" selection-start-line="1207" selection-start-column="18" selection-end-line="1207" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19125">
-          <caret line="1125" column="28" selection-start-line="1125" selection-start-column="28" selection-end-line="1125" selection-end-column="28" />
+          <caret line="1125" column="23" selection-start-line="1125" selection-start-column="23" selection-end-line="1125" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -836,7 +859,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/mailer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="1360">
           <caret line="80" column="14" selection-start-line="80" selection-start-column="14" selection-end-line="80" selection-end-column="14" />
           <folding />
         </state>
@@ -858,34 +881,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="734" column="16" selection-start-line="734" selection-start-column="16" selection-end-line="734" selection-end-column="16" />
-          <folding>
-            <marker date="1481822783942" expanded="true" signature="12557:12850" ph="{...}" />
-            <marker date="1481822783942" expanded="true" signature="12628:12850" ph="{...}" />
-            <marker date="1481822783942" expanded="true" signature="12652:12809" ph="{&quot;url&quot;: '/upload'...}" />
-            <marker date="1481822783942" expanded="true" signature="12700:12799" ph="{&quot;user&quot;: user._id...}" />
-            <marker date="1481822783942" expanded="true" signature="12836:12850" ph="{...}" />
-            <marker date="1481822783942" expanded="true" signature="21740:23219" ph="{...}" />
-            <marker date="1481822783942" expanded="true" signature="21740:24919" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/pictureUpload.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="65" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/routes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="627" column="20" selection-start-line="627" selection-start-column="20" selection-end-line="627" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -902,6 +901,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="627" column="20" selection-start-line="627" selection-start-column="20" selection-end-line="627" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/added.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="699" column="20" selection-start-line="699" selection-start-column="20" selection-end-line="699" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controllers/profiles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="144" column="44" selection-start-line="144" selection-start-column="44" selection-end-line="144" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/blocks/studentProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="22" column="93" selection-start-line="22" selection-start-column="93" selection-end-line="22" selection-end-column="93" />
           <folding />
         </state>
       </provider>

@@ -1072,7 +1072,9 @@ body {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-
+  h2.applName{
+    font-size: 20px;
+  }
   tr > td.jobHistPBig{
     width: 25%;!important;
   }
@@ -1148,9 +1150,18 @@ body {
   .empJobTableAddDate{
     display:none;
   }
+  div.applicantsBtns > button:nth-child(2){
+    margin-top:5px;
+  }
 }
 
 @media (max-width: 440px) {
+  fieldset.applicantStars > label:before {
+    font-size: 14px;
+  }
+  fieldset.applicantStars{
+    width: 90px;
+  }
   .jobMobileSpace {
     display: block;
   }
@@ -1166,6 +1177,22 @@ body {
 }
 
 @media (max-width: 680px) {
+  img.applicantsLogos{
+    width: 70%;
+    height:70%;
+  }
+
+  div.ppRating{
+    width:30%;
+  }
+  div.applicantsBtns > button{
+    height:30px;
+    width: 80px;
+    font-size: 12px;
+  }
+  applHead > h2.applName{
+    font-size: 12px;
+  }
   tr > td.histPsm{
     width: 3%;
   }
@@ -1190,6 +1217,17 @@ body {
 }
 
 @media (max-width: 767px) {
+  h2.applName{
+    font-size: 20px;
+  }
+  .applicantDesc {
+    display: block; /* or inline-block */
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 3.6em;
+    line-height: 1.8em;
+  }
   .job-info-boxes-mobi > table.appInfoBox{
     width:30%;
     margin-right:2%;
