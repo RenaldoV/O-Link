@@ -672,6 +672,12 @@ thead.blueBack th{
     border-radius: 100%;
     background-color: white;
 }
+div.studentRating > a:first-child{
+    display:none;
+}
+div.studentRating .button .material-icons{
+    font-size: 50px;!important;
+}
 div > .profileStars .button .material-icons {
     font-size: 25px;!important;
 }
