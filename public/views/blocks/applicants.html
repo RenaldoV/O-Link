@@ -52,7 +52,7 @@
                                 <button ng-disabled="job.provisionalLeft == 0" ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
                                 <a style="width:70px" ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
                                 <button  ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
-                                <button ng-if="app.status == 'Provisionally accepted'" style="background-color: lawngreen; color:white; width:70px;" class="btn" disabled>Accepted</button>
+                                <button class="btn applProvBtn" ng-if="app.status == 'Provisionally accepted'" style="background-color: lawngreen; color:white;" disabled>Provisionally Accepted</button>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -66,7 +66,7 @@
                                 </div>
                             </div>
 
-                            <div class="row text-center job-info-boxes">
+                            <div class="row text-center app-info-boxes">
                                 <table  class="col-xs-2 appInfoBox FirstBox" title="Student Rating">
                                     <thead class="blueBack">
                                     <th class="glyphicon glyphicon-send infoBoxHead"></th>
