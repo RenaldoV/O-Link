@@ -5157,236 +5157,316 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
-  h2.jobCategory{
+  h2.jobCategory {
     font-size: 20px;
     font-weight: bold;
   }
-  button.makeOffer{
-    margin-right:0px;
+
+  button.makeOffer {
+    margin-right: 0px;
   }
-  .tableAddBig{
-    display:none;
+
+  .tableAddBig {
+    display: none;
   }
-  div.profileRating{
+
+  div.profileRating {
     margin-top: 32px;
   }
-  thead.empJobsTableHead{
-    font-size: 14px;!important;
-  }
-  div.buyInner{
-    display: inline-block;!important;
-    width: 230px;!important;
-    height: 160px;!important;
-    background-color: white;!important;
+
+  thead.empJobsTableHead {
+    font-size: 14px;
+  !important;
   }
 
-  div.cost{
-    font-size: 45px;!important;
+  div.buyInner {
+    display: inline-block;
+  !important;
+    width: 230px;
+  !important;
+    height: 160px;
+  !important;
+    background-color: white;
+  !important;
   }
 
-  div.timeFrame{
-    font-size: 18px;!important;
-    font-weight: 100;!important;
-    color: rgba(127, 127, 127, 0.7);!important;
-    margin-top: 15px;!important;
+  div.cost {
+    font-size: 45px;
+  !important;
   }
 
-  div.package{
-    display: inline-block;!important;
-    font-size: 20px;!important;
-    font-weight: 100;!important;
-    width: 160px ;!important;
-    color: black;!important;
-    margin-top: 0px;!important;
+  div.timeFrame {
+    font-size: 18px;
+  !important;
+    font-weight: 100;
+  !important;
+    color: rgba(127, 127, 127, 0.7);
+  !important;
+    margin-top: 15px;
+  !important;
   }
-  span.cart{
+
+  div.package {
+    display: inline-block;
+  !important;
+    font-size: 20px;
+  !important;
+    font-weight: 100;
+  !important;
+    width: 160px;
+  !important;
+    color: black;
+  !important;
+    margin-top: 0px;
+  !important;
+  }
+
+  span.cart {
     margin-top: 8px;
   }
-  .col-xs-7.jobsHead.interviewDanger{
+
+  .col-xs-7.jobsHead.interviewDanger {
     height: 75.15px;
     margin-top: -17px;
     text-align: right;
   }
-  .filterOptions > .row > .col-md-2 > h4
-  {
+
+  .filterOptions > .row > .col-md-2 > h4 {
     margin-left: 60px;
     margin-bottom: 20px;
   }
-  div.filterOptions.container{
-    margin-top:50px;
+
+  div.filterOptions.container {
+    margin-top: 50px;
     width: 100%;
 
   }
+
   div.filterOptions.container > div.row > div.col-md-1 > button.btn-sm.greenBack {
-    margin-top: -3px;!important;
+    margin-top: -3px;
+  !important;
   }
-  div.col-xs-3.location > h4{
+
+  div.col-xs-3.location > h4 {
     margin-top: 0px;
   }
-  div.col-xs-3.location > input.btn.btn-block{
+
+  div.col-xs-3.location > input.btn.btn-block {
     margin-top: -6px;
   }
-  div.col-xs-3.location{
+
+  div.col-xs-3.location {
     width: 250px;
     margin-bottom: 10px;
   }
-  span.fa-stack.fa-lg.green{
-    margin-top: -8px;!important;
-    margin-left:0px;!important;
+
+  span.fa-stack.fa-lg.green {
+    margin-top: -8px;
+  !important;
+    margin-left: 0px;
+  !important;
   }
-  span.fa-stack.fa-lg.blue{
-    margin-top: -8px;!important;
-    margin-left:0px;!important;
+
+  span.fa-stack.fa-lg.blue {
+    margin-top: -8px;
+  !important;
+    margin-left: 0px;
+  !important;
   }
-  .filterOptions > .row > .col-md-2
-  {
+
+  .filterOptions > .row > .col-md-2 {
     margin-top: 20px;
     margin-left: 0px;
   }
-  .filterOptions > .row > .col-md-9
-  {
+
+  .filterOptions > .row > .col-md-9 {
     margin-top: 30px;
   }
-  div.jobsContainer{
-    padding: 0px;!important;
-    width: 100%;!important;
+
+  div.jobsContainer {
+    padding: 0px;
+  !important;
+    width: 100%;
+  !important;
   }
-  table.jobInfoBox{
-    margin-left: 0px;!important;
+
+  table.jobInfoBox {
+    margin-left: 0px;
+  !important;
     margin-bottom: 10px;
   }
-  .profileBall{
+
+  .profileBall {
     float: none;
     text-align: center;
   }
-  img.banner-logo.web{
-    display:none;!important;
+
+  img.banner-logo.web {
+    display: none;
+  !important;
   }
-  img.banner-logo.mobile{
-    display:block;!important;
+
+  img.banner-logo.mobile {
+    display: block;
+  !important;
   }
-  .banner-logo{
+
+  .banner-logo {
     margin-top: 0px;
-    width:50px;
-    height:50px;
+    width: 50px;
+    height: 50px;
     margin-left: 55px;
 
-  .dropdown-toggle.menu{
-  margin-left:100px;}
+  .dropdown-toggle.menu {
+    margin-left: 100px;
+  }
 }
-  img.banner-pp{
-    margin-top: -14px;
-    right: -45px;
-    position:absolute;
-    width:50px;
-    height:50px;
-  }
-  #notifications
-  {
-    margin-right: 45px;
-  }
-  .navbar-text{
-    display: none; !important;
-  }
-  nav.navbar.transparent.navbar-default{
-    z-index: 10000;
-    position: fixed;
-    top:auto;
-    right:0px;!important;
-    left:0px;!important;
-    width: 100%;!important;
-    background-color: white;!important;
-    opacity: 1;
-    padding:5px;
-  }
-  nav.navbar.transparent.navbar-default.employer{
-    border-bottom: solid;
-    border-bottom-color: #00b488;
-    border-bottom-width: 1.6px;
-  }
-  nav.navbar.transparent.navbar-default.student{
-    border-bottom: solid;
-    border-bottom-color: #33B6CC;
-    border-bottom-width: 1.6px;
-  }
-  nav.navbar.transparent.navbar-default.grey{
-    border-bottom: solid;
-    border-bottom-color: #999;
-    border-bottom-width: 1.6px;
-  }
 
-  span.glyphicon-menu-hamburger
-  {
-    color:black;!important;
-    font-size: 18px;!important;
-  }
-  span.glyphicon-menu-hamburger:hover
-  {
-    color:#696969;!important;
-    font-size:18px;!important;
-  }
-  .navbar-wrapper {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100% !important;
-    left: 0;
-  }
+img.banner-pp {
+  margin-top: -14px;
+  right: -45px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+}
 
-  .app-content{
-    margin-top: 40px;
-  }
-  .navbar-inverse .navbar-nav > .open > a:focus{
-    background-color: #00c999;!important;
-  }
-  .navbar-inverse .navbar-nav > .open > a{
-    background-color: #00c999;!important;
-  }
-  div.signupBox{
-      display: inline-block;
-      margin:0;
-       margin-top: 40px;
-    left: 0px;!important;
-  }
-  .page{
+#notifications {
+  margin-right: 45px;
+}
 
-      margin: 0;
-  }
-  div.profileLeft {
-    padding-right: 0px;
-  }
-  div.profileRight {
-    padding-left: 0px;
-  }
-  .applicantsTable{
-    text-align: left;
-    width: 100%;
-  }
-  .ngdialog.ngdialog-theme-default .ngdialog-content {
-    transform: scale(0.8,0.8);
-    text-align: center;
-    display: inline-block;
-    position: absolute;
-    width: 120vh;
-    height: 120vh;
-    top:0;
-  }
-  .navbar-nav > li.menuButton {
-    margin-top: 0px;
-  }
-  .navbar-nav > li.noti {
-    margin-right: -20px;
-    margin-top: 0px;
-  }
-  div #jobEmployer{
-    display: inline-block;
-    text-align: center;
-    width:auto;
-    margin-left: 0px;
-  }
-  br.jobPPMobile{
-    display: unset;!important;
-  }
+.navbar-text {
+  display: none;
+!important;
+}
+
+nav.navbar.transparent.navbar-default {
+  z-index: 10000;
+  position: fixed;
+  top: auto;
+  right: 0px;
+!important;
+  left: 0px;
+!important;
+  width: 100%;
+!important;
+  background-color: white;
+!important;
+  opacity: 1;
+  padding: 5px;
+}
+
+nav.navbar.transparent.navbar-default.employer {
+  border-bottom: solid;
+  border-bottom-color: #00b488;
+  border-bottom-width: 1.6px;
+}
+
+nav.navbar.transparent.navbar-default.student {
+  border-bottom: solid;
+  border-bottom-color: #33B6CC;
+  border-bottom-width: 1.6px;
+}
+
+nav.navbar.transparent.navbar-default.grey {
+  border-bottom: solid;
+  border-bottom-color: #999;
+  border-bottom-width: 1.6px;
+}
+
+span.glyphicon-menu-hamburger {
+  color: black;
+!important;
+  font-size: 18px;
+!important;
+}
+
+span.glyphicon-menu-hamburger:hover {
+  color: #696969;
+!important;
+  font-size: 18px;
+!important;
+}
+
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  left: 0;
+}
+
+.app-content {
+  margin-top: 40px;
+}
+
+.navbar-inverse .navbar-nav > .open > a:focus {
+  background-color: #00c999;
+!important;
+}
+
+.navbar-inverse .navbar-nav > .open > a {
+  background-color: #00c999;
+!important;
+}
+
+div.signupBox {
+  display: inline-block;
+  margin: 0;
+  margin-top: 40px;
+  left: 0px;
+!important;
+}
+
+.page {
+
+  margin: 0;
+}
+
+div.profileLeft {
+  padding-right: 0px;
+}
+
+div.profileRight {
+  padding-left: 0px;
+}
+
+.applicantsTable {
+  text-align: left;
+  width: 100%;
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  transform: scale(0.8, 0.8);
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  width: 120vh;
+  height: 120vh;
+  top: 0;
+}
+
+.navbar-nav > li.menuButton {
+  margin-top: 0px;
+}
+
+.navbar-nav > li.noti {
+  margin-right: -20px;
+  margin-top: 0px;
+}
+
+div #jobEmployer {
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  margin-left: 0px;
+}
+
+br.jobPPMobile {
+  display: unset;
+!important;
+}
+
+}
 div.dashTops{
   margin-top: 35px;
 }
