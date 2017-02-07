@@ -673,8 +673,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     getJobs(ob);
     //get the jobs
     function getJobs(temp){
-        //console.log(temp);
-        console.log(temp);
         var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
         if(temp.radius){
             data.radius = temp.radius;
@@ -764,6 +762,9 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                     }
                     else return "/hr"
                 };
+                $scope.gotoJob = function(id){
+                    $location.url("/job?id="+id);
+                }
         });
 
     }

@@ -65,5 +65,8 @@ span.fa-stack.fa-lg.green {
     margin-right:1%;
     text-align: center;
 }
+.jobInfoBoxMobi:last-of-type{
+    margin-right:0px;
+}
 
 
