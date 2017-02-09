@@ -50,11 +50,13 @@ span.fa-stack.fa-lg.green {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:0px;
 }
 
 .mobiJobBox{
     border-radius: 10px;
+}
+
+.firstJobRowMobi{
     display: flex;
     flex-direction: row;
 }
@@ -69,4 +71,7 @@ span.fa-stack.fa-lg.green {
     margin-right:0px;
 }
 
-
+div.statusBall1.Mobi{
+    margin-left: 10px;
+    margin-top:13px
+}
