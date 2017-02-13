@@ -75,3 +75,25 @@ div.statusBall1.Mobi{
     margin-left: 10px;
     margin-top:13px
 }
+
+div.profileRating {
+    background-color: lightgrey;
+}
+span.jobGoBack{
+    display: none;
+}
+
+div.jobContent{
+    width:100%;
+}
+.heading-img {
+    width: 45px;
+    height: 45px;
+    float: none;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.content-heading > h4.form-section-label {
+    margin-left: 0px;
+}

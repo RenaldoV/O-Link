@@ -21,15 +21,23 @@
         <div ng-if="!job.post.interviewRequired" style="color: grey">Interview Not Required</div>
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/job-details-green-new.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label"><b>Description </b></h4><br/></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/job-details-green-new.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div class="content-heading"><h4 class="form-section-label"><b>Description </b></h4><br/></div>
+            </div>
         </div>
         <div class="wordwrap" > {{job.post.description}}
         </div>
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label"><b>Pay </b></h4></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/Pay-Green-new.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div class="content-heading"><h4 class="form-section-label"><b>Pay </b></h4></div>
+            </div>
         </div>
         <div ng-if="job.post.pay" class="wordwrap" style="font-size: 16px;"> R{{job.post.pay}} <span ng-if="job.post.timePeriod == 'Once Off'">/hour</span><span ng-if="job.post.timePeriod != 'Once Off'">/Hour</span></div>
         <div ng-if="job.post.tips" class="wordwrap" style="font-size: 16px;"> Payed In {{job.post.tips == 'sharedTips' ? 'Shared Tips' : 'Individual Tips'}} </div>
@@ -39,9 +47,13 @@
         </div>
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
-            <div ng-if="job.post.timePeriod == 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Date </b></h4></div>
-            <div ng-if="job.post.timePeriod != 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Dates </b></h4></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/dates-green-new.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div ng-if="job.post.timePeriod == 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Date </b></h4></div>
+                <div ng-if="job.post.timePeriod != 'Once Off'" class="content-heading"><h4 class="form-section-label"><b>Dates </b></h4></div>
+            </div>
         </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
@@ -53,8 +65,12 @@
         <hr>
         <div ng-if="job.post.timePeriod == 'Once Off'">
             <div class="row" style="text-align: left;">
-                <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
-                <div  class="content-heading"><h4 class="form-section-label"><b>Times </b></h4></div>
+                <div class="col-xs-3 col-xs-offset-1">
+                    <img src="../img/Icons/Times-Green-New.png" class="heading-img img-responsive">
+                </div>
+                <div class="col-xs-8">
+                    <div  class="content-heading"><h4 class="form-section-label"><b>Times </b></h4></div>
+                </div>
             </div>
             <ul class="jobpg list-group no-bg no-borders pull-in">
 
@@ -65,8 +81,12 @@
         </div>
         <hr ng-if="job.post.timePeriod == !'Once Off'">
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label"><b>Requirements </b></h4></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/Requirements-green-NEW.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div class="content-heading"><h4 class="form-section-label"><b>Requirements </b></h4></div>
+            </div>
         </div>
         <ul ng-if="job.post.requirements.length > 0 " class="jobpg list-group no-borders pull-in">
             <div class="row">
@@ -82,8 +102,11 @@
         </ul>
         <ul ng-if="job.post.experience.length > 0 " class="jobpg list-group no-bg no-borders pull-in">
             <div class="row">
-                <img src="../img/Icons/work-experience-green-NEW.png" class="sub-heading-img">
-                <div class="content-heading"><b class="form-section-label">Experience </b></div>
+                    <img src="../img/Icons/work-experience-green-NEW.png" class="sub-heading-img">
+
+
+                    <div class="content-heading"><b class="form-section-label">Experience </b></div>
+
             </div>
             <li   ng-repeat="res in job.post.experience">
                 <div class="clear">
@@ -94,8 +117,12 @@
         </ul>
         <ul class="jobpg list-group no-bg no-borders pull-in">
             <div class="row">
-                <img src="../img/Icons/gender.png" class="sub-heading-img">
-                <div class="content-heading"><b class="form-section-label">Gender </b></div>
+
+                    <img src="../img/Icons/gender.png" class="sub-heading-img">
+
+
+                    <div class="content-heading"><b class="form-section-label">Gender </b></div>
+
             </div>
             <li>
                 <div class="clear">
@@ -105,8 +132,10 @@
         </ul>
         <ul ng-if="job.post.transport || job.post.driversLicense"  class="jobpg list-group no-bg no-borders pull-in">
             <div class="row">
-                <img src="../img/Icons/transport-green-NEW.png" class="sub-heading-img">
-                <div class="content-heading"><b class="form-section-label">Transport </b></div>
+
+                    <img src="../img/Icons/transport-green-NEW.png" class="sub-heading-img">
+
+                    <div class="content-heading"><b class="form-section-label">Transport </b></div>
             </div>
 
             <div ng-if="job.post.driversLicense"><span >Driver's License And Own Transport</span></div>
@@ -115,8 +144,12 @@
 
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/threshold2green-new.png" class="heading-img img-responsive">
-            <div  class="content-heading"><h4 class="form-section-label"><b>Threshold </b></h4></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/threshold2green-new.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div  class="content-heading"><h4 class="form-section-label"><b>Threshold </b></h4></div>
+            </div>
         </div>
         <ul class="jobpg list-group no-bg no-borders pull-in">
 
@@ -128,8 +161,12 @@
 
         <hr>
         <div class="row" style="text-align: left;">
-            <img src="../img/Icons/Location-Green-NEW.png" class="heading-img img-responsive">
-            <div class="content-heading"><h4 class="form-section-label"><b>Location </b></h4></div>
+            <div class="col-xs-3 col-xs-offset-1">
+                <img src="../img/Icons/Location-Green-NEW.png" class="heading-img img-responsive">
+            </div>
+            <div class="col-xs-8">
+                <div class="content-heading"><h4 class="form-section-label"><b>Location </b></h4></div>
+            </div>
         </div>
         <br/>
         <div class='embed-container maps'>
