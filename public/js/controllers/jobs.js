@@ -1234,8 +1234,8 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         }
         if(job.post.driversLicense != 'undefined')
         {
-            //console.log("job license: " + job.post.driversLicense);
-            //console.log("user license: " + user.driversLicence);
+            console.log("job license: " + job.post.driversLicense);
+            console.log("user license: " + user.driversLicence);
 
             if(!user.driversLicence && job.post.driversLicense)
             {
