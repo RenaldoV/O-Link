@@ -52,7 +52,7 @@
                                 <button ng-disabled="job.provisionalLeft == 0" ng-if="app.status == 'Pending'" ng-click="makeOffer(app, job)" class="btn greenBack makeOffer">Make Offer</button>
                                 <a style="width:70px" ng-if="app.status == 'Confirmed'" class="btn blueBack" href="mailto:{{app.studentID.contact.email}}?Subject=O-Link:{{job.post.category}}" target="_blank" >Contact</a>
                                 <button  ng-if="app.status == 'Pending'" class="btn btn-danger" ng-click="decline(app, job)">Decline</button>
-                                <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
+                                <button class="btn applProvBtn" ng-if="app.status == 'Provisionally accepted'" style="background-color: lawngreen; color:white;" disabled>Provisionally Accepted</button>
                             </div>
                         </div>
                         <div class="col-md-12">
