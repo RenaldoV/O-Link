@@ -1,194 +1,142 @@
 <div ng-controller="jobBrowser" class="text-center">
-    <div class="filterOptions container" style="margin-bottom: 14px; border-radius: 10px;">
-
-        <div class="row">
-            <div class="col-xs-3 location">
-                <span class="fa-stack fa-lg green" style="float:left;">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 ng-hide="editLoc" >{{resAddress}}</h4>
-                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
-                       class="btn btn-block" placeholder="Location"
-                       ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
-                       ng-blur="locFocusOut()" >
+    <div class="panel panel-default filterOptionsMobile">
+            <div class="panel-heading filterOptionsMHeading" ng-click="hideMobiFilter()">
+                <h4><i class="pull-left fa fa-sliders" aria-hidden="true"></i>Filter Jobs<span class="pull-right glyphicon" ng-class="glyphForDropdown"></span></h4>
             </div>
-            <div class="col-md-1">
-                <button ng-click="editLocation()" class="btn btn-sm greenBack" >Edit Address</button>
-            </div>
-            <div class="col-md-2">
-                <span class="fa-stack fa-lg blue"  style="float:left;">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="filterBy">Filter By:</h4>
-            </div>
-            <div class="col-md-3">
-                <div ng-dropdown-multiselect="" options="catData" selected-model="catModel"
-                     translation-texts="catLabel" extra-settings="dropSettings" events="catSelectEvent"></div>
-            </div>
-            <div class="col-md-3">
-                <div ng-dropdown-multiselect="" options="timeData" selected-model="timeModel"
-                     translation-texts="timeLabel" extra-settings="dropSettings" events="timeSelectEvent"></div>
-            </div>
-
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-3">
-                <span class="fa-stack fa-lg green" style="float:left;">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="offersBtw">Offers Between:</h4>
-            </div>
-            <div class="col-md-9">
-                <div >
-                    <rzslider rz-slider-model="slider.minValue"
-                              rz-slider-options="slider.options"></rzslider>
+            <div class="panel-body filterOptionsMobileContent" ng-hide="hideFilter">
+                <div class="row">
+                    <div class="col-md-2">
+                        <span class="fa-stack fa-lg blue" style="float:left;">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-sort-amount-asc fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="filterBy">Filter By:</h4>
+                    </div>
+                    <div class="col-md-3">
+                        <div ng-dropdown-multiselect="" options="catData" selected-model="catModel"
+                             translation-texts="catLabel" extra-settings="dropSettings" events="catSelectEvent"></div>
+                    </div>
+                    <div class="col-md-3">
+                        <div ng-dropdown-multiselect="" options="timeData" selected-model="timeModel"
+                             translation-texts="timeLabel" extra-settings="dropSettings" events="timeSelectEvent"></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-        <div class="jobsContainer container">
-            <h4 class="white"><b>{{message}}</b></h4>
-            <div class="row jobBox feature blueTop" ng-repeat="job in jobs" style="margin-bottom:10px; border:1px solid; border-radius: 10px; border-color:#33B6CC; background-color: white;" >
-
-
-            <div class="col-md-2">
-                <div>
-                    <img ng-src="data:image/png;base64,{{job.logo}}" class="img-circle browseLogos"><br>
-                    <a class="companyLink">
-                        <span style="font-size: 25px; color:#999;" ng-if="job.employerID.employerType == 'Company'">{{job.employerID.company.name}}</span>
-                        <span style="font-size: 25px; color:#999;" ng-if="job.employerID.employerType == 'Individual'">{{job.employerID.contact.name + " " +job.employerID.contact.surname}}</span>
-                    </a>
+                <hr>
+                <div class="row">
+                    <div class="col-xs-2 location">
+                        <span class="fa-stack fa-lg green" style="float:left;">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="col-xs-6 col-xs-offset-1">
+                        <h4 ng-hide="editLoc">{{resAddress}}</h4>
+                        <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
+                               class="btn btn-block mobiLocInput" placeholder="Location"
+                               ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
+                               ng-blur="locFocusOut()">
+                    </div>
+                    <div class="col-xs-3" style="padding-left:0px; font-size: 10px;">
+                        <button title="Edit Adress" ng-click="editLocation()" class="btn btn-sm greenBack pull-right mobiEditBtn">Edit</button>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-10">
-                <div class="col-xs-6 jobsHead" style="margin-left: -15px">
-                    <h2 class="jobCategory" ng-if="job.post.category != 'Other'">{{job.post.category}}</h2>
-                    <h2 class="jobCategory" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</h2>
-                    <span class="jobTimePeriod">Posted on: {{job.post.postDate}}</span>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <span class="fa-stack fa-lg green" style="float:left;">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-paper-plane fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="col-sm-8">
+                        <h4 class="offersBtw">Offers Between:</h4>
+                    </div>
                 </div>
-                <div class="col-xs-3 jobsHead interviewDanger">
-                        <span style="font-size: 16px;" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
-                            class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
-                </div>
-                <div class="statusDiv1 col-xs-3">
-                    <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall1"></div>
-                    <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall1"></div>
-                    <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall1"></div>
-                    <div ng-if="isConfirmed(job.appStat)" style="background-color: #286090" class="statusBall1"></div>
-                    <span>{{job.appStat}}</span>
-                </div>
-
                 <br/>
-                <br/>
-                <br/>
-                <br class="jobMobileSpace" />
-                <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpaceBig" />
-                <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpaceBig" />
-                <br ng-if="job.post.category != 'Other' && job.post.category.split(' ').length >= 2" class="jobMobileSpace" />
-                <br ng-if="job.post.category == 'Other' && job.post.OtherCategory.split(' ').length >= 2" class="jobMobileSpace" />
-
-
-
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-12" style="text-align:left; padding-left:0px;">
-                            <hr style="text-align: left;">
-                            <div>
-                                <span>{{job.post.description}}</span>
-                            </div>
-                            <hr style="text-align: left;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div >
+                            <rzslider rz-slider-model="slider.minValue"
+                                      rz-slider-options="slider.options"></rzslider>
                         </div>
                     </div>
-                    <div class="row text-center job-info-boxes">
-
-                        <table ng-if="job.appStat" class="col-md-3 jobInfoBox statusBoxTable" title="Application Status">
-                            <thead class="blueBack">
-                            <th class="infoBoxHead glyphicon glyphicon-hourglass"></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <div class="statusDiv2" style="width:50%; margin-left: 25%">
-                                        <span>{{job.appStat}}</span>
-                                        <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall2"></div>
-                                        <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall2"></div>
-                                        <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall2"></div>
-                                        <div ng-if="isConfirmed(job.appStat)" style="background-color: #286090" class="statusBall2"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="col-md-3 jobInfoBox FirstBox" title="Job Location">
-                            <thead class="blueBack">
-                            <th class="glyphicon glyphicon-map-marker infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{job.post.location.address}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="col-md-2 jobInfoBox">
-                            <thead class="blueBack">
-                            <th class=" glyphicon glyphicon-send infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{job.distance}}km</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="col-md-2 jobInfoBox">
-                            <thead class="blueBack">
-                            <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + getPer(job.post.timePeriod) }}</td>
-                                <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'individualTips' ? "Individual Tips" : "Shared Tips"}}</td>
-                                <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + getPer(job.post.timePeriod) + " + Tips" }}</td>
-                                <td ng-if="job.post.payPer == 'commission'">
-                                    <span ng-if="job.post.commission.type == 'percentage'">{{job.post.commission.percentage}}% per {{job.post.commission.per}}</span>
-                                    <span ng-if="job.post.commission.type == 'rand'">R{{job.post.commission.amount}} per {{job.post.commission.per}}</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <table class="col-md-2 jobInfoBox">
-                            <thead class="blueBack">
-                            <th class="glyphicon glyphicon-time infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{job.post.timePeriod}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <table class="col-md-2 jobInfoBox">
-                            <thead class="blueBack">
-                            <th class=" glyphicon glyphicon-calendar infoBoxHead "></th>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{job.post.startingDate}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
+        </div>
 
-            <a class="jobLink" href="/job?id={{job._id}}"> </a>
-                <br>
+    <div class="jobsContainer container">
+        <h4 class="black"><b>{{message}}</b></h4>
+        <div ng-click="gotoJob(job._id)" class=" jobBox mobiJobBox blueTop" ng-repeat="job in jobs" style="width:100%;margin-bottom:10px; border:1px solid; border-radius: 10px; border-color:#33B6CC; background-color: white; cursor:pointer;" >
+            <div class="row firstJobRowMobi">
+                <div class="col-xs-3 mobiJobsLogo">
+                        <img ng-src="data:image/png;base64,{{job.logo}}" class="img-circle mobiBrowseLogos"><br>
+                </div>
+                <div class="col-xs-5 jobsHead" style="padding-left:5px; padding-right:5px; margin-top:2px;">
+                    <h4 class="jobCategory" ng-if="job.post.category != 'Other'">{{job.post.category}}</h4>
+                    <h4 class="jobCategory" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</h4>
+                </div>
+                <div class="col-xs-2 jobsHead interviewDanger"  style="margin-top:13px; padding:0px;">
+                    <span style="font-size: 12px; background-color: lightgrey; border-radius: 3px;" class="text-danger" ng-if="job.post.interviewRequired">Interview</span>
+                </div>
+                <div class="statusDiv2 col-xs-2" style="padding:0px;">
+                    <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall1 Mobi"></div>
+                    <div ng-if="isPending(job.appStat)" style="background-color: orange" class="statusBall1 Mobi"></div>
+                    <div ng-if="isProv(job.appStat)" style="background-color: lawngreen" class="statusBall1 Mobi"></div>
+                    <div ng-if="isConfirmed(job.appStat)" style="background-color: #286090" class="statusBall1 Mobi"></div>
+                </div>
+            </div>
+            <br/>
+            <div class="row text-center job-info-boxes-mobi">
+                <table class="col-xs-3 jobInfoBoxMobi">
+                    <thead class="blueBack">
+                    <th class=" glyphicon glyphicon-send infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{job.distance}}km</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="col-xs-3 jobInfoBoxMobi">
+                    <thead class="blueBack">
+                    <th class="glyphicon glyphicon-credit-card infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td ng-if="job.post.payPer == 'hour'"> R{{job.post.pay + getPer(job.post.timePeriod) }}</td>
+                        <td ng-if="job.post.payPer == 'tips'">{{job.post.tips == 'individualTips' ? "Individual Tips" : "Shared Tips"}}</td>
+                        <td ng-if="job.post.payPer == 'hourAndTips'">{{job.post.pay + getPer(job.post.timePeriod) + " + Tips" }}</td>
+                        <td ng-if="job.post.payPer == 'commission'">
+                            <span ng-if="job.post.commission.type == 'percentage'">{{job.post.commission.percentage}}% per {{job.post.commission.per}}</span>
+                            <span ng-if="job.post.commission.type == 'rand'">R{{job.post.commission.amount}} per {{job.post.commission.per}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="col-xs-3 jobInfoBoxMobi">
+                    <thead class="blueBack">
+                    <th class="glyphicon glyphicon-time infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{job.post.timePeriod}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="col-xs-3 jobInfoBoxMobi">
+                    <thead class="blueBack">
+                    <th class=" glyphicon glyphicon-calendar infoBoxHead "></th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{job.post.startingDate}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+
 </div>
 
 <script>

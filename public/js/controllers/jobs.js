@@ -390,8 +390,23 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 });
 
 app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
-
-
+    //=======================================================================
+    //====================Mobile
+    //========================================================================
+    //==========filter box functionality
+    $scope.hideFilter = true;
+    $scope.glyphForDropdown = "glyphicon-chevron-down";
+    $scope.hideMobiFilter = function(){
+        if($scope.hideFilter){
+            $scope.hideFilter = false;
+            $scope.glyphForDropdown = "glyphicon-chevron-up";
+        }
+        else{
+            $scope.hideFilter = true;
+            $scope.glyphForDropdown = "glyphicon-chevron-down";
+        }
+    };
+    //=======================================================================
 
     var radius = 15;
     //=======================================================================
@@ -549,8 +564,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     $scope.editLocation = function(){
         $scope.editLoc = true;
         $scope.resAddress = session.user.location.address;
-        $("#searchTextField").trigger('click');
-        $("#searchTextField").focus();
     };
     $scope.locFocusOut = function(){
         $scope.editLoc = false;
@@ -660,7 +673,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     getJobs(ob);
     //get the jobs
     function getJobs(temp){
-        //console.log(temp);
         var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
         if(temp.radius){
             data.radius = temp.radius;
@@ -750,6 +762,9 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
                     }
                     else return "/hr"
                 };
+                $scope.gotoJob = function(id){
+                    $location.url("/job?id="+id);
+                }
         });
 
     }
