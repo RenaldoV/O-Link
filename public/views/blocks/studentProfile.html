@@ -31,69 +31,50 @@
                     <div master class="wrapper cards" style="margin-top:20px">
                         <img ng-if="showProfilePic" ng-src="data:image/png;base64,{{image}}"
                              class="profileImage img-circle">
+                        <h4 ng-if="myProfile" class="m-t-xs m-b-xs"><b>Contact Details</b></h4>
                         <ul ng-if="myProfile" class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
-                                <div class="row clear">
-                                    <div class="col-xs-5 col-xs-offset-1">
-                                        <b class="pull-left">Contact Number</b>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <small class="text-muted pull-left">{{user.contact.contactNo}}</small>
-                                    </div>
+                                <div class="clear">
+                                    <div><b>Contact Number</b></div>
+                                    <small class="text-muted">{{user.contact.contactNo}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
-                                <div class="row clear">
-                                    <div class="col-xs-5 col-xs-offset-1">
-                                        <b class="pull-left">Email</b>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <small class="text-muted pull-left">{{user.contact.email}}</small>
-                                    </div>
+                                <div class="clear">
+                                    <div><b>Email</b></div>
+                                    <small class="text-muted">{{user.contact.email}}</small>
                                 </div>
                             </li>
                         </ul>
                         <hr ng-if="myProfile">
+                        <h4 class="m-t-xs m-b-xs"><b>Personal Details</b></h4>
                         <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
-                                <div class="row clear">
-                                    <div class="col-xs-5 col-xs-offset-1">
-                                        <b class="pull-left">Gender</b>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <small class="text-muted pull-left">{{user.gender}}</small>
-                                    </div>
+                                <div class="clear">
+                                    <div><b>Gender</b></div>
+                                    <small class="text-muted">{{user.gender}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
-                                <div class="row clear">
-                                    <div class="col-xs-5 col-xs-offset-1">
-                                        <b class="pull-left">ID Number</b>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <small class="text-muted pull-left">{{user.IDnumber}}</small>
-                                    </div>
+                                <div class="clear">
+                                    <div><b>ID Number</b></div>
+                                    <small class="text-muted">{{user.IDnumber}}</small>
                                 </div>
                             </li>
                             <li class="list-group-item">
-                                <div class="row clear">
-                                    <div class="col-xs-5 col-xs-offset-1">
-                                        <b class="pull-left">Date Of Birth</b>
-                                    </div>
-                                    <div class="col-xs-5">
-                                        <small class="text-muted pull-left">{{user.dob}}</small>
-                                    </div>
+                                <div class="clear">
+                                    <div><b>Date Of Birth</b></div>
+                                    <small class="text-muted">{{user.dob}}</small>
                                 </div>
                             </li>
-                        </ul>
-                        <hr>
-                        <ul class="list-group no-bg no-borders pull-in">
                             <li class="list-group-item">
                                 <div class="clear">
                                     <div><b>About</b></div>
                                     <small class="text-muted">{{user.aboutme}}</small>
                                 </div>
                             </li>
+
+
                         </ul>
                     </div>
                 </div>
@@ -110,38 +91,26 @@
                             <h4 class="m-t-xs m-b-xs"><b>Academia</b></h4>
                             <ul class="list-group no-bg no-borders pull-in">
                                 <li class="list-group-item">
-                                    <div class="row clear">
-                                        <div class="col-xs-5 col-xs-offset-1">
-                                            <b class="pull-left">Institution Type</b>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <small class="text-muted pull-left">{{user.institution.type}}</small>
-                                        </div>
+                                    <div class="clear">
+                                        <div><b>Institution Type</b></div>
+                                        <small class="text-muted">{{user.institution.type}}</small>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
-                                    <div class="row clear">
-                                        <div class="col-xs-5 col-xs-offset-1">
-                                            <b class="pull-left">Institution Name</b>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <small ng-if="user.institution.name != 'Other'" class="text-muted pull-left">
-                                                {{user.institution.name}}
-                                            </small>
-                                            <small ng-if="user.institution.name == 'Other'" class="text-muted pull-left">
-                                                {{user.institution.otherName}}
-                                            </small>
-                                        </div>
+                                    <div class="clear">
+                                        <div><b>Institution Name</b></div>
+                                        <small ng-if="user.institution.name != 'Other'" class="text-muted">
+                                            {{user.institution.name}}
+                                        </small>
+                                        <small ng-if="user.institution.name == 'Other'" class="text-muted">
+                                            {{user.institution.otherName}}
+                                        </small>
                                     </div>
                                 </li>
                                 <li class="list-group-item" ng-if="user.qualification.name">
-                                    <div class="row clear">
-                                        <div class="col-xs-5 col-xs-offset-1">
-                                            <b class="pull-left">Qualification Name</b>
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <small class="text-muted pull-left">{{user.qualification.name}}</small>
-                                        </div>
+                                    <div class="clear">
+                                        <div><b>Qualification Name</b></div>
+                                        <small class="text-muted">{{user.qualification.name}}</small>
                                     </div>
                                 </li>
                                 <hr>
