@@ -97,3 +97,7 @@ div.jobContent{
 .content-heading > h4.form-section-label {
     margin-left: 0px;
 }
+
+div.stats{
+    display: none;!important;
+}
