@@ -47,6 +47,16 @@ module.exports = function(app) {
 	// server routes ===========================================================
 	// db routes
 	// authentication routes
+	app.post('/checkResetToken/:token', function(req, res) {
+		db.users.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(er,user) {
+			if (!user) {
+				return res.send(false);
+			}else
+			{
+				return res.send(true);
+			}
+		});
+	});
 	app.post('/reset/:token', function(req, res) {
 		var pw;
 		for(var key in req.body)

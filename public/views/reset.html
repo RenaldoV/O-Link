@@ -18,13 +18,22 @@
                                     <button class="btn btn-default reveal2 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                 </span>
                     </div>
+                    <div ng-show="form.$submitted || form.stuPassw.$touched" class="error-block">
+                        <p ng-show="form.stuPassw.$error.required" class="has-error">This field is required</p>
+                        <p ng-show="form.stuPassw.$error.pattern" class="has-error">Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character</p>
+                    </div>
                 </div>
                 <div class="list-group-item">
                     <div class="input-group">
-                        <input id="stuRePassw" name="stuRePassw" type="password" placeholder="Confirm password" class="form-control no-border pwd3" required>
+                        <input id="stuRePassw" name="stuRePassw" type="password" placeholder="Confirm password"
+                               ui-validate="{validRePassw : 'validatestuPassw($value)'}" class="form-control no-border pwd3" ng-model="stuRePass" required>
                                 <span class="input-group-btn">
                                     <button class=" btn btn-default reveal3 no-border" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
                                 </span>
+                    </div>
+                    <div ng-show="form.$submitted || form.stuRePassw.$touched" class="error-block">
+                        <p ng-show="form.stuRePassw.$error.required" class="has-error">This field is required</p>
+                        <p ng-show="form.stuRePassw.$error.validRePassw" class="has-error">Password do not match</p>
                     </div>
                 </div>
             </div>
@@ -38,78 +47,7 @@
 
 
 <script>
-    if (document.addEventListener) {
-        document.addEventListener('invalid', function(e) {
-            var element = $(e.target);
-            element.addClass("invalid");
-        }, true);
-    }
-    $(document).bind('change', function(e){
-
-        if( $(e.target).is(':invalid') ){
-            $(e.target).addClass('invalid');
-        } else {
-            $(e.target).removeClass('invalid');
-        }
-    });
-    $(document).bind('keypress', function(e){
-
-        if( $(e.target).is(':invalid') ){
-            $(e.target).addClass('invalid');
-        } else {
-            $(e.target).removeClass('invalid');
-        }
-    });
     $( ".passTooltip" ).tooltip();
 
-    $(".reveal2").mousedown(function() {
-      $(".pwd2").get(0).type='text';
-    })
-    .mouseup(function() {
-      $(".pwd2").get(0).type='password';
-    })
-    .mouseout(function() {
-      $(".pwd2").get(0).type='password';
-    });
-
-    $(".reveal3").mousedown(function() {
-      $(".pwd3").get(0).type='text';
-    })
-    .mouseup(function() {
-      $(".pwd3").get(0).type='password';
-    })
-    .mouseout(function() {
-      $(".pwd3").get(0).type='password';
-    });
-
-    $("input[name=stuPassw]").on("invalid", function () {
-        this.setCustomValidity("Password must contain at least 6 characters, 1 uppercase character, 1 number and 1 special character");
-    });
-    $("input[name=stuPassw]").on("change", function () {
-        this.setCustomValidity("");
-    });
-
-    $(".sign-in-btn").on('click', function()
-    {
-        if($("#stuRePassw").val() != $("#stuPassw").val())
-        {
-            document.getElementById("stuRePassw").setCustomValidity("Passwords do not match.");
-        }
-        else
-        {
-            document.getElementById("stuRePassw").setCustomValidity("");
-        }
-    });
-
-    $("#stuRePassw").focusout(function () {
-        if($("#stuRePassw").val() != $("#stuPassw").val())
-        {
-            this.setCustomValidity("Passwords do not match.");
-        }
-        else
-        {
-            this.setCustomValidity("");
-        }
-
-    });
 </script>
+<script src="../js/helpers/userForms.js"></script>

@@ -25,7 +25,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
 
                         if (res.data) {
 
-                            swal({title: "Welcome", type: "success", timer: 800, showConfirmButton: false});
+                            swal({title: "Welcome.", type: "success", timer: 800, showConfirmButton: false});
 
                             authService.login($scope.user).then(function (user) {
 
@@ -40,7 +40,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                             });
 
                         }
-                        else sweetAlert("Incorrect login details, or your account hasn't been activated", "Please try again.", "error");
+                        else sweetAlert("Please Try Again.", "Incorrect login details, or your account hasn't been activated.", "error");
                     }
                 });
         }
@@ -148,12 +148,12 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         else
         {
             swal({
-                    title: "Are you sure?",
+                    title: "Are You Sure?",
                     text: "You will lose all of your progress in the sign up form!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Go to log in",
+                    confirmButtonText: "Go To Log In",
                     closeOnConfirm: false
                 },
                 function(isConfirm){
@@ -376,7 +376,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
         else{
             swal({
-                title: "Only PDF's accepted",
+                title: "Only PDF's Accepted.",
                 text: 'The system only accepts pdf files.',
                 type: "error"
             });
@@ -403,7 +403,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
         else{
             swal({
-                title: "Only PDF's accepted",
+                title: "Only PDF's Accepted.",
                 text: 'The system only accepts pdf files.',
                 type: "error"
             });
@@ -424,7 +424,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     window.addEventListener("popstate", function(e) {
         if($scope.next) {
             swal({
-                    title: "Are you sure?",
+                    title: "Are You Sure?",
                     text: "Going back at this stage will erase your progress. To go back to the previous section click the back arrow in the top left corner.",
                     type: "warning",
                     showCancelButton: true,
@@ -445,7 +445,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         }
         else{
             swal({
-                    title: "Are you sure?",
+                    title: "Are You Sure?",
                     text: "Going back at this stage will erase your progress.",
                     type: "warning",
                     showCancelButton: true,
@@ -496,14 +496,14 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
                             console.log(res);
                             if (res.data == "email") {
                                 swal({
-                                        title: "User exists",
+                                        title: "User Exists.",
                                         text: 'The email you have entered already has an account associated with it.',
                                         type: "error"
                                     });
                             }
                             else if (res.data) {
                                 swal({
-                                        title: "Account created",
+                                        title: "Account Created",
                                         text: 'An activation email has been sent to you. Please follow the link enclosed to activate your new profile.',
                                         type: "success"
                                     },
@@ -525,55 +525,79 @@ app.controller('reset', function($scope,$rootScope, $http,authService,AUTH_EVENT
     if(authService.isAuthenticated())
         $location.url("/dashboard");
     $scope.user = {};
-
-    $scope.submitForm = function() {
-
+    $scope.validatestuPassw = function(pass){
+        if(pass != undefined && $scope.user.passwordHash != undefined){
+            return pass == $scope.user.passwordHash
+        }
+    };
     $http({
         method: 'POST',
-        url: '/reset/' + $routeParams.token,
+        url: '/checkResetToken/' + $routeParams.token,
         data: $scope.user,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     })
-        .then(function (res) {
-            {
-                if (res.data != "error") {
+    .then(function (res) {
+        if(!res.data){
+            swal({
+                    title: "Error!",
+                    text: "Password reset token is invalid or has expired. Please try again.",
+                    type: "error"
+                },
+                function () {
+                    window.location = "/forgot";
+                });
+        }
+    });
 
-                    var tempUser = new Object();
-                    tempUser.password = $scope.user.passwordHash;
-                    tempUser.email = res.data.contact.email;
+    $scope.submitForm = function() {
+        if($scope.form.$valid) {
+            $http({
+                method: 'POST',
+                url: '/reset/' + $routeParams.token,
+                data: $scope.user,
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+                .then(function (res) {
+                    {
+                        if (res.data != "error") {
 
-                    swal({
-                            title: "Success",
-                            text: 'Your password has been changed successfully.',
-                            type: "success"
-                        },
-                        function () {
-                            $(".appbg").addClass('dashBG');
-                            authService.login(tempUser).then(function (user) {
-                                $scope.setCurrentUser(user);
-                                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                            var tempUser = new Object();
+                            tempUser.password = $scope.user.passwordHash;
+                            tempUser.email = res.data.contact.email;
 
-                                $location.url("/dashboard");
+                            swal({
+                                    title: "Success!",
+                                    text: 'Your password has been changed successfully.',
+                                    type: "success"
+                                },
+                                function () {
+                                    $(".appbg").addClass('dashBG');
+                                    authService.login(tempUser).then(function (user) {
+                                        $scope.setCurrentUser(user);
+                                        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 
-
-                            }, function () {
-                                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
-                            });
-                        });
-                }
-                else
-                    swal({
-                            title: "Error",
-                            text: "Password reset token is invalid or has expired. Please try again.",
-                            type: "error"
-                        },
-                        function () {
-                            //location.url("/forgot");
-                        });
+                                        $location.url("/dashboard");
 
 
-            }
-        });
+                                    }, function () {
+                                        $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                                    });
+                                });
+                        }
+                        else
+                            swal({
+                                    title: "Error!",
+                                    text: "Password reset token is invalid or has expired. Please try again.",
+                                    type: "error"
+                                },
+                                function () {
+                                    //location.url("/forgot");
+                                });
+
+
+                    }
+                });
+        }
     }
 });
 
@@ -596,15 +620,15 @@ app.controller('forgot', function($scope,$rootScope, $http,authService,AUTH_EVEN
                     if(res.data) {
 
                         swal({
-                                title: "Success",
+                                title: "Success!",
                                 text: 'An email has been sent to ' + res.data.contact.email + ' with a reset link.',
                                 type: "success"
                             });
                     }
                     else
                         swal({
-                                title: "error",
-                                text: "No account with that email address exists. Try again.",
+                                title: "Error!",
+                                text: "No account exists with that email. Please try again or email help@o-link.co.za.",
                                 type: "error"
                             });
 
