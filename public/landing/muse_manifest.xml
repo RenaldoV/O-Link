@@ -1,8 +1,8 @@
-<manifest alg="2" build="2017.0.1.363" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="www.o-link.co.za" resolutions="1x,2x" timestamp="1488354456800">
+<manifest alg="2" build="2017.0.1.363" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster" exportTarget="other" domain="www.o-link.co.za" resolutions="1x,2x" timestamp="1488362982765">
   <folder name="css">
-    <file name="site_global.css" crc="419997302"/>
-    <file name="index.css" crc="4199887073" ref="index"/>
-    <file name="iefonts_index.css" crc="320884287" ref="index"/>
+    <file name="site_global.css" crc="444413422"/>
+    <file name="index.css" crc="415079092" ref="index"/>
+    <file name="iefonts_index.css" crc="3879483139" ref="index"/>
   </folder>
   <folder name="fonts">
     <file name="fontawesome-webfont.woff" crc="352826516"/>
@@ -22,18 +22,16 @@
     <file name="form_check.php" crc="303648844" ref="phone>index"/>
     <file name="form_throttle.php" crc="236764551" ref="phone>index"/>
     <file name="form_process.php" crc="4272079531" ref="phone>index"/>
-    <file name="form-u15066.php" crc="75804873" ref="phone>index"/>
+    <file name="form-u14700.php" crc="75804873" ref="phone>index"/>
     <file name="musewpslideshow.js" crc="405464237" ref="phone>index:phone>home-talent:phone>home-employer:index"/>
     <file name="jquery.museoverlay.js" crc="305414130" ref="phone>index:phone>home-talent:phone>home-employer:index"/>
     <file name="touchswipe.js" crc="221459597" ref="phone>index:phone>home-talent:phone>home-employer:index"/>
-    <file name="form-u14700.php" crc="75804873" ref="phone>index"/>
     <file name="form-u14725.php" crc="75804873" ref="phone>index"/>
     <file name="require.js" crc="4159430777" ref="phone>index:phone>home-talent:phone>home-employer:index"/>
     <file name="form-u6549.php" crc="4130933918" ref="phone>home-talent"/>
     <file name="form-u6897.php" crc="280972352" ref="phone>home-talent"/>
     <file name="jquery.musepolyfill.bgsize.js" crc="4001026563" ref="phone>home-talent:phone>home-employer:index"/>
     <file name="jquery.musemenu.js" crc="3765830709" ref="phone>home-talent:phone>home-employer:index"/>
-    <file name="form-u13766.php" crc="280972352" ref="phone>home-talent"/>
     <file name="form-u7384.php" crc="280972352" ref="phone>home-talent"/>
     <file name="form-u7446.php" crc="280972352" ref="phone>home-talent"/>
     <file name="musewpdisclosure.js" crc="3865010892" ref="phone>home-talent:phone>home-employer:index"/>
@@ -42,19 +40,14 @@
     <file name="html5shiv.js" crc="4241844378" ref="phone>home-talent:phone>home-employer:index"/>
     <file name="form-u13338.php" crc="71518541" ref="phone>home-employer"/>
     <file name="form-u13363.php" crc="71518541" ref="phone>home-employer"/>
-    <file name="form-u13697.php" crc="71518541" ref="phone>home-employer"/>
     <file name="form-u10835.php" crc="71518541" ref="phone>home-employer"/>
     <file name="form-u10857.php" crc="71518541" ref="phone>home-employer"/>
     <file name="form-u11357.php" crc="251751600" ref="phone>home-employer"/>
     <file name="form-u11334.php" crc="207107459" ref="phone>home-employer"/>
-    <file name="form-u7547.php" crc="294805631" ref="index"/>
-    <file name="form-u7626.php" crc="294805631" ref="index"/>
     <file name="form-u601.php" crc="4249047407" ref="index"/>
     <file name="form-u686.php" crc="75804873" ref="index"/>
     <file name="form-u704.php" crc="75804873" ref="index"/>
     <file name="form-u644.php" crc="443839715" ref="index"/>
-    <file name="form-u15149.php" crc="294805631" ref="index"/>
-    <file name="form-u15176.php" crc="294805631" ref="index"/>
     <file name="form-u2882.php" crc="75804873" ref="index"/>
     <file name="form-u3234.php" crc="294805631" ref="index"/>
     <file name="form-u3300.php" crc="294805631" ref="index"/>
@@ -204,18 +197,18 @@
   </folder>
   <folder name="phone">
     <folder name="css">
-      <file name="master_b-master.css" crc="4119526598" ref="phone>home-employer"/>
-      <file name="master_a-master.css" crc="3816598164" ref="phone>home-talent"/>
-      <file name="index.css" crc="282130286" ref="phone>index"/>
-      <file name="iefonts_index.css" crc="156436110" ref="phone>index"/>
-      <file name="home-employer.css" crc="3954209247" ref="phone>home-employer"/>
-      <file name="iefonts_home-employer.css" crc="351273857" ref="phone>home-employer"/>
-      <file name="home-talent.css" crc="193526998" ref="phone>home-talent"/>
-      <file name="iefonts_home-talent.css" crc="344752677" ref="phone>home-talent"/>
+      <file name="master_b-master.css" crc="4215007173" ref="phone>home-employer"/>
+      <file name="master_a-master.css" crc="4086297886" ref="phone>home-talent"/>
+      <file name="home-employer.css" crc="56927109" ref="phone>home-employer"/>
+      <file name="iefonts_home-employer.css" crc="115142911" ref="phone>home-employer"/>
+      <file name="index.css" crc="4084390768" ref="phone>index"/>
+      <file name="iefonts_index.css" crc="3830543245" ref="phone>index"/>
+      <file name="home-talent.css" crc="45075983" ref="phone>home-talent"/>
+      <file name="iefonts_home-talent.css" crc="334054675" ref="phone>home-talent"/>
     </folder>
-    <file name="index.html" crc="494737001" seo="true" mt="1476875136785" redirect="true"/>
-    <file name="home-talent.html" crc="118951275" seo="true" mt="1485778646525" redirect="true"/>
-    <file name="home-employer.html" crc="425544464" seo="true" mt="1485778646527" redirect="true"/>
+    <file name="index.html" crc="73937590" seo="true" mt="1488362700931" redirect="true"/>
+    <file name="home-talent.html" crc="4283889790" seo="true" mt="1488362742020" redirect="true"/>
+    <file name="home-employer.html" crc="4089352996" seo="true" mt="1488362762403" redirect="true"/>
   </folder>
-  <file name="index.html" crc="3777822545" seo="true" mt="1488354272825" redirect="true"/>
+  <file name="index.html" crc="152502053" seo="true" mt="1488362678195" redirect="true"/>
 </manifest>
