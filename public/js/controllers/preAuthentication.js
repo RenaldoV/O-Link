@@ -40,7 +40,7 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                             });
 
                         }
-                        else sweetAlert("Please Try Again.", "Incorrect login details, or your account hasn't been activated.", "error");
+                        else sweetAlert("Incorrect Log In Details!", "Please try Log In again or make sure that your account has been activated.", "error");
                     }
                 });
         }
@@ -149,7 +149,7 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
         {
             swal({
                     title: "Are You Sure?",
-                    text: "You will lose all of your progress in the sign up form!",
+                    text: "You will lose all of your progress in the Sign Up form!",
                     type: "warning",
                     showCancelButton: true,
                     confirmButtonColor: "#DD6B55",

@@ -10,7 +10,12 @@
       </div>
       <div class="list-group list-group-sm">
         <div class="list-group-item">
-          <input type="email" placeholder="Email" class="form-control no-border" ng-model="user.email" required>
+          <input type="email" name="emailSi" placeholder="Email" class="form-control no-border" ng-model="user.email" ng-required="true"
+                 ng-pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/">
+          <div ng-show="form.$submitted || form.emailSi.$touched" class="error-block">
+            <p ng-show="form.emailSi.$error.required" class="has-error">This field is required</p>
+            <p ng-show="form.emailSi.$error.pattern" class="has-error">Not a valid email address</p>
+          </div>
         </div>
       </div>
       <button target="_self" type="submit" class=" sign-in-btn btn btn-lg btn-primary btn-block" ng-click="reset()" >Reset Password</button>

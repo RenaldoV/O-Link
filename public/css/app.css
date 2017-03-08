@@ -1071,6 +1071,14 @@ body {
     display: table-cell !important;
   }
 }
+@media (min-width: 992px) and (max-width: 1040px) {
+  body > div#loading-bar-spinner .spinner-icon {
+    margin-left:-10px;!important;
+    margin-top: -7px;!important;
+    width: 35px;!important;
+    height: 35px;!important;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   h2.applName{
     font-size: 20px;
@@ -1220,6 +1228,9 @@ body {
 }
 
 @media (max-width: 767px) {
+  .modal.in .modal-dialog {
+    margin-top: 12px;
+  }
   h2.applName{
     font-size: 20px;
   }
@@ -5602,6 +5613,8 @@ div.dashTops{
     left: auto;
   }
   .navbar-nav .open .dropdown-menu {
+    border: 1px solid lightgrey;
+    position: fixed;
     background-color: white;!important;
     display: block;
     border-top-left-radius: 10px;
@@ -5747,9 +5760,6 @@ margin-top: 32px;
       padding: 0;
     }
     div.buye{
-      margin-top: 32px;
-    }
-    div.empDash{
       margin-top: 32px;
     }
     div.empProfileRating{

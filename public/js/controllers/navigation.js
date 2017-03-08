@@ -382,11 +382,11 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
 
     $scope.logOut = function() {
         swal({
-                title: "Are you sure?", text: "The browser won't remember you next time you log in.",
+                title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, log out!", closeOnConfirm: false
+                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
             },
             function () {
                 session.destroy();
@@ -472,11 +472,11 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
 
     $scope.logOut = function() {
         swal({
-                title: "Are you sure?", text: "The browser won't remember you next time you log in.",
+                title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, log out!", closeOnConfirm: false
+                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
             },
             function () {
                 session.destroy();

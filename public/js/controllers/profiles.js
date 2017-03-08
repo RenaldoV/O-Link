@@ -429,7 +429,7 @@ app.controller('activateProfileControl', function ($scope,$http,$location, authS
         .then(function (res, err) {
 
             if(!res.data){
-                sweetAlert("Invalid token", "Please follow the link in the email you recieved", "error");
+                sweetAlert("Invalid Token!", "Please follow the link in the email you recieved.", "error");
             }
             else {
                 swal({   title: "Welcome",   type: "success",   timer: 800,   showConfirmButton: false });

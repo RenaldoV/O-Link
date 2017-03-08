@@ -440,7 +440,17 @@
 						</div><br/>
 					</div>
 				</div>
-
+				<div class="list-group list-group-sm form-group">
+					<div class="list-group-item" ng-show="!next">
+						<select class=" form-control no-border" id="sel1" name="how" ng-model="user.suggested">
+							<option value="" selected disabled>How did you hear about us?</option>
+							<option value="Word of mouth">Word of mouth</option>
+							<option value="Social media">Social media</option>
+							<option value="Academic institution">Academic institution</option>
+							<option value="Other">Other</option>
+						</select>
+					</div>
+				</div><br/>
 				<div ng-hide="next" class="passTooltip"
 					 title="Adding Additional Info such as, institution of study, field of study, academic results, past work experience and qualifications / certifications will better your chances of a successful application. We strongly suggest that you populate the Additional Info form now.">
 					<div class="row">
@@ -454,18 +464,6 @@
 					</div>
 					<br/>
 				</div>
-
-				<div class="list-group list-group-sm form-group">
-					<div class="list-group-item" ng-hide="additional && !next">
-						<select class=" form-control no-border" id="sel1" name="how" ng-model="user.suggested">
-							<option value="" selected disabled>How did you hear about us?</option>
-							<option value="Word of mouth">Word of mouth</option>
-							<option value="Social media">Social media</option>
-							<option value="Academic institution">Academic institution</option>
-							<option value="Other">Other</option>
-						</select>
-					</div>
-				</div><br/>
 
 				<div class="checkbox m-b-md m-t-none" ng-hide="additional && !next">
 					<label class="i-checks">
