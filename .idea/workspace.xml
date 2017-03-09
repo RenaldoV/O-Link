@@ -35,8 +35,8 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="1314" column="43" lean-forward="false" selection-start-line="1314" selection-start-column="43" selection-end-line="1314" selection-end-column="43" />
+            <state relative-caret-position="272">
+              <caret line="1311" column="5" lean-forward="false" selection-start-line="1311" selection-start-column="5" selection-end-line="1311" selection-end-column="5" />
               <folding>
                 <element signature="e#13445#16291#0" expanded="false" />
                 <element signature="e#16292#16522#0" expanded="false" />
@@ -545,7 +545,7 @@
       <workItem from="1488887979498" duration="5134000" />
       <workItem from="1488985140561" duration="3541000" />
       <workItem from="1489042126393" duration="15032000" />
-      <workItem from="1489086262234" duration="3477000" />
+      <workItem from="1489086262234" duration="3814000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -600,7 +600,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287432000" />
+    <option name="totallyTimeSpent" value="287769000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1069,8 +1069,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/app.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="1314" column="43" lean-forward="false" selection-start-line="1314" selection-start-column="43" selection-end-line="1314" selection-end-column="43" />
+        <state relative-caret-position="272">
+          <caret line="1311" column="5" lean-forward="false" selection-start-line="1311" selection-start-column="5" selection-end-line="1311" selection-end-column="5" />
           <folding>
             <element signature="e#13445#16291#0" expanded="false" />
             <element signature="e#16292#16522#0" expanded="false" />
