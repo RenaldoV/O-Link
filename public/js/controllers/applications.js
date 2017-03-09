@@ -199,7 +199,6 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 };
 
                 $scope.acceptChanges = function(app){
-                    alert(app);
                     $http
                         .post('/acceptChanges', {app: app})
                         .then(function (res, err) {
