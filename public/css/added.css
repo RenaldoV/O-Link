@@ -912,6 +912,22 @@ span.jobDescription{
 .applicantsTables td.hover{
     background-color: #e9f8ff;
 }
+.appStatRowStu:hover{
+    background-color: white;
+
+}
+.appStatRowStu:last-child:hover{
+    background-color: transparent;
+}
+.appStatRowStu:last-child:hover  td:last-child {
+    border-bottom-right-radius: 10px;
+}
+.appStatRowStu:last-child:hover  td:first-child{
+    border-bottom-left-radius: 10px;
+}
+.appStatRowStu:last-child:hover  td{
+    background-color: white;
+}
 
 td.hover {
     background-color: white;

@@ -4,7 +4,7 @@
     <thead class="talentHistoryHead blueBack"><th class="tableAdd"><!--Company logo--></th ><th class='tableAdd'>Employer</th><th>Category</th><th class="applicantsTableAddSmall">Date</th><th class="tableAdd">Location</th><th>Status</th><th class=""></th>
     </thead>
     <tbody>
-    <tr ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-repeat="app in applications"  style="cursor: pointer;" class="appStatRowStu" ng-if="app.status != 'Completed'">
+    <tr ng-repeat="app in applications"  style="cursor: pointer;" class="appStatRowStu" ng-if="app.status != 'Completed'">
         <td ng-click="getJob(app.jobID._id)" class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType == 'Company'">{{app.employerID.company.name}}</td>
         <td ng-click="getJob(app.jobID._id)" class="tableAdd" ng-if="app.employerID.employerType != 'Company'">{{app.employerID.contact.name}}</td>
@@ -23,9 +23,9 @@
                 <div ng-if="isConfirmed(app.status)" style="background-color: #286090" class="statusBall"></div>
             </div>
         </td>
-        <td class="appBtns">
-            <div class="Container">
-                <div class="dropdown">
+        <td class="appBtns Container">
+            <div class="dropdown">
+
                     <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
                     </i>
                     <ul class="dropdown-menu tablesSmlDropdown">
@@ -54,7 +54,6 @@
                             </a>
                         </li>
                     </ul>
-                </div>
             <!--<span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</button></span>
             <span ng-if="app.offered == 'accepted' && !app.edited">
                 <a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}" target="_blank">Contact</a>
