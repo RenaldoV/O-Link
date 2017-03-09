@@ -540,16 +540,13 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
             }
         });
     }); // Save location and geometry
-    $("#searchTextField").focus(function(){
-        $(this).select().mouseup(function (e) {
-            $(this).unbind("mouseup");
-        });
-    });
     $scope.editLocation = function(){
         $scope.editLoc = true;
         $scope.resAddress = session.user.location.address;
-        $("#searchTextField").trigger('click');
-        $("#searchTextField").focus();
+        $timeout(function(){
+            $("#searchTextField").select();
+        });
+
     };
     $scope.locFocusOut = function(){
         $scope.editLoc = false;
