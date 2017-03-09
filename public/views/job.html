@@ -169,7 +169,7 @@
 
                 <button class="btn btn-danger btn-xlarge" ng-click="decline(application._id, application.employerID, application.jobID, job)">Withdraw</button>
             </span>
-            <a ng-if="application.offered == 'accepted'" class="awe btn blueBack btn-xlarge" href="mailto:{{job.employerID.contact.email}}?Subject=O-Link: {{job.post.category}} starting on {{job.post.startingDate}}" target="_blank">Contact</a>
+            <a ng-if="application.offered == 'accepted'" class="awe btn blueBack btn-xlarge" href="mailto:{{job.employerID.contact.email}}?Subject=O-Link: {{job.post.category}} starting on {{job.post.startingDate}}">Contact</a>
 
             <button ng-if="canApply" ng-disabled="hasApplied || clicked || job.applicationsLeft == 0" class="btn greenBack btn-xlarge" ng-click="apply()">Apply</button>
             <button ng-if="hasApplied && application.offered != 'accepted' && application.status != 'Provisionally accepted' && application.status != 'Declined' && !clicked" class="btn greenBack btn-xlarge" disabled style="background-color: orange">{{application.status}}</button>

@@ -33,7 +33,7 @@
                             <a href="#" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</a>
                         </li>
                         <li ng-if="app.offered == 'accepted' && !app.edited">
-                            <a href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}" target="_blank">Contact</a>
+                            <a href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}">Contact</a>
                         </li>
                         <li ng-if="app.edited && (app.status == 'Pending' || app.status =='Confirmed')">
                             <a href="#" ng-click="acceptChanges(app)">Accept Changes</a>

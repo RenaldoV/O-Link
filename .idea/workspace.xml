@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controllers/applications.js" afterPath="$PROJECT_DIR$/public/js/controllers/applications.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/studentApplication.html" afterPath="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/job.html" afterPath="$PROJECT_DIR$/public/views/job.html" />
     </list>
     <ignored path="o-link.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,11 +79,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="job.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="job.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/views/job.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2907">
-              <caret line="171" column="215" lean-forward="false" selection-start-line="171" selection-start-column="93" selection-end-line="171" selection-end-column="215" />
+            <state relative-caret-position="394">
+              <caret line="171" column="215" lean-forward="false" selection-start-line="171" selection-start-column="215" selection-end-line="171" selection-end-column="215" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#15;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
@@ -91,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="studentApplication.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="studentApplication.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="442">
-              <caret line="35" column="193" lean-forward="true" selection-start-line="35" selection-start-column="193" selection-end-line="35" selection-end-column="193" />
+              <caret line="35" column="165" lean-forward="false" selection-start-line="35" selection-start-column="165" selection-end-line="35" selection-end-column="165" />
               <folding />
             </state>
           </provider>
@@ -221,11 +221,11 @@
         <option value="$PROJECT_DIR$/public/libs/angular-google-places-autocomplete/dist/autocomplete.min.js" />
         <option value="$PROJECT_DIR$/public/views/browseJobs.html" />
         <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
-        <option value="$PROJECT_DIR$/public/views/job.html" />
         <option value="$PROJECT_DIR$/public/css/added.css" />
         <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
+        <option value="$PROJECT_DIR$/public/views/job.html" />
       </list>
     </option>
   </component>
@@ -559,7 +559,7 @@
       <workItem from="1488887979498" duration="5134000" />
       <workItem from="1488985140561" duration="3541000" />
       <workItem from="1489042126393" duration="15032000" />
-      <workItem from="1489086262234" duration="4183000" />
+      <workItem from="1489086262234" duration="4522000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -614,7 +614,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="288138000" />
+    <option name="totallyTimeSpent" value="288477000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -993,16 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/views/job.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2907">
-          <caret line="171" column="215" lean-forward="false" selection-start-line="171" selection-start-column="93" selection-end-line="171" selection-end-column="215" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#15;n#div#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/page_signup.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3451">
@@ -1096,8 +1086,18 @@
     <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
-          <caret line="35" column="193" lean-forward="true" selection-start-line="35" selection-start-column="193" selection-end-line="35" selection-end-column="193" />
+          <caret line="35" column="165" lean-forward="false" selection-start-line="35" selection-start-column="165" selection-end-line="35" selection-end-column="165" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/views/job.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="171" column="215" lean-forward="false" selection-start-line="171" selection-start-column="215" selection-end-line="171" selection-end-column="215" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#15;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
