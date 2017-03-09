@@ -1226,8 +1226,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
         }
         if(!met){
-            sweetAlert("You lack the following requirements: ", reduceArray(crit), "error");
-
+            swal({
+                title: "Failed to Meet Minimum Requirements",
+                text: "You cannot apply to this job because you do not meet the minimum requirements relating to : " + "<b>" + reduceArray(crit) + "</b>",
+                html: true,
+                type: "error"
+                });
         }
         else {
             job.post.startingDate = convertDateForDisplay(job.post.startingDate);

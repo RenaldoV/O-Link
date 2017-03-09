@@ -14,7 +14,9 @@
 
         <td ng-click="getJob(app.jobID._id)" class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
         <td ng-click="getJob(app.jobID._id)">
-            <div class="statusDiv"><span>{{app.status}}</span>
+            <div class="statusDiv">
+                <span ng-if="app.status != 'Provisionally accepted'">{{app.status}}</span>
+                <span ng-if="app.status == 'Provisionally accepted'">Provisionally Accepted</span>
                 <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                 <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                 <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
@@ -22,15 +24,46 @@
             </div>
         </td>
         <td class="appBtns">
-            <span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</button></span>
-            <span ng-if="app.offered == 'accepted' && !app.edited"><a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link:{{app.jobID.post.category}}" target="_blank">Contact</a></span>
+            <div class="Container" ng-if="!isPending(app.status) && !isDeclined(app.status)">
+                <div class="dropdown">
+                    <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
+                    </i>
+                    <ul class="dropdown-menu tablesSmlDropdown">
+                        <li ng-if="app.status == 'Provisionally accepted' && !app.edited">
+                            <a href="#" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</a>
+                        </li>
+                        <li ng-if="app.offered == 'accepted' && !app.edited">
+                            <a href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}" target="_blank" ng-click="acceptChanges(app)">Contact</a>
+                        </li>
+                        <li ng-if="app.edited && (app.status == 'Pending' || app.status =='Confirmed')">
+                            <a href="#" ng-click="acceptChanges(app)">Accept Changes</a>
+                        </li>
+                        <li ng-if="app.edited && app.status =='Provisionally accepted'">
+                            <a href="#" ng-click="acceptChanges(app)">Commit to Job</a>
+                        </li>
+                        <li ng-if="app.status == 'Provisionally accepted' && !app.edited">
+                            <a href="#" ng-click="decline(app._id, app.employerID._id,app.jobID._id, app.jobID)">Withdraw</a>
+                        </li>
+                        <li ng-if="app.edited && application.status !='Declined'">
+                            <a href="#" ng-click="withdraw(app, app.jobID)">
+                                <span ng-if="app.status =='Pending' || app.status =='Provisionally accepted'">Withdraw Application</span>
+                                <span ng-if="app.status =='Confirmed'">Withdraw Commitment</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            <!--<span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</button></span>
+            <span ng-if="app.offered == 'accepted' && !app.edited">
+                <a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}" target="_blank">Contact</a>
+            </span>
             <span ng-if="app.edited && (app.status == 'Pending' || app.status =='Confirmed')"><button class="btn greenBack" ng-click="acceptChanges(app)" >Accept Changes</button></span>
             <span ng-if="app.edited && app.status =='Provisionally accepted'"><button class="btn greenBack" ng-click="acceptChanges(app)" >Commit to Job</button></span>
+
             <span ng-if="app.status == 'Provisionally accepted' && !app.edited"><button class="btn btn-danger" ng-click="decline(app._id, app.employerID._id,app.jobID._id, app.jobID)">Withdraw</button></span>
             <button ng-if="app.edited && application.status !='Declined'" class="btn btn-danger" ng-click="withdraw(app, app.jobID)">
                 <span ng-if="app.status =='Pending' || app.status =='Provisionally accepted'">Withdraw Application</span>
                 <span ng-if="app.status =='Confirmed'">Withdraw Commitment</span>
-            </button>
+            </button>-->
         </td>
     </tr>
     </tbody>

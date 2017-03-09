@@ -1305,6 +1305,10 @@ body {
     height:auto;
 
   }
+  .open > .dropdown-menu.tablesSmlDropdown{
+    position:absolute;
+    top:20px;
+  }
   .open > .dropdown-menu > li > a{
 
     white-space: pre-wrap;      /* CSS3 */

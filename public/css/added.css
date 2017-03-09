@@ -1112,10 +1112,11 @@ width: 100%;
 
 
 .appBtns {
-    height: 51px;
     width: 100%;
 }
-
+.appBtns :hover{
+    font-weight:bold;
+}
 .jobSubHeader{
     display: inline-block;
     font-weight: bold;
@@ -1356,4 +1357,10 @@ div.employerModal ul.steps-indicator li.editing a:before {
 div.employerModal ul.steps-indicator li.editing a{
     font-weight: bold;
     color:#00b488;
+}
+
+ul.dropdown-menu.tablesSmlDropdown{
+    min-width:170px;
+    right:50%;
+    left:auto;
 }
