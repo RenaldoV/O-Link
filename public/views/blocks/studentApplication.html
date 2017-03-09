@@ -13,7 +13,7 @@
         <td ng-click="getJob(app.jobID._id)" class="applicantsTableAddSmall">{{app.jobID.post.startingDate}}</td>
 
         <td ng-click="getJob(app.jobID._id)" class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
-        <td ng-click="getJob(app.jobID._id)">
+        <td>
             <div class="statusDiv">
                 <span ng-if="app.status != 'Provisionally accepted'">{{app.status}}</span>
                 <span ng-if="app.status == 'Provisionally accepted'">Provisionally Accepted</span>
@@ -24,11 +24,14 @@
             </div>
         </td>
         <td class="appBtns">
-            <div class="Container" ng-if="!isPending(app.status) && !isDeclined(app.status)">
+            <div class="Container">
                 <div class="dropdown">
                     <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
                     </i>
                     <ul class="dropdown-menu tablesSmlDropdown">
+                        <li>
+                            <a href="#" ng-click="getJob(app.jobID._id)">View Job</a>
+                        </li>
                         <li ng-if="app.status == 'Provisionally accepted' && !app.edited">
                             <a href="#" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</a>
                         </li>

@@ -69,11 +69,12 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $scope.accept = function(id, employerID, jobID, job){
 
                     swal({
-                            title: "Are you sure?",
-                            text: "This will notify the user and that you have accepted",
+                            title: "Are You Sure?",
+                            text: "This will notify the employer and that you have accepted the offer.",
+                            type:'warning',
                             showCancelButton: true,
                             confirmButtonColor: "#00b488",
-                            confirmButtonText: "Yes, I'm sure!",
+                            confirmButtonText: "Yes, I'm Sure",
                             closeOnConfirm: false
                         },
                         function (isConfirm) {
@@ -92,7 +93,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             status: 'accepted',
                                             title: Cat
                                         });
-                                        swal("Offer accepted.", "The user has been notified.", "success");
+                                        swal("Offer Accepted!", "The employer has been notified.", "success");
                                     });
                                 if(--job.positionsLeft == 0) {
                                     //Decline all other applicants not Confirmed
@@ -124,11 +125,12 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 $scope.decline = function(id, employerID, jobID, job){
                     swal({
-                            title: "Are you sure?",
-                            text: "This will notify the user and that you have withdrawn",
+                            title: "Are You Sure?",
+                            text: "This will notify the employer that you have withdrawn your application.",
+                            type: "warning",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Yes, I'm sure!",
+                            confirmButtonText: "Yes, I'm Sure",
                             closeOnConfirm: false
                         },
                         function (isConfirm) {
@@ -151,8 +153,9 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             title: Cat
                                         });
                                         swal({
-                                                title: "Offer declined.",
-                                                text: "The user has been notified."
+                                                title: "Offer Declined!",
+                                                text: "The employer has been notified.",
+                                                type: "success"
                                             },
                                             function(){
                                                 setTimeout(function(){
@@ -167,11 +170,11 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
                 $scope.withdraw = function(app, job){
                     swal({
-                            title: "Are you sure?",
+                            title: "Are You Sure?",
                             text: "This will pull your application from the system",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Yes, I'm sure!",
+                            confirmButtonText: "Yes, I'm sure",
                             closeOnConfirm: false
                         },
                         function (isConfirm) {
@@ -191,7 +194,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                             status: 'withdrawn',
                                             title: Cat
                                         });
-                                        swal("Offer withdrawn.", "", "success");
+                                        swal("Offer Withdrawn.", "", "success");
                                         location.reload();
                                     });
                             }
@@ -203,7 +206,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                         .post('/acceptChanges', {app: app})
                         .then(function (res, err) {
 
-                            swal("Changes accepted.", "", "success");
+                            swal("Changes Accepted.", "", "success");
                             location.reload();
 
                         });
@@ -249,11 +252,12 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
 
     $scope.offer = function(id, studentID, jobID, category){
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 text: "This will notify the user and he will accept or decline",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
+                type:'warning',
+                confirmButtonText: "Yes, I'm sure",
                 closeOnConfirm: false
             },
             function (isConfirm) {
@@ -269,7 +273,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                                 status: 'offered',
                                 title: category
                             });
-                            swal("Offer made.", "The user has been notified.", "success");
+                            swal("Offer Made.", "The employer has been notified.", "success");
                             location.reload();
 
                         });

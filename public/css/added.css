@@ -1115,7 +1115,7 @@ width: 100%;
     width: 100%;
 }
 .appBtns :hover{
-    font-weight:bold;
+    color:lightgrey;
 }
 .jobSubHeader{
     display: inline-block;
