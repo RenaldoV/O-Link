@@ -2,7 +2,7 @@
     <div class="filterOptions container" style="margin-bottom: 14px; border-radius: 10px;">
 
         <div class="row">
-            <div class="col-xs-3 location">
+            <div class="col-xs-3 location app-info-boxes">
                 <span class="fa-stack fa-lg green" style="float:left;">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
@@ -13,7 +13,7 @@
                        ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
                        ng-blur="locFocusOut()" >
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1 app-info-boxes">
                 <button ng-click="editLocation()" class="btn btn-sm greenBack" >Edit Address</button>
             </div>
             <div class="col-md-2">
@@ -32,6 +32,22 @@
                      translation-texts="timeLabel" extra-settings="dropSettings" events="timeSelectEvent"></div>
             </div>
 
+        </div>
+        <div class="row job-info-boxes-mobi">
+            <div class="col-xs-8 location">
+                <span class="fa-stack fa-lg green" style="margin-top: 0px;float:left;">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 ng-hide="editLoc" style="margin-left:60px;">{{resAddress}}</h4>
+                <input type="text" id="searchTextField" name="searchTextField" options="autocompleteOptions"
+                       class="btn btn-block" placeholder="Location"
+                       ng-model="resAddress" g-places-autocomplete force-selection="true" ng-show="editLoc"
+                       ng-blur="locFocusOut()" style="width: 60%;margin-left: 60px;">
+            </div>
+            <div class="col-xs-4">
+                <button ng-click="editLocation()" class="btn btn-sm greenBack" style="margin-top: 4px;">Edit Address</button>
+            </div>
         </div>
         <br/>
         <div class="row">
@@ -72,7 +88,7 @@
                 </div>
                 <div class="col-xs-3 jobsHead interviewDanger">
                         <span style="font-size: 16px;" class="text-danger" ng-if="job.post.interviewRequired"> <br><span
-                            class="glyphicon glyphicon-warning-sign"></span> Interview Required</span>
+                                class="glyphicon glyphicon-warning-sign"></span> Interview <span class="app-info-boxes">Required</span></span>
                 </div>
                 <div class="statusDiv1 col-xs-3">
                     <div ng-if="isDeclined(job.appStat)" style="background-color: red" class="statusBall1"></div>
@@ -95,12 +111,12 @@
 
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-12" style="text-align:left; padding-left:0px;">
-                            <hr style="text-align: left;">
+                        <div class="col-md-12" style="text-align:left; padding:0px;">
+                            <hr style="text-align: left; margin-bottom:10px">
                             <div>
                                 <span>{{job.post.description}}</span>
                             </div>
-                            <hr style="text-align: left;">
+                            <hr style="text-align: left; margin-bottom:10px;margin-top:10px;">
                         </div>
                     </div>
                     <div class="row text-center job-info-boxes">

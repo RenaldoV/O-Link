@@ -1080,6 +1080,9 @@ body {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  div.dashTops{
+    margin-top: 35px;
+  }
   h2.applName{
     font-size: 20px;
   }
@@ -5478,9 +5481,7 @@ br.jobPPMobile {
 }
 
 }
-div.dashTops{
-  margin-top: 35px;
-}
+
 
 
 @media (max-width: 767px) {

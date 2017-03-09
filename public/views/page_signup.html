@@ -149,7 +149,7 @@
 					</div>
 				</div>
 
-				<div ng-show="next">
+				<div ng-if="next">
 					<div style="margin-top: 15px; margin-bottom: 15px; width: 100%; text-align: center;">
 						<img ng-if="user.profilePicture" ng-click="uploadPp()" ng-src="data:image/png;base64,{{image}}"  class="animated pulse img-circle">
 						<button ng-if="!user.profilePicture" type="button" class="btn btn-primary blueBack" ng-click="uploadPp()">Upload Profile Picture</button>
@@ -199,7 +199,11 @@
 									</div>
 								</div>
 								<div id="qualName" class="list-group-item" ng-show="user.institution.type == 'Tertiary'">
-									<input type="text" id="qualifName"  placeholder="Qualification Name (optional)" class="form-control no-border" ng-model="user.qualification.name">
+									<input type="text" id="qualifName" name="qualifName"  placeholder="Qualification Name" class="form-control no-border" ng-model="user.qualification.name" ng-required="user.institution.type == 'Tertiary' && next">
+									<div ng-show="studentForm.$submitted || studentForm.qualifName.$touched" class="error-block">
+										<p ng-show="studentForm.qualifName.$error.required" class="has-error">This field is required</p>
+
+									</div>
 								</div>
 								<div id='gpaBox' class="list-group-item" ng-show="user.qualification.name  || (user.institution.name && user.institution.type == 'Secondary')">
 									<input id="gpa" name="gpa"  type="number" step="any" class="controls form-control no-border" width="50px"

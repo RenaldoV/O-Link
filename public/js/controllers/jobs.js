@@ -542,7 +542,6 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
     }); // Save location and geometry
     $("#searchTextField").focus(function(){
         $(this).select().mouseup(function (e) {
-            e.preventDefault();
             $(this).unbind("mouseup");
         });
     });

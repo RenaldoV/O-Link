@@ -413,9 +413,9 @@ app.controller('signup', function($scope, $rootScope,$http,$window,$location,$co
     $scope.goBack = function(){
 
       $scope.next = false;
-        $scope.user.work = false;
-        $scope.user.results = false;
-        $scope.user.certifications = false;
+    //$scope.user.work = false;
+    //$scope.user.results = false;
+    //$scope.user.certifications = false;
     };
 
     history.replaceState(null, document.title, location.pathname);
