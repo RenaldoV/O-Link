@@ -14,7 +14,7 @@
         <td class=" jobHistPBig jobHistSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
         <td class=" jobHistPMed jobHistSmall" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
         <td class="jobHistNumRating">{{app.studentRating}}</td>
-        <td style="text-align: left;" class="jobHistPMed">
+        <td style="text-align: left;width:100%">
             <jk-rating-stars class="jobHistoryStars" rating="app.studentRating" read-only="true"></jk-rating-stars>
         </td>
 

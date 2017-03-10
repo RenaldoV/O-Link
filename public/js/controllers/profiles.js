@@ -275,12 +275,12 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
 
 
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 type: "input",
-                text: "This updates your profile. Please type your password to confirm.",
+                text: "This updates your User Profile (CV). Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function(inputValue) {
@@ -370,12 +370,12 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
 
 
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 type: "input",
-                text: "This updates your profile. Please type your password to confirm.",
+                text: "This updates your User Profile (CV). Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function(inputValue) {
@@ -781,12 +781,12 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
             var user = $scope.user;
         console.log(user);
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 type: "input",
-                text: "This updates your profile. Please type your password to confirm.",
+                text: "This updates your User Profile (CV). Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function (inputValue) {

@@ -1125,7 +1125,9 @@ width: 100%;
     border-top: 1px solid #33B6CC;
 }
 
-
+table.table > tbody > tr > td{
+    vertical-align: middle;
+}
 .fa-angle-down.dropdown-toggle{
     margin-top: -3px;
 }
@@ -1288,7 +1290,6 @@ td.jobHistPBig{
     width: 40%;
 }
 td.jobHistPMed{
-    width: 100%;
 }
 .jobRow:hover{
     background-color: #F8F8F8;
