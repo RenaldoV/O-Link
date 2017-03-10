@@ -1138,7 +1138,7 @@ body {
   .applicantsTableAddSmall{
     display:none;
   }
-  .jobHistoryStars{
+  div.star-container.jobHistoryStars{
     display: none;
   }
   div.hitStatusDesktop{

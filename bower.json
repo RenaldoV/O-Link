@@ -26,7 +26,7 @@
     "angular-wizard": "^0.9.0",
     "angular-modal-service": "^0.10.1",
     "ng-image-gallery": "^2.0.8",
-    "angular-jk-rating-stars": "^1.0.3"
+    "css-star-rating": "^1.1.1"
   },
   "resolutions": {
     "angular": "1.5.8"

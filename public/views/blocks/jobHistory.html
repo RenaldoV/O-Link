@@ -13,9 +13,38 @@
         <td ng-if="!app.jobID.post.OtherCategory" class=" jobHistPsmall">{{app.jobID.post.category}}</td>
         <td class=" jobHistPBig jobHistSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
         <td class=" jobHistPMed jobHistSmall" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
-        <td class="jobHistNumRating">{{app.studentRating}}</td>
-        <td style="text-align: left;width:100%">
-            <jk-rating-stars class="jobHistoryStars" rating="app.studentRating" read-only="true"></jk-rating-stars>
+        <td style="width:100%">
+            <div class="pull-left rating medium star-icon direction-ltr value-{{app.studentRating}} color-ok label-left">
+                <div class="label-value jobHistNumRating">{{app.studentRating}}</div>
+                <div class="label-value jobHistNumRating" ng-if="!app.studentRating">N/A</div>
+                <div class="star-container jobHistoryStars">
+                    <div class="star">
+                        <i class="star-empty"></i>
+                        <i class="star-half"></i>
+                        <i class="star-filled"></i>
+                    </div>
+                    <div class="star">
+                        <i class="star-empty"></i>
+                        <i class="star-half"></i>
+                        <i class="star-filled"></i>
+                    </div>
+                    <div class="star">
+                        <i class="star-empty"></i>
+                        <i class="star-half"></i>
+                        <i class="star-filled"></i>
+                    </div>
+                    <div class="star">
+                        <i class="star-empty"></i>
+                        <i class="star-half"></i>
+                        <i class="star-filled"></i>
+                    </div>
+                    <div class="star">
+                        <i class="star-empty"></i>
+                        <i class="star-half"></i>
+                        <i class="star-filled"></i>
+                    </div>
+                </div>
+            </div>
         </td>
 
     </tr>

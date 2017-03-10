@@ -2,7 +2,7 @@
 //////////Front-end entry and dash controllers/////////
 ///////////////////////////////////////////////////////
 
-var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar','mgo-angular-wizard','angularModalService','thatisuday.ng-image-gallery','jkAngularRatingStars']);
+var app = angular.module('o-link', ['ng','ngCookies','lr.upload','ngRoute','appRoutes','ngFileUpload','ngImgCrop', 'ngDialog','infinite-scroll','toggle-switch','ui.date','ui.validate','google.places','ui.bootstrap', 'rzModule', 'angularjs-dropdown-multiselect','angular-loading-bar','mgo-angular-wizard','angularModalService','thatisuday.ng-image-gallery']);
 //Starts when the app starts
 
 app.config(function(ngImageGalleryOptsProvider){
