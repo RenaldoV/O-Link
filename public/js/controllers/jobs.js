@@ -1436,12 +1436,6 @@ app.controller('jobHistory', function ($scope,$http,$location,cacheUser, session
 
 app.controller('employmentHistory', function ($scope,$http,cacheUser, session, $rootScope, $location, $window) {
 
-    $scope.highlightChildren = function(event){
-        angular.element(event.currentTarget).children().addClass("hover");
-    };
-    $scope.unhighlightChildren = function(event){
-        angular.element(event.currentTarget).children().removeClass("hover");
-    };
     var temp = $location.url();
     var user = cacheUser.user;
     if(!user){

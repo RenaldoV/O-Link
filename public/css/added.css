@@ -914,9 +914,14 @@ span.jobDescription{
 }
 .appStatRowStu:hover{
     background-color: white;
-
+}
+.historyTbl:hover{
+    background-color: white;
 }
 .appStatRowStu:last-child:hover{
+    background-color: transparent;
+}
+.historyTbl:last-child:hover{
     background-color: transparent;
 }
 .appStatRowStu:last-child:hover  td:last-child {
@@ -926,6 +931,15 @@ span.jobDescription{
     border-bottom-left-radius: 10px;
 }
 .appStatRowStu:last-child:hover  td{
+    background-color: white;
+}
+.historyTbl:last-child:hover  td:last-child {
+    border-bottom-right-radius: 10px;
+}
+.historyTbl:last-child:hover  td:first-child{
+    border-bottom-left-radius: 10px;
+}
+.historyTbl:last-child:hover  td{
     background-color: white;
 }
 

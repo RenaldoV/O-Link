@@ -5,7 +5,7 @@
     <thead class="blueBack talentHistoryHead"><th class="tableAdd"></th><th>Employer</th><th class="jobHistSmall">Date</th><th>Category</th><th class="jobHistSmall">Comment</th><th>Rating</th>
     </thead>
     <tbody>
-    <tr class="historyTbl" ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" ng-click="getJob(app.jobID._id)" style="cursor: pointer; width:100%" ng-repeat="app in applications">
+    <tr class="historyTbl" ng-click="getJob(app.jobID._id)" style="cursor: pointer; width:100%" ng-repeat="app in applications">
         <td style="width:5%" class="lilPp tableAdd"><a ><img ng-src="data:image/png;base64,{{app.image}}"  class="animated pulse lilPp img-circle"></a></td>
         <td class="jobHistPsmall">{{app.employerID.contact.name + " " + app.employerID.contact.surname}}</td>
         <td class="jobHistPsmall jobHistSmall">{{app.jobID.post.startingDate}}</td>
@@ -14,7 +14,7 @@
         <td class=" jobHistPBig jobHistSmall" ng-if="app.commentToStudent">{{app.commentToStudent}}</td>
         <td class=" jobHistPMed jobHistSmall" ng-if="!app.commentToStudent"><span class="text-danger">Not rated yet</span></td>
         <td class="jobHistStarsCol" style="width:100%">
-            <div class="pull-left rating medium star-icon direction-ltr value-{{app.studentRating}} color-ok label-left">
+            <div class="pull-left star-icon rating medium star-icon direction-ltr value-{{app.studentRating}} color-ok label-left">
                 <div class="label-value jobHistNumRating">{{app.studentRating}}</div>
                 <div class="label-value jobHistNumRating" ng-if="!app.studentRating">N/A</div>
                 <div class="star-container jobHistoryStars">

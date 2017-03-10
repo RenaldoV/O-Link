@@ -5496,6 +5496,9 @@ br.jobPPMobile {
 
 
 @media (max-width: 767px) {
+  tr.historyTbl:last-child:hover  td:nth-child(2){
+    border-bottom-left-radius: 10px;
+  }
   div.statusBall {
     float: left;
     margin-left:10px;
