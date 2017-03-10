@@ -15,8 +15,8 @@
         <td ng-click="getJob(app.jobID._id)" class="tableAdd">{{app.jobID.post.location.address.split(',')[1]}}</td>
         <td>
             <div class="statusDiv">
-                <span ng-if="app.status != 'Provisionally accepted'">{{app.status}}</span>
-                <span ng-if="app.status == 'Provisionally accepted'">Provisionally Accepted</span>
+                <span class=" tableAdd" ng-if="app.status != 'Provisionally accepted'">{{app.status}}</span>
+                <span class=" tableAdd" ng-if="app.status == 'Provisionally accepted'">Provisionally Accepted</span>
                 <div ng-if="isDeclined(app.status)" style="background-color: red" class="statusBall"></div>
                 <div ng-if="isPending(app.status)" style="background-color: orange" class="statusBall"></div>
                 <div ng-if="isProv(app.status)" style="background-color: lawngreen" class="statusBall"></div>
@@ -24,14 +24,11 @@
             </div>
         </td>
         <td class="appBtns Container">
-            <div class="dropdown">
+            <div class="dropdown" ng-hide="isPending(app.status) || isDeclined(app.status)">
 
                     <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
                     </i>
                     <ul class="dropdown-menu tablesSmlDropdown">
-                        <li>
-                            <a href="#" ng-click="getJob(app.jobID._id)">View Job</a>
-                        </li>
                         <li ng-if="app.status == 'Provisionally accepted' && !app.edited">
                             <a href="#" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</a>
                         </li>
@@ -67,6 +64,7 @@
                 <span ng-if="app.status =='Confirmed'">Withdraw Commitment</span>
             </button>-->
         </td>
+
     </tr>
     </tbody>
 

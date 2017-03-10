@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1e60fee-4fe9-40a0-a688-7df3379f73ab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/added.css" afterPath="$PROJECT_DIR$/public/css/added.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/app.css" afterPath="$PROJECT_DIR$/public/css/app.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/views/blocks/studentApplication.html" afterPath="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
     </list>
     <ignored path="o-link.iws" />
@@ -37,20 +37,19 @@
       <file leaf-file-name="app.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/app.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="5738" column="10" lean-forward="false" selection-start-line="5738" selection-start-column="10" selection-end-line="5738" selection-end-column="10" />
+            <state relative-caret-position="355">
+              <caret line="1088" column="3" lean-forward="false" selection-start-line="1088" selection-start-column="3" selection-end-line="1088" selection-end-column="3" />
               <folding>
                 <element signature="e#13445#16291#0" expanded="false" />
                 <element signature="e#16292#16522#0" expanded="false" />
-                <element signature="e#16523#17163#0" expanded="false" />
-                <element signature="e#17165#17378#0" expanded="false" />
-                <element signature="e#17379#17610#0" expanded="false" />
-                <element signature="e#17611#17809#0" expanded="false" />
-                <element signature="e#17810#17928#0" expanded="false" />
-                <element signature="e#17929#18071#0" expanded="false" />
-                <element signature="e#18073#18307#0" expanded="false" />
-                <element signature="e#18308#18381#0" expanded="false" />
-                <element signature="e#18383#19011#0" expanded="false" />
+                <element signature="e#17266#17479#0" expanded="false" />
+                <element signature="e#17480#17711#0" expanded="false" />
+                <element signature="e#17712#17910#0" expanded="false" />
+                <element signature="e#17911#18029#0" expanded="false" />
+                <element signature="e#18030#18172#0" expanded="false" />
+                <element signature="e#18174#18408#0" expanded="false" />
+                <element signature="e#18409#18482#0" expanded="false" />
+                <element signature="e#18484#19112#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -96,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="425">
-              <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+              <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -120,8 +119,8 @@
       <file leaf-file-name="added.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/css/added.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="931" column="10" lean-forward="true" selection-start-line="931" selection-start-column="10" selection-end-line="931" selection-end-column="10" />
+            <state relative-caret-position="211">
+              <caret line="1129" column="21" lean-forward="true" selection-start-line="1129" selection-start-column="21" selection-end-line="1129" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -157,7 +156,6 @@
       <find>goBack</find>
       <find>jobBrowse</find>
       <find>loc</find>
-      <find>media</find>
       <find>you la</find>
       <find>appBtns</find>
       <find>bootstr</find>
@@ -166,6 +164,7 @@
       <find>appStat</find>
       <find>are you s</find>
       <find>.hover</find>
+      <find>media</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ronnie\Desktop\O-Link\public\js\controllers</dir>
@@ -229,9 +228,9 @@
         <option value="$PROJECT_DIR$/public/libs/angular-google-places-autocomplete/dist/autocomplete.min.js" />
         <option value="$PROJECT_DIR$/public/views/browseJobs.html" />
         <option value="$PROJECT_DIR$/public/js/controllers/jobs.js" />
-        <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/views/job.html" />
         <option value="$PROJECT_DIR$/public/js/controllers/applications.js" />
+        <option value="$PROJECT_DIR$/public/css/app.css" />
         <option value="$PROJECT_DIR$/public/views/blocks/studentApplication.html" />
         <option value="$PROJECT_DIR$/public/css/added.css" />
       </list>
@@ -567,7 +566,7 @@
       <workItem from="1488887979498" duration="5134000" />
       <workItem from="1488985140561" duration="3541000" />
       <workItem from="1489042126393" duration="15032000" />
-      <workItem from="1489086262234" duration="9813000" />
+      <workItem from="1489086262234" duration="11740000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed website link in emails">
       <created>1471435718979</created>
@@ -622,7 +621,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="293768000" />
+    <option name="totallyTimeSpent" value="295695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1063,26 +1062,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="5738" column="10" lean-forward="false" selection-start-line="5738" selection-start-column="10" selection-end-line="5738" selection-end-column="10" />
-          <folding>
-            <element signature="e#13445#16291#0" expanded="false" />
-            <element signature="e#16292#16522#0" expanded="false" />
-            <element signature="e#16523#17163#0" expanded="false" />
-            <element signature="e#17165#17378#0" expanded="false" />
-            <element signature="e#17379#17610#0" expanded="false" />
-            <element signature="e#17611#17809#0" expanded="false" />
-            <element signature="e#17810#17928#0" expanded="false" />
-            <element signature="e#17929#18071#0" expanded="false" />
-            <element signature="e#18073#18307#0" expanded="false" />
-            <element signature="e#18308#18381#0" expanded="false" />
-            <element signature="e#18383#19011#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controllers/applications.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1096,18 +1075,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="1088" column="3" lean-forward="false" selection-start-line="1088" selection-start-column="3" selection-end-line="1088" selection-end-column="3" />
+          <folding>
+            <element signature="e#13445#16291#0" expanded="false" />
+            <element signature="e#16292#16522#0" expanded="false" />
+            <element signature="e#17266#17479#0" expanded="false" />
+            <element signature="e#17480#17711#0" expanded="false" />
+            <element signature="e#17712#17910#0" expanded="false" />
+            <element signature="e#17911#18029#0" expanded="false" />
+            <element signature="e#18030#18172#0" expanded="false" />
+            <element signature="e#18174#18408#0" expanded="false" />
+            <element signature="e#18409#18482#0" expanded="false" />
+            <element signature="e#18484#19112#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/views/blocks/studentApplication.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
-          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
+          <caret line="25" column="37" lean-forward="false" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/css/added.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="931" column="10" lean-forward="true" selection-start-line="931" selection-start-column="10" selection-end-line="931" selection-end-column="10" />
+        <state relative-caret-position="211">
+          <caret line="1129" column="21" lean-forward="true" selection-start-line="1129" selection-start-column="21" selection-end-line="1129" selection-end-column="21" />
           <folding />
         </state>
       </provider>

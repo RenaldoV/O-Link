@@ -1126,9 +1126,12 @@ width: 100%;
 }
 
 
-
+.fa-angle-down.dropdown-toggle{
+    margin-top: -3px;
+}
 .appBtns {
     width: 100%;
+    max-height:39px;
 }
 .appBtns :hover{
     color:lightgrey;
