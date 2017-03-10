@@ -1384,3 +1384,7 @@ ul.dropdown-menu.tablesSmlDropdown{
     right:50%;
     left:auto;
 }
+
+.rating.label-left > div.star-container.jobHistoryStars{
+    margin-left:0px;
+}

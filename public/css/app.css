@@ -5838,7 +5838,9 @@ margin-top: 32px;
 
 
   }
-
+  table.applicantsTable tbody tr td.jobHistStarsCol{
+    padding: 8px 15px;
+  }
   .applicantsTable tbody tr td:last-child {
     width: 100%;
     padding: 0;
