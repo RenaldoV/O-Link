@@ -5466,8 +5466,10 @@ div.profileRight {
   display: inline-block;
   position: absolute;
   width: 120vh;
-  height: 120vh;
   top: 0;
+}
+.comment.rateCommentBox{
+  width:100%;
 }
 
 .navbar-nav > li.menuButton {

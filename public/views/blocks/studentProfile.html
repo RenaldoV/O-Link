@@ -17,7 +17,35 @@
             <span ng-if="!user.rating" class="small">From 0 reviews</span>
 
             <div>
-                <jk-rating-stars class="profileStars" max-rating="5" rating="user.rating" read-only="true"></jk-rating-stars>
+                <div class="star-icon rating large profile star-icon direction-ltr value-{{user.rating}} color-ok">
+                    <div class="star-container">
+                        <div class="star">
+                            <i class="star-empty"></i>
+                            <i class="star-half"></i>
+                            <i class="star-filled"></i>
+                        </div>
+                        <div class="star">
+                            <i class="star-empty"></i>
+                            <i class="star-half"></i>
+                            <i class="star-filled"></i>
+                        </div>
+                        <div class="star">
+                            <i class="star-empty"></i>
+                            <i class="star-half"></i>
+                            <i class="star-filled"></i>
+                        </div>
+                        <div class="star">
+                            <i class="star-empty"></i>
+                            <i class="star-half"></i>
+                            <i class="star-filled"></i>
+                        </div>
+                        <div class="star">
+                            <i class="star-empty"></i>
+                            <i class="star-half"></i>
+                            <i class="star-filled"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="hbox hbox-auto-xs hbox-auto-sm">

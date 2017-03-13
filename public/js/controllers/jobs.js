@@ -1361,7 +1361,7 @@ app.controller('jobHistory', function ($scope,$http,$location,cacheUser, session
                         jobName = job.post.category;
 
                     swal({
-                            title: "Add "+jobName+" to work experience?",
+                            title: "Add "+jobName+" to Work Experience?",
                             text: "Do you want to add "+empName+"'s job, "+ jobName + " to your work experience on your profile?",
                             type: "info",
                             showCancelButton: true,
@@ -1390,12 +1390,6 @@ app.controller('jobHistory', function ($scope,$http,$location,cacheUser, session
     }
     $scope.getJob = function(id){
         $window.location.href= '/job?id='+id;
-    };
-    $scope.highlightChildren = function(event){
-        angular.element(event.currentTarget).children().addClass("hover");
-    };
-    $scope.unhighlightChildren = function(event){
-        angular.element(event.currentTarget).children().removeClass("hover");
     };
 
     var user = cacheUser.user;

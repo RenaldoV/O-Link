@@ -1402,3 +1402,8 @@ ul.dropdown-menu.tablesSmlDropdown{
 .rating.label-left > div.star-container.jobHistoryStars{
     margin-left:0px;
 }
+
+div.profile.rating.large .star{
+    width:25px;!important;
+    height:25px;!important;
+}
