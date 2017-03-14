@@ -342,6 +342,9 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
                             job.applications = res.data;
                             job.applications.forEach(function(app){
                                 $scope.hasApps = true;
+                                if(app.studentID.rating % 1 == 0.5){
+                                    app.studentID.rating += 0.5;
+                                }
                                 $http
                                     .post('/getPp', {_id:app.studentID._id})
                                     .then(function (res) {
@@ -476,11 +479,12 @@ app.controller('employerApplicants', function ($scope,$http,cacheUser, session, 
     };
     $scope.offer = function(id, studentID, jobID, category){
         swal({
-                title: "Are you sure?",
-                text: "This will notify the user and he will accept or decline",
+                title: "Are You Sure?",
+                text: "This will notify the user and he will accept or decline.",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
+                type: "warning",
                 closeOnConfirm: false
             },
             function (isConfirm) {
@@ -537,19 +541,23 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
     else var col = "#00b488";
 
     if(app.status == "Provisionally accepted" && job.provisionalLeft == 1){
-        var text = "This will change the status of this application from " + oldstat + " to " + app.status + ". After making this offer you will not be allowed to make any more offers for this job.";
+        var text = "This will change the status of this application from " + oldstat + " to Provisionally Accepted. After making this offer, you will not be allowed to Provisionally Accept any other applicants.";
         var title = "Warning!";
     }
     else{
-        var text = "This will change the status of this application from " + oldstat + " to " + app.status;
-        var title = "Are you sure?";
+        if(app.status == "Provisionally accepted")
+            var text = "This will change the status of this application from " + oldstat + " to Provisionally Accepted.";
+        else
+            var text = "This will change the status of this application from " + oldstat + " to " + app.status + ".";
+        var title = "Are You Sure?";
     }
     swal({
             title: title,
             text: text,
+            type: "warning",
             showCancelButton: true,
             confirmButtonColor: col,
-            confirmButtonText: "Yes, I'm sure!",
+            confirmButtonText: "Yes, I'm Sure",
             closeOnConfirm: true
         },
         function (isConfirm) {
@@ -571,7 +579,7 @@ function changeStatus(app,oldstat, $scope, $http, notify, userID, job) {
                             status: app.status,
                             title: Cat
                         });
-                        swal("Status updated.", "The user has been notified.", "success");
+                        swal("Status Updated!", "The user has been notified.", "success");
                         location.reload();
 
                     });

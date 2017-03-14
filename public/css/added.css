@@ -494,9 +494,12 @@ span.statusBall {
 }
 
 div.empBtns.row div.col-md-3{
-    width: 25%;
+    width: 22.75%;
     padding:0px;
-    margin:0px;
+    margin-right:3%;
+}
+div.empBtns.row div.col-md-3:last-of-type{
+    margin-right:0%;!important;
 }
 
 .postButton{
@@ -507,7 +510,7 @@ line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    width: 200px;
+    width: 100%;
     color: white;
 }
 
@@ -524,7 +527,7 @@ line-height: normal;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    width: 200px;
+    width: 100%;
     color: white;
 }
 
@@ -860,7 +863,7 @@ span.jobDescription{
     font-weight: bold;
     color: white;
     float: left;
-    margin-left: 30px;
+    margin-left: 10px;
 }
 .tab{
     margin-bottom: 0;
@@ -1066,7 +1069,7 @@ border-bottom: 0;
 }
 
 .cheviBox{
-    margin-right: 10px;
+    margin-right: 30px;
     margin-top: 12px;
 }
 

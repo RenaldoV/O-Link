@@ -931,6 +931,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 title: "Are You Sure?",
                 text: "This will pull your application from the system.",
                 showCancelButton: true,
+                type: "warning",
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false

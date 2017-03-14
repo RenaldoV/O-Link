@@ -742,6 +742,7 @@ module.exports = function(app) {
 
 		db.users.findOne({_id:req.body._id},{matricFile:1},function(err,mf){
 			var file = mf.toObject().matricFile;
+			console.log(file);
 			if(file){
 				var path = __dirname + file;
 				fs.readFile(path, function(err,data){

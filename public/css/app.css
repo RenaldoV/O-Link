@@ -1119,7 +1119,23 @@ body {
     padding-left: 15px;
   }
 }
-
+@media (max-width: 440px) {
+  div.appHeading.col-xs-5{
+    width: 45%;
+  }
+  fieldset.applicantStars > label:before {
+    font-size: 14px;
+  }
+  fieldset.applicantStars{
+    width: 90px;
+  }
+  .jobMobileSpace {
+    display: block;
+  }
+  .empJobTableAddBtn1{
+    display:none;
+  }
+}
 @media (max-width: 390px) {
   .tableAddSmall{
     display:none;
@@ -1132,6 +1148,9 @@ body {
   }
 }
 @media (max-width: 520px) {
+  .interviewReq{
+    display:none;
+  }
   ul.steps-indicator.steps-4 li a{
     color:transparent;
   }
@@ -1172,21 +1191,6 @@ body {
     margin-top:5px;
   }
 }
-
-@media (max-width: 440px) {
-  fieldset.applicantStars > label:before {
-    font-size: 14px;
-  }
-  fieldset.applicantStars{
-    width: 90px;
-  }
-  .jobMobileSpace {
-    display: block;
-  }
-  .empJobTableAddBtn1{
-    display:none;
-  }
-}
 @media (min-width: 441px) {
   .jobMobileSpace {
     display: none;
@@ -1195,6 +1199,12 @@ body {
 }
 
 @media (max-width: 680px) {
+  div.appHeading{
+    white-space: nowrap;
+    width: 12em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   img.applicantsLogos{
     width: 70%;
     height:70%;
@@ -5182,6 +5192,14 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  div.empBtns.row.center div.col-md-3 {
+    width: 75%;!important;
+    margin-left: 12.5%;
+    margin-top: 10px;
+  }
+  div.empBtns.row.center div.col-md-3:first-of-type {
+    margin-top: -10px;
+  }
   h2.jobCategory {
     font-size: 20px;
     font-weight: bold;
@@ -5498,6 +5516,9 @@ br.jobPPMobile {
 
 
 @media (max-width: 767px) {
+  .applicantsHead.blueBack{
+    text-align: left;!important;
+  }
   tr.historyTbl:last-child:hover  td:nth-child(2){
     border-bottom-left-radius: 10px;
   }
