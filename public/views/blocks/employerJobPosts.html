@@ -7,7 +7,7 @@
             </thead>
             <tbody style="color: #00000A">
 
-            <tr ng-repeat="job in jobs" ng-mouseleave="unhighlightChildren($event)" ng-mouseover="highlightChildren($event)" style="cursor: pointer;">
+            <tr ng-repeat="job in jobs" style="cursor: pointer;" class="appStatRowStu">
 
                 <td ng-click="getJob(job._id)" ng-if="job.post.category != 'Other'">{{job.post.category}}</td>
                 <td ng-click="getJob(job._id)" ng-if="job.post.category == 'Other'">{{job.post.OtherCategory}}</td>
