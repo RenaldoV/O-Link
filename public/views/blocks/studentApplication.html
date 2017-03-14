@@ -25,7 +25,6 @@
         </td>
         <td class="appBtns Container">
             <div class="dropdown" ng-hide="isPending(app.status) || isDeclined(app.status)">
-
                     <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
                     </i>
                     <ul class="dropdown-menu tablesSmlDropdown">
@@ -51,6 +50,7 @@
                             </a>
                         </li>
                     </ul>
+                </div>
             <!--<span ng-if="app.status == 'Provisionally accepted' && !app.edited" class="transparent"><button class="btn greenBack" ng-click="accept(app._id, app.employerID._id,app.jobID._id, app.jobID)">Accept</button></span>
             <span ng-if="app.offered == 'accepted' && !app.edited">
                 <a class="btn blueBack" ng-click="contect()" href="mailto:{{app.employerID.contact.email}}?Subject=O-Link: {{app.jobID.post.category}} starting on {{app.jobID.post.startingDate}}" target="_blank">Contact</a>

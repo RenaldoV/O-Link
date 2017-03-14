@@ -3,7 +3,7 @@
         <h4 ng-if="jobs.length == 0" class="white" style="text-align: center"><b>{{message}}</b></h4>
         <div ng-if="jobs.length > 0" style="margin-top: 42px;" class="applicantsTable blueBack">
         <table class="table tab">
-            <thead  class="talentHistoryHead empJobsTableHead blueBack"><th>Category</th><th class="empJobTableAddDate">Start Date</th><th><span><span class="tableAdd">Number of</span> Applicants</span></th><th class="tableAdd"></th><th ></th>
+            <thead  class="talentHistoryHead empJobsTableHead blueBack"><th>Category</th><th class="empJobTableAddDate">Start Date</th><th><span><span class="tableAdd">Number of</span> Applicants</span></th><th></th>
             </thead>
             <tbody style="color: #00000A">
 
@@ -15,15 +15,26 @@
                 <td ng-click="getJob(job._id)" class="empJobTableAddDate">{{job.post.startingDate}}</td>
                 <td ng-click="getJob(job._id)">{{job.applicants.length}}</td>
 
-                <td><a class="btn blueBack empJobTableAddBtn1" href="/job?id={{job._id}}">View Job</a>
+                <td class="Container" style="width:100%; padding-right:15px;">
+                    <div class="dropdown pull-right">
+                        <i class="fa fa-angle-down fa-2x dropdown-toggle" aria-hidden="true" type="button" data-toggle="dropdown">
+                        </i>
+                        <ul class="dropdown-menu tablesSmlDropdown">
+                            <li>
+                                <a href="/job?id={{job._id}}">View Job</a>
+                            </li>
+                            <li>
+                                <a  ng-if="job.applicants.length > 0"  href="/applicants?jobID={{job._id}}">Assess Applicants</a>
+                            </li>
+                            <li>
+                                <a href="/postJob?id={{job._id}}">Edit Job</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--<a class="btn blueBack empJobTableAddBtn1" href="/job?id={{job._id}}">View Job</a>
                     <a class="btn blueBack"  ng-if="job.applicants.length > 0"  href="/applicants?jobID={{job._id}}">Assess Applicants</a>
-                    <a class="btn blueBack empJobTableAddBtn2"  href="/postJob?id={{job._id}}">Edit Job</a>
+                    <a class="btn blueBack empJobTableAddBtn2"  href="/postJob?id={{job._id}}">Edit Job</a>-->
                 </td>
-                <td ng-click="getJob(job._id)" style="width: 100%; height: 49px;" class="tableAdd"></td>
-
-
-
-
             </tr>
             </tbody>
         </table>
