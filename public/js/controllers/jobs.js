@@ -285,12 +285,12 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
             else if ($scope.job.status == 'active' || $scope.job.status == 'filled') {
 
                 swal({
-                        title: "Are you sure?",
+                        title: "Are You Sure?",
                         type: "input",
                         text: "This update your post and notify all applicants. Please type your password to confirm",
                         showCancelButton: true,
                         confirmButtonColor: "#00b488",
-                        confirmButtonText: "Yes, I'm sure!",
+                        confirmButtonText: "Yes, I'm Sure",
                         closeOnConfirm: false
                     },
                     function (inputValue) {
@@ -473,12 +473,12 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
         geocoder.geocode({'address':param.formatted_address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
                 swal({
-                        title: "Are you sure?",
+                        title: "Are You Sure?",
                         type: "input",
                         text: "This will change your residential address. Please type your password to confirm.",
                         showCancelButton: true,
                         confirmButtonColor: "#00b488",
-                        confirmButtonText: "Yes, I'm sure!",
+                        confirmButtonText: "Yes, I'm Sure",
                         closeOnConfirm: false
                     },
                     function (inputValue) {
@@ -928,11 +928,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         });
     $scope.withdraw = function(app, job){
         swal({
-                title: "Are you sure?",
-                text: "This will pull your application from the system",
+                title: "Are You Sure?",
+                text: "This will pull your application from the system.",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function (isConfirm) {
@@ -962,11 +962,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     $scope.decline = function(id, employerID, jobID, job){
 
         swal({
-                title: "Are you sure?",
-                text: "This will notify the user that you have withdrawn",
+                title: "Are You Sure?",
+                text: "This will notify the user that you have withdrawn.",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function (isConfirm) {
@@ -986,7 +986,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 status: 'withdrawn',
                                 title: Cat
                             });
-                            swal("Offer declined.", "The user has been notified.", "success");
+                            swal("Offer Declined.", "The user has been notified.", "success");
                             location.reload();
 
                         });
@@ -1015,11 +1015,11 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     $scope.accept = function(id, employerID, jobID, job){
 
         swal({
-                title: "Are you sure?",
-                text: "This will notify the user and that you have accepted",
+                title: "Are You Sure?",
+                text: "This will notify the user and that you have accepted.",
                 showCancelButton: true,
                 confirmButtonColor: "#00b488",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function (isConfirm) {
@@ -1069,12 +1069,12 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
     $scope.delete = function(){
 
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 type: "input",
-                text: "This will permanently delete this job post. Please type your password to confirm",
+                text: "This will permanently delete this job post. Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, I'm sure!",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function(inputValue) {

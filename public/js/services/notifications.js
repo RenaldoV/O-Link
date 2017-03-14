@@ -141,7 +141,7 @@ app.controller('rateBox', function($scope, $http, notify){
                  title: Cat,
                  comment: $scope.comment
                  });
-                 swal("User Rated.", "The user has been notified.", "success");
+                 swal("Employee Rated.", "Your employee has been notified.", "success");
                  $scope.closeThisDialog();
                  });
             }
