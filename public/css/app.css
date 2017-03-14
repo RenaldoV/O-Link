@@ -1199,6 +1199,13 @@ body {
 }
 
 @media (max-width: 680px) {
+  div.rating.applicantsRating  div.star-container.applicantsStars  .star{
+    width:20px;!important;
+    height:20px;!important;
+  }
+  div.rating.applicantsRating  div.star-container.applicantsStars  .star i{
+    font-size: 25px;
+  }
   div.appHeading{
     white-space: nowrap;
     width: 12em;

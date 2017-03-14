@@ -26,9 +26,9 @@
                     <div class="col-md-2 ppRating">
                         <div>
                             <img  ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle applicantsLogos"><br>
-                            <div style="margin-left:-5px;">
-                                <div ng-class="half" class="star-icon rating profile star-icon direction-ltr value-{{app.studentID.rating}} color-ok">
-                                    <div class="star-container">
+                            <div>
+                                <div ng-class="half" class="star-icon rating applicantsRating star-icon direction-ltr value-{{app.studentID.rating}} color-ok">
+                                    <div class="star-container applicantsStars">
                                         <div class="star">
                                             <i class="star-empty"></i>
                                             <i class="star-half"></i>

@@ -1408,6 +1408,13 @@ ul.dropdown-menu.tablesSmlDropdown{
 .rating.label-left > div.star-container.jobHistoryStars{
     margin-left:0px;
 }
+div.applicantsRating  div.star-container.applicantsStars  .star{
+    width:30px;!important;
+    height:30px;!important;
+}
+div.applicantsRating  div.star-container.applicantsStars  .star i{
+    font-size: 35px;
+}
 
 div.profile.rating.large .star{
     width:25px;!important;
