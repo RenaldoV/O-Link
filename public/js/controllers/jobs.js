@@ -389,412 +389,412 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
 
 });
 
-app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout){
-
-
-
-    var radius = 15;
-    //=======================================================================
-    //====================Filter box init
-    //========================================================================
-    $scope.slider = {
-        rangeSlider: 0,
-        minValue: 15,
-        options: {
-            floor: 0,
-            ceil: 30,
-            minLimit: 2,
-            showSelectionBar: true,
-            translate: function(value, sliderId, label) {
-                switch (label) {
-                    case 'model':
-                    {
-                        if(value >= 30 || value <= 0)
-                            return '<b>' + value +'+</b>  kms';
-                        else
-                            return '<b>' + value +'</b>  kms';
-                    }
-
-                    case 'floor':
-                        return "<b>" + value + "</b>km and";
-                    default:
-                        return value + "+ kms";
-                }
-            },
-            onEnd: function() {
-                var x = $scope.slider.minValue;
-                rad = x;
-                //console.log(x + ' km');
-                //=======================================================================
-                //====================Call apply filter here (range is 1km - "x"km)
-                //========================================================================
-                radius = x;
-            applyFilters();
-            }
-        }
-    };
-
-    //Filter function
-    function applyFilters(geo){
-        if(radius == 30)
-            radius = null;
-
-        var data = {};
-        data.categories = [];
-        data.timePeriods = [];
-        for(var i = 0; i < $scope.catModel.length; i++){
-            data.categories.push($scope.catModel[i].id);
-        }
-        for(var i = 0; i < $scope.timeModel.length; i++){
-            data.timePeriods.push($scope.timeModel[i].id);
-        }
-        if(radius){
-            data.radius = radius;
-        if(!geo)
-                data.userLocation = session.user.location.geo;
-        else
-            data.userLocation = geo;
-        }
-       getJobs(data);
-    }
-
-
-    $scope.autocompleteOptions = {
-        componentRestrictions: { country: 'za' }
-    };
-    var geocoder = new google.maps.Geocoder();
-    $scope.$on('g-places-autocomplete:select', function (event, param) {
-        $scope.resAddress = param.formatted_address;
-        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
-        if($scope.resAddress.length > 26)
-        {
-            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
-        }
-        geocoder.geocode({'address':param.formatted_address}, function(results, status) {
-            if (status === google.maps.GeocoderStatus.OK) {
-                swal({
-                        title: "Are You Sure?",
-                        type: "input",
-                        text: "This will change your residential address. Please type your password to confirm.",
-                        showCancelButton: true,
-                        confirmButtonColor: "#00b488",
-                        confirmButtonText: "Yes, I'm Sure",
-                        closeOnConfirm: false
-                    },
-                    function (inputValue) {
-
-                        $http
-                            .post('/checkPassword', {email: session.user.contact.email, password: inputValue})
-                            .then(function (res, err) {
-                               // console.log(res.data);
-                                if (!res.data) {
-                                    $scope.resAddress = session.user.location.address;
-                                    $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
-                                    if($scope.resAddress.length > 26)
-                                    {
-                                        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
-                                    }
-                                    swal.showInputError("Incorrect Password!");
-                                    return false;
-                                }
-                                else {
-                                    $scope.resAddress = param.formatted_address;
-                                    $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
-                                    if($scope.resAddress.length > 26)
-                                    {
-                                        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
-                                    }
-                                    var usr = {_id: session.user._id, location:{geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address}};
-                                    var tmp = session.user;
-                                    tmp.location = {geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address};
-                                    $http({
-                                        method: 'POST',
-                                        url: '/updateUser',
-                                        data: usr
-                                    })
-                                        .then(function (response) {
-                                            {
-                                                swal({
-                                                    title: "Edited",
-                                                    type: "success",
-                                                    timer: 2000,
-                                                    showConfirmButton: false
-                                                });
-                                                session.update(tmp, function(t){
-                                                    applyFilters(usr.location.geo);
-                                                });
-                                                //=======================================================================
-                                                //Call apply filter here with new location info if other filters have been applied
-                                                //========================================================================
-
-                                            }
-                                        });
-
-                                }
-
-                            });
-                    });
-
-            } else {
-                console.log('Geocode was not successful for the following reason: ' + status);
-            }
-        });
-    }); // Save location and geometry
-    $scope.editLocation = function(){
-        $scope.editLoc = true;
-        $scope.resAddress = session.user.location.address;
-        $timeout(function(){
-            $("#searchTextField").select();
-        });
-
-    };
-    $scope.locFocusOut = function(){
-        $scope.editLoc = false;
-        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
-        if($scope.resAddress.length > 26)
-        {
-            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
-        }
-    };
-    $scope.resAddress = session.user.location.address.split(/,(.+)?/)[0];
-    if($scope.resAddress.length > 26)
-    {
-        $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
-    }
-
-    // Multi dropdown INIT
+app.controller('jobBrowser',function($scope, $location, $http, $rootScope, session, constants, $timeout, getUser){
+    var user;
     $scope.catModel = [];
     $scope.catData = [];
     $scope.timeModel = [];
     $scope.timeData = [];
     $scope.categories = constants.categories;
     $scope.timePeriods = constants.timePeriods;
-    for(var i = 0; i < $scope.categories.length; i++){
-        $scope.catData.push({id: $scope.categories[i], label: $scope.categories[i]});
-    }
-    for(var i = 0; i < $scope.timePeriods.length; i++){
-        $scope.timeData.push({id: $scope.timePeriods[i].name, label: $scope.timePeriods[i].name + " (" + $scope.timePeriods[i].description + ")"});
-    }
-    $scope.dropSettingsCat = {
-        scrollableHeight: 'auto',
-        scrollable: true,
-        idProp: 'label',
-        buttonClasses: "btn btn-block form-control blueBack filterButtons",
+    getUser.getUserData(session.user._id,function(res){
+        user = res;
 
-    };
-    $scope.dropSettingsTime = {
-        scrollableHeight: 'auto',
-        scrollable: true,
-        idProp: 'label',
-        buttonClasses: "btn btn-block form-control blueBack filterButtons"
-    };
-    $scope.catLabel = {buttonDefaultText: 'Categories',dynamicButtonTextSuffix: "Categories"};
-    $scope.timeLabel = {buttonDefaultText: 'Time Periods',dynamicButtonTextSuffix: "Time Periods"};
-    $scope.catSelectEvent = {
-        onItemSelect: function(){
-            applyFilters(null);
-        },
-        onItemDeselect: function(){
-            applyFilters(null);
-        },
-        onDeselectAll: function(){
-            applyFilters(null);
-        },
-        onDeselectAll: function(){
-            $scope.catModel = [];
-            applyFilters(null);
+        var radius = 15;
+        //=======================================================================
+        //====================Filter box init
+        //========================================================================
+        $scope.slider = {
+            rangeSlider: 0,
+            minValue: 15,
+            options: {
+                floor: 0,
+                ceil: 30,
+                minLimit: 2,
+                showSelectionBar: true,
+                translate: function(value, sliderId, label) {
+                    switch (label) {
+                        case 'model':
+                        {
+                            if(value >= 30 || value <= 0)
+                                return '<b>' + value +'+</b>  kms';
+                            else
+                                return '<b>' + value +'</b>  kms';
+                        }
+
+                        case 'floor':
+                            return "<b>" + value + "</b>km and";
+                        default:
+                            return value + "+ kms";
+                    }
+                },
+                onEnd: function() {
+                    var x = $scope.slider.minValue;
+                    rad = x;
+                    //console.log(x + ' km');
+                    //=======================================================================
+                    //====================Call apply filter here (range is 1km - "x"km)
+                    //========================================================================
+                    radius = x;
+                    applyFilters();
+                }
+            }
+        };
+
+        //Filter function
+        function applyFilters(geo){
+            if(radius == 30)
+                radius = null;
+
+            var data = {};
+            data.categories = [];
+            data.timePeriods = [];
+            for(var i = 0; i < $scope.catModel.length; i++){
+                data.categories.push($scope.catModel[i].id);
+            }
+            for(var i = 0; i < $scope.timeModel.length; i++){
+                data.timePeriods.push($scope.timeModel[i].id);
+            }
+            if(radius){
+                data.radius = radius;
+                if(!geo)
+                    data.userLocation = user.location.geo;
+                else
+                    data.userLocation = geo;
+            }
+            getJobs(data);
         }
-    };
-    $scope.timeSelectEvent = {
-        onItemSelect: function(){
-            applyFilters(null);
-        },
-        onItemDeselect: function(){
-            applyFilters(null);
-        },
-        onDeselectAll: function(){
-            $scope.timeModel = [];
-            applyFilters(null);
+
+
+        $scope.autocompleteOptions = {
+            componentRestrictions: { country: 'za' }
+        };
+        var geocoder = new google.maps.Geocoder();
+        $scope.$on('g-places-autocomplete:select', function (event, param) {
+            $scope.resAddress = param.formatted_address;
+            $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+            if($scope.resAddress.length > 26)
+            {
+                $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+            }
+            geocoder.geocode({'address':param.formatted_address}, function(results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    swal({
+                            title: "Are You Sure?",
+                            type: "input",
+                            text: "This will change your residential address. Please type your password to confirm.",
+                            showCancelButton: true,
+                            confirmButtonColor: "#00b488",
+                            confirmButtonText: "Yes, I'm Sure",
+                            closeOnConfirm: false
+                        },
+                        function (inputValue) {
+
+                            $http
+                                .post('/checkPassword', {email: user.contact.email, password: inputValue})
+                                .then(function (res, err) {
+                                    // console.log(res.data);
+                                    if (!res.data) {
+                                        $scope.resAddress = user.location.address;
+                                        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+                                        if($scope.resAddress.length > 26)
+                                        {
+                                            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+                                        }
+                                        swal.showInputError("Incorrect Password!");
+                                        return false;
+                                    }
+                                    else {
+                                        $scope.resAddress = param.formatted_address;
+                                        $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+                                        if($scope.resAddress.length > 26)
+                                        {
+                                            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+                                        }
+                                        var usr = {_id: user._id, location:{geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address}};
+                                        var tmp = session.user;
+                                        tmp.location = {geo:{lng:results[0].geometry.location.lng(),lat:results[0].geometry.location.lat()},address :param.formatted_address};
+                                        $http({
+                                            method: 'POST',
+                                            url: '/updateUser',
+                                            data: usr
+                                        })
+                                            .then(function (response) {
+                                                {
+                                                    swal({
+                                                        title: "Edited",
+                                                        type: "success",
+                                                        timer: 2000,
+                                                        showConfirmButton: false
+                                                    });
+                                                    session.update(tmp, function(t){
+                                                        applyFilters(usr.location.geo);
+                                                    });
+                                                    //=======================================================================
+                                                    //Call apply filter here with new location info if other filters have been applied
+                                                    //========================================================================
+
+                                                }
+                                            });
+
+                                    }
+
+                                });
+                        });
+
+                } else {
+                    console.log('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }); // Save location and geometry
+        $scope.editLocation = function(){
+            $scope.editLoc = true;
+            $scope.resAddress = session.user.location.address;
+            $timeout(function(){
+                $("#searchTextField").select();
+            });
+
+        };
+        $scope.locFocusOut = function(){
+            $scope.editLoc = false;
+            $scope.resAddress = $scope.resAddress.split(/,(.+)?/)[0];
+            if($scope.resAddress.length > 26)
+            {
+                $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
+            }
+        };
+        $scope.resAddress = user.location.address.split(/,(.+)?/)[0];
+        if($scope.resAddress.length > 26)
+        {
+            $scope.resAddress = $scope.resAddress.substring(0,24)+"...";
         }
-    };
-    //=======================================================================
-    //====================Filter box init
-    //========================================================================
+
+        // Multi dropdown INIT
+        for(var i = 0; i < $scope.categories.length; i++){
+            $scope.catData.push({id: $scope.categories[i], label: $scope.categories[i]});
+        }
+        for(var i = 0; i < $scope.timePeriods.length; i++){
+            $scope.timeData.push({id: $scope.timePeriods[i].name, label: $scope.timePeriods[i].name + " (" + $scope.timePeriods[i].description + ")"});
+        }
+        $scope.dropSettingsCat = {
+            scrollableHeight: 'auto',
+            scrollable: true,
+            idProp: 'label',
+            buttonClasses: "btn btn-block form-control blueBack filterButtons",
+
+        };
+        $scope.dropSettingsTime = {
+            scrollableHeight: 'auto',
+            scrollable: true,
+            idProp: 'label',
+            buttonClasses: "btn btn-block form-control blueBack filterButtons"
+        };
+        $scope.catLabel = {buttonDefaultText: 'Categories',dynamicButtonTextSuffix: "Categories"};
+        $scope.timeLabel = {buttonDefaultText: 'Time Periods',dynamicButtonTextSuffix: "Time Periods"};
+        $scope.catSelectEvent = {
+            onItemSelect: function(){
+                applyFilters(null);
+            },
+            onItemDeselect: function(){
+                applyFilters(null);
+            },
+            onDeselectAll: function(){
+                applyFilters(null);
+            },
+            onDeselectAll: function(){
+                $scope.catModel = [];
+                applyFilters(null);
+            }
+        };
+        $scope.timeSelectEvent = {
+            onItemSelect: function(){
+                applyFilters(null);
+            },
+            onItemDeselect: function(){
+                applyFilters(null);
+            },
+            onDeselectAll: function(){
+                $scope.timeModel = [];
+                applyFilters(null);
+            }
+        };
+        //=======================================================================
+        //====================Filter box init
+        //========================================================================
 
 
-    //=======================================================================
-    //====================Filter box filter functions
-    //========================================================================
+        //=======================================================================
+        //====================Filter box filter functions
+        //========================================================================
 
 
 //runtime work
-    $scope.jobs = [];
-    $rootScope.$broadcast('browse', 1);
-    $scope.sortBy = 0;
-    var me = session.user;
-    var ob = $.deparam.querystring();
-    ob.radius = 15;
-    ob.userLocation = session.user.location.geo;
-    var region = '';
-    //console.log(ob.timePeriods);
-    //================LOAD DROPDOWNS MODEL ON PAGE LOAD========================
-    for(var i = 0; i < ob.categories.length; i++){
-        for(var k = 0; k < $scope.categories.length; k++)
-        {
-            if(ob.categories[i] == $scope.categories[k])
-                $scope.catModel.push({id: $scope.categories[k]});
-        }
-    }
-    for(var i = 0; i < ob.timePeriods.length; i++){
-        for(var k = 0; k < $scope.timePeriods.length; k++)
-        {
-            if(ob.timePeriods[i] == $scope.timePeriods[k].name)
-                $scope.timeModel.push({id: $scope.timePeriods[i].name});
-        }
-    }
-
-    getJobs(ob);
-    //get the jobs
-    function getJobs(temp){
-        //console.log(temp);
-        var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
-        if(temp.radius){
-            data.radius = temp.radius;
-            data.userLocation = temp.userLocation;
-        }
-        var locat = session.user.location.geo;
-        //console.log(data);
-    $http({
-        method  : 'POST',
-        url     : '/jobBrowse',
-        data : data
-    })
-        .then(function(res) {
-
-                $scope.jobs = res.data;
-            if(!res.data) {
-                $scope.message = "No Job Offers match your search criteria.";
-            }
-            else{
-                $scope.message = "";
-            }
-
-            angular.forEach($scope.jobs, function(job){
-                $http
-                    .post('/loadMyApplications', {"user" : session.user._id,"job":job._id})
-                    .then(function (res, err) {
-                        if(res.data.status == "Pending")
-                            job.appStat = "Application Pending";
-                        else if(res.data.status == "Provisionally accepted")
-                            job.appStat = "Provisional Acceptance";
-                        else if(res.data.status == "Confirmed")
-                            job.appStat = "Job Confirmed";
-                        else if(res.data.status == "Declined")
-                            job.appStat = res.data.status;
-
-                        $scope.isDeclined = function(status){
-                            if(status == "Declined"){
-                                return true;
-                            }
-                            return false;
-                        };
-                        $scope.isProv = function(status){
-                            if(status == "Provisional Acceptance"){
-                                return true;
-                            }
-                            return false;
-                        };
-                        $scope.isPending = function(status){
-                            if(status == "Application Pending"){
-                                return true;
-                            }
-                            return false;
-                        };
-                        $scope.isConfirmed = function(status){
-                            if(status == "Job Confirmed"){
-                                return true;
-                            }
-                            return false;
-                        };
-                    });
-                job.post.postDate = job.post.postDate.substr(0,10);
-                job.post.postDate = job.post.postDate.split("-");
-                job.post.postDate = job.post.postDate[2] + "/" + job.post.postDate[1] + "/" + job.post.postDate[0];
-
-                job.post.startingDate = convertDateForDisplay(job.post.startingDate);
-
-                var user = {_id:job.employerID._id};
-
-                $http.post('/getPp', user)
-                    .then(function (res) {
-                        job.logo =  res.data;
-                    });
-
-
-
-                job.distance = distance(locat.lat,locat.lng, job.post.location.geo.coordinates[1], job.post.location.geo.coordinates[0]);
-                job.post.location.address = job.post.location.address.split(',')[0]+", " + job.post.location.address.split(',')[1];
-                if(job.post.location.address.length > 30)
-                {
-                    job.post.location.address = job.post.location.address.substring(0,job.post.location.address.lastIndexOf(" ")) + "...";
-                }
-            });
-
-                $scope.getPer = function(cat){
-                    if(cat == "Once Off"){
-                        return "/hr";
-                    }
-                    else return "/hr"
-                };
-        });
-
-    }
-
-    function distance(lat1, lon1, lat2, lon2) {
-        var radlat1 = Math.PI * lat1/180;
-        var radlat2 = Math.PI * lat2/180;
-        var theta = lon1-lon2;
-        var radtheta = Math.PI * theta/180;
-        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-        dist = Math.acos(dist);
-        dist = dist * 180/Math.PI;
-        dist = dist * 60 * 1.1515;
-        dist = dist * 1.609344;
-
-        return Math.round( dist * 10 ) / 10;
-    }
-
-    $scope.applyFilters = function(){
-
-        var radius = { max:parseInt($scope.radius)};
-
-        switch(radius.max){
-            case 5:{
-                radius.min = 0;
-                break;
-            }
-            case 10:{
-                radius.min = 5;
-                break;
-            }
-            case 20:{
-                radius.min = 10;
-                break;
-            }
-            case 50:
+        $scope.jobs = [];
+        $rootScope.$broadcast('browse', 1);
+        $scope.sortBy = 0;
+        var me = session.user;
+        var ob = $.deparam.querystring();
+        ob.radius = 15;
+        ob.userLocation = user.location.geo;
+        var region = '';
+        //console.log(ob.timePeriods);
+        //================LOAD DROPDOWNS MODEL ON PAGE LOAD========================
+        for(var i = 0; i < ob.categories.length; i++){
+            for(var k = 0; k < $scope.categories.length; k++)
             {
-                radius.min = 20;
-                break;
+                if(ob.categories[i] == $scope.categories[k])
+                    $scope.catModel.push({id: $scope.categories[k]});
             }
-            case 2000:{
-                radius.min = 50;
-                break;
+        }
+        for(var i = 0; i < ob.timePeriods.length; i++){
+            for(var k = 0; k < $scope.timePeriods.length; k++)
+            {
+                if(ob.timePeriods[i] == $scope.timePeriods[k].name)
+                    $scope.timeModel.push({id: $scope.timePeriods[i].name});
             }
         }
 
-        if($scope.radius) {
-            ob.radius = radius;
+        getJobs(ob);
+        //get the jobs
+        function getJobs(temp){
+            //console.log(temp);
+            var data = {'categories': temp.categories, 'periods' : temp.timePeriods, 'region': temp.region};
+            if(temp.radius){
+                data.radius = temp.radius;
+                data.userLocation = temp.userLocation;
+            }
+            var locat = user.location.geo;
+            //console.log(data);
+            $http({
+                method  : 'POST',
+                url     : '/jobBrowse',
+                data : data
+            })
+                .then(function(res) {
+
+                    $scope.jobs = res.data;
+                    if(!res.data) {
+                        $scope.message = "No Job Offers match your search criteria.";
+                    }
+                    else{
+                        $scope.message = "";
+                    }
+
+                    angular.forEach($scope.jobs, function(job){
+                        $http
+                            .post('/loadMyApplications', {"user" : session.user._id,"job":job._id})
+                            .then(function (res, err) {
+                                if(res.data.status == "Pending")
+                                    job.appStat = "Application Pending";
+                                else if(res.data.status == "Provisionally accepted")
+                                    job.appStat = "Provisional Acceptance";
+                                else if(res.data.status == "Confirmed")
+                                    job.appStat = "Job Confirmed";
+                                else if(res.data.status == "Declined")
+                                    job.appStat = res.data.status;
+
+                                $scope.isDeclined = function(status){
+                                    if(status == "Declined"){
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                                $scope.isProv = function(status){
+                                    if(status == "Provisional Acceptance"){
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                                $scope.isPending = function(status){
+                                    if(status == "Application Pending"){
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                                $scope.isConfirmed = function(status){
+                                    if(status == "Job Confirmed"){
+                                        return true;
+                                    }
+                                    return false;
+                                };
+                            });
+                        job.post.postDate = job.post.postDate.substr(0,10);
+                        job.post.postDate = job.post.postDate.split("-");
+                        job.post.postDate = job.post.postDate[2] + "/" + job.post.postDate[1] + "/" + job.post.postDate[0];
+
+                        job.post.startingDate = convertDateForDisplay(job.post.startingDate);
+
+                        var user = {_id:job.employerID._id};
+
+                        $http.post('/getPp', user)
+                            .then(function (res) {
+                                job.logo =  res.data;
+                            });
+
+
+
+                        job.distance = distance(locat.lat,locat.lng, job.post.location.geo.coordinates[1], job.post.location.geo.coordinates[0]);
+                        job.post.location.address = job.post.location.address.split(',')[0]+", " + job.post.location.address.split(',')[1];
+                        if(job.post.location.address.length > 30)
+                        {
+                            job.post.location.address = job.post.location.address.substring(0,job.post.location.address.lastIndexOf(" ")) + "...";
+                        }
+                    });
+
+                    $scope.getPer = function(cat){
+                        if(cat == "Once Off"){
+                            return "/hr";
+                        }
+                        else return "/hr"
+                    };
+                });
+
         }
+
+        function distance(lat1, lon1, lat2, lon2) {
+            var radlat1 = Math.PI * lat1/180;
+            var radlat2 = Math.PI * lat2/180;
+            var theta = lon1-lon2;
+            var radtheta = Math.PI * theta/180;
+            var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+            dist = Math.acos(dist);
+            dist = dist * 180/Math.PI;
+            dist = dist * 60 * 1.1515;
+            dist = dist * 1.609344;
+
+            return Math.round( dist * 10 ) / 10;
+        }
+        $scope.applyFilters = function(){
+
+            var radius = { max:parseInt($scope.radius)};
+
+            switch(radius.max){
+                case 5:{
+                    radius.min = 0;
+                    break;
+                }
+                case 10:{
+                    radius.min = 5;
+                    break;
+                }
+                case 20:{
+                    radius.min = 10;
+                    break;
+                }
+                case 50:
+                {
+                    radius.min = 20;
+                    break;
+                }
+                case 2000:{
+                    radius.min = 50;
+                    break;
+                }
+            }
+
+            if($scope.radius) {
+                ob.radius = radius;
+            }
             if(!$scope.region){
                 ob.region = '';
             }
@@ -805,63 +805,68 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
 
 
 
-    };
+        };
+        $scope.sort = function(by){
+            if(by == 0){
 
-    $scope.sort = function(by){
-        if(by == 0){
+                $scope.jobs.sort(comparePostDate);
+            }
+            else
+            if(by == 1){
 
-            $scope.jobs.sort(comparePostDate);
+                $scope.jobs.sort(comparePeriod);
+            }
+            else
+            if(by == 2){
+
+                $scope.jobs.sort(compareCategories);
+            }
+
+        };
+        function comparePostDate(a,b) {
+            if (a.post.postDate > b.post.postDate)
+                return -1;
+            else if (a.post.postDate < b.post.postDate)
+                return 1;
+            else
+                return 0;
         }
-        else
-        if(by == 1){
-
-            $scope.jobs.sort(comparePeriod);
+        function comparePeriod(a,b) {
+            if (a.post.timePeriod < b.post.timePeriod)
+                return -1;
+            else if (a.post.timePeriod > b.post.timePeriod)
+                return 1;
+            else
+                return 0;
         }
-        else
-        if(by == 2){
-
-            $scope.jobs.sort(compareCategories);
+        function compareCategories(a,b) {
+            if (a.post.category < b.post.category)
+                return -1;
+            else if (a.post.category > b.post.category)
+                return 1;
+            else
+                return 0;
         }
-
-    };
-
-    function comparePostDate(a,b) {
-        if (a.post.postDate > b.post.postDate)
-            return -1;
-        else if (a.post.postDate < b.post.postDate)
-            return 1;
-        else
-            return 0;
-    }
-    function comparePeriod(a,b) {
-        if (a.post.timePeriod < b.post.timePeriod)
-            return -1;
-        else if (a.post.timePeriod > b.post.timePeriod)
-            return 1;
-        else
-            return 0;
-    }
-    function compareCategories(a,b) {
-        if (a.post.category < b.post.category)
-            return -1;
-        else if (a.post.category > b.post.category)
-            return 1;
-        else
-            return 0;
-    }
-
-
+    });
 });
 function getPp(user,cb){
 
 }
 app.controller('jobCtrl', function($scope, $location, $window,$http, session, notify, cacheUser, $rootScope){
-
     $scope.goBack = function(){
         window.history.back();
     };
     var temp = $location.url();
-    var user = session.user;
+    var user;
+    $http({
+        method : 'POST',
+        url : '/loadUserById',
+        data: {id : session.user._id}
+    })
+        .then(function(res){
+            user = res.data;
+        });
+
     temp = temp.replace("/job?id=", '');
     id = {id: temp};
     var job = {};

@@ -557,7 +557,7 @@ module.exports = function(app) {
 	//load user by email
 	app.post('/loadUser', function(req,res) {
 		var email = req.body;
-		db.users.findOne({'contact.email': email.email}, function(err, rows){
+		db.users.findOne({'contact.email': email.email}, {type:1,contact:1,name:1,passwordHash:1,emailDisable:1},function(err, rows){
 			res.send(rows);
 		});
 

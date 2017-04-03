@@ -53,6 +53,16 @@ app.controller('notifications', function($scope,$http,$interval, session, cacheU
 
 });
 
+app.service('getUser', function($http){
+    this.getUserData = function(id,callback){
+        $http.post('/loadUserById' , {id: id})
+        .success(function (res) {
+
+                callback(res);
+            });
+    }
+});
+
 app.service('notify', function(){
 
 

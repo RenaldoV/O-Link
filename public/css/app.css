@@ -5848,13 +5848,6 @@ margin-top: 32px;
     display: unset;!important;
   }
 
-  fieldset.rating{
-    transform: scale(0.5,0.5);
-    transform-origin: 0 12px;
-    display: inline-block;
-    width: 150%;
-    float: left;
-  }
   .applicantsTable tbody tr td .btn{
     height: 25px;
     font-size: 12px;

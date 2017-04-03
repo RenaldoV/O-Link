@@ -28,13 +28,10 @@ app.controller('signin', function($scope,$rootScope, $http,authService,AUTH_EVEN
                             swal({title: "Welcome.", type: "success", timer: 800, showConfirmButton: false});
 
                             authService.login($scope.user).then(function (user) {
-
                                 $scope.setCurrentUser(user);
                                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                                 $(".appbg").addClass('dashBG');
                                 $location.url("/dashboard");
-
-
                             }, function () {
                                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                             });
