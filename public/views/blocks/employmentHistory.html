@@ -8,7 +8,7 @@
             <div ng-if="job.post.category == 'Other'" class="appHeading">
                 {{job.post.OtherCategory}}
             </div>
-            <div class="applicantsDateHead tableAddSmall">{{job.post.startingDate}}</div>
+            <div class="applicantsDateHead empJobTableAddBtn1">{{job.post.startingDate}}</div>
 
             <div class="pull-right cheviBox">
                 <span ng-if="job.show" class=" glyphicon glyphicon-chevron-up"></span>
@@ -40,7 +40,7 @@
                     <td ng-click="getApplicant(app.studentID._id)" class="histPrating">
                         <span ng-if="app.studentRating" class="jobHistNumRating">{{app.studentRating}}</span>
                         <span ng-if="!app.studentRating" class="jobHistNumRating">N/A</span>
-                        <fieldset class="jobHistStars jobHistPMed">
+                        <fieldset class="jobHistStars jobHistPMed pull-left">
                             <label  class = "full {{app.filled[9]}}" for="star5{{$index}}" title="Awesome - 5 stars"></label>
                             <label class="half {{app.filled[8]}}" for="star4half{{$index}}" title="Pretty good - 4.5 stars"></label>
                             <label class = "full {{app.filled[7]}}" for="star4{{$index}}" title="Pretty good - 4 stars"></label>
@@ -53,8 +53,6 @@
                             <label style="color: #FFD700" class="half {{app.filled[0]}}" for="starhalf{{$index}}" title="Sucks big time - 0.5 stars"></label>
                         </fieldset>
                     </td>
-
-
                     <td ng-click="getApplicant(app.studentID._id)"></td>
                 </tr>
                 </tbody>

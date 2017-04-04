@@ -33,7 +33,8 @@
                                     <li class="list-group-item">
                                         <div class="clear">
                                             <div>Company Description</div>
-                                            <small class="text-muted">{{user.company.description}}</small>
+                                            <small ng-if="user.company.category != 'Other'" class="text-muted">{{user.company.category}}</small>
+                                            <small ng-if="user.company.category == 'Other'" class="text-muted">{{user.company.otherCategory}}</small>
                                         </div>
                                     </li>
                                     <li class="list-group-item">
@@ -136,7 +137,7 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-        <a ng-if="myProfile" class="btn employerButton btn-xlarge" href="/editProfile">Edit</a>
+        <a ng-if="myProfile" class="btn employerButton btn-xlarge" href="/editProfile" style="width:200px;">Edit</a>
 
     </div>
 </div>

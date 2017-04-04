@@ -171,43 +171,39 @@ app.controller('studentProfileControl', function ($scope,$http,cacheUser, sessio
 
 });
 
-app.controller('employerProfileControl', function ($scope,$http,cacheUser, session,photoUpload) {
+app.controller('employerProfileControl', function ($scope,$http,cacheUser, session,photoUpload,getUser) {
 
-    var user = cacheUser.user;
-    $scope.myProfile = false;
-    $scope.offers = 0;
-    if (user._id == session.user._id)
-    $scope.myProfile = true;
+    var user;
+    getUser.getUserData(session.user._id,function(res){
+        user = res;
+        $scope.myProfile = false;
+        $scope.offers = 0;
+        if (user._id == session.user._id)
+            $scope.myProfile = true;
 
-    $scope.user = user;
-    $http
-        .post('/getPp', user)
-        .then(function (res) {
+        $scope.user = user;
+        $http
+            .post('/getPp', user)
+            .then(function (res) {
 
-            $scope.image=res.data;
-
-
-        });
-    $http
-        .post('/getOfferCount', user)
-        .then(function (res) {
-
-            
-                    $scope.offers = res.data.count;
-
-                });
+                $scope.image=res.data;
 
 
+            });
+        $http
+            .post('/getOfferCount', user)
+            .then(function (res) {
 
 
+                $scope.offers = res.data.count;
 
+            });
 
+        $scope.uploadPp = function() {
+            photoUpload.makeUploadBox();
+        };
 
-    $scope.uploadPp = function() {
-        photoUpload.makeUploadBox();
-    };
-
-
+    });
 });
 
 app.controller('studentEditProfile', function($scope, session,Upload, $timeout, $compile, $http, $window, authService, constants){
@@ -277,7 +273,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
         swal({
                 title: "Are You Sure?",
                 type: "input",
-                text: "This updates your User Profile (CV). Please type your password to confirm.",
+                text: "This updates your User Profile. Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm Sure",
@@ -302,7 +298,7 @@ app.controller('studentEditProfile', function($scope, session,Upload, $timeout, 
                                 .then(function (res, err) {
 
                                     session.create($scope.user);
-                                    swal({title: "Edited", type: "success", timer: 2000, showConfirmButton: false});
+                                    swal({title: "Edited!", type: "success", timer: 2000, showConfirmButton: false});
                                     $window.location.href="/myProfile";
 
                                 });

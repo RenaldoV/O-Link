@@ -1336,10 +1336,13 @@ app.controller('pastJobFeed', function($scope,$http, session,$window, $rootScope
                 //console.log(res.data);
                 $scope.jobs = res.data;
                 $.each($scope.jobs, function(key,value){
+                    value.hasApplicants = true;
                     if(!value.applicants)
                     {
                         value.applicants=[];
+                        value.hasApplicants = false;
                     }
+                    console.log(value.hasApplicants);
                 });
                 if($scope.jobs.length == 0){
                     $scope.message = "No jobs have been completed, yet.";

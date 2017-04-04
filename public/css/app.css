@@ -1183,6 +1183,11 @@ body {
     display: none;
   }
 }
+@media (max-width: 522px) {
+  .jobHistStars.jobHistPMed{
+    display:none;
+  }
+}
 @media (max-width: 540px) {
   .empJobTableAddDate{
     display:none;

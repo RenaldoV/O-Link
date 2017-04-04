@@ -84,15 +84,6 @@
                     <p ng-show="job.post.commission.type == undefined" class="has-error">This field is required</p>
                 </div>
         </div>
-        <div class="list-group-item">
-            <select ng-change="changeTimePeriod()" id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
-                <option value="" selected disabled>Time Period</option>
-                <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
-            </select>
-            <div ng-show="jobForm.$submitted || jobForm.period.$touched" class="error-block">
-                <p ng-show="jobForm.period.$error.required" class="has-error">This field is required</p>
-            </div>
-        </div>
         <div class="list-group-item" ng-show="job.post.payPer == 'tips' || job.post.payPer == 'hourAndTips'">
             <label class="radio-inline">
                 <input name="tips" type="radio" ng-model="job.post.tips" value="sharedTips" ng-required="job.post.payPer == 'tips' || job.post.payPer == 'hourAndTips'">Shared Tips
@@ -104,6 +95,15 @@
                 <p ng-show="job.post.tips == undefined" class="has-error">This field is required</p>
             </div>
         </div>
+        <div class="list-group-item">
+            <select ng-change="changeTimePeriod()" id="period" name="period" class="form-control no-border" ng-model="job.post.timePeriod" ng-required="true">
+                <option value="" selected disabled>Time Period</option>
+                <option ng-repeat="period in timePeriods" value="{{period.name}}">{{period.name}} ({{period.description}})</option>
+            </select>
+            <div ng-show="jobForm.$submitted || jobForm.period.$touched" class="error-block">
+                <p ng-show="jobForm.period.$error.required" class="has-error">This field is required</p>
+            </div>
+        </div>
         <div class="list-group-item" ng-show="job.post.payPer == 'hour' || job.post.payPer == 'hourAndTips'">
             <input id="amount" name="amount"  type="number" step="any" class="controls form-control no-border"
                    width="50px" placeholder="Amount per Hour" ng-model="job.post.pay" min="1"  ng-required="job.post.payPer == 'hour' || job.post.payPer == 'hourAndTips'">
@@ -112,9 +112,9 @@
                 <p ng-show="jobForm.amount.$error.number" class="has-error">Not a valid amount</p>
             </div>
         </div>
-        <div class="list-group-item" ng-show="job.post.commission.type == 'percentage'">
+        <div class="list-group-item" ng-show="job.post.commission.type == 'percentage' && job.post.payPer == 'commission'">
             <input id="comPercentage" name="comPercentage"  type="number" step="any" class="controls form-control no-border"
-                   width="50px" placeholder="Percentage earned on" ng-model="job.post.commission.percentage" min="1" max="100"  ng-required="job.post.commission.type == 'percentage'">
+                   width="50px" placeholder="Percentage earned on" ng-model="job.post.commission.percentage" min="1" max="100"  ng-required="job.post.commission.type == 'percentage' && job.post.payPer == 'commission'">
             <div ng-show="jobForm.$submitted || jobForm.comPercentage.$touched" class="error-block">
                 <p ng-show="jobForm.comPercentage.$error.required" class="has-error">This field is required</p>
                 <p ng-show="jobForm.comPercentage.$error.number" class="has-error">Not a valid percentage</p>
