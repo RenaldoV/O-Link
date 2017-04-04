@@ -386,7 +386,7 @@ app.controller('studentNav',function($scope,$rootScope, $window, session, authSe
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
+                confirmButtonText: "Yes, Log Out", closeOnConfirm: false
             },
             function () {
                 session.destroy();
@@ -476,7 +476,7 @@ app.controller('employerNav',function($scope,$rootScope, $window, session, authS
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
+                confirmButtonText: "Yes, Log Out", closeOnConfirm: false
             },
             function () {
                 session.destroy();
