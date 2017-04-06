@@ -719,6 +719,31 @@ div.studentRating .button .material-icons{
 .profileStars > input:checked ~ label /* show gold star when clicked */
 { color: #FFD700; }
 
+.applicantProfileStars {
+    border: none;
+}
+
+.applicantProfileStars > input { display: none; }
+.applicantProfileStars > label:before {
+    margin: 3px;
+    font-size: 1.7em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.applicantProfileStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.applicantProfileStars > label {
+    color: #ddd;
+    float: right;
+}
+.applicantProfileStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700; }
+
 td.jobHistPMed{
     height:100%;
 }
