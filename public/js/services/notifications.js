@@ -57,7 +57,12 @@ app.service('getUser', function($http){
     this.getUserData = function(id,callback){
         $http.post('/loadUserById' , {id: id})
         .success(function (res) {
-
+                callback(res);
+            });
+    }
+    this.getPp = function(user, callback){
+        $http.post('/getPp', user)
+            .success(function (res) {
                 callback(res);
             });
     }

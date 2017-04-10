@@ -277,6 +277,7 @@ app.controller('navControl',function($scope, authService, session, $location, $w
         }
     }
         function disableHeadings() {
+
             $scope.myApplications = false;
             $scope.jobHistory = false;
             $scope.welcoming = false;
@@ -305,190 +306,187 @@ app.controller('navControl',function($scope, authService, session, $location, $w
        headings();
         },200);
     } );
+});
+
+app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http, $location, $timeout,ModalService, getUser){
+
+    var user;
+    getUser.getUserData(session.user._id,function(res) {
+        user = res;
+        $scope.user = user;
+
+        getUser.getPp(session.user, function(pp){
+            $scope.image = pp;
+            $http
+                .post('/setEmailToggle', {id: session.user._id})
+                .then(function (res) {
+                    if (res) {
+                        $scope.emailNoti = !res.data.emailDisable;
+                        if ($scope.emailNoti)
+                            $scope.toggle = "fa-toggle-on blueText";
+                        else
+                            $scope.toggle = "fa-toggle-off";
+                    }
+                });
+
+            $scope.gooiHITStudent = function () {
+                ModalService.showModal({
+                    templateUrl: "../views/blocks/studentWorks.html",
+                    controller: "worksControl"
+                }).then(function (modal) {
+                    // The modal object has the element built, if this is a bootstrap modal
+                    // you can call 'modal' to show it, if it's a custom modal just show or hide
+                    // it as you need to.
+                    modal.element.modal();
+                });
+            };
+            $scope.toggleEmail = function () {
+                $scope.emailNoti = !$scope.emailNoti;
+                var message;
+                if ($scope.emailNoti) {
+                    $scope.toggle = "fa-toggle-on blueText";
+                    message = "enabled";
+                }
+                if (!$scope.emailNoti) {
+                    $scope.toggle = "fa-toggle-off";
+                    message = "disabled";
+                }
+
+                return $http
+                    .post('/toggleEmail', {id: session.user._id, emailDisable: !$scope.emailNoti})
+                    .then(function (res) {
+                        if (res) {
+                            swal("Email Notifications Changed", "Your email notifications have been " + message + ".", "success");
+
+                        }
 
 
+                    });
+            };
 
+            if ($location.path() == "/dashboard") {
+                $timeout(function () {
+                    $scope.welcome = "Welcome ";
+                    $scope.talent = user.name.name + "!";
+                });
+            }
 
+            $scope.logOut = function () {
+                swal({
+                        title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, Log Out", closeOnConfirm: false
+                    },
+                    function () {
+                        session.destroy();
+
+                        $cookies.remove("user");
+                        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                        $window.location.href = "/";
+                        swal({title: "You have been logged out.", text: "", showConfirmButton: false});
+                    });
+            };
+            $scope.myProfile = function () {
+                $window.location.href = "/myProfile";
+            };
+
+        });
+    });
 
 });
 
+app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http,$timeout,ModalService, getUser){
 
-app.controller('studentNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS, $http, $location, $timeout,ModalService){
+    var user;
+    getUser.getUserData(session.user._id,function(res) {
+        user = res;
+        $scope.user = user;
 
-    var user = session.user;
-    $scope.user = user;
+        getUser.getPp(session.user, function (pp) {
+            $scope.image = pp;
 
-    $http
-        .post('/setEmailToggle', {id: session.user._id})
-        .then(function (res) {
-            if(res){
-                $scope.emailNoti = !res.data.emailDisable;
-                if($scope.emailNoti)
+            $http
+                .post('/setEmailToggle', {id: session.user._id})
+                .then(function (res) {
+                    if (res) {
+                        $scope.emailNoti = !res.data.emailDisable;
+                        if ($scope.emailNoti)
+                            $scope.toggle = "fa-toggle-on blueText";
+                        else
+                            $scope.toggle = "fa-toggle-off";
+                    }
+                });
+
+            $scope.gooiHITemployer = function () {
+                ModalService.showModal({
+                    templateUrl: "../views/blocks/employerWorks.html",
+                    controller: "worksControl"
+                }).then(function (modal) {
+                    // The modal object has the element built, if this is a bootstrap modal
+                    // you can call 'modal' to show it, if it's a custom modal just show or hide
+                    // it as you need to.
+                    modal.element.modal();
+                });
+            };
+
+            $scope.toggleClicked = function () {
+                $scope.emailNoti = !$scope.emailNoti;
+            };
+
+            $scope.toggleEmail = function () {
+                $scope.emailNoti = !$scope.emailNoti;
+                var message;
+                if ($scope.emailNoti) {
+                    message = "enabled";
                     $scope.toggle = "fa-toggle-on blueText";
-                else
+                }
+                if (!$scope.emailNoti) {
+                    message = "disabled";
                     $scope.toggle = "fa-toggle-off";
-            }
-        });
-
-    $scope.gooiHITStudent = function(){
-        ModalService.showModal({
-            templateUrl: "../views/blocks/studentWorks.html",
-            controller: "worksControl"
-        }).then(function(modal) {
-            // The modal object has the element built, if this is a bootstrap modal
-            // you can call 'modal' to show it, if it's a custom modal just show or hide
-            // it as you need to.
-            modal.element.modal();
-        });
-    };
-    $scope.toggleEmail = function(){
-        $scope.emailNoti = !$scope.emailNoti;
-        var message;
-        if($scope.emailNoti){
-            $scope.toggle = "fa-toggle-on blueText";
-            message = "enabled";
-        }
-        if(!$scope.emailNoti){
-            $scope.toggle = "fa-toggle-off";
-            message = "disabled";
-        }
-
-        return $http
-            .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
-            .then(function (res) {
-                if(res){
-                    swal("Email Notifications Changed", "Your email notifications have been "+message+".", "success");
-
                 }
 
-
-            });
-    };
-
-    if ($location.path() == "/dashboard") {
-        $timeout(function() {
-            $scope.welcome = "Welcome ";
-            $scope.talent = user.name.name + "!";
-        });
-    }
-
-    $http.post('/getPp', user)
-        .then(function (res) {
-
-            $scope.image=res.data;
+                return $http
+                    .post('/toggleEmail', {id: session.user._id, emailDisable: !$scope.emailNoti})
+                    .then(function (res) {
+                        if (res) {
+                            swal("Email Notifications Changed", "Your email notifications have been " + message + ".", "success");
+                        }
 
 
-        });
+                    });
+            };
 
-    $scope.logOut = function() {
-        swal({
-                title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
-            },
-            function () {
-                session.destroy();
+            $http.post('/getPp', user)
+                .then(function (res) {
 
-                $cookies.remove("user");
-                $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-                $window.location.href="/";
-                swal({title:"You have been logged out.", text: "",showConfirmButton: false});
-            });
-    };
-    $scope.myProfile = function(){
-        $window.location.href="/myProfile";
-    };
+                    $scope.image = res.data;
 
 
+                });
 
-});
 
-app.controller('employerNav',function($scope,$rootScope, $window, session, authService, $cookies, AUTH_EVENTS,$http,$timeout,ModalService){
+            $scope.logOut = function () {
+                swal({
+                        title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, Log Out", closeOnConfirm: false
+                    },
+                    function () {
+                        session.destroy();
 
-    var user = session.user;
-    $scope.user = user;
-
-    $http
-        .post('/setEmailToggle', {id: session.user._id})
-        .then(function (res) {
-            if(res){
-                $scope.emailNoti = !res.data.emailDisable;
-                if($scope.emailNoti)
-                    $scope.toggle = "fa-toggle-on blueText";
-                else
-                    $scope.toggle = "fa-toggle-off";
+                        $cookies.remove("user");
+                        $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
+                        $window.location.href = "/";
+                        swal({title: "You have been logged out.", text: "", showConfirmButton: false});
+                    });
+            };
+            $scope.myProfile = function () {
+                $window.location.href = "/myProfile";
             }
         });
-
-    $scope.gooiHITemployer = function(){
-        ModalService.showModal({
-            templateUrl: "../views/blocks/employerWorks.html",
-            controller: "worksControl"
-        }).then(function(modal) {
-            // The modal object has the element built, if this is a bootstrap modal
-            // you can call 'modal' to show it, if it's a custom modal just show or hide
-            // it as you need to.
-            modal.element.modal();
-        });
-    };
-
-    $scope.toggleClicked = function(){
-        $scope.emailNoti = !$scope.emailNoti;
-    };
-
-    $scope.toggleEmail = function(){
-        $scope.emailNoti = !$scope.emailNoti;
-        var message;
-        if($scope.emailNoti){
-            message = "enabled";
-            $scope.toggle = "fa-toggle-on blueText";
-        }
-        if(!$scope.emailNoti){
-            message = "disabled";
-            $scope.toggle = "fa-toggle-off";
-        }
-
-        return $http
-            .post('/toggleEmail', {id: session.user._id, emailDisable:!$scope.emailNoti})
-            .then(function (res) {
-                if(res){
-                    swal("Email Notifications Changed", "Your email notifications have been "+message+".", "success");
-                }
-
-
-            });
-    };
-
-    $http.post('/getPp', user)
-        .then(function (res) {
-
-            $scope.image=res.data;
-
-
-        });
-
-
-    $scope.logOut = function() {
-        swal({
-                title: "Are You Sure?", text: "The browser won't remember you next time you Log In.",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, Log Out!", closeOnConfirm: false
-            },
-            function () {
-                session.destroy();
-
-                $cookies.remove("user");
-                $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
-                $window.location.href="/";
-                swal({title:"You have been logged out.", text: "",showConfirmButton: false});
-            });
-    };
-    $scope.myProfile = function(){
-        $window.location.href="/myProfile";
-    }
-
+    });
 });

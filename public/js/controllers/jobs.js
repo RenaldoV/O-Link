@@ -971,6 +971,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 title: "Are You Sure?",
                 text: "This will notify the user that you have withdrawn.",
                 showCancelButton: true,
+                type: 'warning',
                 confirmButtonColor: "#DD6B55",
                 confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
@@ -1024,6 +1025,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                 title: "Are You Sure?",
                 text: "This will notify the user and that you have accepted.",
                 showCancelButton: true,
+                type: 'warning',
                 confirmButtonColor: "#00b488",
                 confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false

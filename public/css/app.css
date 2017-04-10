@@ -931,7 +931,17 @@ body {
   margin-top: -4px;
   vertical-align: middle;
 }
-
+@media (min-width: 992px){
+  div > h2.navbar-text .navbar-slog{
+    font-size: 50px;
+  }
+  div > h2.navbar-text{
+    font-size: 50px;
+  }
+  div > h2.navbar-text .appCount{
+    font-size: 20px;
+  }
+}
 @media (min-width: 768px) {
   .job-info-boxes-mobi{
     display:none;
