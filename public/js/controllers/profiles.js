@@ -368,7 +368,7 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
         swal({
                 title: "Are You Sure?",
                 type: "input",
-                text: "This updates your User Profile (CV). Please type your password to confirm.",
+                text: "This updates your User Profile. Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm Sure",
@@ -379,9 +379,7 @@ app.controller('employerEditProfile', function($scope, session,Upload, $timeout,
                 $http
                     .post('/checkPassword', {email: user.contact.email, password: inputValue})
                     .then(function (res, err) {
-                        console.log(res.data);
                         if (!res.data) {
-                            console.log("awww");
                             swal.showInputError("Incorrect Password!");
                             return false;
                         }
@@ -572,7 +570,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         }
         else{
             swal({
-                title: "Only PDF's accepted",
+                title: "Only PDF's Accepted",
                 text: 'The system only accepts pdf files.',
                 type: "error"
             });
@@ -599,12 +597,12 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
 
     $scope.close = function(reqs){
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 text: "Are you sure you want to delete this result?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!",
+                confirmButtonText: "Yes, Delete It",
                 closeOnConfirm: true
             },
             function(){
@@ -617,12 +615,12 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
     };
     $scope.closeCert = function(certs){
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 text: "Are you sure you want to delete this certification?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Yes, Delete It"
             },
             function(){
                 numCert--;
@@ -635,12 +633,12 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
     };
     $scope.closeWork = function(cats){
         swal({
-                title: "Are you sure?",
+                title: "Are You Sure?",
                 text: "Are you sure you want to delete this work experience?",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Yes, Delete It"
             },
             function(){
                 workRadios--;
@@ -760,7 +758,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
             }
             else{
                 swal({
-                    title: "Only PDF's accepted",
+                    title: "Only PDF's Accepted",
                     text: 'The system only accepts pdf files.',
                     type: "error"
                 });
@@ -779,7 +777,7 @@ app.controller('editProfile', function($scope,session, photoUpload, $http, $wind
         swal({
                 title: "Are You Sure?",
                 type: "input",
-                text: "This updates your User Profile (CV). Please type your password to confirm.",
+                text: "This updates your User Profile. Please type your password to confirm.",
                 showCancelButton: true,
                 confirmButtonColor: "#7266ba",
                 confirmButtonText: "Yes, I'm Sure",

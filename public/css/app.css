@@ -1089,6 +1089,12 @@ body {
     height: 35px;!important;
   }
 }
+@media (min-width: 992px) and (max-width: 1199px) {
+  fieldset.applicantProfileStars > label:before {
+    margin: 2px;
+    font-size: 25px;
+  }
+}
 @media (min-width: 768px) and (max-width: 991px) {
   span.tableAdd{
     display:none;
@@ -1214,6 +1220,10 @@ body {
 }
 
 @media (max-width: 680px) {
+  div > fieldset.applicantProfileStars > label:before {
+    margin-right: 5%;
+    font-size: 12px;
+  }
   div.rating.applicantsRating  div.star-container.applicantsStars  .star{
     width:20px;!important;
     height:20px;!important;
@@ -5214,6 +5224,10 @@ span.fa-stack.fa-lg.blue{
   margin-left: 30px;
 }
 @media (max-width: 990px) {
+  fieldset.applicantProfileStars > label:before {
+    margin: 1px;
+    font-size: 1.8em;
+  }
   div.empBtns.row.center div.col-md-3 {
     width: 75%;!important;
     margin-left: 12.5%;

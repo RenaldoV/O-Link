@@ -693,11 +693,56 @@ div.studentRating > a:first-child{
 div.studentRating .button .material-icons{
     font-size: 50px;!important;
 }
-div > .profileStars .button .material-icons {
-    font-size: 25px;!important;
+.profileStars {
+    border: none;
+    margin-right:20px;
 }
-div > .profileStars .star-button.star-on .material-icons
-{ color: #FFD700;!important;  }
+
+.profileStars > input { display: none; }
+.profileStars > label:before {
+    margin: 3px;
+    font-size: 1.7em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.profileStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.profileStars > label {
+    color: #ddd;
+    float: right;
+}
+.profileStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700; }
+
+.applicantProfileStars {
+    border: none;
+}
+
+.applicantProfileStars > input { display: none; }
+.applicantProfileStars > label:before {
+    margin: 3px;
+    font-size: 1.7em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+}
+
+.applicantProfileStars > .half:before {
+    content: "\f089";
+    position: absolute;
+}
+
+.applicantProfileStars > label {
+    color: #ddd;
+    float: right;
+}
+.applicantProfileStars > input:checked ~ label /* show gold star when clicked */
+{ color: #FFD700; }
 
 td.jobHistPMed{
     height:100%;

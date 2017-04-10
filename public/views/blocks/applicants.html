@@ -27,35 +27,28 @@
                         <div>
                             <img  ng-click="gotoProfile()" ng-src="data:image/png;base64,{{app.image}}" class="img-circle applicantsLogos"><br>
                             <div>
-                                <div ng-class="half" class="star-icon rating applicantsRating star-icon direction-ltr value-{{app.studentID.rating}} color-ok">
-                                    <div class="star-container applicantsStars">
-                                        <div class="star">
-                                            <i class="star-empty"></i>
-                                            <i class="star-half"></i>
-                                            <i class="star-filled"></i>
-                                        </div>
-                                        <div class="star">
-                                            <i class="star-empty"></i>
-                                            <i class="star-half"></i>
-                                            <i class="star-filled"></i>
-                                        </div>
-                                        <div class="star">
-                                            <i class="star-empty"></i>
-                                            <i class="star-half"></i>
-                                            <i class="star-filled"></i>
-                                        </div>
-                                        <div class="star">
-                                            <i class="star-empty"></i>
-                                            <i class="star-half"></i>
-                                            <i class="star-filled"></i>
-                                        </div>
-                                        <div class="star">
-                                            <i class="star-empty"></i>
-                                            <i class="star-half"></i>
-                                            <i class="star-filled"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                                <fieldset class="applicantProfileStars">
+                                    <input ng-checked="user.rating == 5" type="radio" id="star5" name="rating" value=5 ng-model="app.studentID.rating" disabled/><label
+                                        class="full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input ng-checked="user.rating == 4.5" type="radio" id="star4half" name="rating" value=4.5 ng-model="app.studentID.rating" disabled/><label
+                                        class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input ng-checked="user.rating == 4" type="radio" id="star4" name="rating" value=4 ng-model="app.studentID.rating" disabled/><label
+                                        class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input ng-checked="user.rating == 3.5" type="radio" id="star3half" name="rating" value=3.5 ng-model="app.studentID.rating" disabled/><label
+                                        class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input ng-checked="user.rating == 3" type="radio" id="star3" name="rating" value=3 ng-model="app.studentID.rating" disabled/><label
+                                        class="full" for="star3" title="Meh - 3 stars"></label>
+                                    <input ng-checked="user.rating == 2.5" type="radio" id="star2half" name="rating" value=2.5 ng-model="app.studentID.rating" disabled/><label
+                                        class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input ng-checked="user.rating == 2" type="radio" id="star2" name="rating" value=2 ng-model="app.studentID.rating" disabled/><label
+                                        class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input ng-checked="user.rating == 1.5" type="radio" id="star1half" name="rating" value=1.5 ng-model="app.studentID.rating" disabled/><label
+                                        class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input ng-checked="user.rating == 1" type="radio" id="star1" name="rating" value=1 ng-model="app.studentID.rating" disabled/><label
+                                        class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input ng-checked="user.rating == 0.5" type="radio" id="starhalf" name="rating" value=0.5 ng-model="app.studentID.rating" disabled><label
+                                        class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </fieldset>
                             </div>
                         </div>
                     </div>

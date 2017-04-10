@@ -287,7 +287,7 @@ app.controller('postJob',function($scope, $http, $window, authService, session, 
                 swal({
                         title: "Are You Sure?",
                         type: "input",
-                        text: "This update your post and notify all applicants. Please type your password to confirm",
+                        text: "This update your post and notify all applicants. Please type your password to confirm.",
                         showCancelButton: true,
                         confirmButtonColor: "#00b488",
                         confirmButtonText: "Yes, I'm Sure",
@@ -549,7 +549,7 @@ app.controller('jobBrowser',function($scope, $location, $http, $rootScope, sessi
         }); // Save location and geometry
         $scope.editLocation = function(){
             $scope.editLoc = true;
-            $scope.resAddress = session.user.location.address;
+            $scope.resAddress = user.location.address;
             $timeout(function(){
                 $("#searchTextField").select();
             });
@@ -958,7 +958,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
                                 status: 'withdrawn',
                                 title: Cat
                             });
-                            swal("Offer withdrawn.", "", "success");
+                            swal("Offer Withdrawn.", "", "success");
                             location.reload();
                         });
                 }
@@ -1102,7 +1102,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
 
 
 
-                                    sweetAlert("Job has beed deleted", "", "success");
+                                    sweetAlert("Job has beed deleted.", "", "success");
                                     if(job.applicants) {
                                         for (var i = 0; i < job.applicants.length; i++) {
 
@@ -1235,7 +1235,7 @@ app.controller('jobCtrl', function($scope, $location, $window,$http, session, no
         }
         if(!met){
             swal({
-                title: "Failed to Meet Minimum Requirements",
+                title: "Failed to Meet Minimum Requirements.",
                 text: "You cannot apply to this job because you do not meet the minimum requirements relating to : " + "<b>" + reduceArray(crit) + "</b>",
                 html: true,
                 type: "error"

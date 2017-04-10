@@ -171,10 +171,10 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 $scope.withdraw = function(app, job){
                     swal({
                             title: "Are You Sure?",
-                            text: "This will pull your application from the system",
+                            text: "This will pull your application from the system.",
                             showCancelButton: true,
                             confirmButtonColor: "#DD6B55",
-                            confirmButtonText: "Yes, I'm sure",
+                            confirmButtonText: "Yes, I'm Sure",
                             closeOnConfirm: false
                         },
                         function (isConfirm) {
@@ -257,7 +257,7 @@ app.controller('studentApplications', function ($scope,$http,cacheUser, session,
                 showCancelButton: true,
                 confirmButtonColor: "#DD6B55",
                 type:'warning',
-                confirmButtonText: "Yes, I'm sure",
+                confirmButtonText: "Yes, I'm Sure",
                 closeOnConfirm: false
             },
             function (isConfirm) {
