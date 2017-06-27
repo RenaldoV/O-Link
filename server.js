@@ -102,7 +102,7 @@ new CronJob('00 00 * * * *', function() {
                         args.email = usr.contact.email;
 
                         args.subject = args.category + " will automatically decline in 2 hours!";
-                        args.link = 'http://' + "154.66.197.62:8080" + '/applications';
+                        args.link = 'http://' + "18.220.2.189:8080" + '/applications';
                         mailer.sendMail('offerExpiry', ap.studentID._id, args, function (err, rr) {
                             //console.log("Send email: " + rr);
                         });
@@ -178,7 +178,7 @@ new CronJob('00 00 * * * *', function() {
                         else
                             var article = "a ";
                         args.subject = "Automatically Declined Provisional Acceptance / Job Commitment to Work as "+ article + args.category + " – Missed Response Deadline";
-                        args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                        args.link = 'http://' + "18.220.2.189:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
 
                         mailer.sendMail('offerTimeUp', ap.studentID._id, args, function (err, rr) {
                             //console.log("Send email: " + rr);
@@ -189,7 +189,7 @@ new CronJob('00 00 * * * *', function() {
                             name: emp.contact.name,
                             talent: usr.name.name + " " + usr.name.surname,
                             email: emp.contact.email,
-                            link: 'http://154.66.197.62:8080/applicants'
+                            link: 'http://18.220.2.189:8080/applicants'
                         };
 
                         mailer.sendMail('applicationWithdrawn', emp._id, args, function (er, rss) {
@@ -259,7 +259,7 @@ new CronJob('00 00 * * * *', function() {
                     else
                         var article = "a ";
                     args.subject =  "Automatically Withdrawn Application to Work as "+ article + args.category +" – Missed Response Deadline";
-                    args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                    args.link = 'http://' + "18.220.2.189:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
                     mailer.sendMail('jobEditedTimeUp', usr._id, args, function (err, rr) {
                         console.log("Send email: " + rr);
                     });
@@ -385,7 +385,7 @@ function dailyCheck(){
                                         args.employer = emp.contact.name + " " + emp.contact.surname;
 
                                     args.subject = args.role;
-                                    args.link = 'http://' + "154.66.197.62:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
+                                    args.link = 'http://' + "18.220.2.189:8080" + '/browseJobs?timePeriods[]=Once Off&timePeriods[]=Short Term&timePeriods[]=Long Term&categories[]=Assistant&categories[]=Aupair&categories[]=Bartender&categories[]=Coach&categories[]=Cook %2F Chef&categories[]=Delivery Person&categories[]=Host(ess)&categories[]=Internship&categories[]=Model&categories[]=Photographer %2F Videographer&categories[]=Programmer %2F Developer&categories[]=Promoter&categories[]=Retail Worker&categories[]=Tutor&categories[]=Waiter(res)&categories[]=Other';
                                     //console.log("mailer args " + args + " " + applicant);
                                     mailer.sendMail('applicationDenied', applicant, args, function (err, rr) {
                                         //console.log("Send email: " + rr);
